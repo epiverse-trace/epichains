@@ -28,9 +28,6 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/bpmodels-package.html</loc>
-  </url>
-  <url>
     <loc>/reference/chain_ll.html</loc>
   </url>
   <url>
@@ -47,6 +44,9 @@
   </url>
   <url>
     <loc>/reference/dborel.html</loc>
+  </url>
+  <url>
+    <loc>/reference/epichains-package.html</loc>
   </url>
   <url>
     <loc>/reference/find_function_name.html</loc>

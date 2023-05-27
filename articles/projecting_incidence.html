@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projecting infectious disease incidence: a COVID-19 example • bpmodels</title>
+<title>Projecting infectious disease incidence: a COVID-19 example • epichains</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Projecting infectious disease incidence: a COVID-19 example">
-<meta property="og:description" content="bpmodels">
+<meta property="og:description" content="epichains">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -32,7 +32,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">bpmodels</a>
+        <a class="navbar-link" href="../index.html">epichains</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
       </span>
     </div>
@@ -60,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/epiverse-trace/bpmodels/" class="external-link">
+  <a href="https://github.com/epiverse-trace/epichains/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -82,7 +82,7 @@
                         <h4 data-toc-skip class="author">James Azam, Sebastian Funk</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/bpmodels/blob/HEAD/vignettes/projecting_incidence.Rmd" class="external-link"><code>vignettes/projecting_incidence.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/HEAD/vignettes/projecting_incidence.Rmd" class="external-link"><code>vignettes/projecting_incidence.Rmd</code></a></small>
       <div class="hidden name"><code>projecting_incidence.Rmd</code></div>
 
     </div>
@@ -96,14 +96,14 @@
 provided we can characterize the distribution of times between
 successive cases (serial interval), and the distribution of secondary cases
 produced by a single individual (offspring distribution). Such simulations can
-be achieved in <code>bpmodels</code> with the <code><a href="../reference/chain_sim.html">chain_sim()</a></code> function and <span class="citation">Pearson et al. (<a href="#ref-Pearson2020" role="doc-biblioref">2020</a>)</span>, and
+be achieved in <code>epichains</code> with the <code><a href="../reference/chain_sim.html">chain_sim()</a></code> function and <span class="citation">Pearson et al. (<a href="#ref-pearson2020" role="doc-biblioref">2020</a>)</span>, and
 <span class="citation">Abbott et al. (<a href="#ref-abbott2020" role="doc-biblioref">2020</a>)</span> illustrate its application to COVID-19.</p>
 <p>The purpose of this vignette is to use early data on COVID-19 in South Africa
-<span class="citation">(<a href="#ref-marivate2020" role="doc-biblioref">Marivate and Combrink 2020</a>)</span> to illustrate how <code>bpmodels</code> can be used to forecast an
+<span class="citation">(<a href="#ref-marivate2020" role="doc-biblioref">Marivate and Combrink 2020</a>)</span> to illustrate how <code>epichains</code> can be used to forecast an
 outbreak.</p>
 <p>Let’s load the required packages</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/bpmodels" class="external-link">"bpmodels"</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/epichains" class="external-link">"epichains"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org" class="external-link">"dplyr"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://lubridate.tidyverse.org" class="external-link">"lubridate"</a></span><span class="op">)</span></span>
@@ -113,11 +113,11 @@ outbreak.</p>
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
-<p>Included in <code>bpmodels</code> is a cleaned time series of the first 15 days of
+<p>Included in <code>epichains</code> is a cleaned time series of the first 15 days of
 the COVID-19 outbreak in South Africa. This can be loaded into
 memory as follows:</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"covid19_sa"</span>, package <span class="op">=</span> <span class="st">"bpmodels"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"covid19_sa"</span>, package <span class="op">=</span> <span class="st">"epichains"</span><span class="op">)</span></span></code></pre></div>
 </details><p>Let us examine the first 6 entries of the dataset.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">covid19_sa</span><span class="op">)</span></span>
@@ -175,10 +175,10 @@ that each case has a corresponding start time.</p>
 </h3>
 <p>The log-normal distribution is commonly used in epidemiology to characterise
 quantities such as the serial interval because it has a large variance
-and can only be positive-valued <span class="citation">(<a href="#ref-Nishiura2007" role="doc-biblioref">Nishiura 2007</a>; <a href="#ref-Limpert2001" role="doc-biblioref">Limpert, Stahel, and Abbt 2001</a>)</span>.</p>
+and can only be positive-valued <span class="citation">(<a href="#ref-nishiura2007" role="doc-biblioref">Nishiura 2007</a>; <a href="#ref-limpert2001" role="doc-biblioref">Limpert, Stahel, and Abbt 2001</a>)</span>.</p>
 <p>In this example, we will assume based on COVID-19 literature that the
 serial interval, S, is log-normal distributed with parameters,
-<span class="math inline">\(\mu = 4.7\)</span> and <span class="math inline">\(\sigma = 2.9\)</span> <span class="citation">(<a href="#ref-Pearson2020" role="doc-biblioref">Pearson et al. 2020</a>)</span>. Note that when the distribution
+<span class="math inline">\(\mu = 4.7\)</span> and <span class="math inline">\(\sigma = 2.9\)</span> <span class="citation">(<a href="#ref-pearson2020" role="doc-biblioref">Pearson et al. 2020</a>)</span>. Note that when the distribution
 is described this way, it means <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are the expected value
 and standard deviation of the natural logarithm of the serial interval. Hence,
 in order to sample the “back-transformed” measured serial interval with
@@ -192,18 +192,18 @@ SD [S] &amp;= \sqrt {\ln \left(1 + \dfrac{\sigma^2}{\mu^2} \right)}
 <p>See <a href="https://en.wikipedia.org/wiki/Log-normal_distribution" class="external-link">Wikipedia</a> for a
 detailed explanation of this parametrisation.</p>
 <p>The <a href="https://github.com/epiverse-trace/epiparameter" class="external-link">epiparameter</a> R package
-provides the function <code><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2musigma.html" class="external-link">epiparameter::lnorm_meansd2musigma()</a></code> for implementing
+provides the function <code><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2meanlogsdlog.html" class="external-link">epiparameter::lnorm_meansd2meanlogsdlog()</a></code> for implementing
 this parametrisation. It takes as inputs the mean, <span class="math inline">\(\mu\)</span> and standard
 deviation, <span class="math inline">\(\sigma\)</span> and returns a list with the transformed mean and
-standard deviation. Refer to <code><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2musigma.html" class="external-link">?epiparameter::lnorm_meansd2musigma</a></code>
+standard deviation. Refer to <code><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2meanlogsdlog.html" class="external-link">?epiparameter::lnorm_meansd2meanlogsdlog</a></code>
 for more details.</p>
 <p>Let us set up the serial interval function with the appropriate inputs:</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fl">4.7</span></span>
 <span><span class="va">sgma</span> <span class="op">&lt;-</span> <span class="fl">2.9</span></span>
 <span></span>
-<span><span class="va">log_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2musigma.html" class="external-link">lnorm_meansd2musigma</a></span><span class="op">(</span><span class="va">mu</span>, <span class="va">sgma</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>  <span class="co"># log mean</span></span>
-<span><span class="va">log_sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2musigma.html" class="external-link">lnorm_meansd2musigma</a></span><span class="op">(</span><span class="va">mu</span>, <span class="va">sgma</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="co"># log sd</span></span>
+<span><span class="va">log_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2meanlogsdlog.html" class="external-link">lnorm_meansd2meanlogsdlog</a></span><span class="op">(</span><span class="va">mu</span>, <span class="va">sgma</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>  <span class="co"># log mean</span></span>
+<span><span class="va">log_sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2meanlogsdlog.html" class="external-link">lnorm_meansd2meanlogsdlog</a></span><span class="op">(</span><span class="va">mu</span>, <span class="va">sgma</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="co"># log sd</span></span>
 <span></span>
 <span><span class="co">#' serial interval function</span></span>
 <span><span class="va">serial_interval</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sample_size</span><span class="op">)</span> <span class="op">{</span></span>
@@ -217,10 +217,10 @@ for more details.</p>
 </h3>
 <p>The negative binomial distribution is commonly used in epidemiology to
 account for individual variation in transmissibility,
-also known as superspreading <span class="citation">(<a href="#ref-Lloyd-Smith2005a" role="doc-biblioref">Lloyd-Smith et al. 2005</a>)</span>.</p>
+also known as superspreading <span class="citation">(<a href="#ref-lloyd-smith2005" role="doc-biblioref">Lloyd-Smith et al. 2005</a>)</span>.</p>
 <p>For this example, we will assume that the offspring distribution is
 characterised by a negative binomial with <span class="math inline">\(R = 2.5\)</span> <span class="citation">(<a href="#ref-abbott2020" role="doc-biblioref">Abbott et al. 2020</a>)</span> and
-<span class="math inline">\(k = 0.58\)</span> <span class="citation">(<a href="#ref-Wang2020" role="doc-biblioref">Wang et al. 2020</a>)</span>. In this parameterization, <span class="math inline">\(R\)</span>
+<span class="math inline">\(k = 0.58\)</span> <span class="citation">(<a href="#ref-wang2020" role="doc-biblioref">Wang et al. 2020</a>)</span>. In this parameterization, <span class="math inline">\(R\)</span>
 represents the <span class="math inline">\(R_0\)</span>, which is defined as the average number of
 cases produced by a single individual in an entirely susceptible population.
 The parameter <span class="math inline">\(k\)</span> represents superspreading, that is, the degree of
@@ -487,23 +487,23 @@ Figure 1: COVID-19 incidence projected over a two week window. The gray lines re
 <div id="ref-abbott2020" class="csl-entry">
 Abbott, Sam, Joel Hellewell, James Munday, Sebastian Funk, CMMID nCoV working group, et al. 2020. <span>“The Transmissibility of Novel Coronavirus in the Early Stages of the 2019-20 Outbreak in Wuhan: Exploring Initial Point-Source Exposure Sizes and Durations Using Scenario Analysis.”</span> <em>Wellcome Open Research</em> 5.
 </div>
-<div id="ref-Limpert2001" class="csl-entry">
-Limpert, Eckhard, Werner A. Stahel, and Markus Abbt. 2001. <span>“<span class="nocase">Log-normal distributions across the sciences: Keys and clues</span>.”</span> <em>BioScience</em> 51 (5): 341–52. <a href="https://doi.org/10.1641/0006-3568(2001)051%5B0341:LNDATS%5D2.0.CO;2" class="external-link">https://doi.org/10.1641/0006-3568(2001)051[0341:LNDATS]2.0.CO;2</a>.
+<div id="ref-limpert2001" class="csl-entry">
+Limpert, Eckhard, Werner A. Stahel, and Markus Abbt. 2001. <span>“Log-Normal Distributions Across the Sciences: Keys and Clues.”</span> <em>BioScience</em> 51 (5): 341–52. <a href="https://doi.org/10.1641/0006-3568(2001)051%5B0341:LNDATS%5D2.0.CO;2" class="external-link">https://doi.org/10.1641/0006-3568(2001)051[0341:LNDATS]2.0.CO;2</a>.
 </div>
-<div id="ref-Lloyd-Smith2005a" class="csl-entry">
-Lloyd-Smith, J. O., S. J. Schreiber, P. E. Kopp, and W. M. Getz. 2005. <span>“<span class="nocase">Superspreading and the effect of individual variation on disease emergence</span>.”</span> <em>Nature</em> 438 (7066): 355–59. <a href="https://doi.org/10.1038/nature04153" class="external-link">https://doi.org/10.1038/nature04153</a>.
+<div id="ref-lloyd-smith2005" class="csl-entry">
+Lloyd-Smith, J. O., S. J. Schreiber, P. E. Kopp, and W. M. Getz. 2005. <span>“Superspreading and the Effect of Individual Variation on Disease Emergence.”</span> <em>Nature</em> 438 (7066): 355–59. <a href="https://doi.org/10.1038/nature04153" class="external-link">https://doi.org/10.1038/nature04153</a>.
 </div>
 <div id="ref-marivate2020" class="csl-entry">
 Marivate, Vukosi, and Herkulaas MvE Combrink. 2020. <span>“Use of Available Data to Inform the COVID-19 Outbreak in South Africa: A Case Study.”</span> <em>arXiv Preprint arXiv:2004.04813</em>.
 </div>
-<div id="ref-Nishiura2007" class="csl-entry">
-Nishiura, Hiroshi. 2007. <span>“<span class="nocase">Early efforts in modeling the incubation period of infectious diseases with an acute course of illness</span>.”</span> <em>Emerging Themes in Epidemiology</em> 4: 1–12. <a href="https://doi.org/10.1186/1742-7622-4-2" class="external-link">https://doi.org/10.1186/1742-7622-4-2</a>.
+<div id="ref-nishiura2007" class="csl-entry">
+Nishiura, Hiroshi. 2007. <span>“Early Efforts in Modeling the Incubation Period of Infectious Diseases with an Acute Course of Illness.”</span> <em>Emerging Themes in Epidemiology</em> 4: 1–12. <a href="https://doi.org/10.1186/1742-7622-4-2" class="external-link">https://doi.org/10.1186/1742-7622-4-2</a>.
 </div>
-<div id="ref-Pearson2020" class="csl-entry">
-Pearson, Carl A. B., Cari van Schalkwyk, Anna M. Foss, Kathleen M. O’Reilly, and Juliet R. C. Pulliam. 2020. <span>“<span class="nocase">Projected early spread of COVID-19 in Africa through 1 June 2020</span>.”</span> <em>Eurosurveillance</em> 25 (18): 1–6. <a href="https://doi.org/10.2807/1560-7917.ES.2020.25.18.2000543" class="external-link">https://doi.org/10.2807/1560-7917.ES.2020.25.18.2000543</a>.
+<div id="ref-pearson2020" class="csl-entry">
+Pearson, Carl A.B., Cari van Schalkwyk, Anna M. Foss, Kathleen M. O’Reilly, and Juliet R.C. Pulliam. 2020. <span>“Projected Early Spread of COVID-19 in Africa Through 1 June 2020.”</span> <em>Eurosurveillance</em> 25 (18): 1–6. <a href="https://doi.org/10.2807/1560-7917.ES.2020.25.18.2000543" class="external-link">https://doi.org/10.2807/1560-7917.ES.2020.25.18.2000543</a>.
 </div>
-<div id="ref-Wang2020" class="csl-entry">
-Wang, Liang, Xavier Didelot, Jing Yang, Gary Wong, Yi Shi, Wenjun Liu, George F. Gao, and Yuhai Bi. 2020. <span>“<span class="nocase">Inference of person-to-person transmission of COVID-19 reveals hidden super-spreading events during the early outbreak phase</span>.”</span> <em>Nature Communications</em> 11 (1): 1–6. <a href="https://doi.org/10.1038/s41467-020-18836-4" class="external-link">https://doi.org/10.1038/s41467-020-18836-4</a>.
+<div id="ref-wang2020" class="csl-entry">
+Wang, Liang, Xavier Didelot, Jing Yang, Gary Wong, Yi Shi, Wenjun Liu, George F. Gao, and Yuhai Bi. 2020. <span>“Inference of Person-to-Person Transmission of COVID-19 Reveals Hidden Super-Spreading Events During the Early Outbreak Phase.”</span> <em>Nature Communications</em> 11 (1): 1–6. <a href="https://doi.org/10.1038/s41467-020-18836-4" class="external-link">https://doi.org/10.1038/s41467-020-18836-4</a>.
 </div>
 </div>
 </div>
