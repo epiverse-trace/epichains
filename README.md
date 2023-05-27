@@ -1,19 +1,19 @@
 
-# *bpmodels*: Methods for analysing the size and length of transmission chains from branching process models
+# *epichains*: Methods for analysing the size and length of transmission chains from branching process models
 
 <!-- badges: start -->
 
 ![GitHub R package
-version](https://img.shields.io/github/r-package/v/epiverse-trace/bpmodels)
-[![R-CMD-check](https://github.com/epiverse-trace/bpmodels/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/bpmodels/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/github/epiverse-trace/bpmodels/branch/main/graphs/badge.svg)](https://codecov.io/github/epiverse-trace/bpmodels)
+version](https://img.shields.io/github/r-package/v/epiverse-trace/epichains)
+[![R-CMD-check](https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml)
+[![codecov](https://codecov.io/github/epiverse-trace/epichains/branch/main/graphs/badge.svg)](https://codecov.io/github/epiverse-trace/epichains)
 ![GitHub
-contributors](https://img.shields.io/github/contributors/epiverse-trace/bpmodels)
+contributors](https://img.shields.io/github/contributors/epiverse-trace/epichains)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
-*bpmodels* is an R package to simulate and analyse the size and length
+*epichains* is an R package to simulate and analyse the size and length
 of branching processes with a given offspring distribution. These models
 are often used in infectious disease epidemiology, where the chains
 represent chains of transmission, and the offspring distribution
@@ -22,17 +22,17 @@ infected individual.
 
 # Installation
 
-The latest development version of the *bpmodels* package can be
+The latest development version of the *epichains* package can be
 installed via
 
 ``` r
-devtools::install_github(file.path("epiverse-trace", "bpmodels"))
+pak::pkg_install("epiverse-trace/epichains")
 ```
 
 To load the package, use
 
 ``` r
-library("bpmodels")
+library("epichains")
 ```
 
 # Quick start
@@ -182,25 +182,25 @@ head(chains_df)
 
 ## Package vignettes
 
-Specific use cases of *bpmodels* can be found in the [online
+Specific use cases of *epichains* can be found in the [online
 documentation as package
-vignettes](https://epiverse-trace.github.io/bpmodels/), under
+vignettes](https://epiverse-trace.github.io/epichains/), under
 “Articles”.
 
 ## Reporting bugs
 
 To report a bug please open an
-[issue](https://github.com/epiverse-trace/bpmodels/issues/new/choose).
+[issue](https://github.com/epiverse-trace/epichains/issues/new/choose).
 
 ## Contribute
 
 We welcome contributions to enhance the package’s functionalities. If
 you wish to do so, please follow the [package contributing
-guide](https://github.com/epiverse-trace/bpmodels/blob/main/.github/CONTRIBUTING.md).
+guide](https://github.com/epiverse-trace/epichains/blob/main/.github/CONTRIBUTING.md).
 
 ## Code of conduct
 
-Please note that the *bpmodels* project is released with a [Contributor
+Please note that the *epichains* project is released with a [Contributor
 Code of
 Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
@@ -208,20 +208,19 @@ By contributing to this project, you agree to abide by its terms.
 ## Citing this package
 
 ``` r
-citation("bpmodels")
+citation("epichains")
+#> To cite package epichains in publications use:
 #> 
-#> To cite package bpmodels in publications use:
-#> 
-#>   Sebastian Funk, Flavio Finger, and James M. Azam (2023). bpmodels:
+#>   Sebastian Funk, Flavio Finger, and James M. Azam (2023). epichains:
 #>   Analysing transmission chain statistics using branching process
-#>   models, website: https://github.com/epiverse-trace/bpmodels/
+#>   models, website: https://github.com/epiverse-trace/epichains/
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {bpmodels: Analysing transmission chain statistics using branching process models},
+#>     title = {epichains: Analysing transmission chain statistics using branching process models},
 #>     author = {{Sebastian Funk} and {Flavio Finger} and {James M. Azam}},
 #>     year = {2023},
-#>     url = {https://github.com/epiverse-trace/bpmodels/},
+#>     url = {https://github.com/epiverse-trace/epichains/},
 #>   }
 ```

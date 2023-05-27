@@ -1,16 +1,16 @@
-citHeader("To cite package bpmodels in publications use:")
+citHeader("To cite package epichains in publications use:")
 
 citEntry(
   entry = "Manual",
-  title = "bpmodels: Analysing transmission chain statistics using branching process models",
+  title = "epichains: Analysing transmission chain statistics using branching process models",
   author = c(person("Sebastian Funk"), person("Flavio Finger"), person("James M. Azam")),
   year     = "2023",
-  url      = "https://github.com/epiverse-trace/bpmodels/",
+  url      = "https://github.com/epiverse-trace/epichains/",
   textVersion =
   sprintf("%s %s %s %s",
   "Sebastian Funk, Flavio Finger, and James M. Azam (2023).",
-  "bpmodels: Analysing transmission chain statistics",
+  "epichains: Analysing transmission chain statistics",
   "using branching process models,",
-  "website: https://github.com/epiverse-trace/bpmodels/"
+  "website: https://github.com/epiverse-trace/epichains/"
   )
 )

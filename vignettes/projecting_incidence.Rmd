@@ -10,8 +10,8 @@ pkgdown:
 bibliography: references.json
 link-citations: true
 vignette: >
-  %\VignetteIndexEntry{Projecting infectious disease incidence: a COVID-19 example}
   %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{Projecting infectious disease incidence: a COVID-19 example}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
@@ -33,17 +33,17 @@ Branching processes can be used to project infectious disease trends in time
 provided we can characterize the distribution of times between 
 successive cases (serial interval), and the distribution of secondary cases 
 produced by a single individual (offspring distribution). Such simulations can 
-be achieved in `bpmodels` with the `chain_sim()` function and @pearson2020, and 
+be achieved in `epichains` with the `chain_sim()` function and @pearson2020, and 
 @abbott2020 illustrate its application to COVID-19. 
 
 The purpose of this vignette is to use early data on COVID-19 in South Africa 
-[@marivate2020] to illustrate how `bpmodels` can be used to forecast an 
+[@marivate2020] to illustrate how `epichains` can be used to forecast an 
 outbreak. 
 
 Let's load the required packages
 
 ```{r packages, include=TRUE}
-library("bpmodels")
+library("epichains")
 library("dplyr")
 library("ggplot2")
 library("lubridate")
@@ -52,11 +52,11 @@ library("epiparameter")
 
 ## Data
 
-Included in `bpmodels` is a cleaned time series of the first 15 days of 
+Included in `epichains` is a cleaned time series of the first 15 days of 
 the COVID-19 outbreak in South Africa. This can be loaded into 
 memory as follows: 
 ```{r}
-data("covid19_sa", package = "bpmodels")
+data("covid19_sa", package = "epichains")
 ```
 
 Let us examine the first 6 entries of the dataset.

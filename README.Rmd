@@ -1,6 +1,6 @@
 ---
 output: github_document
-bibliography: vignettes/references.bib
+bibliography: vignettes/references.json
 link-citations: true
 ---
 
@@ -13,13 +13,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# _bpmodels_: Methods for analysing the size and length of transmission chains from branching process models
+# _epichains_: Methods for analysing the size and length of transmission chains from branching process models
 
 <!-- badges: start -->
-![GitHub R package version](https://img.shields.io/github/r-package/v/epiverse-trace/bpmodels)
-[![R-CMD-check](https://github.com/epiverse-trace/bpmodels/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/bpmodels/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/github/epiverse-trace/bpmodels/branch/main/graphs/badge.svg)](https://codecov.io/github/epiverse-trace/bpmodels) 
-![GitHub contributors](https://img.shields.io/github/contributors/epiverse-trace/bpmodels)
+![GitHub R package version](https://img.shields.io/github/r-package/v/epiverse-trace/epichains)
+[![R-CMD-check](https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml)
+[![codecov](https://codecov.io/github/epiverse-trace/epichains/branch/main/graphs/badge.svg)](https://codecov.io/github/epiverse-trace/epichains)
+![GitHub contributors](https://img.shields.io/github/contributors/epiverse-trace/epichains)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-_bpmodels_ is an R package to simulate and analyse the size and length of 
+_epichains_ is an R package to simulate and analyse the size and length of
 branching processes with a given offspring distribution. These models are often 
 used in infectious disease epidemiology, where the chains represent chains of
 transmission, and the offspring distribution represents the distribution of 
@@ -35,16 +35,16 @@ secondary infections caused by an infected individual.
 
 # Installation
 
-The latest development version of the _bpmodels_ package can be installed via
+The latest development version of the _epichains_ package can be installed via
 
 ```{r include=TRUE,eval=FALSE}
-devtools::install_github(file.path("epiverse-trace", "bpmodels"))
+pak::pkg_install("epiverse-trace/epichains")
 ```
 
 To load the package, use
 
 ```{r eval=TRUE}
-library("bpmodels")
+library("epichains")
 ```
 
 # Quick start
@@ -177,25 +177,25 @@ head(chains_df)
 
 ## Package vignettes
 
-Specific use cases of _bpmodels_ can be found in 
-the [online documentation as package vignettes](https://epiverse-trace.github.io/bpmodels/), under "Articles".
+Specific use cases of _epichains_ can be found in 
+the [online documentation as package vignettes](https://epiverse-trace.github.io/epichains/), under "Articles".
 
 ## Reporting bugs 
 
-To report a bug please open an [issue](https://github.com/epiverse-trace/bpmodels/issues/new/choose).
+To report a bug please open an [issue](https://github.com/epiverse-trace/epichains/issues/new/choose).
 
 ## Contribute
 
 We welcome contributions to enhance the package's functionalities. If you 
-wish to do so, please follow the [package contributing guide](https://github.com/epiverse-trace/bpmodels/blob/main/.github/CONTRIBUTING.md).
+wish to do so, please follow the [package contributing guide](https://github.com/epiverse-trace/epichains/blob/main/.github/CONTRIBUTING.md).
 
 ## Code of conduct
 
-Please note that the _bpmodels_ project is released with a [Contributor Code of Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md). 
+Please note that the _epichains_ project is released with a [Contributor Code of Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md). 
 By contributing to this project, you agree to abide by its terms.
 
 ## Citing this package
 
 ```{r message=FALSE, warning=FALSE}
-citation("bpmodels")
+citation("epichains")
 ```
