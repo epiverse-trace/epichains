@@ -1,3 +1,3 @@
 library(testthat)
 
-test_check("bpmodels")
+test_check("epichains")

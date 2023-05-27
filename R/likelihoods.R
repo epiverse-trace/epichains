@@ -181,7 +181,7 @@ chain_ll <- function(x, offspring, stat = c("size", "length"), obs_prob = 1,
   pars <- as.list(unlist(list(...))) ## converts vectors to lists
 
   ## calculate likelihoods
-  if (exists(ll_func, where = asNamespace("bpmodels"), mode = "function")) {
+  if (exists(ll_func, where = asNamespace("epichains"), mode = "function")) {
     func <- get(ll_func)
     likelihoods[calc_sizes] <- do.call(func, c(list(x = calc_sizes), pars))
   } else {
