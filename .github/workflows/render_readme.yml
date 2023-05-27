@@ -29,7 +29,7 @@ jobs:
 
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
-        with:
+         with:
           use-public-rspm: true
 
       - name: Setup pandoc
@@ -48,9 +48,9 @@ jobs:
               packagename = read.dcf("DESCRIPTION", "Package"),
               gh_repo = Sys.getenv("GITHUB_REPOSITORY")
             ),
-            "README.Rmd"
+            "README_expanded.Rmd"
           )
-          rmarkdown::render("README.Rmd", output_file = "README.md", output_dir = ".")
+          rmarkdown::render(README_expanded.Rmd, output_file = "README.md", output_dir = ".")
         shell: Rscript {0}
 
       - name: Commit files
