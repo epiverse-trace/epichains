@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# {{ packagename }}: Methods for analysing the size and length of transmission chains from branching process models <img src="man/figures/epichains_logo.png" align="right" height="200" />
+# {{ packagename }}: Methods for analysing the size and length of transmission chains from branching process models <img src="man/figures/epichains_logo.png" align="right" height="130" />
 
 <!-- badges: start -->
 ![GitHub R package version](https://img.shields.io/github/r-package/v/epiverse-trace/epichains)
