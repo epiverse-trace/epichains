@@ -5,7 +5,7 @@
 <!-- `packagename` is extracted from the DESCRIPTION file -->
 <!-- `gh_repo` is extracted via a special environment variable in GitHub Actions -->
 
-# {{ packagename }}: Methods for analysing the size and length of transmission chains from branching process models <img src="man/figures/epichains_logo.png" align="right" height="200" />
+# {{ packagename }}: Methods for analysing the size and length of transmission chains from branching process models <img src="man/figures/epichains_logo.png" align="right" height="100" />
 
 <!-- badges: start -->
 
@@ -28,8 +28,8 @@ chains represent chains of transmission, and the offspring distribution
 represents the distribution of secondary infections caused by an
 infected individual.
 
-`{epichains}` is developed at the [Centre for the Mathematical Modelling
-of Infectious
+{{ packagename }} is developed at the [Centre for the Mathematical
+Modelling of Infectious
 Diseases](https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases)
 at the London School of Hygiene and Tropical Medicine as part of the
 [Epiverse Initiative](https://data.org/initiatives/epiverse/).
