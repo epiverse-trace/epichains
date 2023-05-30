@@ -5,7 +5,7 @@
 <!-- `packagename` is extracted from the DESCRIPTION file -->
 <!-- `gh_repo` is extracted via a special environment variable in GitHub Actions -->
 
-# {{ packagename }}: Methods for analysing the size and length of transmission chains from branching process models
+# {{ packagename }}: Methods for analysing the size and length of transmission chains from branching process models <img src="man/figures/epichains_logo.png" align="right" height="200" />
 
 <!-- badges: start -->
 
