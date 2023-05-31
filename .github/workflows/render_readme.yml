@@ -45,7 +45,7 @@ jobs:
             ),
             "README_expanded.Rmd"
           )
-          rmarkdown::render(README_expanded.Rmd, output_file = "README.md", output_dir = ".")
+          rmarkdown::render("README_expanded.Rmd", output_file = "README.md", output_dir = ".")
         shell: Rscript {0}
 
       - name: Commit files
