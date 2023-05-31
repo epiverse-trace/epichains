@@ -11,6 +11,11 @@ on:
   push:
     paths:
       - 'README.Rmd'
+      - '.github/workflows/render_readme.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
