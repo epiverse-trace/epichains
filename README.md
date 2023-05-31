@@ -21,12 +21,18 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-epichains is an R package to simulate and analyse the size and length of
-branching processes with a given offspring distribution. These models
-are often used in infectious disease epidemiology, where the chains
-represent chains of transmission, and the offspring distribution
-represents the distribution of secondary infections caused by an
-infected individual.
+epichains is an R package to simulate, analyse, and visualize the size
+and length of branching processes with a given offspring distribution.
+These models are often used in infectious disease epidemiology, where
+the chains represent chains of transmission, and the offspring
+distribution represents the distribution of secondary infections caused
+by an infected individual.
+
+epichains re-implements
+[bpmodels](%22https://github.com/epiverse-trace/bpmodels/%22) by
+providing dedicated classes that allow easy manipulation and
+interoperability with other existing packages for handling transmission
+chain and contact-tracing data.
 
 epichains is developed at the [Centre for the Mathematical Modelling of
 Infectious
