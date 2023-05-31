@@ -41,7 +41,7 @@ models are often used in infectious disease epidemiology, where the chains repre
 transmission, and the offspring distribution represents the distribution of 
 secondary infections caused by an infected individual. 
 
-{{ package name }} re-implements [bpmodels]("https://github.com/epiverse-trace/bpmodels/") by providing dedicated classes that allow easy manipulation and interoperability with other existing
+{{ packagename }} re-implements [bpmodels]("https://github.com/epiverse-trace/bpmodels/") by providing dedicated classes that allow easy manipulation and interoperability with other existing
 packages for handling transmission chain and contact-tracing data.
 
 {{ packagename }} is developed at the [Centre for the Mathematical Modelling of Infectious Diseases](https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases) at the London School of Hygiene and Tropical Medicine as part of the [Epiverse Initiative](https://data.org/initiatives/epiverse/).
