@@ -49,6 +49,7 @@ Suggests:
     knitr,
     lubridate,
     rmarkdown,
+    spelling,
     testthat,
     truncdist,
     usethis
@@ -61,3 +62,4 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Language: en-GB
