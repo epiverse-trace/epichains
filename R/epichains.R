@@ -1,9 +1,3 @@
-#' Print an [`epichains`] object
-#'
-#' @param x An [`epichains`] object.
-#' @param ... Other parameters passed to [print()].
-#' @return Invisibly returns an [`epichains`]. Called for side-effects.
-#' @export
 print.epichains <- function(x, ...) {
   format(x, ...)
 }
@@ -12,35 +6,21 @@ print.epichains <- function(x, ...) {
 #'
 #' @param x epichains object
 #' @param ... further arguments passed to or from other methods
+#' @importFrom tibble as_tibble
 #' @return Invisibly returns an [`epichains`]. Called for printing side-effects.
 #' @export
+#'
+#' @examples
 format.epichains <- function(x, ...) {
-  # check that x is an epichains object
-  validate_epichains(x)
-
-  # summarise the information stored in x
   chain_info <- summary(x)
-
   if (attributes(x)$chain_type == "chains_tree") {
+    cat("head starting from first known ancestor \n")
+    print(tibble::as_tibble(head(subset(x, !is.na(ancestor)))))
+    cat("--- \n")
+    print(tail(tibble::as_tibble(x)))
     writeLines(
       c(
-        sprintf("`epichains` object"),
-
-        "< tree head (from first known ancestor) >\n"
-        )
-      )
-
-    # print head of the simulation output
-    print(head(x[!is.na(x$ancestor), ]))
-
-    cat("< tree tail >\n")
-
-    # print tail of object
-    print(tail(as.data.frame(x)))
-
-    # print summary information
-    writeLines(
-      c(
+        sprintf("`epichains` `chains_tree` object"),
         sprintf("Chains simulated: %s", chain_info[["chains"]]),
         sprintf(
           "Unique number of ancestors: %s",
@@ -51,10 +31,8 @@ format.epichains <- function(x, ...) {
         )
       )
     )
-
-    # Offer more information to view the full dataset
     writeLines(sprintf("Use View(<object_name>) to view the full output."))
-
+    invisible(x)
   } else if (attributes(x)$chain_type == "chains_vec") {
     cat(sprintf("epichains object \n"))
     print(as.vector(x))
@@ -64,41 +42,38 @@ format.epichains <- function(x, ...) {
         )
     writeLines(
       c(
-        "\n Simulated chain stats: \n",
+        cat("\n Simulated chain stats: \n"),
         sprintf("Max: %s", chain_info[["max_chain_stat"]]),
         sprintf("Min: %s", chain_info[["min_chain_stat"]])
       )
     )
   }
-
-  invisible(x)
 }
 
 
 
 #' Summary method for epichains class
 #'
-#' @param object An [`epichains`] object
+#' @param object epichains object
 #' @param ... further arguments passed to or from other methods
 #'
 #' @return data frame of information
 #' @export
-summary.epichains <- function(object, ...) {
-  validate_epichains(object)
+#'
+#' @examples
+summary.epichains <- function(x, ...) {
+  if (attributes(x)$chain_type == "chains_tree") {
+    is_epichains(x)
 
-  if (attributes(object)$chain_type == "chains_tree") {
+    chains_ran <- length(x$n)
 
-    chains_ran <- length(object$n)
-
-    max_time <- max(object$time)
+    max_time <- max(x$time)
 
     n_unique_ancestors <- length(
-      unique(object$ancestor[!is.na(object$ancestor)])
+      unique(x$ancestor[!is.na(x$ancestor)])
     )
 
-    num_generations <- length(unique(object$generation))
-
-    max_generation <- max(object$generation)
+    num_generations <- length(unique(x$generations))
 
     # out of summary
     res <- list(
@@ -106,13 +81,13 @@ summary.epichains <- function(object, ...) {
       max_time = max_time,
       unique_ancestors = n_unique_ancestors,
       unique_generations = n_unique_ancestors,
-      num_generations = num_generations,
-      max_generation = max_generation
+      num_generations = num_generations
+      # WIP
     )
-  } else if (attributes(object)$chain_type == "chains_vec") {
-    chains_ran <- length(object)
-    max_chain_stat <- max(!is.infinite(object))
-    min_chain_stat <- min(!is.infinite(object))
+  } else if (attributes(x)$chain_type == "chains_vec") {
+    chains_ran <- length(x)
+    max_chain_stat <- max(!is.infinite(x))
+    min_chain_stat <- min(!is.infinite(x))
 
     res <- list(
       unique_chains = chains_ran,
@@ -130,20 +105,11 @@ summary.epichains <- function(object, ...) {
 #'
 #' @return logical, `TRUE` if the object is an `epichains` and `FALSE`
 #' otherwise
-#' @keywords internal
+#' @export
+#'
+#' @examples
 is_epichains <- function(x) {
   inherits(x, "epichains")
-}
-
-#' Check if an object is of class "epichains_aggregate_df"
-#'
-#' @param x An [`epichains`] object
-#'
-#' @keywords internal
-is_epichains_aggregate_df <- function(x) {
-  if (!inherits(x, "epichains_aggregate_df")) {
-    stop("Object must have class 'epichains_aggregate_df'")
-  }
 }
 
 #' `epichains` class validator
@@ -152,8 +118,6 @@ is_epichains_aggregate_df <- function(x) {
 #'
 #' @return Checks if an object is of class `epichains` and if so
 #' checks that it's in the right format as a "data.frame" or vector.
-#' @keywords internal
-#' @author James M. Azam
 validate_epichains <- function(x) {
   if (!is_epichains(x)) {
     stop("Object must have an epichains class")
@@ -161,13 +125,15 @@ validate_epichains <- function(x) {
 
   # check for class invariants
 
-  if (attributes(x)$chain_type == "chains_tree") {
+  if (attributes(x)$is_tree) {
     stopifnot(
       "object does not contain the correct columns" =
-        c("sim_id", "ancestor", "generation", "time") %in%
+        c("n", "id", "ancestor", "generation", "time") %in%
           colnames(x),
-      "column `sim_id` must be a numeric" =
-        is.numeric(x$sim_id),
+      "column `n` must be a numeric" =
+        is.numeric(x$n),
+      "column `id` must be a numeric" =
+        is.numeric(x$id),
       "column `ancestor` must be a numeric" =
         is.numeric(x$ancestor),
       "column `generation` must be a numeric" =
@@ -183,101 +149,4 @@ validate_epichains <- function(x) {
   }
 
   invisible(x)
-}
-
-#' `head` method for [`epichains`] class
-#'
-#' @param x An [`epichains`] object
-#' @param ... further arguments passed to or from other methods
-#' @importFrom utils head
-#' @return object of class `data.frame`
-#' @author James M. Azam
-#' @export
-head.epichains <- function(x, ...) {
-  utils::head(as.data.frame(x), ...)
-}
-
-#' `tail` method for [`epichains`] class
-#' @param x An [`epichains`] object
-#' @param ... further arguments passed to or from other methods
-#' @importFrom utils tail
-#' @author James M. Azam
-#' @export
-tail.epichains <- function(x, ...) {
-  utils::tail(as.data.frame(x), ...)
-}
-
-#' Aggregate cases in epichains objects according to a grouping variable
-#'
-#' @param x An [`epichains`] object.
-#' @param grouping_var The variable to group and count over. Options include
-#' "time", "generation", and "both".
-#' @param ... Other arguments passed to aggregate.
-#' @importFrom stats aggregate
-#' @return If grouping_var is either "time" or "generation", a data.frame
-#' with cases aggregated over `grouping_var`; If
-#' \code{grouping_var = "both"}, a list of data.frames, the first being for
-#'  cases over time, and the second being for cases over generations.
-#' @export
-#'
-#' @examples
-#' set.seed(123)
-#' chains <- simulate_tree(nchains = 10, serials_sampler = function(x) 3,
-#' offspring_sampler = "pois", lambda = 2, chain_stat_max = 10)
-#' chains
-#'
-#' # Aggregate cases per time
-#' aggregate(chains, grouping_var = "time")
-#'
-#' # Aggregate cases per generation
-#' aggregate(chains, grouping_var = "generation")
-#'
-#' # Aggregate cases per both time and generation
-#' aggregate(chains, grouping_var = "both")
-aggregate.epichains <- function(x,
-                                grouping_var = c("time",
-                                                 "generation",
-                                                 "both"
-                                                 ),
-                                ...) {
-  validate_epichains(x)
-  # Check that the object is of type "chains_tree"
-  if (attributes(x)$chain_type != "chains_tree") {
-    stop("object must be an epichains object with 'chains_tree' attribute.")
-  }
-
-  # Get grouping variable
-  grouping_var <- match.arg(grouping_var)
-
-  out <- if (grouping_var == "time") {
-    # Count the number of cases per generation
-    stats::aggregate(list(cases = x$sim_id),
-      list(time = x$time),
-      FUN = NROW
-    )
-  } else if (grouping_var == "generation") {
-    # Count the number of cases per time
-    stats::aggregate(list(cases = x$sim_id),
-      list(generation = x$generation),
-      FUN = NROW
-    )
-  } else if (grouping_var == "both") {
-    # Count the number of cases per time
-    list(
-      stats::aggregate(list(cases = x$sim_id),
-                       list(time = x$time),
-                       FUN = NROW),
-      # Count the number of cases per generation
-      stats::aggregate(list(cases = x$sim_id),
-                       list(generation = x$generation),
-                       FUN = NROW)
-    )
-  }
-
-  structure(out,
-    class = c("epichains_aggregate_df", class(out)),
-    chain_type = attributes(x)$chain_type,
-    rownames = NULL,
-    aggregated_over = grouping_var
-  )
 }
