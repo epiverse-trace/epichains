@@ -83,8 +83,9 @@ format.epichains <- function(x, ...) {
 #'
 #' @examples
 summary.epichains <- function(x, ...) {
+  validate_epichains(x)
+
   if (attributes(x)$chain_type == "chains_tree") {
-    is_epichains(x)
 
     chains_ran <- length(x$n)
 
