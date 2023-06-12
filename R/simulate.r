@@ -116,8 +116,8 @@ simulate_tree <- function(nchains, offspring_sampler,
   # initialise data frame to hold the transmission trees
   generation <- 1L
   tree_df <- data.frame(
-    n = seq_len(nchains),
-    id = 1L,
+    chain_id = seq_len(nchains),
+    sim_id = 1L,
     ancestor = NA_integer_,
     generation = generation
   )
@@ -164,8 +164,8 @@ simulate_tree <- function(nchains, offspring_sampler,
       # store new simulation results
       new_df <-
         data.frame(
-          n = indices,
-          id = ids,
+          chain_id = indices,
+          sim_id = ids,
           ancestor = ancestors,
           generation = generation
         )
