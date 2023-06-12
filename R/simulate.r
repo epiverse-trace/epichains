@@ -329,14 +329,8 @@ simulate_tree_tracked <- function(pop = 100,
 
     ## using a right truncated poisson distribution
     ## to avoid more cases than susceptibles
-    offspring_fun <- function(n, susc) {
-      truncdist::rtrunc(
-        n,
-        spec = "pois",
-        lambda = mn_offspring * susc / pop,
-        b = susc
-      )
-    }
+    offspring_fun <- get_offspring_func(offspring_sampler)
+
   } else if (offspring_sampler == "nbinom") {
     if (missing(disp_offspring)) {
       stop(sprintf("%s", "Argument 'disp_offspring' must be specified."))
@@ -347,22 +341,7 @@ simulate_tree_tracked <- function(pop = 100,
                    "Use 'pois' if there is no overdispersion."
       ))
     }
-    offspring_fun <- function(n, susc) {
-      ## get distribution params from mean and dispersion
-      ## see ?rnbinom for parameter definition
-      new_mn <- mn_offspring * susc / pop ## apply susceptibility
-      size <- new_mn / (disp_offspring - 1)
-
-      ## using a right truncated nbinom distribution
-      ## to avoid more cases than susceptibles
-      truncdist::rtrunc(
-        n,
-        spec = "nbinom",
-        b = susc,
-        mu = new_mn,
-        size = size
-      )
-    }
+    offspring_fun <- get_offspring_func(offspring_sampler)
   }
 
   ## initializations
