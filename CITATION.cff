@@ -1,15 +1,15 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.4.1
+# CITATION file created with {cffr} R package, v0.5.0
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
 cff-version: 1.2.0
-message: 'To cite package "bpmodels" in publications use:'
+message: 'To cite package "epichains" in publications use:'
 type: software
 license: MIT
-title: 'bpmodels: Analysing transmission chain statistics using branching process
+title: 'epichains: Analysing transmission chain statistics using branching process
   models'
-version: 0.2.0
+version: 0.2.1
 abstract: Provides methods to analyse and simulate the size and length of branching
   processes with an arbitrary offspring distribution. These can be used, for example,
   to analyse the distribution of chain sizes or length of infectious disease outbreaks,
@@ -27,23 +27,23 @@ authors:
   given-names: James M.
   email: james.azam@lshtm.ac.uk
   orcid: https://orcid.org/0000-0001-5782-7330
-repository-code: https://github.com/epiverse-trace/bpmodels
-url: https://epiverse-trace.github.io/bpmodels/
+preferred-citation:
+  type: manual
+  title: 'epichains: Analysing transmission chain statistics using branching process
+    models'
+  authors:
+  - name: Sebastian Funk
+  - name: Flavio Finger
+  - name: James M. Azam
+  year: '2023'
+  url: https://github.com/epiverse-trace/epichains/
+repository-code: https://github.com/epiverse-trace/epichains
+url: https://epiverse-trace.github.io/epichains/
 contact:
 - family-names: Azam
   given-names: James M.
   email: james.azam@lshtm.ac.uk
   orcid: https://orcid.org/0000-0001-5782-7330
-keywords:
-- branching-process
-- epidemic-dynamics
-- epidemic-modelling
-- epidemic-simulations
-- outbreak-simulator
-- r
-- r-package
-- transmission-chain
-- transmission-chain-reconstruction
 references:
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
@@ -56,7 +56,7 @@ references:
   year: '2023'
   institution:
     name: R Foundation for Statistical Computing
-  version: '>= 3.0.0'
+  version: '>= 3.6.0'
 - type: software
   title: bookdown
   abstract: 'bookdown: Authoring Books and Technical Documents with R Markdown'
@@ -190,35 +190,38 @@ references:
   authors:
   - family-names: Allaire
     given-names: JJ
-    email: jj@rstudio.com
+    email: jj@posit.co
   - family-names: Xie
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: Dervieux
+    given-names: Christophe
+    email: cderv@posit.co
+    orcid: https://orcid.org/0000-0003-4474-2498
   - family-names: McPherson
     given-names: Jonathan
-    email: jonathan@rstudio.com
+    email: jonathan@posit.co
   - family-names: Luraschi
     given-names: Javier
-    email: javier@rstudio.com
   - family-names: Ushey
     given-names: Kevin
-    email: kevin@rstudio.com
+    email: kevin@posit.co
   - family-names: Atkins
     given-names: Aron
-    email: aron@rstudio.com
+    email: aron@posit.co
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
   - family-names: Cheng
     given-names: Joe
-    email: joe@rstudio.com
+    email: joe@posit.co
   - family-names: Chang
     given-names: Winston
-    email: winston@rstudio.com
+    email: winston@posit.co
   - family-names: Iannone
     given-names: Richard
-    email: rich@rstudio.com
+    email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
   year: '2023'
 - type: software
@@ -230,7 +233,7 @@ references:
   authors:
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
   year: '2023'
 - type: software
   title: truncdist
