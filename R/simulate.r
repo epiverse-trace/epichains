@@ -365,63 +365,60 @@ simulate_tree_from_pop <- function(pop,
   }
 
   ## initializations
-  tdf <- data.frame(
-    id = 1L,
+  tree_df <- data.frame(
+    sim_id = 1L,
     ancestor = NA_integer_,
     generation = 1L,
     time = t0,
-    offspring_generated = FALSE
+    offspring_generated = FALSE #used to track simulation and dropped afterwards
   )
 
   susc <- pop - initial_immune - 1L
   t <- t0
 
-  ## continue if any unsimulated has t <= tf
+  ## continue if any unsimulated chains have t <= tf
   ## AND there is still susceptibles left
-  while (
-    any(tdf$time[!tdf$offspring_generated] <= tf) &&
-    susc > 0
-  ) {
+  while (any(tree_df$time[!tree_df$offspring_generated] <= tf) && susc > 0) {
 
     ## select from which case to generate offspring
-    t <- min(tdf$time[!tdf$offspring_generated]) # lowest unsimulated t
+    t <- min(tree_df$time[!tree_df$offspring_generated]) # lowest unsimulated t
 
     ## index of the first in df with t, extract vars
-    idx <- which(tdf$time == t & !tdf$offspring_generated)[1]
-    id_parent <- tdf$id[idx]
-    t_parent <- tdf$time[idx]
-    gen_parent <- tdf$generation[idx]
+    idx <- which(tree_df$time == t & !tree_df$offspring_generated)[1]
+    id_parent <- tree_df$sim_id[idx]
+    t_parent <- tree_df$time[idx]
+    gen_parent <- tree_df$generation[idx]
 
     ## generate it
-    current_max_id <- max(tdf$id)
-    n_offspring <- offspring_fun(1, susc)
+    current_max_id <- max(tree_df$sim_id)
+    n_offspring <- offspring_fun(1, susc, pop, mean_offspring, disp_offspring)
 
     if (n_offspring %% 1 > 0) {
       stop("Offspring distribution must return integers")
     }
 
     ## mark as done
-    tdf$offspring_generated[idx] <- TRUE
+    tree_df$offspring_generated[idx] <- TRUE
 
     ## add to df
     if (n_offspring > 0) {
-      ## draw times
-      new_times <- serial(n_offspring)
+      ## draw serial times
+      new_times <- serial_sampler(n_offspring)
 
       if (any(new_times < 0)) {
         stop("Serial interval must be >= 0.")
       }
 
       new_df <- data.frame(
-        id = current_max_id + seq_len(n_offspring),
-        time = new_times + t_parent,
+        sim_id = current_max_id + seq_len(n_offspring),
         ancestor = id_parent,
         generation = gen_parent + 1L,
+        time = new_times + t_parent,
         offspring_generated = FALSE
       )
 
-      ## add new cases to tdf
-      tdf <- rbind(tdf, new_df)
+      ## add new cases to tree_df
+      tree_df <- rbind(tree_df, new_df)
     }
 
     ## adjust susceptibles
@@ -430,11 +427,11 @@ simulate_tree_from_pop <- function(pop,
 
   ## remove cases with time > tf that could
   ## have been generated in the last generation
-  tdf <- tdf[tdf$time <= tf, ]
+  tree_df <- tree_df[tree_df$time <= tf, ]
 
   ## sort output and remove columns not needed
-  tdf <- tdf[order(tdf$time, tdf$id), ]
-  tdf$offspring_generated <- NULL
+  tree_df <- tree_df[order(tree_df$time, tree_df$sim_id), ]
+  tree_df$offspring_generated <- NULL
 
   structure(
     tree_df,
