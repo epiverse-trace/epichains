@@ -115,7 +115,7 @@ simulate_tree <- function(nchains, offspring_sampler,
 
   # initialise data frame to hold the transmission trees
   generation <- 1L
-  tdf <- data.frame(
+  tree_df <- data.frame(
     n = seq_len(nchains),
     id = 1L,
     ancestor = NA_integer_,
@@ -123,8 +123,8 @@ simulate_tree <- function(nchains, offspring_sampler,
   )
 
   if (!missing(serials_sampler)) {
-    tdf$time <- t0
-    times <- tdf$time
+    tree_df$time <- t0
+    times <- tree_df$time
   }
 
   # next, simulate n chains
@@ -177,12 +177,12 @@ simulate_tree <- function(nchains, offspring_sampler,
         current_min_time <- unname(tapply(times, indices, min))
         new_df$time <- times
       }
-      tdf <- rbind(tdf, new_df)
+      tree_df <- rbind(tree_df, new_df)
     }
 
     ## only continue to simulate chains that have offspring and aren't of
     ## infinite size/length
-    sim <- which(n_offspring > 0 & stat_track < infinite)
+    sim <- which(n_offspring > 0 & stat_track < chain_stat_max)
     if (length(sim) > 0) {
       if (!missing(serials_sampler)) {
         ## only continue to simulate chains that don't go beyond tf
@@ -196,15 +196,14 @@ simulate_tree <- function(nchains, offspring_sampler,
     }
 
   if (!missing(tf)) {
-    tdf <- tdf[tdf$time < tf, ]
+    tree_df <- tree_df[tree_df$time < tf, ]
   }
 
   structure(
-    tdf,
-    chain_type = "chains_tree",
+    tree_df,
     chains = nchains,
     rownames = NULL,
-    class = c("epichains", "tbl", "data.frame")
+    class = c("epichains_tree", "tbl", "data.frame")
   )
 }
 
