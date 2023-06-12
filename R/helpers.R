@@ -16,3 +16,43 @@ update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
 
   return(stat_latest)
 }
+
+
+#' Get offspring sampling function
+#'
+#' @param offspring_sampler
+#'
+#' @return
+#' @export
+#'
+#' @examples
+get_offspring_func <- function(offspring_sampler) {
+  if (offspring_sampler == "nbinom") {
+    function(n, susc, pop, mean_offspring, disp_offspring) {
+      ## get distribution params from mean and dispersion
+      new_mn <- mean_offspring * susc / pop ## apply susceptibility
+      size <- new_mn / (disp_offspring - 1)
+
+      ## using a right truncated nbinom distribution
+      ## to avoid more cases than susceptibles
+      truncdist::rtrunc(
+        n,
+        spec = "nbinom",
+        b = susc,
+        mu = new_mn,
+        size = size
+      )
+    }
+  } else if (offspring_sampler == "pois") {
+    function(n, susc, pop, mean_offspring) {
+      truncdist::rtrunc(
+        n,
+        spec = "pois",
+        lambda = mean_offspring * susc / pop,
+        b = susc
+      )
+    }
+  } else{
+    stop("offspring_sampler must either be 'pois' or 'nbinom'")
+  }
+}
