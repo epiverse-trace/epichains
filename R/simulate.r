@@ -334,9 +334,10 @@ simulate_tree_tracked <- function(pop = 100,
 
   if (offspring_sampler == "pois") {
     if (!missing(disp_offspring)) {
-      warning(sprintf("%s %s",
-                      "Argument 'disp_offspring' not used for",
-                      "poisson offspring distribution."
+      warning(sprintf("%s %s %s",
+                      "'disp_offspring' is not used for",
+                      "poisson offspring distribution.",
+                      "Will be ignored."
                       )
               )
     }
@@ -347,7 +348,7 @@ simulate_tree_tracked <- function(pop = 100,
 
   } else if (offspring_sampler == "nbinom") {
     if (missing(disp_offspring)) {
-      stop(sprintf("%s", "Argument 'disp_offspring' must be specified."))
+      stop(sprintf("%s", "'disp_offspring' must be specified."))
     } else if (disp_offspring <= 1) { ## dispersion coefficient
       stop(sprintf("%s %s %s",
                    "Offspring distribution 'nbinom' requires",
