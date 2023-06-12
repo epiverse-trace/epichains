@@ -322,14 +322,15 @@ simulate_vect <- function(nchains, offspring_sampler,
 #' @examples
 #' # Simulate with poisson offspring
 #' simulate_tree_from_pop(pop = 100, offspring_sampler = "pois",
-simulate_tree_tracked <- function(pop = 100,
-                          offspring_sampler = c("pois", "nbinom"),
-                          mn_offspring,
-                          disp_offspring,
-                          serial_sampler,
-                          t0 = 0,
-                          tf = Inf,
-                          initial_immune = 0) {
+#' mean_offspring = 0.5, serial_sampler = function(x) 3)
+simulate_tree_from_pop <- function(pop,
+                                   offspring_sampler = c("pois", "nbinom"),
+                                   mean_offspring,
+                                   disp_offspring,
+                                   serial_sampler,
+                                   initial_immune = 0,
+                                   t0 = 0,
+                                   tf = Inf) {
   offspring_sampler <- match.arg(offspring_sampler)
 
   if (offspring_sampler == "pois") {
