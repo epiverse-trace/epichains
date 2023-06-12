@@ -12,15 +12,32 @@ print.epichains <- function(x, ...) {
 #'
 #' @examples
 format.epichains <- function(x, ...) {
+  # check that x is an epichains object
+  validate_epichains(x)
+
+  # summarise the information stored in x
   chain_info <- summary(x)
+
   if (attributes(x)$chain_type == "chains_tree") {
-    cat("head starting from first known ancestor \n")
-    print(tibble::as_tibble(head(subset(x, !is.na(ancestor)))))
-    cat("--- \n")
-    print(tail(tibble::as_tibble(x)))
     writeLines(
       c(
-        sprintf("`epichains` `chains_tree` object"),
+        sprintf("`epichains` object"),
+
+        "< tree head (from first known ancestor) >\n"
+        )
+      )
+
+    # print head of the simulation output
+    print(head(subset(as.data.frame(x), !is.na(ancestor))))
+
+    cat("< tree tail >\n")
+
+    # print tail of object
+    print(tail(as.data.frame(x)))
+
+    # print summary information
+    writeLines(
+      c(
         sprintf("Chains simulated: %s", chain_info[["chains"]]),
         sprintf(
           "Unique number of ancestors: %s",
@@ -31,8 +48,10 @@ format.epichains <- function(x, ...) {
         )
       )
     )
+
+    # Offer more information to view the full dataset
     writeLines(sprintf("Use View(<object_name>) to view the full output."))
-    invisible(x)
+
   } else if (attributes(x)$chain_type == "chains_vec") {
     cat(sprintf("epichains object \n"))
     print(as.vector(x))
@@ -42,12 +61,14 @@ format.epichains <- function(x, ...) {
         )
     writeLines(
       c(
-        cat("\n Simulated chain stats: \n"),
+        "\n Simulated chain stats: \n",
         sprintf("Max: %s", chain_info[["max_chain_stat"]]),
         sprintf("Min: %s", chain_info[["min_chain_stat"]])
       )
     )
   }
+
+  invisible(x)
 }
 
 
