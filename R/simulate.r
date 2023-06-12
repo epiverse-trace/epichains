@@ -65,12 +65,12 @@
 #'
 #' Alternatively, we could assign an anonymous function to `serials_sampler`
 #' in the `sim_chain_tree()` call like so
-#' \code{sim_chain_tree(..., serials_sampler = function(n){rlnorm(n, 0.58, 1.38)})}, #nolint
-#' where `...` are the other arguments to `sim_chain_tree()`.
-#' @seealso [sim_chain_vec()] for simulating transmission chains as a vector
+#' \code{simulate_tree(..., serials_sampler = function(n){rlnorm(n, 0.58, 1.38)})}, #nolint
+#' where `...` are the other arguments to `simulate_tree()`.
+#' @seealso [simulate_vec()] for simulating transmission chains as a vector
 #' @examples
 #' set.seed(123)
-#' chains <- sim_chain_tree(nchains = 10, serials_sampler = function(x) 3,
+#' chains <- simulate_tree(nchains = 10, serials_sampler = function(x) 3,
 #' offspring = "pois", lambda = 2, infinite = 10)
 #' chains
 #' @references
