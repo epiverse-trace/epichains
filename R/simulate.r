@@ -1,4 +1,4 @@
-#' Simulate tree of infections
+#' Simulate a tree of infections with a serial and offspring distributions
 #'
 #' @param nchains number of chains to simulate
 #' @param offspring_sampler Offspring distribution: a character string
