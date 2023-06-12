@@ -320,14 +320,16 @@ chain_sim <- function(n, offspring, stat = c("size", "length"), infinite = Inf,
 #' chains <- sim_chain_tree(nchains = 10, serials_sampler = function(x) 3,
 #' offspring = "pois", lambda = 2, infinite = 10)
 #' chains
-#' \references{Lehtinen S, Ashcroft P, Bonhoeffer S. On the relationship
+#' @references
+#'
+#' Lehtinen S, Ashcroft P, Bonhoeffer S. On the relationship
 #' between serial interval, infectiousness profile and generation time.
 #' J R Soc Interface. 2021 Jan;18(174):20200756.
 #' doi: 10.1098/rsif.2020.0756. Epub 2021 Jan 6.
 #' PMID: 33402022; PMCID: PMC7879757.
-#' }
 #'
-#' \references{Fine PE. The interval between successive cases of an
+#'
+#' Fine PE. The interval between successive cases of an
 #' infectious disease. Am J Epidemiol. 2003 Dec 1;158(11):1039-47.
 #' doi: 10.1093/aje/kwg251. PMID: 14630599.
 #' }
