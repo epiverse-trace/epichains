@@ -94,7 +94,9 @@ summary.epichains <- function(x, ...) {
       unique(x$ancestor[!is.na(x$ancestor)])
     )
 
-    num_generations <- length(unique(x$generations))
+    num_generations <- length(unique(x$generation))
+
+    max_generation <- max(x$generation)
 
     # out of summary
     res <- list(
@@ -102,8 +104,8 @@ summary.epichains <- function(x, ...) {
       max_time = max_time,
       unique_ancestors = n_unique_ancestors,
       unique_generations = n_unique_ancestors,
-      num_generations = num_generations
-      # WIP
+      num_generations = num_generations,
+      max_generation = max_generation
     )
   } else if (attributes(x)$chain_type == "chains_vec") {
     chains_ran <- length(x)
