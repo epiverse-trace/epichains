@@ -437,6 +437,12 @@ simulate_tree_tracked <- function(pop = 100,
   tdf <- tdf[order(tdf$time, tdf$id), ]
   tdf$offspring_generated <- NULL
 
-  return(tdf)
+  structure(
+    tree_df,
+    chain_type = "chains_tree",
+    rownames = NULL,
+    track_pop = TRUE,
+    class = c("epichains", "tbl", "data.frame")
+  )
 }
 
