@@ -274,13 +274,11 @@ simulate_vect <- function(nchains, offspring_sampler,
 }
 
 
-#' Check if offspring argument is specified as a character string
 #'
 #' @param offspring
 #'
 #' @return
 #' @export
-#' @keywords internal
 #' @examples
 check_offspring_valid <- function(offspring) {
   if (!is.character(offspring)) {
@@ -295,34 +293,12 @@ check_offspring_valid <- function(offspring) {
 
 #' Check if constructed random number generator for offspring exists
 #'
-#' @param roffspring_name
-#'
-#' @return
-#' @export
-#'
-#' @examples check_offspring_exists("rpois")
-check_offspring_func_valid <- function(roffspring_name) {
-  if (!(exists(roffspring_name)) || !is.function(get(roffspring_name))) {
-    stop("Function ", roffspring_name, " does not exist.")
   }
 }
 
 
 #' Check if the serials_sampler argument is specified as a function
 #'
-#' @param serials_sampler
-#'
-#' @return
-#' @export
-#' @keywords internal
-#' @examples
-check_serial_valid <- function(serials_sampler) {
-  if (!is.function(serials_sampler)) {
-    stop(sprintf(
-      "%s %s",
-      "The `serials_sampler` argument must be a function",
-      "(see details in ?sim_chain_tree)."
-    ))
   }
 }
 
@@ -330,24 +306,7 @@ check_serial_valid <- function(serials_sampler) {
 check_nchains_valid <- function(nchains) {
   if (nchains < 1 || is.infinite(nchains)) {
     stop("`nchains` must be > 0 but less than `Inf`")
-  }
-}
 
 #' Determine and update the chain statistic being tracked
-#'
-#' @param stat_type
-#' @param noffspring
-#'
-#' @return
-#' @export
-#' @keywords internal
-#' @examples
-update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
-  if (stat_type == "size") {
-    stat_latest <- stat_latest + n_offspring
-  } else if (stat_type == "length") {
-    stat_latest <- stat_latest + pmin(1, n_offspring)
   }
 
-  return(stat_latest)
-}
