@@ -213,11 +213,11 @@ simulate_tree <- function(nchains, offspring_sampler,
 #'
 #' @inheritParams sim_chain_tree
 #'
-#' @examples #' sim_chain_vect(n = 10, offspring_sampler = "pois", lambda = 2,
-#' infinite = 10)
-sim_chain_vect <- function(nchains, offspring_sampler,
+#' @examples #' simulate_vect(n = 10, offspring_sampler = "pois", lambda = 2,
+#' chain_stat_max = 10)
+simulate_vect <- function(nchains, offspring_sampler,
                            chain_statistic = c("size", "length"),
-                           infinite = Inf, ...) {
+                           chain_stat_max = Inf, ...) {
   chain_statistic <- match.arg(chain_statistic)
 
   check_nchains_valid(nchains = nchains)
@@ -257,11 +257,11 @@ sim_chain_vect <- function(nchains, offspring_sampler,
                                     )
 
     ## only continue to simulate chains that offspring and aren't of
-    ## infinite size/length
-    sim <- which(n_offspring > 0 & stat_track < infinite)
+    ## chain_stat_max size/length
+    sim <- which(n_offspring > 0 & stat_track < chain_stat_max)
   }
 
-  stat_track[stat_track >= infinite] <- Inf
+  stat_track[stat_track >= chain_stat_max] <- Inf
 
   structure(
     stat_track,
