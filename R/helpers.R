@@ -52,7 +52,7 @@ get_offspring_func <- function(offspring_sampler) {
         b = susc
       )
     }
-  } else{
+  } else {
     stop("offspring_sampler must either be 'pois' or 'nbinom'")
   }
 }

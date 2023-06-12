@@ -441,4 +441,3 @@ simulate_tree_from_pop <- function(pop,
     class = c("epichains", "tbl", "data.frame")
   )
 }
-
