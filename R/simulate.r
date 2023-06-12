@@ -202,8 +202,9 @@ simulate_tree <- function(nchains, offspring_sampler,
   structure(
     tree_df,
     chains = nchains,
+    chain_type = "chains_tree",
     rownames = NULL,
-    class = c("epichains_tree", "tbl", "data.frame")
+    class = c("epichains", "tbl", "data.frame")
   )
 }
 
