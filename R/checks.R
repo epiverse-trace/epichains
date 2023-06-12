@@ -1,15 +1,16 @@
 #' Check if offspring argument is specified as a character string
 #'
-#' @param offspring_sampler Offspring distribution: a character string
-#' corresponding to the R distribution function (e.g., "pois" for Poisson,
-#' where \code{\link{rpois}} is the R function to generate Poisson random
-#' numbers).
+#' @param offspring
+#'
+#' @return
+#' @export
 #' @keywords internal
-check_offspring_valid <- function(offspring_sampler) {
-  if (!is.character(offspring_sampler)) {
+#' @examples
+check_offspring_valid <- function(offspring) {
+  if (!is.character(offspring)) {
     stop(sprintf(
       "%s %s",
-      "'offspring_sampler' must be specified as a character string.",
+      "'offspring' must be specified as a character string.",
       "Did you forget to enclose it in quotes?"
     ))
   }
@@ -18,10 +19,12 @@ check_offspring_valid <- function(offspring_sampler) {
 
 #' Check if constructed random number generator for offspring exists
 #'
-#' @param roffspring_name Constructed random offspring sampler: a character
-#' string corresponding to the R distribution function (e.g., "rpois" for
-#' Poisson.
-#' @keywords internal
+#' @param roffspring_name
+#'
+#' @return
+#' @export
+#'
+#' @examples check_offspring_exists("rpois")
 check_offspring_func_valid <- function(roffspring_name) {
   if (!(exists(roffspring_name)) || !is.function(get(roffspring_name))) {
     stop("Function ", roffspring_name, " does not exist.")
@@ -31,11 +34,12 @@ check_offspring_func_valid <- function(roffspring_name) {
 
 #' Check if the serials_sampler argument is specified as a function
 #'
-#' @param serials_sampler The serial interval generator function; the name of a
-#' user-defined named or anonymous function with only one argument `n`,
-#' representing the number of serial intervals to generate.
+#' @param serials_sampler
 #'
+#' @return
+#' @export
 #' @keywords internal
+#' @examples
 check_serial_valid <- function(serials_sampler) {
   if (!is.function(serials_sampler)) {
     stop(sprintf(
@@ -47,24 +51,8 @@ check_serial_valid <- function(serials_sampler) {
 }
 
 
-#' Check that nchains is greater than 0 and not infinite
-#'
-#' @param nchains Number of chains to simulate.
-#'
-#' @keywords internal
 check_nchains_valid <- function(nchains) {
   if (nchains < 1 || is.infinite(nchains)) {
     stop("`nchains` must be > 0 but less than `Inf`")
-  }
-}
-
-#' Title
-#'
-#' @param x An [`epichains`] object
-#'
-#' @keywords internal
-check_chain_tree_attribute <- function(x) {
-  if (attributes(x)$chain_type != "chains_tree") {
-    stop("Object must be an epichains object with a chains_tree attribute.")
   }
 }
