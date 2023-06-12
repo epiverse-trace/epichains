@@ -277,37 +277,51 @@ simulate_vect <- function(nchains, offspring_sampler,
 #' Simulate a tree of infections from an initial susceptible population
 #' with initial immunity
 #'
-#' @param offspring_sampler offspring distribution sampler: a character string
+#' @param pop The susceptible population.
+#' @param offspring_sampler Offspring distribution sampler: a character string
 #' corresponding to the R distribution function. Currently only "pois" &
 #' "nbinom" are supported. Internally truncated distributions are used to
 #' avoid infecting more people than susceptibles available.
-#' @param mn_offspring the average number of secondary cases for each case
-#' @param disp_offspring the dispersion coefficient (var/mean) of the number of
-#'      secondary cases. Ignored if offspring == "pois". Must be > 1.
-#' @param serial_sampler the serial interval. A function that takes one
-#' parameter (`n`), the number of serial intervals to randomly sample.
-#'     Value must be >= 0.
-#' @param t0 start time
-#' @param tf end time
-#' @param pop the population
-#' @param initial_immune the number of initial immunes in the population
+#' @param mean_offspring The average number of secondary cases for each case.
+#' Same as R0.
+#' @param disp_offspring The dispersion parameter of the number of
+#' secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
+#' avoid division by 0 when calculating the size. See details and
+#'  \code{?rnbinom} for details on the parameterisation in Ecology.
+#' @param serial_sampler The serial interval. A function that takes one
+#' parameter (`n`), the number of serial intervals to randomly sample. Value
+#' must be >= 0.
+#' @param initial_immune The number of initial immunes in the population.
+#' @param t0 Start time; Defaults to 0.
+#' @param tf End time; Defaults to `Inf`.
 #' @return a data frame with columns `time`, `id` (a unique ID for each
-#'     individual element of the chain), `ancestor` (the ID of the ancestor
-#'      of each element), and `generation`.
+#' individual element of the chain), `ancestor` (the ID of the ancestor
+#' of each element), and `generation`.
+#' @details
 #'
-#' @details This function has a couple of key differences with chain_sim:
-#'     it can only simulate one chain at a time,
-#'     it can only handle implemented offspring distributions
-#'         ("pois" and "nbinom"),
-#'     it always tracks and returns a data frame containing the entire tree,
-#'     the maximal length of chains is limited with pop instead of infinite.
+#' # Offspring models
 #'
+#' The poisson model is parametrised so that:
+#'
+#' lamda = mean_offspring * pop - initial_immune / pop
+#'
+#' The negative binomial model is parametrised as:
+#'
+#' mu = mean_offspring * pop - initial immune / pop, and
+#' size = mu / (disp_offspring - 1). This is why disp_offspring must be greater
+#' than 1.
+#'
+#' simulate_tree_from_pop() has a couple of key different from simulate_tree():
+#'  * the maximal chain statistic is limited by `pop` instead of
+#'  `chain_stat_max` (in `simulate_tree()`),
+#'  * it can only handle implemented offspring distributions ("pois" and
+#' "nbinom").
 #' @author Flavio Finger
 #' @author James M. Azam
 #' @export
 #' @examples
-#' chain_sim_susc(pop = 100, offspring_sampler = "pois", mn_offspring = 0.5,
-#' serial_sampler = function(x) 3)
+#' # Simulate with poisson offspring
+#' simulate_tree_from_pop(pop = 100, offspring_sampler = "pois",
 simulate_tree_tracked <- function(pop = 100,
                           offspring_sampler = c("pois", "nbinom"),
                           mn_offspring,
