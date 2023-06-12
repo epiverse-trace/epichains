@@ -257,9 +257,9 @@ chain_sim <- function(n, offspring, stat = c("size", "length"), infinite = Inf,
 #'   \item "size": the total number of offspring.
 #'   \item "length": the total number of ancestors.
 #' }
-#' @param infinite A size or length above which the simulation results
-#' should be set to `Inf`. Defaults to `Inf`, resulting in no results
-#' ever set to `Inf`
+#' @param chain_stat_max A cut off for the chain statistic (size/length) being
+#' computed. Results above the specified value, are set to this value.
+#' Defaults to `Inf`.
 #' @param serials_sampler The serial interval generator function; the name of a
 #' user-defined named or anonymous function with only one argument `n`,
 #' representing the number of serial intervals to generate.
@@ -332,10 +332,10 @@ chain_sim <- function(n, offspring, stat = c("size", "length"), infinite = Inf,
 #' Fine PE. The interval between successive cases of an
 #' infectious disease. Am J Epidemiol. 2003 Dec 1;158(11):1039-47.
 #' doi: 10.1093/aje/kwg251. PMID: 14630599.
-#' }
-sim_chain_tree <- function(nchains, offspring_sampler,
+#'
+simulate_tree <- function(nchains, offspring_sampler,
                            chain_statistic = c("size", "length"),
-                           infinite = Inf, serials_sampler, t0 = 0,
+                           chain_stat_max = Inf, serials_sampler, t0 = 0,
                            tf = Inf, ...) {
   chain_statistic <- match.arg(chain_statistic)
 
