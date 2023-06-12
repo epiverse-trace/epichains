@@ -323,6 +323,10 @@ simulate_vect <- function(nchains, offspring_sampler,
 #' # Simulate with poisson offspring
 #' simulate_tree_from_pop(pop = 100, offspring_sampler = "pois",
 #' mean_offspring = 0.5, serial_sampler = function(x) 3)
+#'
+#' #' # Simulate with negative binomial offspring
+#' simulate_tree_from_pop(pop = 100, offspring_sampler = "nbinom",
+#' mean_offspring = 0.5, disp_offspring = 1.1, serial_sampler = function(x) 3)
 simulate_tree_from_pop <- function(pop,
                                    offspring_sampler = c("pois", "nbinom"),
                                    mean_offspring,
