@@ -204,6 +204,7 @@ simulate_tree <- function(nchains, offspring_sampler,
     chains = nchains,
     chain_type = "chains_tree",
     rownames = NULL,
+    track_pop = FALSE,
     class = c("epichains", "tbl", "data.frame")
   )
 }
