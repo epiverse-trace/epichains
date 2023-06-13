@@ -123,6 +123,5 @@ offspring_ll <- function(chains_observed, offspring_sampler, chain_statistic,
     )$y))
   lik <- acdf[chains_observed]
   lik[is.na(lik)] <- 0
-  out <- ifelse(base::isTRUE(log_trans), log(lik), lik)
-  return(out)
+  log(lik)
 }
