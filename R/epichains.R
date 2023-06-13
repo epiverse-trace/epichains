@@ -172,3 +172,23 @@ validate_epichains <- function(x) {
 
   invisible(x)
 }
+
+#' `head` and `tail` methods for [`epichains`] class
+#'
+#' @param x An [`epichains`] object
+#' @param ... further arguments passed to or from other methods
+#'
+#' @return object of class `data.frame`
+#' @export
+#'
+#' @importFrom utils head
+#' @importFrom utils tail
+head.epichains <- function(x, ...) {
+  utils::head(as.data.frame(x), ...)
+}
+
+#' @rdname head.epichains
+#' @export
+tail.epichains <- function(x, ...) {
+  utils::tail(as.data.frame(x), ...)
+}
