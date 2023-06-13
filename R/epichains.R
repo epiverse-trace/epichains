@@ -192,3 +192,42 @@ head.epichains <- function(x, ...) {
 tail.epichains <- function(x, ...) {
   utils::tail(as.data.frame(x), ...)
 }
+
+#' Plot epichains tree objects
+#'
+#' @param x an [`epichains`] object with a chains_tree attribute
+#' @param ...
+#'
+#' @return
+#' @export
+#' @author James M. Azam
+#' @examples
+plot.epichains <- function(x, ...){
+  validate_epichains(x)
+
+  if (attributes(x)$chain_type != "chains_tree") {
+    stop("Object must be an epichains object with a chains_tree attribute.")
+  }
+
+  cases_per_generation <- aggregate(sim_id ~ generation, x = as.data.frame(x), FUN = NROW)
+
+  cases_per_time <- aggregate(sim_id ~ time, x = as.data.frame(x), FUN = NROW)
+
+  graphics::par(mfrow = c(1, 2), mar = c(4, 3, 3, 1), oma = c(0, 0, 0, 0))
+
+  plot(cases_per_generation$generation,
+       cases_per_generation$sim_id,
+       xlab = "Generation",
+       ylab = "Cases",
+       type = "b",
+       main = "Number of cases per generation"
+       )
+
+  plot(cases_per_time$time,
+       cases_per_time$sim_id,
+       xlab = "Time",
+       ylab = "Cases",
+       type = "b",
+       main = "Number of cases per time"
+  )
+}
