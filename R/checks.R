@@ -31,7 +31,9 @@ check_offspring_func_valid <- function(roffspring_name) {
 
 #' Check if the serials_sampler argument is specified as a function
 #'
-#' @param serials_sampler
+#' @param serials_sampler The serial interval generator function; the name of a
+#' user-defined named or anonymous function with only one argument `n`,
+#' representing the number of serial intervals to generate.
 #'
 #' @keywords internal
 check_serial_valid <- function(serials_sampler) {
