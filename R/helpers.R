@@ -27,7 +27,6 @@ update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
 #' @keywords internal
 get_offspring_func <- function(offspring_sampler, n, susc, pop,
                                mean_offspring, disp_offspring = NULL) {
-get_offspring_func <- function(offspring_sampler) {
   if (offspring_sampler == "nbinom") {
     function(n, susc, pop, mean_offspring, disp_offspring) {
       ## get distribution params from mean and dispersion
