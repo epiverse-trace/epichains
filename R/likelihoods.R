@@ -104,18 +104,14 @@ geom_length_ll <- function(x, prob) {
 #' @inheritParams estimate_likelihood
 #' @inheritParams simulate_vec
 #' @keywords internal
-offspring_ll <- function(chains_observed, offspring_sampler, chain_statistic,
-                         nsim_offspring = 100, log_trans = TRUE, ...) {
-
+offspring_ll <- function(x, offspring, stat, nsim_offspring = 100, ...) {
+  dist <- chain_sim(nsim_offspring, offspring, stat, ...)
   # Simulate the chains
-  chains <- simulate_vect(nsim_offspring, offspring_sampler,
-                          chain_statistic, ...)
-
   # Compute the empirical Cumulative Distribution Function of the
   # simulated chains
-  chains_empirical_cdf <- stats::ecdf(chains)
 
   # Perform a lagged linear interpolation of the points
+  f <- stats::ecdf(dist)
   acdf <-
     diff(c(0, stats::approx(
       unique(chains), chains_empirical_cdf(unique(chains)),
