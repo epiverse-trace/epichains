@@ -104,8 +104,8 @@ geom_length_ll <- function(x, prob) {
 #' @inheritParams estimate_likelihood
 #' @inheritParams simulate_vec
 #' @keywords internal
-offspring_ll <- function(x, offspring, stat, nsim_offspring = 100, ...) {
-  dist <- chain_sim(nsim_offspring, offspring, stat, ...)
+offspring_ll <- function(chains_observed, offspring_sampler, chain_statistic,
+                         nsim_offspring = 100, log_trans = TRUE, ...) {
   # Simulate the chains
   # Compute the empirical Cumulative Distribution Function of the
   # simulated chains
