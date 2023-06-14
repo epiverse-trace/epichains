@@ -18,12 +18,15 @@ update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
 
 #' Get offspring sampling function
 #'
-#' @param offspring_sampler
+#' @param n Number of items to sample
+#' @param susc Susceptible population size (calculated
+#' inside \code{\link{simulate_tree_from_pop}}  as pop - initial_immune)
+#' @inheritParams simulate_tree_from_pop
 #'
-#' @return
-#' @export
-#'
-#' @examples
+#' @return An offspring sampling function
+#' @keywords internal
+get_offspring_func <- function(offspring_sampler, n, susc, pop,
+                               mean_offspring, disp_offspring = NULL) {
 get_offspring_func <- function(offspring_sampler) {
   if (offspring_sampler == "nbinom") {
     function(n, susc, pop, mean_offspring, disp_offspring) {
