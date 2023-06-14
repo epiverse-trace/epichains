@@ -98,8 +98,8 @@ geom_length_ll <- function(x, prob) {
 #' @param ... any parameters to pass to \code{\link{chain_sim}}
 #' @return log-likelihood values
 #' @author Sebastian Funk
-#' @inheritParams chain_ll
-#' @inheritParams chain_sim
+#' @inheritParams estimate_likelihood
+#' @inheritParams simulate_vec
 #' @keywords internal
 offspring_ll <- function(chains_observed, offspring_sampler, chain_statistic,
                          nsim_offspring = 100, log_trans = TRUE, ...) {
