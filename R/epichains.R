@@ -14,8 +14,6 @@ print.epichains <- function(x, ...) {
 #' @param ... further arguments passed to or from other methods
 #' @return Invisibly returns an [`epichains`]. Called for printing side-effects.
 #' @export
-#'
-#' @examples
 format.epichains <- function(x, ...) {
   # check that x is an epichains object
   validate_epichains(x)
