@@ -22,6 +22,12 @@ dborel <- function(x, mu, log = FALSE) {
 ##' stopped if this number is reached
 ##' @return Vector of random numbers
 ##' @author Sebastian Funk
+##' @export
 rborel <- function(n, mu, infinite = Inf) {
-  chain_sim(n, "pois", "size", infinite = infinite, lambda = mu)
+  simulate_vect(nchains = n,
+                offspring_sampler = "pois",
+                chain_statistic = "size",
+                chain_stat_max = infinite,
+                lambda = mu
+                )
 }
