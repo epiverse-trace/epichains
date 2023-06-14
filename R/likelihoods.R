@@ -103,8 +103,11 @@ geom_length_ll <- function(x, prob) {
 #' @keywords internal
 offspring_ll <- function(x, offspring, stat, nsim_offspring = 100, ...) {
   dist <- chain_sim(nsim_offspring, offspring, stat, ...)
+  # Simulate the chains
+  # Compute the empirical Cumulative Distribution Function of the
+  # simulated chains
 
-  ## linear approximation
+  # Perform a lagged linear interpolation of the points
   f <- stats::ecdf(dist)
   acdf <-
     diff(c(0, stats::approx(
