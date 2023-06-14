@@ -29,7 +29,7 @@
 #' @author James M. Azam, Sebastian Funk
 #' @export
 #' @details
-#' `sim_chain_tree()` simulates a branching process of the form:
+#' `simulate_tree()` simulates a branching process of the form:
 #' WIP
 #' # The serial interval (`serials_sampler`):
 #'
@@ -46,7 +46,7 @@
 #'
 #' See References below for some literature on the subject.
 #'
-#' ## Specifying `serials_sampler` in `sim_chain_tree()`
+#' ## Specifying `serials_sampler` in `simulate_tree()`
 #'
 #' `serials_sampler` must be specified as a named or
 #' [anonymous/inline/unnamed function](https://en.wikipedia.org/wiki/Anonymous_function#R) # nolint
@@ -59,12 +59,12 @@
 #' number of serial intervals to sample:
 #' \code{serial_interval <- function(n){rlnorm(n, 0.58, 1.38)}},
 #' and assign the name of the function to `serials_sampler` in
-#' `sim_chain_tree()` like so
-#' \code{sim_chain_tree(..., serials_sampler = serial_interval)},
-#' where `...` are the other arguments to `sim_chain_tree()`.
+#' `simulate_tree()` like so
+#' \code{simulate_tree(..., serials_sampler = serial_interval)},
+#' where `...` are the other arguments to `simulate_tree()`.
 #'
 #' Alternatively, we could assign an anonymous function to `serials_sampler`
-#' in the `sim_chain_tree()` call like so
+#' in the `simulate_tree()` call like so
 #' \code{simulate_tree(..., serials_sampler = function(n){rlnorm(n, 0.58, 1.38)})}, #nolint
 #' where `...` are the other arguments to `simulate_tree()`.
 #' @seealso [simulate_vec()] for simulating transmission chains as a vector
@@ -81,11 +81,9 @@
 #' doi: 10.1098/rsif.2020.0756. Epub 2021 Jan 6.
 #' PMID: 33402022; PMCID: PMC7879757.
 #'
-#'
 #' Fine PE. The interval between successive cases of an
 #' infectious disease. Am J Epidemiol. 2003 Dec 1;158(11):1039-47.
 #' doi: 10.1093/aje/kwg251. PMID: 14630599.
-#'
 simulate_tree <- function(nchains, offspring_sampler,
                            chain_statistic = c("size", "length"),
                            chain_stat_max = Inf, serials_sampler, t0 = 0,
@@ -213,7 +211,7 @@ simulate_tree <- function(nchains, offspring_sampler,
 
 #' Simulate transmission chains without tree (as a vector)
 #'
-#' @inheritParams sim_chain_tree
+#' @inheritParams simulate_tree
 #' @param chain_stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
 #' @examples #' simulate_vect(n = 10, offspring_sampler = "pois", lambda = 2,
