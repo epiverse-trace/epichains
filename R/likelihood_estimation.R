@@ -45,8 +45,8 @@ estimate_likelihood <- function(chains_observed,
   chain_statistic <- match.arg(chain_statistic)
 
   ## checks
-  if (!is.character(offspring)) {
-    stop("Object passed as 'offspring' is not a character string.")
+  if (!is.character(offspring_sampler)) {
+    stop("Object passed as 'offspring_sampler' is not a character string.")
   }
   if (obs_prob <= 0 || obs_prob > 1) stop("'obs_prob' must be within (0,1]")
   if (obs_prob < 1) {
@@ -60,25 +60,26 @@ estimate_likelihood <- function(chains_observed,
     }
     sampled_x <-
       replicate(nsim_obs, pmin(sample_func(length(x), x, obs_prob),
-                               infinite), simplify = FALSE)
+                                           ),
+                               chain_stat_max), simplify = FALSE)
     size_x <- unlist(sampled_x)
-    if (!is.finite(infinite)) infinite <- max(size_x) + 1
+    if (!is.finite(chain_stat_max)) chain_stat_max <- max(size_x) + 1
   } else {
-    x[x >= infinite] <- infinite
+    chains_observed[chains_observed >= chain_stat_max] <- chain_stat_max
     size_x <- x
     sampled_x <- list(x)
   }
 
   ## determine for which sizes to calculate the likelihood (for true chain size)
-  if (any(size_x == infinite)) {
-    calc_sizes <- seq_len(infinite - 1)
+  if (any(size_x == chain_stat_max)) {
+    calc_sizes <- seq_len(chain_stat_max - 1)
   } else {
     calc_sizes <- unique(c(size_x, exclude))
   }
 
-  ## get likelihood function as given by `offspring` and `stat``
+  ## get likelihood function as given by offspring_sampler and chain_statistic
   likelihoods <- vector(mode = "numeric")
-  ll_func <- paste(offspring, stat, "ll", sep = "_")
+  ll_func <- paste(offspring_sampler, chain_statistic, "ll", sep = "_")
   pars <- as.list(unlist(list(...))) ## converts vectors to lists
 
   ## calculate likelihoods
@@ -90,15 +91,15 @@ estimate_likelihood <- function(chains_observed,
       do.call(
         offspring_ll,
         c(list(
-          x = calc_sizes, offspring = offspring,
-          stat = stat, infinite = infinite
+          chains_observed = calc_sizes, offspring_sampler = offspring_sampler,
+          chain_statistic = chain_statistic, chain_stat_max = chain_stat_max
         ), pars)
       )
   }
 
-  ## assign probabilities to infinite outbreak sizes
-  if (any(size_x == infinite)) {
-    likelihoods[infinite] <- complementary_logprob(likelihoods)
+  ## assign probabilities to chain_stat_max outbreak sizes
+  if (any(size_x == chain_stat_max)) {
+    likelihoods[chain_stat_max] <- complementary_logprob(likelihoods)
   }
 
   if (!missing(exclude)) {
