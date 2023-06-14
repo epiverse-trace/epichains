@@ -1,5 +1,6 @@
 Package: epichains
-Title: Analysing transmission chain statistics using branching process models
+Title: Analysing transmission chain statistics using branching process
+    models
 Version: 0.2.1
 Authors@R: c(
     person(
