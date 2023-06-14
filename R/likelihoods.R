@@ -111,9 +111,9 @@ offspring_ll <- function(chains_observed, offspring_sampler, chain_statistic,
                           chain_statistic, ...)
   # Compute the empirical Cumulative Distribution Function of the
   # simulated chains
+  chains_empirical_cdf <- stats::ecdf(chains)
 
   # Perform a lagged linear interpolation of the points
-  f <- stats::ecdf(dist)
   acdf <-
     diff(c(0, stats::approx(
       unique(chains), chains_empirical_cdf(unique(chains)),
