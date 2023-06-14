@@ -101,8 +101,8 @@ geom_length_ll <- function(x, prob) {
 #' @inheritParams chain_ll
 #' @inheritParams chain_sim
 #' @keywords internal
-offspring_ll <- function(x, offspring, stat, nsim_offspring = 100, ...) {
-  dist <- chain_sim(nsim_offspring, offspring, stat, ...)
+offspring_ll <- function(chains_observed, offspring_sampler, chain_statistic,
+                         nsim_offspring = 100, log_trans = TRUE, ...) {
   # Simulate the chains
   # Compute the empirical Cumulative Distribution Function of the
   # simulated chains
@@ -111,10 +111,10 @@ offspring_ll <- function(x, offspring, stat, nsim_offspring = 100, ...) {
   f <- stats::ecdf(dist)
   acdf <-
     diff(c(0, stats::approx(
-      unique(dist), f(unique(dist)),
-      seq_len(max(dist[is.finite(dist)]))
+      unique(chains), chains_empirical_cdf(unique(chains)),
+      seq_len(max(chains[is.finite(chains)]))
     )$y))
-  lik <- acdf[x]
+  lik <- acdf[chains_observed]
   lik[is.na(lik)] <- 0
   log(lik)
 }
