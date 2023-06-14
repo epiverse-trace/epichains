@@ -78,29 +78,27 @@ format.epichains <- function(x, ...) {
 
 #' Summary method for epichains class
 #'
-#' @param object epichains object
+#' @param object An [`epichains`] object
 #' @param ... further arguments passed to or from other methods
 #'
 #' @return data frame of information
 #' @export
-#'
-#' @examples
-summary.epichains <- function(x, ...) {
-  validate_epichains(x)
+summary.epichains <- function(object, ...) {
+  validate_epichains(object)
 
-  if (attributes(x)$chain_type == "chains_tree") {
+  if (attributes(object)$chain_type == "chains_tree") {
 
-    chains_ran <- length(x$n)
+    chains_ran <- length(object$n)
 
-    max_time <- max(x$time)
+    max_time <- max(object$time)
 
     n_unique_ancestors <- length(
-      unique(x$ancestor[!is.na(x$ancestor)])
+      unique(object$ancestor[!is.na(object$ancestor)])
     )
 
-    num_generations <- length(unique(x$generation))
+    num_generations <- length(unique(object$generation))
 
-    max_generation <- max(x$generation)
+    max_generation <- max(object$generation)
 
     # out of summary
     res <- list(
@@ -111,10 +109,10 @@ summary.epichains <- function(x, ...) {
       num_generations = num_generations,
       max_generation = max_generation
     )
-  } else if (attributes(x)$chain_type == "chains_vec") {
-    chains_ran <- length(x)
-    max_chain_stat <- max(!is.infinite(x))
-    min_chain_stat <- min(!is.infinite(x))
+  } else if (attributes(object)$chain_type == "chains_vec") {
+    chains_ran <- length(object)
+    max_chain_stat <- max(!is.infinite(object))
+    min_chain_stat <- min(!is.infinite(object))
 
     res <- list(
       unique_chains = chains_ran,
