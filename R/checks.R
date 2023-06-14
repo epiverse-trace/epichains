@@ -1,6 +1,9 @@
 #' Check if offspring argument is specified as a character string
 #'
-#' @param offspring
+#' @param offspring_sampler Offspring distribution: a character string
+#' corresponding to the R distribution function (e.g., "pois" for Poisson,
+#' where \code{\link{rpois}} is the R function to generate Poisson random
+#' numbers).
 #' @keywords internal
 check_offspring_valid <- function(offspring) {
   if (!is.character(offspring)) {
