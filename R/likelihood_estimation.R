@@ -58,16 +58,16 @@ estimate_likelihood <- function(chains_observed,
     } else if (chain_statistic == "length") {
       sample_func <- rgen_length
     }
-    sampled_x <-
-      replicate(nsim_obs, pmin(sample_func(length(x), x, obs_prob),
+    sampled_x <- replicate(nsim_obs, pmin(sample_func(length(chains_observed),
+                                           chains_observed, obs_prob
                                            ),
                                chain_stat_max), simplify = FALSE)
     size_x <- unlist(sampled_x)
     if (!is.finite(chain_stat_max)) chain_stat_max <- max(size_x) + 1
   } else {
     chains_observed[chains_observed >= chain_stat_max] <- chain_stat_max
-    size_x <- x
-    sampled_x <- list(x)
+    size_x <- chains_observed
+    sampled_x <- list(chains_observed)
   }
 
   ## determine for which sizes to calculate the likelihood (for true chain size)
