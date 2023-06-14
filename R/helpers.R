@@ -44,7 +44,7 @@ get_offspring_func <- function(offspring_sampler, n, susc, pop,
       )
     }
   } else if (offspring_sampler == "pois") {
-    function(n, susc, pop, mean_offspring) {
+    function(n, susc, pop, mean_offspring, disp_offspring) {
       truncdist::rtrunc(
         n,
         spec = "pois",
