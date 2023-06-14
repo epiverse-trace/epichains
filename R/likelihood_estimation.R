@@ -45,9 +45,8 @@ estimate_likelihood <- function(chains_observed,
   chain_statistic <- match.arg(chain_statistic)
 
   ## checks
-  if (!is.character(offspring_sampler)) {
-    stop("Object passed as 'offspring_sampler' is not a character string.")
-  }
+  check_offspring_valid(offspring_sampler)
+
   if (obs_prob <= 0 || obs_prob > 1) stop("'obs_prob' must be within (0,1]")
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
