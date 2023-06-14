@@ -107,6 +107,8 @@ geom_length_ll <- function(x, prob) {
 offspring_ll <- function(chains_observed, offspring_sampler, chain_statistic,
                          nsim_offspring = 100, log_trans = TRUE, ...) {
   # Simulate the chains
+  chains <- simulate_tree(nsim_offspring, offspring_sampler,
+                          chain_statistic, ...)
   # Compute the empirical Cumulative Distribution Function of the
   # simulated chains
 
