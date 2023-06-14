@@ -5,11 +5,11 @@
 #' where \code{\link{rpois}} is the R function to generate Poisson random
 #' numbers).
 #' @keywords internal
-check_offspring_valid <- function(offspring) {
-  if (!is.character(offspring)) {
+check_offspring_valid <- function(offspring_sampler) {
+  if (!is.character(offspring_sampler)) {
     stop(sprintf(
       "%s %s",
-      "'offspring' must be specified as a character string.",
+      "'offspring_sampler' must be specified as a character string.",
       "Did you forget to enclose it in quotes?"
     ))
   }
