@@ -33,7 +33,7 @@ format.epichains <- function(x, ...) {
       )
 
     # print head of the simulation output
-    print(head(subset(as.data.frame(x), !is.na(ancestor))))
+    print(head(x[!is.na(x$ancestor), ]))
 
     cat("< tree tail >\n")
 
