@@ -1,6 +1,6 @@
 #' Simulate a tree of infections with a serial and offspring distributions
 #'
-#' @param nchains number of chains to simulate
+#' @param nchains Number of chains to simulate.
 #' @param offspring_sampler Offspring distribution: a character string
 #' corresponding to the R distribution function (e.g., "pois" for Poisson,
 #' where \code{\link{rpois}} is the R function to generate Poisson random
@@ -324,7 +324,7 @@ simulate_vect <- function(nchains, offspring_sampler,
 #' simulate_tree_from_pop(pop = 100, offspring_sampler = "pois",
 #' mean_offspring = 0.5, serial_sampler = function(x) 3)
 #'
-#' #' # Simulate with negative binomial offspring
+#' # Simulate with negative binomial offspring
 #' simulate_tree_from_pop(pop = 100, offspring_sampler = "nbinom",
 #' mean_offspring = 0.5, disp_offspring = 1.1, serial_sampler = function(x) 3)
 simulate_tree_from_pop <- function(pop,
