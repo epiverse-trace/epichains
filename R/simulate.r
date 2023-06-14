@@ -217,6 +217,7 @@ simulate_tree <- function(nchains, offspring_sampler,
 #' @examples
 #' simulate_vect(n = 10, offspring_sampler = "pois", lambda = 2,
 #' chain_stat_max = 10)
+#' @export
 simulate_vect <- function(nchains, offspring_sampler,
                            chain_statistic = c("size", "length"),
                            chain_stat_max = Inf, ...) {
@@ -317,7 +318,6 @@ simulate_vect <- function(nchains, offspring_sampler,
 #' "nbinom").
 #' @author Flavio Finger
 #' @author James M. Azam
-#' @export
 #' @examples
 #' # Simulate with poisson offspring
 #' simulate_tree_from_pop(pop = 100, offspring_sampler = "pois",
@@ -326,6 +326,7 @@ simulate_vect <- function(nchains, offspring_sampler,
 #' # Simulate with negative binomial offspring
 #' simulate_tree_from_pop(pop = 100, offspring_sampler = "nbinom",
 #' mean_offspring = 0.5, disp_offspring = 1.1, serial_sampler = function(x) 3)
+#' @export
 simulate_tree_from_pop <- function(pop,
                                    offspring_sampler = c("pois", "nbinom"),
                                    mean_offspring,
