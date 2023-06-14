@@ -200,13 +200,12 @@ tail.epichains <- function(x, ...) {
 
 #' Plot epichains tree objects
 #'
-#' @param x an [`epichains`] object with a chains_tree attribute
-#' @param ...
+#' @param x An [`epichains`] object with a chains_tree attribute
+#' @param ... Other arguments passed to plot
 #'
-#' @return
-#' @export
+#' @return A plot of cases over time and generation
 #' @author James M. Azam
-#' @examples
+#' @export
 plot.epichains <- function(x, ...){
   validate_epichains(x)
 
