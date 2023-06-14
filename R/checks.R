@@ -47,7 +47,7 @@ check_serial_valid <- function(serials_sampler) {
 
 #' Check that nchains is greater than 0 and not infinite
 #'
-#' @param nchains
+#' @param nchains Number of chains to simulate.
 #'
 #' @keywords internal
 check_nchains_valid <- function(nchains) {
