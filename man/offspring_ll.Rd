@@ -4,24 +4,37 @@
 \alias{offspring_ll}
 \title{Likelihood of the length of chains with generic offspring distribution}
 \usage{
-offspring_ll(x, offspring, stat, nsim_offspring = 100, ...)
+offspring_ll(
+  chains_observed,
+  offspring_sampler,
+  chain_statistic,
+  nsim_offspring = 100,
+  log_trans = TRUE,
+  ...
+)
 }
 \arguments{
-\item{x}{vector of sizes}
+\item{chains_observed}{Vector of sizes/lengths}
 
-\item{offspring}{Offspring distribution: a character string corresponding to
-the R distribution function (e.g., "pois" for Poisson, where
-\code{\link{rpois}} is the R function to generate Poisson random numbers)}
+\item{offspring_sampler}{Offspring distribution: a character string
+corresponding to the R distribution function (e.g., "pois" for Poisson,
+where \code{\link{rpois}} is the R function to generate Poisson random
+numbers).}
 
-\item{stat}{statistic given as \code{x} ("size" or "length" of chains)}
+\item{chain_statistic}{Statistic given as \code{chains_observed}
+("size" or "length" of chains).}
 
-\item{nsim_offspring}{number of simulations of the offspring distribution
-for approximation the size/length distribution}
+\item{nsim_offspring}{Number of simulations of the offspring distribution
+for approximating the chain_statistic (size/length) distribution}
 
-\item{...}{any parameters to pass to \code{\link{chain_sim}}}
+\item{log_trans}{Logical; Should the results be log-transformed? (Defaults
+to TRUE).}
+
+\item{...}{any parameters to pass to \code{\link{simulate_tree}}}
 }
 \value{
-log-likelihood values
+If \code{log_trans = TRUE} (the default), log-likelihood values,
+else raw likelihoods
 }
 \description{
 The likelihoods are calculated with a crude approximation using simulated
@@ -31,4 +44,13 @@ cumulative distribution function (ecdf).
 \author{
 Sebastian Funk
 }
+\keyword{Compute}
+\keyword{Cumulative}
+\keyword{Distribution}
+\keyword{Function}
+\keyword{chains}
+\keyword{empirical}
 \keyword{internal}
+\keyword{of}
+\keyword{simulated}
+\keyword{the}

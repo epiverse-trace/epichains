@@ -7,14 +7,14 @@
 dborel(x, mu, log = FALSE)
 }
 \arguments{
-\item{x}{vector of integers.}
+\item{x}{Vector of integers.}
 
 \item{mu}{mu parameter.}
 
-\item{log}{logical; if TRUE, probabilities p are given as log(p).}
+\item{log}{Logical; if TRUE, probabilities p are given as log(p).}
 }
 \value{
-probability mass.
+Probability mass.
 }
 \description{
 Density of the Borel distribution
