@@ -67,7 +67,7 @@
 #' in the `simulate_tree()` call like so
 #' \code{simulate_tree(..., serials_sampler = function(n){rlnorm(n, 0.58, 1.38)})}, #nolint
 #' where `...` are the other arguments to `simulate_tree()`.
-#' @seealso [simulate_vec()] for simulating transmission chains as a vector
+#' @seealso [simulate_vect()] for simulating transmission chains as a vector
 #' @examples
 #' set.seed(123)
 #' chains <- simulate_tree(nchains = 10, serials_sampler = function(x) 3,
