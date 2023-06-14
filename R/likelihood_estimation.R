@@ -52,11 +52,9 @@ estimate_likelihood <- function(chains_observed,
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
     }
-    if (chain_statistic == "size") {
-      sample_func <- rbinom_size
-    } else if (chain_statistic == "length") {
-      sample_func <- rgen_length
-    }
+
+    sample_func <- get_chain_statistic_func(chain_statistic)
+
     sampled_x <- replicate(nsim_obs, pmin(sample_func(length(chains_observed),
                                            chains_observed, obs_prob
                                            ),
@@ -78,7 +76,7 @@ estimate_likelihood <- function(chains_observed,
 
   ## get likelihood function as given by offspring_sampler and chain_statistic
   likelihoods <- vector(mode = "numeric")
-  ll_func <- paste(offspring_sampler, chain_statistic, "ll", sep = "_")
+  ll_func <- construct_offspring_ll_name(offspring_sampler, chain_statistic)
   pars <- as.list(unlist(list(...))) ## converts vectors to lists
 
   ## calculate likelihoods
