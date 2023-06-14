@@ -216,10 +216,12 @@ plot.epichains <- function(x, ...){
   cases_per_generation <- aggregate(sim_id ~ generation, x = as.data.frame(x), FUN = NROW)
 
   cases_per_time <- aggregate(sim_id ~ time, x = as.data.frame(x), FUN = NROW)
+  cases_per_time <- stats::aggregate(sim_id ~ time, x = as.data.frame(x), FUN = NROW)
 
   graphics::par(mfrow = c(1, 2), mar = c(4, 3, 3, 1), oma = c(0, 0, 0, 0))
 
-  plot(cases_per_generation$generation,
+  # Make first plot
+  graphics::plot(cases_per_generation$generation,
        cases_per_generation$sim_id,
        xlab = "Generation",
        ylab = "Cases",
@@ -227,7 +229,8 @@ plot.epichains <- function(x, ...){
        main = "Number of cases per generation"
        )
 
-  plot(cases_per_time$time,
+  # Make second plot
+  graphics::plot(cases_per_time$time,
        cases_per_time$sim_id,
        xlab = "Time",
        ylab = "Cases",
