@@ -1,3 +1,9 @@
+#' Print an [`epichains`] object
+#'
+#' @param x An [`epichains`] object.
+#' @param ... Other parameters passed to [print()].
+#' @return Invisibly returns an [`epichains`]. Called for side-effects.
+#' @export
 print.epichains <- function(x, ...) {
   format(x, ...)
 }
