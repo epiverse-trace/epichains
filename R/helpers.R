@@ -56,3 +56,32 @@ get_offspring_func <- function(offspring_sampler, n, susc, pop,
     stop("offspring_sampler must either be 'pois' or 'nbinom'")
   }
 }
+
+
+
+#' Return a function for calculating chain statistics
+#'
+#' @inheritParams simulate_tree
+#'
+#' @return a function for calculating chain statistics
+#' @keywords internal
+get_chain_statistic_func <- function(chain_statistic){
+  func <- if (chain_statistic == "size") {
+    rbinom_size
+  } else if (chain_statistic == "length") {
+    rgen_length
+  }
+  return(func)
+}
+
+#' Construct name of analytical function for estimating loglikelihood of
+#' offspring
+#'
+#' @inheritParams simulate_tree
+#'
+#' @return an analytical offspring likelihood function
+#' @keywords internal
+construct_offspring_ll_name <- function(offspring_sampler, chain_statistic){
+  ll_name <- paste(offspring_sampler, chain_statistic, "ll", sep = "_")
+  return(ll_name)
+}
