@@ -92,7 +92,8 @@ estimate_likelihood <- function(chains_observed,
         offspring_ll,
         c(list(
           chains_observed = calc_sizes, offspring_sampler = offspring_sampler,
-          chain_statistic = chain_statistic, chain_stat_max = chain_stat_max
+          chain_statistic = chain_statistic, chain_stat_max = chain_stat_max,
+          log_trans = log_trans
         ), pars)
       )
   }
