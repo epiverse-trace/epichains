@@ -56,11 +56,11 @@ Suggests:
     testthat,
     truncdist,
     usethis
-Config/testthat/edition: 3
 VignetteBuilder:
     knitr
 Remotes:
     github::epiverse-trace/epiparameter
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
