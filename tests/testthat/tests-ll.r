@@ -8,3 +8,5 @@ test_that("Analytical size or length distributions are implemented", {
   expect_true(all(pois_length_ll(chains, lambda = 0.5) < 0))
   expect_true(all(geom_length_ll(chains, prob = 0.5) < 0))
 })
+
+
