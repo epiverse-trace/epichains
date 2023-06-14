@@ -133,8 +133,6 @@ summary.epichains <- function(x, ...) {
 #' @return logical, `TRUE` if the object is an `epichains` and `FALSE`
 #' otherwise
 #' @export
-#'
-#' @examples
 is_epichains <- function(x) {
   inherits(x, "epichains")
 }
@@ -146,6 +144,7 @@ is_epichains <- function(x) {
 #' @return Checks if an object is of class `epichains` and if so
 #' checks that it's in the right format as a "data.frame" or vector.
 #' @keywords internal
+#' @author James M. Azam
 validate_epichains <- function(x) {
   if (!is_epichains(x)) {
     stop("Object must have an epichains class")
