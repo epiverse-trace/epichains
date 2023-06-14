@@ -18,7 +18,9 @@ check_offspring_valid <- function(offspring) {
 
 #' Check if constructed random number generator for offspring exists
 #'
-#' @param roffspring_name
+#' @param roffspring_name Constructed random offspring sampler: a character
+#' string corresponding to the R distribution function (e.g., "rpois" for
+#' Poisson.
 #' @keywords internal
 check_offspring_func_valid <- function(roffspring_name) {
   if (!(exists(roffspring_name)) || !is.function(get(roffspring_name))) {
