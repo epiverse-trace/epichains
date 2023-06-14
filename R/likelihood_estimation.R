@@ -1,4 +1,4 @@
-#' Likelihood for the outcome of a branching process
+#' Estimate the (log) likelihood for observed branching processes
 #'
 #' @param x vector of sizes or lengths of transmission chains
 #' @param stat statistic given as \code{x} ("size" or "length" of chains)
