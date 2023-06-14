@@ -1,12 +1,10 @@
 #' Determine and update the chain statistic being tracked
 #'
-#' @param stat_type
-#' @param noffspring
-#'
-#' @return
-#' @export
+#' @param stat_type Chain statistic (size/length) to update.
+#' @param stat_latest The latest chain statistic vector to be updated.
+#' @param n_offspring A vector of offspring per chain.
+#' @return A vector of chain statistics (size/length).
 #' @keywords internal
-#' @examples
 update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
   if (stat_type == "size") {
     stat_latest <- stat_latest + n_offspring
