@@ -71,7 +71,7 @@
 #' @examples
 #' set.seed(123)
 #' chains <- simulate_tree(nchains = 10, serials_sampler = function(x) 3,
-#' offspring = "pois", lambda = 2, infinite = 10)
+#' offspring_sampler = "pois", lambda = 2, chain_stat_max = 10)
 #' chains
 #' @references
 #'
@@ -214,7 +214,8 @@ simulate_tree <- function(nchains, offspring_sampler,
 #' @inheritParams simulate_tree
 #' @param chain_stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
-#' @examples #' simulate_vect(n = 10, offspring_sampler = "pois", lambda = 2,
+#' @examples
+#' simulate_vect(n = 10, offspring_sampler = "pois", lambda = 2,
 #' chain_stat_max = 10)
 simulate_vect <- function(nchains, offspring_sampler,
                            chain_statistic = c("size", "length"),
