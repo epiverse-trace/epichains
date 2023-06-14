@@ -36,6 +36,13 @@
 #'  offspring_sampler = "pois", nsim_obs = 100, lambda = 0.5)
 #' @export
 estimate_likelihood <- function(chains_observed,
+                                chain_statistic = c("size", "length"),
+                                offspring_sampler,
+                                nsim_obs,
+                                log_trans = TRUE,
+                                obs_prob = 1, chain_stat_max = Inf,
+                                exclude = NULL, individual = FALSE, ...) {
+  chain_statistic <- match.arg(chain_statistic)
 
   ## checks
   if (!is.character(offspring)) {
