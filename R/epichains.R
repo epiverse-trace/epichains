@@ -204,7 +204,7 @@ tail.epichains <- function(x, ...) {
 #' @return A plot of cases over time and generation
 #' @author James M. Azam
 #' @export
-plot.epichains <- function(x, ...){
+plot.epichains <- function(x, ...) {
   validate_epichains(x)
 
   if (attributes(x)$chain_type != "chains_tree") {
@@ -217,7 +217,8 @@ plot.epichains <- function(x, ...){
                                            FUN = NROW
                                            )
   # Count the number of cases per time
-  cases_per_time <- stats::aggregate(sim_id ~ time, x = as.data.frame(x), FUN = NROW)
+  cases_per_time <- stats::aggregate(sim_id ~ time, x = as.data.frame(x),
+                                     FUN = NROW)
 
   # Set up grid
   graphics::par(mfrow = c(1, 2), mar = c(4, 3, 3, 1), oma = c(0, 0, 0, 0))
