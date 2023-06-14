@@ -62,7 +62,7 @@ estimate_likelihood <- function(chains_observed,
                                            ),
                                chain_stat_max), simplify = FALSE)
     size_x <- unlist(sampled_x)
-    if (!is.finite(chain_stat_max)) chain_stat_max <- max(size_x) + 1
+    if (!is.finite(chain_stat_max)) {chain_stat_max <- max(size_x) + 1}
   } else {
     chains_observed[chains_observed >= chain_stat_max] <- chain_stat_max
     size_x <- chains_observed
@@ -116,7 +116,7 @@ estimate_likelihood <- function(chains_observed,
     likelihoods[sx[!(sx %in% exclude)]]
   })
 
-  if (!individual) chains_likelihood <- vapply(chains_likelihood, sum, 0)
+  if (!individual) {chains_likelihood <- vapply(chains_likelihood, sum, 0)}
 
   return(chains_likelihood)
 }
