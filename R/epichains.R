@@ -211,11 +211,15 @@ plot.epichains <- function(x, ...){
     stop("Object must be an epichains object with a chains_tree attribute.")
   }
 
-  cases_per_generation <- aggregate(sim_id ~ generation, x = as.data.frame(x), FUN = NROW)
-
-  cases_per_time <- aggregate(sim_id ~ time, x = as.data.frame(x), FUN = NROW)
+  # Count the number of cases per generation
+  cases_per_generation <- stats::aggregate(sim_id ~ generation,
+                                           x = as.data.frame(x),
+                                           FUN = NROW
+                                           )
+  # Count the number of cases per time
   cases_per_time <- stats::aggregate(sim_id ~ time, x = as.data.frame(x), FUN = NROW)
 
+  # Set up grid
   graphics::par(mfrow = c(1, 2), mar = c(4, 3, 3, 1), oma = c(0, 0, 0, 0))
 
   # Make first plot
