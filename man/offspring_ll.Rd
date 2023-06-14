@@ -44,13 +44,4 @@ cumulative distribution function (ecdf).
 \author{
 Sebastian Funk
 }
-\keyword{Compute}
-\keyword{Cumulative}
-\keyword{Distribution}
-\keyword{Function}
-\keyword{chains}
-\keyword{empirical}
 \keyword{internal}
-\keyword{of}
-\keyword{simulated}
-\keyword{the}
