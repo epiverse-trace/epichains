@@ -12,7 +12,6 @@ print.epichains <- function(x, ...) {
 #'
 #' @param x epichains object
 #' @param ... further arguments passed to or from other methods
-#' @importFrom tibble as_tibble
 #' @return Invisibly returns an [`epichains`]. Called for printing side-effects.
 #' @export
 #'
