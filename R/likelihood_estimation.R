@@ -51,7 +51,7 @@ estimate_likelihood <- function(chains_observed,
   if (obs_prob <= 0 || obs_prob > 1) stop("'obs_prob' must be within (0,1]")
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
-      stop("'nsim_obs' must be specified if 'obs_prob' is <1")
+      stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
     }
     if (stat == "size") {
       sample_func <- rbinom_size
