@@ -7,15 +7,17 @@
 \method{plot}{epichains}(x, ...)
 }
 \arguments{
-\item{x}{An \code{\link{epichains}} object with a chains_tree attribute}
+\item{x}{An \code{\link{epichains}} object with a chains_tree attribute.}
 
-\item{...}{Other arguments passed to plot}
+\item{...}{Other arguments passed to plot.}
 }
 \value{
-A plot of cases over time and generation
+A plot of cases over time and generation.
 }
 \description{
-Plot epichains tree objects
+This method accepts epichains aggregated through the \code{aggregate} method,
+which returns an object of class \code{epichains_aggregate_df} with an
+\code{aggregated_over}.
 }
 \author{
 James M. Azam
