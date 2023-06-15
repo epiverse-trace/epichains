@@ -57,3 +57,14 @@ check_nchains_valid <- function(nchains) {
     stop("`nchains` must be > 0 but less than `Inf`")
   }
 }
+
+#' Title
+#'
+#' @param x An [`epichains`] object
+#'
+#' @keywords internal
+check_chain_tree_attribute <- function(x){
+  if (attributes(x)$chain_type != "chains_tree") {
+    stop("Object must be an epichains object with a chains_tree attribute.")
+  }
+}
