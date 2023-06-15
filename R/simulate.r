@@ -215,7 +215,7 @@ simulate_tree <- function(nchains, offspring_sampler,
 #' @param chain_stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
 #' @examples
-#' simulate_vect(n = 10, offspring_sampler = "pois", lambda = 2,
+#' simulate_vect(nchains = 10, offspring_sampler = "pois", lambda = 2,
 #' chain_stat_max = 10)
 #' @export
 simulate_vect <- function(nchains, offspring_sampler,
