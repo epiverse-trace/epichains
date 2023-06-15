@@ -209,46 +209,90 @@ tail.epichains <- function(x, ...) {
 
 #' Plot epichains tree objects
 #'
-#' @param x An [`epichains`] object with a chains_tree attribute
-#' @param ... Other arguments passed to plot
+#' This method accepts epichains aggregated through the `aggregate` method,
+#' which returns an object of class `epichains_aggregate_df` with an
+#' `aggregated_over` attribute that tells `plot()` which variable to plot.
 #'
-#' @return A plot of cases over time and generation
+#' @param x An [`epichains`] object with a chains_tree attribute.
+#' @param ... Other arguments passed to plot.
+#'
+#' @return A plot of cases over time and generation.
 #' @author James M. Azam
+#' @example
+#' # Generate chains with poisson offspring using `simulate_tree()`
+#' set.seed(123)
+#' chains <- simulate_tree(nchains = 10,
+#' serials_sampler = function(x) rpois(x, 2),
+#' offspring_sampler = "pois", lambda = 2, chain_stat_max = 10)
+#'
+#' # Aggregate cases per time and plot the results
+#' cases_per_time <- aggregate(chains, "time")
+#' plot(cases_per_time)
+#'
+#' # Aggregate cases per generation and plot the results
+#' cases_per_gen <- aggregate(chains, "generation")
+#' plot(cases_per_gen)
+#'
+#' # Aggregate cases per time and generation and plot the results
+#' cases_aggreg <- aggregate(chains, "both")
+#' plot(cases_aggreg)
+#'
+#' # Generate chains with negative
+#' # binomial offspring and from a fixed population size using
+#' # `simulate_tree_from_pop()`
+#' set.seed(123)
+#' chains_bn <- simulate_tree_from_pop(pop = 1000, offspring_sampler = "nbinom",
+#' mean_offspring = 0.5, disp_offspring = 1.1,
+#' serial_sampler = function(x) rpois(x, 2))
+#'
+#' # Plot them
+#' plot(aggregate(chains_bn, "time"))
 #' @export
+#' @author James M. Azam
 plot.epichains <- function(x, ...) {
-  validate_epichains(x)
 
-  if (attributes(x)$chain_type != "chains_tree") {
-    stop("Object must be an epichains object with a chains_tree attribute.")
+  # Object should have been aggregated using the aggregate.epichains method
+  is_epichains_aggregate_df(x)
+
+  check_chain_tree_attribute(x)
+
+  plotting_var <- attributes(x)$aggregated_over
+
+  if (plotting_var == "time") {
+    graphics::barplot(x$cases,
+      names.arg = x$time,
+      xlab = "Time",
+      ylab = "Cases",
+      type = "b", ,
+      col = "tomato3",
+      main = "Number of cases per time"
+    )
+  } else if (plotting_var == "generation") {
+    graphics::barplot(x$cases,
+      names.arg = x$generation,
+      xlab = "Generation",
+      ylab = "Cases", ,
+      col = "steelblue",
+      main = "Number of cases per generation"
+    )
+  } else if (plotting_var == "both") {
+    par(mfrow = c(1, 2))
+    # Make first plot
+    graphics::barplot(x[[1]]$cases,
+      names.arg = x$time,
+      xlab = "Time",
+      ylab = "Cases",
+      type = "b", ,
+      col = "tomato3",
+      main = "Number of cases per time"
+    )
+    # Make second plot
+    graphics::barplot(x[[2]]$cases,
+      names.arg = x$generation,
+      xlab = "Generation",
+      ylab = "Cases", ,
+      col = "steelblue",
+      main = "Number of cases per generation"
+    )
   }
-
-  # Count the number of cases per generation
-  cases_per_generation <- stats::aggregate(sim_id ~ generation,
-                                           x = as.data.frame(x),
-                                           FUN = NROW
-                                           )
-  # Count the number of cases per time
-  cases_per_time <- stats::aggregate(sim_id ~ time, x = as.data.frame(x),
-                                     FUN = NROW)
-
-  # Set up grid
-  graphics::par(mfrow = c(1, 2), mar = c(4, 3, 3, 1), oma = c(0, 0, 0, 0))
-
-  # Make first plot
-  graphics::plot(cases_per_generation$generation,
-       cases_per_generation$sim_id,
-       xlab = "Generation",
-       ylab = "Cases",
-       type = "b",
-       main = "Number of cases per generation"
-       )
-
-  # Make second plot
-  graphics::plot(cases_per_time$time,
-       cases_per_time$sim_id,
-       xlab = "Time",
-       ylab = "Cases",
-       type = "b",
-       main = "Number of cases per time"
-  )
 }
