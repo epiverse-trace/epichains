@@ -35,6 +35,6 @@ computed. Results above the specified value, are set to \code{Inf}.}
 Simulate transmission chains without tree (as a vector)
 }
 \examples{
-simulate_vect(n = 10, offspring_sampler = "pois", lambda = 2,
+simulate_vect(nchains = 10, offspring_sampler = "pois", lambda = 2,
 chain_stat_max = 10)
 }
