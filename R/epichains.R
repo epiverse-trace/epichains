@@ -296,3 +296,79 @@ plot.epichains <- function(x, ...) {
     )
   }
 }
+
+#' Aggregate cases in epichains objects according to a grouping variable
+#'
+#' @param x An [`epichains`] object.
+#' @param grouping_var The variable to group and count over. Options include
+#' "time", "generation", and "both".
+#' @param ... Other arguments passed to aggregate.
+#'
+#' @return If grouping_var is either "time" or "generation", a data.frame
+#' with cases aggregated over `grouping_var`; If
+#' \code{grouping_var = "both"}, a list of data.frames, the first being for
+#'  cases over time, and the second being for cases over generations.
+#' @export
+#'
+#' @examples
+#' set.seed(123)
+#' chains <- simulate_tree(nchains = 10, serials_sampler = function(x) 3,
+#' offspring_sampler = "pois", lambda = 2, chain_stat_max = 10)
+#' chains
+#'
+#' # Aggregate cases per time
+#' aggregate(chains, grouping_var = "time")
+#'
+#' # Aggregate cases per generation
+#' aggregate(chains, grouping_var = "generation")
+#'
+#' # Aggregate cases per both time and generation
+#' aggregate(chains, grouping_var = "both")
+aggregate.epichains <- function(x,
+                                grouping_var = c("time",
+                                                 "generation",
+                                                 "both"
+                                                 ),
+                                ...) {
+  validate_epichains(x)
+  # Check that the object is of type "chains_tree"
+  if (attributes(x)$chain_type == "chains_vec") {
+    stop("object must be an epichains object with 'chains_tree' attribute.")
+  }
+
+  # Get grouping variable
+  grouping_var <- match.arg(grouping_var)
+
+  out <- if (grouping_var == "time") {
+    # Count the number of cases per generation
+    stats::aggregate(list(cases = x$sim_id),
+      list(time = x$time),
+      FUN = NROW
+    )
+  } else if (grouping_var == "generation") {
+    # Count the number of cases per time
+    stats::aggregate(list(cases = x$sim_id),
+      list(generation = x$generation),
+      FUN = NROW
+    )
+  } else if (grouping_var == "both") {
+    # Count the number of cases per time
+    list(
+      stats::aggregate(list(cases = x$sim_id),
+        list(time = x$time),
+        FUN = NROW
+      ),
+      # Count the number of cases per generation
+      stats::aggregate(list(cases = x$sim_id),
+        list(generation = x$generation),
+        FUN = NROW
+      )
+    )
+  }
+
+  structure(out,
+    class = c("epichains_aggregate_df", "tbl", "data.frame"),
+    chain_type = attributes(x)$chain_type,
+    aggregated_over = grouping_var
+  )
+}
