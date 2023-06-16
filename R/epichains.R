@@ -220,7 +220,7 @@ tail.epichains <- function(x, ...) {
 #' of the options in the simulated dataset was aggregated over. See
 #' \code{?epichains::aggregate}.
 #' @author James M. Azam
-#' @example
+#' @examples
 #' # Generate chains with poisson offspring using simulate_tree()
 #' set.seed(123)
 #' chains <- simulate_tree(nchains = 10,
