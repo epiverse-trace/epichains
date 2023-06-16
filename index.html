@@ -83,19 +83,22 @@
   <div class="contents col-md-9">
 
 <div class="section level1">
-<div class="page-header"><h1 id="epichains-methods-for-analysing-the-size-and-length-of-transmission-chains-from-branching-process-models">
-<em>epichains</em>: Methods for analysing the size and length of transmission chains from branching process models<a class="anchor" aria-label="anchor" href="#epichains-methods-for-analysing-the-size-and-length-of-transmission-chains-from-branching-process-models"></a>
+<div class="page-header"><h1 id="epichains-methods-for-analysing-the-size-and-length-of-transmission-chains-from-branching-process-models-">epichains: Methods for analysing the size and length of transmission chains from branching process models <img src="reference/figures/epichains_logo.png" align="right" height="130"><a class="anchor" aria-label="anchor" href="#epichains-methods-for-analysing-the-size-and-length-of-transmission-chains-from-branching-process-models-"></a>
 </h1></div>
 <!-- badges: start -->
 
-<p><em>epichains</em> is an R package to simulate and analyse the size and length of branching processes with a given offspring distribution. These models are often used in infectious disease epidemiology, where the chains represent chains of transmission, and the offspring distribution represents the distribution of secondary infections caused by an infected individual.</p>
+<p>epichains is an R package to simulate, analyse, and visualize the size and length of branching processes with a given offspring distribution. These models are often used in infectious disease epidemiology, where the chains represent chains of transmission, and the offspring distribution represents the distribution of secondary infections caused by an infected individual.</p>
+<p>epichains re-implements <a href="%22https://github.com/epiverse-trace/bpmodels/%22" class="external-link">bpmodels</a> by providing dedicated classes that allow easy manipulation and interoperability with other existing packages for handling transmission chain and contact-tracing data.</p>
+<p>epichains is developed at the <a href="https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases" class="external-link">Centre for the Mathematical Modelling of Infectious Diseases</a> at the London School of Hygiene and Tropical Medicine as part of the <a href="https://data.org/initiatives/epiverse/" class="external-link">Epiverse Initiative</a>.</p>
 </div>
 <div class="section level1">
 <h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h1>
-<p>The latest development version of the <em>epichains</em> package can be installed via</p>
+<p>The latest development version of the epichains package can be installed via</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="http://pak.r-lib.org/reference/pkg_install.html" class="external-link">pkg_install</a></span><span class="op">(</span><span class="st">"epiverse-trace/epichains"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># check whether {pak} is installed</span></span>
+<span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://pak.r-lib.org/" class="external-link">"pak"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="http://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"epiverse-trace/epichains"</span><span class="op">)</span></span></code></pre></div>
 <p>To load the package, use</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/epichains" class="external-link">"epichains"</a></span><span class="op">)</span></span></code></pre></div>
@@ -103,85 +106,11 @@
 <div class="section level1">
 <h1 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h1>
-<p>At the heart of the package are the <code><a href="reference/chain_ll.html">chain_ll()</a></code> and <code><a href="reference/chain_sim.html">chain_sim()</a></code> functions.</p>
-<div class="section level2">
-<h2 id="calculating-log-likelihoods">Calculating log-likelihoods<a class="anchor" aria-label="anchor" href="#calculating-log-likelihoods"></a>
-</h2>
-<p>The <code><a href="reference/chain_ll.html">chain_ll()</a></code> function calculates the log-likelihood of a distribution of chain sizes or lengths given an offspring distribution and its associated parameters.</p>
-<p>For example, if we have observed a distribution of chains of sizes <span class="math inline">1, 1, 4, 7</span>, we can calculate the log-likelihood of this observed chain by assuming the offspring per generation is Poisson distributed with a mean number (which can be interpreted as the reproduction number <span class="math inline">ℛ<sub>0</sub></span>) of <span class="math inline">0.5</span>.</p>
-<p>To do this, we run</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">13</span><span class="op">)</span></span>
-<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">7</span><span class="op">)</span> <span class="co"># example of observed chain sizes</span></span>
-<span><span class="fu"><a href="reference/chain_ll.html">chain_ll</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">chain_sizes</span>, offspring <span class="op">=</span> <span class="st">"pois"</span>, stat <span class="op">=</span> <span class="st">"size"</span>, lambda <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] -8.607196</span></span></code></pre></div>
-<p>The first argument of <code><a href="reference/chain_ll.html">chain_ll()</a></code> is the chain size (or length, in number of generations that a chain lasted) distribution to analyse. The second argument, <code>offspring</code>, specifies the offspring distribution. This is given as a function used to generate random offspring. It can be any probability distribution implemented in <code>R</code>, that is, one that has a corresponding function for generating random numbers beginning with the letter <code>r</code>. In the case of the example above, since random Poisson numbers are generated in <code>R</code> using a function called <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois()</a></code>, the string to pass to the <code>offspring</code> argument is <code>"pois"</code>.</p>
-<p>The third argument, <code>stat</code>, determines whether to analyse chain sizes (<code>"size"</code>, the default if this argument is not specified) or lengths (<code>"length"</code>). Lastly, any named arguments not recognised by <code><a href="reference/chain_ll.html">chain_ll()</a></code> are interpreted as parameters of the corresponding probability distribution, here <code>lambda = 0.5</code> as the mean of the Poisson distribution (see the <code>R</code> help page for the <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Poisson.html" class="external-link">Poisson distribution</a> for more information).</p>
-<div class="section level3">
-<h3 id="imperfect-observations">Imperfect observations<a class="anchor" aria-label="anchor" href="#imperfect-observations"></a>
-</h3>
-<p>By default, <code><a href="reference/chain_ll.html">chain_ll()</a></code> assumes perfect observation, where <code>obs_prob = 1</code> (See <code><a href="reference/chain_ll.html">?chain_ll</a></code>), meaning that all transmission events are observed and recorded in the data. If observations are imperfect, <code><a href="reference/chain_ll.html">chain_ll()</a></code> provides the argument, <code>obs_prob</code>, for specifying the probability of observation. This probability is used to determine the likelihood of observing the specified chain sizes or lengths. In the case of imperfect observation, true chain sizes or lengths are simulated repeatedly (the number of times given by the <code>nsim_obs</code> argument), and the likelihood calculated for each of these simulations.</p>
-<p>For example, if the probability of observing each case is <code>obs_prob = 0.30</code>, we use</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">7</span><span class="op">)</span> <span class="co"># example of observed chain sizes</span></span>
-<span><span class="va">ll</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/chain_ll.html">chain_ll</a></span><span class="op">(</span><span class="va">chain_sizes</span>, <span class="st">"pois"</span>, <span class="st">"size"</span>, obs_prob <span class="op">=</span> <span class="fl">0.3</span>, lambda <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>               nsim_obs <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="va">ll</span></span>
-<span><span class="co">#&gt;  [1] -26.54167 -23.26117 -24.33027 -20.80310 -30.76152 -26.46751 -23.79326</span></span>
-<span><span class="co">#&gt;  [8] -19.14490 -32.08875 -22.23401</span></span></code></pre></div>
-<p>This returns <code>10</code> likelihood values (because <code>nsim_obs = 10</code>), which can be averaged to come up with an overall likelihood estimate.</p>
-<p>To find out about usage of the <code><a href="reference/chain_ll.html">chain_ll()</a></code> function, you can use the <code>R</code> help file</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">?</span><span class="va">chain_ll</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="how-chain_ll-works">How <code>chain_ll()</code> works<a class="anchor" aria-label="anchor" href="#how-chain_ll-works"></a>
-</h3>
-<p>If the probability distribution of chain sizes or lengths has an analytical solution, this will be used. <code><a href="reference/chain_ll.html">chain_ll()</a></code> currently supports the Poisson and negative binomial size distribution and the Poisson and geometric length distribution.</p>
-<p>If an analytical solution does not exist, simulations are used to approximate this probability distributions (<a href="https://en.wikipedia.org/wiki/Empirical_distribution_function" class="external-link">using a linear approximation to the cumulative distribution</a> for unobserved sizes/lengths). In that case, an extra argument <code>nsim_offspring</code> must be passed to <code><a href="reference/chain_ll.html">chain_ll()</a></code> to specify the number of simulations to be used for this approximation.</p>
-<p>For example, to get offspring drawn from a binomial distribution with probability <code>prob = 0.5</code>, we run</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">7</span><span class="op">)</span> <span class="co"># example of observed chain sizes</span></span>
-<span><span class="fu"><a href="reference/chain_ll.html">chain_ll</a></span><span class="op">(</span><span class="va">chain_sizes</span>, <span class="st">"binom"</span>, <span class="st">"size"</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>         nsim_offspring <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] -Inf</span></span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="simulating-branching-processes">Simulating branching processes<a class="anchor" aria-label="anchor" href="#simulating-branching-processes"></a>
-</h2>
-<p>To simulate a branching process, we use the <code><a href="reference/chain_sim.html">chain_sim()</a></code> function. This function follows the same syntax as <code><a href="reference/chain_ll.html">chain_ll()</a></code>.</p>
-<p>Below, we are simulating <span class="math inline">5</span> chains, assuming the offspring are generated using a Poisson distribution with mean, <code>lambda = 0.5</code>. By default, <code><a href="reference/chain_sim.html">chain_sim()</a></code> returns a vector of chain sizes/lengths. If we instead want to return a tree of infectees and infectors, we need to specify a function for the serial interval and set <code>tree = TRUE</code> (see next section).</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/chain_sim.html">chain_sim</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, offspring <span class="op">=</span> <span class="st">"pois"</span>, stat <span class="op">=</span> <span class="st">"size"</span>, lambda <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 2 6 2 1 2</span></span></code></pre></div>
-<div class="section level3">
-<h3 id="simulating-trees">Simulating trees<a class="anchor" aria-label="anchor" href="#simulating-trees"></a>
-</h3>
-<p>To simulate a tree of transmission chains, we specify the serial interval generation function and set <code>tree = TRUE</code> as follows:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">13</span><span class="op">)</span></span>
-<span><span class="va">serial_interval</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="va">n</span>, meanlog <span class="op">=</span> <span class="fl">0.58</span>, sdlog <span class="op">=</span> <span class="fl">1.58</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">chains_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/chain_sim.html">chain_sim</a></span><span class="op">(</span></span>
-<span>  n <span class="op">=</span> <span class="fl">5</span>, offspring <span class="op">=</span> <span class="st">"pois"</span>, lambda <span class="op">=</span> <span class="fl">0.5</span>, stat <span class="op">=</span> <span class="st">"length"</span>,</span>
-<span>  infinite <span class="op">=</span> <span class="fl">100</span>, serial <span class="op">=</span> <span class="va">serial_interval</span>, tree <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">chains_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   n id ancestor generation       time</span></span>
-<span><span class="co">#&gt; 1 1  1       NA          1 0.00000000</span></span>
-<span><span class="co">#&gt; 2 2  1       NA          1 0.00000000</span></span>
-<span><span class="co">#&gt; 3 3  1       NA          1 0.00000000</span></span>
-<span><span class="co">#&gt; 4 4  1       NA          1 0.00000000</span></span>
-<span><span class="co">#&gt; 5 5  1       NA          1 0.00000000</span></span>
-<span><span class="co">#&gt; 6 1  2        1          2 0.04771887</span></span></code></pre></div>
-</div>
-</div>
+<p>Work in progress</p>
 <div class="section level2">
 <h2 id="package-vignettes">Package vignettes<a class="anchor" aria-label="anchor" href="#package-vignettes"></a>
 </h2>
-<p>Specific use cases of <em>epichains</em> can be found in the <a href="https://epiverse-trace.github.io/epichains/" class="external-link">online documentation as package vignettes</a>, under “Articles”.</p>
+<p>Specific use cases of epichains can be found in the <a href="https://epiverse-trace.github.io/epichains/" class="external-link">online documentation as package vignettes</a>, under “Articles”.</p>
 </div>
 <div class="section level2">
 <h2 id="reporting-bugs">Reporting bugs<a class="anchor" aria-label="anchor" href="#reporting-bugs"></a>
@@ -196,12 +125,12 @@
 <div class="section level2">
 <h2 id="code-of-conduct">Code of conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h2>
-<p>Please note that the <em>epichains</em> project is released with a <a href="https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>Please note that the epichains project is released with a <a href="https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 <div class="section level2">
 <h2 id="citing-this-package">Citing this package<a class="anchor" aria-label="anchor" href="#citing-this-package"></a>
 </h2>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"epichains"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; To cite package epichains in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -269,6 +198,7 @@
 <li><a href="https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://codecov.io/github/epiverse-trace/epichains" class="external-link"><img src="https://codecov.io/github/epiverse-trace/epichains/branch/main/graphs/badge.svg" alt="codecov"></a></li>
 <li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 </ul>
 </div>
 
