@@ -16,3 +16,4 @@ otherwise
 \description{
 Checks whether the object is an \code{epichains}
 }
+\keyword{internal}
