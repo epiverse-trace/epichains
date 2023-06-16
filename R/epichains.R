@@ -332,7 +332,7 @@ aggregate.epichains <- function(x,
                                 ...) {
   validate_epichains(x)
   # Check that the object is of type "chains_tree"
-  if (attributes(x)$chain_type == "chains_vec") {
+  if (attributes(x)$chain_type != "chains_tree") {
     stop("object must be an epichains object with 'chains_tree' attribute.")
   }
 
