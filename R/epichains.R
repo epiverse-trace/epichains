@@ -216,10 +216,11 @@ tail.epichains <- function(x, ...) {
 #' @param x An [`epichains`] object with a chains_tree attribute.
 #' @param ... Other arguments passed to plot.
 #'
-#' @return A plot of cases over time and generation.
+#' @return A plot of cases over time, generation, or both, depending on what
+#' was aggregated over. See \code{?epichains::aggregate}.
 #' @author James M. Azam
 #' @example
-#' # Generate chains with poisson offspring using `simulate_tree()`
+#' # Generate chains with poisson offspring using simulate_tree()
 #' set.seed(123)
 #' chains <- simulate_tree(nchains = 10,
 #' serials_sampler = function(x) rpois(x, 2),
@@ -228,7 +229,6 @@ tail.epichains <- function(x, ...) {
 #' # Aggregate cases per time and plot the results
 #' cases_per_time <- aggregate(chains, "time")
 #' plot(cases_per_time)
-#'
 #' # Aggregate cases per generation and plot the results
 #' cases_per_gen <- aggregate(chains, "generation")
 #' plot(cases_per_gen)
@@ -239,7 +239,7 @@ tail.epichains <- function(x, ...) {
 #'
 #' # Generate chains with negative
 #' # binomial offspring and from a fixed population size using
-#' # `simulate_tree_from_pop()`
+#' # simulate_tree_from_pop()
 #' set.seed(123)
 #' chains_bn <- simulate_tree_from_pop(pop = 1000, offspring_sampler = "nbinom",
 #' mean_offspring = 0.5, disp_offspring = 1.1,
@@ -248,7 +248,6 @@ tail.epichains <- function(x, ...) {
 #' # Plot them
 #' plot(aggregate(chains_bn, "time"))
 #' @export
-#' @author James M. Azam
 plot.epichains <- function(x, ...) {
 
   # Object should have been aggregated using the aggregate.epichains method

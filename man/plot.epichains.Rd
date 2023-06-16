@@ -12,12 +12,13 @@
 \item{...}{Other arguments passed to plot.}
 }
 \value{
-A plot of cases over time and generation.
+A plot of cases over time, generation, or both, depending on what
+was aggregated over. See \code{?epichains::aggregate}.
 }
 \description{
 This method accepts epichains aggregated through the \code{aggregate} method,
 which returns an object of class \code{epichains_aggregate_df} with an
-\code{aggregated_over}.
+\code{aggregated_over} attribute that tells \code{plot()} which variable to plot.
 }
 \author{
 James M. Azam
