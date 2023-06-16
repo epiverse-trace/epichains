@@ -263,7 +263,6 @@ plot.epichains <- function(x, ...) {
       names.arg = x$time,
       xlab = "Time",
       ylab = "Cases",
-      type = "b", ,
       col = "tomato3",
       main = "Number of cases per time"
     )
