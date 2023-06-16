@@ -130,7 +130,7 @@ summary.epichains <- function(object, ...) {
 #'
 #' @return logical, `TRUE` if the object is an `epichains` and `FALSE`
 #' otherwise
-#' @export
+#' @keywords internal
 is_epichains <- function(x) {
   inherits(x, "epichains")
 }
