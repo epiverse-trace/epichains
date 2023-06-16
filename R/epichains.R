@@ -213,11 +213,12 @@ tail.epichains <- function(x, ...) {
 #' which returns an object of class `epichains_aggregate_df` with an
 #' `aggregated_over` attribute that tells `plot()` which variable to plot.
 #'
-#' @param x An [`epichains`] object with a chains_tree attribute.
+#' @param x An `epichains_aggregate_df` object with a `chains_tree` attribute.
 #' @param ... Other arguments passed to plot.
-#'
-#' @return A plot of cases over time, generation, or both, depending on what
-#' was aggregated over. See \code{?epichains::aggregate}.
+#' @importFrom graphics barplot par
+#' @return A plot of cases over time, generation, or both, depending on which
+#' of the options in the simulated dataset was aggregated over. See
+#' \code{?epichains::aggregate}.
 #' @author James M. Azam
 #' @example
 #' # Generate chains with poisson offspring using simulate_tree()
