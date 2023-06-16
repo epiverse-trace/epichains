@@ -7,18 +7,48 @@
 \method{plot}{epichains}(x, ...)
 }
 \arguments{
-\item{x}{An \code{\link{epichains}} object with a chains_tree attribute.}
+\item{x}{An \code{epichains_aggregate_df} object with a \code{chains_tree} attribute.}
 
 \item{...}{Other arguments passed to plot.}
 }
 \value{
-A plot of cases over time, generation, or both, depending on what
-was aggregated over. See \code{?epichains::aggregate}.
+A plot of cases over time, generation, or both, depending on which
+of the options in the simulated dataset was aggregated over. See
+\code{?epichains::aggregate}.
 }
 \description{
 This method accepts epichains aggregated through the \code{aggregate} method,
 which returns an object of class \code{epichains_aggregate_df} with an
 \code{aggregated_over} attribute that tells \code{plot()} which variable to plot.
+}
+\examples{
+# Generate chains with poisson offspring using simulate_tree()
+set.seed(123)
+chains <- simulate_tree(nchains = 10,
+serials_sampler = function(x) rpois(x, 2),
+offspring_sampler = "pois", lambda = 2, chain_stat_max = 10)
+
+# Aggregate cases per time and plot the results
+cases_per_time <- aggregate(chains, "time")
+plot(cases_per_time)
+# Aggregate cases per generation and plot the results
+cases_per_gen <- aggregate(chains, "generation")
+plot(cases_per_gen)
+
+# Aggregate cases per time and generation and plot the results
+cases_aggreg <- aggregate(chains, "both")
+plot(cases_aggreg)
+
+# Generate chains with negative
+# binomial offspring and from a fixed population size using
+# simulate_tree_from_pop()
+set.seed(123)
+chains_bn <- simulate_tree_from_pop(pop = 1000, offspring_sampler = "nbinom",
+mean_offspring = 0.5, disp_offspring = 1.1,
+serial_sampler = function(x) rpois(x, 2))
+
+# Plot them
+plot(aggregate(chains_bn, "time"))
 }
 \author{
 James M. Azam
