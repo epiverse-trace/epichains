@@ -302,7 +302,7 @@ plot.epichains <- function(x, ...) {
 #' @param grouping_var The variable to group and count over. Options include
 #' "time", "generation", and "both".
 #' @param ... Other arguments passed to aggregate.
-#'
+#' @importFrom stats aggregate
 #' @return If grouping_var is either "time" or "generation", a data.frame
 #' with cases aggregated over `grouping_var`; If
 #' \code{grouping_var = "both"}, a list of data.frames, the first being for
