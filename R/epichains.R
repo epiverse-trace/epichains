@@ -355,14 +355,12 @@ aggregate.epichains <- function(x,
     # Count the number of cases per time
     list(
       stats::aggregate(list(cases = x$sim_id),
-        list(time = x$time),
-        FUN = NROW
-      ),
+                       list(time = x$time),
+                       FUN = NROW),
       # Count the number of cases per generation
       stats::aggregate(list(cases = x$sim_id),
-        list(generation = x$generation),
-        FUN = NROW
-      )
+                       list(generation = x$generation),
+                       FUN = NROW)
     )
   }
 
