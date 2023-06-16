@@ -367,8 +367,9 @@ aggregate.epichains <- function(x,
   }
 
   structure(out,
-    class = c("epichains_aggregate_df", "tbl", "data.frame"),
+    class = c("epichains_aggregate_df", class(out)),
     chain_type = attributes(x)$chain_type,
+    rownames = NULL,
     aggregated_over = grouping_var
   )
 }
