@@ -6,7 +6,7 @@
 #' numbers).
 #' @keywords internal
 check_offspring_valid <- function(offspring_sampler) {
-  if (!is.character(offspring_sampler)) {
+  if (!checkmate::test_string(offspring_sampler)) {
     stop(sprintf(
       "%s %s",
       "'offspring_sampler' must be specified as a character string.",
@@ -23,7 +23,8 @@ check_offspring_valid <- function(offspring_sampler) {
 #' Poisson.
 #' @keywords internal
 check_offspring_func_valid <- function(roffspring_name) {
-  if (!(exists(roffspring_name)) || !is.function(get(roffspring_name))) {
+  if (!(exists(roffspring_name)) ||
+      !checkmate::test_function(get(roffspring_name))) {
     stop("Function ", roffspring_name, " does not exist.")
   }
 }
@@ -37,7 +38,7 @@ check_offspring_func_valid <- function(roffspring_name) {
 #'
 #' @keywords internal
 check_serial_valid <- function(serials_sampler) {
-  if (!test_function(serials_sampler)) {
+  if (!checkmate::test_function(serials_sampler)) {
     stop(sprintf(
       "%s %s",
       "The `serials_sampler` argument must be a function",
@@ -53,7 +54,7 @@ check_serial_valid <- function(serials_sampler) {
 #'
 #' @keywords internal
 check_nchains_valid <- function(nchains) {
-  if (!test_count(nchains, positive = TRUE)) {
+  if (!checkmate::test_count(nchains, positive = TRUE)) {
     stop("`nchains` must be > 0 but less than `Inf`")
   }
 }
