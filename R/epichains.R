@@ -21,7 +21,7 @@ format.epichains <- function(x, ...) {
   # summarise the information stored in x
   chain_info <- summary(x)
 
-  if (attributes(x)$chain_type == "chains_tree") {
+  if (is_chains_tree(x)) {
     writeLines(
       c(
         sprintf("`epichains` object"),
@@ -61,7 +61,7 @@ format.epichains <- function(x, ...) {
                        "to view the full output in the console.")
                )
 
-  } else if (attributes(x)$chain_type == "chains_vec") {
+  } else if (is_chains_vec(x)) {
     cat(sprintf("epichains object \n"))
     print(as.vector(x))
     cat(sprintf("Number of chains simulated: %s",
@@ -92,7 +92,7 @@ format.epichains <- function(x, ...) {
 summary.epichains <- function(object, ...) {
   validate_epichains(object)
 
-  if (attributes(object)$chain_type == "chains_tree") {
+  if (is_chains_tree(object)) {
 
     chains_ran <- length(object$n)
 
@@ -115,7 +115,7 @@ summary.epichains <- function(object, ...) {
       num_generations = num_generations,
       max_generation = max_generation
     )
-  } else if (attributes(object)$chain_type == "chains_vec") {
+  } else if (is_chains_vec(object)) {
     chains_ran <- length(object)
     max_chain_stat <- max(!is.infinite(object))
     min_chain_stat <- min(!is.infinite(object))
@@ -190,6 +190,29 @@ validate_epichains <- function(x) {
 
   invisible(x)
 }
+
+#' Check if an epichains object has the `chains_tree` attribute
+#'
+#' @param x An [`epichains`] object
+#'
+#' @keywords internal
+#' @author James M. Azam
+is_chains_tree <- function(x) {
+  !is.null(attributes(x)$chain_type) &&
+    attributes(x)$chain_type == "chains_tree"
+}
+
+#' Check if an epichains object has the `chains_vec` attribute
+#'
+#' @param x An [`epichains`] object
+#'
+#' @keywords internal
+#' @author James M. Azam
+is_chains_vec <- function(x) {
+  !is.null(attributes(x)$chain_type) &&
+    attributes(x)$chain_type == "chains_vec"
+}
+
 
 #' `head` method for [`epichains`] class
 #'
