@@ -37,7 +37,7 @@ check_offspring_func_valid <- function(roffspring_name) {
 #'
 #' @keywords internal
 check_serial_valid <- function(serials_sampler) {
-  if (!is.function(serials_sampler)) {
+  if (!test_function(serials_sampler)) {
     stop(sprintf(
       "%s %s",
       "The `serials_sampler` argument must be a function",
@@ -47,13 +47,13 @@ check_serial_valid <- function(serials_sampler) {
 }
 
 
-#' Check that nchains is greater than 0 and not infinite
+#' Check that nchains is greater than 0 and not infinity
 #'
 #' @param nchains Number of chains to simulate.
 #'
 #' @keywords internal
 check_nchains_valid <- function(nchains) {
-  if (nchains < 1 || is.infinite(nchains)) {
+  if (!test_count(nchains, positive = TRUE)) {
     stop("`nchains` must be > 0 but less than `Inf`")
   }
 }
