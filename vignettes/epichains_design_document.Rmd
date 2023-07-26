@@ -1,0 +1,394 @@
+---
+title: "Simulating, handling, and analysing transmission chains in R."
+subtitle: "Designing an ecosystem for transmission chain simulation and analysis."
+author: "James Azam"
+output:
+  bookdown::html_vignette2:
+    fig_caption: yes
+    code_folding: show
+pkgdown:
+  as_is: true
+bibliography: references.json
+link-citations: true
+vignette: >
+  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{Projecting infectious disease incidence: a COVID-19 example}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+## Overview
+
+### Transmission chains and branching processes
+
+Branching processes are stochastic models that provide a simple way 
+to model the early phase of an outbreak. They only require data on 
+cases and are useful for drawing inferences on $R_0$ [@farrington2003].
+
+Branching processes have some limitations. For instance, they do not not 
+take into account the depletion of susceptibles in the population. Additionally, 
+They do not account for under ascertainment of cases. 
+
+## Existing R packages
+
+As far as we know, below are the existing R packages for simulating and handling transmission chains. 
+
+:::{.callout-note}
+It is our vision to streamline these packages and make them interoperable
+in a simple ecosystem. If you are interested in contributing in any way, 
+reach out to James Azam by email (james.azam@lshtm.ac.uk). Moreoever, 
+if you are aware of any packages or code bases that are not on this list, 
+please direct us to them.
+:::
+
+* [bpmodels](https://github.com/epiverse-trace/bpmodels): provides methods 
+for analysing the size and length of transmission chains from branching 
+process models.
+
+* [earlyR](https://github.com/reconhub/earlyR): estimates the reproduction 
+number (R), in the early stages of an outbreak. The model requires a 
+specified serial interval distribution, characterised by the mean and 
+standard deviation of the (Gamma) distribution, and data on daily disease 
+incidence, including only confirmed and probable cases.
+
+* [projections](https://github.com/reconhub/projections): uses data on daily 
+incidence, the serial interval (time between onsets of infectors and 
+infectees) and the reproduction number to simulate plausible epidemic 
+trajectories and project future incidence. It relies on a branching process 
+where daily incidence follows a Poisson or a Negative Binomial distribution
+governed by a force of infection.
+
+* [epicontacts](https://github.com/reconhub/epicontacts): handling, 
+analysing, and visualizing transmission chains and contact tracing 
+data/linelists.
+
+* [simulacr](https://github.com/reconhub/simulacr): simulates outbreaks 
+for specified values of reproduction number, incubation period, duration 
+of infectiousness, and optionally reporting delays. Outputs a linelist 
+stored as a `data.frame` with the class `outbreak`, including information
+on transmission chains; the output can be converted to `epicontacts` 
+objects for visualisation, and plotted using plot(...).
+
+* [ringbp](https://github.com/epiforecasts/ringbp): a branching process 
+model, parameterised to the 2019-nCoV outbreak, and used to quantify 
+the potential effectiveness of contact tracing and isolation of cases.
+
+* [covidhm](https://github.com/biouea/covidhm): code for simulating 
+COVID-19 dynamics in a range of scenarios across a real-world social 
+network. Model is conceptually based on `ringbp`.
+
+* [outbreakr](https://sites.google.com/site/therepiproject/r-pac/outbreaker): 
+implements a Bayesian approach for reconstructing outbreak data from 
+pathogen genome sequences. It also implements a tool for outbreak simulation.
+
+* [outbreakr2](https://github.com/reconhub/outbreaker2): a Bayesian 
+framework for integrating epidemiological and genetic data to reconstruct 
+transmission trees of densely sampled outbreaks. It re-implements, 
+generalises and replaces the model of outbreaker, and uses a modular
+approach which enables fine customisation of priors, likelihoods 
+and parameter movements.
+
+* [o2geosocial](https://github.com/alxsrobert/o2geosocial): integrates
+geographical and social contact data to reconstruct transmission chains. 
+It combines the age group, location, onset date and genotype of cases 
+to infer their import status, and their likely infector.
+
+* [nosoi](https://github.com/slequime/nosoi): simulates agent-based 
+transmission chains by taking into account the influence of multiple 
+variables on the transmission process (e.g. dual-host systems 
+(such as arboviruses), within-host viral dynamics, transportation, 
+population structure), alone or taken together, to create complex 
+but relatively intuitive epidemiological simulations.
+
+* [TransPhylo](https://xavierdidelot.github.io/TransPhylo/index.html): reconstructs infectious disease transmission using genomic data
+
+
+### Review and comparison of functionalities in the existing packages 
+
+::: {.callout-note}
+Most of the notes below are copied ditto from the source files of
+the packages but with minor edits and commentaries.
+:::
+
+#### `simulacr`
+
+A Poisson branching process is used to generate 
+new cases in time, using the distribution of the reproduction number (R) 
+and of the duration of the infectious period to determine rates of infection. 
+
+A density-dependence term is used so that individual infectiousness 
+decreases with the proportion of susceptible individuals in the population. 
+This is the same as what `bpmodels::chain_sim_susc()` achieves. 
+
+Individual infectiousness is determined as $R \times w(t - t_{onset})$ 
+where $R$ is the individual reproduction number, $w$ is the PMF of the 
+duration of the infectious period, $t$ is current time, and $t_{onset}$ 
+is the date of symptom onset for the considered individual.
+
+The number of new cases at time *t* is taken from a *Poisson distributio*n 
+with a rate of infection \eqn{\lambda_t n_s / n} where $\lambda_t$ is the 
+sum of all individual infectiousness at time *t*, $n_s$ is the number of 
+susceptible individuals in the population, and *n* is the 
+total population size.
+
+For each simulated case, using user-specified distributions, the simulator 
+generates an individual with:
+
+  - reproduction number, 
+  - time/date of infection, 
+  - time/date of symptom onset, and 
+  - reporting delay (time interval between symptom onset and case 
+  notification). 
+
+Distributions can be provided either as:
+
+  - `distcrete` objects, 
+  - functions computing the probability mass functions (PMF), or 
+  - vectors of numbers taken as the PMF for values
+  on $0, 1, ..., \text{length(input)} - 1$.
+
+#### `ringbp`
+
+## Introducing `epichains`: a unifying package for transmission chains
+
+### Current functionality
+
+`bpmodels` provides 3 functions: `chain_sim()`, `chain_sim_susc()`, and
+`chain_ll()`.
+
+#### Single-type branching processes
+
+`chain_sim()` uses a homogeneous Galton-Watson branching process to
+simulate transmission chains assuming cases randomly produce offspring 
+(new cases) according to a given distribution. 
+
+<!-- $P(I = r) = a_r \dfrac{\theta^r}{A(\theta)}$, where $\theta$ is the -->
+<!-- canonical parameter and $A(\theta) = \sum a_r \theta^r$, where $a^r \ge 0$. -->
+
+The simulation algorithm is as follows:
+
+Let us denote the size of the population in the n-th generation by $Z_n$. The 
+simulation process starts with an initial population of $Z_0$ infected 
+individuals. Each infected individual produces a random number 
+of offspring and until the end of their serial interval. The population 
+size in the next generation, $Z1$ is the sum of the offspring. 
+The offspring go on to produce new offspring, which gives the next 
+generation, and so on.
+
+#### Simulate populations with pre-existing immunity
+
+`chain_sim_susc()` simulates chains of transmission, one step at a time, 
+in a  population with some immunity. 
+
+The function generates new cases over time based on a specified 
+offspring distribution and a serial interval distribution, 
+specified as one of the random number generators in R, for example, `rpois`. 
+
+Currently, `chain_sim_susc()` implements two offspring distributions: 
+truncated poisson and truncated negative binomial distribution. 
+The simulator achieves this by implementing light wrappers around 
+the `rtrunc` function from the [truncdist](https://cran.r-project.org/web/packages/truncdist/index.html) 
+package.
+
+The poisson distribution has mean, 
+$\lambda = \dfrac{S \times R_0}{N}$, where $S$ is the current size of 
+the susceptible population, $R_0$ is the expected average number of 
+secondary cases per infected individual, and $N$ is the population size, 
+which is assumed to be constant.
+
+The negative binomial offspring distribution uses the mean and dispersion 
+parametrization (see \code{?rnbinom}), where the mean, 
+$mu = \dfrac{S \times R_0}{N} $, where
+$S$ is the current size of the susceptible population, $R_0$ is the
+expected average number of secondary cases per infected individual,
+and $N$ is the population size, which is assumed to be constant. The
+size is also given as $\dfrac{mu}{k-1}$, where $k$ is the negative binomial
+dispersion parameter.
+
+
+### (Ideal) new features
+
+The goal is for `epichains` to work with existing packages and 
+provide extensions for new transmission chain packages. 
+
+Hence, we envision for it to:
+
+* Have a model with interventions like in `ringbp`:
+  - Interventions should ideally be introducable in a composable form similar to [epidemics]("https://github.com/epiverse-trace/epidemics/") package is being 
+  developed this way (For a more complex inspiration, see [langchain](https://github.com/hwchase17/langchain)).
+
+* Reduce input wrangling by accepting at best, a cleaned linelist with 
+onset dates, or onset times, or at worst, case count time series.
+  - If the input data is a time series, there's a need for packages/methods
+  to "simulate" onset times in conjunction with the time series. 
+
+* Provide conversion between the available packages for simulating 
+transmission chains (`projections`, `epicontacts`, etc).
+
+* Allow specifying multiple distributions for generating offspring and 
+the serial interval (possibly through `quickfit`):
+  * Allow for comparing different scenarios in first bullet (offspring,
+  serial, intervention).
+
+* Allow simulating multiple runs of the same model and saving the output
+in a tidy way (via an extra argument, which defaults to 1).
+
+* Allow plotting the whole or part of the network (via custom subsetting in
+the plotting function).
+
+* Interoperability primarily with: 
+  - `epicontacts`: currently requires `epichains` to simulate contact-tracing
+  - * `quickfit`: for comparing multiple models 
+  - [epiparameter](https://github.com/epiverse-trace/epiparameter) for specifying 
+parameter values and distributions.
+  - `superspreading`: for estimating/fitting offspring distributions
+
+:::{.callout-important}
+Due to the large number of packages for simulating transmission chains 
+and the variations in terminology, there might be a need to unify the 
+grammar and terminology. This will provide a philosophical framework 
+for developing and using packages in this ecosystem in a structured way. 
+:::
+
+### Practical - centered on actual decision-making - use cases for `epichains` 
+
+#### Sources of use cases
+
+* outbreak sitreps, 
+* literature, and 
+* nCOV-2019/COVID-19 reports (NICD, SPI-M, etc)
+
+#### General use cases
+
+* Simulating outbreak clusters with `chain_sim()`: what will the outbreak 
+size be?
+* Simulating the likelihood of observing clusters of certain sizes and 
+lengths with `chain_ll()`
+* Estimating R0 and superspreading from observed clusters
+  - Fitting branching processes to time series of confirmed cases.
+  - Fitting branching processes to observed transmission chains derived from 
+  contact tracing.
+
+#### Worked examples
+
+* Analyse UK measles outbreak data
+* Current Marburg outbreak cluster analysis with `bpmodels`.
+* Concept around [this paper on estimating superspreading in 
+COVID-19 with outbreak sizes from outside 
+China](10.12688/wellcomeopenres.15842.3).
+* Concept around [this paper about estimating R0 from 
+initial point-source exposure sizes 
+and durations](10.12688/wellcomeopenres.15718.1)
+
+
+
+### Design
+
+In the design of this new package, we aim to follow principles 
+that are closely aligned to the [tidyverse design principles](https://design.tidyverse.org/unifying-principles.html).
+
+#### S3 class: `epichains` 
+
+* **new object** (`epichains`): for handling transmission chains:
+  - Objects of this class will have attributes to store key simulation 
+  metadata (value for `infinite` from `chain_sim()`, `stat` = length/size 
+  specified, `chains.type` = if `tree = TRUE`, `chains_tree`, else, 
+  `chains_vec`).
+  
+  - `epichains`: constructor of the `epichains` 
+  object; Initiates data/output storage and retrieval/subsetting (inherit 
+  from `data.frame`/`tibble`).
+
+* **is.epichains**: validator to check whether an object 
+is a `epichains` object, based on defined class invariants, else 
+throw error.
+
+#### Class invariants
+
+* Minimal set of columns: 
+  * `generation` (numeric), 
+  * `infector id` (factor), 
+  * `infectee id` (factor), and 
+  * `time`  of infection (double/non-integer times)
+- Optional columns:
+ * `integer time` (numeric): created with a call to mutate or base R 
+ equivalents
+ * `sex/gender` (factor)
+ * e.t.c., 
+
+#### Methods
+
+* **Output {print.epichains}**: function to format and pretty 
+print `epichains` objects, depending on whether they are of 
+type `chains_tree` or `chains_vec`.
+
+* **Summary {summary.epichains}**: function to calculate the 
+following summaries: number of chains, min and max chain length/size, 
+average chain length/size, and others as may be required. This will 
+depend on whether an object is of type "tree" or "notree".
+
+* **Plotting {plot.epichains}**: function to plot transmission 
+chains in different ways:
+
+  * trees/chains plotted as a network
+  * cluster sizes per onset date (if specified by user) as barplots
+  
+* **Aggregation {aggregate.epichains}**: function to aggregate the simulated
+chains in terms of the "time" column, "generation", or "both".
+
+### Helper functions/utils
+
+* functions for passing whole linelists to `epichains` and with 
+tagged columns using [linelist](https://github.com/reconhub/linelist) package.
+
+* functions for decomposing case count time series into linelists with 
+tagged columns (not aware of packages for achieving this).
+
+
+### Dependencies
+
+This new architecture might require the following dependencies:
+
+* For handling simulations:
+
+  - [epicontacts](https://github.com/reconhub/epicontacts/): for 
+shared s3 methods??? (TBC)
+  - [projections](https://github.com/reconhub/projections/): for 
+shared summary, print, and visualization methods?? (TBC)
+  - [simulacr](https://github.com/reconhub/simulacr/): for 
+shared summary, print, and visualization methods?? (TBC)
+  - [linelist](https://github.com/reconhub/linelist/): for tagging 
+  linelists as raw inputs into `epichains`?? (TBC)
+
+* Visual outlook:
+
+  - [cli](https://github.com/r-lib/cli/) for printing 
+messages, errors, warnings, progress bar, and other user-facing features.
+
+* Input validation:
+
+  - [checkmate](https://github.com/mllg/checkmate/) for input validation.
+
+
+## Learning resources
+
+### Free videos lectures and books
+
+1. Applied epi handbook [chapter](https://epirhandbook.com/en/transmission-chains.html) on handling, analysing, and visualizing transmission chains and contact tracing data with `epicontacts`.
+2. Complete video [lecture/tutorial](https://www.youtube.com/watch?v=TsOPFKQmuDc&list=PLRogqfr-vZMfvcLjjmXnb0wk6MPTzhph-) on branching processes. Topics include: introduction to branching processes, probability generating functions, and extinction probabilities. 
+  
+## Bibliography
+
+#### Single-type models
+
+- Blumberg S, Lloyd-Smith J. Comparing methods for estimating R0 from the size distribution of sub- critical transmission chains. Epidemics. 2013; 5(3):131–45. doi: <https://doi.org/10.1016/j.epidem.2013.05.002> PMID: 24021520
+- Blumberg S, Lloyd-Smith JO. Inference of R0 and transmission heterogeneity from the size distribution of stuttering chains. PLoS Comput Biol. 2013; 9(5):e1002993. doi: <https://doi.org/10.1371/journal.pcbi.1002993> PMID: 23658504
+- Farrington C, Kanaan M, Gay N. Branching process models for surveillance of infectious diseases con- trolled by mass vaccination. Biostatistics. 2003; 4(2):279. doi: <https://doi.org/10.1093/biostatistics/4.2.279> PMID: 12925522
+- Nishiura H, Yan P, Sleeman CK, Mode CJ. Estimating the transmission potential of supercritical pro- cesses based on the final size distribution of minor outbreaks. J Theor Biol. 2012; 294:48–55. doi: <https://doi.org/10.1016/j.jtbi.2011.10.039> PMID: 22079419
+
+#### Multi-type models
+
+- Kucharski, A. J., & Edmunds, W. J. (2015). Characterizing the Transmission Potential of Zoonotic Infections from Minor Outbreaks. PLoS Computational Biology, 11(4), 1–17. <https://doi.org/10.1371/journal.pcbi.1004154>
+
+### Used in-text
