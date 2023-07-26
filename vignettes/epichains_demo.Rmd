@@ -64,23 +64,24 @@ knitr::opts_chunk$set(
 ### Printing and summary
 ```{r include=TRUE,echo=TRUE}
 library(epichains)
-# simulate_tree()
+# Using `simulate_tree()`
 simulate_tree_eg <- simulate_tree(nchains = 10,
                                   serials_sampler = function(x) 3,
-                                  offspring_sampler = "pois", 
-                                  lambda = 2, 
+                                  offspring_sampler = "pois",
+                                  lambda = 2,
                                   chain_stat_max = 10
                                   )
 
 simulate_tree_eg # print the output
 
-# simulate_vect()
-simulate_vect_eg <- simulate_vect(nchains = 10, offspring_sampler = "pois", 
+# Using simulate_vect()
+simulate_vect_eg <- simulate_vect(nchains = 10, offspring_sampler = "pois",
                                   lambda = 2, chain_stat_max = 10)
 
 simulate_vect_eg # print the output
 
-# simulate_tree_from_pop()
+# Using `simulate_tree_from_pop()`
+
 # Simulate with poisson offspring
 simulate_vect_eg_pois <- simulate_tree_from_pop(pop = 100,
                                                 offspring_sampler = "pois",
@@ -89,6 +90,7 @@ simulate_vect_eg_pois <- simulate_tree_from_pop(pop = 100,
                                                 )
 
 simulate_vect_eg_pois # print the output
+
 # Simulate with negative binomial offspring
 simulate_vect_eg_nbinom <- simulate_tree_from_pop(pop = 100,
                                                   offspring_sampler = "nbinom",
@@ -110,5 +112,5 @@ aggregate(simulate_vect_eg_pois, "time")
 aggregate(simulate_vect_eg_pois, "generation")
 
 # aggregate by both time and generation
-aggregate(simulate_vect_eg_pois, "both") 
+aggregate(simulate_vect_eg_pois, "both")
 ```
