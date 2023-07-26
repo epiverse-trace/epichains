@@ -152,9 +152,7 @@ is_epichains <- function(x) {
 #'
 #' @keywords internal
 is_epichains_aggregate_df <- function(x) {
-  if (!inherits(x, "epichains_aggregate_df")) {
-    stop("Object must have class 'epichains_aggregate_df'")
-  }
+  inherits(x, "epichains_aggregate_df")
 }
 
 #' `epichains` class validator
