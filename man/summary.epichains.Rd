@@ -17,3 +17,6 @@ data frame of information
 \description{
 Summary method for epichains class
 }
+\author{
+James M. Azam
+}

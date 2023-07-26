@@ -10,8 +10,7 @@ validate_epichains(x)
 \item{x}{An \code{epichains} object}
 }
 \value{
-Checks if an object is of class \code{epichains} and if so
-checks that it's in the right format as a "data.frame" or vector.
+No return.
 }
 \description{
 \code{epichains} class validator
@@ -19,4 +18,3 @@ checks that it's in the right format as a "data.frame" or vector.
 \author{
 James M. Azam
 }
-\keyword{internal}
