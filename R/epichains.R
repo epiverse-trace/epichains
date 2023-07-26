@@ -138,7 +138,7 @@ summary.epichains <- function(object, ...) {
   return(res)
 }
 
-#' Checks whether the object is an `epichains`
+#' Reports whether x is an `epichains` object
 #'
 #' @param x An R object
 #'
@@ -150,10 +150,11 @@ is_epichains <- function(x) {
   inherits(x, "epichains")
 }
 
-#' Check if an object is of class "epichains_aggregate_df"
+#' Reports whether x is an "epichains_aggregate_df" object
 #'
 #' @param x An [`epichains`] object
-#'
+#' @return logical, `TRUE` if the object is an `epichains_aggregate_df` and
+#' `FALSE` otherwise
 #' @keywords internal
 #' @author James M. Azam
 is_epichains_aggregate_df <- function(x) {
@@ -164,8 +165,7 @@ is_epichains_aggregate_df <- function(x) {
 #'
 #' @param x An `epichains` object
 #'
-#' @return Checks if an object is of class `epichains` and if so
-#' checks that it's in the right format as a "data.frame" or vector.
+#' @return No return.
 #' @keywords internal
 #' @author James M. Azam
 validate_epichains <- function(x) {
