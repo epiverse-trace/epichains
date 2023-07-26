@@ -1,6 +1,6 @@
 Package: epichains
-Title: Analysing transmission chain statistics using branching process
-    models
+Title: Simulating and Analysing Transmission Chain Statistics Using Branching Process
+    Models
 Version: 0.2.1
 Authors@R: c(
     person("Sebastian", "Funk", , "sebastian.funk@lshtm.ac.uk", role = "aut",
@@ -12,7 +12,7 @@ Authors@R: c(
     person("James M.", "Azam", , "james.azam@lshtm.ac.uk", role = c("aut", "cre"),
            comment = c(ORCID = "https://orcid.org/0000-0001-5782-7330"))
   )
-Description: Provides methods to analyse and simulate the size and length
+Description: Provides methods to simulate and analyse the size and length
     of branching processes with an arbitrary offspring distribution. These
     can be used, for example, to analyse the distribution of chain sizes
     or length of infectious disease outbreaks, as discussed in Farrington
