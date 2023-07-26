@@ -3,6 +3,7 @@
 #' @param x An [`epichains`] object.
 #' @param ... Other parameters passed to [print()].
 #' @return Invisibly returns an [`epichains`]. Called for side-effects.
+#' @author James M. Azam
 #' @export
 print.epichains <- function(x, ...) {
   format(x, ...)
@@ -13,6 +14,7 @@ print.epichains <- function(x, ...) {
 #' @param x epichains object
 #' @param ... further arguments passed to or from other methods
 #' @return Invisibly returns an [`epichains`]. Called for printing side-effects.
+#' @author James M. Azam
 #' @export
 format.epichains <- function(x, ...) {
   # check that x is an epichains object
@@ -88,6 +90,7 @@ format.epichains <- function(x, ...) {
 #' @param ... further arguments passed to or from other methods
 #'
 #' @return data frame of information
+#' @author James M. Azam
 #' @export
 summary.epichains <- function(object, ...) {
   validate_epichains(object)
@@ -142,6 +145,7 @@ summary.epichains <- function(object, ...) {
 #' @return logical, `TRUE` if the object is an `epichains` and `FALSE`
 #' otherwise
 #' @keywords internal
+#' @author James M. Azam
 is_epichains <- function(x) {
   inherits(x, "epichains")
 }
@@ -151,6 +155,7 @@ is_epichains <- function(x) {
 #' @param x An [`epichains`] object
 #'
 #' @keywords internal
+#' @author James M. Azam
 is_epichains_aggregate_df <- function(x) {
   inherits(x, "epichains_aggregate_df")
 }
@@ -251,7 +256,7 @@ tail.epichains <- function(x, ...) {
 #' \code{grouping_var = "both"}, a list of data.frames, the first being for
 #'  cases over time, and the second being for cases over generations.
 #' @export
-#'
+#' @author James M. Azam
 #' @examples
 #' set.seed(123)
 #' chains <- simulate_tree(nchains = 10, serials_sampler = function(x) 3,
