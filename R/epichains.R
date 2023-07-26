@@ -144,7 +144,7 @@ summary.epichains <- function(object, ...) {
 #'
 #' @return logical, `TRUE` if the object is an `epichains` and `FALSE`
 #' otherwise
-#' @keywords internal
+#' @export
 #' @author James M. Azam
 is_epichains <- function(x) {
   inherits(x, "epichains")
@@ -155,7 +155,7 @@ is_epichains <- function(x) {
 #' @param x An [`epichains`] object
 #' @return logical, `TRUE` if the object is an `epichains_aggregate_df` and
 #' `FALSE` otherwise
-#' @keywords internal
+#' @export
 #' @author James M. Azam
 is_epichains_aggregate_df <- function(x) {
   inherits(x, "epichains_aggregate_df")
@@ -166,7 +166,7 @@ is_epichains_aggregate_df <- function(x) {
 #' @param x An `epichains` object
 #'
 #' @return No return.
-#' @keywords internal
+#' @export
 #' @author James M. Azam
 validate_epichains <- function(x) {
   if (!is_epichains(x)) {
@@ -203,7 +203,7 @@ validate_epichains <- function(x) {
 #'
 #' @param x An [`epichains`] object
 #'
-#' @keywords internal
+#' @export
 #' @author James M. Azam
 is_chains_tree <- function(x) {
   !is.null(attributes(x)$chain_type) &&
@@ -214,7 +214,7 @@ is_chains_tree <- function(x) {
 #'
 #' @param x An [`epichains`] object
 #'
-#' @keywords internal
+#' @export
 #' @author James M. Azam
 is_chains_vec <- function(x) {
   !is.null(attributes(x)$chain_type) &&
