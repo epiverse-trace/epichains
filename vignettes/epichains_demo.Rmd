@@ -1,0 +1,114 @@
+---
+title: "Getting started with epichains"
+author: "James Azam"
+output:
+  bookdown::html_vignette2:
+    fig_caption: yes
+    code_folding: show
+pkgdown:
+  as_is: true
+bibliography: references.json
+link-citations: true
+vignette: >
+  %\VignetteIndexEntry{Getting started with epichains}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Functionality
+
+`epichains` currently has 4 core functions:
+
+* `simulate_tree()`: simulate transmission trees from a given number of chains.
+* `simulate_tree_from_pop()`: simulate transmission trees from a given number 
+  population size and initial immunity.
+* `simulate_vect()`: simulate a vector of observed transmission chains 
+  sizes/lengths from a given number of chains.
+* `estimate_likelihood()`: estimate the likelihood/loglikelihood of observing
+  chains of given sizes/lengths.
+
+### Object-orientation
+
+#### Classes
+
+* An `epichains` class:
+  * superclass of `data.frame` with attributes for tracking `chain_type` as: 
+    * `chains_tree`, if returned from `simulate_tree()` or 
+    `simulate_tree_from_pop()`
+    * `chains_vec`, if returned from `simulate_vect()`.
+* An `epichains_aggregate_df` class:
+  * superclass of `data.frame` with attributes for tracking if aggregation is 
+  done over "time", "generation" or "both". Useful for `plot` method dispatch 
+  (see methods section below).
+
+#### Methods
+
+* `print()`
+* `summary()`
+* `aggregate()`
+
+## Demo
+
+### Printing and summary
+```{r include=TRUE,echo=TRUE}
+library(epichains)
+# simulate_tree()
+simulate_tree_eg <- simulate_tree(nchains = 10,
+                                  serials_sampler = function(x) 3,
+                                  offspring_sampler = "pois", 
+                                  lambda = 2, 
+                                  chain_stat_max = 10
+                                  )
+
+simulate_tree_eg # print the output
+
+# simulate_vect()
+simulate_vect_eg <- simulate_vect(nchains = 10, offspring_sampler = "pois", 
+                                  lambda = 2, chain_stat_max = 10)
+
+simulate_vect_eg # print the output
+
+# simulate_tree_from_pop()
+# Simulate with poisson offspring
+simulate_vect_eg_pois <- simulate_tree_from_pop(pop = 100,
+                                                offspring_sampler = "pois",
+                                                mean_offspring = 0.5,
+                                                serial_sampler = function(x) 3
+                                                )
+
+simulate_vect_eg_pois # print the output
+# Simulate with negative binomial offspring
+simulate_vect_eg_nbinom <- simulate_tree_from_pop(pop = 100,
+                                                  offspring_sampler = "nbinom",
+                                                  mean_offspring = 0.5,
+                                                  disp_offspring = 1.1,
+                                                  serial_sampler = function(x) 3
+                                                  )
+
+simulate_vect_eg_nbinom # print the output
+```
+
+### Aggregation
+```{r include=TRUE,echo=TRUE}
+
+# aggregate by time
+aggregate(simulate_vect_eg_pois, "time")
+
+# aggregate by generation
+aggregate(simulate_vect_eg_pois, "generation")
+
+# aggregate by both time and generation
+aggregate(simulate_vect_eg_pois, "both") 
+```
