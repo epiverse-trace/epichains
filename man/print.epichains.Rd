@@ -17,3 +17,6 @@ Invisibly returns an \code{\link{epichains}}. Called for side-effects.
 \description{
 Print an \code{\link{epichains}} object
 }
+\author{
+James M. Azam
+}

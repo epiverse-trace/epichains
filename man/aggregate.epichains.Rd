@@ -38,3 +38,6 @@ aggregate(chains, grouping_var = "generation")
 # Aggregate cases per both time and generation
 aggregate(chains, grouping_var = "both")
 }
+\author{
+James M. Azam
+}

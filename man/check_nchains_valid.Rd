@@ -2,7 +2,7 @@
 % Please edit documentation in R/checks.R
 \name{check_nchains_valid}
 \alias{check_nchains_valid}
-\title{Check that nchains is greater than 0 and not infinite}
+\title{Check that nchains is greater than 0 and not infinity}
 \usage{
 check_nchains_valid(nchains)
 }
@@ -10,6 +10,6 @@ check_nchains_valid(nchains)
 \item{nchains}{Number of chains to simulate.}
 }
 \description{
-Check that nchains is greater than 0 and not infinite
+Check that nchains is greater than 0 and not infinity
 }
 \keyword{internal}

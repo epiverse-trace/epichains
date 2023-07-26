@@ -2,7 +2,7 @@
 % Please edit documentation in R/epichains.R
 \name{is_epichains}
 \alias{is_epichains}
-\title{Checks whether the object is an \code{epichains}}
+\title{Reports whether x is an \code{epichains} object}
 \usage{
 is_epichains(x)
 }
@@ -14,6 +14,8 @@ logical, \code{TRUE} if the object is an \code{epichains} and \code{FALSE}
 otherwise
 }
 \description{
-Checks whether the object is an \code{epichains}
+Reports whether x is an \code{epichains} object
 }
-\keyword{internal}
+\author{
+James M. Azam
+}

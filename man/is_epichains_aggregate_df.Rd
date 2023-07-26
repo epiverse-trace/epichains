@@ -2,14 +2,20 @@
 % Please edit documentation in R/epichains.R
 \name{is_epichains_aggregate_df}
 \alias{is_epichains_aggregate_df}
-\title{Check if an object is of class "epichains_aggregate_df"}
+\title{Reports whether x is an "epichains_aggregate_df" object}
 \usage{
 is_epichains_aggregate_df(x)
 }
 \arguments{
 \item{x}{An \code{\link{epichains}} object}
 }
-\description{
-Check if an object is of class "epichains_aggregate_df"
+\value{
+logical, \code{TRUE} if the object is an \code{epichains_aggregate_df} and
+\code{FALSE} otherwise
 }
-\keyword{internal}
+\description{
+Reports whether x is an "epichains_aggregate_df" object
+}
+\author{
+James M. Azam
+}
