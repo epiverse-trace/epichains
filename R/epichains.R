@@ -121,10 +121,10 @@ summary.epichains <- function(object, ...) {
   } else if (is_chains_vec(object)) {
     chains_ran <- length(object)
 
-    if(!all(is.infinite(object))){
+    if (!all(is.infinite(object))) {
     max_chain_stat <- max(object[!is.infinite(object)])
     min_chain_stat <- min(object[!is.infinite(object)])
-    }else{
+    } else {
     max_chain_stat <- min_chain_stat <- Inf
     }
 
