@@ -1,6 +1,6 @@
 ---
-title: "Simulating, handling, and analysing transmission chains in R."
-subtitle: "Designing an ecosystem for transmission chain simulation and analysis."
+title: "Simulating, handling, and analysing transmission chains in R"
+subtitle: "Designing an ecosystem for transmission chain simulation and analysis"
 author: "James Azam"
 output:
   bookdown::html_vignette2:
@@ -12,7 +12,7 @@ bibliography: references.json
 link-citations: true
 vignette: >
   %\VignetteEncoding{UTF-8}
-  %\VignetteIndexEntry{Projecting infectious disease incidence: a COVID-19 example}
+  %\VignetteIndexEntry{Simulating, handling, and analysing transmission chains in R}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
