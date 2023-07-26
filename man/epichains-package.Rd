@@ -4,9 +4,9 @@
 \name{epichains-package}
 \alias{epichains}
 \alias{epichains-package}
-\title{epichains: Analysing transmission chain statistics using branching process models}
+\title{epichains: Simulating and Analysing Transmission Chain Statistics Using Branching Process Models}
 \description{
-Provides methods to analyse and simulate the size and length of branching processes with an arbitrary offspring distribution. These can be used, for example, to analyse the distribution of chain sizes or length of infectious disease outbreaks, as discussed in Farrington et al. (2003) \doi{10.1093/biostatistics/4.2.279}.
+Provides methods to simulate and analyse the size and length of branching processes with an arbitrary offspring distribution. These can be used, for example, to analyse the distribution of chain sizes or length of infectious disease outbreaks, as discussed in Farrington et al. (2003) \doi{10.1093/biostatistics/4.2.279}.
 }
 \seealso{
 Useful links:
@@ -22,8 +22,8 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Sebastian Funk \email{sebastian.funk@lshtm.ac.uk} (\href{https://orcid.org/0000-0002-2842-3406}{ORCID})
   \item Flavio Finger \email{flavio.finger@epicentre.msf.org} (\href{https://orcid.org/0000-0002-8613-5170}{ORCID})
+  \item Sebastian Funk \email{sebastian.funk@lshtm.ac.uk} (\href{https://orcid.org/0000-0002-2842-3406}{ORCID})
 }
 
 Other contributors:
