@@ -30,6 +30,10 @@ format.epichains <- function(x, ...) {
         )
       )
 
+    #sort by ancestor first
+
+    x <- x[order(x$sim_id, x$ancestor), ]
+
     # print head of the simulation output
     print(head(x[!is.na(x$ancestor), ]))
 
