@@ -5,7 +5,7 @@
 <!-- `packagename` is extracted from the DESCRIPTION file -->
 <!-- `gh_repo` is extracted via a special environment variable in GitHub Actions -->
 
-# epichains: Methods for analysing the size and length of transmission chains from branching process models <img src="man/figures/epichains_logo.png" align="right" height="130" />
+# *{{ packagename }}*: Methods for simulating and analysing the size and length of transmission chains from branching process models <img src="man/figures/epichains_logo.png" align="right" height="130" />
 
 <!-- badges: start -->
 
@@ -21,34 +21,34 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-epichains is an R package to simulate, analyse, and visualize the size
-and length of branching processes with a given offspring distribution.
-These models are often used in infectious disease epidemiology, where
-the chains represent chains of transmission, and the offspring
-distribution represents the distribution of secondary infections caused
-by an infected individual.
+*{{ packagename }}* is an R package to simulate, analyse, and visualize
+the size and length of branching processes with a given offspring
+distribution. These models are often used in infectious disease
+epidemiology, where the chains represent chains of transmission, and the
+offspring distribution represents the distribution of secondary
+infections caused by an infected individual.
 
-epichains re-implements
+*{{ packagename }}* re-implements
 [bpmodels](%22https://github.com/epiverse-trace/bpmodels/%22) by
-providing dedicated classes that allow easy manipulation and
+providing dedicated data structures that allow easy manipulation and
 interoperability with other existing packages for handling transmission
 chain and contact-tracing data.
 
-epichains is developed at the [Centre for the Mathematical Modelling of
-Infectious
+*{{ packagename }}* is developed at the [Centre for the Mathematical
+Modelling of Infectious
 Diseases](https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases)
 at the London School of Hygiene and Tropical Medicine as part of the
 [Epiverse Initiative](https://data.org/initiatives/epiverse/).
 
 # Installation
 
-The latest development version of the epichains package can be installed
-via
+The latest development version of the *{{ packagename }}* package can be
+installed via
 
 ``` r
 # check whether {pak} is installed
 if(!require("pak")) install.packages("pak")
-pak::pak("epiverse-trace/epichains")
+pak::pak("{{ gh_repo }}")
 ```
 
 To load the package, use
@@ -63,7 +63,7 @@ Work in progress
 
 ## Package vignettes
 
-Specific use cases of epichains can be found in the [online
+Specific use cases of *{{ packagename }}* can be found in the [online
 documentation as package
 vignettes](https://epiverse-trace.github.io/epichains/), under
 “Articles”.
@@ -81,8 +81,8 @@ guide](https://github.com/epiverse-trace/epichains/blob/main/.github/CONTRIBUTIN
 
 ## Code of conduct
 
-Please note that the epichains project is released with a [Contributor
-Code of
+Please note that the *{{ packagename }}* project is released with a
+[Contributor Code of
 Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
