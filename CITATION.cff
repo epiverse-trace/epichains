@@ -7,26 +7,26 @@ cff-version: 1.2.0
 message: 'To cite package "epichains" in publications use:'
 type: software
 license: MIT
-title: 'epichains: Analysing transmission chain statistics using branching process
-  models'
-version: 0.2.1
-abstract: Provides methods to analyse and simulate the size and length of branching
+title: 'epichains: Simulating and Analysing Transmission Chain Statistics Using Branching
+  Process Models'
+version: 0.1.0
+abstract: Provides methods to simulate and analyse the size and length of branching
   processes with an arbitrary offspring distribution. These can be used, for example,
   to analyse the distribution of chain sizes or length of infectious disease outbreaks,
   as discussed in Farrington et al. (2003) <doi:10.1093/biostatistics/4.2.279>.
 authors:
-- family-names: Funk
-  given-names: Sebastian
-  email: sebastian.funk@lshtm.ac.uk
-  orcid: https://orcid.org/0000-0002-2842-3406
-- family-names: Finger
-  given-names: Flavio
-  email: flavio.finger@epicentre.msf.org
-  orcid: https://orcid.org/0000-0002-8613-5170
 - family-names: Azam
   given-names: James M.
   email: james.azam@lshtm.ac.uk
   orcid: https://orcid.org/0000-0001-5782-7330
+- family-names: Finger
+  given-names: Flavio
+  email: flavio.finger@epicentre.msf.org
+  orcid: https://orcid.org/0000-0002-8613-5170
+- family-names: Funk
+  given-names: Sebastian
+  email: sebastian.funk@lshtm.ac.uk
+  orcid: https://orcid.org/0000-0002-2842-3406
 preferred-citation:
   type: manual
   title: 'epichains: Analysing transmission chain statistics using branching process
@@ -44,6 +44,16 @@ contact:
   given-names: James M.
   email: james.azam@lshtm.ac.uk
   orcid: https://orcid.org/0000-0001-5782-7330
+keywords:
+- branching-processes
+- epidemic-dynamics
+- epidemic-modelling
+- epidemic-simulations
+- outbreak-simulator
+- r-package
+- r-stats
+- transmission-chain
+- transmission-chain-reconstruction
 references:
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
@@ -57,6 +67,40 @@ references:
   institution:
     name: R Foundation for Statistical Computing
   version: '>= 3.6.0'
+- type: software
+  title: checkmate
+  abstract: 'checkmate: Fast and Versatile Argument Checks'
+  notes: Imports
+  url: https://mllg.github.io/checkmate/
+  repository: https://CRAN.R-project.org/package=checkmate
+  authors:
+  - family-names: Lang
+    given-names: Michel
+    email: michellang@gmail.com
+    orcid: https://orcid.org/0000-0001-9754-0393
+  year: '2023'
+- type: software
+  title: stats
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2023'
+  institution:
+    name: R Foundation for Statistical Computing
+- type: software
+  title: utils
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2023'
+  institution:
+    name: R Foundation for Statistical Computing
 - type: software
   title: bookdown
   abstract: 'bookdown: Authoring Books and Technical Documents with R Markdown'
@@ -225,6 +269,21 @@ references:
     orcid: https://orcid.org/0000-0003-3925-190X
   year: '2023'
 - type: software
+  title: spelling
+  abstract: 'spelling: Tools for Spell Checking in R'
+  notes: Suggests
+  url: https://docs.ropensci.org/spelling/
+  repository: https://CRAN.R-project.org/package=spelling
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroen@berkeley.edu
+    orcid: https://orcid.org/0000-0002-4035-0289
+  - family-names: Hester
+    given-names: Jim
+    email: james.hester@rstudio.com
+  year: '2023'
+- type: software
   title: testthat
   abstract: 'testthat: Unit Testing for R'
   notes: Suggests
@@ -257,14 +316,18 @@ references:
   authors:
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
     orcid: https://orcid.org/0000-0003-4757-117X
   - family-names: Bryan
     given-names: Jennifer
-    email: jenny@rstudio.com
+    email: jenny@posit.co
     orcid: https://orcid.org/0000-0002-6983-2759
   - family-names: Barrett
     given-names: Malcolm
     email: malcolmbarrett@gmail.com
     orcid: https://orcid.org/0000-0003-0299-5825
+  - family-names: Teucher
+    given-names: Andy
+    email: andy.teucher@posit.co
+    orcid: https://orcid.org/0000-0002-7840-692X
   year: '2023'
