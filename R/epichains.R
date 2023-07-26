@@ -57,7 +57,9 @@ format.epichains <- function(x, ...) {
     )
 
     # Offer more information to view the full dataset
-    writeLines(sprintf("Use View(<object_name>) to view the full output."))
+    writeLines(sprintf("%s %s", "Use `as.data.frame(<object_name>)`",
+                       "to view the full output in the console.")
+               )
 
   } else if (attributes(x)$chain_type == "chains_vec") {
     cat(sprintf("epichains object \n"))
