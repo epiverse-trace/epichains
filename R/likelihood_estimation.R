@@ -118,7 +118,7 @@ estimate_likelihood <- function(chains_observed,
 
   if (!individual) {
     chains_likelihood <- vapply(chains_likelihood, sum, 0)
-    }
+  }
 
   return(chains_likelihood)
 }
