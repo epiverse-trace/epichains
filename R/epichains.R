@@ -32,17 +32,13 @@ format.epichains <- function(x, ...) {
         )
       )
 
-    #sort by ancestor first
-
-    x <- x[order(x$sim_id, x$ancestor), ]
-
     # print head of the simulation output
-    print(head(x[!is.na(x$ancestor), ]))
+    print(head(x))
 
     cat("< tree tail >\n")
 
     # print tail of object
-    print(tail(as.data.frame(x)))
+    print(tail(x))
 
     # print summary information
     writeLines(
@@ -228,18 +224,35 @@ is_chains_vec <- function(x) {
 #' @return object of class `data.frame`
 #' @author James M. Azam
 #' @export
+#' @details
+#' This returns the first 5 rows of an `epichains` object after
+#' its rows have first been sorted by `sim_id` and `ancestor` and the first
+#' unknown ancestors (NA) have been dropped. To view the full output,
+#' use `as.data.frame(<object_name>)`.
+#'
 head.epichains <- function(x, ...) {
+  #sort by ancestor first
+  x <- x[order(x$sim_id, x$ancestor), ]
+  # print head of the simulation output
+  x <- x[!is.na(x$ancestor), ]
   utils::head(as.data.frame(x), ...)
 }
 
 #' `tail` method for [`epichains`] class
+#'
 #' @param x An [`epichains`] object
 #' @param ... further arguments passed to or from other methods
 #' @importFrom utils tail
 #' @author James M. Azam
 #' @export
+#' @details
+#' This returns the last 5 rows of an `epichains` object after
+#' its rows have first been sorted by `sim_id` and `ancestor`. To
+#' view the full output, use `as.data.frame(<object_name>)`.
+#'
 tail.epichains <- function(x, ...) {
-  utils::tail(as.data.frame(x), ...)
+  x <- x[order(x$sim_id, x$ancestor), ]
+  utils::tail(as.data.frame(x), n = 5L, ...)
 }
 
 #' Aggregate cases in epichains objects according to a grouping variable
