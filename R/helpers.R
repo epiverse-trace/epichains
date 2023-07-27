@@ -16,7 +16,8 @@ update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
 }
 
 
-#' Get offspring sampling function
+#' Get offspring sampling function that takes into account susceptible
+#' depletion
 #'
 #' @param n Number of items to sample
 #' @param susc Susceptible population size (calculated
