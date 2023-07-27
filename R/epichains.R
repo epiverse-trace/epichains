@@ -175,7 +175,7 @@ validate_epichains <- function(x) {
 
   # check for class invariants
 
-  if (attributes(x)$chain_type == "chains_tree") {
+  if (is_chains_tree(x)) {
     stopifnot(
       "object does not contain the correct columns" =
         c("sim_id", "ancestor", "generation", "time") %in%
