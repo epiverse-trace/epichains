@@ -178,16 +178,14 @@ validate_epichains <- function(x) {
   if (is_chains_tree(x)) {
     stopifnot(
       "object does not contain the correct columns" =
-        c("sim_id", "ancestor", "generation", "time") %in%
+        c("sim_id", "ancestor", "generation") %in%
           colnames(x),
       "column `sim_id` must be a numeric" =
         is.numeric(x$sim_id),
       "column `ancestor` must be a numeric" =
         is.numeric(x$ancestor),
       "column `generation` must be a numeric" =
-        is.numeric(x$generation),
-      "column `time` must be a numeric" =
-        is.numeric(x$time)
+        is.numeric(x$generation)
     )
   } else {
     stopifnot(
