@@ -24,19 +24,9 @@ format.epichains <- function(x, ...) {
   chain_info <- summary(x)
 
   if (is_chains_tree(x)) {
-    writeLines(
-      c(
-        sprintf("`epichains` object"),
-
-        "< tree head (from first known ancestor) >\n"
-        )
-      )
-
-    # print head of the simulation output
+    writeLines(sprintf("`epichains` object\n"))
+    # print head of the object
     print(head(x))
-
-    cat("< tree tail >\n")
-
     # print tail of object
     print(tail(x))
 
@@ -231,6 +221,7 @@ is_chains_vec <- function(x) {
 #' use `as.data.frame(<object_name>)`.
 #'
 head.epichains <- function(x, ...) {
+  writeLines("< tree head (from first known ancestor) >\n")
   # print head of the simulation output from the first known ancestor
   x <- x[!is.na(x$ancestor), ]
   utils::head(as.data.frame(x), ...)
@@ -249,6 +240,7 @@ head.epichains <- function(x, ...) {
 #' view the full output, use `as.data.frame(<object_name>)`.
 #'
 tail.epichains <- function(x, ...) {
+  writeLines("\n< tree tail >\n")
   utils::tail(as.data.frame(x), ...)
 }
 
