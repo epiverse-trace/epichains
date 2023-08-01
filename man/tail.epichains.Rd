@@ -14,6 +14,12 @@
 \description{
 \code{tail} method for \code{\link{epichains}} class
 }
+\details{
+This returns the top rows of an \code{epichains} object. Note that the object
+is originally sorted by \code{sim_id} and \code{ancestor} and the first
+unknown ancestors (NA) have been dropped from
+printing method. To view the full output, use \verb{as.data.frame(<object_name>)}.
+}
 \author{
 James M. Azam
 }
