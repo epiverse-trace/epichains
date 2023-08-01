@@ -7,18 +7,6 @@ offspring}
 \usage{
 construct_offspring_ll_name(offspring_sampler, chain_statistic)
 }
-\arguments{
-\item{offspring_sampler}{Offspring distribution: a character string
-corresponding to the R distribution function (e.g., "pois" for Poisson,
-where \code{\link{rpois}} is the R function to generate Poisson random
-numbers)}
-
-\item{chain_statistic}{String; Statistic to calculate. Can be one of:
-\itemize{
-\item "size": the total number of offspring.
-\item "length": the total number of ancestors.
-}}
-}
 \value{
 an analytical offspring likelihood function
 }

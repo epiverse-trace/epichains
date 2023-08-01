@@ -5,25 +5,28 @@
 \title{Estimate the (log) likelihood for observed branching processes}
 \usage{
 estimate_likelihood(
-  chains_observed,
-  chain_statistic = c("size", "length"),
-  offspring_sampler,
+  chains,
+  statistic = c("size", "length"),
+  offspring_dist,
   nsim_obs,
-  log_trans = TRUE,
+  log = TRUE,
   obs_prob = 1,
-  chain_stat_max = Inf,
+  stat_max = Inf,
   exclude = NULL,
   individual = FALSE,
   ...
 )
 }
 \arguments{
-\item{chains_observed}{Vector of sizes/lengths of transmission chains.}
+\item{chains}{Vector of sizes/lengths of transmission chains.}
 
-\item{chain_statistic}{Statistic given as \code{chains_observed}
-("size" or "length" of chains).}
+\item{statistic}{String; Statistic to calculate. Can be one of:
+\itemize{
+\item "size": the total number of offspring.
+\item "length": the total number of ancestors.
+}}
 
-\item{offspring_sampler}{Offspring distribution: a character string
+\item{offspring_dist}{Offspring distribution: a character string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}
@@ -31,13 +34,13 @@ numbers).}
 \item{nsim_obs}{Number of simulations if the likelihood is to be
 approximated for imperfect observations.}
 
-\item{log_trans}{Logical; Should the results be log-transformed? (Defaults
+\item{log}{Logical; Should the results be log-transformed? (Defaults
 to TRUE).}
 
 \item{obs_prob}{Observation probability (assumed constant)}
 
-\item{chain_stat_max}{Any chains of this size/length will be
-treated as infinite.}
+\item{stat_max}{A cut off for the chain statistic (size/length) being
+computed. Results above the specified value, are set to \code{Inf}.}
 
 \item{exclude}{A vector of indices of the sizes/lengths to exclude from the
 likelihood calculation.}
@@ -49,11 +52,11 @@ contributions will be returned rather than the sum.}
 }
 \value{
 \itemize{
-\item A log-likelihood, if \code{log_trans = TRUE} (the default)
-\item A vector of log-likelihoods, if \code{log_trans = TRUE} (the default) and
+\item A log-likelihood, if \code{log = TRUE} (the default)
+\item A vector of log-likelihoods, if \code{log = TRUE} (the default) and
 \code{obs_prob < 1}, or
 \item A list of individual log-likelihood contributions, if
-\code{log_trans = TRUE} (the default) and \code{individual = TRUE}.
+\code{log = TRUE} (the default) and \code{individual = TRUE}.
 else raw likelihoods, or vector of likelihoods
 }
 }
@@ -63,8 +66,8 @@ Estimate the (log) likelihood for observed branching processes
 \examples{
 # example of observed chain sizes
 chain_sizes <- c(1, 1, 4, 7)
-estimate_likelihood(chains_observed = chain_sizes, chain_statistic = "size",
- offspring_sampler = "pois", nsim_obs = 100, lambda = 0.5)
+estimate_likelihood(chains = chain_sizes, statistic = "size",
+ offspring_dist = "pois", nsim_obs = 100, lambda = 0.5)
 }
 \seealso{
 offspring_ll, pois_size_ll, nbinom_size_ll, gborel_size_ll,

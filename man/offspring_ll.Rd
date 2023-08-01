@@ -5,35 +5,38 @@
 \title{Likelihood of the length of chains with generic offspring distribution}
 \usage{
 offspring_ll(
-  chains_observed,
-  offspring_sampler,
-  chain_statistic,
+  chains,
+  offspring_dist,
+  statistic,
   nsim_offspring = 100,
-  log_trans = TRUE,
+  log = TRUE,
   ...
 )
 }
 \arguments{
-\item{chains_observed}{Vector of sizes/lengths}
+\item{chains}{Vector of sizes/lengths}
 
-\item{offspring_sampler}{Offspring distribution: a character string
+\item{offspring_dist}{Offspring distribution: a character string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}
 
-\item{chain_statistic}{Statistic given as \code{chains_observed}
-("size" or "length" of chains).}
+\item{statistic}{String; Statistic to calculate. Can be one of:
+\itemize{
+\item "size": the total number of offspring.
+\item "length": the total number of ancestors.
+}}
 
 \item{nsim_offspring}{Number of simulations of the offspring distribution
-for approximating the chain_statistic (size/length) distribution}
+for approximating the statistic (size/length) distribution}
 
-\item{log_trans}{Logical; Should the results be log-transformed? (Defaults
+\item{log}{Logical; Should the results be log-transformed? (Defaults
 to TRUE).}
 
 \item{...}{any parameters to pass to \code{\link{simulate_tree}}}
 }
 \value{
-If \code{log_trans = TRUE} (the default), log-likelihood values,
+If \code{log = TRUE} (the default), log-likelihood values,
 else raw likelihoods
 }
 \description{
