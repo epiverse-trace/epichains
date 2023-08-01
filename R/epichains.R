@@ -231,9 +231,7 @@ is_chains_vec <- function(x) {
 #' use `as.data.frame(<object_name>)`.
 #'
 head.epichains <- function(x, ...) {
-  #sort by ancestor first
-  x <- x[order(x$sim_id, x$ancestor), ]
-  # print head of the simulation output
+  # print head of the simulation output from the first known ancestor
   x <- x[!is.na(x$ancestor), ]
   utils::head(as.data.frame(x), ...)
 }
@@ -251,8 +249,7 @@ head.epichains <- function(x, ...) {
 #' view the full output, use `as.data.frame(<object_name>)`.
 #'
 tail.epichains <- function(x, ...) {
-  x <- x[order(x$sim_id, x$ancestor), ]
-  utils::tail(as.data.frame(x), n = 5L, ...)
+  utils::tail(as.data.frame(x), ...)
 }
 
 #' Aggregate cases in epichains objects according to a grouping variable
