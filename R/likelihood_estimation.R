@@ -1,30 +1,23 @@
 #' Estimate the (log) likelihood for observed branching processes
 #'
-#' @param chains_observed Vector of sizes/lengths of transmission chains.
-#' @param chain_statistic Statistic given as \code{chains_observed}
-#' ("size" or "length" of chains).
-#' @param offspring_sampler Offspring distribution: a character string
-#' corresponding to the R distribution function (e.g., "pois" for Poisson,
-#' where \code{\link{rpois}} is the R function to generate Poisson random
-#' numbers).
+#' @inheritParams simulate_vect
+#' @param chains Vector of sizes/lengths of transmission chains.
 #' @param nsim_obs Number of simulations if the likelihood is to be
 #' approximated for imperfect observations.
-#' @param log_trans Logical; Should the results be log-transformed? (Defaults
+#' @param log Logical; Should the results be log-transformed? (Defaults
 #' to TRUE).
 #' @param obs_prob Observation probability (assumed constant)
-#' @param chain_stat_max Any chains of this size/length will be
-#' treated as infinite.
 #' @param exclude A vector of indices of the sizes/lengths to exclude from the
 #' likelihood calculation.
 #' @param individual If TRUE, a vector of individual (log)likelihood
 #' contributions will be returned rather than the sum.
 #' @param ... Parameters for the offspring distribution.
 #' @return
-#' * A log-likelihood, if \code{log_trans = TRUE} (the default)
-#' * A vector of log-likelihoods, if \code{log_trans = TRUE} (the default) and
+#' * A log-likelihood, if \code{log = TRUE} (the default)
+#' * A vector of log-likelihoods, if \code{log = TRUE} (the default) and
 #' \code{obs_prob < 1}, or
 #' * A list of individual log-likelihood contributions, if
-#' \code{log_trans = TRUE} (the default) and \code{individual = TRUE}.
+#' \code{log = TRUE} (the default) and \code{individual = TRUE}.
 #' else raw likelihoods, or vector of likelihoods
 #' @seealso offspring_ll, pois_size_ll, nbinom_size_ll, gborel_size_ll,
 #' pois_length_ll, geom_length_ll.
@@ -32,20 +25,20 @@
 #' @examples
 #' # example of observed chain sizes
 #' chain_sizes <- c(1, 1, 4, 7)
-#' estimate_likelihood(chains_observed = chain_sizes, chain_statistic = "size",
-#'  offspring_sampler = "pois", nsim_obs = 100, lambda = 0.5)
+#' estimate_likelihood(chains = chain_sizes, statistic = "size",
+#'  offspring_dist = "pois", nsim_obs = 100, lambda = 0.5)
 #' @export
-estimate_likelihood <- function(chains_observed,
-                                chain_statistic = c("size", "length"),
-                                offspring_sampler,
+estimate_likelihood <- function(chains,
+                                statistic = c("size", "length"),
+                                offspring_dist,
                                 nsim_obs,
-                                log_trans = TRUE,
-                                obs_prob = 1, chain_stat_max = Inf,
+                                log = TRUE,
+                                obs_prob = 1, stat_max = Inf,
                                 exclude = NULL, individual = FALSE, ...) {
-  chain_statistic <- match.arg(chain_statistic)
+  statistic <- match.arg(statistic)
 
   ## checks
-  check_offspring_valid(offspring_sampler)
+  check_offspring_valid(offspring_dist)
 
   if (obs_prob <= 0 || obs_prob > 1) stop("'obs_prob' must be within (0,1]")
   if (obs_prob < 1) {
@@ -53,32 +46,32 @@ estimate_likelihood <- function(chains_observed,
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
     }
 
-    sample_func <- get_chain_statistic_func(chain_statistic)
+    sample_func <- get_statistic_func(statistic)
 
-    sampled_x <- replicate(nsim_obs, pmin(sample_func(length(chains_observed),
-                                           chains_observed, obs_prob
+    sampled_x <- replicate(nsim_obs, pmin(sample_func(length(chains),
+                                           chains, obs_prob
                                            ),
-                               chain_stat_max), simplify = FALSE)
+                               stat_max), simplify = FALSE)
     size_x <- unlist(sampled_x)
-    if (!is.finite(chain_stat_max)) {
-      chain_stat_max <- max(size_x) + 1
+    if (!is.finite(stat_max)) {
+      stat_max <- max(size_x) + 1
       }
   } else {
-    chains_observed[chains_observed >= chain_stat_max] <- chain_stat_max
-    size_x <- chains_observed
-    sampled_x <- list(chains_observed)
+    chains[chains >= stat_max] <- stat_max
+    size_x <- chains
+    sampled_x <- list(chains)
   }
 
   ## determine for which sizes to calculate the likelihood (for true chain size)
-  if (any(size_x == chain_stat_max)) {
-    calc_sizes <- seq_len(chain_stat_max - 1)
+  if (any(size_x == stat_max)) {
+    calc_sizes <- seq_len(stat_max - 1)
   } else {
     calc_sizes <- unique(c(size_x, exclude))
   }
 
-  ## get likelihood function as given by offspring_sampler and chain_statistic
+  ## get likelihood function as given by offspring_dist and statistic
   likelihoods <- vector(mode = "numeric")
-  ll_func <- construct_offspring_ll_name(offspring_sampler, chain_statistic)
+  ll_func <- construct_offspring_ll_name(offspring_dist, statistic)
   pars <- as.list(unlist(list(...))) ## converts vectors to lists
 
   ## calculate likelihoods
@@ -90,16 +83,16 @@ estimate_likelihood <- function(chains_observed,
       do.call(
         offspring_ll,
         c(list(
-          chains_observed = calc_sizes, offspring_sampler = offspring_sampler,
-          chain_statistic = chain_statistic, chain_stat_max = chain_stat_max,
-          log_trans = log_trans
+          chains = calc_sizes, offspring_dist = offspring_dist,
+          statistic = statistic, stat_max = stat_max,
+          log = log
         ), pars)
       )
   }
 
-  ## assign probabilities to chain_stat_max outbreak sizes
-  if (any(size_x == chain_stat_max)) {
-    likelihoods[chain_stat_max] <- complementary_logprob(likelihoods)
+  ## assign probabilities to stat_max outbreak sizes
+  if (any(size_x == stat_max)) {
+    likelihoods[stat_max] <- complementary_logprob(likelihoods)
   }
 
   if (!missing(exclude)) {

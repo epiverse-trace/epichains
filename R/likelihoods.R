@@ -92,24 +92,24 @@ geom_length_ll <- function(x, prob) {
 #' The likelihoods are calculated with a crude approximation using simulated
 #' chains by linearly approximating any missing values in the empirical
 #' cumulative distribution function (ecdf).
-#' @param chains_observed Vector of sizes/lengths
-#' @param nsim_offspring Number of simulations of the offspring distribution
-#' for approximating the chain_statistic (size/length) distribution
-#' @param log_trans Logical; Should the results be log-transformed? (Defaults
-#' to TRUE).
-#' @param ... any parameters to pass to \code{\link{simulate_tree}}
-#' @return If \code{log_trans = TRUE} (the default), log-likelihood values,
-#' else raw likelihoods
-#' @author Sebastian Funk
 #' @inheritParams estimate_likelihood
 #' @inheritParams simulate_vec
+#' @param chains Vector of sizes/lengths
+#' @param nsim_offspring Number of simulations of the offspring distribution
+#' for approximating the statistic (size/length) distribution
+#' @param log Logical; Should the results be log-transformed? (Defaults
+#' to TRUE).
+#' @param ... any parameters to pass to \code{\link{simulate_tree}}
+#' @return If \code{log = TRUE} (the default), log-likelihood values,
+#' else raw likelihoods
+#' @author Sebastian Funk
 #' @keywords internal
-offspring_ll <- function(chains_observed, offspring_sampler, chain_statistic,
-                         nsim_offspring = 100, log_trans = TRUE, ...) {
+offspring_ll <- function(chains, offspring_dist, statistic,
+                         nsim_offspring = 100, log = TRUE, ...) {
 
   # Simulate the chains
-  chains <- simulate_vect(nsim_offspring, offspring_sampler,
-                          chain_statistic, ...)
+  chains <- simulate_vect(nsim_offspring, offspring_dist,
+                          statistic, ...)
 
   # Compute the empirical Cumulative Distribution Function of the
   # simulated chains
@@ -121,8 +121,8 @@ offspring_ll <- function(chains_observed, offspring_sampler, chain_statistic,
       unique(chains), chains_empirical_cdf(unique(chains)),
       seq_len(max(chains[is.finite(chains)]))
     )$y))
-  lik <- acdf[chains_observed]
+  lik <- acdf[chains]
   lik[is.na(lik)] <- 0
-  out <- ifelse(base::isTRUE(log_trans), log(lik), lik)
+  out <- ifelse(base::isTRUE(log), log(lik), lik)
   return(out)
 }

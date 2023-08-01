@@ -260,8 +260,9 @@ tail.epichains <- function(x, ...) {
 #' @author James M. Azam
 #' @examples
 #' set.seed(123)
-#' chains <- simulate_tree(nchains = 10, serials_sampler = function(x) 3,
-#' offspring_sampler = "pois", lambda = 2, chain_stat_max = 10)
+#' chains <- simulate_tree(nchains = 10, statistic = "size",
+#' offspring_dist = "pois", stat_max = 10, serials_sampler = function(x) 3,
+#' lambda = 2)
 #' chains
 #'
 #' # Aggregate cases per time

@@ -6,27 +6,27 @@
 \usage{
 simulate_vect(
   nchains,
-  offspring_sampler,
-  chain_statistic = c("size", "length"),
-  chain_stat_max = Inf,
+  statistic = c("size", "length"),
+  offspring_dist,
+  stat_max = Inf,
   ...
 )
 }
 \arguments{
 \item{nchains}{Number of chains to simulate.}
 
-\item{offspring_sampler}{Offspring distribution: a character string
-corresponding to the R distribution function (e.g., "pois" for Poisson,
-where \code{\link{rpois}} is the R function to generate Poisson random
-numbers)}
-
-\item{chain_statistic}{String; Statistic to calculate. Can be one of:
+\item{statistic}{String; Statistic to calculate. Can be one of:
 \itemize{
 \item "size": the total number of offspring.
 \item "length": the total number of ancestors.
 }}
 
-\item{chain_stat_max}{A cut off for the chain statistic (size/length) being
+\item{offspring_dist}{Offspring distribution: a character string
+corresponding to the R distribution function (e.g., "pois" for Poisson,
+where \code{\link{rpois}} is the R function to generate Poisson random
+numbers).}
+
+\item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above the specified value, are set to \code{Inf}.}
 
 \item{...}{Parameters of the offspring distribution as required by R.}
@@ -35,6 +35,6 @@ computed. Results above the specified value, are set to \code{Inf}.}
 Simulate transmission chains without tree (as a vector)
 }
 \examples{
-simulate_vect(nchains = 10, offspring_sampler = "pois", lambda = 2,
-chain_stat_max = 10)
+simulate_vect(nchains = 10, statistic = "size", offspring_dist = "pois",
+stat_max = 10, lambda = 2)
 }

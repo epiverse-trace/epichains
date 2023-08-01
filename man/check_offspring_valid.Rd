@@ -4,10 +4,10 @@
 \alias{check_offspring_valid}
 \title{Check if offspring argument is specified as a character string}
 \usage{
-check_offspring_valid(offspring_sampler)
+check_offspring_valid(offspring_dist)
 }
 \arguments{
-\item{offspring_sampler}{Offspring distribution: a character string
+\item{offspring_dist}{Offspring distribution: a character string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}

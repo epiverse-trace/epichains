@@ -1,16 +1,16 @@
 #' Simulate a tree of infections with a serial and offspring distributions
 #'
 #' @param nchains Number of chains to simulate.
-#' @param offspring_sampler Offspring distribution: a character string
+#' @param offspring_dist Offspring distribution: a character string
 #' corresponding to the R distribution function (e.g., "pois" for Poisson,
 #' where \code{\link{rpois}} is the R function to generate Poisson random
-#' numbers)
-#' @param chain_statistic String; Statistic to calculate. Can be one of:
+#' numbers).
+#' @param statistic String; Statistic to calculate. Can be one of:
 #' \itemize{
 #'   \item "size": the total number of offspring.
 #'   \item "length": the total number of ancestors.
 #' }
-#' @param chain_stat_max A cut off for the chain statistic (size/length) being
+#' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to this value.
 #' Defaults to `Inf`.
 #' @param serials_sampler The serial interval generator function; the name of a
@@ -70,9 +70,9 @@
 #' @seealso [simulate_vect()] for simulating transmission chains as a vector
 #' @examples
 #' set.seed(123)
-#' chains <- simulate_tree(nchains = 10, serials_sampler = function(x) 3,
-#' offspring_sampler = "pois", lambda = 2, chain_stat_max = 10)
-#' chains
+#' chains <- simulate_tree(nchains = 10, statistic = "size",
+#' offspring_dist = "pois", stat_max = 10, serials_sampler = function(x) 3,
+#' lambda = 2)
 #' @references
 #'
 #' Lehtinen S, Ashcroft P, Bonhoeffer S. On the relationship
@@ -84,19 +84,19 @@
 #' Fine PE. The interval between successive cases of an
 #' infectious disease. Am J Epidemiol. 2003 Dec 1;158(11):1039-47.
 #' doi: 10.1093/aje/kwg251. PMID: 14630599.
-simulate_tree <- function(nchains, offspring_sampler,
-                           chain_statistic = c("size", "length"),
-                           chain_stat_max = Inf, serials_sampler, t0 = 0,
-                           tf = Inf, ...) {
-  chain_statistic <- match.arg(chain_statistic)
+simulate_tree <- function(nchains, statistic = c("size", "length"),
+                          offspring_dist, stat_max = Inf,
+                          serials_sampler, t0 = 0,
+                          tf = Inf, ...) {
+  statistic <- match.arg(statistic)
 
   check_nchains_valid(nchains = nchains)
 
   # check that offspring is properly specified
-  check_offspring_valid(offspring_sampler)
+  check_offspring_valid(offspring_dist)
 
   # check that offspring function exists in base R
-  roffspring_name <- paste0("r", offspring_sampler)
+  roffspring_name <- paste0("r", offspring_dist)
   check_offspring_func_valid(roffspring_name)
 
   if (!missing(serials_sampler)) {
@@ -106,7 +106,7 @@ simulate_tree <- function(nchains, offspring_sampler,
   }
 
   # Initialisations
-  stat_track <- rep(1, nchains) # track length or size (depending on `chain_statistic`) #nolint
+  stat_track <- rep(1, nchains) # track length or size (depending on `statistic`) #nolint
   n_offspring <- rep(1, nchains) # current number of offspring
   sim <- seq_len(nchains) # track chains that are still being simulated
   ancestor_ids <- rep(1, nchains) # all chains start in generation 1
@@ -142,7 +142,7 @@ simulate_tree <- function(nchains, offspring_sampler,
     n_offspring[sim] <- tapply(next_gen, indices, sum)
 
     # track size/length
-    stat_track <- update_chain_stat(stat_type = chain_statistic,
+    stat_track <- update_chain_stat(stat_type = statistic,
                                     stat_latest = stat_track,
                                     n_offspring = n_offspring)
 
@@ -179,8 +179,8 @@ simulate_tree <- function(nchains, offspring_sampler,
     }
 
     ## only continue to simulate chains that have offspring and aren't of
-    ## infinite size/length
-    sim <- which(n_offspring > 0 & stat_track < chain_stat_max)
+    ## the specified maximum size/length
+    sim <- which(n_offspring > 0 & stat_track < stat_max)
     if (length(sim) > 0) {
       if (!missing(serials_sampler)) {
         ## only continue to simulate chains that don't go beyond tf
@@ -215,24 +215,24 @@ simulate_tree <- function(nchains, offspring_sampler,
 #' Simulate transmission chains without tree (as a vector)
 #'
 #' @inheritParams simulate_tree
-#' @param chain_stat_max A cut off for the chain statistic (size/length) being
+#' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
 #' @examples
-#' simulate_vect(nchains = 10, offspring_sampler = "pois", lambda = 2,
-#' chain_stat_max = 10)
+#' simulate_vect(nchains = 10, statistic = "size", offspring_dist = "pois",
+#' stat_max = 10, lambda = 2)
 #' @export
-simulate_vect <- function(nchains, offspring_sampler,
-                           chain_statistic = c("size", "length"),
-                           chain_stat_max = Inf, ...) {
-  chain_statistic <- match.arg(chain_statistic)
+simulate_vect <- function(nchains, statistic = c("size", "length"),
+                          offspring_dist,
+                          stat_max = Inf, ...) {
+  statistic <- match.arg(statistic)
 
   check_nchains_valid(nchains = nchains)
 
   # check that offspring is properly specified
-  check_offspring_valid(offspring_sampler)
+  check_offspring_valid(offspring_dist)
 
   # check that offspring function exists in base R
-  roffspring_name <- paste0("r", offspring_sampler)
+  roffspring_name <- paste0("r", offspring_dist)
   check_offspring_func_valid(roffspring_name)
 
   # Initialisations
@@ -257,17 +257,17 @@ simulate_vect <- function(nchains, offspring_sampler,
     n_offspring[sim] <- tapply(next_gen, indices, sum)
 
     # track size/length
-    stat_track <- update_chain_stat(stat_type = chain_statistic,
+    stat_track <- update_chain_stat(stat_type = statistic,
                                     stat_latest = stat_track,
                                     n_offspring = n_offspring
                                     )
 
     ## only continue to simulate chains that offspring and aren't of
-    ## chain_stat_max size/length
-    sim <- which(n_offspring > 0 & stat_track < chain_stat_max)
+    ## stat_max size/length
+    sim <- which(n_offspring > 0 & stat_track < stat_max)
   }
 
-  stat_track[stat_track >= chain_stat_max] <- Inf
+  stat_track[stat_track >= stat_max] <- Inf
 
   structure(
     stat_track,
@@ -281,13 +281,13 @@ simulate_vect <- function(nchains, offspring_sampler,
 #' with initial immunity
 #'
 #' @param pop The susceptible population.
-#' @param offspring_sampler Offspring distribution sampler: a character string
+#' @param offspring_dist Offspring distribution sampler: a character string
 #' corresponding to the R distribution function. Currently only "pois" &
 #' "nbinom" are supported. Internally truncated distributions are used to
 #' avoid infecting more people than susceptibles available.
-#' @param mean_offspring The average number of secondary cases for each case.
+#' @param offspring_mean The average number of secondary cases for each case.
 #' Same as R0.
-#' @param disp_offspring The dispersion parameter of the number of
+#' @param offspring_disp The dispersion parameter of the number of
 #' secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
 #' avoid division by 0 when calculating the size. See details and
 #'  \code{?rnbinom} for details on the parameterisation in Ecology.
@@ -306,44 +306,44 @@ simulate_vect <- function(nchains, offspring_sampler,
 #'
 #' The poisson model is parametrised so that:
 #'
-#' lamda = mean_offspring * pop - initial_immune / pop
+#' lamda = offspring_mean * pop - initial_immune / pop
 #'
 #' The negative binomial model is parametrised as:
 #'
-#' mu = mean_offspring * pop - initial immune / pop, and
-#' size = mu / (disp_offspring - 1). This is why disp_offspring must be greater
+#' mu = offspring_mean * pop - initial immune / pop, and
+#' size = mu / (offspring_disp - 1). This is why offspring_disp must be greater
 #' than 1.
 #'
 #' simulate_tree_from_pop() has a couple of key different from simulate_tree():
 #'  * the maximal chain statistic is limited by `pop` instead of
-#'  `chain_stat_max` (in `simulate_tree()`),
+#'  `stat_max` (in `simulate_tree()`),
 #'  * it can only handle implemented offspring distributions ("pois" and
 #' "nbinom").
 #' @author Flavio Finger
 #' @author James M. Azam
 #' @examples
 #' # Simulate with poisson offspring
-#' simulate_tree_from_pop(pop = 100, offspring_sampler = "pois",
-#' mean_offspring = 0.5, serial_sampler = function(x) 3)
+#' simulate_tree_from_pop(pop = 100, offspring_dist = "pois",
+#' offspring_mean = 0.5, serial_sampler = function(x) 3)
 #'
 #' # Simulate with negative binomial offspring
-#' simulate_tree_from_pop(pop = 100, offspring_sampler = "nbinom",
-#' mean_offspring = 0.5, disp_offspring = 1.1, serial_sampler = function(x) 3)
+#' simulate_tree_from_pop(pop = 100, offspring_dist = "nbinom",
+#' offspring_mean = 0.5, offspring_disp = 1.1, serial_sampler = function(x) 3)
 #' @export
 simulate_tree_from_pop <- function(pop,
-                                   offspring_sampler = c("pois", "nbinom"),
-                                   mean_offspring,
-                                   disp_offspring,
+                                   offspring_dist = c("pois", "nbinom"),
+                                   offspring_mean,
+                                   offspring_disp,
                                    serial_sampler,
                                    initial_immune = 0,
                                    t0 = 0,
                                    tf = Inf) {
-  offspring_sampler <- match.arg(offspring_sampler)
+  offspring_dist <- match.arg(offspring_dist)
 
-  if (offspring_sampler == "pois") {
-    if (!missing(disp_offspring)) {
+  if (offspring_dist == "pois") {
+    if (!missing(offspring_disp)) {
       warning(sprintf("%s %s %s",
-                      "'disp_offspring' is not used for",
+                      "'offspring_disp' is not used for",
                       "poisson offspring distribution.",
                       "Will be ignored."
                       )
@@ -352,19 +352,19 @@ simulate_tree_from_pop <- function(pop,
 
     ## using a right truncated poisson distribution
     ## to avoid more cases than susceptibles
-    offspring_fun <- get_offspring_func(offspring_sampler)
+    offspring_fun <- get_offspring_func(offspring_dist)
 
-  } else if (offspring_sampler == "nbinom") {
-    if (missing(disp_offspring)) {
-      stop(sprintf("%s", "'disp_offspring' must be specified."))
-    } else if (disp_offspring <= 1) { ## dispersion coefficient
+  } else if (offspring_dist == "nbinom") {
+    if (missing(offspring_disp)) {
+      stop(sprintf("%s", "'offspring_disp' must be specified."))
+    } else if (offspring_disp <= 1) { ## dispersion coefficient
       stop(sprintf("%s %s %s",
                    "Offspring distribution 'nbinom' requires",
-                   "argument 'disp_offspring' > 1.",
+                   "argument 'offspring_disp' > 1.",
                    "Use 'pois' if there is no overdispersion."
       ))
     }
-    offspring_fun <- get_offspring_func(offspring_sampler)
+    offspring_fun <- get_offspring_func(offspring_dist)
   }
 
   ## initializations
@@ -394,7 +394,7 @@ simulate_tree_from_pop <- function(pop,
 
     ## generate it
     current_max_id <- max(tree_df$sim_id)
-    n_offspring <- offspring_fun(1, susc, pop, mean_offspring, disp_offspring)
+    n_offspring <- offspring_fun(1, susc, pop, offspring_mean, offspring_disp)
 
     if (n_offspring %% 1 > 0) {
       stop("Offspring distribution must return integers")

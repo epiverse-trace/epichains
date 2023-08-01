@@ -1,15 +1,15 @@
 #' Check if offspring argument is specified as a character string
 #'
-#' @param offspring_sampler Offspring distribution: a character string
+#' @param offspring_dist Offspring distribution: a character string
 #' corresponding to the R distribution function (e.g., "pois" for Poisson,
 #' where \code{\link{rpois}} is the R function to generate Poisson random
 #' numbers).
 #' @keywords internal
-check_offspring_valid <- function(offspring_sampler) {
-  if (!checkmate::test_string(offspring_sampler)) {
+check_offspring_valid <- function(offspring_dist) {
+  if (!checkmate::test_string(offspring_dist)) {
     stop(sprintf(
       "%s %s",
-      "'offspring_sampler' must be specified as a character string.",
+      "'offspring_dist' must be specified as a character string.",
       "Did you forget to enclose it in quotes?"
     ))
   }
