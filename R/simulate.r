@@ -203,7 +203,7 @@ simulate_tree <- function(nchains, offspring_sampler,
     chain_type = "chains_tree",
     rownames = NULL,
     track_pop = FALSE,
-    class = c("epichains", "tbl", "data.frame")
+    class = c("epichains", "data.frame")
   )
 }
 
@@ -438,6 +438,6 @@ simulate_tree_from_pop <- function(pop,
     chain_type = "chains_tree",
     rownames = NULL,
     track_pop = TRUE,
-    class = c("epichains", "tbl", "data.frame")
+    class = c("epichains", "data.frame")
   )
 }
