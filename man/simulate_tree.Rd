@@ -6,9 +6,9 @@
 \usage{
 simulate_tree(
   nchains,
-  offspring_sampler,
-  chain_statistic = c("size", "length"),
-  chain_stat_max = Inf,
+  statistic = c("size", "length"),
+  offspring_dist,
+  stat_max = Inf,
   serials_sampler,
   t0 = 0,
   tf = Inf,
@@ -18,18 +18,18 @@ simulate_tree(
 \arguments{
 \item{nchains}{Number of chains to simulate.}
 
-\item{offspring_sampler}{Offspring distribution: a character string
-corresponding to the R distribution function (e.g., "pois" for Poisson,
-where \code{\link{rpois}} is the R function to generate Poisson random
-numbers)}
-
-\item{chain_statistic}{String; Statistic to calculate. Can be one of:
+\item{statistic}{String; Statistic to calculate. Can be one of:
 \itemize{
 \item "size": the total number of offspring.
 \item "length": the total number of ancestors.
 }}
 
-\item{chain_stat_max}{A cut off for the chain statistic (size/length) being
+\item{offspring_dist}{Offspring distribution: a character string
+corresponding to the R distribution function (e.g., "pois" for Poisson,
+where \code{\link{rpois}} is the R function to generate Poisson random
+numbers).}
+
+\item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
 
@@ -100,9 +100,9 @@ where \code{...} are the other arguments to \code{simulate_tree()}.
 
 \examples{
 set.seed(123)
-chains <- simulate_tree(nchains = 10, serials_sampler = function(x) 3,
-offspring_sampler = "pois", lambda = 2, chain_stat_max = 10)
-chains
+chains <- simulate_tree(nchains = 10, statistic = "size",
+offspring_dist = "pois", stat_max = 10, serials_sampler = function(x) 3,
+lambda = 2)
 }
 \references{
 Lehtinen S, Ashcroft P, Bonhoeffer S. On the relationship

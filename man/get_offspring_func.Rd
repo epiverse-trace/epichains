@@ -2,7 +2,8 @@
 % Please edit documentation in R/helpers.R
 \name{get_offspring_func}
 \alias{get_offspring_func}
-\title{Get offspring sampling function}
+\title{Get offspring sampling function that takes into account susceptible
+depletion}
 \usage{
 get_offspring_func(
   offspring_sampler,
@@ -14,30 +15,18 @@ get_offspring_func(
 )
 }
 \arguments{
-\item{offspring_sampler}{Offspring distribution sampler: a character string
-corresponding to the R distribution function. Currently only "pois" &
-"nbinom" are supported. Internally truncated distributions are used to
-avoid infecting more people than susceptibles available.}
-
 \item{n}{Number of items to sample}
 
 \item{susc}{Susceptible population size (calculated
 inside \code{\link{simulate_tree_from_pop}}  as pop - initial_immune)}
 
 \item{pop}{The susceptible population.}
-
-\item{mean_offspring}{The average number of secondary cases for each case.
-Same as R0.}
-
-\item{disp_offspring}{The dispersion parameter of the number of
-secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
-avoid division by 0 when calculating the size. See details and
-\code{?rnbinom} for details on the parameterisation in Ecology.}
 }
 \value{
 An offspring sampling function
 }
 \description{
-Get offspring sampling function
+Get offspring sampling function that takes into account susceptible
+depletion
 }
 \keyword{internal}

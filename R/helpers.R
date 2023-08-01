@@ -66,7 +66,7 @@ get_offspring_func <- function(offspring_sampler, n, susc, pop,
 #'
 #' @return a function for calculating chain statistics
 #' @keywords internal
-get_chain_statistic_func <- function(chain_statistic) {
+get_statistic_func <- function(chain_statistic) {
   func <- if (chain_statistic == "size") {
     rbinom_size
   } else if (chain_statistic == "length") {

@@ -25,9 +25,9 @@ dborel <- function(x, mu, log = FALSE) {
 ##' @export
 rborel <- function(n, mu, infinite = Inf) {
   simulate_vect(nchains = n,
-                offspring_sampler = "pois",
-                chain_statistic = "size",
-                chain_stat_max = infinite,
+                offspring_dist = "pois",
+                statistic = "size",
+                stat_max = infinite,
                 lambda = mu
                 )
 }

@@ -7,9 +7,9 @@ with initial immunity}
 \usage{
 simulate_tree_from_pop(
   pop,
-  offspring_sampler = c("pois", "nbinom"),
-  mean_offspring,
-  disp_offspring,
+  offspring_dist = c("pois", "nbinom"),
+  offspring_mean,
+  offspring_disp,
   serial_sampler,
   initial_immune = 0,
   t0 = 0,
@@ -19,15 +19,15 @@ simulate_tree_from_pop(
 \arguments{
 \item{pop}{The susceptible population.}
 
-\item{offspring_sampler}{Offspring distribution sampler: a character string
+\item{offspring_dist}{Offspring distribution sampler: a character string
 corresponding to the R distribution function. Currently only "pois" &
 "nbinom" are supported. Internally truncated distributions are used to
 avoid infecting more people than susceptibles available.}
 
-\item{mean_offspring}{The average number of secondary cases for each case.
+\item{offspring_mean}{The average number of secondary cases for each case.
 Same as R0.}
 
-\item{disp_offspring}{The dispersion parameter of the number of
+\item{offspring_disp}{The dispersion parameter of the number of
 secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
 avoid division by 0 when calculating the size. See details and
 \code{?rnbinom} for details on the parameterisation in Ecology.}
@@ -54,18 +54,18 @@ with initial immunity
 \section{Offspring models}{
 The poisson model is parametrised so that:
 
-lamda = mean_offspring * pop - initial_immune / pop
+lamda = offspring_mean * pop - initial_immune / pop
 
 The negative binomial model is parametrised as:
 
-mu = mean_offspring * pop - initial immune / pop, and
-size = mu / (disp_offspring - 1). This is why disp_offspring must be greater
+mu = offspring_mean * pop - initial immune / pop, and
+size = mu / (offspring_disp - 1). This is why offspring_disp must be greater
 than 1.
 
 simulate_tree_from_pop() has a couple of key different from simulate_tree():
 \itemize{
 \item the maximal chain statistic is limited by \code{pop} instead of
-\code{chain_stat_max} (in \code{simulate_tree()}),
+\code{stat_max} (in \code{simulate_tree()}),
 \item it can only handle implemented offspring distributions ("pois" and
 "nbinom").
 }
@@ -73,12 +73,12 @@ simulate_tree_from_pop() has a couple of key different from simulate_tree():
 
 \examples{
 # Simulate with poisson offspring
-simulate_tree_from_pop(pop = 100, offspring_sampler = "pois",
-mean_offspring = 0.5, serial_sampler = function(x) 3)
+simulate_tree_from_pop(pop = 100, offspring_dist = "pois",
+offspring_mean = 0.5, serial_sampler = function(x) 3)
 
 # Simulate with negative binomial offspring
-simulate_tree_from_pop(pop = 100, offspring_sampler = "nbinom",
-mean_offspring = 0.5, disp_offspring = 1.1, serial_sampler = function(x) 3)
+simulate_tree_from_pop(pop = 100, offspring_dist = "nbinom",
+offspring_mean = 0.5, offspring_disp = 1.1, serial_sampler = function(x) 3)
 }
 \author{
 Flavio Finger
