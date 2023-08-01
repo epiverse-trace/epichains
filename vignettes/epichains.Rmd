@@ -100,6 +100,13 @@ simulate_vect_eg_nbinom <- simulate_tree_from_pop(pop = 100,
                                                   )
 
 simulate_vect_eg_nbinom # print the output
+
+# Likelihoods
+
+chain_sizes <- c(1, 1, 4, 7)
+estimate_likelihood(chains = chain_sizes, statistic = "size",
+                    offspring_dist = "pois", nsim_obs = 100,
+                    lambda = 0.5)
 ```
 
 ### Aggregation
