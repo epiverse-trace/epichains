@@ -215,10 +215,10 @@ is_chains_vec <- function(x) {
 #' @author James M. Azam
 #' @export
 #' @details
-#' This returns the first 5 rows of an `epichains` object after
-#' its rows have first been sorted by `sim_id` and `ancestor` and the first
-#' unknown ancestors (NA) have been dropped. To view the full output,
-#' use `as.data.frame(<object_name>)`.
+#' This returns the top rows of an `epichains` object. Note that the object
+#' is originally sorted by `sim_id` and `ancestor` and the first
+#' unknown ancestors (NA) have been dropped from
+#' printing method. To view the full output, use `as.data.frame(<object_name>)`.
 #'
 head.epichains <- function(x, ...) {
   writeLines("< tree head (from first known ancestor) >\n")
@@ -235,9 +235,10 @@ head.epichains <- function(x, ...) {
 #' @author James M. Azam
 #' @export
 #' @details
-#' This returns the last 5 rows of an `epichains` object after
-#' its rows have first been sorted by `sim_id` and `ancestor`. To
-#' view the full output, use `as.data.frame(<object_name>)`.
+#' This returns the top rows of an `epichains` object. Note that the object
+#' is originally sorted by `sim_id` and `ancestor` and the first
+#' unknown ancestors (NA) have been dropped from
+#' printing method. To view the full output, use `as.data.frame(<object_name>)`.
 #'
 tail.epichains <- function(x, ...) {
   writeLines("\n< tree tail >\n")
