@@ -66,26 +66,26 @@ knitr::opts_chunk$set(
 library(epichains)
 # Using `simulate_tree()`
 simulate_tree_eg <- simulate_tree(nchains = 10,
+                                  offspring_dist = "pois",
                                   serials_sampler = function(x) 3,
-                                  offspring_sampler = "pois",
                                   lambda = 2,
-                                  chain_stat_max = 10
+                                  stat_max = 10
                                   )
 
 simulate_tree_eg # print the output
 
 # Using simulate_vect()
-simulate_vect_eg <- simulate_vect(nchains = 10, offspring_sampler = "pois",
-                                  lambda = 2, chain_stat_max = 10)
+simulate_vect_eg <- simulate_vect(nchains = 10, offspring_dist = "pois",
+                                  lambda = 2, stat_max = 10)
 
 simulate_vect_eg # print the output
 
 # Using `simulate_tree_from_pop()`
 
 # Simulate with poisson offspring
-simulate_vect_eg_pois <- simulate_tree_from_pop(pop = 100,
-                                                offspring_sampler = "pois",
-                                                mean_offspring = 0.5,
+simulate_vect_eg_pois <- simulate_tree_from_pop(pop = 10000,
+                                                offspring_dist = "pois",
+                                                offspring_mean = 0.5,
                                                 serial_sampler = function(x) 3
                                                 )
 
