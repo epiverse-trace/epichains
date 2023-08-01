@@ -197,6 +197,9 @@ simulate_tree <- function(nchains, offspring_sampler,
     tree_df <- tree_df[tree_df$time < tf, ]
   }
 
+  #sort by sim_id and ancestor
+  tree_df <- tree_df[order(tree_df$sim_id, tree_df$ancestor), ]
+
   structure(
     tree_df,
     chains = nchains,
@@ -429,8 +432,8 @@ simulate_tree_from_pop <- function(pop,
   ## have been generated in the last generation
   tree_df <- tree_df[tree_df$time <= tf, ]
 
-  ## sort output and remove columns not needed
-  tree_df <- tree_df[order(tree_df$time, tree_df$sim_id), ]
+  #sort by sim_id and ancestor
+  tree_df <- tree_df[order(tree_df$sim_id, tree_df$ancestor), ]
   tree_df$offspring_generated <- NULL
 
   structure(
