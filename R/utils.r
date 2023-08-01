@@ -40,24 +40,6 @@ rgen_length <- function(n, x, prob) {
     ceiling(log(stats::runif(n, 0, 1)) / log(1 - prob) - 1)
 }
 
-#' Finds the name of a function passed as an argument
-#'
-#' This works even when a function is passed multiple times (e.g., when used
-#' inside an \code{\link{optim}} call).
-#' See https://stackoverflow.com/a/46740314/10886760
-#' @param fun function of which the name is to be determined
-#' @return function name
-#' @author Sebastian Funk
-#' @keywords internal
-find_function_name <- function(fun) {
-  objects <- ls(envir = environment(fun))
-  for (i in objects) {
-    if (identical(fun, get(i, envir = environment(fun)))) {
-      return(i)
-    }
-  }
-}
-
 #' Negative binomial random numbers parametrized
 #' in terms of mean and dispersion coefficient
 #' @param n number of samples to draw
