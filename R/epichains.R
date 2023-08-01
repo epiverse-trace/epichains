@@ -60,9 +60,9 @@ format.epichains <- function(x, ...) {
                )
 
   } else if (is_chains_vec(x)) {
-    cat(sprintf("epichains object \n"))
+    writeLines(sprintf("`epichains` object \n"))
     print(as.vector(x))
-    cat(sprintf("Number of chains simulated: %s",
+    writeLines(sprintf("\n Number of chains simulated: %s",
                 chain_info[["unique_chains"]]
                 )
         )
