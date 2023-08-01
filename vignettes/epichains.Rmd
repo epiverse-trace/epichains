@@ -93,9 +93,9 @@ simulate_vect_eg_pois # print the output
 
 # Simulate with negative binomial offspring
 simulate_vect_eg_nbinom <- simulate_tree_from_pop(pop = 100,
-                                                  offspring_sampler = "nbinom",
-                                                  mean_offspring = 0.5,
-                                                  disp_offspring = 1.1,
+                                                  offspring_dist = "nbinom",
+                                                  offspring_mean = 0.5,
+                                                  offspring_disp = 1.1,
                                                   serial_sampler = function(x) 3
                                                   )
 
