@@ -35,11 +35,11 @@ format.epichains <- function(x, ...) {
       c(
         sprintf("Chains simulated: %s", chain_info[["chains"]]),
         sprintf(
-          "Unique number of ancestors: %s",
+          "Number of ancestors (known): %s",
           chain_info[["unique_ancestors"]]
         ),
         sprintf(
-          "Unique number of generations: %s", chain_info[["unique_generations"]]
+          "Number of generations: %s", chain_info[["max_generation"]]
         )
       )
     )
@@ -58,7 +58,9 @@ format.epichains <- function(x, ...) {
         )
     writeLines(
       c(
-        "\n Simulated chain stats: \n",
+        sprintf("\n Simulated chain %ss: \n",
+                attr(x, "statistic", exact = TRUE)
+                ),
         sprintf("Max: %s", chain_info[["max_chain_stat"]]),
         sprintf("Min: %s", chain_info[["min_chain_stat"]])
       )
