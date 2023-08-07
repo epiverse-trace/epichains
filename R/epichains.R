@@ -221,6 +221,9 @@ is_chains_summary <- function(x) {
 #' printing method. To view the full output, use `as.data.frame(<object_name>)`.
 #'
 head.epichains <- function(x, ...) {
+  if (nrow(x) < 6) {
+    NextMethod()
+    }
   writeLines("< tree head (from first known ancestor) >\n")
   # print head of the simulation output from the first known ancestor
   x <- x[!is.na(x$ancestor), ]
@@ -239,8 +242,10 @@ head.epichains <- function(x, ...) {
 #' is originally sorted by `sim_id` and `ancestor` and the first
 #' unknown ancestors (NA) have been dropped from
 #' printing method. To view the full output, use `as.data.frame(<object_name>)`.
-#'
 tail.epichains <- function(x, ...) {
+  if (nrow(x) < 6) {
+    NextMethod()
+    }
   writeLines("\n< tree tail >\n")
   utils::tail(as.data.frame(x), ...)
 }
