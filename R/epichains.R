@@ -93,7 +93,7 @@ summary.epichains <- function(object, ...) {
 
     # out of summary
     res <- list(
-      unique_chains = chains_ran,
+      chains_ran =  attr(object, "chains", exact = TRUE),
       max_time = max_time,
       unique_ancestors = n_unique_ancestors,
       max_generation = max_generation
@@ -107,7 +107,7 @@ summary.epichains <- function(object, ...) {
     }
 
     res <- list(
-      unique_chains = chains_ran,
+      chain_ran = attr(object, "chains"),
       max_chain_stat = max_chain_stat,
       min_chain_stat = min_chain_stat
     )
