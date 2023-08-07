@@ -92,7 +92,7 @@ geom_length_ll <- function(x, prob) {
 #' The likelihoods are calculated with a crude approximation using simulated
 #' chains by linearly approximating any missing values in the empirical
 #' cumulative distribution function (ecdf).
-#' @inheritParams estimate_likelihood
+#' @inheritParams likelihood
 #' @inheritParams simulate_vec
 #' @param chains Vector of sizes/lengths
 #' @param nsim_offspring Number of simulations of the offspring distribution
@@ -103,12 +103,12 @@ geom_length_ll <- function(x, prob) {
 #' @return If \code{log = TRUE} (the default), log-likelihood values,
 #' else raw likelihoods
 #' @author Sebastian Funk
-#' @keywords internal
+#' @export
 offspring_ll <- function(chains, offspring_dist, statistic,
                          nsim_offspring = 100, log = TRUE, ...) {
 
   # Simulate the chains
-  chains <- simulate_vect(nsim_offspring, offspring_dist,
+  chains <- simulate_summary(nsim_offspring, offspring_dist,
                           statistic, ...)
 
   # Compute the empirical Cumulative Distribution Function of the
