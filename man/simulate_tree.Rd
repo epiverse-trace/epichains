@@ -116,7 +116,8 @@ infectious disease. Am J Epidemiol. 2003 Dec 1;158(11):1039-47.
 doi: 10.1093/aje/kwg251. PMID: 14630599.
 }
 \seealso{
-\code{\link[=simulate_vect]{simulate_vect()}} for simulating transmission chains as a vector
+\code{\link[=simulate_summary]{simulate_summary()}} for simulating the transmission chains
+statistic without the tree of infections.
 }
 \author{
 James M. Azam, Sebastian Funk
