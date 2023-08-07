@@ -1,6 +1,6 @@
 #' Estimate the (log) likelihood for observed branching processes
 #'
-#' @inheritParams simulate_vect
+#' @inheritParams simulate_summary
 #' @param chains Vector of sizes/lengths of transmission chains.
 #' @param nsim_obs Number of simulations if the likelihood is to be
 #' approximated for imperfect observations.
@@ -25,16 +25,12 @@
 #' @examples
 #' # example of observed chain sizes
 #' chain_sizes <- c(1, 1, 4, 7)
-#' estimate_likelihood(chains = chain_sizes, statistic = "size",
+#' likelihood(chains = chain_sizes, statistic = "size",
 #'  offspring_dist = "pois", nsim_obs = 100, lambda = 0.5)
 #' @export
-estimate_likelihood <- function(chains,
-                                statistic = c("size", "length"),
-                                offspring_dist,
-                                nsim_obs,
-                                log = TRUE,
-                                obs_prob = 1, stat_max = Inf,
-                                exclude = NULL, individual = FALSE, ...) {
+likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
+                       nsim_obs, log = TRUE, obs_prob = 1, stat_max = Inf,
+                       exclude = NULL, individual = FALSE, ...) {
   statistic <- match.arg(statistic)
 
   ## checks
