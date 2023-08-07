@@ -34,9 +34,9 @@ knitr::opts_chunk$set(
 * `simulate_tree()`: simulate transmission trees from a given number of chains.
 * `simulate_tree_from_pop()`: simulate transmission trees from a given number 
   population size and initial immunity.
-* `simulate_vect()`: simulate a vector of observed transmission chains 
+* `simulate_summary()`: simulate a vector of observed transmission chains 
   sizes/lengths from a given number of chains.
-* `estimate_likelihood()`: estimate the likelihood/loglikelihood of observing
+* `likelihood()`: estimate the likelihood/loglikelihood of observing
   chains of given sizes/lengths.
 
 ### Object-orientation
@@ -47,7 +47,7 @@ knitr::opts_chunk$set(
   * superclass of `data.frame` with attributes for tracking `chain_type` as: 
     * `chains_tree`, if returned from `simulate_tree()` or 
     `simulate_tree_from_pop()`
-    * `chains_vec`, if returned from `simulate_vect()`.
+    * `chains_vec`, if returned from `simulate_summary()`.
 * An `epichains_aggregate_df` class:
   * superclass of `data.frame` with attributes for tracking if aggregation is 
   done over "time", "generation" or "both". Useful for `plot` method dispatch 

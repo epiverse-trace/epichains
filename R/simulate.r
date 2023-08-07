@@ -67,7 +67,8 @@
 #' in the `simulate_tree()` call like so
 #' \code{simulate_tree(..., serials_sampler = function(n){rlnorm(n, 0.58, 1.38)})}, #nolint
 #' where `...` are the other arguments to `simulate_tree()`.
-#' @seealso [simulate_vect()] for simulating transmission chains as a vector
+#' @seealso [simulate_summary()] for simulating the transmission chains
+#' statistic without the tree of infections.
 #' @examples
 #' set.seed(123)
 #' chains <- simulate_tree(nchains = 10, statistic = "size",
@@ -212,16 +213,16 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 
 
 
-#' Simulate transmission chains without tree (as a vector)
+#' Simulate a summary of the transmission chain statistic
 #'
 #' @inheritParams simulate_tree
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
 #' @examples
-#' simulate_vect(nchains = 10, statistic = "size", offspring_dist = "pois",
+#' simulate_summary(nchains = 10, statistic = "size", offspring_dist = "pois",
 #' stat_max = 10, lambda = 2)
 #' @export
-simulate_vect <- function(nchains, statistic = c("size", "length"),
+simulate_summary <- function(nchains, statistic = c("size", "length"),
                           offspring_dist,
                           stat_max = Inf, ...) {
   statistic <- match.arg(statistic)
@@ -271,7 +272,7 @@ simulate_vect <- function(nchains, statistic = c("size", "length"),
 
   structure(
     stat_track,
-    chain_type = "chains_vec",
+    chain_type = "chains_summary",
     chains = nchains,
     class = c("epichains", class(stat_track))
   )

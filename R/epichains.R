@@ -49,7 +49,7 @@ format.epichains <- function(x, ...) {
                        "to view the full output in the console.")
                )
 
-  } else if (is_chains_vec(x)) {
+  } else if (is_chains_summary(x)) {
     writeLines(sprintf("`epichains` object \n"))
     print(as.vector(x))
     writeLines(sprintf("\n Number of chains simulated: %s",
@@ -104,7 +104,7 @@ summary.epichains <- function(object, ...) {
       num_generations = num_generations,
       max_generation = max_generation
     )
-  } else if (is_chains_vec(object)) {
+  } else if (is_chains_summary(object)) {
     chains_ran <- length(object)
 
     if (!all(is.infinite(object))) {
@@ -194,15 +194,15 @@ is_chains_tree <- function(x) {
     attributes(x)$chain_type == "chains_tree"
 }
 
-#' Check if an epichains object has the `chains_vec` attribute
+#' Check if an epichains object has the `chains_summary` attribute
 #'
 #' @param x An [`epichains`] object
 #'
 #' @export
 #' @author James M. Azam
-is_chains_vec <- function(x) {
+is_chains_summary <- function(x) {
   !is.null(attributes(x)$chain_type) &&
-    attributes(x)$chain_type == "chains_vec"
+    attributes(x)$chain_type == "chains_summary"
 }
 
 
