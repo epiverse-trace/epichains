@@ -81,6 +81,8 @@ format.epichains <- function(x, ...) {
 summary.epichains <- function(object, ...) {
   validate_epichains(object)
 
+  chains_ran <- attr(object, "chains", exact = TRUE)
+
   if (is_chains_tree(object)) {
 
     max_time <- max(object$time)
@@ -93,7 +95,7 @@ summary.epichains <- function(object, ...) {
 
     # out of summary
     res <- list(
-      chains_ran =  attr(object, "chains", exact = TRUE),
+      chains_ran =  chains_ran,
       max_time = max_time,
       unique_ancestors = n_unique_ancestors,
       max_generation = max_generation
@@ -107,7 +109,7 @@ summary.epichains <- function(object, ...) {
     }
 
     res <- list(
-      chain_ran = attr(object, "chains"),
+      chain_ran = chains_ran,
       max_chain_stat = max_chain_stat,
       min_chain_stat = min_chain_stat
     )
