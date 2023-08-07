@@ -76,7 +76,8 @@ tree_from_pois_offspring # print the output
 
 # Using simulate_summary()
 summary_sim <- simulate_summary(nchains = 10, offspring_dist = "pois",
-                                  lambda = 2, stat_max = 10)
+                                statistic = "length", lambda = 2, 
+                                stat_max = 10)
 
 summary_sim # print the output
 
