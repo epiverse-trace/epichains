@@ -273,6 +273,7 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
   structure(
     stat_track,
     chain_type = "chains_summary",
+    statistic = statistic,
     chains = nchains,
     class = c("epichains", class(stat_track))
   )
