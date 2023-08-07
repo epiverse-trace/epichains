@@ -83,15 +83,11 @@ summary.epichains <- function(object, ...) {
 
   if (is_chains_tree(object)) {
 
-    chains_ran <- length(object$n)
-
     max_time <- max(object$time)
 
     n_unique_ancestors <- length(
       unique(object$ancestor[!is.na(object$ancestor)])
     )
-
-    num_generations <- length(unique(object$generation))
 
     max_generation <- max(object$generation)
 
@@ -100,13 +96,9 @@ summary.epichains <- function(object, ...) {
       unique_chains = chains_ran,
       max_time = max_time,
       unique_ancestors = n_unique_ancestors,
-      unique_generations = n_unique_ancestors,
-      num_generations = num_generations,
       max_generation = max_generation
     )
   } else if (is_chains_summary(object)) {
-    chains_ran <- length(object)
-
     if (!all(is.infinite(object))) {
     max_chain_stat <- max(object[!is.infinite(object)])
     min_chain_stat <- min(object[!is.infinite(object)])
