@@ -63,48 +63,48 @@ knitr::opts_chunk$set(
 
 ### Printing and summary
 ```{r include=TRUE,echo=TRUE}
-library(epichains)
+devtools::load_all()
 # Using `simulate_tree()`
-simulate_tree_eg <- simulate_tree(nchains = 10,
+tree_from_pois_offspring <- simulate_tree(nchains = 10,
                                   offspring_dist = "pois",
                                   serials_sampler = function(x) 3,
                                   lambda = 2,
                                   stat_max = 10
                                   )
 
-simulate_tree_eg # print the output
+tree_from_pois_offspring # print the output
 
-# Using simulate_vect()
-simulate_vect_eg <- simulate_vect(nchains = 10, offspring_dist = "pois",
+# Using simulate_summary()
+summary_sim <- simulate_summary(nchains = 10, offspring_dist = "pois",
                                   lambda = 2, stat_max = 10)
 
-simulate_vect_eg # print the output
+summary_sim # print the output
 
 # Using `simulate_tree_from_pop()`
 
 # Simulate with poisson offspring
-simulate_vect_eg_pois <- simulate_tree_from_pop(pop = 10000,
+tree_from_pop_pois <- simulate_tree_from_pop(pop = 1000,
                                                 offspring_dist = "pois",
                                                 offspring_mean = 0.5,
                                                 serial_sampler = function(x) 3
                                                 )
 
-simulate_vect_eg_pois # print the output
+tree_from_pop_pois # print the output
 
 # Simulate with negative binomial offspring
-simulate_vect_eg_nbinom <- simulate_tree_from_pop(pop = 100,
+tree_from_pop_nbinom <- simulate_tree_from_pop(pop = 1000,
                                                   offspring_dist = "nbinom",
                                                   offspring_mean = 0.5,
                                                   offspring_disp = 1.1,
                                                   serial_sampler = function(x) 3
                                                   )
 
-simulate_vect_eg_nbinom # print the output
+tree_from_pop_nbinom # print the output
 
 # Likelihoods
 
 chain_sizes <- c(1, 1, 4, 7)
-estimate_likelihood(chains = chain_sizes, statistic = "size",
+likelihood(chains = chain_sizes, statistic = "size",
                     offspring_dist = "pois", nsim_obs = 100,
                     lambda = 0.5)
 ```
@@ -113,11 +113,11 @@ estimate_likelihood(chains = chain_sizes, statistic = "size",
 ```{r include=TRUE,echo=TRUE}
 
 # aggregate by time
-aggregate(simulate_vect_eg_pois, "time")
+aggregate(tree_from_pop_pois, "time")
 
 # aggregate by generation
-aggregate(simulate_vect_eg_pois, "generation")
+aggregate(tree_from_pop_pois, "generation")
 
 # aggregate by both time and generation
-aggregate(simulate_vect_eg_pois, "both")
+aggregate(tree_from_pop_pois, "both")
 ```
