@@ -63,7 +63,7 @@ knitr::opts_chunk$set(
 
 ### Printing and summary
 ```{r include=TRUE,echo=TRUE}
-devtools::load_all()
+library(epichains)
 # Using `simulate_tree()`
 tree_from_pois_offspring <- simulate_tree(nchains = 10,
                                   offspring_dist = "pois",
