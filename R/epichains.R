@@ -33,7 +33,7 @@ format.epichains <- function(x, ...) {
     # print summary information
     writeLines(
       c(
-        sprintf("Chains simulated: %s", chain_info[["chains"]]),
+        sprintf("Chains simulated: %s", chain_info[["chains_ran"]]),
         sprintf(
           "Number of ancestors (known): %s",
           chain_info[["unique_ancestors"]]
