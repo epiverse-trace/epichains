@@ -3,32 +3,37 @@
 ## Package name change
 
 * `epichains` is a re-implementation of `bpmodels` with a focus on providing
-a dedicated class of data structures for easy manipulation and interoperability
-with other new tools in the pipeline.
+  a dedicated class of data structures for easy manipulation and interoperability
+  with other new tools in the pipeline.
 
-### Features
+### Functions
 
 * `simulate_tree()`: simulate transmission trees from a given number of chains.
-* `simulate_tree_from_pop()`: simulate transmission trees from a given number 
+* `simulate_tree_from_pop()`: simulate transmission trees from a given 
   population size and initial immunity.
-* `simulate_vect()`: simulate a vector of observed transmission chains 
+* `simulate_summary()`: simulate a vector of observed transmission chains 
   sizes/lengths from a given number of chains.
-* `estimate_likelihood()`: estimate the likelihood/loglikelihood of observing
+* `likelihood()`: estimate the likelihood/loglikelihood of observing
   chains of given sizes/lengths.
 
-#### Classes
+### Classes
 
-* An `epichains` class:
-  * superclass of `data.frame` with attributes for tracking `chain_type` as: 
-    * `chains_tree`, if returned from `simulate_tree()` or 
-    `simulate_tree_from_pop()`
-    * `chains_vec`, if returned from `simulate_vect()`.
-* An `epichains_aggregate_df` class:
-  * superclass of `data.frame` with attributes for tracking if aggregation is 
-  done over "time", "generation" or "both". Useful for `plot` method dispatch 
-  (see methods section below).
+* An `epichains` class, which inherits from `data.frame` with attributes for
+  tracking:
+  - `chains`: number of chains simulated
+  - `chain_type`:
+    - `chains_tree`, if returned from `simulate_tree()` or 
+      `simulate_tree_from_pop()`
+    - `chains_summary`, if returned from `simulate_summary()`.
+  - `track_pop`: whether the susceptible population is tracked or not.
+* An `epichains_aggregate_df` class, which inherits from `data.frame` with
+  attributes for tracking:
+  - `chain_type`: as defined above, and
+  - `aggregated_over`: the variable(s) over which aggregation was done: "time",
+  "generation" or "both". Useful for easy plotting with the `plot` method (see
+  methods section below).
 
-#### Methods
+### Methods
 
 * `print()`
 * `summary()`
