@@ -277,7 +277,10 @@ aggregate.epichains <- function(x,
   validate_epichains(x)
   # Check that the object is of type "chains_tree"
   if (!is_chains_tree(x)) {
-    stop("object must be an epichains object with 'chains_tree' attribute.")
+    stop(
+      "object must be an epichains object with 'chains_tree' attribute, ",
+      "which can be generated using the `simulate_tree()` function."
+    )
   }
 
   # Get grouping variable
