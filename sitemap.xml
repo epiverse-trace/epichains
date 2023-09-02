@@ -13,10 +13,10 @@
     <loc>/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>/articles/epichains.html</loc>
   </url>
   <url>
-    <loc>/articles/projecting_incidence.html</loc>
+    <loc>/articles/index.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
@@ -28,16 +28,25 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/chain_ll.html</loc>
+    <loc>/reference/aggregate.epichains.html</loc>
   </url>
   <url>
-    <loc>/reference/chain_sim.html</loc>
+    <loc>/reference/check_nchains_valid.html</loc>
   </url>
   <url>
-    <loc>/reference/chain_sim_susc.html</loc>
+    <loc>/reference/check_offspring_func_valid.html</loc>
+  </url>
+  <url>
+    <loc>/reference/check_offspring_valid.html</loc>
+  </url>
+  <url>
+    <loc>/reference/check_serial_valid.html</loc>
   </url>
   <url>
     <loc>/reference/complementary_logprob.html</loc>
+  </url>
+  <url>
+    <loc>/reference/construct_offspring_ll_name.html</loc>
   </url>
   <url>
     <loc>/reference/covid19_sa.html</loc>
@@ -49,7 +58,7 @@
     <loc>/reference/epichains-package.html</loc>
   </url>
   <url>
-    <loc>/reference/find_function_name.html</loc>
+    <loc>/reference/format.epichains.html</loc>
   </url>
   <url>
     <loc>/reference/gborel_size_ll.html</loc>
@@ -58,7 +67,31 @@
     <loc>/reference/geom_length_ll.html</loc>
   </url>
   <url>
+    <loc>/reference/get_offspring_func.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_statistic_func.html</loc>
+  </url>
+  <url>
+    <loc>/reference/head.epichains.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_chains_summary.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_chains_tree.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_epichains.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_epichains_aggregate_df.html</loc>
+  </url>
+  <url>
+    <loc>/reference/likelihood.html</loc>
   </url>
   <url>
     <loc>/reference/nbinom_size_ll.html</loc>
@@ -73,6 +106,9 @@
     <loc>/reference/pois_size_ll.html</loc>
   </url>
   <url>
+    <loc>/reference/print.epichains.html</loc>
+  </url>
+  <url>
     <loc>/reference/rbinom_size.html</loc>
   </url>
   <url>
@@ -83,5 +119,26 @@
   </url>
   <url>
     <loc>/reference/rnbinom_mean_disp.html</loc>
+  </url>
+  <url>
+    <loc>/reference/simulate_summary.html</loc>
+  </url>
+  <url>
+    <loc>/reference/simulate_tree.html</loc>
+  </url>
+  <url>
+    <loc>/reference/simulate_tree_from_pop.html</loc>
+  </url>
+  <url>
+    <loc>/reference/summary.epichains.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tail.epichains.html</loc>
+  </url>
+  <url>
+    <loc>/reference/update_chain_stat.html</loc>
+  </url>
+  <url>
+    <loc>/reference/validate_epichains.html</loc>
   </url>
 </urlset>

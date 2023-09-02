@@ -5,14 +5,16 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Analysing transmission chain statistics using branching process models • epichains</title>
+<title>Simulating and Analysing Transmission Chain Statistics Using Branching Process
+    Models • epichains</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Analysing transmission chain statistics using branching process models">
-<meta property="og:description" content="Provides methods to analyse and simulate the size and length
+<script src="pkgdown.js"></script><meta property="og:title" content="Simulating and Analysing Transmission Chain Statistics Using Branching Process
+    Models">
+<meta property="og:description" content="Provides methods to simulate and analyse the size and length
     of branching processes with an arbitrary offspring distribution. These
     can be used, for example, to analyse the distribution of chain sizes
     or length of infectious disease outbreaks, as discussed in Farrington
@@ -37,26 +39,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">epichains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="articles/epichains.html">Get started</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a>
-    </li>
-  </ul>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -83,22 +76,23 @@
   <div class="contents col-md-9">
 
 <div class="section level1">
-<div class="page-header"><h1 id="epichains-methods-for-analysing-the-size-and-length-of-transmission-chains-from-branching-process-models-">epichains: Methods for analysing the size and length of transmission chains from branching process models <img src="reference/figures/epichains_logo.png" align="right" height="130"><a class="anchor" aria-label="anchor" href="#epichains-methods-for-analysing-the-size-and-length-of-transmission-chains-from-branching-process-models-"></a>
+<div class="page-header"><h1 id="id_-packagename--methods-for-simulating-and-analysing-the-size-and-length-of-transmission-chains-from-branching-process-models-">
+<em>{{ packagename }}</em>: Methods for simulating and analysing the size and length of transmission chains from branching process models <img src="reference/figures/epichains_logo.png" align="right" height="130"><a class="anchor" aria-label="anchor" href="#id_-packagename--methods-for-simulating-and-analysing-the-size-and-length-of-transmission-chains-from-branching-process-models-"></a>
 </h1></div>
 <!-- badges: start -->
 
-<p>epichains is an R package to simulate, analyse, and visualize the size and length of branching processes with a given offspring distribution. These models are often used in infectious disease epidemiology, where the chains represent chains of transmission, and the offspring distribution represents the distribution of secondary infections caused by an infected individual.</p>
-<p>epichains re-implements <a href="%22https://github.com/epiverse-trace/bpmodels/%22" class="external-link">bpmodels</a> by providing dedicated classes that allow easy manipulation and interoperability with other existing packages for handling transmission chain and contact-tracing data.</p>
-<p>epichains is developed at the <a href="https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases" class="external-link">Centre for the Mathematical Modelling of Infectious Diseases</a> at the London School of Hygiene and Tropical Medicine as part of the <a href="https://data.org/initiatives/epiverse/" class="external-link">Epiverse Initiative</a>.</p>
+<p><em>{{ packagename }}</em> is an R package to simulate, analyse, and visualize the size and length of branching processes with a given offspring distribution. These models are often used in infectious disease epidemiology, where the chains represent chains of transmission, and the offspring distribution represents the distribution of secondary infections caused by an infected individual.</p>
+<p><em>{{ packagename }}</em> re-implements <a href="%22https://github.com/epiverse-trace/bpmodels/%22" class="external-link">bpmodels</a> by providing dedicated data structures that allow easy manipulation and interoperability with other existing packages for handling transmission chain and contact-tracing data.</p>
+<p><em>{{ packagename }}</em> is developed at the <a href="https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases" class="external-link">Centre for the Mathematical Modelling of Infectious Diseases</a> at the London School of Hygiene and Tropical Medicine as part of the <a href="https://data.org/initiatives/epiverse/" class="external-link">Epiverse Initiative</a>.</p>
 </div>
 <div class="section level1">
 <h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h1>
-<p>The latest development version of the epichains package can be installed via</p>
+<p>The latest development version of the <em>{{ packagename }}</em> package can be installed via</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># check whether {pak} is installed</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://pak.r-lib.org/" class="external-link">"pak"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="http://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"epiverse-trace/epichains"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"{{ gh_repo }}"</span><span class="op">)</span></span></code></pre></div>
 <p>To load the package, use</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/epichains" class="external-link">"epichains"</a></span><span class="op">)</span></span></code></pre></div>
@@ -110,7 +104,7 @@
 <div class="section level2">
 <h2 id="package-vignettes">Package vignettes<a class="anchor" aria-label="anchor" href="#package-vignettes"></a>
 </h2>
-<p>Specific use cases of epichains can be found in the <a href="https://epiverse-trace.github.io/epichains/" class="external-link">online documentation as package vignettes</a>, under “Articles”.</p>
+<p>Specific use cases of <em>{{ packagename }}</em> can be found in the <a href="https://epiverse-trace.github.io/epichains/" class="external-link">online documentation as package vignettes</a>, under “Articles”.</p>
 </div>
 <div class="section level2">
 <h2 id="reporting-bugs">Reporting bugs<a class="anchor" aria-label="anchor" href="#reporting-bugs"></a>
@@ -125,7 +119,7 @@
 <div class="section level2">
 <h2 id="code-of-conduct">Code of conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h2>
-<p>Please note that the epichains project is released with a <a href="https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>Please note that the <em>{{ packagename }}</em> project is released with a <a href="https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 <div class="section level2">
 <h2 id="citing-this-package">Citing this package<a class="anchor" aria-label="anchor" href="#citing-this-package"></a>
@@ -185,9 +179,9 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Sebastian Funk <br><small class="roles"> Author </small> <a href="https://orcid.org/https://orcid.org/0000-0002-2842-3406" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Flavio Finger <br><small class="roles"> Author </small> <a href="https://orcid.org/https://orcid.org/0000-0002-8613-5170" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>James M. Azam <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/https://orcid.org/0000-0001-5782-7330" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Flavio Finger <br><small class="roles"> Author </small> <a href="https://orcid.org/https://orcid.org/0000-0002-8613-5170" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Sebastian Funk <br><small class="roles"> Author </small> <a href="https://orcid.org/https://orcid.org/0000-0002-2842-3406" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
@@ -208,7 +202,7 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Sebastian Funk, Flavio Finger, James M. Azam.</p>
+<p>Developed by James M. Azam, Flavio Finger, Sebastian Funk.</p>
 </div>
 
 <div class="pkgdown">

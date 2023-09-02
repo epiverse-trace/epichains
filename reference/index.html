@@ -17,24 +17,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epichains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
+  <a href="../articles/epichains.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a>
-    </li>
-  </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -61,18 +54,9 @@
           <p class="section-desc"></p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="chain_ll.html">chain_ll()</a></code> </p>
+          <p><code><a href="aggregate.epichains.html">aggregate(<i>&lt;epichains&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Likelihood for the outcome of a branching process</p></td>
-      </tr><tr><td>
-          <p><code><a href="chain_sim.html">chain_sim()</a></code> </p>
-        </td>
-        <td><p>Simulate transmission chains using a branching process</p></td>
-      </tr><tr><td>
-          <p><code><a href="chain_sim_susc.html">chain_sim_susc()</a></code> </p>
-        </td>
-        <td><p>Simulate a single chain using a branching process while accounting
-for depletion of susceptibles.</p></td>
+        <td><p>Aggregate cases in epichains objects according to a grouping variable</p></td>
       </tr><tr><td>
           <p><code><a href="covid19_sa.html">covid19_sa</a></code> </p>
         </td>
@@ -82,6 +66,42 @@ for depletion of susceptibles.</p></td>
         </td>
         <td><p>Density of the Borel distribution</p></td>
       </tr><tr><td>
+          <p><code><a href="format.epichains.html">format(<i>&lt;epichains&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Format method for epichains class</p></td>
+      </tr><tr><td>
+          <p><code><a href="head.epichains.html">head(<i>&lt;epichains&gt;</i>)</a></code> </p>
+        </td>
+        <td><p><code>head</code> method for <code>epichains</code> class</p></td>
+      </tr><tr><td>
+          <p><code><a href="is_chains_summary.html">is_chains_summary()</a></code> </p>
+        </td>
+        <td><p>Check if an epichains object has the <code>chains_summary</code> attribute</p></td>
+      </tr><tr><td>
+          <p><code><a href="is_chains_tree.html">is_chains_tree()</a></code> </p>
+        </td>
+        <td><p>Check if an epichains object has the <code>chains_tree</code> attribute</p></td>
+      </tr><tr><td>
+          <p><code><a href="is_epichains.html">is_epichains()</a></code> </p>
+        </td>
+        <td><p>Reports whether x is an <code>epichains</code> object</p></td>
+      </tr><tr><td>
+          <p><code><a href="is_epichains_aggregate_df.html">is_epichains_aggregate_df()</a></code> </p>
+        </td>
+        <td><p>Reports whether x is an "epichains_aggregate_df" object</p></td>
+      </tr><tr><td>
+          <p><code><a href="likelihood.html">likelihood()</a></code> </p>
+        </td>
+        <td><p>Estimate the (log) likelihood for observed branching processes</p></td>
+      </tr><tr><td>
+          <p><code><a href="offspring_ll.html">offspring_ll()</a></code> </p>
+        </td>
+        <td><p>Likelihood of the length of chains with generic offspring distribution</p></td>
+      </tr><tr><td>
+          <p><code><a href="print.epichains.html">print(<i>&lt;epichains&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print an <code>epichains</code> object</p></td>
+      </tr><tr><td>
           <p><code><a href="rborel.html">rborel()</a></code> </p>
         </td>
         <td><p>Generate random numbers from the Borel distribution</p></td>
@@ -90,6 +110,31 @@ for depletion of susceptibles.</p></td>
         </td>
         <td><p>Negative binomial random numbers parametrized
 in terms of mean and dispersion coefficient</p></td>
+      </tr><tr><td>
+          <p><code><a href="simulate_summary.html">simulate_summary()</a></code> </p>
+        </td>
+        <td><p>Simulate a summary of the transmission chain statistic</p></td>
+      </tr><tr><td>
+          <p><code><a href="simulate_tree.html">simulate_tree()</a></code> </p>
+        </td>
+        <td><p>Simulate a tree of infections with a serial and offspring distributions</p></td>
+      </tr><tr><td>
+          <p><code><a href="simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code> </p>
+        </td>
+        <td><p>Simulate a tree of infections from an initial susceptible population
+with initial immunity</p></td>
+      </tr><tr><td>
+          <p><code><a href="summary.epichains.html">summary(<i>&lt;epichains&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Summary method for epichains class</p></td>
+      </tr><tr><td>
+          <p><code><a href="tail.epichains.html">tail(<i>&lt;epichains&gt;</i>)</a></code> </p>
+        </td>
+        <td><p><code>tail</code> method for <code>epichains</code> class</p></td>
+      </tr><tr><td>
+          <p><code><a href="validate_epichains.html">validate_epichains()</a></code> </p>
+        </td>
+        <td><p><code>epichains</code> class validator</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -99,7 +144,7 @@ in terms of mean and dispersion coefficient</p></td>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Sebastian Funk, Flavio Finger, James M. Azam.</p>
+  <p></p><p>Developed by James M. Azam, Flavio Finger, Sebastian Funk.</p>
 </div>
 
 <div class="pkgdown">

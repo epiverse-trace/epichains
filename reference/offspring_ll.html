@@ -19,24 +19,17 @@ cumulative distribution function (ecdf)."><!-- mathjax --><script src="https://c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epichains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
+  <a href="../articles/epichains.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a>
-    </li>
-  </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -56,7 +49,7 @@ cumulative distribution function (ecdf)."><!-- mathjax --><script src="https://c
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Likelihood of the length of chains with generic offspring distribution</h1>
-    <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/HEAD/R/likelihoods.R" class="external-link"><code>R/likelihoods.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/HEAD/R/stat_likelihoods.R" class="external-link"><code>R/stat_likelihoods.R</code></a></small>
     <div class="hidden name"><code>offspring_ll.Rd</code></div>
     </div>
 
@@ -67,39 +60,55 @@ cumulative distribution function (ecdf).</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">offspring_ll</span><span class="op">(</span><span class="va">x</span>, <span class="va">offspring</span>, <span class="va">stat</span>, nsim_offspring <span class="op">=</span> <span class="fl">100</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">offspring_ll</span><span class="op">(</span></span>
+<span>  <span class="va">chains</span>,</span>
+<span>  <span class="va">offspring_dist</span>,</span>
+<span>  <span class="va">statistic</span>,</span>
+<span>  nsim_offspring <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  log <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>x</dt>
-<dd><p>vector of sizes</p></dd>
+    <dl><dt>chains</dt>
+<dd><p>Vector of sizes/lengths</p></dd>
 
 
-<dt>offspring</dt>
-<dd><p>Offspring distribution: a character string corresponding to
-the R distribution function (e.g., "pois" for Poisson, where
-<code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> is the R function to generate Poisson random numbers)</p></dd>
+<dt>offspring_dist</dt>
+<dd><p>Offspring distribution: a character string
+corresponding to the R distribution function (e.g., "pois" for Poisson,
+where <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> is the R function to generate Poisson random
+numbers).</p></dd>
 
 
-<dt>stat</dt>
-<dd><p>statistic given as <code>x</code> ("size" or "length" of chains)</p></dd>
+<dt>statistic</dt>
+<dd><p>String; Statistic to calculate. Can be one of:</p><ul><li><p>"size": the total number of offspring.</p></li>
+<li><p>"length": the total number of ancestors.</p></li>
+</ul></dd>
 
 
 <dt>nsim_offspring</dt>
-<dd><p>number of simulations of the offspring distribution
-for approximation the size/length distribution</p></dd>
+<dd><p>Number of simulations of the offspring distribution
+for approximating the statistic (size/length) distribution</p></dd>
+
+
+<dt>log</dt>
+<dd><p>Logical; Should the results be log-transformed? (Defaults
+to TRUE).</p></dd>
 
 
 <dt>...</dt>
-<dd><p>any parameters to pass to <code><a href="chain_sim.html">chain_sim</a></code></p></dd>
+<dd><p>any parameters to pass to <code><a href="simulate_tree.html">simulate_tree</a></code></p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
 
-<p>log-likelihood values</p>
+<p>If <code>log = TRUE</code> (the default), log-likelihood values,
+else raw likelihoods</p>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -114,7 +123,7 @@ for approximation the size/length distribution</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Sebastian Funk, Flavio Finger, James M. Azam.</p>
+  <p></p><p>Developed by James M. Azam, Flavio Finger, Sebastian Funk.</p>
 </div>
 
 <div class="pkgdown">
