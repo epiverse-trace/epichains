@@ -62,7 +62,7 @@ depletion</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_offspring_func</span><span class="op">(</span></span>
-<span>  <span class="va">offspring_sampler</span>,</span>
+<span>  <span class="va">offspring_dist</span>,</span>
 <span>  <span class="va">n</span>,</span>
 <span>  <span class="va">susc</span>,</span>
 <span>  <span class="va">pop</span>,</span>
@@ -73,7 +73,14 @@ depletion</p>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>n</dt>
+    <dl><dt>offspring_dist</dt>
+<dd><p>Offspring distribution: a character string
+corresponding to the R distribution function (e.g., "pois" for Poisson,
+where <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> is the R function to generate Poisson random
+numbers).</p></dd>
+
+
+<dt>n</dt>
 <dd><p>Number of items to sample</p></dd>
 
 

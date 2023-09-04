@@ -80,10 +80,10 @@ with initial immunity</p>
 
 
 <dt>offspring_dist</dt>
-<dd><p>Offspring distribution sampler: a character string
-corresponding to the R distribution function. Currently only "pois" &amp;
-"nbinom" are supported. Internally truncated distributions are used to
-avoid infecting more people than susceptibles available.</p></dd>
+<dd><p>Offspring distribution: a character string
+corresponding to the R distribution function (e.g., "pois" for Poisson,
+where <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> is the R function to generate Poisson random
+numbers).</p></dd>
 
 
 <dt>offspring_mean</dt>
@@ -124,9 +124,12 @@ must be &gt;= 0.</p></dd>
 individual element of the chain), <code>ancestor</code> (the ID of the ancestor
 of each element), and <code>generation</code>.</p>
     </div>
-    <div id="offspring-models">
-    <h2>Offspring models</h2>
-    <p>The poisson model is parametrised so that:</p>
+    <div id="offspring-distributions">
+    <h2>Offspring distributions</h2>
+    <p>Currently only "pois" &amp; "nbinom" are supported. Internally truncated
+distributions are used to avoid infecting more people than susceptibles
+available.</p>
+<p>The poisson model is parametrised so that:</p>
 <p>lamda = offspring_mean * pop - initial_immune / pop</p>
 <p>The negative binomial model is parametrised as:</p>
 <p>mu = offspring_mean * pop - initial immune / pop, and

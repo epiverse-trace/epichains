@@ -61,9 +61,18 @@ offspring</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">construct_offspring_ll_name</span><span class="op">(</span><span class="va">offspring_sampler</span>, <span class="va">chain_statistic</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">construct_offspring_ll_name</span><span class="op">(</span><span class="va">offspring_dist</span>, <span class="va">chain_statistic</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="arguments">
+    <h2>Arguments</h2>
+    <dl><dt>offspring_dist</dt>
+<dd><p>Offspring distribution: a character string
+corresponding to the R distribution function (e.g., "pois" for Poisson,
+where <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> is the R function to generate Poisson random
+numbers).</p></dd>
+
+</dl></div>
     <div id="value">
     <h2>Value</h2>
     
