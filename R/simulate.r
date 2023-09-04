@@ -308,7 +308,10 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' of each element), and `generation`.
 #' @details
 #'
-#' # Offspring models
+#' # Offspring distributions
+#' Currently only "pois" & "nbinom" are supported. Internally truncated
+#' distributions are used to avoid infecting more people than susceptibles
+#' available.
 #'
 #' The poisson model is parametrised so that:
 #'
