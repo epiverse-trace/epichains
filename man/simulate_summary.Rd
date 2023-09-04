@@ -35,6 +35,8 @@ computed. Results above the specified value, are set to \code{Inf}.}
 Simulate a summary of the transmission chain statistic
 }
 \examples{
-simulate_summary(nchains = 10, statistic = "size", offspring_dist = "pois",
-stat_max = 10, lambda = 2)
+simulate_summary(
+  nchains = 10, statistic = "size", offspring_dist = "pois",
+  stat_max = 10, lambda = 2
+)
 }

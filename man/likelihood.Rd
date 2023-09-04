@@ -66,8 +66,10 @@ Estimate the (log) likelihood for observed branching processes
 \examples{
 # example of observed chain sizes
 chain_sizes <- c(1, 1, 4, 7)
-likelihood(chains = chain_sizes, statistic = "size",
- offspring_dist = "pois", nsim_obs = 100, lambda = 0.5)
+likelihood(
+  chains = chain_sizes, statistic = "size",
+  offspring_dist = "pois", nsim_obs = 100, lambda = 0.5
+)
 }
 \seealso{
 offspring_ll, pois_size_ll, nbinom_size_ll, gborel_size_ll,

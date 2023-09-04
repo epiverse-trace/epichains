@@ -73,12 +73,16 @@ simulate_tree_from_pop() has a couple of key different from simulate_tree():
 
 \examples{
 # Simulate with poisson offspring
-simulate_tree_from_pop(pop = 100, offspring_dist = "pois",
-offspring_mean = 0.5, serial_sampler = function(x) 3)
+simulate_tree_from_pop(
+  pop = 100, offspring_dist = "pois",
+  offspring_mean = 0.5, serial_sampler = function(x) 3
+)
 
 # Simulate with negative binomial offspring
-simulate_tree_from_pop(pop = 100, offspring_dist = "nbinom",
-offspring_mean = 0.5, offspring_disp = 1.1, serial_sampler = function(x) 3)
+simulate_tree_from_pop(
+  pop = 100, offspring_dist = "nbinom",
+  offspring_mean = 0.5, offspring_disp = 1.1, serial_sampler = function(x) 3
+)
 }
 \author{
 Flavio Finger
