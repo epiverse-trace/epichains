@@ -6,7 +6,7 @@
 depletion}
 \usage{
 get_offspring_func(
-  offspring_sampler,
+  offspring_dist,
   n,
   susc,
   pop,
@@ -15,6 +15,11 @@ get_offspring_func(
 )
 }
 \arguments{
+\item{offspring_dist}{Offspring distribution sampler: a character string
+corresponding to the R distribution function. Currently only "pois" &
+"nbinom" are supported. Internally truncated distributions are used to
+avoid infecting more people than susceptibles available.}
+
 \item{n}{Number of items to sample}
 
 \item{susc}{Susceptible population size (calculated

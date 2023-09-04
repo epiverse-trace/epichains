@@ -26,9 +26,9 @@ update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
 #'
 #' @return An offspring sampling function
 #' @keywords internal
-get_offspring_func <- function(offspring_sampler, n, susc, pop,
+get_offspring_func <- function(offspring_dist, n, susc, pop,
                                mean_offspring, disp_offspring = NULL) {
-  if (offspring_sampler == "nbinom") {
+  if (offspring_dist == "nbinom") {
     function(n, susc, pop, mean_offspring, disp_offspring) {
       ## get distribution params from mean and dispersion
       new_mn <- mean_offspring * susc / pop ## apply susceptibility
@@ -44,7 +44,7 @@ get_offspring_func <- function(offspring_sampler, n, susc, pop,
         size = size
       )
     }
-  } else if (offspring_sampler == "pois") {
+  } else if (offspring_dist == "pois") {
     function(n, susc, pop, mean_offspring, disp_offspring) {
       truncdist::rtrunc(
         n,
@@ -54,7 +54,7 @@ get_offspring_func <- function(offspring_sampler, n, susc, pop,
       )
     }
   } else {
-    stop("offspring_sampler must either be 'pois' or 'nbinom'")
+    stop("offspring_dist must either be 'pois' or 'nbinom'")
   }
 }
 
@@ -82,7 +82,7 @@ get_statistic_func <- function(chain_statistic) {
 #'
 #' @return an analytical offspring likelihood function
 #' @keywords internal
-construct_offspring_ll_name <- function(offspring_sampler, chain_statistic) {
-  ll_name <- paste(offspring_sampler, chain_statistic, "ll", sep = "_")
+construct_offspring_ll_name <- function(offspring_dist, chain_statistic) {
+  ll_name <- paste(offspring_dist, chain_statistic, "ll", sep = "_")
   return(ll_name)
 }
