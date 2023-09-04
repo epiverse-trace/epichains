@@ -24,10 +24,11 @@ dborel <- function(x, mu, log = FALSE) {
 ##' @author Sebastian Funk
 ##' @export
 rborel <- function(n, mu, infinite = Inf) {
-  simulate_summary(nchains = n,
-                offspring_dist = "pois",
-                statistic = "size",
-                stat_max = infinite,
-                lambda = mu
-                )
+  simulate_summary(
+    nchains = n,
+    offspring_dist = "pois",
+    statistic = "size",
+    stat_max = infinite,
+    lambda = mu
+  )
 }

@@ -25,8 +25,10 @@
 #' @examples
 #' # example of observed chain sizes
 #' chain_sizes <- c(1, 1, 4, 7)
-#' likelihood(chains = chain_sizes, statistic = "size",
-#'  offspring_dist = "pois", nsim_obs = 100, lambda = 0.5)
+#' likelihood(
+#'   chains = chain_sizes, statistic = "size",
+#'   offspring_dist = "pois", nsim_obs = 100, lambda = 0.5
+#' )
 #' @export
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
                        nsim_obs, log = TRUE, obs_prob = 1, stat_max = Inf,
@@ -44,14 +46,17 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
     sample_func <- get_statistic_func(statistic)
 
-    sampled_x <- replicate(nsim_obs, pmin(sample_func(length(chains),
-                                           chains, obs_prob
-                                           ),
-                               stat_max), simplify = FALSE)
+    sampled_x <- replicate(nsim_obs, pmin(
+      sample_func(
+        length(chains),
+        chains, obs_prob
+      ),
+      stat_max
+    ), simplify = FALSE)
     size_x <- unlist(sampled_x)
     if (!is.finite(stat_max)) {
       stat_max <- max(size_x) + 1
-      }
+    }
   } else {
     chains[chains >= stat_max] <- stat_max
     size_x <- chains

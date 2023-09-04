@@ -71,9 +71,11 @@
 #' statistic without the tree of infections.
 #' @examples
 #' set.seed(123)
-#' chains <- simulate_tree(nchains = 10, statistic = "size",
-#' offspring_dist = "pois", stat_max = 10, serials_sampler = function(x) 3,
-#' lambda = 2)
+#' chains <- simulate_tree(
+#'   nchains = 10, statistic = "size",
+#'   offspring_dist = "pois", stat_max = 10, serials_sampler = function(x) 3,
+#'   lambda = 2
+#' )
 #' @references
 #'
 #' Lehtinen S, Ashcroft P, Bonhoeffer S. On the relationship
@@ -143,9 +145,11 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
     n_offspring[sim] <- tapply(next_gen, indices, sum)
 
     # track size/length
-    stat_track <- update_chain_stat(stat_type = statistic,
-                                    stat_latest = stat_track,
-                                    n_offspring = n_offspring)
+    stat_track <- update_chain_stat(
+      stat_type = statistic,
+      stat_latest = stat_track,
+      n_offspring = n_offspring
+    )
 
     # record times/ancestors
     if (sum(n_offspring[sim]) > 0) {
@@ -188,17 +192,17 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
         sim <- intersect(sim, unique(indices)[current_min_time < tf])
       }
       if (!missing(serials_sampler)) {
-          times <- times[indices %in% sim]
-          }
-        ancestor_ids <- ids[indices %in% sim]
+        times <- times[indices %in% sim]
+      }
+      ancestor_ids <- ids[indices %in% sim]
     }
-    }
+  }
 
   if (!missing(tf)) {
     tree_df <- tree_df[tree_df$time < tf, ]
   }
 
-  #sort by sim_id and ancestor
+  # sort by sim_id and ancestor
   tree_df <- tree_df[order(tree_df$sim_id, tree_df$ancestor), ]
 
   structure(
@@ -219,12 +223,14 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
 #' @examples
-#' simulate_summary(nchains = 10, statistic = "size", offspring_dist = "pois",
-#' stat_max = 10, lambda = 2)
+#' simulate_summary(
+#'   nchains = 10, statistic = "size", offspring_dist = "pois",
+#'   stat_max = 10, lambda = 2
+#' )
 #' @export
 simulate_summary <- function(nchains, statistic = c("size", "length"),
-                          offspring_dist,
-                          stat_max = Inf, ...) {
+                             offspring_dist,
+                             stat_max = Inf, ...) {
   statistic <- match.arg(statistic)
 
   check_nchains_valid(nchains = nchains)
@@ -258,10 +264,11 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
     n_offspring[sim] <- tapply(next_gen, indices, sum)
 
     # track size/length
-    stat_track <- update_chain_stat(stat_type = statistic,
-                                    stat_latest = stat_track,
-                                    n_offspring = n_offspring
-                                    )
+    stat_track <- update_chain_stat(
+      stat_type = statistic,
+      stat_latest = stat_track,
+      n_offspring = n_offspring
+    )
 
     ## only continue to simulate chains that offspring and aren't of
     ## stat_max size/length
@@ -325,12 +332,16 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' @author James M. Azam
 #' @examples
 #' # Simulate with poisson offspring
-#' simulate_tree_from_pop(pop = 100, offspring_dist = "pois",
-#' offspring_mean = 0.5, serial_sampler = function(x) 3)
+#' simulate_tree_from_pop(
+#'   pop = 100, offspring_dist = "pois",
+#'   offspring_mean = 0.5, serial_sampler = function(x) 3
+#' )
 #'
 #' # Simulate with negative binomial offspring
-#' simulate_tree_from_pop(pop = 100, offspring_dist = "nbinom",
-#' offspring_mean = 0.5, offspring_disp = 1.1, serial_sampler = function(x) 3)
+#' simulate_tree_from_pop(
+#'   pop = 100, offspring_dist = "nbinom",
+#'   offspring_mean = 0.5, offspring_disp = 1.1, serial_sampler = function(x) 3
+#' )
 #' @export
 simulate_tree_from_pop <- function(pop,
                                    offspring_dist = c("pois", "nbinom"),
@@ -344,26 +355,26 @@ simulate_tree_from_pop <- function(pop,
 
   if (offspring_dist == "pois") {
     if (!missing(offspring_disp)) {
-      warning(sprintf("%s %s %s",
-                      "'offspring_disp' is not used for",
-                      "poisson offspring distribution.",
-                      "Will be ignored."
-                      )
-              )
+      warning(sprintf(
+        "%s %s %s",
+        "'offspring_disp' is not used for",
+        "poisson offspring distribution.",
+        "Will be ignored."
+      ))
     }
 
     ## using a right truncated poisson distribution
     ## to avoid more cases than susceptibles
     offspring_fun <- get_offspring_func(offspring_dist)
-
   } else if (offspring_dist == "nbinom") {
     if (missing(offspring_disp)) {
       stop(sprintf("%s", "'offspring_disp' must be specified."))
     } else if (offspring_disp <= 1) { ## dispersion coefficient
-      stop(sprintf("%s %s %s",
-                   "Offspring distribution 'nbinom' requires",
-                   "argument 'offspring_disp' > 1.",
-                   "Use 'pois' if there is no overdispersion."
+      stop(sprintf(
+        "%s %s %s",
+        "Offspring distribution 'nbinom' requires",
+        "argument 'offspring_disp' > 1.",
+        "Use 'pois' if there is no overdispersion."
       ))
     }
     offspring_fun <- get_offspring_func(offspring_dist)
@@ -375,7 +386,7 @@ simulate_tree_from_pop <- function(pop,
     ancestor = NA_integer_,
     generation = 1L,
     time = t0,
-    offspring_generated = FALSE #used to track simulation and dropped afterwards
+    offspring_generated = FALSE # tracks simulation and dropped afterwards
   )
 
   susc <- pop - initial_immune - 1L
@@ -384,7 +395,6 @@ simulate_tree_from_pop <- function(pop,
   ## continue if any unsimulated chains have t <= tf
   ## AND there is still susceptibles left
   while (any(tree_df$time[!tree_df$offspring_generated] <= tf) && susc > 0) {
-
     ## select from which case to generate offspring
     t <- min(tree_df$time[!tree_df$offspring_generated]) # lowest unsimulated t
 
@@ -434,7 +444,7 @@ simulate_tree_from_pop <- function(pop,
   ## have been generated in the last generation
   tree_df <- tree_df[tree_df$time <= tf, ]
 
-  #sort by sim_id and ancestor
+  # sort by sim_id and ancestor
   tree_df <- tree_df[order(tree_df$sim_id, tree_df$ancestor), ]
   tree_df$offspring_generated <- NULL
 
