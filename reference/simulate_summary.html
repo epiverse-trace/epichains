@@ -96,8 +96,10 @@ computed. Results above the specified value, are set to <code>Inf</code>.</p></d
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">simulate_summary</span><span class="op">(</span>nchains <span class="op">=</span> <span class="fl">10</span>, statistic <span class="op">=</span> <span class="st">"size"</span>, offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span></span>
-<span class="r-in"><span>stat_max <span class="op">=</span> <span class="fl">10</span>, lambda <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">simulate_summary</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  nchains <span class="op">=</span> <span class="fl">10</span>, statistic <span class="op">=</span> <span class="st">"size"</span>, offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span></span>
+<span class="r-in"><span>  stat_max <span class="op">=</span> <span class="fl">10</span>, lambda <span class="op">=</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> `epichains` object </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] Inf Inf Inf   1 Inf   2 Inf Inf Inf   1</span>
