@@ -66,7 +66,7 @@ with initial immunity</p>
 <span>  offspring_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pois"</span>, <span class="st">"nbinom"</span><span class="op">)</span>,</span>
 <span>  <span class="va">offspring_mean</span>,</span>
 <span>  <span class="va">offspring_disp</span>,</span>
-<span>  <span class="va">serial_sampler</span>,</span>
+<span>  <span class="va">serial_dist</span>,</span>
 <span>  initial_immune <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  t0 <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  tf <span class="op">=</span> <span class="cn">Inf</span></span>
@@ -98,7 +98,7 @@ avoid division by 0 when calculating the size. See details and
 <code><a href="https://rdrr.io/r/stats/NegBinomial.html" class="external-link">?rnbinom</a></code> for details on the parameterisation in Ecology.</p></dd>
 
 
-<dt>serial_sampler</dt>
+<dt>serial_dist</dt>
 <dd><p>The serial interval. A function that takes one
 parameter (<code>n</code>), the number of serial intervals to randomly sample. Value
 must be &gt;= 0.</p></dd>
@@ -148,7 +148,7 @@ than 1.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Simulate with poisson offspring</span></span></span>
 <span class="r-in"><span><span class="fu">simulate_tree_from_pop</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  pop <span class="op">=</span> <span class="fl">100</span>, offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span></span>
-<span class="r-in"><span>  offspring_mean <span class="op">=</span> <span class="fl">0.5</span>, serial_sampler <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span>  offspring_mean <span class="op">=</span> <span class="fl">0.5</span>, serial_dist <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">3</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> `epichains` object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -168,7 +168,7 @@ than 1.</p>
 <span class="r-in"><span><span class="co"># Simulate with negative binomial offspring</span></span></span>
 <span class="r-in"><span><span class="fu">simulate_tree_from_pop</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  pop <span class="op">=</span> <span class="fl">100</span>, offspring_dist <span class="op">=</span> <span class="st">"nbinom"</span>,</span></span>
-<span class="r-in"><span>  offspring_mean <span class="op">=</span> <span class="fl">0.5</span>, offspring_disp <span class="op">=</span> <span class="fl">1.1</span>, serial_sampler <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span>  offspring_mean <span class="op">=</span> <span class="fl">0.5</span>, offspring_disp <span class="op">=</span> <span class="fl">1.1</span>, serial_dist <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">3</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> `epichains` object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
