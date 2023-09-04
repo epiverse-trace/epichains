@@ -51,7 +51,11 @@ of each element), and \code{generation}.
 Simulate a tree of infections from an initial susceptible population
 with initial immunity
 }
-\section{Offspring models}{
+\section{Offspring distributions}{
+Currently only "pois" & "nbinom" are supported. Internally truncated
+distributions are used to avoid infecting more people than susceptibles
+available.
+
 The poisson model is parametrised so that:
 
 lamda = offspring_mean * pop - initial_immune / pop
