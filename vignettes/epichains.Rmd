@@ -91,7 +91,7 @@ tree_from_pop_pois <- simulate_tree_from_pop(
   pop = 1000,
   offspring_dist = "pois",
   offspring_mean = 0.5,
-  serial_sampler = function(x) 3
+  serial_dist = function(x) 3
 )
 
 tree_from_pop_pois # print the output
@@ -102,7 +102,7 @@ tree_from_pop_nbinom <- simulate_tree_from_pop(
   offspring_dist = "nbinom",
   offspring_mean = 0.5,
   offspring_disp = 1.1,
-  serial_sampler = function(x) 3
+  serial_dist = function(x) 3
 )
 
 tree_from_pop_nbinom # print the output
