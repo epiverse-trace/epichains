@@ -290,10 +290,7 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' with initial immunity
 #'
 #' @param pop The susceptible population.
-#' @param offspring_dist Offspring distribution sampler: a character string
-#' corresponding to the R distribution function. Currently only "pois" &
-#' "nbinom" are supported. Internally truncated distributions are used to
-#' avoid infecting more people than susceptibles available.
+#' @inheritParams simulate_tree
 #' @param offspring_mean The average number of secondary cases for each case.
 #' Same as R0.
 #' @param offspring_disp The dispersion parameter of the number of
