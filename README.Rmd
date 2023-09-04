@@ -52,7 +52,7 @@ The latest development version of the _{{ packagename }}_ package can be install
 
 ```{r include=TRUE,eval=FALSE}
 # check whether {pak} is installed
-if(!require("pak")) install.packages("pak")
+if (!require("pak")) install.packages("pak")
 pak::pak("{{ gh_repo }}")
 ```
 

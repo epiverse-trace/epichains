@@ -24,7 +24,7 @@ check_offspring_valid <- function(offspring_dist) {
 #' @keywords internal
 check_offspring_func_valid <- function(roffspring_name) {
   if (!(exists(roffspring_name)) ||
-      !checkmate::test_function(get(roffspring_name))) {
+        !checkmate::test_function(get(roffspring_name))) {
     stop("Function ", roffspring_name, " does not exist.")
   }
 }

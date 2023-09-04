@@ -60,7 +60,6 @@ gborel_size_ll <- function(x, size, prob, mu) {
 #' @author Sebastian Funk
 #' @keywords internal
 pois_length_ll <- function(x, lambda) {
-
   ## iterated exponential function
   arg <- exp(lambda * exp(-lambda))
   itex <- 1
@@ -106,10 +105,11 @@ geom_length_ll <- function(x, prob) {
 #' @export
 offspring_ll <- function(chains, offspring_dist, statistic,
                          nsim_offspring = 100, log = TRUE, ...) {
-
   # Simulate the chains
-  chains <- simulate_summary(nsim_offspring, offspring_dist,
-                          statistic, ...)
+  chains <- simulate_summary(
+    nsim_offspring, offspring_dist,
+    statistic, ...
+  )
 
   # Compute the empirical Cumulative Distribution Function of the
   # simulated chains
