@@ -19,10 +19,10 @@ simulate_tree_from_pop(
 \arguments{
 \item{pop}{The susceptible population.}
 
-\item{offspring_dist}{Offspring distribution sampler: a character string
-corresponding to the R distribution function. Currently only "pois" &
-"nbinom" are supported. Internally truncated distributions are used to
-avoid infecting more people than susceptibles available.}
+\item{offspring_dist}{Offspring distribution: a character string
+corresponding to the R distribution function (e.g., "pois" for Poisson,
+where \code{\link{rpois}} is the R function to generate Poisson random
+numbers).}
 
 \item{offspring_mean}{The average number of secondary cases for each case.
 Same as R0.}
