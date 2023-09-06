@@ -1,5 +1,11 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+#
+# Reproduce locally by running:
+# ```r
+# pak::pak(c("any::pkgdown", "."), dependencies = "Config/Needs/website")
+# pkgdown::build_site()
+# ```
 on:
   push:
     branches: [main, master]
@@ -16,7 +22,6 @@ on:
       - '.Rbuildignore'
       - '.github/**'
   pull_request:
-    branches: [main, master]
     paths:
       - 'README.Rmd'
       - 'README.md'
@@ -68,6 +73,11 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          clean: false
+          # We clean on releases because we want to remove old vignettes,
+          # figures, etc. that have been deleted from the `main` branch.
+          # But we clean ONLY on releases because we want to be able to keep
+          # both the 'stable' and 'dev' websites.
+          # Also discussed in https://github.com/r-lib/actions/issues/484
+          clean: ${{ github.event_name == 'release' }}
           branch: gh-pages
           folder: docs
