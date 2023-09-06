@@ -30,7 +30,7 @@
 #' )
 #' @export
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
-                       nsim_obs, log = TRUE, obs_prob = 1, stat_max = Inf,
+                       nsim_obs = 100, log = TRUE, obs_prob = 1, stat_max = Inf,
                        exclude = NULL, individual = FALSE, ...) {
   statistic <- match.arg(statistic)
 

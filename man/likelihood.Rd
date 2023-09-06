@@ -8,7 +8,7 @@ likelihood(
   chains,
   statistic = c("size", "length"),
   offspring_dist,
-  nsim_obs,
+  nsim_obs = 100,
   log = TRUE,
   obs_prob = 1,
   stat_max = Inf,
