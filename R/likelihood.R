@@ -62,7 +62,8 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     sampled_x <- list(chains)
   }
 
-  ## determine for which sizes to calculate the log-likelihood (for true chain size)
+  ## determine for which sizes to calculate the log-likelihood
+  ## (for true chain size)
   if (any(size_x == stat_max)) {
     calc_sizes <- seq_len(stat_max - 1)
   } else {
@@ -80,18 +81,18 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     likelihoods[calc_sizes] <- do.call(func, c(list(x = calc_sizes), pars))
   } else {
     likelihoods[calc_sizes] <-
-    do.call(
-      offspring_ll,
-      c(
-        list(
-          chains = calc_sizes,
-          offspring_dist = offspring_dist,
-          statistic = statistic,
-          stat_max = stat_max
-        ),
-        pars
+      do.call(
+        offspring_ll,
+        c(
+          list(
+            chains = calc_sizes,
+            offspring_dist = offspring_dist,
+            statistic = statistic,
+            stat_max = stat_max
+          ),
+          pars
+        )
       )
-    )
   }
 
   ## assign probabilities to stat_max outbreak sizes
@@ -115,7 +116,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
   ## transform log-likelihoods into likelihoods if required
   if (!log) {
-    chains_likelihood <- lapply(chains_likelihood, function(ll) exp(ll))
+    chains_likelihood <- lapply(chains_likelihood, exp)
   }
 
   ## if individual == FALSE, return the joint log-likelihood
@@ -124,7 +125,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   if (!individual) {
     if (log) {
       chains_likelihood <- vapply(chains_likelihood, sum, 0)
-    } else{
+    } else {
       chains_likelihood <- vapply(chains_likelihood, prod, 0)
     }
   }
