@@ -103,7 +103,7 @@ geom_length_ll <- function(x, prob) {
 #' @author Sebastian Funk
 #' @export
 offspring_ll <- function(chains, offspring_dist, statistic,
-                         nsim_offspring = 100, log = TRUE, ...) {
+                         nsim_offspring = 100, ...) {
   # Simulate the chains
   chains <- simulate_summary(
     nsim_offspring, offspring_dist,
