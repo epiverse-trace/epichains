@@ -93,15 +93,13 @@ geom_length_ll <- function(x, prob) {
 #' chain summaries by linearly approximating any missing values in the empirical
 #' cumulative distribution function (ecdf).
 #' @inheritParams likelihood
-#' @inheritParams simulate_vec
-#' @param chains Vector of sizes/lengths
+#' @inheritParams simulate_summary
+#' @param chains Vector of chain summaries (sizes/lengths)
 #' @param nsim_offspring Number of simulations of the offspring distribution
-#' for approximating the statistic (size/length) distribution
-#' @param log Logical; Should the results be log-transformed? (Defaults
-#' to TRUE).
-#' @param ... any parameters to pass to \code{\link{simulate_tree}}
-#' @return If \code{log = TRUE} (the default), log-likelihood values,
-#' else raw likelihoods
+#' for approximating the distribution of the chain statistic summary
+#' (size/length)
+#' @param ... any parameters to pass to \code{\link{simulate_summary}}
+#' @return log-likelihood values
 #' @author Sebastian Funk
 #' @export
 offspring_ll <- function(chains, offspring_dist, statistic,
