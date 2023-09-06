@@ -106,8 +106,10 @@ offspring_ll <- function(chains, offspring_dist, statistic,
                          nsim_offspring = 100, ...) {
   # Simulate the chains
   chains <- simulate_summary(
-    nsim_offspring, offspring_dist,
-    statistic, ...
+    nchains = nsim_offspring,
+    offspring_dist = offspring_dist,
+    statistic = statistic,
+    ...
   )
 
   # Compute the empirical Cumulative Distribution Function of the
