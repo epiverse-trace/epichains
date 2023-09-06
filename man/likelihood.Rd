@@ -52,7 +52,6 @@ contributions will be returned rather than the sum.}
 }
 \value{
 \itemize{
-\item A log-likelihood, if \code{log = TRUE} (the default)
 \item A vector of log-likelihoods, if \code{log = TRUE} (the default) and
 \code{obs_prob < 1}, or
 \item A list of individual log-likelihood contributions, if

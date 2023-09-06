@@ -1,4 +1,4 @@
-#' Likelihood of the size of chains with Poisson offspring distribution
+#' Log-likelihood of the size of chains with Poisson offspring distribution
 #'
 #' @param x vector of sizes
 #' @param lambda rate of the Poisson distribution
@@ -9,7 +9,7 @@ pois_size_ll <- function(x, lambda) {
   (x - 1) * log(lambda) - lambda * x + (x - 2) * log(x) - lgamma(x)
 }
 
-#' Likelihood of the size of chains with Negative-Binomial offspring
+#' Log-likelihood of the size of chains with Negative-Binomial offspring
 #' distribution
 #'
 #' @param x vector of sizes
@@ -31,7 +31,7 @@ nbinom_size_ll <- function(x, size, prob, mu) {
     (size * x + (x - 1)) * log(1 + mu / size)
 }
 
-#' Likelihood of the size of chains with gamma-Borel offspring distribution
+#' Log-likelihood of the size of chains with gamma-Borel offspring distribution
 #'
 #' @param x vector of sizes
 #' @param size the dispersion parameter (often called \code{k} in ecological
@@ -52,7 +52,7 @@ gborel_size_ll <- function(x, size, prob, mu) {
     (x - 1) * log(x) - (size + x - 1) * log(x + size / mu)
 }
 
-#' Likelihood of the length of chains with Poisson offspring distribution
+#' Log-likelihood of the length of chains with Poisson offspring distribution
 #'
 #' @param x vector of sizes
 #' @param lambda rate of the Poisson distribution
@@ -70,7 +70,7 @@ pois_length_ll <- function(x, lambda) {
   log(Gk[x + 1] - Gk[x])
 }
 
-#' Likelihood of the length of chains with geometric offspring distribution
+#' Log-likelihood of the length of chains with geometric offspring distribution
 #'
 #' @param x vector of sizes
 #' @param prob probability of the geometric distribution with mean
@@ -86,10 +86,11 @@ geom_length_ll <- function(x, prob) {
   log(GkmGkm1)
 }
 
-#' Likelihood of the length of chains with generic offspring distribution
+#' Log-likelihood of the summary (size/length) of chains with generic offspring
+#' distribution
 #'
-#' The likelihoods are calculated with a crude approximation using simulated
-#' chains by linearly approximating any missing values in the empirical
+#' The log-likelihoods are calculated with a crude approximation using simulated
+#' chain summaries by linearly approximating any missing values in the empirical
 #' cumulative distribution function (ecdf).
 #' @inheritParams likelihood
 #' @inheritParams simulate_vec

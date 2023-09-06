@@ -2,7 +2,7 @@
 % Please edit documentation in R/stat_likelihoods.R
 \name{geom_length_ll}
 \alias{geom_length_ll}
-\title{Likelihood of the length of chains with geometric offspring distribution}
+\title{Log-likelihood of the length of chains with geometric offspring distribution}
 \usage{
 geom_length_ll(x, prob)
 }
@@ -16,7 +16,7 @@ geom_length_ll(x, prob)
 log-likelihood values
 }
 \description{
-Likelihood of the length of chains with geometric offspring distribution
+Log-likelihood of the length of chains with geometric offspring distribution
 }
 \author{
 Sebastian Funk

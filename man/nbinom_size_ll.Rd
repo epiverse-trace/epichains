@@ -2,7 +2,7 @@
 % Please edit documentation in R/stat_likelihoods.R
 \name{nbinom_size_ll}
 \alias{nbinom_size_ll}
-\title{Likelihood of the size of chains with Negative-Binomial offspring
+\title{Log-likelihood of the size of chains with Negative-Binomial offspring
 distribution}
 \usage{
 nbinom_size_ll(x, size, prob, mu)
@@ -22,7 +22,7 @@ applications)}
 log-likelihood values
 }
 \description{
-Likelihood of the size of chains with Negative-Binomial offspring
+Log-likelihood of the size of chains with Negative-Binomial offspring
 distribution
 }
 \author{

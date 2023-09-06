@@ -2,7 +2,7 @@
 % Please edit documentation in R/stat_likelihoods.R
 \name{pois_size_ll}
 \alias{pois_size_ll}
-\title{Likelihood of the size of chains with Poisson offspring distribution}
+\title{Log-likelihood of the size of chains with Poisson offspring distribution}
 \usage{
 pois_size_ll(x, lambda)
 }
@@ -15,7 +15,7 @@ pois_size_ll(x, lambda)
 log-likelihood values
 }
 \description{
-Likelihood of the size of chains with Poisson offspring distribution
+Log-likelihood of the size of chains with Poisson offspring distribution
 }
 \author{
 Sebastian Funk
