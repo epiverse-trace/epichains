@@ -15,7 +15,7 @@ offspring_ll(
 )
 }
 \arguments{
-\item{chains}{Vector of sizes/lengths}
+\item{chains}{Vector of chain summaries (sizes/lengths)}
 
 \item{offspring_dist}{Offspring distribution: a character string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
@@ -29,21 +29,25 @@ numbers).}
 }}
 
 \item{nsim_offspring}{Number of simulations of the offspring distribution
-for approximating the statistic (size/length) distribution}
+for approximating the distribution of the chain statistic summary
+(size/length)}
 
-\item{log}{Logical; Should the results be log-transformed? (Defaults
-to TRUE).}
-
-\item{...}{any parameters to pass to \code{\link{simulate_tree}}}
+\item{...}{any parameters to pass to \code{\link{simulate_summary}}}
 }
 \value{
 log-likelihood values
-else raw likelihoods
 }
 \description{
 The log-likelihoods are calculated with a crude approximation using simulated
-chains by linearly approximating any missing values in the empirical
+chain summaries by linearly approximating any missing values in the empirical
 cumulative distribution function (ecdf).
+}
+\examples{
+set.seed(123)
+}
+\seealso{
+\code{\link[=simulate_summary]{simulate_summary()}} for simulating a summary of the transmission
+chains statistic (without the tree of infections)
 }
 \author{
 Sebastian Funk
