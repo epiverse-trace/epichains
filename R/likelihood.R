@@ -55,9 +55,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
       stat_max
     ), simplify = FALSE)
     size_x <- unlist(sampled_x)
-    if (!is.finite(stat_max)) {
-      stat_max <- max(size_x) + 1
-    }
+    stat_max <- max(size_x) + 1
   } else {
     chains[chains >= stat_max] <- stat_max
     size_x <- chains
@@ -82,14 +80,18 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     likelihoods[calc_sizes] <- do.call(func, c(list(x = calc_sizes), pars))
   } else {
     likelihoods[calc_sizes] <-
-      do.call(
-        offspring_ll,
-        c(list(
-          chains = calc_sizes, offspring_dist = offspring_dist,
-          statistic = statistic, stat_max = stat_max,
-          log = log
-        ), pars)
+    do.call(
+      offspring_ll,
+      c(
+        list(
+          chains = calc_sizes,
+          offspring_dist = offspring_dist,
+          statistic = statistic,
+          stat_max = stat_max
+        ),
+        pars
       )
+    )
   }
 
   ## assign probabilities to stat_max outbreak sizes
