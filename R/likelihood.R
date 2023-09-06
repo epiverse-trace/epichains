@@ -45,10 +45,10 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
     }
 
-    sample_func <- get_statistic_func(statistic)
+    statistic_func <- get_statistic_func(statistic)
 
     sampled_x <- replicate(nsim_obs, pmin(
-      sample_func(
+      statistic_func(
         length(chains),
         chains, obs_prob
       ),
