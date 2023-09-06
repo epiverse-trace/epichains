@@ -2,7 +2,7 @@
 % Please edit documentation in R/stat_likelihoods.R
 \name{gborel_size_ll}
 \alias{gborel_size_ll}
-\title{Likelihood of the size of chains with gamma-Borel offspring distribution}
+\title{Log-likelihood of the size of chains with gamma-Borel offspring distribution}
 \usage{
 gborel_size_ll(x, size, prob, mu)
 }
@@ -21,7 +21,7 @@ applications)}
 log-likelihood values
 }
 \description{
-Likelihood of the size of chains with gamma-Borel offspring distribution
+Log-likelihood of the size of chains with gamma-Borel offspring distribution
 }
 \author{
 Sebastian Funk
