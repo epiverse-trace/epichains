@@ -2,7 +2,7 @@
 % Please edit documentation in R/likelihood.R
 \name{likelihood}
 \alias{likelihood}
-\title{Estimate the (log) likelihood for observed branching processes}
+\title{Estimate the log-likelihood/likelihood for observed branching processes}
 \usage{
 likelihood(
   chains,
@@ -18,7 +18,7 @@ likelihood(
 )
 }
 \arguments{
-\item{chains}{Vector of sizes/lengths of transmission chains.}
+\item{chains}{Vector of chain summaries (sizes/lengths)}
 
 \item{statistic}{String; Statistic to calculate. Can be one of:
 \itemize{
@@ -31,11 +31,11 @@ corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}
 
-\item{nsim_obs}{Number of simulations if the likelihood is to be
-approximated for imperfect observations.}
+\item{nsim_obs}{Number of simulations if the log-likelihood/likelihood is to
+be approximated for imperfect observations.}
 
-\item{log}{Logical; Should the results be log-transformed? (Defaults
-to TRUE).}
+\item{log}{Logical; Should the log-likelihoods be transformed to
+likelihoods? (Defaults to TRUE).}
 
 \item{obs_prob}{Observation probability (assumed constant)}
 
@@ -43,12 +43,12 @@ to TRUE).}
 computed. Results above the specified value, are set to \code{Inf}.}
 
 \item{exclude}{A vector of indices of the sizes/lengths to exclude from the
-likelihood calculation.}
+log-likelihood calculation.}
 
-\item{individual}{If TRUE, a vector of individual (log)likelihood
+\item{individual}{If TRUE, a vector of individual log-likelihood/likelihood
 contributions will be returned rather than the sum.}
 
-\item{...}{Parameters for the offspring distribution.}
+\item{...}{Parameters of the offspring distribution as required by R.}
 }
 \value{
 \itemize{
@@ -56,11 +56,12 @@ contributions will be returned rather than the sum.}
 \code{obs_prob < 1}, or
 \item A list of individual log-likelihood contributions, if
 \code{log = TRUE} (the default) and \code{individual = TRUE}.
-else raw likelihoods, or vector of likelihoods
+The interpretation follows for the other combinations of \code{log} and
+\code{individual}.
 }
 }
 \description{
-Estimate the (log) likelihood for observed branching processes
+Estimate the log-likelihood/likelihood for observed branching processes
 }
 \examples{
 # example of observed chain sizes
@@ -71,8 +72,8 @@ likelihood(
 )
 }
 \seealso{
-offspring_ll, pois_size_ll, nbinom_size_ll, gborel_size_ll,
-pois_length_ll, geom_length_ll.
+offspring_ll(), pois_size_ll(), nbinom_size_ll(), gborel_size_ll(),
+pois_length_ll(), geom_length_ll()
 }
 \author{
 Sebastian Funk
