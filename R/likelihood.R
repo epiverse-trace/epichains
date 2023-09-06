@@ -64,19 +64,19 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     sampled_x <- list(chains)
   }
 
-  ## determine for which sizes to calculate the likelihood (for true chain size)
+  ## determine for which sizes to calculate the log-likelihood (for true chain size)
   if (any(size_x == stat_max)) {
     calc_sizes <- seq_len(stat_max - 1)
   } else {
     calc_sizes <- unique(c(size_x, exclude))
   }
 
-  ## get likelihood function as given by offspring_dist and statistic
+  ## get log-likelihood function as given by offspring_dist and statistic
   likelihoods <- vector(mode = "numeric")
   ll_func <- construct_offspring_ll_name(offspring_dist, statistic)
   pars <- as.list(unlist(list(...))) ## converts vectors to lists
 
-  ## calculate likelihoods
+  ## calculate log-likelihoods
   if (exists(ll_func, where = asNamespace("epichains"), mode = "function")) {
     func <- get(ll_func)
     likelihoods[calc_sizes] <- do.call(func, c(list(x = calc_sizes), pars))
