@@ -37,6 +37,12 @@ cumulative distribution function (ecdf).
 }
 \examples{
 set.seed(123)
+chain_size_ll <- offspring_ll(
+  chains = c(1, 5, 6, 8, 7, 8, 10),
+  offspring_dist = "pois",
+  statistic = "size",
+  lambda = 0.82
+)
 }
 \seealso{
 \code{\link[=simulate_summary]{simulate_summary()}} for simulating a summary of the transmission
