@@ -39,7 +39,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
   if (obs_prob <= 0 || obs_prob > 1) {
     stop("'obs_prob' is a probability and must be between 0 and 1 inclusive")
-    }
+  }
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
