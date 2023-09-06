@@ -5,14 +5,7 @@
 \title{Log-likelihood of the summary (size/length) of chains with generic offspring
 distribution}
 \usage{
-offspring_ll(
-  chains,
-  offspring_dist,
-  statistic,
-  nsim_offspring = 100,
-  log = TRUE,
-  ...
-)
+offspring_ll(chains, offspring_dist, statistic, nsim_offspring = 100, ...)
 }
 \arguments{
 \item{chains}{Vector of chain summaries (sizes/lengths)}
