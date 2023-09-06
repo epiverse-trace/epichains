@@ -110,7 +110,7 @@ geom_length_ll <- function(x, prob) {
 #'   chains = c(1, 5, 6, 8, 7, 8, 10),
 #'   offspring_dist = "pois",
 #'   statistic = "size",
-#'   lambda = 2
+#'   lambda = 0.82
 #' )
 offspring_ll <- function(chains, offspring_dist, statistic,
                          nsim_offspring = 100, ...) {
