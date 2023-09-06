@@ -29,10 +29,11 @@ for approximating the distribution of the chain statistic summary
 }
 \value{
 log-likelihood values
+else raw likelihoods
 }
 \description{
 The log-likelihoods are calculated with a crude approximation using simulated
-chain summaries by linearly approximating any missing values in the empirical
+chains by linearly approximating any missing values in the empirical
 cumulative distribution function (ecdf).
 }
 \examples{
