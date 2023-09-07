@@ -21,7 +21,7 @@ test_that("Simulators output epichains objects", {
   )
   expect_s3_class(
     simulate_summary(
-      n = 10,
+      nchains = 10,
       offspring_dist = "pois",
       lambda = 2,
       stat_max = 10
