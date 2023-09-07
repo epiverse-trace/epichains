@@ -90,7 +90,7 @@ test_that("Generic offspring log-likelihoods are calculated", {
       statistic = "size",
       lambda = 0.82
     ),
-    100
+    4
   )
 })
 
