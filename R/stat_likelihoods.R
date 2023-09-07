@@ -127,11 +127,18 @@ offspring_ll <- function(chains, offspring_dist, statistic,
   chains_empirical_cdf <- stats::ecdf(dist)
 
   # Perform a lagged linear interpolation of the points
-  acdf <-
-    diff(c(0, stats::approx(
-      unique(dist), chains_empirical_cdf(unique(dist)),
-      seq_len(max(dist[is.finite(dist)]))
-    )$y))
+  acdf <- diff(
+    c(
+      0,
+      stats::approx(
+        unique(dist),
+        chains_empirical_cdf(unique(dist)),
+        seq_len(
+          max(dist[is.finite(dist)])
+        )
+      )$y
+    )
+  )
   lik <- acdf[chains]
   lik[is.na(lik)] <- 0
   out <- log(lik)
