@@ -7,7 +7,7 @@
 pois_length_ll(x, lambda)
 }
 \arguments{
-\item{x}{vector of sizes}
+\item{x}{vector of lengths}
 
 \item{lambda}{rate of the Poisson distribution}
 }

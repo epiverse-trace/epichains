@@ -7,7 +7,7 @@
 geom_length_ll(x, prob)
 }
 \arguments{
-\item{x}{vector of sizes}
+\item{x}{vector of lengths}
 
 \item{prob}{probability of the geometric distribution with mean
 \code{1/prob}}
