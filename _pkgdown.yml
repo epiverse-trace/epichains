@@ -1,4 +1,15 @@
-url: ~
+url: https://epiverse-trace.github.io/epichains/
 template:
   package: epiversetheme
+  bslib:
+    font_weight_base : 300
+development:
+  mode: auto
+articles:
+- title: Package vignettes
+  navbar: Package vignettes
+  contents:
+- title: Modelling guides and background
+  navbar: Modelling guides and background
+  contents:
 
