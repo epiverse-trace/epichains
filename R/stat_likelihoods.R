@@ -54,7 +54,7 @@ gborel_size_ll <- function(x, size, prob, mu) {
 
 #' Log-likelihood of the length of chains with Poisson offspring distribution
 #'
-#' @param x vector of sizes
+#' @param x vector of lengths
 #' @param lambda rate of the Poisson distribution
 #' @return log-likelihood values
 #' @author Sebastian Funk
@@ -72,7 +72,7 @@ pois_length_ll <- function(x, lambda) {
 
 #' Log-likelihood of the length of chains with geometric offspring distribution
 #'
-#' @param x vector of sizes
+#' @param x vector of lengths
 #' @param prob probability of the geometric distribution with mean
 #' \code{1/prob}
 #' @return log-likelihood values
