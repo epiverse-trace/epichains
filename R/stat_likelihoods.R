@@ -115,7 +115,7 @@ geom_length_ll <- function(x, prob) {
 offspring_ll <- function(chains, offspring_dist, statistic,
                          nsim_offspring = 100, ...) {
   # Simulate the chains
-  chains <- simulate_summary(
+  dist <- simulate_summary(
     nchains = nsim_offspring,
     offspring_dist = offspring_dist,
     statistic = statistic,
@@ -124,13 +124,13 @@ offspring_ll <- function(chains, offspring_dist, statistic,
 
   # Compute the empirical Cumulative Distribution Function of the
   # simulated chains
-  chains_empirical_cdf <- stats::ecdf(chains)
+  chains_empirical_cdf <- stats::ecdf(dist)
 
   # Perform a lagged linear interpolation of the points
   acdf <-
     diff(c(0, stats::approx(
-      unique(chains), chains_empirical_cdf(unique(chains)),
-      seq_len(max(chains[is.finite(chains)]))
+      unique(dist), chains_empirical_cdf(unique(dist)),
+      seq_len(max(dist[is.finite(dist)]))
     )$y))
   lik <- acdf[chains]
   lik[is.na(lik)] <- 0
