@@ -2,16 +2,16 @@
 % Please edit documentation in R/checks.R
 \name{check_serial_valid}
 \alias{check_serial_valid}
-\title{Check if the serials_sampler argument is specified as a function}
+\title{Check if the serials_dist argument is specified as a function}
 \usage{
-check_serial_valid(serials_sampler)
+check_serial_valid(serials_dist)
 }
 \arguments{
-\item{serials_sampler}{The serial interval generator function; the name of a
+\item{serials_dist}{The serial interval distribution function; the name of a
 user-defined named or anonymous function with only one argument \code{n},
 representing the number of serial intervals to generate.}
 }
 \description{
-Check if the serials_sampler argument is specified as a function
+Check if the serials_dist argument is specified as a function
 }
 \keyword{internal}

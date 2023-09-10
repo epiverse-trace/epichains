@@ -13,8 +13,8 @@
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to this value.
 #' Defaults to `Inf`.
-#' @param serials_sampler The serial interval generator function; the name of a
-#' user-defined named or anonymous function with only one argument `n`,
+#' @param serials_dist The serial interval distribution function; the name
+#' of a user-defined named or anonymous function with only one argument `n`,
 #' representing the number of serial intervals to generate.
 #' @param t0 Start time (if serial interval is given); either a single value
 #' or a vector of same length as `nchains` (number of simulations) with
@@ -31,7 +31,7 @@
 #' @details
 #' `simulate_tree()` simulates a branching process of the form:
 #' WIP
-#' # The serial interval (`serials_sampler`):
+#' # The serial interval (`serials_dist`):
 #'
 #' ## Assumptions/disambiguation
 #'
@@ -46,9 +46,9 @@
 #'
 #' See References below for some literature on the subject.
 #'
-#' ## Specifying `serials_sampler` in `simulate_tree()`
+#' ## Specifying `serials_dist` in `simulate_tree()`
 #'
-#' `serials_sampler` must be specified as a named or
+#' `serials_dist` must be specified as a named or
 #' [anonymous/inline/unnamed function](https://en.wikipedia.org/wiki/Anonymous_function#R) # nolint
 #' with one argument.
 #'
@@ -58,14 +58,14 @@
 #' let's call it "serial_interval", with only one argument representing the
 #' number of serial intervals to sample:
 #' \code{serial_interval <- function(n){rlnorm(n, 0.58, 1.38)}},
-#' and assign the name of the function to `serials_sampler` in
+#' and assign the name of the function to `serials_dist` in
 #' `simulate_tree()` like so
-#' \code{simulate_tree(..., serials_sampler = serial_interval)},
+#' \code{simulate_tree(..., serials_dist = serial_interval)},
 #' where `...` are the other arguments to `simulate_tree()`.
 #'
-#' Alternatively, we could assign an anonymous function to `serials_sampler`
+#' Alternatively, we could assign an anonymous function to `serials_dist`
 #' in the `simulate_tree()` call like so
-#' \code{simulate_tree(..., serials_sampler = function(n){rlnorm(n, 0.58, 1.38)})}, #nolint
+#' \code{simulate_tree(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})}, #nolint
 #' where `...` are the other arguments to `simulate_tree()`.
 #' @seealso [simulate_summary()] for simulating the transmission chains
 #' statistic without the tree of infections.
@@ -73,7 +73,7 @@
 #' set.seed(123)
 #' chains <- simulate_tree(
 #'   nchains = 10, statistic = "size",
-#'   offspring_dist = "pois", stat_max = 10, serials_sampler = function(x) 3,
+#'   offspring_dist = "pois", stat_max = 10, serials_dist = function(x) 3,
 #'   lambda = 2
 #' )
 #' @references
@@ -89,7 +89,7 @@
 #' doi: 10.1093/aje/kwg251. PMID: 14630599.
 simulate_tree <- function(nchains, statistic = c("size", "length"),
                           offspring_dist, stat_max = Inf,
-                          serials_sampler, t0 = 0,
+                          serials_dist, t0 = 0,
                           tf = Inf, ...) {
   statistic <- match.arg(statistic)
 
@@ -102,10 +102,10 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
   roffspring_name <- paste0("r", offspring_dist)
   check_offspring_func_valid(roffspring_name)
 
-  if (!missing(serials_sampler)) {
-    check_serial_valid(serials_sampler)
+  if (!missing(serials_dist)) {
+    check_serial_valid(serials_dist)
   } else if (!missing(tf)) {
-    stop("If `tf` is specified, `serials_sampler` must be specified too.")
+    stop("If `tf` is specified, `serials_dist` must be specified too.")
   }
 
   # Initialisations
@@ -123,7 +123,7 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
     generation = generation
   )
 
-  if (!missing(serials_sampler)) {
+  if (!missing(serials_dist)) {
     tree_df$time <- t0
     times <- tree_df$time
   }
@@ -175,8 +175,8 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 
       # if a serial interval model/function was specified, use it
       # to generate serial intervals for the cases
-      if (!missing(serials_sampler)) {
-        times <- rep(times, next_gen) + serials_sampler(sum(n_offspring))
+      if (!missing(serials_dist)) {
+        times <- rep(times, next_gen) + serials_dist(sum(n_offspring))
         current_min_time <- unname(tapply(times, indices, min))
         new_df$time <- times
       }
@@ -187,11 +187,11 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
     ## the specified maximum size/length
     sim <- which(n_offspring > 0 & stat_track < stat_max)
     if (length(sim) > 0) {
-      if (!missing(serials_sampler)) {
+      if (!missing(serials_dist)) {
         ## only continue to simulate chains that don't go beyond tf
         sim <- intersect(sim, unique(indices)[current_min_time < tf])
       }
-      if (!missing(serials_sampler)) {
+      if (!missing(serials_dist)) {
         times <- times[indices %in% sim]
       }
       ancestor_ids <- ids[indices %in% sim]

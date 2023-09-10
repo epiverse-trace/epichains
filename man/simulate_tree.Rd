@@ -9,7 +9,7 @@ simulate_tree(
   statistic = c("size", "length"),
   offspring_dist,
   stat_max = Inf,
-  serials_sampler,
+  serials_dist,
   t0 = 0,
   tf = Inf,
   ...
@@ -33,8 +33,8 @@ numbers).}
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
 
-\item{serials_sampler}{The serial interval generator function; the name of a
-user-defined named or anonymous function with only one argument \code{n},
+\item{serials_dist}{The serial interval distribution function; the name
+of a user-defined named or anonymous function with only one argument \code{n},
 representing the number of serial intervals to generate.}
 
 \item{t0}{Start time (if serial interval is given); either a single value
@@ -59,7 +59,7 @@ Simulate a tree of infections with a serial and offspring distributions
 \code{simulate_tree()} simulates a branching process of the form:
 WIP
 }
-\section{The serial interval (\code{serials_sampler}):}{
+\section{The serial interval (\code{serials_dist}):}{
 \subsection{Assumptions/disambiguation}{
 
 In epidemiology, the generation interval is the duration between successive
@@ -74,9 +74,9 @@ generation interval, that is, the time between successive cases.
 See References below for some literature on the subject.
 }
 
-\subsection{Specifying \code{serials_sampler} in \code{simulate_tree()}}{
+\subsection{Specifying \code{serials_dist} in \code{simulate_tree()}}{
 
-\code{serials_sampler} must be specified as a named or
+\code{serials_dist} must be specified as a named or
 \href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function} # nolint
 with one argument.
 
@@ -86,14 +86,14 @@ generator as a random log-normally distributed variable with
 let's call it "serial_interval", with only one argument representing the
 number of serial intervals to sample:
 \code{serial_interval <- function(n){rlnorm(n, 0.58, 1.38)}},
-and assign the name of the function to \code{serials_sampler} in
+and assign the name of the function to \code{serials_dist} in
 \code{simulate_tree()} like so
-\code{simulate_tree(..., serials_sampler = serial_interval)},
+\code{simulate_tree(..., serials_dist = serial_interval)},
 where \code{...} are the other arguments to \code{simulate_tree()}.
 
-Alternatively, we could assign an anonymous function to \code{serials_sampler}
+Alternatively, we could assign an anonymous function to \code{serials_dist}
 in the \code{simulate_tree()} call like so
-\code{simulate_tree(..., serials_sampler = function(n){rlnorm(n, 0.58, 1.38)})}, #nolint
+\code{simulate_tree(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})}, #nolint
 where \code{...} are the other arguments to \code{simulate_tree()}.
 }
 }
@@ -102,7 +102,7 @@ where \code{...} are the other arguments to \code{simulate_tree()}.
 set.seed(123)
 chains <- simulate_tree(
   nchains = 10, statistic = "size",
-  offspring_dist = "pois", stat_max = 10, serials_sampler = function(x) 3,
+  offspring_dist = "pois", stat_max = 10, serials_dist = function(x) 3,
   lambda = 2
 )
 }

@@ -257,7 +257,7 @@ tail.epichains <- function(x, ...) {
 #' set.seed(123)
 #' chains <- simulate_tree(
 #'   nchains = 10, statistic = "size",
-#'   offspring_dist = "pois", stat_max = 10, serials_sampler = function(x) 3,
+#'   offspring_dist = "pois", stat_max = 10, serials_dist = function(x) 3,
 #'   lambda = 2
 #' )
 #' chains
