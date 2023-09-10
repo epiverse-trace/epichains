@@ -68,7 +68,7 @@ library(epichains)
 tree_from_pois_offspring <- simulate_tree(
   nchains = 10,
   offspring_dist = "pois",
-  serials_sampler = function(x) 3,
+  serials_dist = function(x) 3,
   lambda = 2,
   stat_max = 10
 )
