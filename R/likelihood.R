@@ -37,6 +37,12 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
   ## checks
   check_offspring_valid(offspring_dist)
+  checkmate::assert_logical(
+    log,
+    any.missing = FALSE,
+    all.missing = FALSE,
+    len = 1
+  )
 
   if (obs_prob <= 0 || obs_prob > 1) {
     stop("'obs_prob' is a probability and must be between 0 and 1 inclusive")
