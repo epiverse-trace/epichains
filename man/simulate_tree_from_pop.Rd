@@ -10,7 +10,7 @@ simulate_tree_from_pop(
   offspring_dist = c("pois", "nbinom"),
   offspring_mean,
   offspring_disp,
-  serial_dist,
+  serials_dist,
   initial_immune = 0,
   t0 = 0,
   tf = Inf
@@ -32,7 +32,7 @@ secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
 avoid division by 0 when calculating the size. See details and
 \code{?rnbinom} for details on the parameterisation in Ecology.}
 
-\item{serial_dist}{The serial interval. A function that takes one
+\item{serials_dist}{The serial interval. A function that takes one
 parameter (\code{n}), the number of serial intervals to randomly sample. Value
 must be >= 0.}
 
@@ -79,13 +79,13 @@ simulate_tree_from_pop() has a couple of key different from simulate_tree():
 # Simulate with poisson offspring
 simulate_tree_from_pop(
   pop = 100, offspring_dist = "pois",
-  offspring_mean = 0.5, serial_dist = function(x) 3
+  offspring_mean = 0.5, serials_dist = function(x) 3
 )
 
 # Simulate with negative binomial offspring
 simulate_tree_from_pop(
   pop = 100, offspring_dist = "nbinom",
-  offspring_mean = 0.5, offspring_disp = 1.1, serial_dist = function(x) 3
+  offspring_mean = 0.5, offspring_disp = 1.1, serials_dist = function(x) 3
 )
 }
 \author{

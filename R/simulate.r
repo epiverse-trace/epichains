@@ -297,7 +297,7 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
 #' avoid division by 0 when calculating the size. See details and
 #'  \code{?rnbinom} for details on the parameterisation in Ecology.
-#' @param serial_dist The serial interval. A function that takes one
+#' @param serials_dist The serial interval. A function that takes one
 #' parameter (`n`), the number of serial intervals to randomly sample. Value
 #' must be >= 0.
 #' @param initial_immune The number of initial immunes in the population.
@@ -334,20 +334,20 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' # Simulate with poisson offspring
 #' simulate_tree_from_pop(
 #'   pop = 100, offspring_dist = "pois",
-#'   offspring_mean = 0.5, serial_dist = function(x) 3
+#'   offspring_mean = 0.5, serials_dist = function(x) 3
 #' )
 #'
 #' # Simulate with negative binomial offspring
 #' simulate_tree_from_pop(
 #'   pop = 100, offspring_dist = "nbinom",
-#'   offspring_mean = 0.5, offspring_disp = 1.1, serial_dist = function(x) 3
+#'   offspring_mean = 0.5, offspring_disp = 1.1, serials_dist = function(x) 3
 #' )
 #' @export
 simulate_tree_from_pop <- function(pop,
                                    offspring_dist = c("pois", "nbinom"),
                                    offspring_mean,
                                    offspring_disp,
-                                   serial_dist,
+                                   serials_dist,
                                    initial_immune = 0,
                                    t0 = 0,
                                    tf = Inf) {
@@ -418,7 +418,7 @@ simulate_tree_from_pop <- function(pop,
     ## add to df
     if (n_offspring > 0) {
       ## draw serial times
-      new_times <- serial_dist(n_offspring)
+      new_times <- serials_dist(n_offspring)
 
       if (any(new_times < 0)) {
         stop("Serial interval must be >= 0.")
