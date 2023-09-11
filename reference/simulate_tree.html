@@ -73,7 +73,7 @@
 <span>  statistic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"size"</span>, <span class="st">"length"</span><span class="op">)</span>,</span>
 <span>  <span class="va">offspring_dist</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="cn">Inf</span>,</span>
-<span>  <span class="va">serials_sampler</span>,</span>
+<span>  <span class="va">serials_dist</span>,</span>
 <span>  t0 <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  tf <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -105,9 +105,9 @@ computed. Results above the specified value, are set to this value.
 Defaults to <code>Inf</code>.</p></dd>
 
 
-<dt>serials_sampler</dt>
-<dd><p>The serial interval generator function; the name of a
-user-defined named or anonymous function with only one argument <code>n</code>,
+<dt>serials_dist</dt>
+<dd><p>The serial interval distribution function; the name
+of a user-defined named or anonymous function with only one argument <code>n</code>,
 representing the number of serial intervals to generate.</p></dd>
 
 
@@ -143,7 +143,7 @@ for each individual element of the chain), <code>ancestor</code></p>
 WIP</p>
     </div>
     <div class="section level2">
-    <h2 id="the-serial-interval-serials-sampler-">The serial interval (<code>serials_sampler</code>):<a class="anchor" aria-label="anchor" href="#the-serial-interval-serials-sampler-"></a></h2>
+    <h2 id="the-serial-interval-serials-dist-">The serial interval (<code>serials_dist</code>):<a class="anchor" aria-label="anchor" href="#the-serial-interval-serials-dist-"></a></h2>
     
 <div class="section">
 <h3 id="assumptions-disambiguation">Assumptions/disambiguation<a class="anchor" aria-label="anchor" href="#assumptions-disambiguation"></a></h3>
@@ -161,10 +161,10 @@ generation interval, that is, the time between successive cases.</p>
 </div>
 
 <div class="section">
-<h3 id="specifying-serials-sampler-in-simulate-tree-">Specifying <code>serials_sampler</code> in <code>simulate_tree()</code><a class="anchor" aria-label="anchor" href="#specifying-serials-sampler-in-simulate-tree-"></a></h3>
+<h3 id="specifying-serials-dist-in-simulate-tree-">Specifying <code>serials_dist</code> in <code>simulate_tree()</code><a class="anchor" aria-label="anchor" href="#specifying-serials-dist-in-simulate-tree-"></a></h3>
 
 
-<p><code>serials_sampler</code> must be specified as a named or
+<p><code>serials_dist</code> must be specified as a named or
 <a href="https://en.wikipedia.org/wiki/Anonymous_function#R" class="external-link">anonymous/inline/unnamed function</a> # nolint
 with one argument.</p>
 <p>For example, assuming we want to specify the serial interval
@@ -173,13 +173,13 @@ generator as a random log-normally distributed variable with
 let's call it "serial_interval", with only one argument representing the
 number of serial intervals to sample:
 <code>serial_interval &lt;- function(n){rlnorm(n, 0.58, 1.38)}</code>,
-and assign the name of the function to <code>serials_sampler</code> in
+and assign the name of the function to <code>serials_dist</code> in
 <code>simulate_tree()</code> like so
-<code>simulate_tree(..., serials_sampler = serial_interval)</code>,
+<code>simulate_tree(..., serials_dist = serial_interval)</code>,
 where <code>...</code> are the other arguments to <code>simulate_tree()</code>.</p>
-<p>Alternatively, we could assign an anonymous function to <code>serials_sampler</code>
+<p>Alternatively, we could assign an anonymous function to <code>serials_dist</code>
 in the <code>simulate_tree()</code> call like so
-<code>simulate_tree(..., serials_sampler = function(n){rlnorm(n, 0.58, 1.38)})</code>, #nolint
+<code>simulate_tree(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})</code>, #nolint
 where <code>...</code> are the other arguments to <code>simulate_tree()</code>.</p>
 </div>
 
@@ -210,7 +210,7 @@ statistic without the tree of infections.</p></div>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">chains</span> <span class="op">&lt;-</span> <span class="fu">simulate_tree</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  nchains <span class="op">=</span> <span class="fl">10</span>, statistic <span class="op">=</span> <span class="st">"size"</span>,</span></span>
-<span class="r-in"><span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>, stat_max <span class="op">=</span> <span class="fl">10</span>, serials_sampler <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>, stat_max <span class="op">=</span> <span class="fl">10</span>, serials_dist <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>  lambda <span class="op">=</span> <span class="fl">2</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 </code></pre></div>
