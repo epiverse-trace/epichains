@@ -54,6 +54,39 @@ test_that(
       ),
       0
     )
+    expect_lt(
+      likelihood(
+        chains = chains,
+        statistic = "length",
+        offspring_dist = "binom",
+        size = 1,
+        prob = 0.5
+      ),
+      0
+    )
+    expect_gte(
+      likelihood(
+        chains = chains,
+        statistic = "length",
+        offspring_dist = "binom",
+        size = 1,
+        prob = 0.5,
+        log = FALSE
+      ),
+      0
+    )
+    expect_gte(
+      likelihood(
+        chains = chains,
+        statistic = "length",
+        offspring_dist = "binom",
+        size = 1,
+        prob = 0.5,
+        individual = FALSE,
+        log = FALSE
+      ),
+      0
+    )
   }
 )
 
@@ -146,5 +179,16 @@ test_that("Errors are thrown", {
       obs_prob = 0.5
     ),
     "must be specified"
+  )
+  expect_error(
+    likelihood(
+      chains = chains,
+      statistic = "size",
+      offspring_dist = "pois",
+      nsim_obs = 100,
+      lambda = 0.5,
+      log = "s"
+      ),
+  "Must be of type 'logical'"
   )
 })
