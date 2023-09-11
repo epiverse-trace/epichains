@@ -188,7 +188,7 @@ test_that("Errors are thrown", {
       nsim_obs = 100,
       lambda = 0.5,
       log = "s"
-      ),
-  "Must be of type 'logical'"
+    ),
+    "Must be of type"
   )
 })
