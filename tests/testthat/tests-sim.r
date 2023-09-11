@@ -15,7 +15,7 @@ test_that("Simulators output epichains objects", {
       offspring_dist = "nbinom",
       offspring_mean = 0.5,
       offspring_disp = 1.1,
-      serial_dist = function(x) 3
+      serials_dist = function(x) 3
     ),
     "epichains"
   )
