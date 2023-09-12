@@ -46,19 +46,26 @@ computed. Results above the specified value, are set to \code{Inf}.}
 log-likelihood calculation.}
 
 \item{individual}{If TRUE, a vector of individual log-likelihood/likelihood
-contributions will be returned rather than the sum.}
+contributions will be returned rather than the sum/product.}
 
 \item{...}{any parameters to pass to \code{\link{simulate_summary}}}
 }
 \value{
+If log = TRUE:
 \itemize{
-\item A vector of log-likelihoods, if \code{log = TRUE} (the default) and
-\code{obs_prob < 1}, or
-\item A list of individual log-likelihood contributions, if
-\code{log = TRUE} (the default) and \code{individual = TRUE}.
-The interpretation follows for the other combinations of \code{log} and
-\code{individual}.
+\item A joint log-likelihood (sum of individual log-likelihoods), if
+\code{individual == FALSE} (default) and \code{obs_prob = 1} (default), or
+\item A list of individual log-likelihoods, if \code{individual == TRUE} and
+\code{obs_prob = 1} (default), or
+\item A list of individual log-likelihoods (same length as \code{nsim_obs}), if
+\code{individual == TRUE} and \code{0 <= obs_prob < 1}, or
+\item A vector of joint log-likelihoods (same length as \code{nsim_obs}), if
+individual == FALSE and \code{0 <= obs_prob < 1} (imperfect observation).
 }
+
+If \code{log = FALSE}, likelihoods, instead of log-likelihoods, are returned
+and the joint likelihoods are the product, instead of the sum, of the
+individual likelihoods.
 }
 \description{
 Estimate the log-likelihood/likelihood for observed branching processes
@@ -66,6 +73,7 @@ Estimate the log-likelihood/likelihood for observed branching processes
 \examples{
 # example of observed chain sizes
 set.seed(121)
+# randomly generate 20 chains of size 1 to 10
 chain_sizes <- sample(1:10, 20, replace = TRUE)
 likelihood(
   chains = chain_sizes, statistic = "size",
