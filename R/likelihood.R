@@ -2,6 +2,7 @@
 #'
 #' @inheritParams offspring_ll
 #' @inheritParams simulate_summary
+#' @param chains Vector of chain summaries (sizes/lengths)
 #' @param nsim_obs Number of simulations if the log-likelihood/likelihood is to
 #' be approximated for imperfect observations.
 #' @param log Logical; Should the log-likelihoods be transformed to
