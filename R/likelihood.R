@@ -55,29 +55,29 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
     statistic_func <- get_statistic_func(statistic)
 
-    sampled_x <- replicate(nsim_obs, pmin(
+    stat_rep_list <- replicate(nsim_obs, pmin(
       statistic_func(
         length(chains),
         chains, obs_prob
       ),
       stat_max
     ), simplify = FALSE)
-    size_x <- unlist(sampled_x)
+    stat_rep_vect <- unlist(stat_rep_list)
     if (!is.finite(stat_max)) {
-    stat_max <- max(size_x) + 1
+    stat_max <- max(stat_rep_vect) + 1
     }
   } else {
     chains[chains >= stat_max] <- stat_max
-    size_x <- chains
-    sampled_x <- list(chains)
+    stat_rep_vect <- chains
+    stat_rep_list <- list(chains)
   }
 
   ## determine for which sizes to calculate the log-likelihood
   ## (for true chain size)
-  if (any(size_x == stat_max)) {
+  if (any(stat_rep_vect == stat_max)) {
     calc_sizes <- seq_len(stat_max - 1)
   } else {
-    calc_sizes <- unique(c(size_x, exclude))
+    calc_sizes <- unique(c(stat_rep_vect, exclude))
   }
 
   ## get log-likelihood function as given by offspring_dist and statistic
@@ -106,7 +106,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   }
 
   ## assign probabilities to stat_max outbreak sizes
-  if (any(size_x == stat_max)) {
+  if (any(stat_rep_vect == stat_max)) {
     likelihoods[stat_max] <- complementary_logprob(likelihoods)
   }
 
@@ -114,13 +114,13 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     likelihoods <- likelihoods - log(-expm1(sum(likelihoods[exclude])))
     likelihoods[exclude] <- -Inf
 
-    sampled_x <- lapply(sampled_x, function(y) {
+    stat_rep_list <- lapply(stat_rep_list, function(y) {
       y[!(y %in% exclude)]
     })
   }
 
   ## assign likelihoods
-  chains_likelihood <- lapply(sampled_x, function(sx) {
+  chains_likelihood <- lapply(stat_rep_list, function(sx) {
     likelihoods[sx[!(sx %in% exclude)]]
   })
 
