@@ -105,7 +105,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
         offspring_ll,
         c(
           list(
-            chains = calc_sizes,
+            x = calc_sizes,
             offspring_dist = offspring_dist,
             statistic = statistic,
             stat_max = stat_max
