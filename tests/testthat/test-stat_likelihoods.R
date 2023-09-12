@@ -74,7 +74,7 @@ test_that("Generic offspring log-likelihoods are calculated", {
   expect_true(
     all(
       offspring_ll(
-        chains = chains,
+        x = chains,
         offspring_dist = "pois",
         nsim_offspring = 100,
         statistic = "size",
@@ -84,7 +84,7 @@ test_that("Generic offspring log-likelihoods are calculated", {
   )
   expect_length(
     offspring_ll(
-      chains = chains,
+      x = chains,
       offspring_dist = "pois",
       nsim_offspring = 100,
       statistic = "size",
