@@ -125,14 +125,14 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   })
 
   ## transform log-likelihoods into likelihoods if required
-  if (!isTRUE(log)) {
+  if (isFALSE(log)) {
     chains_likelihood <- lapply(chains_likelihood, exp)
   }
 
   ## if individual == FALSE, return the joint log-likelihood
   ## (sum of the log-likelihoods), if log == TRUE, else
   ## multiply the likelihoods
-  if (!isTRUE(individual)) {
+  if (isFALSE(individual)) {
     if (isTRUE(log)) {
       chains_likelihood <- vapply(chains_likelihood, sum, 0)
     } else {
