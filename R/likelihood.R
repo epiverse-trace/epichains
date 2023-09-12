@@ -62,7 +62,9 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
       stat_max
     ), simplify = FALSE)
     size_x <- unlist(sampled_x)
+    if (!is.finite(stat_max)) {
     stat_max <- max(size_x) + 1
+    }
   } else {
     chains[chains >= stat_max] <- stat_max
     size_x <- chains
