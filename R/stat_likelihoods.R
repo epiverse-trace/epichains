@@ -94,7 +94,7 @@ geom_length_ll <- function(x, prob) {
 #' cumulative distribution function (ecdf).
 #' @inheritParams likelihood
 #' @inheritParams simulate_summary
-#' @param chains Vector of chain summaries (sizes/lengths)
+#' @param x Vector of chain summaries (sizes/lengths)
 #' @param nsim_offspring Number of simulations of the offspring distribution
 #' for approximating the distribution of the chain statistic summary
 #' (size/length)
@@ -107,12 +107,12 @@ geom_length_ll <- function(x, prob) {
 #' @examples
 #' set.seed(123)
 #' chain_size_ll <- offspring_ll(
-#'   chains = c(1, 5, 6, 8, 7, 8, 10),
+#'   x = c(1, 5, 6, 8, 7, 8, 10),
 #'   offspring_dist = "pois",
 #'   statistic = "size",
 #'   lambda = 0.82
 #' )
-offspring_ll <- function(chains, offspring_dist, statistic,
+offspring_ll <- function(x, offspring_dist, statistic,
                          nsim_offspring = 100, ...) {
   # Simulate the chains
   dist <- simulate_summary(
@@ -139,7 +139,7 @@ offspring_ll <- function(chains, offspring_dist, statistic,
       )$y
     )
   )
-  lik <- acdf[chains]
+  lik <- acdf[x]
   lik[is.na(lik)] <- 0
   out <- log(lik)
   return(out)

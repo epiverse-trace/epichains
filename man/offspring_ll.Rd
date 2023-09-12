@@ -5,10 +5,10 @@
 \title{Log-likelihood of the summary (size/length) of chains with generic offspring
 distribution}
 \usage{
-offspring_ll(chains, offspring_dist, statistic, nsim_offspring = 100, ...)
+offspring_ll(x, offspring_dist, statistic, nsim_offspring = 100, ...)
 }
 \arguments{
-\item{chains}{Vector of chain summaries (sizes/lengths)}
+\item{x}{Vector of chain summaries (sizes/lengths)}
 
 \item{offspring_dist}{Offspring distribution: a character string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
@@ -38,7 +38,7 @@ cumulative distribution function (ecdf).
 \examples{
 set.seed(123)
 chain_size_ll <- offspring_ll(
-  chains = c(1, 5, 6, 8, 7, 8, 10),
+  x = c(1, 5, 6, 8, 7, 8, 10),
   offspring_dist = "pois",
   statistic = "size",
   lambda = 0.82
