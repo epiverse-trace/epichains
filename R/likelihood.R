@@ -24,6 +24,7 @@
 #' @examples
 #' # example of observed chain sizes
 #' set.seed(121)
+#' ## randomly generate 20 chains of size 1 to 10
 #' chain_sizes <- sample(1:10, 20, replace = TRUE)
 #' likelihood(
 #'   chains = chain_sizes, statistic = "size",
