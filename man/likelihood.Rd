@@ -51,7 +51,7 @@ contributions will be returned rather than the sum/product.}
 \item{...}{any parameters to pass to \code{\link{simulate_summary}}}
 }
 \value{
-If log = TRUE:
+If \code{log = TRUE}
 \itemize{
 \item A joint log-likelihood (sum of individual log-likelihoods), if
 \code{individual == FALSE} (default) and \code{obs_prob = 1} (default), or
@@ -63,9 +63,10 @@ If log = TRUE:
 individual == FALSE and \code{0 <= obs_prob < 1} (imperfect observation).
 }
 
-If \code{log = FALSE}, likelihoods, instead of log-likelihoods, are returned
-and the joint likelihoods are the product, instead of the sum, of the
-individual likelihoods.
+If \code{log = FALSE}, the same structure of outputs as above are returned,
+except that likelihoods, instead of log-likelihoods, are calculated in all
+cases. Moreover, the joint likelihoods are the product, instead of the sum,
+of the individual likelihoods.
 }
 \description{
 Estimate the log-likelihood/likelihood for observed branching processes
