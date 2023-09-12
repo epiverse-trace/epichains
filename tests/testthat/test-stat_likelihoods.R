@@ -45,6 +45,16 @@ test_that("Analytical chain size distributions are numerically correct", {
     ),
     c(-0.13863, -0.13863, -4.80803, -6.13400)
   )
+  expect_identical(
+    round(
+      pois_size_ll(
+        x = chains,
+        lambda = 0.2
+      ),
+      5
+    ),
+    c(-0.20000, -0.20000, -4.64748, -7.90633)
+  )
 })
 
 test_that("Analytical chain lengths distributions are numerically correct", {
@@ -112,5 +122,56 @@ test_that("Errors are thrown", {
       prob = 0.1
     ),
     "both specified"
+  )
+})
+
+test_that("Likelihood function returns the right object classes", {
+  expect_type(
+    likelihood(
+      chains = chains,
+      statistic = "size",
+      offspring_dist = "pois",
+      nsim_obs = 100,
+      lambda = 0.5,
+      obs_prob = 0.5,
+      individual = TRUE
+    ),
+    "list"
+  )
+  expect_type(
+    likelihood(
+      chains = chains,
+      statistic = "size",
+      offspring_dist = "pois",
+      nsim_obs = 3,
+      lambda = 0.5,
+      obs_prob = 0.5,
+      individual = FALSE
+    ),
+    "double"
+  )
+  expect_type(
+    likelihood(
+      chains = chains,
+      statistic = "size",
+      offspring_dist = "pois",
+      nsim_obs = 3,
+      lambda = 0.5,
+      obs_prob = 1,
+      individual = TRUE
+    ),
+    "list"
+  )
+  expect_type(
+    likelihood(
+      chains = chains,
+      statistic = "size",
+      offspring_dist = "pois",
+      nsim_obs = 100,
+      lambda = 0.5,
+      obs_prob = 1,
+      individual = FALSE
+    ),
+    "double"
   )
 })
