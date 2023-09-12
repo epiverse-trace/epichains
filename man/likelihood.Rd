@@ -48,7 +48,7 @@ log-likelihood calculation.}
 \item{individual}{If TRUE, a vector of individual log-likelihood/likelihood
 contributions will be returned rather than the sum.}
 
-\item{...}{Parameters of the offspring distribution as required by R.}
+\item{...}{any parameters to pass to \code{\link{simulate_summary}}}
 }
 \value{
 \itemize{
