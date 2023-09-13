@@ -1,4 +1,4 @@
-# Define global variables and options
+# Define global variables and options for simulations
 set.seed(12)
 serial_func <- function(n) {
   rlnorm(n, meanlog = 0.58, sdlog = 1.58)
@@ -79,7 +79,7 @@ test_that("simulate_tree throws errors", {
       lambda = 0.9
     ),
     "does not exist"
-    )
+  )
   expect_error(
     simulate_tree(
       nchains = 2,
@@ -89,7 +89,7 @@ test_that("simulate_tree throws errors", {
       sdlog = 0.9
     ),
     "must return integers"
-    )
+  )
   expect_error(
     simulate_tree(
       nchains = 2,
@@ -107,16 +107,16 @@ test_that("simulate_tree throws errors", {
       statistic = "size",
       lambda = 0.9,
       serials_dist = c(1, 2)
-      ),
-      "must be a function"
-      )
+    ),
+    "must be a function"
+  )
   expect_error(
     simulate_tree(
       nchains = 2,
       offspring_dist = c(1, 2),
       statistic = "length",
       lambda = 0.9
-      ),
+    ),
     "character string"
   )
   expect_error(
@@ -173,15 +173,15 @@ test_that("simulate_summary throws errors", {
 })
 
 test_that("simulate_tree_from_pop throws errors", {
-expect_error(
-  simulate_tree_from_pop(
-    pop = 100,
-    offspring_dist = "binom",
-    offspring_mean = 0.5,
-    serials_dist = serial_func
-  ),
-  "should be one of"
-)
+  expect_error(
+    simulate_tree_from_pop(
+      pop = 100,
+      offspring_dist = "binom",
+      offspring_mean = 0.5,
+      serials_dist = serial_func
+    ),
+    "should be one of"
+  )
   expect_error(
     simulate_tree_from_pop(
       pop = 100,
@@ -218,109 +218,73 @@ test_that("simulate_tree_from_pop throws warnings", {
 })
 
 test_that("simulate_tree is numerically correct", {
-  expect_equal(
-    summary(
-      simulate_tree(
-        nchains = 2,
-        offspring_dist = "pois",
-        statistic = "length",
-        lambda = 0.9
-      )
-    )$chains_ran,
-    2
-  )
-   expect_equal(
-    summary(
-      simulate_tree(
+  set.seed(12)
+  tree_sim_summary <- summary(
+    simulate_tree(
       nchains = 2,
       offspring_dist = "pois",
       statistic = "length",
       lambda = 0.9
     )
-    )$unique_ancestors,
+  )
+  expect_equal(
+    tree_sim_summary$chains_ran,
     2
   )
   expect_equal(
-    summary(
-      simulate_tree(
-        nchains = 2,
-        offspring_dist = "pois",
-        statistic = "length",
-        lambda = 0.9
-      )
-    )$max_generation,
+    tree_sim_summary$unique_ancestors,
+    2
+  )
+  expect_equal(
+    tree_sim_summary$max_generation,
     3
   )
 })
 
 test_that("simulate_summary is numerically correct", {
+  set.seed(12)
+  chain_summary_sim <- summary(
+    simulate_summary(
+      nchains = 2,
+      offspring_dist = "pois",
+      statistic = "length",
+      lambda = 0.9
+    )
+  )
   expect_equal(
-    summary(
-      simulate_summary(
-        nchains = 2,
-        offspring_dist = "pois",
-        statistic = "length",
-        lambda = 0.9
-      )
-    )$max_chain_stat,
+    chain_summary_sim$max_chain_stat,
     3
   )
   expect_equal(
-    summary(
-      simulate_summary(
-        nchains = 2,
-        offspring_dist = "pois",
-        statistic = "length",
-        lambda = 0.9
-      )
-    )$min_chain_stat,
+    chain_summary_sim$min_chain_stat,
     1
   )
 })
 
 test_that("simulate_tree_from_pop is numerically correct", {
+  set.seed(12)
+  susc_outbreak_summary <- summary(
+    simulate_tree_from_pop(
+      pop = 100,
+      offspring_dist = "pois",
+      offspring_mean = 0.9,
+      serials_dist = serial_func
+    )
+  )
   expect_equal(
-    summary(
-      simulate_tree_from_pop(
-        pop = 100,
-        offspring_dist = "pois",
-        offspring_mean = 0.9,
-        serials_dist = serial_func
-      )
-    )$unique_ancestors,
+    susc_outbreak_summary$unique_ancestors,
     0
   )
   expect_equal(
-    summary(
-      simulate_tree_from_pop(
-        pop = 100,
-        offspring_dist = "pois",
-        offspring_mean = 0.9,
-        serials_dist = serial_func
-      )
-    )$max_time,
+    susc_outbreak_summary$max_time,
     0
   )
   expect_equal(
-    summary(
-     simulate_tree_from_pop(
-       pop = 100,
-       offspring_dist = "pois",
-       offspring_mean = 0.9,
-       serials_dist = serial_func
-       )
-     )$max_generation,
+    susc_outbreak_summary$max_generation,
     1
   )
   expect_equal(
-    summary(
-      simulate_tree_from_pop(
-        pop = 100,
-        offspring_dist = "pois",
-        offspring_mean = 0.9,
-        serials_dist = serial_func
-      )
-    )$chains_ran,
+    susc_outbreak_summary$chains_ran,
     NULL
   )
 })
