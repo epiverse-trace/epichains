@@ -87,7 +87,7 @@ summary.epichains <- function(object, ...) {
   chains_ran <- attr(object, "chains", exact = TRUE)
 
   if (is_chains_tree(object)) {
-    max_time <- max(object$time)
+    max_time <- ifelse(("time" %in% names(object)), max(object$time), NA)
 
     n_unique_ancestors <- length(
       unique(object$ancestor[!is.na(object$ancestor)])
