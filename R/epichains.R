@@ -103,11 +103,11 @@ summary.epichains <- function(object, ...) {
       max_generation = max_generation
     )
   } else if (is_chains_summary(object)) {
-    if (!all(is.infinite(object))) {
+    if (all(is.infinite(object))) {
+      max_chain_stat <- min_chain_stat <- Inf
+    } else {
       max_chain_stat <- max(object[!is.infinite(object)])
       min_chain_stat <- min(object[!is.infinite(object)])
-    } else {
-      max_chain_stat <- min_chain_stat <- Inf
     }
 
     res <- list(
