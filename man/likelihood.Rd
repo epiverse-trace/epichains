@@ -54,9 +54,9 @@ contributions will be returned rather than the sum/product.}
 If \code{log = TRUE}
 \itemize{
 \item A joint log-likelihood (sum of individual log-likelihoods), if
-\code{individual == FALSE} (default) and \code{obs_prob = 1} (default), or
+\code{individual == FALSE} (default) and \code{obs_prob == 1} (default), or
 \item A list of individual log-likelihoods, if \code{individual == TRUE} and
-\code{obs_prob = 1} (default), or
+\code{obs_prob == 1} (default), or
 \item A list of individual log-likelihoods (same length as \code{nsim_obs}), if
 \code{individual == TRUE} and \code{0 <= obs_prob < 1}, or
 \item A vector of joint log-likelihoods (same length as \code{nsim_obs}), if
