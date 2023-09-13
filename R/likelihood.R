@@ -16,9 +16,9 @@
 #' If \code{log = TRUE}
 #'
 #' * A joint log-likelihood (sum of individual log-likelihoods), if
-#' \code{individual == FALSE} (default) and \code{obs_prob = 1} (default), or
+#' \code{individual == FALSE} (default) and \code{obs_prob == 1} (default), or
 #' * A list of individual log-likelihoods, if \code{individual == TRUE} and
-#' \code{obs_prob = 1} (default), or
+#' \code{obs_prob == 1} (default), or
 #' * A list of individual log-likelihoods (same length as `nsim_obs`), if
 #' \code{individual == TRUE} and \code{0 <= obs_prob < 1}, or
 #' * A vector of joint log-likelihoods (same length as `nsim_obs`), if
