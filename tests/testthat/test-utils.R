@@ -4,7 +4,7 @@ test_that("Reparametrized distributions work", {
       n = 5,
       mn = 4,
       disp = 2
-      ),
+    ),
     5
   )
 })
@@ -53,7 +53,7 @@ test_that("Reparametrized distributions are numerically correct", {
       n = 5,
       mn = 4,
       disp = 2
-      ),
+    ),
     c(0, 2, 5, 2, 3)
   )
 })
