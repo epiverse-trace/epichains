@@ -227,15 +227,15 @@ test_that("simulate_tree is numerically correct", {
       lambda = 0.9
     )
   )
-  expect_equal(
+  expect_identical(
     tree_sim_summary$chains_ran,
     2
   )
-  expect_equal(
+  expect_identical(
     tree_sim_summary$unique_ancestors,
     2
   )
-  expect_equal(
+  expect_identical(
     tree_sim_summary$max_generation,
     3
   )
@@ -251,11 +251,11 @@ test_that("simulate_summary is numerically correct", {
       lambda = 0.9
     )
   )
-  expect_equal(
+  expect_identical(
     chain_summary_sim$max_chain_stat,
     3
   )
-  expect_equal(
+  expect_identical(
     chain_summary_sim$min_chain_stat,
     1
   )
@@ -271,15 +271,15 @@ test_that("simulate_tree_from_pop is numerically correct", {
       serials_dist = serial_func
     )
   )
-  expect_equal(
+  expect_identical(
     susc_outbreak_summary$unique_ancestors,
     0
   )
-  expect_equal(
+  expect_identical(
     susc_outbreak_summary$max_time,
     0
   )
-  expect_equal(
+  expect_identical(
     susc_outbreak_summary$max_generation,
     1
   )
