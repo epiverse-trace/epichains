@@ -68,6 +68,19 @@ test_that("Simulators work", {
     ),
     1
   )
+  expect_true(
+    all(
+      simulate_tree(
+        nchains = 10,
+        statistic = "size",
+        offspring_dist = "pois",
+        stat_max = 10,
+        serials_dist = function(x) 3,
+        lambda = 2,
+        tf = 5
+      )$time < 5
+    )
+  )
 })
 
 test_that("simulate_tree throws errors", {
@@ -173,6 +186,7 @@ test_that("simulate_summary throws errors", {
 })
 
 test_that("simulate_tree_from_pop throws errors", {
+  set.seed(123)
   expect_error(
     simulate_tree_from_pop(
       pop = 100,
@@ -201,6 +215,15 @@ test_that("simulate_tree_from_pop throws errors", {
       serials_dist = serial_func
     ),
     "not found"
+  )
+  expect_error(
+    simulate_tree_from_pop(
+      pop = 100,
+      offspring_dist = "nbinom",
+      offspring_mean = 0.5,
+      serials_dist = serial_func
+    ),
+    "must be specified"
   )
 })
 
