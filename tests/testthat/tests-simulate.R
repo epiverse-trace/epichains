@@ -283,7 +283,7 @@ test_that("simulate_tree_from_pop is numerically correct", {
     susc_outbreak_summary$max_generation,
     1
   )
-  expect_equal(
+  expect_null(susc_outbreak_summary$chains_ran)
     susc_outbreak_summary$chains_ran,
     NULL
   )
