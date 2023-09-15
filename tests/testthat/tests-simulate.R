@@ -1,10 +1,10 @@
-# Define global variables and options for simulations
+#' Define global variables and options for simulations
 set.seed(12)
 serial_func <- function(n) {
   rlnorm(n, meanlog = 0.58, sdlog = 1.58)
 }
 
-# simulate_tree()
+#' simulate_tree()
 tree_sim_raw <- simulate_tree(
   nchains = 2,
   offspring_dist = "pois",
@@ -14,7 +14,7 @@ tree_sim_raw <- simulate_tree(
 
 tree_sim_summary <- summary(tree_sim_raw)
 
-# simulate_summary()
+#' simulate_summary()
 chain_summary_raw <- simulate_summary(
   nchains = 2,
   offspring_dist = "pois",
@@ -24,7 +24,7 @@ chain_summary_raw <- simulate_summary(
 
 chain_summary_sim <- summary(chain_summary_raw)
 
-# simulate_tree_from_pop()
+#' simulate_tree_from_pop()
 susc_outbreak_raw <- simulate_tree_from_pop(
   pop = 100,
   offspring_dist = "pois",
