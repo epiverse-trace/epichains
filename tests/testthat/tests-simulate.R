@@ -4,34 +4,55 @@ serial_func <- function(n) {
   rlnorm(n, meanlog = 0.58, sdlog = 1.58)
 }
 
+# simulate_tree()
+tree_sim_raw <- simulate_tree(
+  nchains = 2,
+  offspring_dist = "pois",
+  statistic = "length",
+  lambda = 0.9
+)
+
+tree_sim_summary <- summary(tree_sim_raw)
+
+# simulate_summary()
+chain_summary_raw <- simulate_summary(
+  nchains = 2,
+  offspring_dist = "pois",
+  statistic = "length",
+  lambda = 0.9
+)
+
+chain_summary_sim <- summary(chain_summary_raw)
+
+# simulate_tree_from_pop()
+susc_outbreak_raw <- simulate_tree_from_pop(
+  pop = 100,
+  offspring_dist = "pois",
+  offspring_mean = 0.9,
+  serials_dist = serial_func
+)
+
+susc_outbreak_raw2 <- simulate_tree_from_pop(
+  pop = 100,
+  offspring_dist = "nbinom",
+  offspring_mean = 1,
+  offspring_disp = 1.1,
+  serials_dist = serial_func
+)
+
+susc_outbreak_summary <- summary(susc_outbreak_raw)
+
 test_that("Simulators return epichains objects", {
   expect_s3_class(
-    simulate_tree(
-      nchains = 10,
-      offspring_dist = "pois",
-      lambda = 2,
-      statistic = "size",
-      stat_max = 10
-    ),
+    tree_sim_raw,
     "epichains"
   )
   expect_s3_class(
-    simulate_tree_from_pop(
-      pop = 100,
-      offspring_dist = "nbinom",
-      offspring_mean = 0.5,
-      offspring_disp = 1.1,
-      serials_dist = function(x) 3
-    ),
+    susc_outbreak_raw,
     "epichains"
   )
   expect_s3_class(
-    simulate_summary(
-      nchains = 10,
-      offspring_dist = "pois",
-      lambda = 2,
-      stat_max = 10
-    ),
+    chain_summary_raw,
     "epichains"
   )
 })
@@ -47,25 +68,14 @@ test_that("Simulators work", {
     2
   )
   expect_gte(
-    nrow(
-      simulate_tree(
-        nchains = 2,
-        offspring_dist = "pois",
-        statistic = "length",
-        lambda = 0.9
-      )
-    ),
-    2
+    nrow(tree_sim_raw),
+    2)
+  expect_gte(
+    nrow(susc_outbreak_raw),
+    1
   )
   expect_gte(
-    nrow(
-      simulate_tree_from_pop(
-        pop = 100,
-        offspring_dist = "pois",
-        offspring_mean = 0.9,
-        serials_dist = serial_func
-      )
-    ),
+    nrow(susc_outbreak_raw2),
     1
   )
   expect_true(
@@ -241,15 +251,6 @@ test_that("simulate_tree_from_pop throws warnings", {
 })
 
 test_that("simulate_tree is numerically correct", {
-  set.seed(12)
-  tree_sim_summary <- summary(
-    simulate_tree(
-      nchains = 2,
-      offspring_dist = "pois",
-      statistic = "length",
-      lambda = 0.9
-    )
-  )
   expect_identical(
     tree_sim_summary$chains_ran,
     2.00
@@ -265,15 +266,6 @@ test_that("simulate_tree is numerically correct", {
 })
 
 test_that("simulate_summary is numerically correct", {
-  set.seed(12)
-  chain_summary_sim <- summary(
-    simulate_summary(
-      nchains = 2,
-      offspring_dist = "pois",
-      statistic = "length",
-      lambda = 0.9
-    )
-  )
   expect_identical(
     chain_summary_sim$max_chain_stat,
     3.00
@@ -282,18 +274,13 @@ test_that("simulate_summary is numerically correct", {
     chain_summary_sim$min_chain_stat,
     1.00
   )
+  expect_identical(
+    as.vector(chain_summary_raw),
+    c(2.00, 1.00)
+  )
 })
 
 test_that("simulate_tree_from_pop is numerically correct", {
-  set.seed(12)
-  susc_outbreak_summary <- summary(
-    simulate_tree_from_pop(
-      pop = 100,
-      offspring_dist = "pois",
-      offspring_mean = 0.9,
-      serials_dist = serial_func
-    )
-  )
   expect_identical(
     susc_outbreak_summary$unique_ancestors,
     0L
