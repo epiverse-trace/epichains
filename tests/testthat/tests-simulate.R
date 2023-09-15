@@ -69,7 +69,8 @@ test_that("Simulators work", {
   )
   expect_gte(
     nrow(tree_sim_raw),
-    2)
+    2
+  )
   expect_gte(
     nrow(susc_outbreak_raw),
     1
@@ -273,7 +274,7 @@ test_that("simulate_tree is numerically correct", {
   )
   expect_identical(
     tree_sim_raw$ancestor,
-    c(NA, NA,  1,  1,  2,  2,  2)
+    c(NA, NA, 1, 1, 2, 2, 2)
   )
   expect_identical(
     tree_sim_raw$generation,
