@@ -263,12 +263,28 @@ test_that("simulate_tree is numerically correct", {
     tree_sim_summary$max_generation,
     3L
   )
+  expect_identical(
+    tree_sim_raw$chain_id,
+    c(1L, 2L, 2L, 2L, 2L, 2L, 2L)
+  )
+  expect_identical(
+    tree_sim_raw$sim_id,
+    c(1, 1, 2, 3, 4, 5, 6)
+  )
+  expect_identical(
+    tree_sim_raw$ancestor,
+    c(NA, NA,  1,  1,  2,  2,  2)
+  )
+  expect_identical(
+    tree_sim_raw$generation,
+    c(1L, 1L, 2L, 2L, 3L, 3L, 3L)
+  )
 })
 
 test_that("simulate_summary is numerically correct", {
   expect_identical(
     chain_summary_sim$max_chain_stat,
-    3.00
+    2.00
   )
   expect_identical(
     chain_summary_sim$min_chain_stat,
@@ -294,4 +310,20 @@ test_that("simulate_tree_from_pop is numerically correct", {
     1L
   )
   expect_null(susc_outbreak_summary$chains_ran)
+  expect_identical(
+    susc_outbreak_raw$sim_id,
+    1L
+  )
+  expect_identical(
+    susc_outbreak_raw$ancestor,
+    NA_integer_
+  )
+  expect_identical(
+    susc_outbreak_raw$generation,
+    1L
+  )
+  expect_identical(
+    susc_outbreak_raw$time,
+    0.00
+  )
 })
