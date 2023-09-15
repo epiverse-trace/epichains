@@ -42,10 +42,11 @@ test_that("get_offspring_func works correctly", {
     any(
       grepl(
         "spec = \"pois\"",
-        deparse(body(pois_offspring_func))
-        )
+        deparse(body(pois_offspring_func)),
+        fixed = TRUE
       )
     )
+  )
   nbinom_offspring_func <- get_offspring_func(
     offspring_dist = "nbinom",
     n = n,
@@ -58,7 +59,8 @@ test_that("get_offspring_func works correctly", {
     any(
       grepl(
         "spec = \"nbinom\"",
-        deparse(body(nbinom_offspring_func))
+        deparse(body(nbinom_offspring_func)),
+        fixed = TRUE
       )
     )
   )
