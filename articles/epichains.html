@@ -172,24 +172,24 @@ done over “time”, “generation” or “both”. Useful for <code>plot</cod
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    chain_id sim_id ancestor generation time</span></span>
 <span><span class="co">#&gt; 11        1      2        1          2    3</span></span>
-<span><span class="co">#&gt; 13        3      2        1          2    3</span></span>
-<span><span class="co">#&gt; 14        4      2        1          2    3</span></span>
-<span><span class="co">#&gt; 16        6      2        1          2    3</span></span>
-<span><span class="co">#&gt; 17        7      2        1          2    3</span></span>
-<span><span class="co">#&gt; 18        8      2        1          2    3</span></span>
+<span><span class="co">#&gt; 14        3      2        1          2    3</span></span>
+<span><span class="co">#&gt; 18        4      2        1          2    3</span></span>
+<span><span class="co">#&gt; 23        5      2        1          2    3</span></span>
+<span><span class="co">#&gt; 25        7      2        1          2    3</span></span>
+<span><span class="co">#&gt; 28        8      2        1          2    3</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt; tree tail &gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    chain_id sim_id ancestor generation time</span></span>
-<span><span class="co">#&gt; 57        4     17        8          4    9</span></span>
-<span><span class="co">#&gt; 76        9     17        8          4    9</span></span>
-<span><span class="co">#&gt; 90        7     17        8          5   12</span></span>
-<span><span class="co">#&gt; 58        4     18        8          4    9</span></span>
-<span><span class="co">#&gt; 77        9     18        8          4    9</span></span>
-<span><span class="co">#&gt; 59        4     19        8          4    9</span></span>
+<span><span class="co">#&gt; 71        1     20        8          4    9</span></span>
+<span><span class="co">#&gt; 72        1     21        8          4    9</span></span>
+<span><span class="co">#&gt; 73        1     22        9          4    9</span></span>
+<span><span class="co">#&gt; 74        1     23        9          4    9</span></span>
+<span><span class="co">#&gt; 75        1     24        9          4    9</span></span>
+<span><span class="co">#&gt; 76        1     25        9          4    9</span></span>
 <span><span class="co">#&gt; Chains simulated: 10</span></span>
 <span><span class="co">#&gt; Number of ancestors (known): 9</span></span>
-<span><span class="co">#&gt; Number of generations: 5</span></span>
+<span><span class="co">#&gt; Number of generations: 4</span></span>
 <span><span class="co">#&gt; Use `as.data.frame(&lt;object_name&gt;)` to view the full output in the console.</span></span>
 <span></span>
 <span><span class="co"># Using simulate_summary()</span></span>
@@ -202,13 +202,13 @@ done over “time”, “generation” or “both”. Useful for <code>plot</cod
 <span><span class="va">summary_sim</span> <span class="co"># print the output</span></span>
 <span><span class="co">#&gt; `epichains` object </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  [1] Inf Inf   1 Inf   1 Inf Inf Inf Inf Inf   1 Inf Inf Inf Inf Inf Inf Inf   1</span></span>
-<span><span class="co">#&gt; [20] Inf Inf Inf Inf Inf Inf Inf   2 Inf Inf Inf Inf   1   1 Inf   1 Inf Inf   1</span></span>
-<span><span class="co">#&gt; [39] Inf Inf Inf Inf Inf Inf Inf Inf   1   1   1   1</span></span>
+<span><span class="co">#&gt;  [1] Inf Inf Inf   1 Inf Inf   1 Inf   2   1 Inf Inf Inf   1 Inf Inf   4 Inf   2</span></span>
+<span><span class="co">#&gt; [20] Inf Inf Inf Inf   1 Inf   1 Inf Inf Inf Inf Inf   1 Inf Inf Inf Inf Inf Inf</span></span>
+<span><span class="co">#&gt; [39] Inf Inf Inf Inf Inf Inf Inf Inf   1 Inf Inf Inf</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Simulated chain lengths: </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Max: 2</span></span>
+<span><span class="co">#&gt; Max: 4</span></span>
 <span><span class="co">#&gt; Min: 1</span></span>
 <span></span>
 <span><span class="co"># Using `simulate_tree_from_pop()`</span></span>
@@ -228,12 +228,14 @@ done over “time”, “generation” or “both”. Useful for <code>plot</cod
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   sim_id ancestor generation time</span></span>
 <span><span class="co">#&gt; 2      2        1          2    3</span></span>
+<span><span class="co">#&gt; 3      3        1          2    3</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt; tree tail &gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   sim_id ancestor generation time</span></span>
 <span><span class="co">#&gt; 1      1       NA          1    0</span></span>
 <span><span class="co">#&gt; 2      2        1          2    3</span></span>
+<span><span class="co">#&gt; 3      3        1          2    3</span></span>
 <span><span class="co">#&gt; Number of ancestors (known): 1</span></span>
 <span><span class="co">#&gt; Number of generations: 2</span></span>
 <span><span class="co">#&gt; Use `as.data.frame(&lt;object_name&gt;)` to view the full output in the console.</span></span>
@@ -252,16 +254,15 @@ done over “time”, “generation” or “both”. Useful for <code>plot</cod
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt; tree head (from first known ancestor) &gt;</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   sim_id ancestor generation time</span></span>
-<span><span class="co">#&gt; 2      2        1          2    3</span></span>
+<span><span class="co">#&gt; [1] sim_id     ancestor   generation time      </span></span>
+<span><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt; tree tail &gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   sim_id ancestor generation time</span></span>
 <span><span class="co">#&gt; 1      1       NA          1    0</span></span>
-<span><span class="co">#&gt; 2      2        1          2    3</span></span>
-<span><span class="co">#&gt; Number of ancestors (known): 1</span></span>
-<span><span class="co">#&gt; Number of generations: 2</span></span>
+<span><span class="co">#&gt; Number of ancestors (known): 0</span></span>
+<span><span class="co">#&gt; Number of generations: 1</span></span>
 <span><span class="co">#&gt; Use `as.data.frame(&lt;object_name&gt;)` to view the full output in the console.</span></span>
 <span></span>
 <span><span class="co"># Likelihoods</span></span>
@@ -283,25 +284,25 @@ done over “time”, “generation” or “both”. Useful for <code>plot</cod
 <span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">tree_from_pop_pois</span>, <span class="st">"time"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   time cases</span></span>
 <span><span class="co">#&gt; 1    0     1</span></span>
-<span><span class="co">#&gt; 2    3     1</span></span>
+<span><span class="co">#&gt; 2    3     2</span></span>
 <span></span>
 <span><span class="co"># aggregate by generation</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">tree_from_pop_pois</span>, <span class="st">"generation"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   generation cases</span></span>
 <span><span class="co">#&gt; 1          1     1</span></span>
-<span><span class="co">#&gt; 2          2     1</span></span>
+<span><span class="co">#&gt; 2          2     2</span></span>
 <span></span>
 <span><span class="co"># aggregate by both time and generation</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">tree_from_pop_pois</span>, <span class="st">"both"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt;   time cases</span></span>
 <span><span class="co">#&gt; 1    0     1</span></span>
-<span><span class="co">#&gt; 2    3     1</span></span>
+<span><span class="co">#&gt; 2    3     2</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
 <span><span class="co">#&gt;   generation cases</span></span>
 <span><span class="co">#&gt; 1          1     1</span></span>
-<span><span class="co">#&gt; 2          2     1</span></span>
+<span><span class="co">#&gt; 2          2     2</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; attr(,"class")</span></span>
 <span><span class="co">#&gt; [1] "epichains_aggregate_df" "list"                  </span></span>
