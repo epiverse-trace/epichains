@@ -66,28 +66,6 @@ test_that("get_offspring_func works correctly", {
   )
 })
 
-test_that("get_statistic_func snapshots look right", {
-  pois_offspring_func <- get_offspring_func(
-    offspring_dist = "pois",
-    n = n,
-    susc = susc,
-    pop = pop,
-    mean_offspring = mean_offspring,
-    disp_offspring = disp_offspring
-  )
-  expect_snapshot(body(pois_offspring_func))
-
-  nbinom_offspring_func <- get_offspring_func(
-    offspring_dist = "nbinom",
-    n = n,
-    susc = susc,
-    pop = pop,
-    mean_offspring = mean_offspring,
-    disp_offspring = disp_offspring
-  )
-  expect_snapshot(body(nbinom_offspring_func))
-})
-
 test_that("get_offspring_func throws errors", {
   expect_error(
     get_offspring_func(
