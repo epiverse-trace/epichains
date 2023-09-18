@@ -15,51 +15,6 @@ update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
   return(stat_latest)
 }
 
-
-#' Get offspring sampling function that takes into account susceptible
-#' depletion
-#'
-#' @param n Number of items to sample
-#' @param susc Susceptible population size (calculated
-#' inside \code{\link{simulate_tree_from_pop}}  as pop - initial_immune)
-#' @inheritParams simulate_tree_from_pop
-#'
-#' @return An offspring sampling function
-#' @keywords internal
-get_offspring_func <- function(offspring_dist, n, susc, pop,
-                               mean_offspring, disp_offspring = NULL) {
-  if (offspring_dist == "nbinom") {
-    function(n, susc, pop, mean_offspring, disp_offspring) {
-      ## get distribution params from mean and dispersion
-      new_mn <- mean_offspring * susc / pop ## apply susceptibility
-      size <- new_mn / (disp_offspring - 1)
-
-      ## using a right truncated nbinom distribution
-      ## to avoid more cases than susceptibles
-      truncdist::rtrunc(
-        n,
-        spec = "nbinom",
-        b = susc,
-        mu = new_mn,
-        size = size
-      )
-    }
-  } else if (offspring_dist == "pois") {
-    function(n, susc, pop, mean_offspring, disp_offspring) {
-      truncdist::rtrunc(
-        n,
-        spec = "pois",
-        lambda = mean_offspring * susc / pop,
-        b = susc
-      )
-    }
-  } else {
-    stop("offspring_dist must either be 'pois' or 'nbinom'")
-  }
-}
-
-
-
 #' Return a function for calculating chain statistics
 #'
 #' @inheritParams simulate_tree
