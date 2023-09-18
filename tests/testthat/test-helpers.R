@@ -29,57 +29,6 @@ test_that("update_chain_stat works correctly", {
   )
 })
 
-test_that("get_offspring_func works correctly", {
-  pois_offspring_func <- get_offspring_func(
-    offspring_dist = "pois",
-    n = n,
-    susc = susc,
-    pop = pop,
-    mean_offspring = mean_offspring,
-    disp_offspring = disp_offspring
-  )
-  expect_true(
-    any(
-      grepl(
-        "spec = \"pois\"",
-        deparse(body(pois_offspring_func)),
-        fixed = TRUE
-      )
-    )
-  )
-  nbinom_offspring_func <- get_offspring_func(
-    offspring_dist = "nbinom",
-    n = n,
-    susc = susc,
-    pop = pop,
-    mean_offspring = mean_offspring,
-    disp_offspring = disp_offspring
-  )
-  expect_true(
-    any(
-      grepl(
-        "spec = \"nbinom\"",
-        deparse(body(nbinom_offspring_func)),
-        fixed = TRUE
-      )
-    )
-  )
-})
-
-test_that("get_offspring_func throws errors", {
-  expect_error(
-    get_offspring_func(
-      offspring_dist = "ss",
-      n = n,
-      susc = susc,
-      pop = pop,
-      mean_offspring = mean_offspring,
-      disp_offspring = disp_offspring
-    ),
-    "must either be"
-  )
-})
-
 test_that("get_statistic_func works correctly", {
   expect_identical(
     get_statistic_func(chain_statistic = "size"),
