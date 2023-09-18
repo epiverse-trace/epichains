@@ -365,7 +365,14 @@ simulate_tree_from_pop <- function(pop,
 
     ## using a right truncated poisson distribution
     ## to avoid more cases than susceptibles
-    offspring_fun <- get_offspring_func(offspring_dist)
+    offspring_func <- function(n, susc) {
+      truncdist::rtrunc(
+        n,
+        spec = "pois",
+        lambda = offspring_mean * susc / pop,
+        b = susc
+      )
+    }
   } else if (offspring_dist == "nbinom") {
     if (missing(offspring_disp)) {
       stop(sprintf("%s", "'offspring_disp' must be specified."))
@@ -377,7 +384,25 @@ simulate_tree_from_pop <- function(pop,
         "Use 'pois' if there is no overdispersion."
       ))
     }
-    offspring_fun <- get_offspring_func(offspring_dist)
+    ## get distribution params from mean and dispersion
+    offspring_func <- function(n, susc) {
+      ## get distribution params from mean and dispersion
+      ## see ?rnbinom for parameter definition
+      new_mn <- offspring_mean * susc / pop ## apply susceptibility
+      size <- new_mn / (offspring_disp - 1)
+
+      ## using a right truncated nbinom distribution
+      ## to avoid more cases than susceptibles
+      truncdist::rtrunc(
+        n,
+        spec = "nbinom",
+        b = susc,
+        mu = new_mn,
+        size = size
+      )
+    }
+  } else {
+    stop("offspring_dist must either be 'pois' or 'nbinom'")
   }
 
   ## initializations
@@ -406,7 +431,7 @@ simulate_tree_from_pop <- function(pop,
 
     ## generate it
     current_max_id <- max(tree_df$sim_id)
-    n_offspring <- offspring_fun(1, susc, pop, offspring_mean, offspring_disp)
+    n_offspring <- offspring_func(1, susc)
 
     if (n_offspring %% 1 > 0) {
       stop("Offspring distribution must return integers")
