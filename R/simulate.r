@@ -401,8 +401,6 @@ simulate_tree_from_pop <- function(pop,
         size = size
       )
     }
-  } else {
-    stop("offspring_dist must either be 'pois' or 'nbinom'")
   }
 
   ## initializations
