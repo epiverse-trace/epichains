@@ -1,0 +1,51 @@
+---
+title: "Number of generations to achieve a set outbreak size"
+author: "James Azam"
+output:
+  bookdown::html_vignette2:
+    fig_caption: yes
+    code_folding: show
+pkgdown:
+  as_is: true
+bibliography: references.json
+link-citations: true
+vignette: >
+  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{Number of generations to achieve a set outbreak size}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+
+```
+
+```{r packages}
+library(epichains)
+```
+
+# Outline
+
+* Question: At what generation does an outbreak reach a size of 100, given that
+  it was started by a single individual with R0 = 1.5, and individual
+  transmission, $k$, at levels of 0.01, 0.1, 0.5, 1, 4, and Infinity?
+* Method: 
+  * We use a negative binomial model with $mu = 1.5$ and
+  $size = c(0.01, 0.1, 0.5, 1, 4, Inf)$.
+  * We run 10, 000 simulations per each combination of $mu$ and $size$
+  * We aggregate chain sizes by generation and extract the generation
+    where cumulative chain size = 100.
+  * We find the percentage of simulations that reached the 100 case size
+    threshold.
+* Outcome: The distribution (boxplot) of the realized generations per value of
+  $k$. This reproduces Fig 2c of @lloyd-smith2005.
+
+# References
