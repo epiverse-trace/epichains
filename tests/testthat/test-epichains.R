@@ -1,87 +1,211 @@
-set.seed(12)
-epichains_summary <- simulate_summary(
-  nchains = 10,
-  statistic = "size",
-  offspring_dist = "pois",
-  stat_max = 10,
-  lambda = 2
-)
-epichains_tree <- simulate_tree(
-  nchains = 10,
-  statistic = "size",
-  offspring_dist = "pois",
-  stat_max = 10,
-  lambda = 2
-)
-epichains_tree2 <- simulate_tree(
-  nchains = 10,
-  statistic = "size",
-  offspring_dist = "pois",
-  stat_max = 10,
-  serials_dist = function(x) 3,
-  lambda = 2
-)
+#' Define global variables and options for simulations
+serial_func <- function(n) {
+  rlnorm(n, meanlog = 0.58, sdlog = 1.58)
+}
 
-aggreg_by_gen <- aggregate(
-  epichains_tree,
-  grouping_var = "generation"
-)
-aggreg_by_time <- aggregate(
-  epichains_tree2,
-  grouping_var = "time"
-)
-
-aggreg_by_both <- aggregate(
-  epichains_tree2,
-  grouping_var = "both"
-)
-
-set.seed(11223)
-epichains_summary_all_infs <- simulate_summary(
-  nchains = 10,
-  statistic = "size",
-  offspring_dist = "pois",
-  stat_max = 10,
-  lambda = 3
-)
-
-test_that("print.epichains works for simulate_summary output", {
-  expect_snapshot(epichains_summary)
+test_that("Simulators return epichains objects", {
+  set.seed(12)
+  #' Simulate an outbreak from a susceptible population (pois)
+  susc_outbreak_raw <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "pois",
+    offspring_mean = 0.9,
+    serials_dist = serial_func
+  )
+  #' Simulate an outbreak from a susceptible population (nbinom)
+  susc_outbreak_raw2 <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "nbinom",
+    offspring_mean = 1,
+    offspring_disp = 1.1,
+    serials_dist = serial_func
+  )
+  #' Simulate a tree of infections without serials
+  tree_sim_raw <- simulate_tree(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Simulate a tree of infections with serials
+  tree_sim_raw2 <- simulate_tree(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    serials_dist = function(x) 3,
+    lambda = 2
+  )
+  #' Simulate chain statistics
+  chain_summary_raw <- simulate_summary(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Expectations
+  expect_s3_class(
+    tree_sim_raw,
+    "epichains"
+  )
+  expect_s3_class(
+    tree_sim_raw2,
+    "epichains"
+  )
+  expect_s3_class(
+    susc_outbreak_raw,
+    "epichains"
+  )
+  expect_s3_class(
+    susc_outbreak_raw2,
+    "epichains"
+  )
+  expect_s3_class(
+    chain_summary_raw,
+    "epichains"
+  )
 })
 
-test_that("print.epichains works for simulate_tree output", {
-  expect_snapshot(epichains_tree)
-})
-
-test_that("print.epichains works for simulate_tree output", {
-  expect_snapshot(epichains_tree2)
+test_that("print.epichains works for simulation functions", {
+  set.seed(12)
+  #' Simulate an outbreak from a susceptible population (pois)
+  susc_outbreak_raw <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "pois",
+    offspring_mean = 0.9,
+    serials_dist = serial_func
+  )
+  #' Simulate an outbreak from a susceptible population (nbinom)
+  susc_outbreak_raw2 <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "nbinom",
+    offspring_mean = 1,
+    offspring_disp = 1.1,
+    serials_dist = serial_func
+  )
+  #' Simulate a tree of infections without serials
+  tree_sim_raw <- simulate_tree(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Simulate a tree of infections with serials
+  tree_sim_raw2 <- simulate_tree(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    serials_dist = function(x) 3,
+    lambda = 2
+  )
+  #' Simulate chain statistics
+  chain_summary_raw <- simulate_summary(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Expectations
+  expect_snapshot(susc_outbreak_raw)
+  expect_snapshot(susc_outbreak_raw2)
+  expect_snapshot(tree_sim_raw)
+  expect_snapshot(tree_sim_raw2)
+  expect_snapshot(chain_summary_raw)
 })
 
 test_that("summary.epichains works as expected", {
+  set.seed(12)
+  #' Simulate an outbreak from a susceptible population (pois)
+  susc_outbreak_raw <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "pois",
+    offspring_mean = 0.9,
+    serials_dist = serial_func
+  )
+  #' Simulate an outbreak from a susceptible population (nbinom)
+  susc_outbreak_raw2 <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "nbinom",
+    offspring_mean = 1,
+    offspring_disp = 1.1,
+    serials_dist = serial_func
+  )
+  #' Simulate a tree of infections without serials
+  tree_sim_raw <- simulate_tree(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Simulate a tree of infections with serials
+  tree_sim_raw2 <- simulate_tree(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    serials_dist = function(x) 3,
+    lambda = 2
+  )
+  #' Simulate chain statistics
+  chain_summary_raw <- simulate_summary(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+   #' Simulate case where all the chain statistics are Inf
+  set.seed(11223)
+  epichains_summary_all_infs <- simulate_summary(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    lambda = 3
+  )
+  #' Expectations
   expect_named(
-    summary(epichains_summary),
+    summary(tree_sim_raw),
+    c(
+      "chains_ran",
+      "max_time",
+      "unique_ancestors",
+      "max_generation"
+    )
+  )
+  expect_named(
+    summary(tree_sim_raw2),
+    c(
+      "chains_ran",
+      "max_time",
+      "unique_ancestors",
+      "max_generation"
+    )
+  )
+  expect_named(
+    summary(susc_outbreak_raw),
+    c(
+      "chains_ran",
+      "max_time",
+      "unique_ancestors",
+      "max_generation"
+    )
+  )
+  expect_named(
+    summary(susc_outbreak_raw2),
+    c(
+      "chains_ran",
+      "max_time",
+      "unique_ancestors",
+      "max_generation"
+    )
+  )
+  expect_named(
+    summary(chain_summary_raw),
     c(
       "chain_ran",
       "max_chain_stat",
       "min_chain_stat"
-    )
-  )
-  expect_named(
-    summary(epichains_tree2),
-    c(
-      "chains_ran",
-      "max_time",
-      "unique_ancestors",
-      "max_generation"
-    )
-  )
-  expect_named(
-    summary(epichains_tree2),
-    c(
-      "chains_ran",
-      "max_time",
-      "unique_ancestors",
-      "max_generation"
     )
   )
   expect_true(
@@ -97,42 +221,208 @@ test_that("summary.epichains works as expected", {
 })
 
 test_that("validate_epichains works", {
+  set.seed(12)
+  #' Simulate an outbreak from a susceptible population (pois)
+  susc_outbreak_raw <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "pois",
+    offspring_mean = 0.9,
+    serials_dist = serial_func
+  )
+  #' Simulate an outbreak from a susceptible population (nbinom)
+  susc_outbreak_raw2 <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "nbinom",
+    offspring_mean = 1,
+    offspring_disp = 1.1,
+    serials_dist = serial_func
+  )
+  #' Simulate a tree of infections without serials
+  tree_sim_raw <- simulate_tree(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Simulate a tree of infections with serials
+  tree_sim_raw2 <- simulate_tree(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    serials_dist = function(x) 3,
+    lambda = 2
+  )
+  #' Simulate chain statistics
+  chain_summary_raw <- simulate_summary(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Expectations
   expect_invisible(
-    validate_epichains(epichains_summary)
+    validate_epichains(susc_outbreak_raw)
   )
   expect_invisible(
-    validate_epichains(epichains_tree)
+    validate_epichains(susc_outbreak_raw2)
   )
   expect_invisible(
-    validate_epichains(epichains_tree2)
+    validate_epichains(tree_sim_raw)
+  )
+  expect_invisible(
+    validate_epichains(tree_sim_raw2)
+  )
+  expect_invisible(
+    validate_epichains(chain_summary_raw)
+  )
+  expect_error(
+      validate_epichains(mtcars),
+      "must have an epichains class"
   )
 })
 
 test_that("is_chains_tree works", {
+  set.seed(12)
+  #' Simulate an outbreak from a susceptible population
+  susc_outbreak_raw <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "pois",
+    offspring_mean = 0.9,
+    serials_dist = serial_func
+  )
+  #' Simulate an outbreak from a susceptible population (nbinom)
+  susc_outbreak_raw2 <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "nbinom",
+    offspring_mean = 1,
+    offspring_disp = 1.1,
+    serials_dist = serial_func
+  )
+  #' Simulate a tree of infections without serials
+  tree_sim_raw <- simulate_tree(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Simulate a tree of infections with serials
+  tree_sim_raw2 <- simulate_tree(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    serials_dist = function(x) 3,
+    lambda = 2
+  )
+  #' Simulate chain statistics
+  chain_summary_raw <- simulate_summary(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Expectations
   expect_true(
-    is_chains_tree(epichains_tree)
+    is_chains_tree(susc_outbreak_raw)
   )
   expect_true(
-    is_chains_tree(epichains_tree2)
+    is_chains_tree(susc_outbreak_raw2)
+  )
+  expect_true(
+    is_chains_tree(tree_sim_raw)
+  )
+  expect_true(
+    is_chains_tree(tree_sim_raw2)
   )
   expect_false(
-    is_chains_tree(epichains_summary)
+    is_chains_tree(chain_summary_raw)
   )
 })
 
 test_that("is_chains_summary works", {
-  expect_true(
-    is_chains_tree(epichains_tree)
+  set.seed(12)
+  #' Simulate an outbreak from a susceptible population
+  susc_outbreak_raw <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "pois",
+    offspring_mean = 0.9,
+    serials_dist = serial_func
   )
+  #' Simulate an outbreak from a susceptible population (nbinom)
+  susc_outbreak_raw2 <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "nbinom",
+    offspring_mean = 1,
+    offspring_disp = 1.1,
+    serials_dist = serial_func
+  )
+  #' Simulate a tree of infections without serials
+  tree_sim_raw <- simulate_tree(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Simulate a tree of infections with serials
+  tree_sim_raw2 <- simulate_tree(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    serials_dist = function(x) 3,
+    lambda = 2
+  )
+  #' Simulate chain statistics
+  chain_summary_raw <- simulate_summary(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Expectations
   expect_true(
-    is_chains_tree(epichains_tree2)
+    is_chains_summary(chain_summary_raw)
   )
   expect_false(
-    is_chains_tree(epichains_summary)
+    is_chains_summary(susc_outbreak_raw)
+  )
+  expect_false(
+    is_chains_summary(susc_outbreak_raw2)
+  )
+  expect_false(
+    is_chains_summary(tree_sim_raw)
+  )
+  expect_false(
+    is_chains_summary(tree_sim_raw2)
   )
 })
 
-test_that("is_epichains_aggregate_df works", {
+test_that("aggregate.epichains method returns correct objects", {
+  set.seed(12)
+  #' Simulate a tree of infections with serials
+  tree_sim_raw2 <- simulate_tree(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    serials_dist = function(x) 3,
+    lambda = 2
+  )
+  #' Create aggregates
+  aggreg_by_gen <- aggregate(
+    tree_sim_raw2,
+    grouping_var = "generation"
+  )
+  aggreg_by_time <- aggregate(
+    tree_sim_raw2,
+    grouping_var = "time"
+  )
+  aggreg_by_both <- aggregate(
+    tree_sim_raw2,
+    grouping_var = "both"
+  )
+  #' Expectations for <epichains> class inheritance
   expect_true(
     is_epichains_aggregate_df(aggreg_by_gen)
   )
@@ -142,65 +432,98 @@ test_that("is_epichains_aggregate_df works", {
   expect_true(
     is_epichains_aggregate_df(aggreg_by_both)
   )
-  expect_false(
-    is_epichains_aggregate_df(epichains_tree)
-  )
-})
-
-test_that("validate_epichains throws errors", {
-  expect_error(
-    validate_epichains(mtcars),
-    "must have an epichains class"
-  )
-})
-
-test_that("head and tail methods work", {
-  expect_snapshot(head(epichains_tree))
-  expect_snapshot(head(epichains_tree2))
-  expect_snapshot(tail(epichains_tree))
-  expect_snapshot(tail(epichains_tree2))
-})
-
-test_that("aggregate method work", {
-  expect_named(
-    aggreg_by_gen,
-    c("generation", "cases")
-  )
-  expect_named(
-    aggreg_by_time,
-    c("time", "cases")
-  )
-  expect_identical(
-    as.vector(
-      vapply(aggreg_by_both, names, FUN.VALUE = character(2))
-    ),
-    c("time", "cases", "generation", "cases")
-  )
+  #' Expectations for <base> class inheritance
   expect_s3_class(
     aggreg_by_gen,
-    "epichains_aggregate_df"
+    "data.frame"
   )
   expect_s3_class(
     aggreg_by_time,
-    "epichains_aggregate_df"
+    "data.frame"
   )
   expect_s3_class(
     aggreg_by_both,
-    "epichains_aggregate_df"
-  )
-  expect_error(
-    aggregate(epichains_summary),
-    "attribute"
+    "list"
   )
 })
 
 test_that("aggregate method is numerically correct", {
+  set.seed(12)
+  #' Simulate a tree of infections without serials
+  tree_sim_raw <- simulate_tree(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    lambda = 2
+  )
+  #' Simulate a tree of infections with serials
+  tree_sim_raw2 <- simulate_tree(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    serials_dist = function(x) 3,
+    lambda = 2
+  )
+  #' Create aggregates
+  aggreg_by_gen <- aggregate(
+    tree_sim_raw,
+    grouping_var = "generation"
+  )
+  aggreg_by_time <- aggregate(
+    tree_sim_raw2,
+    grouping_var = "time"
+  )
   expect_identical(
     aggreg_by_gen$cases,
-    c(10L, 17L, 38L, 38L, 12L)
+    c(10L, 12L, 19L, 26L, 14L)
   )
   expect_identical(
     aggreg_by_time$cases,
-    c(10L, 21L, 48L, 60L)
+    c(10L, 17L, 38L, 38L, 12L)
   )
+})
+
+test_that("head and tail methods work", {
+  set.seed(12)
+  #' Simulate an outbreak from a susceptible population
+  susc_outbreak_raw <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "pois",
+    offspring_mean = 0.9,
+    serials_dist = serial_func
+  )
+  #' Simulate an outbreak from a susceptible population (nbinom)
+  susc_outbreak_raw2 <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "nbinom",
+    offspring_mean = 1,
+    offspring_disp = 1.1,
+    serials_dist = serial_func
+  )
+  #' Simulate a tree of infections without serials
+  tree_sim_raw <- simulate_tree(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Simulate a tree of infections with serials
+  tree_sim_raw2 <- simulate_tree(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    serials_dist = function(x) 3,
+    lambda = 2
+  )
+  expect_snapshot(head(susc_outbreak_raw))
+  expect_snapshot(head(susc_outbreak_raw2))
+  expect_snapshot(head(tree_sim_raw))
+  expect_snapshot(head(tree_sim_raw2))
+  expect_snapshot(tail(susc_outbreak_raw))
+  expect_snapshot(tail(susc_outbreak_raw2))
+  expect_snapshot(tail(tree_sim_raw))
+  expect_snapshot(tail(tree_sim_raw2))
 })
