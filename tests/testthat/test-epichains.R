@@ -485,7 +485,7 @@ test_that("aggregate method is numerically correct", {
   )
 })
 
-test_that("head and tail methods work", {
+test_that("head and tail print output as expected", {
   set.seed(12)
   #' Simulate an outbreak from a susceptible population
   susc_outbreak_raw <- simulate_tree_from_pop(
@@ -526,4 +526,72 @@ test_that("head and tail methods work", {
   expect_snapshot(tail(susc_outbreak_raw2))
   expect_snapshot(tail(tree_sim_raw))
   expect_snapshot(tail(tree_sim_raw2))
+})
+
+test_that("head and tail return data.frames", {
+  set.seed(12)
+  #' Simulate an outbreak from a susceptible population
+  susc_outbreak_raw <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "pois",
+    offspring_mean = 0.9,
+    serials_dist = serial_func
+  )
+  #' Simulate an outbreak from a susceptible population (nbinom)
+  susc_outbreak_raw2 <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "nbinom",
+    offspring_mean = 1,
+    offspring_disp = 1.1,
+    serials_dist = serial_func
+  )
+  #' Simulate a tree of infections without serials
+  tree_sim_raw <- simulate_tree(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9
+  )
+  #' Simulate a tree of infections with serials
+  tree_sim_raw2 <- simulate_tree(
+    nchains = 10,
+    statistic = "size",
+    offspring_dist = "pois",
+    stat_max = 10,
+    serials_dist = function(x) 3,
+    lambda = 2
+  )
+  #' Expectations
+  expect_s3_class(
+    head(susc_outbreak_raw),
+    "data.frame"
+  )
+  expect_s3_class(
+    head(susc_outbreak_raw2),
+    "data.frame"
+  )
+  expect_s3_class(
+    head(tree_sim_raw),
+    "data.frame"
+  )
+  expect_s3_class(
+    head(tree_sim_raw2),
+    "data.frame"
+  )
+  expect_s3_class(
+    tail(susc_outbreak_raw),
+    "data.frame"
+  )
+  expect_s3_class(
+    tail(susc_outbreak_raw2),
+    "data.frame"
+  )
+  expect_s3_class(
+    tail(tree_sim_raw),
+    "data.frame"
+  )
+  expect_s3_class(
+    tail(tree_sim_raw2),
+    "data.frame"
+  )
 })
