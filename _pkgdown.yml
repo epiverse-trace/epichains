@@ -9,6 +9,7 @@ articles:
 - title: Package vignettes
   navbar: Package vignettes
   contents:
+  - gens_to_n_cases
 - title: Modelling guides and background
   navbar: Modelling guides and background
   contents:
