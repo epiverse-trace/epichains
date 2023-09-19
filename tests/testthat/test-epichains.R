@@ -154,7 +154,7 @@ test_that("summary.epichains works as expected", {
     statistic = "length",
     lambda = 0.9
   )
-   #' Simulate case where all the chain statistics are Inf
+  #' Simulate case where all the chain statistics are Inf
   set.seed(11223)
   epichains_summary_all_infs <- simulate_summary(
     nchains = 10,
@@ -277,8 +277,8 @@ test_that("validate_epichains works", {
     validate_epichains(chain_summary_raw)
   )
   expect_error(
-      validate_epichains(mtcars),
-      "must have an epichains class"
+    validate_epichains(mtcars),
+    "must have an epichains class"
   )
 })
 
