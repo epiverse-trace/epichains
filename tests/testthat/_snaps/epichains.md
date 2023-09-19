@@ -1,138 +1,204 @@
-# print.epichains works for simulate_summary output
+# print.epichains works for simulation functions
 
     Code
-      epichains_summary
-    Output
-      `epichains` object 
-      
-       [1]   1 Inf Inf Inf Inf   1   2 Inf   1   1
-      
-       Simulated chain sizes: 
-      
-      Max: 2
-      Min: 1
-
-# print.epichains works for simulate_tree output
-
-    Code
-      epichains_tree
+      susc_outbreak_raw
     Output
       `epichains` object
       
       < tree head (from first known ancestor) >
       
-         chain_id sim_id ancestor generation
-      11        1      2        1          2
-      13        2      2        1          2
-      18        3      2        1          2
-      19        4      2        1          2
-      22        6      2        1          2
-      23        8      2        1          2
+      [1] sim_id     ancestor   generation time      
+      <0 rows> (or 0-length row.names)
       
       < tree tail >
       
-         chain_id sim_id ancestor generation
-      41        2     17        6          3
-      85        6     17        6          4
-      42        2     18        6          3
-      86        6     18        7          4
-      87        6     19        7          4
-      88        6     20        7          4
+        sim_id ancestor generation time
+      1      1       NA          1    0
+      Number of ancestors (known): 0
+      Number of generations: 1
+      Use `as.data.frame(<object_name>)` to view the full output in the console.
+
+---
+
+    Code
+      susc_outbreak_raw2
+    Output
+      `epichains` object
+      
+      < tree head (from first known ancestor) >
+      
+        sim_id ancestor generation       time
+      2      2        1          2 21.5834705
+      3      3        1          2  0.3939008
+      4      4        2          3 21.6595273
+      
+      < tree tail >
+      
+        sim_id ancestor generation       time
+      1      1       NA          1  0.0000000
+      2      2        1          2 21.5834705
+      3      3        1          2  0.3939008
+      4      4        2          3 21.6595273
+      Number of ancestors (known): 2
+      Number of generations: 3
+      Use `as.data.frame(<object_name>)` to view the full output in the console.
+
+---
+
+    Code
+      tree_sim_raw
+    Output
+      `epichains` object
+      
+      < tree head (from first known ancestor) >
+      
+        chain_id sim_id ancestor generation
+      3        1      2        1          2
+      4        1      3        1          2
+      
+      < tree tail >
+      
+        chain_id sim_id ancestor generation
+      1        1      1       NA          1
+      2        2      1       NA          1
+      3        1      2        1          2
+      4        1      3        1          2
+      Chains simulated: 2
+      Number of ancestors (known): 1
+      Number of generations: 2
+      Use `as.data.frame(<object_name>)` to view the full output in the console.
+
+---
+
+    Code
+      tree_sim_raw2
+    Output
+      `epichains` object
+      
+      < tree head (from first known ancestor) >
+      
+         chain_id sim_id ancestor generation time
+      11        1      2        1          2    3
+      13        2      2        1          2    3
+      15        3      2        1          2    3
+      17        4      2        1          2    3
+      19        6      2        1          2    3
+      20        7      2        1          2    3
+      
+      < tree tail >
+      
+          chain_id sim_id ancestor generation time
+      92         9     19        8          4    9
+      109        6     19        8          5   12
+      93         9     20        9          4    9
+      110        6     20        9          5   12
+      94         9     21        9          4    9
+      111        6     21        9          5   12
       Chains simulated: 10
       Number of ancestors (known): 9
       Number of generations: 5
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
----
-
-    Code
-      epichains_tree2
-    Output
-      `epichains` object
-      
-      < tree head (from first known ancestor) >
-      
-         chain_id sim_id ancestor generation time
-      11        1      2        1          2    3
-      13        2      2        1          2    3
-      16        3      2        1          2    3
-      17        4      2        1          2    3
-      18        5      2        1          2    3
-      19        6      2        1          2    3
-      
-      < tree tail >
-      
-          chain_id sim_id ancestor generation time
-      116        7     20        9          4    9
-      128        8     20        9          4    9
-      117        7     21        9          4    9
-      129        8     21        9          4    9
-      130        8     22        9          4    9
-      131        8     23        9          4    9
-      Chains simulated: 10
-      Number of ancestors (known): 9
-      Number of generations: 4
-      Use `as.data.frame(<object_name>)` to view the full output in the console.
-
 # head and tail methods work
 
     Code
-      head(epichains_tree)
+      head(susc_outbreak_raw)
     Output
       < tree head (from first known ancestor) >
       
-         chain_id sim_id ancestor generation
-      11        1      2        1          2
-      13        2      2        1          2
-      18        3      2        1          2
-      19        4      2        1          2
-      22        6      2        1          2
-      23        8      2        1          2
+      [1] sim_id     ancestor   generation time      
+      <0 rows> (or 0-length row.names)
 
 ---
 
     Code
-      head(epichains_tree2)
+      head(susc_outbreak_raw2)
+    Output
+      < tree head (from first known ancestor) >
+      
+        sim_id ancestor generation       time
+      2      2        1          2 21.5834705
+      3      3        1          2  0.3939008
+      4      4        2          3 21.6595273
+
+---
+
+    Code
+      head(tree_sim_raw)
+    Output
+      < tree head (from first known ancestor) >
+      
+        chain_id sim_id ancestor generation
+      3        1      2        1          2
+      4        1      3        1          2
+
+---
+
+    Code
+      head(tree_sim_raw2)
     Output
       < tree head (from first known ancestor) >
       
          chain_id sim_id ancestor generation time
       11        1      2        1          2    3
       13        2      2        1          2    3
-      16        3      2        1          2    3
+      15        3      2        1          2    3
       17        4      2        1          2    3
-      18        5      2        1          2    3
       19        6      2        1          2    3
+      20        7      2        1          2    3
 
 ---
 
     Code
-      tail(epichains_tree)
+      tail(susc_outbreak_raw)
     Output
       
       < tree tail >
       
-         chain_id sim_id ancestor generation
-      41        2     17        6          3
-      85        6     17        6          4
-      42        2     18        6          3
-      86        6     18        7          4
-      87        6     19        7          4
-      88        6     20        7          4
+        sim_id ancestor generation time
+      1      1       NA          1    0
 
 ---
 
     Code
-      tail(epichains_tree2)
+      tail(susc_outbreak_raw2)
+    Output
+      
+      < tree tail >
+      
+        sim_id ancestor generation       time
+      1      1       NA          1  0.0000000
+      2      2        1          2 21.5834705
+      3      3        1          2  0.3939008
+      4      4        2          3 21.6595273
+
+---
+
+    Code
+      tail(tree_sim_raw)
+    Output
+      
+      < tree tail >
+      
+        chain_id sim_id ancestor generation
+      1        1      1       NA          1
+      2        2      1       NA          1
+      3        1      2        1          2
+      4        1      3        1          2
+
+---
+
+    Code
+      tail(tree_sim_raw2)
     Output
       
       < tree tail >
       
           chain_id sim_id ancestor generation time
-      116        7     20        9          4    9
-      128        8     20        9          4    9
-      117        7     21        9          4    9
-      129        8     21        9          4    9
-      130        8     22        9          4    9
-      131        8     23        9          4    9
+      92         9     19        8          4    9
+      109        6     19        8          5   12
+      93         9     20        9          4    9
+      110        6     20        9          5   12
+      94         9     21        9          4    9
+      111        6     21        9          5   12
 
