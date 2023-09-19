@@ -28,10 +28,6 @@ knitr::opts_chunk$set(
 
 ```
 
-```{r packages}
-library(epichains)
-```
-
 # Outline
 
 * Question: At what generation does an outbreak reach a size of 100, given that
