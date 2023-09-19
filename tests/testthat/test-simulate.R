@@ -43,7 +43,7 @@ test_that("Simulators work", {
     statistic = "length",
     lambda = 0.9
   )
- #' Expectations
+  #' Expectations
   expect_length(
     chain_summary_raw,
     2
@@ -290,7 +290,7 @@ test_that("simulate_summary is numerically correct", {
   chain_summary_summaries <- summary(chain_summary_raw)
   #' Expectations
   expect_identical(
-  chain_summary_summaries$chain_ran,
+    chain_summary_summaries$chain_ran,
     2.00
   )
   expect_identical(
