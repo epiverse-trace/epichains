@@ -99,7 +99,21 @@
       Number of generations: 5
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
-# head and tail methods work
+---
+
+    Code
+      chain_summary_raw
+    Output
+      `epichains` object 
+      
+      [1] 4 1
+      
+       Simulated chain lengths: 
+      
+      Max: 4
+      Min: 1
+
+# head and tail print output as expected
 
     Code
       head(susc_outbreak_raw)
