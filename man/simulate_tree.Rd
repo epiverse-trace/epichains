@@ -35,7 +35,7 @@ Defaults to \code{Inf}.}
 
 \item{serials_dist}{The serial interval distribution function; the name
 of a user-defined named or anonymous function with only one argument \code{n},
-representing the number of serial intervals to generate.}
+representing the number of serial intervals to generate. See details.}
 
 \item{t0}{Start time (if serial interval is given); either a single value
 or a vector of same length as \code{nchains} (number of simulations) with
@@ -46,10 +46,10 @@ initial times. Defaults to 0.}
 \item{...}{Parameters of the offspring distribution as required by R.}
 }
 \value{
-an \code{epichains} object, which is basically a \code{data.frame} with
+An \verb{<epichains>} object, which is basically a \verb{<data.frame>} with
 columns \code{chain_id} (chain ID), \code{sim_id} (a unique ID within each simulation
-for each individual element of the chain), \code{ancestor}
-(the ID of the ancestor of each element), \code{generation}, and
+for each individual), \code{ancestor}
+(the ID of the ancestor of each individual), \code{generation}, and
 \code{time} (of infection)
 }
 \description{
@@ -59,7 +59,7 @@ Simulate a tree of infections with a serial and offspring distributions
 \code{simulate_tree()} simulates a branching process of the form:
 WIP
 }
-\section{The serial interval (\code{serials_dist}):}{
+\section{The serial interval (\code{serials_dist})}{
 \subsection{Assumptions/disambiguation}{
 
 In epidemiology, the generation interval is the duration between successive
@@ -74,7 +74,7 @@ generation interval, that is, the time between successive cases.
 See References below for some literature on the subject.
 }
 
-\subsection{Specifying \code{serials_dist} in \code{simulate_tree()}}{
+\subsection{Specifying \code{serials_dist}}{
 
 \code{serials_dist} must be specified as a named or
 \href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function} # nolint
@@ -101,8 +101,11 @@ where \code{...} are the other arguments to \code{simulate_tree()}.
 \examples{
 set.seed(123)
 chains <- simulate_tree(
-  nchains = 10, statistic = "size",
-  offspring_dist = "pois", stat_max = 10, serials_dist = function(x) 3,
+  nchains = 10,
+  statistic = "size",
+  offspring_dist = "pois",
+  stat_max = 10,
+  serials_dist = function(x) 3,
   lambda = 2
 )
 }
@@ -118,8 +121,13 @@ infectious disease. Am J Epidemiol. 2003 Dec 1;158(11):1039-47.
 doi: 10.1093/aje/kwg251. PMID: 14630599.
 }
 \seealso{
-\code{\link[=simulate_summary]{simulate_summary()}} for simulating the transmission chains
-statistic without the tree of infections.
+\code{\link[=simulate_summary]{simulate_summary()}} for simulating transmission chains
+statistic without the full tree information.
+
+\code{\link[=simulate_tree_from_pop]{simulate_tree_from_pop()}} for simulating transmission chains
+from an initial susceptible population with initial immunity,
+returning the full tree information ("sim_id",
+"ancestor", "generation", and "time").
 }
 \author{
 James M. Azam, Sebastian Funk
