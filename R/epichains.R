@@ -266,15 +266,12 @@ tail.epichains <- function(x, ...) {
 #' aggregate(chains, grouping_var = "time")
 #'
 #' # Aggregate cases per generation
-#' aggregate(chains, grouping_var = "generation")
-#'
-#' # Aggregate cases per both time and generation
-#' aggregate(chains, grouping_var = "both")
+#' cases_per_gen <- aggregate(chains, grouping_var = "generation")
+#' head(cases_per_gen)
 aggregate.epichains <- function(x,
                                 grouping_var = c(
                                   "time",
-                                  "generation",
-                                  "both"
+                                  "generation"
                                 ),
                                 ...) {
   validate_epichains(x)
@@ -302,21 +299,6 @@ aggregate.epichains <- function(x,
       list(cases = x$sim_id),
       list(generation = x$generation),
       FUN = NROW
-    )
-  } else if (grouping_var == "both") {
-    # Count the number of cases per time
-    list(
-      stats::aggregate(
-        list(cases = x$sim_id),
-        list(time = x$time),
-        FUN = NROW
-      ),
-      # Count the number of cases per generation
-      stats::aggregate(
-        list(cases = x$sim_id),
-        list(generation = x$generation),
-        FUN = NROW
-      )
     )
   }
 
