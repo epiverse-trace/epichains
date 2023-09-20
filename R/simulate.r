@@ -15,23 +15,23 @@
 #' Defaults to `Inf`.
 #' @param serials_dist The serial interval distribution function; the name
 #' of a user-defined named or anonymous function with only one argument `n`,
-#' representing the number of serial intervals to generate.
+#' representing the number of serial intervals to generate. See details.
 #' @param t0 Start time (if serial interval is given); either a single value
 #' or a vector of same length as `nchains` (number of simulations) with
 #' initial times. Defaults to 0.
 #' @param tf End time (if serial interval is given).
 #' @param ... Parameters of the offspring distribution as required by R.
-#' @return an `epichains` object, which is basically a `data.frame` with
+#' @return An `<epichains>` object, which is basically a `<data.frame>` with
 #' columns `chain_id` (chain ID), `sim_id` (a unique ID within each simulation
-#' for each individual element of the chain), `ancestor`
-#' (the ID of the ancestor of each element), `generation`, and
+#' for each individual), `ancestor`
+#' (the ID of the ancestor of each individual), `generation`, and
 #' `time` (of infection)
 #' @author James M. Azam, Sebastian Funk
 #' @export
 #' @details
 #' `simulate_tree()` simulates a branching process of the form:
 #' WIP
-#' # The serial interval (`serials_dist`):
+#' # The serial interval (`serials_dist`)
 #'
 #' ## Assumptions/disambiguation
 #'
@@ -46,7 +46,7 @@
 #'
 #' See References below for some literature on the subject.
 #'
-#' ## Specifying `serials_dist` in `simulate_tree()`
+#' ## Specifying `serials_dist`
 #'
 #' `serials_dist` must be specified as a named or
 #' [anonymous/inline/unnamed function](https://en.wikipedia.org/wiki/Anonymous_function#R) # nolint
@@ -67,17 +67,23 @@
 #' in the `simulate_tree()` call like so
 #' \code{simulate_tree(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})}, #nolint
 #' where `...` are the other arguments to `simulate_tree()`.
-#' @seealso [simulate_summary()] for simulating the transmission chains
-#' statistic without the tree of infections.
+#' @seealso [simulate_summary()] for simulating transmission chains
+#' statistic without the full tree information.
+#' @seealso [simulate_tree_from_pop()] for simulating transmission chains
+#' from an initial susceptible population with initial immunity,
+#' returning the full tree information ("sim_id",
+#' "ancestor", "generation", and "time").
 #' @examples
 #' set.seed(123)
 #' chains <- simulate_tree(
-#'   nchains = 10, statistic = "size",
-#'   offspring_dist = "pois", stat_max = 10, serials_dist = function(x) 3,
+#'   nchains = 10,
+#'   statistic = "size",
+#'   offspring_dist = "pois",
+#'   stat_max = 10,
+#'   serials_dist = function(x) 3,
 #'   lambda = 2
 #' )
 #' @references
-#'
 #' Lehtinen S, Ashcroft P, Bonhoeffer S. On the relationship
 #' between serial interval, infectiousness profile and generation time.
 #' J R Soc Interface. 2021 Jan;18(174):20200756.
@@ -222,6 +228,14 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 #' @inheritParams simulate_tree
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
+#' @author James M. Azam, Sebastian Funk
+#' @seealso [simulate_tree()] for simulating the transmission chains,
+#' returning the full tree information ("sim_id", "chain_id",
+#' "ancestor", "generation", and optionally, "time").
+#' @seealso [simulate_tree_from_pop()] for simulating transmission chains
+#' from an initial susceptible population with initial immunity,
+#' returning the full tree information ("sim_id",
+#' "ancestor", "generation", and "time").
 #' @examples
 #' simulate_summary(
 #'   nchains = 10, statistic = "size", offspring_dist = "pois",
@@ -289,58 +303,75 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' Simulate a tree of infections from an initial susceptible population
 #' with initial immunity
 #'
-#' @param pop The susceptible population.
 #' @inheritParams simulate_tree
+#' @param pop The susceptible population size.
+#' @param offspring_dist Offspring distribution: a character string
+#' corresponding to the R distribution function (e.g., "pois" for Poisson,
+#' where \code{\link{rpois}} is the R function to generate Poisson random
+#' numbers). Only supports "pois" and "nbinom".
 #' @param offspring_mean The average number of secondary cases for each case.
-#' Same as R0.
+#' Same as \code{R0}.
 #' @param offspring_disp The dispersion parameter of the number of
 #' secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
 #' avoid division by 0 when calculating the size. See details and
 #'  \code{?rnbinom} for details on the parameterisation in Ecology.
-#' @param serials_dist The serial interval. A function that takes one
-#' parameter (`n`), the number of serial intervals to randomly sample. Value
-#' must be >= 0.
 #' @param initial_immune The number of initial immunes in the population.
+#' Must be less than `pop` - 1.
 #' @param t0 Start time; Defaults to 0.
 #' @param tf End time; Defaults to `Inf`.
-#' @return a data frame with columns `time`, `id` (a unique ID for each
-#' individual element of the chain), `ancestor` (the ID of the ancestor
-#' of each element), and `generation`.
+#' @return An `<epichains>` object, which is basically a `<data.frame>` with
+#' columns `sim_id` (a unique ID within each simulation for each individual
+#' of the chain), `ancestor` (the ID of the ancestor of each individual),
+#' `generation`, and `time` (of infection).
 #' @details
 #'
 #' # Offspring distributions
-#' Currently only "pois" & "nbinom" are supported. Internally truncated
-#' distributions are used to avoid infecting more people than susceptibles
-#' available.
+#' Currently, `offspring_dist` only supports "pois" & "nbinom".
+#' Internally, the respective truncated poisson and negative binomial
+#' distributions are used to avoid the situation where there are more cases
+#' than susceptibles at any point.
 #'
-#' The poisson model is parametrised so that:
+#' The poisson model has mean, lambda, parametrised as:
+#' \deqn{lambda = \dfrac{offspring\_mean \times (pop -
+#' initial\_immune - 1)}{pop}}
 #'
-#' lamda = offspring_mean * pop - initial_immune / pop
+#' The negative binomial model, has mean, mu, parametrised as:
+#' \deqn{mu = \dfrac{offspring\_mean \times (pop - initial\_immune - 1)}{pop},}
+#' and dispersion, size, parametrised as:
+#' \deqn{size = \dfrac{mu}{offspring\_disp - 1}.}
+#' This is why `offspring_disp` must be greater than 1.
 #'
-#' The negative binomial model is parametrised as:
+#' # Specifying `serials_dist`
+#' See the details section of [`simulate_tree()`] for details on how to specify
+#' `serials_dist`.
 #'
-#' mu = offspring_mean * pop - initial immune / pop, and
-#' size = mu / (offspring_disp - 1). This is why offspring_disp must be greater
-#' than 1.
-#'
-#' simulate_tree_from_pop() has a couple of key different from simulate_tree():
+#' `simulate_tree_from_pop()` has a couple of key differences from
+#' `simulate_tree()`:
 #'  * the maximal chain statistic is limited by `pop` instead of
 #'  `stat_max` (in `simulate_tree()`),
-#'  * it can only handle implemented offspring distributions ("pois" and
-#' "nbinom").
-#' @author Flavio Finger
-#' @author James M. Azam
+#'  * `offspring_dist` can only handle "pois" and "nbinom".
+#' @author Flavio Finger, James M. Azam, Sebastian Funk
+#' @seealso [simulate_tree()] for simulating the transmission chains,
+#' returning the full tree information ("sim_id", "chain_id",
+#' "ancestor", "generation", and optionally, "time").
+#' @seealso [simulate_summary()] for simulating the transmission chains
+#' statistic (size or length) without the full tree information.
 #' @examples
 #' # Simulate with poisson offspring
 #' simulate_tree_from_pop(
-#'   pop = 100, offspring_dist = "pois",
-#'   offspring_mean = 0.5, serials_dist = function(x) 3
+#'   pop = 100,
+#'   offspring_dist = "pois",
+#'   offspring_mean = 0.5,
+#'   serials_dist = function(x) 3
 #' )
 #'
 #' # Simulate with negative binomial offspring
 #' simulate_tree_from_pop(
-#'   pop = 100, offspring_dist = "nbinom",
-#'   offspring_mean = 0.5, offspring_disp = 1.1, serials_dist = function(x) 3
+#'   pop = 100,
+#'   offspring_dist = "nbinom",
+#'   offspring_mean = 0.5,
+#'   offspring_disp = 1.1,
+#'   serials_dist = function(x) 3
 #' )
 #' @export
 simulate_tree_from_pop <- function(pop,

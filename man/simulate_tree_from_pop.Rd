@@ -17,79 +17,98 @@ simulate_tree_from_pop(
 )
 }
 \arguments{
-\item{pop}{The susceptible population.}
+\item{pop}{The susceptible population size.}
 
 \item{offspring_dist}{Offspring distribution: a character string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
-numbers).}
+numbers). Only supports "pois" and "nbinom".}
 
 \item{offspring_mean}{The average number of secondary cases for each case.
-Same as R0.}
+Same as \code{R0}.}
 
 \item{offspring_disp}{The dispersion parameter of the number of
 secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
 avoid division by 0 when calculating the size. See details and
 \code{?rnbinom} for details on the parameterisation in Ecology.}
 
-\item{serials_dist}{The serial interval. A function that takes one
-parameter (\code{n}), the number of serial intervals to randomly sample. Value
-must be >= 0.}
+\item{serials_dist}{The serial interval distribution function; the name
+of a user-defined named or anonymous function with only one argument \code{n},
+representing the number of serial intervals to generate. See details.}
 
-\item{initial_immune}{The number of initial immunes in the population.}
+\item{initial_immune}{The number of initial immunes in the population.
+Must be less than \code{pop} - 1.}
 
 \item{t0}{Start time; Defaults to 0.}
 
 \item{tf}{End time; Defaults to \code{Inf}.}
 }
 \value{
-a data frame with columns \code{time}, \code{id} (a unique ID for each
-individual element of the chain), \code{ancestor} (the ID of the ancestor
-of each element), and \code{generation}.
+An \verb{<epichains>} object, which is basically a \verb{<data.frame>} with
+columns \code{sim_id} (a unique ID within each simulation for each individual
+of the chain), \code{ancestor} (the ID of the ancestor of each individual),
+\code{generation}, and \code{time} (of infection).
 }
 \description{
 Simulate a tree of infections from an initial susceptible population
 with initial immunity
 }
 \section{Offspring distributions}{
-Currently only "pois" & "nbinom" are supported. Internally truncated
-distributions are used to avoid infecting more people than susceptibles
-available.
+Currently, \code{offspring_dist} only supports "pois" & "nbinom".
+Internally, the respective truncated poisson and negative binomial
+distributions are used to avoid the situation where there are more cases
+than susceptibles at any point.
 
-The poisson model is parametrised so that:
+The poisson model has mean, lambda, parametrised as:
+\deqn{lambda = \dfrac{offspring\_mean \times (pop -
+initial\_immune - 1)}{pop}}
 
-lamda = offspring_mean * pop - initial_immune / pop
+The negative binomial model, has mean, mu, parametrised as:
+\deqn{mu = \dfrac{offspring\_mean \times (pop - initial\_immune - 1)}{pop},}
+and dispersion, size, parametrised as:
+\deqn{size = \dfrac{mu}{offspring\_disp - 1}.}
+This is why \code{offspring_disp} must be greater than 1.
+}
 
-The negative binomial model is parametrised as:
+\section{Specifying \code{serials_dist}}{
+See the details section of \code{\link[=simulate_tree]{simulate_tree()}} for details on how to specify
+\code{serials_dist}.
 
-mu = offspring_mean * pop - initial immune / pop, and
-size = mu / (offspring_disp - 1). This is why offspring_disp must be greater
-than 1.
-
-simulate_tree_from_pop() has a couple of key different from simulate_tree():
+\code{simulate_tree_from_pop()} has a couple of key differences from
+\code{simulate_tree()}:
 \itemize{
 \item the maximal chain statistic is limited by \code{pop} instead of
 \code{stat_max} (in \code{simulate_tree()}),
-\item it can only handle implemented offspring distributions ("pois" and
-"nbinom").
+\item \code{offspring_dist} can only handle "pois" and "nbinom".
 }
 }
 
 \examples{
 # Simulate with poisson offspring
 simulate_tree_from_pop(
-  pop = 100, offspring_dist = "pois",
-  offspring_mean = 0.5, serials_dist = function(x) 3
+  pop = 100,
+  offspring_dist = "pois",
+  offspring_mean = 0.5,
+  serials_dist = function(x) 3
 )
 
 # Simulate with negative binomial offspring
 simulate_tree_from_pop(
-  pop = 100, offspring_dist = "nbinom",
-  offspring_mean = 0.5, offspring_disp = 1.1, serials_dist = function(x) 3
+  pop = 100,
+  offspring_dist = "nbinom",
+  offspring_mean = 0.5,
+  offspring_disp = 1.1,
+  serials_dist = function(x) 3
 )
 }
-\author{
-Flavio Finger
+\seealso{
+\code{\link[=simulate_tree]{simulate_tree()}} for simulating the transmission chains,
+returning the full tree information ("sim_id", "chain_id",
+"ancestor", "generation", and optionally, "time").
 
-James M. Azam
+\code{\link[=simulate_summary]{simulate_summary()}} for simulating the transmission chains
+statistic (size or length) without the full tree information.
+}
+\author{
+Flavio Finger, James M. Azam, Sebastian Funk
 }

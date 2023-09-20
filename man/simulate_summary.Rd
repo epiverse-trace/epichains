@@ -40,3 +40,16 @@ simulate_summary(
   stat_max = 10, lambda = 2
 )
 }
+\seealso{
+\code{\link[=simulate_tree]{simulate_tree()}} for simulating the transmission chains,
+returning the full tree information ("sim_id", "chain_id",
+"ancestor", "generation", and optionally, "time").
+
+\code{\link[=simulate_tree_from_pop]{simulate_tree_from_pop()}} for simulating transmission chains
+from an initial susceptible population with initial immunity,
+returning the full tree information ("sim_id",
+"ancestor", "generation", and "time").
+}
+\author{
+James M. Azam, Sebastian Funk
+}
