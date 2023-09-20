@@ -4,21 +4,20 @@
 \alias{aggregate.epichains}
 \title{Aggregate cases in epichains objects according to a grouping variable}
 \usage{
-\method{aggregate}{epichains}(x, grouping_var = c("time", "generation", "both"), ...)
+\method{aggregate}{epichains}(x, grouping_var = c("time", "generation"), ...)
 }
 \arguments{
 \item{x}{An \code{\link{epichains}} object.}
 
 \item{grouping_var}{The variable to group and count over. Options include
-"time", "generation", and "both".}
+"time" and "generation".}
 
 \item{...}{Other arguments passed to aggregate.}
 }
 \value{
-If grouping_var is either "time" or "generation", a data.frame
-with cases aggregated over \code{grouping_var}; If
-\code{grouping_var = "both"}, a list of data.frames, the first being for
-cases over time, and the second being for cases over generations.
+An \verb{<epichains_aggregate_df>} object, which is basically a
+\verb{<data.frame>}. The object stores the \code{chain_type = chains_tree} and
+\code{grouping_var} attributes.
 }
 \description{
 Aggregate cases in epichains objects according to a grouping variable
