@@ -435,7 +435,7 @@ test_that("aggregate.epichains method returns correct objects", {
   )
 })
 
-test_that("aggregate method is numerically correct", {
+test_that("aggregate.epichains method is numerically correct", {
   set.seed(12)
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
