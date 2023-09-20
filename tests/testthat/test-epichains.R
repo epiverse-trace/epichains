@@ -418,20 +418,20 @@ test_that("aggregate.epichains method returns correct objects", {
     tree_sim_raw2,
     grouping_var = "time"
   )
-  aggreg_by_both <- aggregate(
+  #' Expectations for <epichains_aggregate_df> class inheritance
   expect_true(
     is_epichains_aggregate_df(aggreg_by_gen)
   )
   expect_true(
     is_epichains_aggregate_df(aggreg_by_time)
   )
-  expect_true(
+  expect_named(
     aggreg_by_gen,
-    "data.frame"
+    c("generation", "cases")
   )
-  expect_s3_class(
+  expect_named(
     aggreg_by_time,
-    "data.frame"
+    c("time", "cases")
   )
 })
 
