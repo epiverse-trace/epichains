@@ -240,30 +240,33 @@ tail.epichains <- function(x, ...) {
   utils::tail(as.data.frame(x), ...)
 }
 
-#' Aggregate cases in epichains objects according to a grouping variable
+#' Aggregate cases in `<epichains>` objects by "time" or "generation"
 #'
-#' @param x An [`epichains`] object.
+#' @param x An `<epichains>` object.
 #' @param grouping_var The variable to group and count over. Options include
-#' "time", "generation", and "both".
+#' "time" and "generation".
 #' @param ... Other arguments passed to aggregate.
 #' @importFrom stats aggregate
-#' @return If grouping_var is either "time" or "generation", a data.frame
-#' with cases aggregated over `grouping_var`; If
-#' \code{grouping_var = "both"}, a list of data.frames, the first being for
-#'  cases over time, and the second being for cases over generations.
+#' @return An `<epichains_aggregate_df>` object, which is basically a
+#' `<data.frame>`. The object stores the `chain_type = chains_tree` and
+#' `grouping_var` attributes.
 #' @export
 #' @author James M. Azam
 #' @examples
 #' set.seed(123)
 #' chains <- simulate_tree(
-#'   nchains = 10, statistic = "size",
-#'   offspring_dist = "pois", stat_max = 10, serials_dist = function(x) 3,
+#'   nchains = 10,
+#'   statistic = "size",
+#'   offspring_dist = "pois",
+#'   stat_max = 10,
+#'   serials_dist = function(x) 3,
 #'   lambda = 2
 #' )
 #' chains
 #'
 #' # Aggregate cases per time
-#' aggregate(chains, grouping_var = "time")
+#' cases_per_time <- aggregate(chains, grouping_var = "time")
+#' head(cases_per_time)
 #'
 #' # Aggregate cases per generation
 #' cases_per_gen <- aggregate(chains, grouping_var = "generation")
