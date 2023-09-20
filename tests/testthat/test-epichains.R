@@ -435,6 +435,22 @@ test_that("aggregate.epichains method returns correct objects", {
   )
 })
 
+test_that("aggregate.epichains method throws errors", {
+  expect_error(
+    aggregate(
+      simulate_tree(
+        nchains = 10,
+        statistic = "size",
+        offspring_dist = "pois",
+        stat_max = 10,
+        lambda = 2
+      ),
+      grouping_var = "time"
+    ),
+    "Object must have a time column"
+  )
+})
+
 test_that("aggregate.epichains method is numerically correct", {
   set.seed(12)
   #' Simulate a tree of infections without serials
