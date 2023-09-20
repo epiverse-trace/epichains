@@ -2,12 +2,12 @@
 % Please edit documentation in R/epichains.R
 \name{aggregate.epichains}
 \alias{aggregate.epichains}
-\title{Aggregate cases in epichains objects according to a grouping variable}
+\title{Aggregate cases in \verb{<epichains>} objects by "time" or "generation"}
 \usage{
 \method{aggregate}{epichains}(x, grouping_var = c("time", "generation"), ...)
 }
 \arguments{
-\item{x}{An \code{\link{epichains}} object.}
+\item{x}{An \verb{<epichains>} object.}
 
 \item{grouping_var}{The variable to group and count over. Options include
 "time" and "generation".}
@@ -20,25 +20,27 @@ An \verb{<epichains_aggregate_df>} object, which is basically a
 \code{grouping_var} attributes.
 }
 \description{
-Aggregate cases in epichains objects according to a grouping variable
+Aggregate cases in \verb{<epichains>} objects by "time" or "generation"
 }
 \examples{
 set.seed(123)
 chains <- simulate_tree(
-  nchains = 10, statistic = "size",
-  offspring_dist = "pois", stat_max = 10, serials_dist = function(x) 3,
+  nchains = 10,
+  statistic = "size",
+  offspring_dist = "pois",
+  stat_max = 10,
+  serials_dist = function(x) 3,
   lambda = 2
 )
 chains
 
 # Aggregate cases per time
-aggregate(chains, grouping_var = "time")
+cases_per_time <- aggregate(chains, grouping_var = "time")
+head(cases_per_time)
 
 # Aggregate cases per generation
-aggregate(chains, grouping_var = "generation")
-
-# Aggregate cases per both time and generation
-aggregate(chains, grouping_var = "both")
+cases_per_gen <- aggregate(chains, grouping_var = "generation")
+head(cases_per_gen)
 }
 \author{
 James M. Azam
