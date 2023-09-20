@@ -150,3 +150,6 @@ statistics (sizes or lengths) without the infection tree.
 \author{
 Flavio Finger, James M. Azam, Sebastian Funk
 }
+\author{
+Flavio Finger, James M. Azam, Sebastian Funk
+}
