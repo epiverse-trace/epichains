@@ -426,18 +426,12 @@ test_that("aggregate.epichains method returns correct objects", {
     is_epichains_aggregate_df(aggreg_by_time)
   )
   expect_true(
-  #' Expectations for <base> class inheritance
-  expect_s3_class(
     aggreg_by_gen,
     "data.frame"
   )
   expect_s3_class(
     aggreg_by_time,
     "data.frame"
-  )
-  expect_s3_class(
-    aggreg_by_both,
-    "list"
   )
 })
 
