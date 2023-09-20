@@ -124,7 +124,4 @@ aggregate(tree_from_pop_pois, "time")
 
 # aggregate by generation
 aggregate(tree_from_pop_pois, "generation")
-
-# aggregate by both time and generation
-aggregate(tree_from_pop_pois, "both")
 ```
