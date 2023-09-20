@@ -290,6 +290,13 @@ aggregate.epichains <- function(x,
   grouping_var <- match.arg(grouping_var)
 
   out <- if (grouping_var == "time") {
+    if (is.null(x$time)) {
+      stop(
+        "Object must have a time column. ",
+        "To simulate time, specify `serials_dist` ",
+        "in the `simulate_tree()` setup."
+      )
+    }
     # Count the number of cases per generation
     stats::aggregate(
       list(cases = x$sim_id),
