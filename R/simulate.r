@@ -327,7 +327,7 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' where \code{\link{rpois}} is the R function to generate Poisson random
 #' numbers). Only supports "pois" and "nbinom".
 #' @param offspring_mean The average number of secondary cases for each case.
-#' Same as \code{R0}.
+#' Same as \eqn{R0}.
 #' @param offspring_disp The dispersion parameter of the number of
 #' secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
 #' avoid division by 0 when calculating the size. See details and
