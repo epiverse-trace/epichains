@@ -60,26 +60,64 @@ distributions are used to avoid the situation where there are more cases
 than susceptibles at any point.
 
 The poisson model has mean, lambda, parametrised as:
-\deqn{lambda = \dfrac{offspring\_mean \times (pop -
-initial\_immune - 1)}{pop}}
+\deqn{{\sf lambda} = \dfrac{{\sf offspring\_mean} \times ({\sf pop} -
+{\sf initial\_immune} - 1)}{{\sf pop}}}
 
 The negative binomial model, has mean, mu, parametrised as:
-\deqn{mu = \dfrac{offspring\_mean \times (pop - initial\_immune - 1)}{pop},}
+\deqn{{\sf mu} = \dfrac{{\sf offspring\_mean} \times ({\sf pop} -
+{\sf initial\_immune} - 1)}{{\sf pop}},}
 and dispersion, size, parametrised as:
-\deqn{size = \dfrac{mu}{offspring\_disp - 1}.}
+\deqn{{\sf size} = \dfrac{{\sf mu}}{{\sf offspring\_disp} - 1}.}
 This is why \code{offspring_disp} must be greater than 1.
 }
 
-\section{Specifying \code{serials_dist}}{
-See the details section of \code{\link[=simulate_tree]{simulate_tree()}} for details on how to specify
-\code{serials_dist}.
-
+\section{Differences with \code{simulate_tree()}}{
 \code{simulate_tree_from_pop()} has a couple of key differences from
 \code{simulate_tree()}:
 \itemize{
 \item the maximal chain statistic is limited by \code{pop} instead of
 \code{stat_max} (in \code{simulate_tree()}),
 \item \code{offspring_dist} can only handle "pois" and "nbinom".
+}
+}
+
+\section{The serial interval (\code{serials_dist})}{
+\subsection{Assumptions/disambiguation}{
+
+In epidemiology, the generation interval is the duration between successive
+infectious events in a chain of transmission. Similarly, the serial
+interval is the duration between observed symptom onset times between
+successive cases in a transmission chain. The generation interval is
+often hard to observe because exact times of infection are hard to
+measure hence, the serial interval is often used instead . Here, we
+use the serial interval to represent what would normally be called the
+generation interval, that is, the time between successive cases.
+
+See References below for some literature on the subject.
+}
+
+\subsection{Specifying \code{serials_dist}}{
+
+\code{serials_dist} must be specified as a named or
+\href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function} #nolint
+with one argument.
+
+For example, assuming we want to specify the serial interval
+distribution as a random log-normally distributed variable with
+\code{meanlog = 0.58} and \code{sdlog = 1.58}, we could define a named function,
+let's call it "serial_interval", with only one argument representing the
+number of serial intervals to sample:
+\code{serial_interval <- function(n){rlnorm(n, 0.58, 1.38)}},
+and assign the name of the function to \code{serials_dist} in
+the simulation function like so
+\code{`simulate_*`(..., serials_dist = serial_interval)},
+where \code{...} are the other arguments to \verb{simulate_*()} and * is a placeholder
+for the rest of simulation function's name.
+
+Alternatively, we could assign an anonymous function to \code{serials_dist}
+in the \verb{simulate_*()} call like so
+\code{simulate_*(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})},
+where \code{...} are the other arguments to \verb{simulate_*()}.
 }
 }
 
@@ -102,12 +140,12 @@ simulate_tree_from_pop(
 )
 }
 \seealso{
-\code{\link[=simulate_tree]{simulate_tree()}} for simulating the transmission chains,
-returning the full tree information ("sim_id", "chain_id",
-"ancestor", "generation", and optionally, "time").
-
-\code{\link[=simulate_summary]{simulate_summary()}} for simulating the transmission chains
-statistic (size or length) without the full tree information.
+\itemize{
+\item \code{\link[=simulate_tree]{simulate_tree()}} for simulating transmission trees from an
+initial number of infections.
+\item \code{\link[=simulate_summary]{simulate_summary()}} for simulating transmission chains
+statistics (sizes or lengths) without the infection tree.
+}
 }
 \author{
 Flavio Finger, James M. Azam, Sebastian Funk

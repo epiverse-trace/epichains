@@ -87,24 +87,25 @@ See References below for some literature on the subject.
 \subsection{Specifying \code{serials_dist}}{
 
 \code{serials_dist} must be specified as a named or
-\href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function} # nolint
+\href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function} #nolint
 with one argument.
 
 For example, assuming we want to specify the serial interval
-generator as a random log-normally distributed variable with
+distribution as a random log-normally distributed variable with
 \code{meanlog = 0.58} and \code{sdlog = 1.58}, we could define a named function,
 let's call it "serial_interval", with only one argument representing the
 number of serial intervals to sample:
 \code{serial_interval <- function(n){rlnorm(n, 0.58, 1.38)}},
 and assign the name of the function to \code{serials_dist} in
-\code{simulate_tree()} like so
-\code{simulate_tree(..., serials_dist = serial_interval)},
-where \code{...} are the other arguments to \code{simulate_tree()}.
+the simulation function like so
+\code{`simulate_*`(..., serials_dist = serial_interval)},
+where \code{...} are the other arguments to \verb{simulate_*()} and * is a placeholder
+for the rest of simulation function's name.
 
 Alternatively, we could assign an anonymous function to \code{serials_dist}
-in the \code{simulate_tree()} call like so
-\code{simulate_tree(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})}, #nolint
-where \code{...} are the other arguments to \code{simulate_tree()}.
+in the \verb{simulate_*()} call like so
+\code{simulate_*(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})},
+where \code{...} are the other arguments to \verb{simulate_*()}.
 }
 }
 
@@ -123,21 +124,24 @@ chains <- simulate_tree(
 Lehtinen S, Ashcroft P, Bonhoeffer S. On the relationship
 between serial interval, infectiousness profile and generation time.
 J R Soc Interface. 2021 Jan;18(174):20200756.
-doi: 10.1098/rsif.2020.0756. Epub 2021 Jan 6.
+\doi{10.1098/rsif.2020.0756}. Epub 2021 Jan 6.
 PMID: 33402022; PMCID: PMC7879757.
 
 Fine PE. The interval between successive cases of an
 infectious disease. Am J Epidemiol. 2003 Dec 1;158(11):1039-47.
-doi: 10.1093/aje/kwg251. PMID: 14630599.
+\doi{10.1093/aje/kwg251. PMID: 14630599}
+
+Jacob C. (2010). Branching processes: their role in epidemiology.
+International journal of environmental research and public health, 7(3),
+1186–1204. \doi{https://doi.org/10.3390/ijerph7031204}
 }
 \seealso{
-\code{\link[=simulate_summary]{simulate_summary()}} for simulating transmission chains
-statistic without the full tree information.
-
-\code{\link[=simulate_tree_from_pop]{simulate_tree_from_pop()}} for simulating transmission chains
-from an initial susceptible population with initial immunity,
-returning the full tree information ("sim_id",
-"ancestor", "generation", and "time").
+\itemize{
+\item \code{\link[=simulate_summary]{simulate_summary()}} for simulating transmission chains
+statistics (sizes or lengths) without the infection tree.
+\item \code{\link[=simulate_tree_from_pop]{simulate_tree_from_pop()}} for simulating transmission trees from a
+susceptible or partially immune population.
+}
 }
 \author{
 James M. Azam, Sebastian Funk
