@@ -1,4 +1,4 @@
-#' Simulate a tree of infections with a serial and offspring distributions
+#' Simulate transmission trees from an initial number of infections
 #'
 #' @param nchains Number of chains to simulate.
 #' @param offspring_dist Offspring distribution: a character string
@@ -223,19 +223,22 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 
 
 
-#' Simulate a summary of the transmission chain statistic
+#' Simulate transmission chains sizes/lengths without infection tree
 #'
 #' @inheritParams simulate_tree
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
+#' @inheritSection simulate_tree Calculating chain sizes and lengths
+#' @inheritSection simulate_tree The serial interval (`serials_dist`)
 #' @author James M. Azam, Sebastian Funk
 #' @seealso [simulate_tree()] for simulating the transmission chains,
 #' returning the full tree information ("sim_id", "chain_id",
 #' "ancestor", "generation", and optionally, "time").
-#' @seealso [simulate_tree_from_pop()] for simulating transmission chains
-#' from an initial susceptible population with initial immunity,
-#' returning the full tree information ("sim_id",
-#' "ancestor", "generation", and "time").
+#' @seealso
+#' * [simulate_tree()] for simulating transmission trees from an
+#'   initial number of infections.
+#' * [simulate_tree_from_pop()] for simulating transmission trees from a
+#'   susceptible or partially immune population.
 #' @examples
 #' simulate_summary(
 #'   nchains = 10, statistic = "size", offspring_dist = "pois",
