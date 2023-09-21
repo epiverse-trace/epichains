@@ -2,7 +2,7 @@
 % Please edit documentation in R/simulate.r
 \name{simulate_summary}
 \alias{simulate_summary}
-\title{Simulate a summary of the transmission chain statistic}
+\title{Simulate transmission chains sizes/lengths without infection tree}
 \usage{
 simulate_summary(
   nchains,

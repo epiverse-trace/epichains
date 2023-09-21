@@ -2,8 +2,8 @@
 % Please edit documentation in R/simulate.r
 \name{simulate_tree_from_pop}
 \alias{simulate_tree_from_pop}
-\title{Simulate a tree of infections from an initial susceptible population
-with initial immunity}
+\title{Simulate transmission trees from a susceptible or partially immune
+population}
 \usage{
 simulate_tree_from_pop(
   pop,
@@ -50,8 +50,8 @@ of the chain), \code{ancestor} (the ID of the ancestor of each individual),
 \code{generation}, and \code{time} (of infection).
 }
 \description{
-Simulate a tree of infections from an initial susceptible population
-with initial immunity
+Simulate transmission trees from a susceptible or partially immune
+population
 }
 \section{Offspring distributions}{
 Currently, \code{offspring_dist} only supports "pois" & "nbinom".
