@@ -53,6 +53,7 @@
     <h6 class="dropdown-header" data-toc-skip>Package vignettes</h6>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6>
+    <a class="dropdown-item" href="../articles/branching_process_literature.html">Literature on branching process applications</a>
   </div>
 </li>
 <li class="nav-item">
@@ -172,21 +173,21 @@ done over “time”, “generation” or “both”. Useful for <code>plot</cod
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    chain_id sim_id ancestor generation time</span></span>
 <span><span class="co">#&gt; 11        1      2        1          2    3</span></span>
-<span><span class="co">#&gt; 12        2      2        1          2    3</span></span>
-<span><span class="co">#&gt; 16        3      2        1          2    3</span></span>
-<span><span class="co">#&gt; 18        4      2        1          2    3</span></span>
-<span><span class="co">#&gt; 20        6      2        1          2    3</span></span>
-<span><span class="co">#&gt; 21        7      2        1          2    3</span></span>
+<span><span class="co">#&gt; 13        2      2        1          2    3</span></span>
+<span><span class="co">#&gt; 14        3      2        1          2    3</span></span>
+<span><span class="co">#&gt; 17        4      2        1          2    3</span></span>
+<span><span class="co">#&gt; 18        5      2        1          2    3</span></span>
+<span><span class="co">#&gt; 21        6      2        1          2    3</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt; tree tail &gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     chain_id sim_id ancestor generation time</span></span>
-<span><span class="co">#&gt; 94         3     16        7          4    9</span></span>
-<span><span class="co">#&gt; 104        4     17        6          4    9</span></span>
-<span><span class="co">#&gt; 95         3     17        7          4    9</span></span>
-<span><span class="co">#&gt; 105        4     18        7          4    9</span></span>
-<span><span class="co">#&gt; 106        4     19        7          4    9</span></span>
-<span><span class="co">#&gt; 107        4     20        8          4    9</span></span>
+<span><span class="co">#&gt; 98        10     15        6          4    9</span></span>
+<span><span class="co">#&gt; 85         7     16        7          4    9</span></span>
+<span><span class="co">#&gt; 99        10     16        8          4    9</span></span>
+<span><span class="co">#&gt; 86         7     17        7          4    9</span></span>
+<span><span class="co">#&gt; 100       10     17        8          4    9</span></span>
+<span><span class="co">#&gt; 101       10     18        8          4    9</span></span>
 <span><span class="co">#&gt; Chains simulated: 10</span></span>
 <span><span class="co">#&gt; Number of ancestors (known): 8</span></span>
 <span><span class="co">#&gt; Number of generations: 5</span></span>
@@ -202,13 +203,13 @@ done over “time”, “generation” or “both”. Useful for <code>plot</cod
 <span><span class="va">summary_sim</span> <span class="co"># print the output</span></span>
 <span><span class="co">#&gt; `epichains` object </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  [1] Inf Inf Inf Inf Inf Inf   2 Inf Inf Inf Inf Inf Inf Inf Inf Inf Inf Inf Inf</span></span>
-<span><span class="co">#&gt; [20]   1 Inf Inf Inf Inf Inf Inf   3 Inf Inf   1 Inf Inf Inf Inf Inf Inf Inf   1</span></span>
-<span><span class="co">#&gt; [39]   2   1 Inf Inf Inf Inf   1 Inf Inf Inf Inf Inf</span></span>
+<span><span class="co">#&gt;  [1] Inf Inf Inf   2 Inf Inf Inf Inf Inf Inf   1 Inf Inf   3   1 Inf Inf Inf Inf</span></span>
+<span><span class="co">#&gt; [20]   1 Inf Inf Inf Inf Inf Inf Inf Inf Inf   5 Inf   1 Inf Inf Inf   1 Inf Inf</span></span>
+<span><span class="co">#&gt; [39] Inf Inf Inf Inf Inf Inf Inf Inf Inf Inf Inf Inf</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Simulated chain lengths: </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Max: 3</span></span>
+<span><span class="co">#&gt; Max: 5</span></span>
 <span><span class="co">#&gt; Min: 1</span></span>
 <span></span>
 <span><span class="co"># Using `simulate_tree_from_pop()`</span></span>
