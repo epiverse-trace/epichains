@@ -300,6 +300,20 @@ We will now plot the individual simulation results alongside the median
 of the aggregated results.
 ```{r viz, fig.cap ="COVID-19 incidence in South Africa projected over a two week window in 2020. The light gray lines represent the individual simulations, the red line represents the median daily cases across all simulations, the black connected dots represent the observed data, and the dashed vertical line marks the beginning of the projection.", fig.width=6.0, fig.height=6}
 
+# since all simulations may end at a different date, we will find the minimum
+# final date for all simulations for the purposes of visualisation.
+final_date <- incidence_ts_by_date %>%
+  group_by(sim) %>%
+  summarise(final_date = max(date), .groups = "drop") %>%
+  summarise(min_final_date = min(final_date)) %>%
+  pull(min_final_date)
+
+incidence_ts_by_date <- incidence_ts_by_date %>%
+  filter(date <= final_date)
+
+median_daily_cases <- median_daily_cases %>%
+  filter(date <= final_date)
+
 ggplot(data = incidence_ts_by_date) +
   geom_line(
     aes(
@@ -349,26 +363,22 @@ ggplot(data = incidence_ts_by_date) +
       min(incidence_ts_by_date$date),
       max(incidence_ts_by_date$date),
       5
-    ),
-    limits = c(
-      min(incidence_ts_by_date$date),
-      max(incidence_ts_by_date$date) - 4 # for a better visual look
     )
   ) +
   scale_y_continuous(
     breaks = seq(
       0,
-      max(incidence_ts_by_date$cases) + 200,
-      250
+      max(incidence_ts_by_date$cases),
+      30
     ),
     labels = seq(
       0,
-      max(incidence_ts_by_date$cases) + 200,
-      250
+      max(incidence_ts_by_date$cases),
+      30
     )
   ) +
   geom_vline(
-    mapping = aes(xintercept = max(covid19_sa$date)),
+    mapping = aes(xintercept = max(seed_cases$date)),
     linetype = "dashed"
   ) +
   labs(x = "Date", y = "Daily cases")
