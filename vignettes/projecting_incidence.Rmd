@@ -173,14 +173,14 @@ For this example, we will simulate outbreaks that end $21$ days after the last
 date of observations in the `seed_cases` dataset.
 ```{r input_prep2, message=FALSE}
 #' Date to end simulation
-projection_window <- 21 
+projection_window <- 21
 tf <- max(days_since_index) + projection_window
 tf
 ```
 
 `simulate_tree()` is stochastic, meaning the results are different every
 time it is run for the same set of parameters. We will, therefore, run the
-simulations $100$ times and aggregate the results. 
+simulations $100$ times and aggregate the results.
 
 Let us specify that.
 ```{r}
