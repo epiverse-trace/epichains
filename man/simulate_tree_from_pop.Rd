@@ -25,7 +25,7 @@ where \code{\link{rpois}} is the R function to generate Poisson random
 numbers). Only supports "pois" and "nbinom".}
 
 \item{offspring_mean}{The average number of secondary cases for each case.
-Same as \eqn{R0}.}
+Same as \eqn{R_0}.}
 
 \item{offspring_disp}{The dispersion parameter of the number of
 secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
@@ -99,7 +99,7 @@ See References below for some literature on the subject.
 \subsection{Specifying \code{serials_dist}}{
 
 \code{serials_dist} must be specified as a named or
-\href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function} #nolint
+\href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function}
 with one argument.
 
 For example, assuming we want to specify the serial interval
@@ -109,7 +109,7 @@ let's call it "serial_interval", with only one argument representing the
 number of serial intervals to sample:
 \code{serial_interval <- function(n){rlnorm(n, 0.58, 1.38)}},
 and assign the name of the function to \code{serials_dist} in
-the simulation function like so
+the simulation function, i.e.
 \code{`simulate_*`(..., serials_dist = serial_interval)},
 where \code{...} are the other arguments to \verb{simulate_*()} and * is a placeholder
 for the rest of simulation function's name.

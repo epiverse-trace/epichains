@@ -2,7 +2,7 @@
 % Please edit documentation in R/simulate.r
 \name{simulate_summary}
 \alias{simulate_summary}
-\title{Simulate transmission chains sizes/lengths without infection tree}
+\title{Simulate transmission chains sizes/lengths}
 \usage{
 simulate_summary(
   nchains,
@@ -32,7 +32,7 @@ computed. Results above the specified value, are set to \code{Inf}.}
 \item{...}{Parameters of the offspring distribution as required by R.}
 }
 \description{
-Simulate transmission chains sizes/lengths without infection tree
+Simulate transmission chains sizes/lengths
 }
 \section{Calculating chain sizes and lengths}{
 The function simulates the chain size for individual \eqn{i} at time
@@ -66,7 +66,7 @@ See References below for some literature on the subject.
 \subsection{Specifying \code{serials_dist}}{
 
 \code{serials_dist} must be specified as a named or
-\href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function} #nolint
+\href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function}
 with one argument.
 
 For example, assuming we want to specify the serial interval
@@ -76,7 +76,7 @@ let's call it "serial_interval", with only one argument representing the
 number of serial intervals to sample:
 \code{serial_interval <- function(n){rlnorm(n, 0.58, 1.38)}},
 and assign the name of the function to \code{serials_dist} in
-the simulation function like so
+the simulation function, i.e.
 \code{`simulate_*`(..., serials_dist = serial_interval)},
 where \code{...} are the other arguments to \verb{simulate_*()} and * is a placeholder
 for the rest of simulation function's name.
@@ -90,15 +90,14 @@ where \code{...} are the other arguments to \verb{simulate_*()}.
 
 \examples{
 simulate_summary(
-  nchains = 10, statistic = "size", offspring_dist = "pois",
-  stat_max = 10, lambda = 2
+  nchains = 10,
+  statistic = "size",
+  offspring_dist = "pois",
+  stat_max = 10,
+  lambda = 2
 )
 }
 \seealso{
-\code{\link[=simulate_tree]{simulate_tree()}} for simulating the transmission chains,
-returning the full tree information ("sim_id", "chain_id",
-"ancestor", "generation", and optionally, "time").
-
 \itemize{
 \item \code{\link[=simulate_tree]{simulate_tree()}} for simulating transmission trees from an
 initial number of infections.
