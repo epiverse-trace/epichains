@@ -9,10 +9,10 @@ articles:
 - title: Package vignettes
   navbar: Package vignettes
   contents:
+  - projecting_incidence
 - title: Modelling guides and background
   navbar: Modelling guides and background
   contents:
   - branching_process_literature
   - theoretical_background
-  - projecting_incidence
 
