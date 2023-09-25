@@ -239,7 +239,7 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 
 
 
-#' Simulate transmission chains sizes/lengths without infection tree
+#' Simulate transmission chains sizes/lengths
 #'
 #' @inheritParams simulate_tree
 #' @param stat_max A cut off for the chain statistic (size/length) being
