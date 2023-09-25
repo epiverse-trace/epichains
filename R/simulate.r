@@ -70,7 +70,7 @@
 #' number of serial intervals to sample:
 #' \code{serial_interval <- function(n){rlnorm(n, 0.58, 1.38)}},
 #' and assign the name of the function to `serials_dist` in
-#' the simulation function like so
+#' the simulation function, i.e.
 #' \code{`simulate_*`(..., serials_dist = serial_interval)},
 #' where `...` are the other arguments to `simulate_*()` and * is a placeholder
 #' for the rest of simulation function's name.
