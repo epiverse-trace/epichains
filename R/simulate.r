@@ -28,6 +28,7 @@
 #' `time` (of infection)
 #' @author James M. Azam, Sebastian Funk
 #' @export
+#nolint start
 #' @details
 #' # Calculating chain sizes and lengths
 #' The function simulates the chain size for individual \eqn{i} at time
@@ -59,7 +60,7 @@
 #' ## Specifying `serials_dist`
 #'
 #' `serials_dist` must be specified as a named or
-#' [anonymous/inline/unnamed function](https://en.wikipedia.org/wiki/Anonymous_function#R) #nolint
+#' [anonymous/inline/unnamed function](https://en.wikipedia.org/wiki/Anonymous_function#R)
 #' with one argument.
 #'
 #' For example, assuming we want to specify the serial interval
@@ -78,6 +79,7 @@
 #' in the `simulate_*()` call like so
 #' \code{simulate_*(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})},
 #' where `...` are the other arguments to `simulate_*()`.
+#nolint end
 #' @seealso
 #' * [simulate_summary()] for simulating transmission chains
 #'   statistics (sizes or lengths) without the infection tree.
