@@ -76,7 +76,7 @@
 #' for the rest of simulation function's name.
 #'
 #' Alternatively, we could assign an anonymous function to `serials_dist`
-#' in the `simulate_*()` call like so
+#' in the `simulate_*()` call, i.e.
 #' \code{simulate_*(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})},
 #' where `...` are the other arguments to `simulate_*()`.
 #nolint end
