@@ -1,0 +1,42 @@
+---
+title: "Literature on branching process applications"
+output:
+  bookdown::html_vignette2:
+    fig_caption: yes
+    code_folding: show
+pkgdown:
+  as_is: true
+bibliography: branching_process_literature.json
+link-citations: true
+vignette: >
+  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{Literature on branching process applications}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+nocite: '@*'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Below, we provide a bibliography on the application of branching processes to 
+infectious disease modelling. 
+
+It is our intention to grow this list to serve as a point of reference for 
+budding modellers with an interest in the subject. 
+
+If you would like to extend this list, the easiest way would be to [file an issue](https://github.com/epiverse-trace/epichains/issues/new/choose), listing the
+new additions and we'll take it from there,
+or [submit a pull request](https://github.com/epiverse-trace/epichains/pulls) 
+with an updated version of the bibliography file found in 
+"vignettes/branching_process_literature.json".
+
+# Bibliography

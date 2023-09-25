@@ -12,4 +12,5 @@ articles:
 - title: Modelling guides and background
   navbar: Modelling guides and background
   contents:
+  - branching_process_literature
 

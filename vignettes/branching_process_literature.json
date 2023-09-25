@@ -1,0 +1,663 @@
+[
+	{
+		"id": "abbott2020",
+		"type": "article-journal",
+		"container-title": "Wellcome open research",
+		"note": "publisher: The Wellcome Trust",
+		"title": "The transmissibility of novel Coronavirus in the early stages of the 2019-20 outbreak in Wuhan: Exploring initial point-source exposure sizes and durations using scenario analysis",
+		"volume": "5",
+		"author": [
+			{
+				"family": "Abbott",
+				"given": "Sam"
+			},
+			{
+				"family": "Hellewell",
+				"given": "Joel"
+			},
+			{
+				"family": "Munday",
+				"given": "James"
+			},
+			{
+				"family": "Funk",
+				"given": "Sebastian"
+			},
+			{
+				"family": "group",
+				"given": "CMMID",
+				"dropping-particle": "nCoV working"
+			},
+			{
+				"literal": "others"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2020"
+				]
+			]
+		}
+	},
+	{
+		"id": "blumberg2013",
+		"type": "article-journal",
+		"abstract": "Many diseases exhibit subcritical transmission (i.e. 0<R0<1) so that infections occur as self-limited 'stuttering chains'. Given an ensemble of stuttering chains, information about the number of cases in each chain can be used to infer R0, which is of crucial importance for monitoring the risk that a disease will emerge to establish endemic circulation. However, the challenge of imperfect case detection has led authors to adopt a variety of work-around measures when inferring R0, such as discarding data on isolated cases or aggregating intermediate-sized chains together. Each of these methods has the potential to introduce bias, but a quantitative comparison of these approaches has not been reported. By adapting a model based on a negative binomial offspring distribution that permits a variable degree of transmission heterogeneity, we present a unified analysis of existing R0 estimation methods. Simulation studies show that the degree of transmission heterogeneity, when improperly modeled, can significantly impact the bias of R0 estimation methods designed for imperfect observation. These studies also highlight the importance of isolated cases in assessing whether an estimation technique is consistent with observed data. Analysis of data from measles outbreaks shows that likelihood scores are highest for models that allow a flexible degree of transmission heterogeneity. Aggregating intermediate sized chains often has similar performance to analyzing a complete chain size distribution. However, truncating isolated cases is beneficial only when surveillance systems clearly favor full observation of large chains but not small chains. Meanwhile, if data on the type and proportion of cases that are unobserved were known, we demonstrate that maximum likelihood inference of R0 could be adjusted accordingly. This motivates the need for future empirical and theoretical work to quantify observation error and incorporate relevant mechanisms into stuttering chain models used to estimate transmission parameters. © 2013 Elsevier B.V.",
+		"container-title": "Epidemics",
+		"DOI": "10.1016/j.epidem.2013.05.002",
+		"ISSN": "17554365",
+		"issue": "3",
+		"note": "publisher: Elsevier B.V.\nPMID: 24021520",
+		"page": "131–145",
+		"title": "Comparing methods for estimating R0 from the size distribution of subcritical transmission chains",
+		"URL": "http://dx.doi.org/10.1016/j.epidem.2013.05.002",
+		"volume": "5",
+		"author": [
+			{
+				"family": "Blumberg",
+				"given": "S."
+			},
+			{
+				"family": "Lloyd-Smith",
+				"given": "J. O."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2013"
+				]
+			]
+		}
+	},
+	{
+		"id": "blumberg2013a",
+		"type": "article-journal",
+		"abstract": "For many infectious disease processes such as emerging zoonoses and vaccine-preventable diseases, 0<R0<1 and infections occur as self-limited stuttering transmission chains. A mechanistic understanding of transmission is essential for characterizing the risk of emerging diseases and monitoring spatio-temporal dynamics. Thus methods for inferring R0 and the degree of heterogeneity in transmission from stuttering chain data have important applications in disease surveillance and management. Previous researchers have used chain size distributions to infer R0, but estimation of the degree of individual-level variation in infectiousness (as quantified by the dispersion parameter, k) has typically required contact tracing data. Utilizing branching process theory along with a negative binomial offspring distribution, we demonstrate how maximum likelihood estimation can be applied to chain size data to infer both R0 and the dispersion parameter that characterizes heterogeneity. While the maximum likelihood value for R0 is a simple function of the average chain size, the associated confidence intervals are dependent on the inferred degree of transmission heterogeneity. As demonstrated for monkeypox data from the Democratic Republic of Congo, this impacts when a statistically significant change in R0 is detectable. In addition, by allowing for superspreading events, inference of k shifts the threshold above which a transmission chain should be considered anomalously large for a given value of R0 (thus reducing the probability of false alarms about pathogen adaptation). Our analysis of monkeypox also clarifies the various ways that imperfect observation can impact inference of transmission parameters, and highlights the need to quantitatively evaluate whether observation is likely to significantly bias results.",
+		"container-title": "PLoS Computational Biology",
+		"DOI": "10.1371/journal.pcbi.1002993",
+		"ISSN": "15537358",
+		"issue": "5",
+		"note": "PMID: 23658504",
+		"page": "1–17",
+		"title": "Inference of R0 and Transmission Heterogeneity from the Size Distribution of Stuttering Chains",
+		"volume": "9",
+		"author": [
+			{
+				"family": "Blumberg",
+				"given": "Seth"
+			},
+			{
+				"family": "Lloyd-Smith",
+				"given": "James O."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2013"
+				]
+			]
+		}
+	},
+	{
+		"id": "farrington1999",
+		"type": "article-journal",
+		"abstract": "We consider the distribution of the number of generations to extinction in subcritical branching processes, with particular emphasis on applications to the spread of infectious diseases. We derive the generation distributions for processes with Bernoulli, geometric and Poisson offspring, and discuss some of their distributional and inferential properties. We present applications to the spread of infection in highly vaccinated populations, outbreaks of enteric fever, and person-to-person transmission of human monkeypox.",
+		"container-title": "Journal of Applied Probability",
+		"DOI": "10.1239/jap/1032374633",
+		"ISSN": "00219002",
+		"issue": "3",
+		"page": "771–779",
+		"title": "The distribution of time to extinction in subcritical branching processes: Applications to outbreaks of infectious disease",
+		"volume": "36",
+		"author": [
+			{
+				"family": "Farrington",
+				"given": "C. P."
+			},
+			{
+				"family": "Grant",
+				"given": "A. D."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1999"
+				]
+			]
+		}
+	},
+	{
+		"id": "farrington2003",
+		"type": "article-journal",
+		"abstract": "Mass vaccination programmes aim to maintain the effective reproduction number R of an infection below unity. We describe methods for monitoring the value of R using surveillance data. The models are based on branching processes in which R is identified with the offspring mean. We derive unconditional likelihoods for the offspring mean using data on outbreak size and outbreak duration. We also discuss Bayesian methods, implemented by Metropolis-Hastings sampling. We investigate by simulation the validity of the models with respect to depletion of susceptibles and under-ascertainment of cases. The methods are illustrated using surveillance data on measles in the USA.",
+		"container-title": "Biostatistics (Oxford, England)",
+		"DOI": "10.1093/biostatistics/4.2.279",
+		"ISSN": "14654644",
+		"issue": "2",
+		"page": "279–295",
+		"title": "Branching process models for surveillance of infectious diseases controlled by mass vaccination.",
+		"volume": "4",
+		"author": [
+			{
+				"family": "Farrington",
+				"given": "C. P."
+			},
+			{
+				"family": "Kanaan",
+				"given": "M. N."
+			},
+			{
+				"family": "Gay",
+				"given": "N. J."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2003"
+				]
+			]
+		}
+	},
+	{
+		"id": "jacob2010",
+		"type": "article-journal",
+		"abstract": "Branching processes are stochastic individual-based processes leading consequently to a bottom-up approach. In addition, since the state variables are random integer variables (representing population sizes), the extinction occurs at random finite time on the extinction set, thus leading to fine and realistic predictions. Starting from the simplest and well-known single-type Bienaymé-Galton-Watson branching process that was used by several authors for approximating the beginning of an epidemic, we then present a general branching model with age and population dependent individual transitions. However contrary to the classical Bienaymé-Galton-Watson or asymptotically Bienaymé-Galton-Watson setting, where the asymptotic behavior of the process, as time tends to infinity, is well understood, the asymptotic behavior of this general process is a new question. Here we give some solutions for dealing with this problem depending on whether the initial population size is large or small, and whether the disease is rare or non-rare when the initial population size is large.",
+		"container-title": "International Journal of Environmental Research and Public Health",
+		"DOI": "10.3390/ijerph7031204",
+		"ISSN": "16604601",
+		"issue": "3",
+		"page": "1186–1204",
+		"title": "Branching processes: Their role in epidemiology",
+		"volume": "7",
+		"author": [
+			{
+				"family": "Jacob",
+				"given": "Christine"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2010"
+				]
+			]
+		}
+	},
+	{
+		"id": "lloyd-smith2005",
+		"type": "article-journal",
+		"abstract": "Population-level analyses often use average quantities to describe heterogeneous systems, particularly when variation does not arise from identifiable groups. A prominent example, central to our current understanding of epidemic spread, is the basic reproductive number, R0, which is defined as the mean number of infections caused by an infected individual in a susceptible population. Population estimates of R0 can obscure considerable individual variation in infectiousness, as highlighted during the global emergence of severe acute respiratory syndrome (SARS) by numerous 'superspreading events' in which certain individuals infected unusually large numbers of secondary cases. For diseases transmitted by non-sexual direct contacts, such as SARS or smallpox, individual variation is difficult to measure empirically, and thus its importance for outbreak dynamics has been unclear. Here we present an integrated theoretical and statistical analysis of the influence of individual variation in infectiousness on disease emergence. Using contact tracing data from eight directly transmitted diseases, we show that the distribution of individual infectiousness around R0 is often highly skewed. Model predictions accounting for this variation differ sharply from average-based approaches, with disease extinction more likely and outbreaks rarer but more explosive. Using these models, we explore implications for outbreak control, showing that individual-specific control measures outperform population-wide measures. Moreover, the dramatic improvements achieved through targeted control policies emphasize the need to identify predictive correlates of higher infectiousness. Our findings indicate that superspreading is a normal feature of disease spread, and to frame ongoing discussion we propose a rigorous definition for superspreading events and a method to predict their frequency. © 2005 Nature Publishing Group.",
+		"container-title": "Nature",
+		"DOI": "10.1038/nature04153",
+		"ISSN": "14764687",
+		"issue": "7066",
+		"note": "PMID: 16292310",
+		"page": "355–359",
+		"title": "Superspreading and the effect of individual variation on disease emergence",
+		"volume": "438",
+		"author": [
+			{
+				"family": "Lloyd-Smith",
+				"given": "J. O."
+			},
+			{
+				"family": "Schreiber",
+				"given": "S. J."
+			},
+			{
+				"family": "Kopp",
+				"given": "P. E."
+			},
+			{
+				"family": "Getz",
+				"given": "W. M."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2005"
+				]
+			]
+		}
+	},
+	{
+		"id": "nishiura2012",
+		"type": "article-journal",
+		"abstract": "Use of the final size distribution of minor outbreaks for the estimation of the reproduction numbers of supercritical epidemic processes has yet to be considered. We used a branching process model to derive the final size distribution of minor outbreaks, assuming a reproduction number above unity, and applying the method to final size data for pneumonic plague. Pneumonic plague is a rare disease with only one documented major epidemic in a spatially limited setting. Because the final size distribution of a minor outbreak needs to be normalized by the probability of extinction, we assume that the dispersion parameter (k) of the negative-binomial offspring distribution is known, and examine the sensitivity of the reproduction number to variation in dispersion. Assuming a geometric offspring distribution with k=1, the reproduction number was estimated at 1.16 (95% confidence interval: 0.97-1.38). When less dispersed with k=2, the maximum likelihood estimate of the reproduction number was 1.14. These estimates agreed with those published from transmission network analysis, indicating that the human-to-human transmission potential of the pneumonic plague is not very high. Given only minor outbreaks, transmission potential is not sufficiently assessed by directly counting the number of offspring. Since the absence of a major epidemic does not guarantee a subcritical process, the proposed method allows us to conservatively regard epidemic data from minor outbreaks as supercritical, and yield estimates of threshold values above unity. © 2011.",
+		"container-title": "Journal of Theoretical Biology",
+		"DOI": "10.1016/j.jtbi.2011.10.039",
+		"ISSN": "00225193",
+		"note": "publisher: Elsevier\nPMID: 22079419",
+		"page": "48–55",
+		"title": "Estimating the transmission potential of supercritical processes based on the final size distribution of minor outbreaks",
+		"URL": "http://dx.doi.org/10.1016/j.jtbi.2011.10.039",
+		"volume": "294",
+		"author": [
+			{
+				"family": "Nishiura",
+				"given": "Hiroshi"
+			},
+			{
+				"family": "Yan",
+				"given": "Ping"
+			},
+			{
+				"family": "Sleeman",
+				"given": "Candace K."
+			},
+			{
+				"family": "Mode",
+				"given": "Charles J."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2012"
+				]
+			]
+		}
+	},
+	{
+		"id": "pearson2020",
+		"type": "article-journal",
+		"abstract": "For 45 African countries/territories already reporting COVID-19 cases before 23 March 2020, we estimate the dates of reporting 1,000 and 10,000 cases. Assuming early epidemic trends without interventions, all 45 were likely to exceed 1,000 confirmed cases by the end of April 2020, with most exceeding 10,000 a few weeks later.",
+		"container-title": "Eurosurveillance",
+		"DOI": "10.2807/1560-7917.ES.2020.25.18.2000543",
+		"ISSN": "15607917",
+		"issue": "18",
+		"note": "publisher: European Centre for Disease Prevention and Control (ECDC)\nPMID: 32400361",
+		"page": "1–6",
+		"title": "Projected early spread of COVID-19 in Africa through 1 June 2020",
+		"URL": "http://dx.doi.org/10.2807/1560-7917.ES.2020.25.18.2000543",
+		"volume": "25",
+		"author": [
+			{
+				"family": "Pearson",
+				"given": "Carl A.B."
+			},
+			{
+				"family": "Schalkwyk",
+				"given": "Cari",
+				"non-dropping-particle": "van"
+			},
+			{
+				"family": "Foss",
+				"given": "Anna M."
+			},
+			{
+				"family": "O'Reilly",
+				"given": "Kathleen M."
+			},
+			{
+				"family": "Pulliam",
+				"given": "Juliet R.C."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2020"
+				]
+			]
+		}
+	},
+	{
+		"id": "becker1977",
+		"type": "article-journal",
+		"container-title": "Biometrics",
+		"ISSN": "0006-341X",
+		"issue": "3",
+		"note": "publisher: JSTOR",
+		"page": "515–522",
+		"title": "Estimation for discrete time branching processes with application to epidemics",
+		"volume": "33",
+		"author": [
+			{
+				"family": "Becker",
+				"given": "Niels"
+			},
+			{
+				"family": "Society",
+				"given": "International Biometric"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1977"
+				]
+			]
+		}
+	},
+    {
+        "id": "blumberg2013",
+        "type": "article-journal",
+        "abstract": "Many diseases exhibit subcritical transmission (i.e. 0<R0<1) so that infections occur as self-limited ‘stuttering chains’. Given an ensemble of stuttering chains, information about the number of cases in each chain can be used to infer R0, which is of crucial importance for monitoring the risk that a disease will emerge to establish endemic circulation. However, the challenge of imperfect case detection has led authors to adopt a variety of work-around measures when inferring R0, such as discarding data on isolated cases or aggregating intermediate-sized chains together. Each of these methods has the potential to introduce bias, but a quantitative comparison of these approaches has not been reported. By adapting a model based on a negative binomial offspring distribution that permits a variable degree of transmission heterogeneity, we present a unified analysis of existing R0 estimation methods. Simulation studies show that the degree of transmission heterogeneity, when improperly modeled, can significantly impact the bias of R0 estimation methods designed for imperfect observation. These studies also highlight the importance of isolated cases in assessing whether an estimation technique is consistent with observed data. Analysis of data from measles outbreaks shows that likelihood scores are highest for models that allow a flexible degree of transmission heterogeneity. Aggregating intermediate sized chains often has similar performance to analyzing a complete chain size distribution. However, truncating isolated cases is beneficial only when surveillance systems clearly favor full observation of large chains but not small chains. Meanwhile, if data on the type and proportion of cases that are unobserved were known, we demonstrate that maximum likelihood inference of R0 could be adjusted accordingly. This motivates the need for future empirical and theoretical work to quantify observation error and incorporate relevant mechanisms into stuttering chain models used to estimate transmission parameters.",
+        "container-title": "Epidemics",
+        "DOI": "10.1016/j.epidem.2013.05.002",
+        "ISSN": "1755-4365",
+        "issue": 3,
+        "journalAbbreviation": "Epidemics",
+        "language": "en",
+        "page": "131-145",
+        "source": "ScienceDirect",
+        "title": "Comparing methods for estimating R0 from the size distribution of subcritical transmission chains",
+        "URL": "https://www.sciencedirect.com/science/article/pii/S1755436513000236",
+        "volume": 5,
+        "author": [
+            {
+                "family": "Blumberg",
+                "given": "S."
+            },
+            {
+                "family": "Lloyd-Smith",
+                "given": "J. O."
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    2023,
+                    5,
+                    23
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    2013,
+                    9,
+                    1
+                ]
+            ]
+        }
+    },
+    {
+        "id": "kucharski2016",
+        "type": "article-journal",
+        "abstract": "Using an Ebola virus disease transmission model, we found that addition of ring vaccination at the outset of the West Africa epidemic might not have led to containment of this disease. However, in later stages of the epidemic or in outbreaks with less intense transmission or more effective control, this strategy could help eliminate the disease.",
+        "container-title": "Emerging Infectious Diseases",
+        "DOI": "10.3201/eid2201.151410",
+        "ISSN": "1080-6040",
+        "issue": 1,
+        "journalAbbreviation": "Emerg Infect Dis",
+        "note": "PMID: 26691346\nPMCID: PMC4696719",
+        "page": "105-108",
+        "source": "PubMed Central",
+        "title": "Effectiveness of Ring Vaccination as Control Strategy for Ebola Virus Disease",
+        "URL": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4696719/",
+        "volume": 22,
+        "author": [
+            {
+                "family": "Kucharski",
+                "given": "Adam J."
+            },
+            {
+                "family": "Eggo",
+                "given": "Rosalind M."
+            },
+            {
+                "family": "Watson",
+                "given": "Conall H."
+            },
+            {
+                "family": "Camacho",
+                "given": "Anton"
+            },
+            {
+                "family": "Funk",
+                "given": "Sebastian"
+            },
+            {
+                "family": "Edmunds",
+                "given": "W. John"
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    2023,
+                    5,
+                    23
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    2016,
+                    1
+                ]
+            ]
+        }
+    },
+    {
+        "id": "kucharski2015",
+        "type": "article-journal",
+        "abstract": "The transmission potential of a novel infection depends on both the inherent transmissibility of a pathogen, and the level of susceptibility in the host population. However, distinguishing between these pathogen- and population-specific properties typically requires detailed serological studies, which are rarely available in the early stages of an outbreak. Using a simple transmission model that incorporates age-stratified social mixing patterns, we present a novel method for characterizing the transmission potential of subcritical infections, which have effective reproduction number R<1, from readily available data on the size of outbreaks. We show that the model can identify the extent to which outbreaks are driven by inherent pathogen transmissibility and pre-existing population immunity, and can generate unbiased estimates of the effective reproduction number. Applying the method to real-life infections, we obtained accurate estimates for the degree of age-specific immunity against monkeypox, influenza A(H5N1) and A(H7N9), and refined existing estimates of the reproduction number. Our results also suggest minimal pre-existing immunity to MERS-CoV in humans. The approach we describe can therefore provide crucial information about novel infections before serological surveys and other detailed analyses are available. The methods would also be applicable to data stratified by factors such as profession or location, which would make it possible to measure the transmission potential of emerging infections in a wide range of settings.",
+        "container-title": "PLOS Computational Biology",
+        "DOI": "10.1371/journal.pcbi.1004154",
+        "ISSN": "1553-7358",
+        "issue": 4,
+        "journalAbbreviation": "PLOS Computational Biology",
+        "language": "en",
+        "note": "publisher: Public Library of Science",
+        "page": "e1004154",
+        "source": "PLoS Journals",
+        "title": "Characterizing the Transmission Potential of Zoonotic Infections from Minor Outbreaks",
+        "URL": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004154",
+        "volume": 11,
+        "author": [
+            {
+                "family": "Kucharski",
+                "given": "Adam J."
+            },
+            {
+                "family": "Edmunds",
+                "given": "W. John"
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    2023,
+                    5,
+                    23
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    2015,
+                    4,
+                    10
+                ]
+            ]
+        }
+    },
+    {
+        "id": "hellewell2020",
+        "type": "article-journal",
+        "container-title": "The Lancet Global Health",
+        "DOI": "10.1016/S2214-109X(20)30074-7",
+        "ISSN": "2214-109X",
+        "issue": 4,
+        "journalAbbreviation": "The Lancet Global Health",
+        "language": "English",
+        "note": "publisher: Elsevier\nPMID: 32119825",
+        "page": "e488-e496",
+        "source": "www.thelancet.com",
+        "title": "Feasibility of controlling COVID-19 outbreaks by isolation of cases and contacts",
+        "URL": "https://www.thelancet.com/article/S2214-109X(20)30074-7/fulltext",
+        "volume": 8,
+        "author": [
+            {
+                "family": "Hellewell",
+                "given": "Joel"
+            },
+            {
+                "family": "Abbott",
+                "given": "Sam"
+            },
+            {
+                "family": "Gimma",
+                "given": "Amy"
+            },
+            {
+                "family": "Bosse",
+                "given": "Nikos I."
+            },
+            {
+                "family": "Jarvis",
+                "given": "Christopher I."
+            },
+            {
+                "family": "Russell",
+                "given": "Timothy W."
+            },
+            {
+                "family": "Munday",
+                "given": "James D."
+            },
+            {
+                "family": "Kucharski",
+                "given": "Adam J."
+            },
+            {
+                "family": "Edmunds",
+                "given": "W. John"
+            },
+            {
+                "family": "Sun",
+                "given": "Fiona"
+            },
+            {
+                "family": "Flasche",
+                "given": "Stefan"
+            },
+            {
+                "family": "Quilty",
+                "given": "Billy J."
+            },
+            {
+                "family": "Davies",
+                "given": "Nicholas"
+            },
+            {
+                "family": "Liu",
+                "given": "Yang"
+            },
+            {
+                "family": "Clifford",
+                "given": "Samuel"
+            },
+            {
+                "family": "Klepac",
+                "given": "Petra"
+            },
+            {
+                "family": "Jit",
+                "given": "Mark"
+            },
+            {
+                "family": "Diamond",
+                "given": "Charlie"
+            },
+            {
+                "family": "Gibbs",
+                "given": "Hamish"
+            },
+            {
+                "family": "Zandvoort",
+                "given": "Kevin",
+                "dropping-particle": "van"
+            },
+            {
+                "family": "Funk",
+                "given": "Sebastian"
+            },
+            {
+                "family": "Eggo",
+                "given": "Rosalind M."
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    2023,
+                    5,
+                    23
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    2020,
+                    4,
+                    1
+                ]
+            ]
+        }
+    },
+    {
+        "id": "ratnayake2022",
+        "DOI": "10.1371/journal.pntd.0010163",
+        "ISSN": "1935-2735",
+        "URL": "http://dx.doi.org/10.1371/journal.pntd.0010163",
+        "author": [
+            {
+                "family": "Ratnayake",
+                "given": "Ruwan"
+            },
+            {
+                "family": "Checchi",
+                "given": "Francesco"
+            },
+            {
+                "family": "Jarvis",
+                "given": "Christopher I."
+            },
+            {
+                "family": "Edmunds",
+                "given": "W. John"
+            },
+            {
+                "family": "Finger",
+                "given": "Flavio"
+            }
+        ],
+        "container-title": "PLOS Neglected Tropical Diseases",
+        "editor": [
+            {
+                "family": "Yang",
+                "given": "Ruifu"
+            }
+        ],
+        "issue": "2",
+        "issued": {
+            "date-parts": [
+                [
+                    2022,
+                    2
+                ]
+            ]
+        },
+        "page": "e0010163",
+        "publisher": "Public Library of Science (PLoS)",
+        "title": "Inference is bliss: Simulation for power estimation for an observational study of a cholera outbreak intervention",
+        "title-short": "Inference is bliss",
+        "type": "article-journal",
+        "volume": "16"
+    }
+
+]
