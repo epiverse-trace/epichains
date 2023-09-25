@@ -95,6 +95,9 @@ start_times
 
 ### Serial interval
 
+Next, we will set up the serial interval distribution, that is, the time
+between successive onsets of cases in a transmission chain.
+
 The log-normal distribution is commonly used in epidemiology to characterise 
 quantities such as the serial interval because it has a large variance 
 and can only be positive-valued [@nishiura2007; @limpert2001]. 
@@ -143,9 +146,12 @@ serial_interval <- function(sample_size) {
 
 ### Offspring distribution
 
-The negative binomial distribution is commonly used in epidemiology to
-account for individual variation in transmissibility, 
-also known as superspreading [@lloyd-smith2005].
+Let us now set up the offspring distribution, that is the distribution that
+drives the mechanism behind how individual cases infect other cases. The
+appropriate way to model the offspring distribution is to capture both the
+population-level transmissibility ($R0$) and the individual-level heterogeneity
+in transmission ("superspreading"). The negative binomial distribution is
+commonly used in this case [@lloyd-smith2005].
 
 For this example, we will assume that the offspring distribution is 
 characterised by a negative binomial with $mu = 2.5$ [@abbott2020] and 
@@ -179,8 +185,9 @@ Let us specify that.
 sim_rep <- 100
 ```
 
-Lastly, `simulate_tree()` requires a maximum chain statistic for each chain,
-above which, the simulation is cut off. If this value is 
+Lastly, since, we have specified that $R0 > 1$, it means the epidemic could
+potentially grow without end. Hence, we must specify an end point for the
+simulations. 
 not specified, it assumes a value of infinity. Here, we will
 assume a maximum chain size of $1000$.
 
