@@ -254,8 +254,11 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 #'   susceptible or partially immune population.
 #' @examples
 #' simulate_summary(
-#'   nchains = 10, statistic = "size", offspring_dist = "pois",
-#'   stat_max = 10, lambda = 2
+#'   nchains = 10,
+#'   statistic = "size",
+#'   offspring_dist = "pois",
+#'   stat_max = 10,
+#'   lambda = 2
 #' )
 #' @export
 simulate_summary <- function(nchains, statistic = c("size", "length"),
