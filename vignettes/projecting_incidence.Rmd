@@ -137,7 +137,7 @@ log_mean <- log((mu^2) / (sqrt(sgma^2 + mu^2)))  # log mean
 log_sd <- sqrt(log(1 + (sgma / mu)^2)) # log sd
 
 #' serial interval function
-serial_interval <- function(sample_size) {
+serials_dist <- function(sample_size) {
   si <- rlnorm(sample_size, meanlog = log_mean, sdlog = log_sd)
   return(si)
 }
@@ -154,7 +154,14 @@ commonly used in this case [@lloyd-smith2005].
 
 For this example, we will assume that the offspring distribution is 
 characterised by a negative binomial with $mu = 2.5$ [@abbott2020] and 
-$size = 0.58$ [@wang2020]. In this parameterization, $mu$ 
+$size = 0.58$ [@wang2020]. 
+
+```{r nbinom_args, message=FALSE}
+mu <- 2.5
+size <- 0.58
+```
+
+In this parameterization, $mu$ 
 represents the $R_0$, which is defined as the average number of 
 cases produced by a single individual in an entirely susceptible population. 
 The parameter $size$ represents superspreading, that is, the degree of 
@@ -162,16 +169,13 @@ heterogeneity in transmission by single individuals.
 
 ### Simulation controls
 
-Since, we have specified $R0 > 1$, it means the epidemic could potentially grow
-without end. Hence, we must specify an end time for the simulation.
-`simulate_tree()` provides the `tf` argument for this purpose. For this 
-example, we will simulate outbreaks that end $14$ days after the last date 
-of observations in the `covid19_sa` dataset.
+For this example, we will simulate outbreaks that end $21$ days after the last
+date of observations in the `seed_cases` dataset.
 ```{r input_prep2, message=FALSE}
-#' Date to end simulation (14 day projection in this case)
-projection_window <- 14 # 14 days/ 2-week ahead projection
-projection_end_day <- max(days_since_index) + projection_window
-projection_end_day
+#' Date to end simulation
+projection_window <- 21 
+tf <- max(days_since_index) + projection_window
+tf
 ```
 
 `simulate_tree()` is stochastic, meaning the results are different every
@@ -187,13 +191,15 @@ sim_rep <- 100
 Lastly, since, we have specified that $R0 > 1$, it means the epidemic could
 potentially grow without end. Hence, we must specify an end point for the
 simulations. 
+
+`simulate_tree()` provides the `stat_max` argument for this purpose.
+Above `stat_max`, the simulation is cut off. If this value is 
 not specified, it assumes a value of infinity. Here, we will
 assume a maximum chain size of $1000$.
 
-Let's call it `chain_threhold`.
 ```{r}
 #' Maximum chain size allowed
-chain_threshold <- 1000
+stat_max <- 1000
 ```
 
 ## Modelling assumptions
@@ -208,8 +214,8 @@ chain_threshold <- 1000
 
 To summarise the whole set up so far, we are going to simulate 
 each chain `r sim_rep` times, projecting cases over
-`r projection_window` days after the first `r max(start_times)` days, and 
-assuming that no outbreak size exceeds `r chain_threshold` cases.
+`r projection_window` days after the first `r max(t0)` days, and 
+assuming that no outbreak size exceeds `r stat_max` cases.
 
 ## Running the simulations
 
@@ -221,15 +227,15 @@ sim_chain_sizes <- lapply(
   seq_len(sim_rep),
   function(sim) {
     simulate_tree(
-      nchains = length(start_times),
+      nchains = length(t0),
       offspring_dist = "nbinom",
-      mu = 2.5,
-      size = 0.58,
+      mu = mu,
+      size = size,
       statistic = "size",
-      stat_max = chain_threshold,
-      serials_dist = serial_interval,
-      t0 = start_times,
-      tf = projection_end_day
+      stat_max = stat_max,
+      serials_dist = serials_dist,
+      t0 = t0,
+      tf = tf
     ) %>%
       mutate(sim = sim)
   }
