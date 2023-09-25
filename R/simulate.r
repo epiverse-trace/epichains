@@ -245,9 +245,6 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 #' @inheritSection simulate_tree Calculating chain sizes and lengths
 #' @inheritSection simulate_tree The serial interval (`serials_dist`)
 #' @author James M. Azam, Sebastian Funk
-#' @seealso [simulate_tree()] for simulating the transmission chains,
-#' returning the full tree information ("sim_id", "chain_id",
-#' "ancestor", "generation", and optionally, "time").
 #' @seealso
 #' * [simulate_tree()] for simulating transmission trees from an
 #'   initial number of infections.
