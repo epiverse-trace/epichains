@@ -5,7 +5,9 @@
 #' corresponding to the R distribution function (e.g., "pois" for Poisson,
 #' where \code{\link{rpois}} is the R function to generate Poisson random
 #' numbers).
-#' @param statistic String; Statistic to calculate. Can be one of:
+#' @param statistic String; Statistic (size/length) to calculate. Used to
+#' determine stopping criteria for simulations when `stat_max` is finite.
+#' Can be one of:
 #' \itemize{
 #'   \item "size": the total number of offspring.
 #'   \item "length": the total number of ancestors.

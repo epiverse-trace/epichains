@@ -20,7 +20,9 @@ likelihood(
 \arguments{
 \item{chains}{Vector of chain summaries (sizes/lengths)}
 
-\item{statistic}{String; Statistic to calculate. Can be one of:
+\item{statistic}{String; Statistic (size/length) to calculate. Used to
+determine stopping criteria for simulations when \code{stat_max} is finite.
+Can be one of:
 \itemize{
 \item "size": the total number of offspring.
 \item "length": the total number of ancestors.
