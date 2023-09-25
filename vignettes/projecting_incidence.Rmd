@@ -38,7 +38,7 @@ be achieved in _epichains_ with the `simulate_tree()` function and
 @pearson2020, and @abbott2020 illustrate its application to COVID-19.
 
 The purpose of this vignette is to use early data on COVID-19 in South Africa 
-[@marivate2020] to illustrate how _epichains_ can be used to forecast an 
+[@marivate2020] to illustrate how _epichains_ can be used to project an 
 outbreak. 
 
 Let's load the required packages
