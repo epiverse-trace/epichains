@@ -115,7 +115,7 @@ where \code{...} are the other arguments to \verb{simulate_*()} and * is a place
 for the rest of simulation function's name.
 
 Alternatively, we could assign an anonymous function to \code{serials_dist}
-in the \verb{simulate_*()} call like so
+in the \verb{simulate_*()} call, i.e.
 \code{simulate_*(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})},
 where \code{...} are the other arguments to \verb{simulate_*()}.
 }
@@ -146,9 +146,6 @@ initial number of infections.
 \item \code{\link[=simulate_summary]{simulate_summary()}} for simulating transmission chains
 statistics (sizes or lengths) without the infection tree.
 }
-}
-\author{
-Flavio Finger, James M. Azam, Sebastian Funk
 }
 \author{
 Flavio Finger, James M. Azam, Sebastian Funk

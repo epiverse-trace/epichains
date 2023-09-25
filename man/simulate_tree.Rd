@@ -18,7 +18,9 @@ simulate_tree(
 \arguments{
 \item{nchains}{Number of chains to simulate.}
 
-\item{statistic}{String; Statistic to calculate. Can be one of:
+\item{statistic}{String; Statistic (size/length) to calculate. Used to
+determine stopping criteria for simulations when \code{stat_max} is finite.
+Can be one of:
 \itemize{
 \item "size": the total number of offspring.
 \item "length": the total number of ancestors.
@@ -103,7 +105,7 @@ where \code{...} are the other arguments to \verb{simulate_*()} and * is a place
 for the rest of simulation function's name.
 
 Alternatively, we could assign an anonymous function to \code{serials_dist}
-in the \verb{simulate_*()} call like so
+in the \verb{simulate_*()} call, i.e.
 \code{simulate_*(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})},
 where \code{...} are the other arguments to \verb{simulate_*()}.
 }
