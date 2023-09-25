@@ -70,27 +70,26 @@ head(seed_cases)
 
 ## Setting up the inputs  
 
+We will now proceed to set up `simulate_tree()` for the simulations.
+
 ### Onset times 
 
-`simulate_tree()` requires a vector of onset times, `t0`, for each 
-chain/individual/simulation. 
+`simulate_tree()` requires a vector of seeding times, `t0`, for each
+chain/individual/simulation.
 
-The `covid19_sa` dataset above is aggregated, so we will have to disaggregate
-it into a linelist with each row representing a case and their onset time. 
-
-To achieve this, we will first use the date of the index case as the reference 
-and find the difference between each date and the reference. 
+To get this, we will use the observation date of the index case as the
+reference and find the difference between the other observed dates and the reference. 
 ```{r linelist_gen, message=FALSE}
-days_since_index <- as.integer(covid19_sa$date - min(covid19_sa$date))
+days_since_index <- as.integer(seed_cases$date - min(seed_cases$date))
 days_since_index
 ```
 
-Using the vector of start times for the time series, we will then 
-create the linelist by disaggregating the time series so 
-that each case has a corresponding start time.
+Using the vector of start times from the time series, we will then 
+create a corresponding seeding time for each individual, which we'll call
+`tf`.
 ```{r}
-start_times <- rep(days_since_index, covid19_sa$cases)
-start_times
+t0 <- rep(days_since_index, seed_cases$cases)
+t0
 ```
 
 ### Serial interval
@@ -269,7 +268,7 @@ set. We will use the date of the first case in the observed data
 as the reference start date.
 ```{r}
 # Get start date from the observed data
-index_date <- min(covid19_sa$date)
+index_date <- min(seed_cases$date)
 index_date
 
 # Add a dates column to each simulation result
