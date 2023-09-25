@@ -1,0 +1,365 @@
+---
+title: "Projecting infectious disease incidence: a COVID-19 example"
+author: "James Azam, Sebastian Funk"
+output:
+  bookdown::html_vignette2:
+    fig_caption: yes
+    code_folding: show
+pkgdown:
+  as_is: true
+bibliography: references.json
+link-citations: true
+vignette: >
+  %\VignetteIndexEntry{Projecting infectious disease incidence: a COVID-19 example}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+
+```
+
+## Overview
+
+Branching processes can be used to project infectious disease trends in time
+provided we can characterize the distribution of times between
+successive cases (serial interval), and the distribution of secondary cases
+produced by a single individual (offspring distribution). Such simulations can
+be achieved in _epichains_ with the `simulate_tree()` function and
+@pearson2020, and @abbott2020 illustrate its application to COVID-19.
+
+The purpose of this vignette is to use early data on COVID-19 in South Africa 
+[@marivate2020] to illustrate how _epichains_ can be used to forecast an 
+outbreak. 
+
+Let's load the required packages
+
+```{r packages, include=TRUE}
+library("epichains")
+library("dplyr")
+library("ggplot2")
+library("lubridate")
+```
+
+## Data
+
+Included in _epichains_ is a cleaned time series of the first 15 days of 
+the COVID-19 outbreak in South Africa. This can be loaded into 
+memory as follows: 
+```{r}
+data("covid19_sa", package = "epichains")
+```
+
+Let us examine the first 6 entries of the dataset.
+```{r}
+head(covid19_sa)
+```
+
+## Setting up the inputs  
+
+### Onset times 
+
+`simulate_tree()` requires a vector of onset times, `t0`, for each 
+chain/individual/simulation. 
+
+The `covid19_sa` dataset above is aggregated, so we will have to disaggregate
+it into a linelist with each row representing a case and their onset time. 
+
+To achieve this, we will first use the date of the index case as the reference 
+and find the difference between each date and the reference. 
+```{r linelist_gen, message=FALSE}
+days_since_index <- as.integer(covid19_sa$date - min(covid19_sa$date))
+days_since_index
+```
+
+Using the vector of start times for the time series, we will then 
+create the linelist by disaggregating the time series so 
+that each case has a corresponding start time.
+```{r}
+start_times <- rep(days_since_index, covid19_sa$cases)
+start_times
+```
+
+### Serial interval
+
+The log-normal distribution is commonly used in epidemiology to characterise 
+quantities such as the serial interval because it has a large variance 
+and can only be positive-valued [@nishiura2007; @limpert2001]. 
+
+In this example, we will assume based on COVID-19 literature that the 
+serial interval, S, is log-normal distributed with parameters, 
+$\mu = 4.7$ and $\sigma = 2.9$ [@pearson2020]. Note that when the distribution
+is described this way, it means $\mu$ and $\sigma$ are the expected value 
+and standard deviation of the natural logarithm of the serial interval. Hence, 
+in order to sample the "back-transformed" measured serial interval with 
+expectation/mean, $E[S]$ and standard deviation, $SD [S]$, 
+we can use the following parametrisation:
+
+\begin{align}
+E[S] &= \ln \left( \dfrac{\mu^2}{(\sqrt{\mu^2 + \sigma^2}} \right) \\
+
+SD [S] &= \sqrt {\ln \left(1 + \dfrac{\sigma^2}{\mu^2} \right)}
+ 
+\end{align}
+
+See ["log-normal_distribution" on Wikipedia](https://en.wikipedia.org/wiki/Log-normal_distribution) for a
+detailed explanation of this parametrisation.
+
+We will now set up the serial interval function with the appropriate inputs.
+We adopt R's random lognormal distribution generator (`rlnorm()`) that
+takes `meanlog` and `sdlog` as arguments, which we define with the
+parametrisation above as `log_mean()` and `log_sd()` respectively and wrap it in 
+the `serial_interval()` function. Moreover, `serial_interval()` takes one
+argument `sample_size` as is required by _epichains_ 
+(See `?epichains::simulate_tree`), which is further passed to `rlnorm()` as the 
+first argument to determine the number of observations to sample
+(See `?rlnorm`).
+```{r input_prep3, message=FALSE}
+mu <- 4.7
+sgma <- 2.9
+
+log_mean <- log((mu^2) / (sqrt(sgma^2 + mu^2)))  # log mean
+log_sd <- sqrt(log(1 + (sgma / mu)^2)) # log sd
+
+#' serial interval function
+serial_interval <- function(sample_size) {
+  si <- rlnorm(sample_size, meanlog = log_mean, sdlog = log_sd)
+  return(si)
+}
+```
+
+### Offspring distribution
+
+The negative binomial distribution is commonly used in epidemiology to
+account for individual variation in transmissibility, 
+also known as superspreading [@lloyd-smith2005].
+
+For this example, we will assume that the offspring distribution is 
+characterised by a negative binomial with $mu = 2.5$ [@abbott2020] and 
+$size = 0.58$ [@wang2020]. In this parameterization, $mu$ 
+represents the $R_0$, which is defined as the average number of 
+cases produced by a single individual in an entirely susceptible population. 
+The parameter $size$ represents superspreading, that is, the degree of 
+heterogeneity in transmission by single individuals.
+
+### Simulation controls
+
+Since, we have specified $R0 > 1$, it means the epidemic could potentially grow
+without end. Hence, we must specify an end time for the simulation.
+`simulate_tree()` provides the `tf` argument for this purpose. For this 
+example, we will simulate outbreaks that end $14$ days after the last date 
+of observations in the `covid19_sa` dataset.
+```{r input_prep2, message=FALSE}
+#' Date to end simulation (14 day projection in this case)
+projection_window <- 14 # 14 days/ 2-week ahead projection
+projection_end_day <- max(days_since_index) + projection_window
+projection_end_day
+```
+
+`simulate_tree()` is stochastic, meaning the results are different every
+time it is run for the same set of parameters. We will, therefore, run the
+simulations $100$ times and aggregate the results. 
+
+Let us specify that.
+```{r}
+#' Number of simulations
+sim_rep <- 100
+```
+
+Lastly, `simulate_tree()` requires a maximum chain statistic for each chain,
+above which, the simulation is cut off. If this value is 
+not specified, it assumes a value of infinity. Here, we will
+assume a maximum chain size of $1000$.
+
+Let's call it `chain_threhold`.
+```{r}
+#' Maximum chain size allowed
+chain_threshold <- 1000
+```
+
+## Modelling assumptions
+
+`simulate_tree()` makes the following simplifying assumptions:
+
+1. All cases are observed.
+1. There is no reporting delay.
+1. Reporting rate is constant through the course of the epidemic.
+1. No interventions have been implemented.
+1. Population is homogeneous and well-mixed.
+
+To summarise the whole set up so far, we are going to simulate 
+each chain `r sim_rep` times, projecting cases over
+`r projection_window` days after the first `r max(start_times)` days, and 
+assuming that no outbreak size exceeds `r chain_threshold` cases.
+
+## Running the simulations
+
+We will use the function `lapply()` to run the simulations and bind them
+by rows with `dplyr::bind_rows()`.
+```{r simulations, message=FALSE}
+set.seed(1234)
+sim_chain_sizes <- lapply(
+  seq_len(sim_rep),
+  function(sim) {
+    simulate_tree(
+      nchains = length(start_times),
+      offspring_dist = "nbinom",
+      mu = 2.5,
+      size = 0.58,
+      statistic = "size",
+      stat_max = chain_threshold,
+      serials_dist = serial_interval,
+      t0 = start_times,
+      tf = projection_end_day
+    ) %>%
+      mutate(sim = sim)
+  }
+)
+
+sim_output <- bind_rows(sim_chain_sizes)
+```
+
+Let us view the first few rows of the simulation results.
+```{r sim_output_head}
+head(sim_output)
+```
+
+## Post-processing
+
+Now, we will summarise the simulation results. 
+
+We want to plot the individual simulated daily time series and show 
+the median cases per day aggregated over all simulations.
+
+First, we will create the daily time series per simulation by
+aggregating the number of cases per day of each simulation.
+```{r post_processing}
+# Daily number of cases for each simulation
+incidence_ts <- sim_output %>%
+  mutate(day = ceiling(time)) %>%
+  group_by(sim, day) %>%
+  summarise(cases = n()) %>%
+  ungroup()
+
+head(incidence_ts)
+```
+
+Next, we will add a date column to the results of each simulation 
+set. We will use the date of the first case in the observed data 
+as the reference start date.
+```{r}
+# Get start date from the observed data
+index_date <- min(covid19_sa$date)
+index_date
+
+# Add a dates column to each simulation result
+incidence_ts_by_date <- incidence_ts %>%
+  group_by(sim) %>%
+  mutate(date = index_date + days(seq(0, n() - 1))) %>%
+  ungroup()
+
+head(incidence_ts_by_date)
+```
+
+Now we will aggregate the simulations by day and evaluate the median 
+daily cases across all simulations.
+```{r}
+# Median daily number of cases aggregated across all simulations
+median_daily_cases <- incidence_ts_by_date %>%
+  group_by(date) %>%
+  summarise(median_cases = median(cases)) %>%
+  ungroup() %>%
+  arrange(date)
+
+head(median_daily_cases)
+```
+
+## Visualization
+
+We will now plot the individual simulation results alongside the median
+of the aggregated results.
+```{r viz, fig.cap ="COVID-19 incidence in South Africa projected over a two week window in 2020. The light gray lines represent the individual simulations, the red line represents the median daily cases across all simulations, the black connected dots represent the observed data, and the dashed vertical line marks the beginning of the projection.", fig.width=6.0, fig.height=6}
+
+ggplot(data = incidence_ts_by_date) +
+  geom_line(
+    aes(
+      x = date,
+      y = cases,
+      group = sim
+    ),
+    color = "grey",
+    linewidth = 0.2,
+    alpha = 0.25
+  ) +
+  geom_line(
+    data = median_daily_cases,
+    aes(
+      x = date,
+      y = median_cases
+    ),
+    color = "tomato3",
+    linewidth = 1.8
+  ) +
+  geom_point(
+    data = covid19_sa,
+    aes(
+      x = date,
+      y = cases
+    ),
+    color = "black",
+    size = 1.75,
+    shape = 21
+  ) +
+  geom_line(
+    data = covid19_sa,
+    aes(
+      x = date,
+      y = cases
+    ),
+    color = "black",
+    linewidth = 1
+  ) +
+  scale_x_continuous(
+    breaks = seq(
+      min(incidence_ts_by_date$date),
+      max(incidence_ts_by_date$date),
+      5
+    ),
+    labels = seq(
+      min(incidence_ts_by_date$date),
+      max(incidence_ts_by_date$date),
+      5
+    ),
+    limits = c(
+      min(incidence_ts_by_date$date),
+      max(incidence_ts_by_date$date) - 4 # for a better visual look
+    )
+  ) +
+  scale_y_continuous(
+    breaks = seq(
+      0,
+      max(incidence_ts_by_date$cases) + 200,
+      250
+    ),
+    labels = seq(
+      0,
+      max(incidence_ts_by_date$cases) + 200,
+      250
+    )
+  ) +
+  geom_vline(
+    mapping = aes(xintercept = max(covid19_sa$date)),
+    linetype = "dashed"
+  ) +
+  labs(x = "Date", y = "Daily cases")
+```
+## References
