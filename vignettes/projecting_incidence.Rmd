@@ -59,9 +59,13 @@ memory as follows:
 data("covid19_sa", package = "epichains")
 ```
 
-Let us examine the first 6 entries of the dataset.
+We will use the first $5$ observations for this demonstration. We will assume
+that all the cases in that subset are imported and did not infect each other. 
+
+Let us subset and view that aspect of the data.
 ```{r}
-head(covid19_sa)
+seed_cases <- covid19_sa[1:5, ]
+head(seed_cases)
 ```
 
 ## Setting up the inputs  
