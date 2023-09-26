@@ -9,15 +9,15 @@ test_that("Simulators work", {
   susc_outbreak_raw <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "pois",
-    offspring_mean = 0.9,
+    lambda = 0.9,
     serials_dist = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "nbinom",
-    offspring_mean = 1,
-    offspring_disp = 1.1,
+    mu = 1,
+    size = 1.1,
     serials_dist = serial_func
   )
   #' Simulate a tree of infections without serials
@@ -195,8 +195,8 @@ test_that("simulate_tree_from_pop throws errors", {
     simulate_tree_from_pop(
       pop = 100,
       offspring_dist = "nbinom",
-      offspring_mean = 0.5,
-      offspring_disp = 0.9,
+      mu = 0.5,
+      size = 0.9,
       serials_dist = serial_func
     ),
     "> 1"
@@ -219,19 +219,6 @@ test_that("simulate_tree_from_pop throws errors", {
       serials_dist = serial_func
     ),
     "must be specified"
-  )
-})
-
-test_that("simulate_tree_from_pop throws warnings", {
-  expect_warning(
-    simulate_tree_from_pop(
-      pop = 100,
-      offspring_dist = "pois",
-      offspring_mean = 3,
-      offspring_disp = 1,
-      serials_dist = serial_func
-    ),
-    "not used for poisson offspring"
   )
 })
 
@@ -313,7 +300,7 @@ test_that("simulate_tree_from_pop is numerically correct", {
   susc_outbreak_raw <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "pois",
-    offspring_mean = 0.9,
+    lambda = 0.9,
     serials_dist = serial_func
   )
   #' Summarise the results

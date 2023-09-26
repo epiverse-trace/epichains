@@ -9,15 +9,15 @@ test_that("Simulators return epichains objects", {
   susc_outbreak_raw <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "pois",
-    offspring_mean = 0.9,
+    lambda = 0.9,
     serials_dist = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "nbinom",
-    offspring_mean = 1,
-    offspring_disp = 1.1,
+    mu = 1,
+    size = 1.1,
     serials_dist = serial_func
   )
   #' Simulate a tree of infections without serials
@@ -72,15 +72,15 @@ test_that("print.epichains works for simulation functions", {
   susc_outbreak_raw <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "pois",
-    offspring_mean = 0.9,
+    lambda = 0.9,
     serials_dist = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "nbinom",
-    offspring_mean = 1,
-    offspring_disp = 1.1,
+    mu = 1,
+    size = 1.1,
     serials_dist = serial_func
   )
   #' Simulate a tree of infections without serials
@@ -120,15 +120,15 @@ test_that("summary.epichains works as expected", {
   susc_outbreak_raw <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "pois",
-    offspring_mean = 0.9,
+    lambda = 0.9,
     serials_dist = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "nbinom",
-    offspring_mean = 1,
-    offspring_disp = 1.1,
+    mu = 1,
+    size = 1.1,
     serials_dist = serial_func
   )
   #' Simulate a tree of infections without serials
@@ -226,15 +226,15 @@ test_that("validate_epichains works", {
   susc_outbreak_raw <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "pois",
-    offspring_mean = 0.9,
+    lambda = 0.9,
     serials_dist = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "nbinom",
-    offspring_mean = 1,
-    offspring_disp = 1.1,
+    mu = 1,
+    size = 1.1,
     serials_dist = serial_func
   )
   #' Simulate a tree of infections without serials
@@ -288,15 +288,15 @@ test_that("is_chains_tree works", {
   susc_outbreak_raw <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "pois",
-    offspring_mean = 0.9,
+    lambda = 0.9,
     serials_dist = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "nbinom",
-    offspring_mean = 1,
-    offspring_disp = 1.1,
+    mu = 1,
+    size = 1.1,
     serials_dist = serial_func
   )
   #' Simulate a tree of infections without serials
@@ -346,15 +346,15 @@ test_that("is_chains_summary works", {
   susc_outbreak_raw <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "pois",
-    offspring_mean = 0.9,
+    lambda = 0.9,
     serials_dist = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "nbinom",
-    offspring_mean = 1,
-    offspring_disp = 1.1,
+    mu = 1,
+    size = 1.1,
     serials_dist = serial_func
   )
   #' Simulate a tree of infections without serials
@@ -495,15 +495,15 @@ test_that("head and tail print output as expected", {
   susc_outbreak_raw <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "pois",
-    offspring_mean = 0.9,
+    lambda = 0.9,
     serials_dist = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "nbinom",
-    offspring_mean = 1,
-    offspring_disp = 1.1,
+    mu = 1,
+    size = 1.1,
     serials_dist = serial_func
   )
   #' Simulate a tree of infections without serials
@@ -538,15 +538,15 @@ test_that("head and tail return data.frames", {
   susc_outbreak_raw <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "pois",
-    offspring_mean = 0.9,
+    lambda = 0.9,
     serials_dist = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
     pop = 100,
     offspring_dist = "nbinom",
-    offspring_mean = 1,
-    offspring_disp = 1.1,
+    mu = 1,
+    size = 1.1,
     serials_dist = serial_func
   )
   #' Simulate a tree of infections without serials

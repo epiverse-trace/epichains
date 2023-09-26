@@ -410,12 +410,6 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' corresponding to the R distribution function (e.g., "pois" for Poisson,
 #' where \code{\link{rpois}} is the R function to generate Poisson random
 #' numbers). Only supports "pois" and "nbinom".
-#' @param offspring_mean The average number of secondary cases for each case.
-#' Same as \eqn{R_0}.
-#' @param offspring_disp The dispersion parameter of the number of
-#' secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
-#' avoid division by 0 when calculating the size. See details and
-#'  \code{?rnbinom} for details on the parameterisation in Ecology.
 #' @param initial_immune The number of initial immunes in the population.
 #' Must be less than `pop` - 1.
 #' @param t0 Start time; Defaults to 0.
@@ -432,15 +426,15 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' than susceptibles at any point.
 #'
 #' The poisson model has mean, lambda, parametrised as:
-#' \deqn{{\sf lambda} = \dfrac{{\sf offspring\_mean} \times ({\sf pop} -
+#' \deqn{{\sf lambda} = \dfrac{{\sf lambda} \times ({\sf pop} -
 #' {\sf initial\_immune} - 1)}{{\sf pop}}}
 #'
 #' The negative binomial model, has mean, mu, parametrised as:
-#' \deqn{{\sf mu} = \dfrac{{\sf offspring\_mean} \times ({\sf pop} -
+#' \deqn{{\sf mu} = \dfrac{{\sf mu} \times ({\sf pop} -
 #' {\sf initial\_immune} - 1)}{{\sf pop}},}
 #' and dispersion, size, parametrised as:
-#' \deqn{{\sf size} = \dfrac{{\sf mu}}{{\sf offspring\_disp} - 1}.}
-#' This is why `offspring_disp` must be greater than 1.
+#' \deqn{{\sf size} = \dfrac{{\sf mu}}{{\sf size} - 1}.}
+#' This is why `size` must be greater than 1.
 #'
 #' # Differences with `simulate_tree()`
 #' `simulate_tree_from_pop()` has a couple of key differences from
@@ -460,12 +454,18 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' simulate_tree_from_pop(
 #'   pop = 100,
 #'   offspring_dist = "pois",
-#'   offspring_mean = 0.5,
+#'   lambda = 0.5,
 #'   serials_dist = function(x) 3
 #' )
 #'
 #' # Simulate with negative binomial offspring
 #' simulate_tree_from_pop(
+#' pop = 100, offspring_dist = "nbinom",
+#' mu = 0.5,
+#' size = 1.1,
+#' serials_dist = function(x) 3
+#' )
+#'
 #' # Simulate with negative binomial offspring with intervention (50%
 #' reduction in R0)
 #' simulate_tree_from_pop(
@@ -480,11 +480,11 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 simulate_tree_from_pop <- function(pop,
                                    offspring_dist = c("pois", "nbinom"),
                                    r0_reduction = 0,
-                                   offspring_disp,
                                    serials_dist,
                                    initial_immune = 0,
                                    t0 = 0,
-                                   tf = Inf) {
+                                   tf = Inf,
+                                   ...) {
   offspring_dist <- match.arg(offspring_dist)
 
   # Check that the r0_reduction is well specified
@@ -506,24 +506,25 @@ simulate_tree_from_pop <- function(pop,
     )
   }
 
-    ## using a right truncated poisson distribution
+  if (offspring_dist == "pois") {
+    ## Use a right truncated poisson distribution
     ## to avoid more cases than susceptibles
     offspring_func <- function(n, susc) {
       truncdist::rtrunc(
         n,
         spec = "pois",
-        lambda = offspring_mean * susc / pop,
+        lambda = pars$lambda * susc / pop,
         b = susc
       )
     }
   } else if (offspring_dist == "nbinom") {
-    if (missing(offspring_disp)) {
-      stop(sprintf("%s", "'offspring_disp' must be specified."))
-    } else if (offspring_disp <= 1) { ## dispersion coefficient
+    if (is.null(pars$size)) {
+      stop(sprintf("%s", "'size' must be specified."))
+    } else if (pars$size <= 1) { ## dispersion coefficient
       stop(sprintf(
         "%s %s %s",
         "Offspring distribution 'nbinom' requires",
-        "argument 'offspring_disp' > 1.",
+        "argument 'size' > 1.",
         "Use 'pois' if there is no overdispersion."
       ))
     }
@@ -531,8 +532,8 @@ simulate_tree_from_pop <- function(pop,
     offspring_func <- function(n, susc) {
       ## get distribution params from mean and dispersion
       ## see ?rnbinom for parameter definition
-      new_mn <- offspring_mean * susc / pop ## apply susceptibility
-      size <- new_mn / (offspring_disp - 1)
+      new_mn <- pars$mu * susc / pop ## apply susceptibility
+      size <- new_mn / (pars$size - 1)
 
       ## using a right truncated nbinom distribution
       ## to avoid more cases than susceptibles

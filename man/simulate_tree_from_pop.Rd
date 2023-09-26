@@ -9,11 +9,11 @@ simulate_tree_from_pop(
   pop,
   offspring_dist = c("pois", "nbinom"),
   r0_reduction = 0,
-  offspring_disp,
   serials_dist,
   initial_immune = 0,
   t0 = 0,
-  tf = Inf
+  tf = Inf,
+  ...
 )
 }
 \arguments{
@@ -27,10 +27,6 @@ numbers). Only supports "pois" and "nbinom".}
 \item{r0_reduction}{The intervention impact. A scalar between 0 and 1.
 Scales the mean of \code{offspring_dist}. \code{r0_reduction} = 0 implies
 no intervention impact and \code{r0_reduction} = 1 implies full impact.}
-\item{offspring_disp}{The dispersion parameter of the number of
-secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
-avoid division by 0 when calculating the size. See details and
-\code{?rnbinom} for details on the parameterisation in Ecology.}
 
 \item{serials_dist}{The serial interval distribution function; the name
 of a user-defined named or anonymous function with only one argument \code{n},
@@ -42,6 +38,8 @@ Must be less than \code{pop} - 1.}
 \item{t0}{Start time; Defaults to 0.}
 
 \item{tf}{End time; Defaults to \code{Inf}.}
+
+\item{...}{Parameters of the offspring distribution as required by R.}
 }
 \value{
 An \verb{<epichains>} object, which is basically a \verb{<data.frame>} with
@@ -60,15 +58,15 @@ distributions are used to avoid the situation where there are more cases
 than susceptibles at any point.
 
 The poisson model has mean, lambda, parametrised as:
-\deqn{{\sf lambda} = \dfrac{{\sf offspring\_mean} \times ({\sf pop} -
+\deqn{{\sf lambda} = \dfrac{{\sf lambda} \times ({\sf pop} -
 {\sf initial\_immune} - 1)}{{\sf pop}}}
 
 The negative binomial model, has mean, mu, parametrised as:
-\deqn{{\sf mu} = \dfrac{{\sf offspring\_mean} \times ({\sf pop} -
+\deqn{{\sf mu} = \dfrac{{\sf mu} \times ({\sf pop} -
 {\sf initial\_immune} - 1)}{{\sf pop}},}
 and dispersion, size, parametrised as:
-\deqn{{\sf size} = \dfrac{{\sf mu}}{{\sf offspring\_disp} - 1}.}
-This is why \code{offspring_disp} must be greater than 1.
+\deqn{{\sf size} = \dfrac{{\sf mu}}{{\sf size} - 1}.}
+This is why \code{size} must be greater than 1.
 }
 
 \section{Differences with \code{simulate_tree()}}{
@@ -126,12 +124,18 @@ where \code{...} are the other arguments to \verb{simulate_*()}.
 simulate_tree_from_pop(
   pop = 100,
   offspring_dist = "pois",
-  offspring_mean = 0.5,
+  lambda = 0.5,
   serials_dist = function(x) 3
 )
 
 # Simulate with negative binomial offspring
 simulate_tree_from_pop(
+pop = 100, offspring_dist = "nbinom",
+mu = 0.5,
+size = 1.1,
+serials_dist = function(x) 3
+)
+
 # Simulate with negative binomial offspring with intervention (50\%
 reduction in R0)
 simulate_tree_from_pop(
