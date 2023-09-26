@@ -189,7 +189,13 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
   # next, simulate n chains
   while (length(sim) > 0) {
     # simulate next generation
-    next_gen <- get(roffspring_name)(n = sum(n_offspring[sim]), ...)
+    next_gen <- do.call(
+      get(roffspring_name),
+      c(
+        list(n = sum(n_offspring[sim])),
+        pars
+      )
+    )
     if (any(next_gen %% 1 > 0)) {
       stop("Offspring distribution must return integers")
     }
@@ -352,7 +358,13 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
   ## next, simulate nchains chains
   while (length(sim) > 0) {
     ## simulate next generation
-    next_gen <- get(roffspring_name)(n = sum(n_offspring[sim]), ...)
+    next_gen <- do.call(
+      get(roffspring_name),
+      c(
+        list(n = sum(n_offspring[sim])),
+        pars
+      )
+      )
     if (any(next_gen %% 1 > 0)) {
       stop("Offspring distribution must return integers")
     }
