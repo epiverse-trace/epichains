@@ -8,7 +8,7 @@ population}
 simulate_tree_from_pop(
   pop,
   offspring_dist = c("pois", "nbinom"),
-  offspring_mean,
+  r0_reduction = 0,
   offspring_disp,
   serials_dist,
   initial_immune = 0,
@@ -24,9 +24,9 @@ corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers). Only supports "pois" and "nbinom".}
 
-\item{offspring_mean}{The average number of secondary cases for each case.
-Same as \eqn{R_0}.}
-
+\item{r0_reduction}{The intervention impact. A scalar between 0 and 1.
+Scales the mean of \code{offspring_dist}. \code{r0_reduction} = 0 implies
+no intervention impact and \code{r0_reduction} = 1 implies full impact.}
 \item{offspring_disp}{The dispersion parameter of the number of
 secondary cases. Ignored if \code{offspring == "pois"}. Must be > 1 to
 avoid division by 0 when calculating the size. See details and

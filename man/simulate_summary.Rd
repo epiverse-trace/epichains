@@ -8,6 +8,7 @@ simulate_summary(
   nchains,
   statistic = c("size", "length"),
   offspring_dist,
+  r0_reduction = 0,
   stat_max = Inf,
   ...
 )
@@ -27,6 +28,10 @@ Can be one of:
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}
+
+\item{r0_reduction}{The intervention impact. A scalar between 0 and 1.
+Scales the mean of \code{offspring_dist}. \code{r0_reduction} = 0 implies
+no intervention impact and \code{r0_reduction} = 1 implies full impact.}
 
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above the specified value, are set to \code{Inf}.}
