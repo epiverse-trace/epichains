@@ -364,7 +364,7 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
         list(n = sum(n_offspring[sim])),
         pars
       )
-      )
+    )
     if (any(next_gen %% 1 > 0)) {
       stop("Offspring distribution must return integers")
     }
@@ -467,7 +467,7 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' )
 #'
 #' # Simulate with negative binomial offspring with intervention (50%
-#' reduction in R0)
+#' # reduction in R0)
 #' simulate_tree_from_pop(
 #'   pop = 100,
 #'   offspring_dist = "nbinom",
