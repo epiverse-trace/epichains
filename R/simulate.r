@@ -466,19 +466,15 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #'
 #' # Simulate with negative binomial offspring
 #' simulate_tree_from_pop(
+#' # Simulate with negative binomial offspring with intervention (50%
+#' reduction in R0)
+#' simulate_tree_from_pop(
 #'   pop = 100,
 #'   offspring_dist = "nbinom",
-#'   offspring_mean = 0.5,
-#'   offspring_disp = 1.1,
+#'   r0_reduction = 0.5,
+#'   mu = 0.5,
+#'   size = 1.1,
 #'   serials_dist = function(x) 3
-#' # Simulate with negative binomial offspring with intervention
-#' simulate_tree_from_pop(
-#' pop = 100,
-#' offspring_dist = "nbinom",
-#' r0_reduction = 0.5,
-#' mu = 0.5,
-#' size = 1.1,
-#' serials_dist = function(x) 3
 #' )
 #' @export
 simulate_tree_from_pop <- function(pop,
