@@ -137,7 +137,7 @@ serials_dist = function(x) 3
 )
 
 # Simulate with negative binomial offspring with intervention (50\%
-reduction in R0)
+# reduction in R0)
 simulate_tree_from_pop(
   pop = 100,
   offspring_dist = "nbinom",
