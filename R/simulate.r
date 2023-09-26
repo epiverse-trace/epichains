@@ -98,6 +98,19 @@
 #'   serials_dist = function(x) 3,
 #'   lambda = 2
 #' )
+#'
+#' # Run model with intervention a 50% reduction in R0.
+#' chains_with_intvn <- simulate_tree(
+#'   nchains = 10,
+#'   statistic = "size",
+#'   offspring_dist = "pois",
+#'   r0_reduction = 0.5,
+#'   stat_max = 10,
+#'   serials_dist = function(x) 3,
+#'   lambda = 2
+#' )
+#'
+#' chains_with_intvn
 #' @references
 #' Lehtinen S, Ashcroft P, Bonhoeffer S. On the relationship
 #' between serial interval, infectiousness profile and generation time.
@@ -284,6 +297,18 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 #'   stat_max = 10,
 #'   lambda = 2
 #' )
+#'
+#' # Run model with intervention a 50% reduction in R0.
+#' chain_summary_with_intvn <- simulate_summary(
+#'   nchains = 10,
+#'   statistic = "size",
+#'   offspring_dist = "pois",
+#'   r0_reduction = 0.5,
+#'   stat_max = 10,
+#'   lambda = 2
+#' )
+#'
+#' chain_summary_with_intvn
 #' @export
 simulate_summary <- function(nchains, statistic = c("size", "length"),
                              offspring_dist,
@@ -434,6 +459,14 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #'   offspring_mean = 0.5,
 #'   offspring_disp = 1.1,
 #'   serials_dist = function(x) 3
+#' # Simulate with negative binomial offspring with intervention
+#' simulate_tree_from_pop(
+#' pop = 100,
+#' offspring_dist = "nbinom",
+#' r0_reduction = 0.5,
+#' mu = 0.5,
+#' size = 1.1,
+#' serials_dist = function(x) 3
 #' )
 #' @export
 simulate_tree_from_pop <- function(pop,

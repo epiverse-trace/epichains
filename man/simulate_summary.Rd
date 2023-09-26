@@ -103,6 +103,18 @@ simulate_summary(
   stat_max = 10,
   lambda = 2
 )
+
+# Run model with intervention a 50\% reduction in R0.
+chain_summary_with_intvn <- simulate_summary(
+  nchains = 10,
+  statistic = "size",
+  offspring_dist = "pois",
+  r0_reduction = 0.5,
+  stat_max = 10,
+  lambda = 2
+)
+
+chain_summary_with_intvn
 }
 \seealso{
 \itemize{
