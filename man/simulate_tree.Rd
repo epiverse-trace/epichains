@@ -9,6 +9,7 @@ simulate_tree(
   statistic = c("size", "length"),
   offspring_dist,
   stat_max = Inf,
+  r0_reduction = 0,
   serials_dist,
   t0 = 0,
   tf = Inf,
@@ -34,6 +35,10 @@ numbers).}
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
+
+\item{r0_reduction}{The intervention impact. A scalar between 0 and 1.
+Scales the mean of \code{offspring_dist}. \code{r0_reduction} = 0 implies
+no intervention impact and \code{r0_reduction} = 1 implies full impact.}
 
 \item{serials_dist}{The serial interval distribution function; the name
 of a user-defined named or anonymous function with only one argument \code{n},
