@@ -89,7 +89,8 @@ test_that("Simulators work", {
     lambda = 0.9,
     r0_reduction = 0.5
   )
-  #' Simulate chain statistics with nbinom offspring and with a 50% reduction in R0
+  #' Simulate chain statistics with nbinom offspring and with a 50% reduction
+  #' in R0
   chain_summary_raw_intvn2 <- simulate_summary(
     nchains = 2,
     offspring_dist = "nbinom",
