@@ -119,9 +119,10 @@ test_that("Simulators work", {
     nrow(tree_sim_raw2),
     2
   )
-  expect_gte(
-    nrow(tree_sim_raw2),
-    5
+  expect_identical(
+    nrow(tree_sim_raw_intvn),
+    3L
+  )
   expect_identical(
     nrow(tree_sim_raw_intvn2),
     2L
@@ -134,9 +135,10 @@ test_that("Simulators work", {
     nrow(susc_outbreak_raw2),
     1
   )
-  expect_gte(
+  expect_identical(
     nrow(susc_outbreak_raw_intvn),
-    1
+    2L
+  )
   expect_identical(
     nrow(susc_outbreak_raw_intvn2),
     1L
