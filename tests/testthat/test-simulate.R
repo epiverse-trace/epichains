@@ -20,6 +20,15 @@ test_that("Simulators work", {
     size = 1.1,
     serials_dist = serial_func
   )
+  #' Simulate an outbreak from a susceptible population (pois) with
+  #' 50% R0 reduction
+  susc_outbreak_raw_intvn <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "pois",
+    lambda = 1.5,
+    serials_dist = serial_func,
+    r0_reduction = 0.5
+  )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
     nchains = 2,
@@ -36,6 +45,15 @@ test_that("Simulators work", {
     serials_dist = function(x) 3,
     lambda = 2
   )
+  #' Simulate a tree of infections without serials and with 50% reduction
+  #' in R0
+  tree_sim_raw_intvn <- simulate_tree(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9,
+    r0_reduction = 0.5
+  )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
     nchains = 2,
@@ -43,9 +61,21 @@ test_that("Simulators work", {
     statistic = "length",
     lambda = 0.9
   )
+  #' Simulate chain statistics and with a 50% reduction in R0
+  chain_summary_raw_intvn <- simulate_summary(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9,
+    r0_reduction = 0.5
+  )
   #' Expectations
   expect_length(
     chain_summary_raw,
+    2
+  )
+  expect_length(
+    chain_summary_raw_intvn,
     2
   )
   expect_gte(
@@ -57,11 +87,19 @@ test_that("Simulators work", {
     2
   )
   expect_gte(
+    nrow(tree_sim_raw2),
+    5
+  )
+  expect_gte(
     nrow(susc_outbreak_raw),
     1
   )
   expect_gte(
     nrow(susc_outbreak_raw2),
+    1
+  )
+  expect_gte(
+    nrow(susc_outbreak_raw_intvn),
     1
   )
   expect_true(
@@ -138,6 +176,17 @@ test_that("simulate_tree throws errors", {
     ),
     "must be specified"
   )
+  expect_error(
+    simulate_tree(
+      nchains = 2,
+      offspring_dist = "binom",
+      statistic = "length",
+      size = 1,
+      prob = 0.5,
+      r0_reduction = 0.5
+    ),
+    "must be one of"
+  )
 })
 
 test_that("simulate_summary throws errors", {
@@ -178,6 +227,17 @@ test_that("simulate_summary throws errors", {
       lambda = 0.9
     ),
     "character string"
+  )
+  expect_error(
+    simulate_summary(
+      nchains = 2,
+      offspring_dist = "binom",
+      statistic = "length",
+      size = 1,
+      prob = 0.5,
+      r0_reduction = 0.5
+    ),
+    "must be one of"
   )
 })
 
@@ -231,12 +291,51 @@ test_that("simulate_tree is numerically correct", {
     statistic = "length",
     lambda = 0.9
   )
+  #' Simulate a tree of infections without serials and with 50% reduction
+  #' in R0
+  tree_sim_raw_intvn <- simulate_tree(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9,
+    r0_reduction = 0.5
+  )
   #' summarise the results
   tree_sim_summary <- summary(tree_sim_raw)
+  tree_sim_intvn_summary <- summary(tree_sim_raw_intvn)
   #' Expectations
   expect_identical(
     tree_sim_summary$chains_ran,
     2.00
+  )
+  expect_identical(
+    tree_sim_summary$unique_ancestors,
+    2L
+  )
+  expect_identical(
+    tree_sim_summary$max_generation,
+    3L
+  )
+  expect_identical(
+    tree_sim_raw$chain_id,
+    c(1L, 2L, 2L, 2L, 2L, 2L, 2L)
+  )
+  expect_identical(
+    tree_sim_raw$sim_id,
+    c(1, 1, 2, 3, 4, 5, 6)
+  )
+  expect_identical(
+    tree_sim_raw$ancestor,
+    c(NA, NA, 1, 1, 2, 2, 2)
+  )
+  expect_identical(
+    tree_sim_raw$generation,
+    c(1L, 1L, 2L, 2L, 3L, 3L, 3L)
+  )
+  #' Expectations for intervention simulation
+  expect_identical(
+    tree_sim_summary$chains_ran,
+    2.0
   )
   expect_identical(
     tree_sim_summary$unique_ancestors,
@@ -273,8 +372,17 @@ test_that("simulate_summary is numerically correct", {
     statistic = "length",
     lambda = 0.9
   )
+  #' Simulate chain statistics and with a 50% reduction in R0
+  chain_summary_raw_intvn <- simulate_summary(
+    nchains = 2,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 0.9,
+    r0_reduction = 0.5
+  )
   #' Summarise the results
   chain_summary_summaries <- summary(chain_summary_raw)
+  chain_summary_intvn_summaries <- summary(chain_summary_raw_intvn)
   #' Expectations
   expect_identical(
     chain_summary_summaries$chain_ran,
@@ -292,6 +400,22 @@ test_that("simulate_summary is numerically correct", {
     as.vector(chain_summary_raw),
     c(1.00, 3.00)
   )
+  expect_identical(
+    chain_summary_intvn_summaries$chain_ran,
+    2.00
+  )
+  expect_identical(
+    chain_summary_intvn_summaries$max_chain_stat,
+    2.00
+  )
+  expect_identical(
+    chain_summary_intvn_summaries$min_chain_stat,
+    1.00
+  )
+  expect_identical(
+    as.vector(chain_summary_raw_intvn),
+    c(2.00, 1.00)
+  )
 })
 
 test_that("simulate_tree_from_pop is numerically correct", {
@@ -303,8 +427,19 @@ test_that("simulate_tree_from_pop is numerically correct", {
     lambda = 0.9,
     serials_dist = serial_func
   )
+  #' Simulate an outbreak from a susceptible population (pois) with
+  #' 50% R0 reduction
+  set.seed(7)
+  susc_outbreak_raw_intvn <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "pois",
+    lambda = 1.5,
+    serials_dist = serial_func,
+    r0_reduction = 0.5
+  )
   #' Summarise the results
   susc_outbreak_summary <- summary(susc_outbreak_raw)
+  susc_outbreak_summary_intvn <- summary(susc_outbreak_raw_intvn)
   #' Expectations
   expect_identical(
     susc_outbreak_summary$unique_ancestors,
@@ -334,5 +469,26 @@ test_that("simulate_tree_from_pop is numerically correct", {
   expect_identical(
     susc_outbreak_raw$time,
     0.00
+  )
+  #' Expectations for intervention simulation
+  expect_identical(
+    susc_outbreak_summary_intvn$unique_ancestors,
+    12L
+  )
+  expect_identical(
+    round(
+      susc_outbreak_summary_intvn$max_time,
+      1
+    ),
+    72.1
+  )
+  expect_identical(
+    susc_outbreak_summary_intvn$max_generation,
+    10L
+  )
+  expect_null(susc_outbreak_summary_intvn$chains_ran)
+  expect_identical(
+    sum(aggregate(susc_outbreak_raw_intvn, "time")$cases),
+    20L
   )
 })
