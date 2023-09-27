@@ -29,6 +29,16 @@ test_that("Simulators work", {
     serials_dist = serial_func,
     r0_reduction = 0.5
   )
+  #' Simulate an outbreak from a susceptible population (nbinom) with
+  #' 50% R0 reduction
+  susc_outbreak_raw_intvn2 <- simulate_tree_from_pop(
+    pop = 100,
+    offspring_dist = "nbinom",
+    mu = 1.5,
+    size = 1.1,
+    serials_dist = serial_func,
+    r0_reduction = 0.5
+  )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
     nchains = 2,
@@ -54,6 +64,16 @@ test_that("Simulators work", {
     lambda = 0.9,
     r0_reduction = 0.5
   )
+  #' Simulate a tree of infections with nbinom offspring and with 50% reduction
+  #' in R0
+  tree_sim_raw_intvn2 <- simulate_tree(
+    nchains = 2,
+    offspring_dist = "nbinom",
+    statistic = "length",
+    mu = 0.9,
+    size = 1.1,
+    r0_reduction = 0.5
+  )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
     nchains = 2,
@@ -69,6 +89,15 @@ test_that("Simulators work", {
     lambda = 0.9,
     r0_reduction = 0.5
   )
+  #' Simulate chain statistics with nbinom offspring and with a 50% reduction in R0
+  chain_summary_raw_intvn2 <- simulate_summary(
+    nchains = 2,
+    offspring_dist = "nbinom",
+    statistic = "length",
+    mu = 1.9,
+    size = 1.1,
+    r0_reduction = 0.5
+  )
   #' Expectations
   expect_length(
     chain_summary_raw,
@@ -76,6 +105,10 @@ test_that("Simulators work", {
   )
   expect_length(
     chain_summary_raw_intvn,
+    2
+  )
+  expect_length(
+    chain_summary_raw_intvn2,
     2
   )
   expect_gte(
@@ -89,6 +122,9 @@ test_that("Simulators work", {
   expect_gte(
     nrow(tree_sim_raw2),
     5
+  expect_identical(
+    nrow(tree_sim_raw_intvn2),
+    2L
   )
   expect_gte(
     nrow(susc_outbreak_raw),
@@ -101,6 +137,9 @@ test_that("Simulators work", {
   expect_gte(
     nrow(susc_outbreak_raw_intvn),
     1
+  expect_identical(
+    nrow(susc_outbreak_raw_intvn2),
+    1L
   )
   expect_true(
     all(
