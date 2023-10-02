@@ -19,9 +19,14 @@
 #' scaled by \code{1 - intvn_mean_reduction}.
 #' @details
 #' `intvn_reduce_mean()` scales the mean of the offspring distribution
-#' by \eqn{1 - r0\_reduction} so that the new mean is given as:
-#' \deqn{(1 - r0\_reduction) \times R_0,} where \eqn{R_0} is the
-#' mean of the poisson and negative binomial distribution.
+#' by \eqn{1 - {\sf intvn\_mean\_reduction}} so that the new mean is given as:
+#' \deqn{(1 - {\sf intvn\_mean\_reduction}) \times {\sf mean,}} This
+#' scaling when applied to the poisson and negative binomial offspring
+#' distributions corresponds to the population-level reduction of R0 as
+#' described in Lloyd-Smith et al, (2005). `intvn_reduce_mean()` is therefore
+#' only implemented for the aforementioned distributions and errors when other
+#' offspring distributions are specified along with the `intvn_mean_reduction`
+#' argument in the \code{simulate_*()} functions.
 #'
 #' @author James M. Azam
 #' @keywords internal
