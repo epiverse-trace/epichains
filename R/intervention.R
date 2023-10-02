@@ -30,7 +30,9 @@
 #'
 #' @author James M. Azam
 #' @keywords internal
-intvn_scale_r0 <- function(r0_reduction, offspring_dist, pars_list) {
+#' @references Lloyd-Smith, J., Schreiber, S., Kopp, P. et al. Superspreading
+#' and the effect of individual variation on disease emergence. Nature 438,
+#' 355–359 (2005). \doi{10.1038/nature04153}
 intvn_reduce_mean <- function(intvn_mean_reduction, offspring_dist, pars_list) {
   # Intervention only works for pois and nbinom
   if (!offspring_dist %in% c("pois", "nbinom")) {
