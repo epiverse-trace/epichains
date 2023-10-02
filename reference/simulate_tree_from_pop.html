@@ -80,12 +80,12 @@ population</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">simulate_tree_from_pop</span><span class="op">(</span></span>
 <span>  <span class="va">pop</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pois"</span>, <span class="st">"nbinom"</span><span class="op">)</span>,</span>
-<span>  <span class="va">offspring_mean</span>,</span>
-<span>  <span class="va">offspring_disp</span>,</span>
+<span>  intvn_mean_reduction <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  <span class="va">serials_dist</span>,</span>
 <span>  initial_immune <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  t0 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  tf <span class="op">=</span> <span class="cn">Inf</span></span>
+<span>  tf <span class="op">=</span> <span class="cn">Inf</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -102,16 +102,12 @@ where <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link"
 numbers). Only supports "pois" and "nbinom".</p></dd>
 
 
-<dt>offspring_mean</dt>
-<dd><p>The average number of secondary cases for each case.
-Same as \(R_0\).</p></dd>
-
-
-<dt>offspring_disp</dt>
-<dd><p>The dispersion parameter of the number of
-secondary cases. Ignored if <code>offspring == "pois"</code>. Must be &gt; 1 to
-avoid division by 0 when calculating the size. See details and
-<code><a href="https://rdrr.io/r/stats/NegBinomial.html" class="external-link">?rnbinom</a></code> for details on the parameterisation in Ecology.</p></dd>
+<dt>intvn_mean_reduction</dt>
+<dd><p>A number between 0
+and 1 for scaling/reducing the mean of <code>offspring_dist</code>. Serves as
+population-level intervention. <code>intvn_mean_reduction</code> = 0
+implies no intervention impact and <code>intvn_mean_reduction</code> = 1 implies full
+impact.</p></dd>
 
 
 <dt>serials_dist</dt>
@@ -132,6 +128,10 @@ Must be less than <code>pop</code> - 1.</p></dd>
 <dt>tf</dt>
 <dd><p>End time; Defaults to <code>Inf</code>.</p></dd>
 
+
+<dt>...</dt>
+<dd><p>Parameters of the offspring distribution as required by R.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -149,14 +149,14 @@ Internally, the respective truncated poisson and negative binomial
 distributions are used to avoid the situation where there are more cases
 than susceptibles at any point.</p>
 <p>The poisson model has mean, lambda, parametrised as:
-$${\sf lambda} = \dfrac{{\sf offspring\_mean} \times ({\sf pop} -
+$${\sf lambda} = \dfrac{{\sf lambda} \times ({\sf pop} -
 {\sf initial\_immune} - 1)}{{\sf pop}}$$</p>
 <p>The negative binomial model, has mean, mu, parametrised as:
-$${\sf mu} = \dfrac{{\sf offspring\_mean} \times ({\sf pop} -
+$${\sf mu} = \dfrac{{\sf mu} \times ({\sf pop} -
 {\sf initial\_immune} - 1)}{{\sf pop}},$$
 and dispersion, size, parametrised as:
-$${\sf size} = \dfrac{{\sf mu}}{{\sf offspring\_disp} - 1}.$$
-This is why <code>offspring_disp</code> must be greater than 1.</p>
+$${\sf size} = \dfrac{{\sf mu}}{{\sf size} - 1}.$$
+This is why <code>size</code> must be greater than 1.</p>
     </div>
     <div class="section level2">
     <h2 id="differences-with-simulate-tree-">Differences with <code><a href="simulate_tree.html">simulate_tree()</a></code><a class="anchor" aria-label="anchor" href="#differences-with-simulate-tree-"></a></h2>
@@ -228,8 +228,31 @@ statistics (sizes or lengths) without the infection tree.</p></li>
 <span class="r-in"><span><span class="fu">simulate_tree_from_pop</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  pop <span class="op">=</span> <span class="fl">100</span>,</span></span>
 <span class="r-in"><span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span></span>
-<span class="r-in"><span>  offspring_mean <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
+<span class="r-in"><span>  lambda <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
 <span class="r-in"><span>  serials_dist <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> `epichains` object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt; tree head (from first known ancestor) &gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   sim_id ancestor generation time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      2        1          2    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt; tree tail &gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   sim_id ancestor generation time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1       NA          1    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      2        1          2    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of ancestors (known): 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of generations: 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Use `as.data.frame(&lt;object_name&gt;)` to view the full output in the console.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Simulate with negative binomial offspring</span></span></span>
+<span class="r-in"><span><span class="fu">simulate_tree_from_pop</span><span class="op">(</span></span></span>
+<span class="r-in"><span>pop <span class="op">=</span> <span class="fl">100</span>, offspring_dist <span class="op">=</span> <span class="st">"nbinom"</span>,</span></span>
+<span class="r-in"><span>mu <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
+<span class="r-in"><span>size <span class="op">=</span> <span class="fl">1.1</span>,</span></span>
+<span class="r-in"><span>serials_dist <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">3</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> `epichains` object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -246,12 +269,14 @@ statistics (sizes or lengths) without the infection tree.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of generations: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Use `as.data.frame(&lt;object_name&gt;)` to view the full output in the console.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Simulate with negative binomial offspring</span></span></span>
+<span class="r-in"><span><span class="co"># Simulate with negative binomial offspring with intervention (50%</span></span></span>
+<span class="r-in"><span><span class="co"># reduction in R0)</span></span></span>
 <span class="r-in"><span><span class="fu">simulate_tree_from_pop</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  pop <span class="op">=</span> <span class="fl">100</span>,</span></span>
 <span class="r-in"><span>  offspring_dist <span class="op">=</span> <span class="st">"nbinom"</span>,</span></span>
-<span class="r-in"><span>  offspring_mean <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
-<span class="r-in"><span>  offspring_disp <span class="op">=</span> <span class="fl">1.1</span>,</span></span>
+<span class="r-in"><span>  intvn_mean_reduction <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
+<span class="r-in"><span>  mu <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
+<span class="r-in"><span>  size <span class="op">=</span> <span class="fl">1.1</span>,</span></span>
 <span class="r-in"><span>  serials_dist <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">3</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> `epichains` object</span>
