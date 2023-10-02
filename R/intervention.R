@@ -9,13 +9,14 @@
 #' distributions are specified alongside `intvn_scale_r0`.
 #'
 #' @inheritParams simulate_tree
-#' @param r0_reduction The intervention impact. A scalar between 0 and 1.
-#' Scales the mean of `offspring_dist`. `r0_reduction` = 0 implies
-#' no intervention impact and `r0_reduction` = 1 implies full impact.
+#' @param intvn_mean_reduction Amount of reduction in the mean. A scalar
+#' between 0 and 1.
+#' It scales the mean of `offspring_dist`. `intvn_mean_reduction` = 0 implies
+#' no intervention impact and `intvn_mean_reduction` = 1 implies full impact.
 #' @param pars_list Parameter(s) for poisson or negative binomial offspring
 #' distribution.
 #' @return List of the offspring distribution parameter(s) with the mean
-#' scaled by \code{1 - intvn_scale_r0}.
+#' scaled by \code{1 - intvn_mean_reduction}.
 #' @details
 #' `intvn_scale_r0()` scales the mean of the offspring distribution
 #' by \eqn{1 - r0\_reduction} so that the new mean is given as:
@@ -29,13 +30,13 @@ intvn_scale_r0 <- function(r0_reduction, offspring_dist, pars_list) {
   if (!offspring_dist %in% c("pois", "nbinom")) {
     stop(
       "`offspring_dist` must be one of c(\"pois\", \"nbinom\"), ",
-      "if r0_reduction is specified."
+      "if intvn_mean_reduction is specified."
     )
   }
   if (offspring_dist == "pois") {
-    pars_list$lambda <- (1 - r0_reduction) * pars_list$lambda
+    pars_list$lambda <- (1 - intvn_mean_reduction) * pars_list$lambda
   } else {
-    pars_list$mu <- (1 - r0_reduction) * pars_list$mu
+    pars_list$mu <- (1 - intvn_mean_reduction) * pars_list$mu
   }
   return(pars_list)
 }
