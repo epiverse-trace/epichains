@@ -153,7 +153,7 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 
   # Prepare interventions if specified
   if (intvn_mean_reduction > 0) {
-    pars <- intvn_scale_r0(
+    pars <- intvn_reduce_mean(
       intvn_mean_reduction = intvn_mean_reduction,
       offspring_dist = offspring_dist,
       pars_list = pars
@@ -343,7 +343,7 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 
   # Prepare interventions if specified
   if (intvn_mean_reduction > 0) {
-    pars <- intvn_scale_r0(
+    pars <- intvn_reduce_mean(
       intvn_mean_reduction = intvn_mean_reduction,
       offspring_dist = offspring_dist,
       pars_list = pars
@@ -499,7 +499,7 @@ simulate_tree_from_pop <- function(pop,
 
   # Prepare interventions if specified
   if (intvn_mean_reduction > 0) {
-    pars <- intvn_scale_r0(
+    pars <- intvn_reduce_mean(
       intvn_mean_reduction = intvn_mean_reduction,
       offspring_dist = offspring_dist,
       pars_list = pars

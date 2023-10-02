@@ -1,7 +1,7 @@
 #' Set up intervention for simulation
 #'
 #' @description
-#' `intvn_scale_r0()` is a helper for the \code{simulation_*} functions. It
+#' `intvn_reduce_mean()` is a helper for the \code{simulate_*()} functions. It
 #' modifies the relevant arguments of the offspring distribution in order to
 #' mimic the impact of an intervention. In particular, it scales the mean of
 #' the offspring distribution. Currently, it can only handle the poisson and
@@ -18,7 +18,7 @@
 #' @return List of the offspring distribution parameter(s) with the mean
 #' scaled by \code{1 - intvn_mean_reduction}.
 #' @details
-#' `intvn_scale_r0()` scales the mean of the offspring distribution
+#' `intvn_reduce_mean()` scales the mean of the offspring distribution
 #' by \eqn{1 - r0\_reduction} so that the new mean is given as:
 #' \deqn{(1 - r0\_reduction) \times R_0,} where \eqn{R_0} is the
 #' mean of the poisson and negative binomial distribution.
@@ -26,6 +26,7 @@
 #' @author James M. Azam
 #' @keywords internal
 intvn_scale_r0 <- function(r0_reduction, offspring_dist, pars_list) {
+intvn_reduce_mean <- function(intvn_mean_reduction, offspring_dist, pars_list) {
   # Intervention only works for pois and nbinom
   if (!offspring_dist %in% c("pois", "nbinom")) {
     stop(
