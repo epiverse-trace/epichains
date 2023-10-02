@@ -40,3 +40,4 @@ mean of the poisson and negative binomial distribution.
 \author{
 James M. Azam
 }
+\keyword{internal}
