@@ -1,12 +1,12 @@
-#' Set up intervention for simulation
+#' Reduce the mean of the offspring distribution
 #'
 #' @description
 #' `intvn_reduce_mean()` is a helper for the \code{simulate_*()} functions. It
-#' modifies the relevant arguments of the offspring distribution in order to
-#' mimic the impact of an intervention. In particular, it scales the mean of
-#' the offspring distribution. Currently, it can only handle the poisson and
-#' negative binomial distributions and errors when other offspring
-#' distributions are specified alongside `intvn_scale_r0`.
+#' reduces/scales the mean of the offspring distribution in order to
+#' mimic the impact of a population-level intervention. Currently, it can only
+#' handle the poisson and negative binomial distributions and errors when other
+#' offspring distributions are specified alongside the `intvn_mean_reduction`
+#' argument.
 #'
 #' @inheritParams simulate_tree
 #' @param intvn_mean_reduction Amount of reduction in the mean. A scalar
