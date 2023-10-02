@@ -9,7 +9,7 @@ simulate_tree(
   statistic = c("size", "length"),
   offspring_dist,
   stat_max = Inf,
-  r0_reduction = 0,
+  intvn_mean_reduction = 0,
   serials_dist,
   t0 = 0,
   tf = Inf,
@@ -36,9 +36,10 @@ numbers).}
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
 
-\item{r0_reduction}{The intervention impact. A scalar between 0 and 1.
-Scales the mean of \code{offspring_dist}. \code{r0_reduction} = 0 implies
-no intervention impact and \code{r0_reduction} = 1 implies full impact.}
+\item{intvn_mean_reduction}{Amount of reduction in the mean. A scalar
+between 0 and 1.
+It scales the mean of \code{offspring_dist}. \code{intvn_mean_reduction} = 0 implies
+no intervention impact and \code{intvn_mean_reduction} = 1 implies full impact.}
 
 \item{serials_dist}{The serial interval distribution function; the name
 of a user-defined named or anonymous function with only one argument \code{n},
@@ -132,7 +133,7 @@ chains_with_intvn <- simulate_tree(
   nchains = 10,
   statistic = "size",
   offspring_dist = "pois",
-  r0_reduction = 0.5,
+  intvn_mean_reduction = 0.5,
   stat_max = 10,
   serials_dist = function(x) 3,
   lambda = 2

@@ -27,7 +27,7 @@ test_that("Simulators work", {
     offspring_dist = "pois",
     lambda = 1.5,
     serials_dist = serial_func,
-    r0_reduction = 0.5
+    intvn_mean_reduction = 0.5
   )
   #' Simulate an outbreak from a susceptible population (nbinom) with
   #' 50% R0 reduction
@@ -37,7 +37,7 @@ test_that("Simulators work", {
     mu = 1.5,
     size = 1.1,
     serials_dist = serial_func,
-    r0_reduction = 0.5
+    intvn_mean_reduction = 0.5
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
@@ -62,7 +62,7 @@ test_that("Simulators work", {
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9,
-    r0_reduction = 0.5
+    intvn_mean_reduction = 0.5
   )
   #' Simulate a tree of infections with nbinom offspring and with 50% reduction
   #' in R0
@@ -72,7 +72,7 @@ test_that("Simulators work", {
     statistic = "length",
     mu = 0.9,
     size = 1.1,
-    r0_reduction = 0.5
+    intvn_mean_reduction = 0.5
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
@@ -87,7 +87,7 @@ test_that("Simulators work", {
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9,
-    r0_reduction = 0.5
+    intvn_mean_reduction = 0.5
   )
   #' Simulate chain statistics with nbinom offspring and with a 50% reduction
   #' in R0
@@ -97,7 +97,7 @@ test_that("Simulators work", {
     statistic = "length",
     mu = 1.9,
     size = 1.1,
-    r0_reduction = 0.5
+    intvn_mean_reduction = 0.5
   )
   #' Expectations
   expect_length(
@@ -225,7 +225,7 @@ test_that("simulate_tree throws errors", {
       statistic = "length",
       size = 1,
       prob = 0.5,
-      r0_reduction = 0.5
+      intvn_mean_reduction = 0.5
     ),
     "must be one of"
   )
@@ -277,7 +277,7 @@ test_that("simulate_summary throws errors", {
       statistic = "length",
       size = 1,
       prob = 0.5,
-      r0_reduction = 0.5
+      intvn_mean_reduction = 0.5
     ),
     "must be one of"
   )
@@ -340,7 +340,7 @@ test_that("simulate_tree is numerically correct", {
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9,
-    r0_reduction = 0.5
+    intvn_mean_reduction = 0.5
   )
   #' summarise the results
   tree_sim_summary <- summary(tree_sim_raw)
@@ -420,7 +420,7 @@ test_that("simulate_summary is numerically correct", {
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9,
-    r0_reduction = 0.5
+    intvn_mean_reduction = 0.5
   )
   #' Summarise the results
   chain_summary_summaries <- summary(chain_summary_raw)
@@ -477,7 +477,7 @@ test_that("simulate_tree_from_pop is numerically correct", {
     offspring_dist = "pois",
     lambda = 1.5,
     serials_dist = serial_func,
-    r0_reduction = 0.5
+    intvn_mean_reduction = 0.5
   )
   #' Summarise the results
   susc_outbreak_summary <- summary(susc_outbreak_raw)
