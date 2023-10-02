@@ -4,87 +4,91 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="epichains">
 <title>Projecting infectious disease incidence: a COVID-19 example • epichains</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Projecting infectious disease incidence: a COVID-19 example">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Projecting infectious disease incidence: a COVID-19 example">
 <meta property="og:description" content="epichains">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ471458FQ"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XZ471458FQ');
+</script>
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">epichains</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">epichains</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../reference/index.html">Reference</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../articles/epichains.html">Get started</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a>
-    </li>
-  </ul>
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/epiverse-trace/epichains/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <h6 class="dropdown-header" data-toc-skip>Package vignettes</h6>
+    <a class="dropdown-item" href="../articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6>
+    <a class="dropdown-item" href="../articles/branching_process_literature.html">Literature on branching process applications</a>
+    <a class="dropdown-item" href="../articles/theoretical_background.html">Theoretical background for bpmodels</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/epiverse-trace/epichains/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Projecting infectious disease incidence: a COVID-19 example</h1>
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="" class="logo" alt=""><h1>Projecting infectious disease incidence: a COVID-19 example</h1>
                         <h4 data-toc-skip class="author">James Azam, Sebastian Funk</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/HEAD/vignettes/projecting_incidence.Rmd" class="external-link"><code>vignettes/projecting_incidence.Rmd</code></a></small>
-      <div class="hidden name"><code>projecting_incidence.Rmd</code></div>
-
+      <div class="d-none name"><code>projecting_incidence.Rmd</code></div>
     </div>
 
     
@@ -96,83 +100,72 @@
 provided we can characterize the distribution of times between
 successive cases (serial interval), and the distribution of secondary cases
 produced by a single individual (offspring distribution). Such simulations can
-be achieved in <code>epichains</code> with the <code><a href="../reference/chain_sim.html">chain_sim()</a></code> function and <span class="citation">Pearson et al. (<a href="#ref-pearson2020" role="doc-biblioref">2020</a>)</span>, and
-<span class="citation">Abbott et al. (<a href="#ref-abbott2020" role="doc-biblioref">2020</a>)</span> illustrate its application to COVID-19.</p>
+be achieved in <em>epichains</em> with the <code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> function and
+<span class="citation">Pearson et al. (<a href="#ref-pearson2020" role="doc-biblioref">2020</a>)</span>, and <span class="citation">Abbott et al. (<a href="#ref-abbott2020" role="doc-biblioref">2020</a>)</span> illustrate its application to COVID-19.</p>
 <p>The purpose of this vignette is to use early data on COVID-19 in South Africa
-<span class="citation">(<a href="#ref-marivate2020" role="doc-biblioref">Marivate and Combrink 2020</a>)</span> to illustrate how <code>epichains</code> can be used to forecast an
+<span class="citation">(<a href="#ref-marivate2020" role="doc-biblioref">Marivate and Combrink 2020</a>)</span> to illustrate how <em>epichains</em> can be used to project an
 outbreak.</p>
 <p>Let’s load the required packages</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/epichains" class="external-link">"epichains"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org" class="external-link">"dplyr"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://lubridate.tidyverse.org" class="external-link">"lubridate"</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/epiparameter" class="external-link">"epiparameter"</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://lubridate.tidyverse.org" class="external-link">"lubridate"</a></span><span class="op">)</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
-<p>Included in <code>epichains</code> is a cleaned time series of the first 15 days of
+<p>Included in <em>epichains</em> is a cleaned time series of the first 15 days of
 the COVID-19 outbreak in South Africa. This can be loaded into
 memory as follows:</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"covid19_sa"</span>, package <span class="op">=</span> <span class="st">"epichains"</span><span class="op">)</span></span></code></pre></div>
-</details><p>Let us examine the first 6 entries of the dataset.</p>
+</details><p>We will use the first <span class="math inline">\(5\)</span> observations for this demonstration. We will assume
+that all the cases in that subset are imported and did not infect each other.</p>
+<p>Let us subset and view that aspect of the data.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">covid19_sa</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 2</span></span></span>
+<code class="sourceCode R"><span><span class="va">seed_cases</span> <span class="op">&lt;-</span> <span class="va">covid19_sa</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">seed_cases</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 2</span></span></span>
 <span><span class="co">#&gt;   date       cases</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2020-03-05     1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2020-03-07     1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2020-03-08     1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2020-03-09     4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2020-03-11     6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2020-03-12     3</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2020-03-11     6</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level2">
 <h2 id="setting-up-the-inputs">Setting up the inputs<a class="anchor" aria-label="anchor" href="#setting-up-the-inputs"></a>
 </h2>
+<p>We will now proceed to set up <code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> for the simulations.</p>
 <div class="section level3">
 <h3 id="onset-times">Onset times<a class="anchor" aria-label="anchor" href="#onset-times"></a>
 </h3>
-<p><code><a href="../reference/chain_sim.html">chain_sim()</a></code> requires a vector of onset times, <code>t0</code>, for each
+<p><code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> requires a vector of seeding times, <code>t0</code>, for each
 chain/individual/simulation.</p>
-<p>The <code>covid19_sa</code> dataset above is aggregated, so we will have to disaggregate
-it into a linelist with each row representing a case and their onset time.</p>
-<p>To achieve this, we will first use the date of the index case as the reference
-and find the difference between each date and the reference.</p>
+<p>To get this, we will use the observation date of the index case as the
+reference and find the difference between the other observed dates and the reference.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">days_since_index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="va">covid19_sa</span><span class="op">$</span><span class="va">date</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">covid19_sa</span><span class="op">$</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">days_since_index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="va">seed_cases</span><span class="op">$</span><span class="va">date</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">seed_cases</span><span class="op">$</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">days_since_index</span></span>
-<span><span class="co">#&gt;  [1]  0  2  3  4  6  7  8  9 10 11 12 13 14 15</span></span></code></pre></div>
-</details><p>Using the vector of start times for the time series, we will then
-create the linelist by disaggregating the time series so
-that each case has a corresponding start time.</p>
+<span><span class="co">#&gt; [1] 0 2 3 4 6</span></span></code></pre></div>
+</details><p>Using the vector of start times from the time series, we will then
+create a corresponding seeding time for each individual, which we’ll call
+<code>tf</code>.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">start_times</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply</a></span><span class="op">(</span></span>
-<span>  <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">x</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">y</span> <span class="op">==</span> <span class="fl">0</span>, <span class="fl">1</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  <span class="va">days_since_index</span>,</span>
-<span>  <span class="va">covid19_sa</span><span class="op">$</span><span class="va">cases</span></span>
-<span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">start_times</span></span>
-<span><span class="co">#&gt;   [1]  0  2  3  4  4  4  4  6  6  6  6  6  6  7  7  7  8  8  8  8  8  8  8  8  9</span></span>
-<span><span class="co">#&gt;  [26]  9  9  9  9  9  9  9  9  9  9  9  9  9 10 10 10 10 10 10 10 10 10 10 10 10</span></span>
-<span><span class="co">#&gt;  [51] 10 11 11 11 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 12 12 12 12 12</span></span>
-<span><span class="co">#&gt;  [76] 12 12 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13</span></span>
-<span><span class="co">#&gt; [101] 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 14</span></span>
-<span><span class="co">#&gt; [126] 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14</span></span>
-<span><span class="co">#&gt; [151] 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15</span></span>
-<span><span class="co">#&gt; [176] 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15</span></span>
-<span><span class="co">#&gt; [201] 15 15</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">t0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">days_since_index</span>, <span class="va">seed_cases</span><span class="op">$</span><span class="va">cases</span><span class="op">)</span></span>
+<span><span class="va">t0</span></span>
+<span><span class="co">#&gt;  [1] 0 2 3 4 4 4 4 6 6 6 6 6 6</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level3">
 <h3 id="serial-interval">Serial interval<a class="anchor" aria-label="anchor" href="#serial-interval"></a>
 </h3>
+<p>Next, we will set up the serial interval distribution, that is, the time
+between successive onsets of cases in a transmission chain.</p>
 <p>The log-normal distribution is commonly used in epidemiology to characterise
 quantities such as the serial interval because it has a large variance
 and can only be positive-valued <span class="citation">(<a href="#ref-nishiura2007" role="doc-biblioref">Nishiura 2007</a>; <a href="#ref-limpert2001" role="doc-biblioref">Limpert, Stahel, and Abbt 2001</a>)</span>.</p>
@@ -189,24 +182,26 @@ E[S] &amp;= \ln \left( \dfrac{\mu^2}{(\sqrt{\mu^2 + \sigma^2}} \right) \\
 
 SD [S] &amp;= \sqrt {\ln \left(1 + \dfrac{\sigma^2}{\mu^2} \right)}
 \end{align}\]</span></p>
-<p>See <a href="https://en.wikipedia.org/wiki/Log-normal_distribution" class="external-link">Wikipedia</a> for a
+<p>See <a href="https://en.wikipedia.org/wiki/Log-normal_distribution" class="external-link">“log-normal_distribution” on Wikipedia</a> for a
 detailed explanation of this parametrisation.</p>
-<p>The <a href="https://github.com/epiverse-trace/epiparameter" class="external-link">epiparameter</a> R package
-provides the function <code><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2meanlogsdlog.html" class="external-link">epiparameter::lnorm_meansd2meanlogsdlog()</a></code> for implementing
-this parametrisation. It takes as inputs the mean, <span class="math inline">\(\mu\)</span> and standard
-deviation, <span class="math inline">\(\sigma\)</span> and returns a list with the transformed mean and
-standard deviation. Refer to <code><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2meanlogsdlog.html" class="external-link">?epiparameter::lnorm_meansd2meanlogsdlog</a></code>
-for more details.</p>
-<p>Let us set up the serial interval function with the appropriate inputs:</p>
+<p>We will now set up the serial interval function with the appropriate inputs.
+We adopt R’s random lognormal distribution generator (<code><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm()</a></code>) that
+takes <code>meanlog</code> and <code>sdlog</code> as arguments, which we define with the
+parametrisation above as <code>log_mean()</code> and <code>log_sd()</code> respectively and wrap it in
+the <code>serial_interval()</code> function. Moreover, <code>serial_interval()</code> takes one
+argument <code>sample_size</code> as is required by <em>epichains</em>
+(See <code><a href="../reference/simulate_tree.html">?epichains::simulate_tree</a></code>), which is further passed to <code><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm()</a></code> as the
+first argument to determine the number of observations to sample
+(See <code><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">?rlnorm</a></code>).</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fl">4.7</span></span>
 <span><span class="va">sgma</span> <span class="op">&lt;-</span> <span class="fl">2.9</span></span>
 <span></span>
-<span><span class="va">log_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2meanlogsdlog.html" class="external-link">lnorm_meansd2meanlogsdlog</a></span><span class="op">(</span><span class="va">mu</span>, <span class="va">sgma</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>  <span class="co"># log mean</span></span>
-<span><span class="va">log_sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://epiverse-trace.github.io/epiparameter/reference/lnorm_meansd2meanlogsdlog.html" class="external-link">lnorm_meansd2meanlogsdlog</a></span><span class="op">(</span><span class="va">mu</span>, <span class="va">sgma</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="co"># log sd</span></span>
+<span><span class="va">log_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="op">(</span><span class="va">mu</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sgma</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">mu</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>  <span class="co"># log mean</span></span>
+<span><span class="va">log_sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="op">(</span><span class="va">sgma</span> <span class="op">/</span> <span class="va">mu</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># log sd</span></span>
 <span></span>
 <span><span class="co">#' serial interval function</span></span>
-<span><span class="va">serial_interval</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sample_size</span><span class="op">)</span> <span class="op">{</span></span>
+<span><span class="va">serials_dist</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sample_size</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">si</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="va">sample_size</span>, meanlog <span class="op">=</span> <span class="va">log_mean</span>, sdlog <span class="op">=</span> <span class="va">log_sd</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">si</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
@@ -215,60 +210,69 @@ for more details.</p>
 <div class="section level3">
 <h3 id="offspring-distribution">Offspring distribution<a class="anchor" aria-label="anchor" href="#offspring-distribution"></a>
 </h3>
-<p>The negative binomial distribution is commonly used in epidemiology to
-account for individual variation in transmissibility,
-also known as superspreading <span class="citation">(<a href="#ref-lloyd-smith2005" role="doc-biblioref">Lloyd-Smith et al. 2005</a>)</span>.</p>
+<p>Let us now set up the offspring distribution, that is the distribution that
+drives the mechanism behind how individual cases infect other cases. The
+appropriate way to model the offspring distribution is to capture both the
+population-level transmissibility (<span class="math inline">\(R0\)</span>) and the individual-level heterogeneity
+in transmission (“superspreading”). The negative binomial distribution is
+commonly used in this case <span class="citation">(<a href="#ref-lloyd-smith2005" role="doc-biblioref">Lloyd-Smith et al. 2005</a>)</span>.</p>
 <p>For this example, we will assume that the offspring distribution is
-characterised by a negative binomial with <span class="math inline">\(R = 2.5\)</span> <span class="citation">(<a href="#ref-abbott2020" role="doc-biblioref">Abbott et al. 2020</a>)</span> and
-<span class="math inline">\(k = 0.58\)</span> <span class="citation">(<a href="#ref-wang2020" role="doc-biblioref">Wang et al. 2020</a>)</span>. In this parameterization, <span class="math inline">\(R\)</span>
+characterised by a negative binomial with <span class="math inline">\(mu = 2.5\)</span> <span class="citation">(<a href="#ref-abbott2020" role="doc-biblioref">Abbott et al. 2020</a>)</span> and
+<span class="math inline">\(size = 0.58\)</span> <span class="citation">(<a href="#ref-wang2020" role="doc-biblioref">Wang et al. 2020</a>)</span>.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fl">2.5</span></span>
+<span><span class="va">size</span> <span class="op">&lt;-</span> <span class="fl">0.58</span></span></code></pre></div>
+</details><p>In this parameterization, <span class="math inline">\(mu\)</span>
 represents the <span class="math inline">\(R_0\)</span>, which is defined as the average number of
 cases produced by a single individual in an entirely susceptible population.
-The parameter <span class="math inline">\(k\)</span> represents superspreading, that is, the degree of
+The parameter <span class="math inline">\(size\)</span> represents superspreading, that is, the degree of
 heterogeneity in transmission by single individuals.</p>
 </div>
 <div class="section level3">
 <h3 id="simulation-controls">Simulation controls<a class="anchor" aria-label="anchor" href="#simulation-controls"></a>
 </h3>
-<p><code><a href="../reference/chain_sim.html">chain_sim()</a></code> also requires the end time for the simulations. For this
-example, we will simulate outbreaks that end 14 days after the last date
-of observations in <code>covid19_sa</code>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#' Date to end simulation (14 day projection in this case)</span></span>
-<span><span class="va">projection_window</span> <span class="op">&lt;-</span> <span class="fl">14</span> <span class="co"># 14 days/ 2-week ahead projection</span></span>
-<span><span class="va">projection_end_day</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">days_since_index</span><span class="op">)</span> <span class="op">+</span> <span class="va">projection_window</span></span>
-<span><span class="va">projection_end_day</span></span>
-<span><span class="co">#&gt; [1] 29</span></span></code></pre></div>
-</details><p><code><a href="../reference/chain_sim.html">chain_sim()</a></code> is stochastic, meaning the results are different every
-time it is run for the same set of parameters, so we will run the simulations
-many times and summarise the results.</p>
-<p>We will, therefore, run each simulation <span class="math inline">\(100\)</span> times.</p>
+<p>For this example, we will simulate outbreaks that end <span class="math inline">\(21\)</span> days after the last
+date of observations in the <code>seed_cases</code> dataset.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Date to end simulation</span></span>
+<span><span class="va">projection_window</span> <span class="op">&lt;-</span> <span class="fl">21</span></span>
+<span><span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">days_since_index</span><span class="op">)</span> <span class="op">+</span> <span class="va">projection_window</span></span>
+<span><span class="va">tf</span></span>
+<span><span class="co">#&gt; [1] 27</span></span></code></pre></div>
+</details><p><code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> is stochastic, meaning the results are different every
+time it is run for the same set of parameters. We will, therefore, run the
+simulations <span class="math inline">\(100\)</span> times and aggregate the results.</p>
+<p>Let us specify that.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#' Number of simulations</span></span>
 <span><span class="va">sim_rep</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></code></pre></div>
-</details><p>Lastly, <code><a href="../reference/chain_sim.html">chain_sim()</a></code> requires the maximum size of each chain.
-Above this value, the simulation is cut off. If this value is
+</details><p>Lastly, since, we have specified that <span class="math inline">\(R0 &gt; 1\)</span>, it means the epidemic could
+potentially grow without end. Hence, we must specify an end point for the
+simulations.</p>
+<p><code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> provides the <code>stat_max</code> argument for this purpose.
+Above <code>stat_max</code>, the simulation is cut off. If this value is
 not specified, it assumes a value of infinity. Here, we will
 assume a maximum chain size of <span class="math inline">\(1000\)</span>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#' Maximum chain size allowed</span></span>
-<span><span class="va">chain_threshold</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span></code></pre></div>
+<span><span class="va">stat_max</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span></code></pre></div>
 </details>
 </div>
 </div>
 <div class="section level2">
 <h2 id="modelling-assumptions">Modelling assumptions<a class="anchor" aria-label="anchor" href="#modelling-assumptions"></a>
 </h2>
-<p><code><a href="../reference/chain_sim.html">chain_sim()</a></code> makes the following simplifying assumptions:</p>
+<p><code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> makes the following simplifying assumptions:</p>
 <ol style="list-style-type: decimal">
-<li>All cases are observed</li>
-<li>There is no reporting delay</li>
-<li>Reporting rate is constant through the course of the epidemic</li>
-<li>No interventions have been implemented</li>
-<li>Population is homogeneous and well-mixed</li>
+<li>All cases are observed.</li>
+<li>There is no reporting delay.</li>
+<li>Reporting rate is constant through the course of the epidemic.</li>
+<li>No interventions have been implemented.</li>
+<li>Population is homogeneous and well-mixed.</li>
 </ol>
 <p>To summarise the whole set up so far, we are going to simulate
-each chain 100 times, projecting COVID-19 cases over
-14 days after the first <span class="math inline">\(15\)</span> days, and
+each chain 100 times, projecting cases over
+21 days after the first 6 days, and
 assuming that no outbreak size exceeds 1000 cases.</p>
 </div>
 <div class="section level2">
@@ -276,22 +280,21 @@ assuming that no outbreak size exceeds 1000 cases.</p>
 </h2>
 <p>We will use the function <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> to run the simulations and bind them
 by rows with <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">dplyr::bind_rows()</a></code>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="va">sim_chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">sim_rep</span><span class="op">)</span>,</span>
 <span>  <span class="kw">function</span><span class="op">(</span><span class="va">sim</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="../reference/chain_sim.html">chain_sim</a></span><span class="op">(</span></span>
-<span>      n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">start_times</span><span class="op">)</span>,</span>
-<span>      offspring <span class="op">=</span> <span class="st">"nbinom"</span>,</span>
-<span>      mu <span class="op">=</span> <span class="fl">2.5</span>,</span>
-<span>      size <span class="op">=</span> <span class="fl">0.58</span>,</span>
-<span>      stat <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>      infinite <span class="op">=</span> <span class="va">chain_threshold</span>,</span>
-<span>      serial <span class="op">=</span> <span class="va">serial_interval</span>,</span>
-<span>      t0 <span class="op">=</span> <span class="va">start_times</span>,</span>
-<span>      tf <span class="op">=</span> <span class="va">projection_end_day</span>,</span>
-<span>      tree <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>    <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
+<span>      nchains <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">t0</span><span class="op">)</span>,</span>
+<span>      offspring_dist <span class="op">=</span> <span class="st">"nbinom"</span>,</span>
+<span>      mu <span class="op">=</span> <span class="va">mu</span>,</span>
+<span>      size <span class="op">=</span> <span class="va">size</span>,</span>
+<span>      statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>      stat_max <span class="op">=</span> <span class="va">stat_max</span>,</span>
+<span>      serials_dist <span class="op">=</span> <span class="va">serials_dist</span>,</span>
+<span>      t0 <span class="op">=</span> <span class="va">t0</span>,</span>
+<span>      tf <span class="op">=</span> <span class="va">tf</span></span>
 <span>    <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sim <span class="op">=</span> <span class="va">sim</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
@@ -299,15 +302,16 @@ by rows with <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html
 <span></span>
 <span><span class="va">sim_output</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">sim_chain_sizes</span><span class="op">)</span></span></code></pre></div>
 </details><p>Let us view the first few rows of the simulation results.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_output</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   n id ancestor generation time sim</span></span>
-<span><span class="co">#&gt; 1 1  1       NA          1    0   1</span></span>
-<span><span class="co">#&gt; 2 2  1       NA          1    2   1</span></span>
-<span><span class="co">#&gt; 3 3  1       NA          1    3   1</span></span>
-<span><span class="co">#&gt; 4 4  1       NA          1    4   1</span></span>
-<span><span class="co">#&gt; 5 5  1       NA          1    4   1</span></span>
-<span><span class="co">#&gt; 6 6  1       NA          1    4   1</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt; tree head (from first known ancestor) &gt;</span></span>
+<span><span class="co">#&gt;    chain_id sim_id ancestor generation      time sim</span></span>
+<span><span class="co">#&gt; 14        7      2        1          2 11.178089   1</span></span>
+<span><span class="co">#&gt; 15       11      2        1          2 10.048846   1</span></span>
+<span><span class="co">#&gt; 16       12      2        1          2 14.097486   1</span></span>
+<span><span class="co">#&gt; 17       13      2        1          2 10.110700   1</span></span>
+<span><span class="co">#&gt; 18        7      3        1          2  5.497689   1</span></span>
+<span><span class="co">#&gt; 19       11      3        1          2 10.386782   1</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level2">
@@ -318,7 +322,7 @@ by rows with <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html
 the median cases per day aggregated over all simulations.</p>
 <p>First, we will create the daily time series per simulation by
 aggregating the number of cases per day of each simulation.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Daily number of cases for each simulation</span></span>
 <span><span class="va">incidence_ts</span> <span class="op">&lt;-</span> <span class="va">sim_output</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>day <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">ceiling</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -334,14 +338,14 @@ aggregating the number of cases per day of each simulation.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     1     2     1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     1     3     1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     1     4     4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     1     6     6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     1     7     4</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     1     6     8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     1     8     3</span></span></code></pre></div>
 </details><p>Next, we will add a date column to the results of each simulation
 set. We will use the date of the first case in the observed data
 as the reference start date.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get start date from the observed data</span></span>
-<span><span class="va">index_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">covid19_sa</span><span class="op">$</span><span class="va">date</span><span class="op">)</span></span>
+<span><span class="va">index_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">seed_cases</span><span class="op">$</span><span class="va">date</span><span class="op">)</span></span>
 <span><span class="va">index_date</span></span>
 <span><span class="co">#&gt; [1] "2020-03-05"</span></span>
 <span></span>
@@ -359,46 +363,28 @@ as the reference start date.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     1     2     1 2020-03-06</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     1     3     1 2020-03-07</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     1     4     4 2020-03-08</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     1     6     6 2020-03-09</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     1     7     4 2020-03-10</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     1     6     8 2020-03-09</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     1     8     3 2020-03-10</span></span></code></pre></div>
 </details><p>Now we will aggregate the simulations by day and evaluate the median
 daily cases across all simulations.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Median daily number of cases aggregated across all simulations</span></span>
-<span><span class="va">median_daily_cases</span> <span class="op">&lt;-</span> <span class="va">incidence_ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">day</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">median_daily_cases</span> <span class="op">&lt;-</span> <span class="va">incidence_ts_by_date</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>median_cases <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">cases</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">day</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">median_daily_cases</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 2</span></span></span>
-<span><span class="co">#&gt;     day median_cases</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     0            1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     1            1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     2            1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     3            1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     4            4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     5            1</span></span></code></pre></div>
-</details><p>As was done for the individual simulations, we will add a date column in the
-same manner.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Add dates</span></span>
-<span><span class="va">median_daily_cases</span> <span class="op">&lt;-</span> <span class="va">median_daily_cases</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>date <span class="op">=</span> <span class="va">index_date</span> <span class="op">+</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">days</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">projection_end_day</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">median_daily_cases</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 3</span></span></span>
-<span><span class="co">#&gt;     day median_cases date      </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     0            1 2020-03-05</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     1            1 2020-03-06</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     2            1 2020-03-07</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     3            1 2020-03-08</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     4            4 2020-03-09</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     5            1 2020-03-10</span></span></code></pre></div>
+<span><span class="co">#&gt;   date       median_cases</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2020-03-05          1  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2020-03-06          1  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2020-03-07          1  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2020-03-08          4.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2020-03-09          4  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2020-03-10          7.5</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level2">
@@ -408,6 +394,20 @@ same manner.</p>
 of the aggregated results.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
+<span><span class="co"># since all simulations may end at a different date, we will find the minimum</span></span>
+<span><span class="co"># final date for all simulations for the purposes of visualisation.</span></span>
+<span><span class="va">final_date</span> <span class="op">&lt;-</span> <span class="va">incidence_ts_by_date</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>final_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>min_final_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">final_date</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">min_final_date</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">incidence_ts_by_date</span> <span class="op">&lt;-</span> <span class="va">incidence_ts_by_date</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&lt;=</span> <span class="va">final_date</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">median_daily_cases</span> <span class="op">&lt;-</span> <span class="va">median_daily_cases</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&lt;=</span> <span class="va">final_date</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">incidence_ts_by_date</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
@@ -445,38 +445,41 @@ of the aggregated results.</p>
 <span>      y <span class="op">=</span> <span class="va">cases</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>    color <span class="op">=</span> <span class="st">"black"</span>,</span>
-<span>    size <span class="op">=</span> <span class="fl">1.75</span>,</span>
-<span>    shape <span class="op">=</span> <span class="fl">21</span></span>
+<span>    linewidth <span class="op">=</span> <span class="fl">1</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span></span>
 <span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">incidence_ts_by_date</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>,</span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">incidence_ts_by_date</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>,</span>
-<span>      <span class="fl">10</span></span>
+<span>      <span class="fl">5</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">incidence_ts_by_date</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>,</span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">incidence_ts_by_date</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>,</span>
-<span>      <span class="fl">10</span></span>
+<span>      <span class="fl">5</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span></span>
 <span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span></span>
 <span>      <span class="fl">0</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">incidence_ts_by_date</span><span class="op">$</span><span class="va">cases</span><span class="op">)</span> <span class="op">+</span> <span class="fl">200</span>,</span>
-<span>      <span class="fl">250</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">incidence_ts_by_date</span><span class="op">$</span><span class="va">cases</span><span class="op">)</span>,</span>
+<span>      <span class="fl">30</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span></span>
 <span>      <span class="fl">0</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">incidence_ts_by_date</span><span class="op">$</span><span class="va">cases</span><span class="op">)</span> <span class="op">+</span> <span class="fl">200</span>,</span>
-<span>      <span class="fl">250</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">incidence_ts_by_date</span><span class="op">$</span><span class="va">cases</span><span class="op">)</span>,</span>
+<span>      <span class="fl">30</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Date"</span>, y <span class="op">=</span> <span class="st">"Daily cases (median)"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span></span>
+<span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">seed_cases</span><span class="op">$</span><span class="va">date</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    linetype <span class="op">=</span> <span class="st">"dashed"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Date"</span>, y <span class="op">=</span> <span class="st">"Daily cases"</span><span class="op">)</span></span></code></pre></div>
 </details><div class="figure">
 <span style="display:block;" id="fig:viz"></span>
-<img src="projecting_incidence_files/figure-html/viz-1.png" alt="COVID-19 incidence projected over a two week window. The gray lines represent individual simulations, red connected dots represent the median daily cases across all simulations, and the black triangles represent the observed data."><p class="caption">
-Figure 1: COVID-19 incidence projected over a two week window. The gray lines represent individual simulations, red connected dots represent the median daily cases across all simulations, and the black triangles represent the observed data.
+<img src="projecting_incidence_files/figure-html/viz-1.png" alt="COVID-19 incidence in South Africa projected over a two week window in 2020. The light gray lines represent the individual simulations, the red line represents the median daily cases across all simulations, the black connected dots represent the observed data, and the dashed vertical line marks the beginning of the projection."><p class="caption">
+Figure 1: COVID-19 incidence in South Africa projected over a two week window in 2020. The light gray lines represent the individual simulations, the red line represents the median daily cases across all simulations, the black connected dots represent the observed data, and the dashed vertical line marks the beginning of the projection.
 </p>
 </div>
 </div>
@@ -507,31 +510,26 @@ Wang, Liang, Xavier Didelot, Jing Yang, Gary Wong, Yi Shi, Wenjun Liu, George F.
 </div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Sebastian Funk, Flavio Finger, James M. Azam.</p>
+<p>Developed by James M. Azam, Flavio Finger, Sebastian Funk.</p>
 </div>
 
-<div class="pkgdown">
+<div class="pkgdown-footer-right">
   <p></p>
 <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 
