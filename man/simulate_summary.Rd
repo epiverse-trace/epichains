@@ -29,10 +29,11 @@ corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}
 
-\item{intvn_mean_reduction}{Amount of reduction in the mean. A scalar
-between 0 and 1.
-It scales the mean of \code{offspring_dist}. \code{intvn_mean_reduction} = 0 implies
-no intervention impact and \code{intvn_mean_reduction} = 1 implies full impact.}
+\item{intvn_mean_reduction}{A number between 0
+and 1 for scaling/reducing the mean of \code{offspring_dist}. Serves as
+population-level intervention. \code{intvn_mean_reduction} = 0
+implies no intervention impact and \code{intvn_mean_reduction} = 1 implies full
+impact.}
 
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above the specified value, are set to \code{Inf}.}

@@ -9,10 +9,11 @@
 #' argument.
 #'
 #' @inheritParams simulate_tree
-#' @param intvn_mean_reduction Amount of reduction in the mean. A scalar
-#' between 0 and 1.
-#' It scales the mean of `offspring_dist`. `intvn_mean_reduction` = 0 implies
-#' no intervention impact and `intvn_mean_reduction` = 1 implies full impact.
+#' @param intvn_mean_reduction A number between 0
+#' and 1 for scaling/reducing the mean of `offspring_dist`. Serves as
+#' population-level intervention. `intvn_mean_reduction` = 0
+#' implies no intervention impact and `intvn_mean_reduction` = 1 implies full
+#' impact.
 #' @param pars_list Parameter(s) for poisson or negative binomial offspring
 #' distribution.
 #' @return List of the offspring distribution parameter(s) with the mean
