@@ -23,7 +23,7 @@
 #' mean of the poisson and negative binomial distribution.
 #'
 #' @author James M. Azam
-#' @export
+#' @keywords internal
 intvn_scale_r0 <- function(r0_reduction, offspring_dist, pars_list) {
   # Intervention only works for pois and nbinom
   if (!offspring_dist %in% c("pois", "nbinom")) {
