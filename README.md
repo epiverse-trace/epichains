@@ -276,7 +276,7 @@ sim_tree_eg <- simulate_tree(
 )
 
 summary(sim_tree_eg)
-#> $chains_ran
+#> $chains_run
 #> [1] 10
 #> 
 #> $max_time
@@ -301,7 +301,7 @@ simulate_summary_eg <- simulate_summary(
 
 # Get summaries
 summary(simulate_summary_eg)
-#> $chain_ran
+#> $chains_run
 #> [1] 10
 #> 
 #> $max_chain_stat
