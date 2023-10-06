@@ -33,7 +33,7 @@ format.epichains <- function(x, ...) {
     # print summary information
     writeLines(
       c(
-        sprintf("Chains simulated: %s", chain_info[["chains_ran"]]),
+        sprintf("Chains simulated: %s", chain_info[["chains_run"]]),
         sprintf(
           "Number of ancestors (known): %s",
           chain_info[["unique_ancestors"]]
@@ -84,7 +84,7 @@ format.epichains <- function(x, ...) {
 summary.epichains <- function(object, ...) {
   validate_epichains(object)
 
-  chains_ran <- attr(object, "chains", exact = TRUE)
+  chains_run <- attr(object, "chains", exact = TRUE)
 
   if (is_chains_tree(object)) {
     max_time <- ifelse(("time" %in% names(object)), max(object$time), NA)
@@ -97,7 +97,7 @@ summary.epichains <- function(object, ...) {
 
     # out of summary
     res <- list(
-      chains_ran = chains_ran,
+      chains_run = chains_run,
       max_time = max_time,
       unique_ancestors = n_unique_ancestors,
       max_generation = max_generation
@@ -111,7 +111,7 @@ summary.epichains <- function(object, ...) {
     }
 
     res <- list(
-      chain_ran = chains_ran,
+      chains_run = chains_run,
       max_chain_stat = max_chain_stat,
       min_chain_stat = min_chain_stat
     )

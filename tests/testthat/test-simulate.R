@@ -347,7 +347,7 @@ test_that("simulate_tree is numerically correct", {
   tree_sim_intvn_summary <- summary(tree_sim_raw_intvn)
   #' Expectations
   expect_identical(
-    tree_sim_summary$chains_ran,
+    tree_sim_summary$chains_run,
     2.00
   )
   expect_identical(
@@ -376,7 +376,7 @@ test_that("simulate_tree is numerically correct", {
   )
   #' Expectations for intervention simulation
   expect_identical(
-    tree_sim_summary$chains_ran,
+    tree_sim_summary$chains_run,
     2.0
   )
   expect_identical(
@@ -427,7 +427,7 @@ test_that("simulate_summary is numerically correct", {
   chain_summary_intvn_summaries <- summary(chain_summary_raw_intvn)
   #' Expectations
   expect_identical(
-    chain_summary_summaries$chain_ran,
+    chain_summary_summaries$chains_run,
     2.00
   )
   expect_identical(
@@ -443,7 +443,7 @@ test_that("simulate_summary is numerically correct", {
     c(1.00, 3.00)
   )
   expect_identical(
-    chain_summary_intvn_summaries$chain_ran,
+    chain_summary_intvn_summaries$chains_run,
     2.00
   )
   expect_identical(
@@ -495,7 +495,7 @@ test_that("simulate_tree_from_pop is numerically correct", {
     susc_outbreak_summary$max_generation,
     1L
   )
-  expect_null(susc_outbreak_summary$chains_ran)
+  expect_null(susc_outbreak_summary$chains_run)
   expect_identical(
     susc_outbreak_raw$sim_id,
     1L
@@ -528,7 +528,7 @@ test_that("simulate_tree_from_pop is numerically correct", {
     susc_outbreak_summary_intvn$max_generation,
     10L
   )
-  expect_null(susc_outbreak_summary_intvn$chains_ran)
+  expect_null(susc_outbreak_summary_intvn$chains_run)
   expect_identical(
     sum(aggregate(susc_outbreak_raw_intvn, "time")$cases),
     20L
