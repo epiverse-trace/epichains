@@ -193,6 +193,10 @@ Let's look at an example where we simulate the transmission trees of $10$ initia
 assume a poisson offspring distribution with mean, $\text{lambda} = 0.9$, and a serial interval of $3$ days:
 ```{r}
 set.seed(123)
+# Define serial distribution
+serial_func <- function(x) {
+  return(3)
+}
 
 sim_tree_eg <- simulate_tree(
   nchains = 10,
@@ -236,13 +240,17 @@ simulate_summary_eg
 Here is a quick example where we simulate an outbreak in a population of size $1000$. We assume individuals have a poisson offspring distribution with mean, $\text{lambda} = 1$, and serial interval of $3$:
 ```{r}
 set.seed(7)
+# Define serial distribution
+serial_func <- function(x) {
+  return(3)
+}
 
 sim_tree_from_pop_eg <- simulate_tree_from_pop(
   pop = 1000,
   offspring_dist = "pois",
   lambda = 1,
-  serials_dist = function(x) {3}
-  )
+  serials_dist = serial_func
+)
 
 head(sim_tree_from_pop_eg)
 ```
@@ -261,6 +269,10 @@ and a population level intervention, `intvn_mean_reduction`, that reduces $R_0$ 
 
 ```{r}
 set.seed(123)
+# Define serial distribution
+serial_func <- function(x) {
+  return(3)
+}
 
 sim_tree_intvn_eg <- simulate_tree(
   nchains = 10,
@@ -268,7 +280,7 @@ sim_tree_intvn_eg <- simulate_tree(
   offspring_dist = "pois",
   intvn_mean_reduction = 0.5,
   stat_max = 10,
-  serials_dist = function(x) 3,
+  serials_dist = serial_func,
   lambda = 0.9
 )
 
@@ -293,14 +305,18 @@ simulate_summary_intvn_eg
 Finally, let's use `simulate_tree_from_pop()`.
 ```{r}
 set.seed(7)
+# Define serial distribution
+serial_func <- function(x) {
+  return(3)
+}
 
 sim_tree_from_pop_intvn_eg <- simulate_tree_from_pop(
   pop = 1000,
   offspring_dist = "pois",
   intvn_mean_reduction = 0.5,
   lambda = 1,
-  serials_dist = function(x) {3}
-  )
+  serials_dist = serial_func
+)
 
 head(sim_tree_from_pop_intvn_eg)
 ```
@@ -313,13 +329,17 @@ You can run `summary()` on `<epichains>` objects to get useful summaries.
 ```{r include=TRUE,echo=TRUE}
 # Example with simulate_tree()
 set.seed(123)
+# Define serial distribution
+serial_func <- function(x) {
+  return(3)
+}
 
 sim_tree_eg <- simulate_tree(
   nchains = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
-  serials_dist = function(x) 3,
+  serials_dist = serial_func,
   lambda = 0.9
 )
 
@@ -349,12 +369,17 @@ To aggregate over "time", you must have specified a serial interval distribution
 # Example with simulate_tree()
 set.seed(123)
 
+# Define serial distribution
+serial_func <- function(x) {
+  return(3)
+}
+
 sim_tree_eg <- simulate_tree(
   nchains = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
-  serials_dist = function(x) 3,
+  serials_dist = serial_func,
   lambda = 0.9
 )
 
@@ -369,13 +394,17 @@ Here is an end-to-end example from simulation through aggregation to plotting.
 ```{r}
 # Run simulation with simulate_tree()
 set.seed(123)
+# Define serial distribution
+serial_func <- function(x) {
+  return(3)
+}
 
 sim_tree_eg <- simulate_tree(
   nchains = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
-  serials_dist = function(x) 3,
+  serials_dist = serial_func,
   lambda = 0.9
 )
 
