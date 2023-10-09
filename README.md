@@ -30,9 +30,14 @@ by an infected individual.
 
 *epichains* re-implements
 [bpmodels](%22https://github.com/epiverse-trace/bpmodels/%22) by
-providing dedicated data structures that allow easy manipulation and
-interoperability with other existing packages for handling transmission
-chain and contact-tracing data.
+providing bespoke functions and data structures that allow easy
+manipulation and interoperability with other Epiverse packages, for
+example,
+[superspreading](%22https://github.com/epiverse-trace/superspreading/%22)
+and
+[epiparameter](%22https://github.com/epiverse-trace/epiparameter/%22),
+and potentially some existing packages for handling transmission chains,
+for example, [epicontacts](https://github.com/reconhub/epicontacts).
 
 *epichains* is developed at the [Centre for the Mathematical Modelling
 of Infectious
@@ -59,9 +64,16 @@ library("epichains")
 
 # Quick start
 
-## Chain likelihoods
+*epichains* provides functionalities for estimating the likelihood of
+observing a given transmission chain, `likelihood()`, and functions for
+simulating transmission chains: `simulate_tree()`,
+`simulate_tree_from_pop()`, and `simulate_summary()`.
 
-*epichains* provides four main functions:
+The objects returned by these functions play nicely with `summary()` and
+`aggregate()`. Aggregated results also play nicely with `plot()`. Each
+functionality is briefly demonstrated below.
+
+## Chain likelihoods
 
 ### [`likelihood()`](https://epiverse-trace.github.io/epichains/reference/likelihood.html)
 
@@ -104,8 +116,8 @@ likelihood_eg
 
 ## Chain simulation
 
-There are three simulation functions, herein referred to colelctively as
-the `simulate_*()` functions. \`\`
+There are three simulation functions, herein referred to collectively as
+the `simulate_*()` functions.
 
 ### [`simulate_tree()`](https://epiverse-trace.github.io/epichains/reference/simulate_tree.html)
 
