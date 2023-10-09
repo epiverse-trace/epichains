@@ -41,7 +41,7 @@ models are often used in infectious disease epidemiology, where the chains repre
 transmission, and the offspring distribution represents the distribution of 
 secondary infections caused by an infected individual. 
 
-_{{ packagename }}_ re-implements [epichains]("https://github.com/epiverse-trace/epichains/")
+_{{ packagename }}_ re-implements [bpmodels]("https://github.com/epiverse-trace/bpmodels/")
 by providing bespoke functions and data structures that allow easy
 manipulation and interoperability with other Epiverse packages, for example, [superspreading]("https://github.com/epiverse-trace/superspreading/") and [epiparameter]("https://github.com/epiverse-trace/epiparameter/"), and potentially some existing packages for handling transmission chains, for example, [epicontacts](https://github.com/reconhub/epicontacts).
 
