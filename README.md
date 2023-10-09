@@ -29,10 +29,10 @@ distribution represents the distribution of secondary infections caused
 by an infected individual.
 
 *epichains* re-implements
-[epichains](%22https://github.com/epiverse-trace/epichains/%22) by
+[bpmodels](%22https://github.com/epiverse-trace/bpmodels/%22) by
 providing bespoke functions and data structures that allow easy
-manipulation and interoperability with other Epiverse packages, for
-example,
+manipulation and interoperability with other Epiverse-TRACE packages,
+for example,
 [superspreading](%22https://github.com/epiverse-trace/superspreading/%22)
 and
 [epiparameter](%22https://github.com/epiverse-trace/epiparameter/%22),
