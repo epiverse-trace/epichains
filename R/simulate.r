@@ -235,17 +235,18 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     tree_df <- tree_df[tree_df$time < tf, ]
   }
 
-  # sort by sim_id and infector
-  tree_df <- tree_df[order(tree_df$sim_id, tree_df$infector_id), ]
-  row.names(tree_df) <- NULL
-  structure(
-    tree_df,
-    chains = ntrees,
-    chain_type = "chains_tree",
-    rownames = NULL,
-    track_pop = FALSE,
-    class = c("epichains", "data.frame")
+  # sort by sim_id and ancestor
+  tree_df <- tree_df[order(tree_df$sim_id, tree_df$ancestor), ]
+
+  out <- epichains_tree(
+    tree_df = tree_df,
+    chains_run = nchains,
+    statistic = statistic,
+    stat_max = stat_max,
+    intvn_mean_reduction = intvn_mean_reduction,
+    track_pop = FALSE
   )
+  return(out)
 }
 
 
@@ -335,13 +336,15 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
 
   stat_track[stat_track >= stat_max] <- Inf
 
-  structure(
-    stat_track,
-    chain_type = "chains_summary",
+  out <- epichains_summary(
+    chains_summary = stat_track,
+    chains_run = nchains,
     statistic = statistic,
-    chains = ntrees,
-    class = c("epichains", class(stat_track))
-  )
+    stat_max = stat_max,
+    )
+
+  return(out)
+    intvn_mean_reduction = intvn_mean_reduction
 }
 
 #' Simulate transmission trees from a susceptible or partially immune
@@ -545,12 +548,14 @@ simulate_tree_from_pop <- function(pop,
   # sort by sim_id and infector
   tree_df <- tree_df[order(tree_df$sim_id, tree_df$infector_id), ]
   tree_df$offspring_generated <- NULL
-  row.names(tree_df) <- NULL
-  structure(
+
+  out <- epichains_tree(
     tree_df,
-    chain_type = "chains_tree",
-    rownames = NULL,
-    track_pop = TRUE,
-    class = c("epichains", "data.frame")
-  )
+    chains_run = NULL,
+    statistic = NULL,
+    stat_max = NULL,
+    intvn_mean_reduction = intvn_mean_reduction,
+    track_pop = TRUE
+    )
+  return(out)
 }
