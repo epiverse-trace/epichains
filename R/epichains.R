@@ -240,18 +240,20 @@ tail.epichains <- function(x, ...) {
   utils::tail(as.data.frame(x), ...)
 }
 
-#' Aggregate cases in `<epichains>` objects by "time" or "generation"
+#' Aggregate cases in `<epichains_tree>` objects by "time" or "generation"
 #'
-#' @param x An `<epichains>` object.
-#' @param grouping_var The variable to group and count over. Options include
+#' @description
+#' This function provides a quick way to create a time series of cases over
+#' time or generation from simulated `<epichains_tree>` objects.
+#'
+#' @param x An `<epichains_tree>` object.
+#' @param grouping_var The variable to aggregate by. Options include
 #' "time" and "generation".
 #' @param ... Other arguments passed to aggregate.
 #' @importFrom stats aggregate
-#' @return An `<epichains_aggregate_df>` object, which is basically a
-#' `<data.frame>`. The object stores the `chain_type = chains_tree` and
-#' `grouping_var` attributes.
-#' @export
+#' @return A `<data.frame>` object of cases by `grouping_var`.
 #' @author James M. Azam
+#' @export
 #' @examples
 #' set.seed(123)
 #' chains <- simulate_tree(
