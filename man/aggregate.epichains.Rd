@@ -2,25 +2,24 @@
 % Please edit documentation in R/epichains.R
 \name{aggregate.epichains}
 \alias{aggregate.epichains}
-\title{Aggregate cases in \verb{<epichains>} objects by "time" or "generation"}
+\title{Aggregate cases in \verb{<epichains_tree>} objects by "time" or "generation"}
 \usage{
 \method{aggregate}{epichains}(x, grouping_var = c("time", "generation"), ...)
 }
 \arguments{
-\item{x}{An \verb{<epichains>} object.}
+\item{x}{An \verb{<epichains_tree>} object.}
 
-\item{grouping_var}{The variable to group and count over. Options include
+\item{grouping_var}{The variable to aggregate by. Options include
 "time" and "generation".}
 
 \item{...}{Other arguments passed to aggregate.}
 }
 \value{
-An \verb{<epichains_aggregate_df>} object, which is basically a
-\verb{<data.frame>}. The object stores the \code{chain_type = chains_tree} and
-\code{grouping_var} attributes.
+A \verb{<data.frame>} object of cases by \code{grouping_var}.
 }
 \description{
-Aggregate cases in \verb{<epichains>} objects by "time" or "generation"
+This function provides a quick way to create a time series of cases over
+time or generation from simulated \verb{<epichains_tree>} objects.
 }
 \examples{
 set.seed(123)
