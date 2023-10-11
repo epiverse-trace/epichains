@@ -297,8 +297,10 @@ format.epichains_summary <- function(x, ...) {
 #' @author James M. Azam
 #' @export
 summary.epichains_tree <- function(object, ...) {
+  # Check that object has <epichains_tree> class
   validate_epichains_tree(object)
 
+  # Get the summaries
   chains_run <- attr(object, "chains_run", exact = TRUE)
 
   max_time <- ifelse(("time" %in% names(object)), max(object$time), NA)
@@ -327,8 +329,10 @@ summary.epichains_tree <- function(object, ...) {
 #' @author James M. Azam
 #' @export
 summary.epichains_summary <- function(object, ...) {
+  # Check that object has <epichains_summary> class
   validate_epichains_summary(object)
 
+  # Get the summaries
   chains_run <- attr(object, "chains_run", exact = TRUE)
 
 
