@@ -82,7 +82,7 @@ likelihood_eg
 
 `likelihood()`, by default, returns the joint log-likelihood. If instead,
 the individual log-likelihoods are required, then the `individual` argument
-must be set to `TRUE`. To return likelihoods instead, set `log = TRUE`.
+must be set to `TRUE`. To return likelihoods instead, set `log = FALSE`.
 ```{r}
 set.seed(121)
 # example of observed chain sizes
