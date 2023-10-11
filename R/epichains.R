@@ -201,42 +201,31 @@ is_chains_summary <- function(x) {
     attributes(x)$chain_type == "chains_summary"
 }
 
-
-#' `head` method for [`epichains`] class
+#' `head` and `tail` method for `<epichains_tree>` class
 #'
-#' @param x An [`epichains`] object
+#' @param x An `<epichains_tree>` object
 #' @param ... further arguments passed to or from other methods
 #' @importFrom utils head
-#' @return object of class `data.frame`
+#' @importFrom utils tail
+#' @return Object of class `data.frame`
 #' @author James M. Azam
 #' @export
 #' @details
-#' This returns the top rows of an `epichains` object. Note that the object
-#' is originally sorted by `sim_id` and `infector_id` and the first
+#' This returns the top rows of an `<epichains_tree>` object. Note that
+#' the object is originally sorted by `sim_id` and `ancestor` and the first
 #' unknown ancestors (NA) have been dropped from
-#' printing method. To view the full output, use `as.data.frame(<object_name>)`.
+#' printing method.
 #'
-head.epichains <- function(x, ...) {
-  writeLines("< tree head (from first known infector) >\n")
-  # print head of the simulation output from the first known infector
-  x <- x[!is.na(x$infector_id), ]
+#' To view the full output, use `as.data.frame(<object_name>)`.
+head.epichains_tree <- function(x, ...) {
+  # print head of the simulation output from the first known ancestor
+  x <- x[!is.na(x$ancestor), ]
   utils::head(as.data.frame(x), ...)
 }
 
-#' `tail` method for [`epichains`] class
-#'
-#' @param x An [`epichains`] object
-#' @param ... further arguments passed to or from other methods
-#' @importFrom utils tail
-#' @author James M. Azam
+#' @rdname head.epichains_tree
 #' @export
-#' @details
-#' This returns the bottom part of an `epichains` object. Note that the object
-#' is originally sorted by `sim_id` and `infector_id` and the first
-#' unknown ancestors (NA) have been dropped from
-#' printing method. To view the full output, use `as.data.frame(<object_name>)`.
-tail.epichains <- function(x, ...) {
-  writeLines("\n< tree tail >\n")
+tail.epichains_tree <- function(x, ...) {
   utils::tail(as.data.frame(x), ...)
 }
 
