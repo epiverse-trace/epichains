@@ -150,8 +150,8 @@ epichains_summary <- function(chains_summary,
   checkmate::assert_vector(chains_summary)
   checkmate::assert_integerish(chains_run, null.ok = TRUE)
   checkmate::assert_character(statistic)
-  checkmate::assert_integerish(stat_max, null.ok = TRUE)
   checkmate::assert_double(intvn_mean_reduction)
+  checkmate::assert_number(stat_max, null.ok = TRUE)
 
   # Create <epichains_summary> object
   epichains_summary <- new_epichains_summary(
