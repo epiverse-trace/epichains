@@ -88,6 +88,85 @@ epichains_tree <- function(tree_df = data.frame(),
 
   return(epichains_tree)
 }
+
+#' Construct a `<epichains_summary>` object
+#'
+#' @description
+#' `new_epichains_summary()` constructs an `<epichains_summary>` object from a
+#' supplied `<vector>` of chain sizes or lengths. It also stores extra
+#' attributes passed as individual arguments.
+#'
+#' `new_epichains_summary()` is meant to be lazy and performant, by creating
+#' the object without checking the arguments for correctness. It is not safe
+#' to call `new_epichains_summary()` on its own as is called within
+#' `epichains_summary()` after the arguments have been checked. To create a
+#' new `<epichains_summary>` object safely, use `epichains_summary()`.
+#'
+#' @param chains_summary a `<vector>` of chain sizes and lengths.
+#' @inheritParams new_epichains_tree
+#' @inheritParams simulate_tree
+#' @author James M. Azam
+#' @keywords internal
+new_epichains_summary <- function(chains_summary = vector(),
+                                  chains_run = integer(),
+                                  statistic = character(),
+                                  stat_max = double(),
+                                  intvn_mean_reduction = double()
+                                  ) {
+  # Assemble the elements of the object
+  obj <- structure(
+    chains_summary,
+    chains_run = chains_run,
+    statistic = statistic,
+    stat_max = stat_max,
+    intvn_mean_reduction = intvn_mean_reduction,
+    class = c("epichains_summary", "vector")
+  )
+  return(obj)
+}
+
+#' Create an `<epichains_summary>` object
+#'
+#' @description
+#' `epichains_summary()` constructs an `<epichains_summary>` object.
+#'
+#' An `<epichains_summary>` object is a `<vector>` of the simulated
+#' chain sizes or lengths. It also stores information on the
+#' number of cases/chains used for the simulation, and the statistic that was
+#' tracked, the intervention level.
+#'
+#' @inheritParams new_epichains_summary
+#'
+#' @return An `<epichains_summary>` object
+#' @author James M. Azam
+#' @export
+epichains_summary <- function(chains_summary = vector(),
+                              chains_run = integer(),
+                              statistic = character(),
+                              stat_max = double(),
+                              intvn_mean_reduction = double()
+                              ) {
+  # Check that inputs are well specified
+  checkmate::assert_vector(chains_summary)
+  checkmate::assert_integerish(chains_run, null.ok = TRUE)
+  checkmate::assert_character(statistic)
+  checkmate::assert_integerish(stat_max, null.ok = TRUE)
+  checkmate::assert_double(intvn_mean_reduction)
+
+  # Create <epichains_summary> object
+  epichains_summary <- new_epichains_summary(
+    chains_summary,
+    chains_run = chains_run,
+    statistic = statistic,
+    stat_max = stat_max,
+    intvn_mean_reduction = intvn_mean_reduction
+  )
+
+  # Validate the created object
+  validate_epichains_summary(epichains_summary)
+
+  return(epichains_summary)
+}
   format(x, ...)
 }
 
