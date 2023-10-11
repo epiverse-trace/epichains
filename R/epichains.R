@@ -288,53 +288,64 @@ format.epichains_summary <- function(x, ...) {
   invisible(x)
 }
 
-
-
-#' Summary method for epichains class
+#' Summary method for `epichains_tree` class
 #'
-#' @param object An [`epichains`] object
+#' @param object An `epichains_tree` object
 #' @param ... further arguments passed to or from other methods
 #'
-#' @return data frame of information
+#' @return List of summaries
 #' @author James M. Azam
 #' @export
-summary.epichains <- function(object, ...) {
-  validate_epichains(object)
+summary.epichains_tree <- function(object, ...) {
+  validate_epichains_tree(object)
 
-  chains_run <- attr(object, "chains", exact = TRUE)
+  chains_run <- attr(object, "chains_run", exact = TRUE)
 
-  if (is_chains_tree(object)) {
-    max_time <- ifelse(("time" %in% names(object)), max(object$time), NA)
+  max_time <- ifelse(("time" %in% names(object)), max(object$time), NA)
 
-    n_unique_infectors <- length(
-      unique(object$infector_id[!is.na(object$infector_id)])
+  n_unique_ancestors <- length(unique(object$ancestor[!is.na(object$ancestor)]))
+
+  max_generation <- max(object$generation)
+
+  # List of summaries
+  out <- list(
+    chains_run = chains_run,
+    max_time = max_time,
+    unique_ancestors = n_unique_ancestors,
+    max_generation = max_generation
     )
 
-    max_generation <- max(object$generation)
+  return(out)
+}
 
-    # out of summary
-    res <- list(
-      chains_run = chains_run,
-      max_time = max_time,
-      unique_infectors = n_unique_infectors,
-      max_generation = max_generation
-    )
-  } else if (is_chains_summary(object)) {
-    if (all(is.infinite(object))) {
-      max_chain_stat <- min_chain_stat <- Inf
+#' Summary method for `<epichains_summary>` class
+#'
+#' @param object An `<epichains_summary>` object
+#' @param ... further arguments passed to or from other methods
+#'
+#' @return List of summaries
+#' @author James M. Azam
+#' @export
+summary.epichains_summary <- function(object, ...) {
+  validate_epichains_summary(object)
+
+  chains_run <- attr(object, "chains_run", exact = TRUE)
+
+
+  if (all(is.infinite(object))) {
+    max_chain_stat <- min_chain_stat <- Inf
     } else {
       max_chain_stat <- max(object[!is.infinite(object)])
       min_chain_stat <- min(object[!is.infinite(object)])
     }
 
-    res <- list(
+    out <- list(
       chains_run = chains_run,
       max_chain_stat = max_chain_stat,
       min_chain_stat = min_chain_stat
     )
-  }
 
-  return(res)
+  return(out)
 }
 
 #' Reports whether x is an `epichains` object
