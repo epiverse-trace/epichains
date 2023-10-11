@@ -167,52 +167,74 @@ epichains_summary <- function(chains_summary = vector(),
 
   return(epichains_summary)
 }
+
+#' Print an `<epichains_tree>` object
+#'
+#' @param x An `<epichains_tree>` object.
+#' @param ... Other parameters passed to `print()`.
+#' @return Invisibly returns an `<epichains_tree>`. Called for
+#' side-effects.
+#' @author James M. Azam
+#' @export
+print.epichains_tree <- function(x, ...) {
   format(x, ...)
 }
 
 #' Format method for epichains class
 #'
 #' @param x epichains object
+#' Format method for `<epichains_tree>` class
+#'
+#' @param x An `<epichains_tree>` object
 #' @param ... further arguments passed to or from other methods
-#' @return Invisibly returns an [`epichains`]. Called for printing side-effects.
+#' @return Invisibly returns an `<epichains_tree>`.
+#' Called for printing side-effects.
 #' @author James M. Azam
 #' @export
-format.epichains <- function(x, ...) {
-  # check that x is an epichains object
-  validate_epichains(x)
+format.epichains_tree <- function(x, ...) {
+  # check that x is an <epichains_tree> object
+  validate_epichains_tree(x)
 
   # summarise the information stored in x
   chain_info <- summary(x)
 
-  if (is_chains_tree(x)) {
-    writeLines(sprintf("`epichains` object\n"))
-    # print head of the object
-    print(head(x))
-    # print tail of object
-    print(tail(x))
+  writeLines(sprintf("`<epichains_tree>` object\n"))
 
-    # print summary information
-    writeLines(
-      c(
-        sprintf("Chains simulated: %s", chain_info[["chains_run"]]),
-        sprintf(
-          "Number of infectors (known): %s",
-          chain_info[["unique_infectors"]]
+  # print head of the object
+  writeLines("< tree head (from first known ancestor) >\n")
+  print(head(x))
+
+  # print summary information
+  writeLines(
+    c(
+      sprintf(
+        "%s",
+        "\n"
+        ),
+      sprintf(
+        "Chains simulated: %s",
+        chain_info[["chains_run"]]
+        ),
+      sprintf(
+          "Number of ancestors (known): %s",
+          chain_info[["unique_ancestors"]]
         ),
         sprintf(
-          "Number of generations: %s", chain_info[["max_generation"]]
+          "Number of generations: %s",
+          chain_info[["max_generation"]]
         )
       )
     )
 
-    # Offer more information to view the full dataset
-    writeLines(sprintf(
+  # Offer more information to view the full dataset
+  writeLines(
+    sprintf(
       "%s %s", "Use `as.data.frame(<object_name>)`",
       "to view the full output in the console."
-    ))
-  } else if (is_chains_summary(x)) {
-    writeLines(sprintf("`epichains` object \n"))
-    print(as.vector(x))
+      )
+    )
+  invisible(x)
+}
     writeLines(sprintf(
       "\n Number of chains simulated: %s",
       chain_info[["unique_chains"]]
