@@ -69,8 +69,8 @@ library("epichains")
 - `simulate_tree()`: simulates transmission chains using an initial
   number of cases and information on the offspring distribution. This
   function returns an object with columns that track information on who
-  infected whom, the generation of infection, and optionally, the time
-  of infection.
+  infected whom, the generation of infection and, if a serial interval
+  is given, the time of infection.
 
 - `simulate_summary()`: simulates a vector of transmission chain sizes
   or lengths using an initial number of cases and information on the
@@ -81,7 +81,8 @@ library("epichains")
   initial population size and information on the offspring distribution.
   You can also specify a given level of pre-existing immunity. This
   function returns an object with columns that track information on who
-  infected whom, the generation of infection, and the time of infection.
+  infected whom, the generation of infection and, if a serial interval
+  is given, the time of infection.
 
 - `likelihood()`: calculates the loglikelihood (or likelihood, depending
   on the value of `log`) of observing a vector of transmission chain
