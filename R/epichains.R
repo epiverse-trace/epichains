@@ -180,9 +180,18 @@ print.epichains_tree <- function(x, ...) {
   format(x, ...)
 }
 
-#' Format method for epichains class
+#' Print an `<epichains_summary>` object
 #'
-#' @param x epichains object
+#' @param x An `<epichains_summary>` object.
+#' @param ... Other parameters passed to `print()`.
+#' @return Invisibly returns an `<epichains_summary>`. Called for
+#' side-effects.
+#' @author James M. Azam
+#' @export
+print.epichains_summary <- function(x, ...) {
+  format(x, ...)
+}
+
 #' Format method for `<epichains_tree>` class
 #'
 #' @param x An `<epichains_tree>` object
@@ -235,21 +244,46 @@ format.epichains_tree <- function(x, ...) {
     )
   invisible(x)
 }
-    writeLines(sprintf(
+
+#' Format method for `<epichains_summary>` class
+#'
+#' @param x An `<epichains_summary>` object
+#' @param ... further arguments passed to or from other methods
+#' @return Invisibly returns an `<epichains_summary>`. Called for printing
+#' side-effects.
+#' @author James M. Azam
+#' @export
+format.epichains_summary <- function(x, ...) {
+  # check that x is an <epichains_summary> object
+  validate_epichains_summary(x)
+
+  # summarise the information stored in x
+  chain_info <- summary(x)
+
+  writeLines(sprintf("`epichains_summary` object \n"))
+  print(as.vector(x))
+  writeLines(
+    sprintf(
       "\n Number of chains simulated: %s",
       chain_info[["unique_chains"]]
-    ))
-    writeLines(
-      c(
-        sprintf(
-          "\n Simulated chain %ss: \n",
-          attr(x, "statistic", exact = TRUE)
-        ),
-        sprintf("Max: %s", chain_info[["max_chain_stat"]]),
-        sprintf("Min: %s", chain_info[["min_chain_stat"]])
       )
     )
-  }
+  writeLines(
+    c(
+      sprintf(
+        "\n Simulated chain %ss: \n",
+        attr(x, "statistic", exact = TRUE)
+        ),
+      sprintf(
+        "Max: %s",
+        chain_info[["max_chain_stat"]]
+        ),
+      sprintf(
+        "Min: %s",
+        chain_info[["min_chain_stat"]]
+        )
+      )
+    )
 
   invisible(x)
 }
