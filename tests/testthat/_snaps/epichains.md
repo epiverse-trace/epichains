@@ -1,16 +1,15 @@
-# print.epichains works for simulation functions
+# print.epichains_tree works for simulation functions
 
     Code
       susc_outbreak_raw
     Output
-      `epichains` object
+      `<epichains_tree>` object
       
       < tree head (from first known infector) >
       
       [1] sim_id      infector_id generation  time       
       <0 rows> (or 0-length row.names)
       
-      < tree tail >
       
         sim_id infector_id generation time
       1      1          NA          1    0
@@ -23,7 +22,7 @@
     Code
       susc_outbreak_raw2
     Output
-      `epichains` object
+      `<epichains_tree>` object
       
       < tree head (from first known infector) >
       
@@ -35,7 +34,6 @@
       6      6           4          4 44.00812
       7      7           3          4 78.73481
       
-      < tree tail >
       
          sim_id infector_id generation     time
       7       7           3          4 78.73481
@@ -53,7 +51,7 @@
     Code
       tree_sim_raw
     Output
-      `epichains` object
+      `<epichains_tree>` object
       
       < tree head (from first known infector) >
       
@@ -65,7 +63,6 @@
       7           1      4           1          2
       8           2      4           2          3
       
-      < tree tail >
       
          infectee_id sim_id infector_id generation
       12           1      6           4          3
@@ -84,7 +81,7 @@
     Code
       tree_sim_raw2
     Output
-      `epichains` object
+      `<epichains_tree>` object
       
       < tree head (from first known infector) >
       
@@ -96,7 +93,6 @@
       15           6      2           1          2 1.7212668
       16           7      2           1          2 1.3509058
       
-      < tree tail >
       
           infectee_id sim_id infector_id generation      time
       119           9     15           8          5 19.146936
@@ -115,7 +111,7 @@
     Code
       chain_summary_raw
     Output
-      `epichains` object 
+      `epichains_summary` object 
       
       [1] 9 6
       
