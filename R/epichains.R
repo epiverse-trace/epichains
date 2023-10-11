@@ -1,11 +1,93 @@
-#' Print an [`epichains`] object
+#' Construct a `<epichains_tree>` object
 #'
-#' @param x An [`epichains`] object.
-#' @param ... Other parameters passed to [print()].
-#' @return Invisibly returns an [`epichains`]. Called for side-effects.
+#' @description
+#' `new_epichains_tree()` constructs an `<epichains_tree>` object from a
+#' supplied `<data.frame>` and extra attributes passed as individual arguments.
+#' It is meant to be lazy and performant, by creating the object without
+#' checking the arguments for correctness. It is not safe to call
+#' `new_epichains_tree()` on its own as is called within `epichains_tree()`
+#' after the arguments have been checked. To create an `<epichains_tree>`
+#' object, use `epichains_tree()`.
+#' @param tree_df a `<data.frame>` containing at least columns for "chain_id",
+#' "ancestor", and "generation". Also has optional columns for "time", and
+#' "chain_id".
+#' @param chains_run Number of chains/cases used to generate the outbreak;
+#' Integer
+#' @param track_pop Was the susceptible population tracked; Logical
+#' @inheritParams epichains_tree
+#' @author James M. Azam
+#' @keywords internal
+new_epichains_tree <- function(tree_df = data.frame(),
+                               chains_run = integer(),
+                               statistic = character(),
+                               stat_max = double(),
+                               intvn_mean_reduction = double(),
+                               track_pop = logical()
+                               ) {
+  # Assemble the elements of the object
+  obj <- structure(
+    tree_df,
+    chains_run = chains_run,
+    statistic = statistic,
+    stat_max = stat_max,
+    intvn_mean_reduction = intvn_mean_reduction,
+    track_pop = track_pop,
+    class = c("epichains_tree", "data.frame")
+  )
+  return(obj)
+}
+
+#' Create an `<epichains_tree>` object
+#'
+#' @description
+#' `epichains_tree()` constructs an `<epichains_tree>` object, which is
+#' inherently an `<data.frame>` object that stores some of the inputs
+#' passed to the `simulate_tree()` and `simulate_tree_from_pop()` and the
+#' simulated output. The stored attributes are useful for scenario
+#' analyses where the inputs are required for downstream analyses.
+#'
+#' An `<epichains_tree>` object contains a `<data.frame>` of the simulated
+#' outbreak with ids for each case/chain and the chain the produced, the
+#' number of cases/chains used for the simulation, the statistic that was
+#' tracked, the intervention level, and whether the susceptible population was
+#' tracked.
+#'
+#' @inheritParams simulate_tree
+#' @inheritParams new_epichains_tree
+#'
+#' @return An `<epichains_tree>` object
 #' @author James M. Azam
 #' @export
-print.epichains <- function(x, ...) {
+epichains_tree <- function(tree_df = data.frame(),
+                           chains_run = integer(),
+                           statistic = character(),
+                           stat_max = double(),
+                           intvn_mean_reduction = double(),
+                           track_pop = logical()
+                           ) {
+  # Check that inputs are well specified
+  checkmate::assert_data_frame(tree_df)
+  checkmate::assert_integerish(chains_run, null.ok = TRUE)
+  checkmate::assert_character(statistic, null.ok = TRUE)
+  checkmate::assert_integerish(stat_max, null.ok = TRUE)
+  checkmate::assert_double(intvn_mean_reduction)
+  checkmate::assert_logical(track_pop)
+
+  # Create <epichains_tree> object
+  epichains_tree <- new_epichains_tree(
+    tree_df = tree_df,
+    chains_run = chains_run,
+    statistic = statistic,
+    stat_max = stat_max,
+    intvn_mean_reduction = intvn_mean_reduction,
+    track_pop = track_pop
+    )
+
+  # Validate the created object
+  validate_epichains_tree(epichains_tree)
+
+  return(epichains_tree)
+}
   format(x, ...)
 }
 
