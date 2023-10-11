@@ -5,10 +5,10 @@
 \title{Construct a \verb{<epichains_tree>} object}
 \usage{
 new_epichains_tree(
-  tree_df = data.frame(),
+  tree_df,
   chains_run = integer(),
   statistic = character(),
-  stat_max = double(),
+  stat_max = integer(),
   intvn_mean_reduction = double(),
   track_pop = logical()
 )

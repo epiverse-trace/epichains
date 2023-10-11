@@ -17,10 +17,10 @@
 #' @inheritParams epichains_tree
 #' @author James M. Azam
 #' @keywords internal
-new_epichains_tree <- function(tree_df = data.frame(),
+new_epichains_tree <- function(tree_df,
                                chains_run = integer(),
                                statistic = character(),
-                               stat_max = double(),
+                               stat_max = integer(),
                                intvn_mean_reduction = double(),
                                track_pop = logical()
                                ) {
@@ -58,10 +58,10 @@ new_epichains_tree <- function(tree_df = data.frame(),
 #' @return An `<epichains_tree>` object
 #' @author James M. Azam
 #' @export
-epichains_tree <- function(tree_df = data.frame(),
+epichains_tree <- function(tree_df,
                            chains_run = integer(),
                            statistic = character(),
-                           stat_max = double(),
+                           stat_max = integer(),
                            intvn_mean_reduction = double(),
                            track_pop = logical()
                            ) {
@@ -69,9 +69,9 @@ epichains_tree <- function(tree_df = data.frame(),
   checkmate::assert_data_frame(tree_df)
   checkmate::assert_integerish(chains_run, null.ok = TRUE)
   checkmate::assert_character(statistic, null.ok = TRUE)
-  checkmate::assert_integerish(stat_max, null.ok = TRUE)
   checkmate::assert_double(intvn_mean_reduction)
   checkmate::assert_logical(track_pop)
+  checkmate::assert_number(stat_max, null.ok = TRUE)
 
   # Create <epichains_tree> object
   epichains_tree <- new_epichains_tree(
@@ -107,10 +107,10 @@ epichains_tree <- function(tree_df = data.frame(),
 #' @inheritParams simulate_tree
 #' @author James M. Azam
 #' @keywords internal
-new_epichains_summary <- function(chains_summary = vector(),
+new_epichains_summary <- function(chains_summary,
                                   chains_run = integer(),
                                   statistic = character(),
-                                  stat_max = double(),
+                                  stat_max = integer(),
                                   intvn_mean_reduction = double()
                                   ) {
   # Assemble the elements of the object
@@ -140,10 +140,10 @@ new_epichains_summary <- function(chains_summary = vector(),
 #' @return An `<epichains_summary>` object
 #' @author James M. Azam
 #' @export
-epichains_summary <- function(chains_summary = vector(),
+epichains_summary <- function(chains_summary,
                               chains_run = integer(),
                               statistic = character(),
-                              stat_max = double(),
+                              stat_max = integer(),
                               intvn_mean_reduction = double()
                               ) {
   # Check that inputs are well specified
