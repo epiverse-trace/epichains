@@ -348,39 +348,40 @@ summary.epichains_summary <- function(object, ...) {
   return(out)
 }
 
-#' Reports whether x is an `epichains` object
+#' Test if x is an `epichains_tree` object
 #'
 #' @param x An R object
 #'
-#' @return logical, `TRUE` if the object is an `epichains` and `FALSE`
+#' @return logical, `TRUE` if the object is an `epichains_tree` and `FALSE`
 #' otherwise
-#' @export
 #' @author James M. Azam
-is_epichains <- function(x) {
-  inherits(x, "epichains")
+#' @export
+is_epichains_tree <- function(x) {
+  inherits(x, "epichains_tree")
 }
 
-#' Reports whether x is an "epichains_aggregate_df" object
+#' Test if x is an `epichains_summary` object
 #'
-#' @param x An [`epichains`] object
-#' @return logical, `TRUE` if the object is an `epichains_aggregate_df` and
-#' `FALSE` otherwise
-#' @export
+#' @param x An R object
+#'
+#' @return logical, `TRUE` if the object is an `epichains_summary` and `FALSE`
+#' otherwise
 #' @author James M. Azam
-is_epichains_aggregate_df <- function(x) {
-  inherits(x, "epichains_aggregate_df")
+#' @export
+is_epichains_summary <- function(x) {
+  inherits(x, "epichains_summary")
 }
 
-#' `epichains` class validator
+#' Validate an `<epichains_tree>` object
 #'
-#' @param x An `epichains` object
+#' @param x An `<epichains_tree>` object
 #'
 #' @return No return.
-#' @export
 #' @author James M. Azam
-validate_epichains <- function(x) {
-  if (!is_epichains(x)) {
-    stop("Object must have an epichains class")
+#' @export
+validate_epichains_tree <- function(x) {
+  if (!is_epichains_tree(x)) {
+    stop("Object must have an `<epichains_tree>` class")
   }
 
   # check for class invariants
@@ -390,43 +391,30 @@ validate_epichains <- function(x) {
       "object does not contain the correct columns" =
         c("sim_id", "infector_id", "generation") %in%
         colnames(x),
-      "column `sim_id` must be a numeric" =
+    "column `sim_id` must be a numeric" =
         is.numeric(x$sim_id),
       "column `infector_id` must be a numeric" =
         is.numeric(x$infector_id),
       "column `generation` must be a numeric" =
         is.numeric(x$generation)
     )
-  } else {
-    stopifnot(
-      "object must be a numeric vector" =
-        is.numeric(x)
-    )
-  }
 
   invisible(x)
 }
 
-#' Check if an epichains object has the `chains_tree` attribute
+#' Validate an `<epichains_summary>` object
 #'
-#' @param x An [`epichains`] object
+#' @param x An `<epichains_summary>` object
 #'
-#' @export
+#' @return No return.
 #' @author James M. Azam
-is_chains_tree <- function(x) {
-  !is.null(attributes(x)$chain_type) &&
-    attributes(x)$chain_type == "chains_tree"
-}
+#' @export
+validate_epichains_summary <- function(x) {
+  if (!is_epichains_summary(x)) {
+    stop("Object must have an `<epichains_summary>` class")
+  }
 
-#' Check if an epichains object has the `chains_summary` attribute
-#'
-#' @param x An [`epichains`] object
-#'
-#' @export
-#' @author James M. Azam
-is_chains_summary <- function(x) {
-  !is.null(attributes(x)$chain_type) &&
-    attributes(x)$chain_type == "chains_summary"
+  invisible(x)
 }
 
 #' `head` and `tail` method for `<epichains_tree>` class
