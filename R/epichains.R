@@ -482,7 +482,7 @@ tail.epichains_tree <- function(x, ...) {
 #' # Aggregate cases per generation
 #' cases_per_gen <- aggregate(chains, grouping_var = "generation")
 #' head(cases_per_gen)
-aggregate.epichains <- function(x,
+aggregate.epichains_tree <- function(x,
                                 grouping_var = c(
                                   "time",
                                   "generation"
