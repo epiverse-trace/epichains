@@ -22,8 +22,7 @@ new_epichains_tree <- function(tree_df,
                                statistic = character(),
                                stat_max = integer(),
                                intvn_mean_reduction = double(),
-                               track_pop = logical()
-                               ) {
+                               track_pop = logical()) {
   # Assemble the elements of the object
   obj <- structure(
     tree_df,
@@ -63,8 +62,7 @@ epichains_tree <- function(tree_df,
                            statistic = character(),
                            stat_max = integer(),
                            intvn_mean_reduction = double(),
-                           track_pop = logical()
-                           ) {
+                           track_pop = logical()) {
   # Check that inputs are well specified
   checkmate::assert_data_frame(tree_df)
   checkmate::assert_integerish(chains_run, null.ok = TRUE)
@@ -81,7 +79,7 @@ epichains_tree <- function(tree_df,
     stat_max = stat_max,
     intvn_mean_reduction = intvn_mean_reduction,
     track_pop = track_pop
-    )
+  )
 
   # Validate the created object
   validate_epichains_tree(epichains_tree)
@@ -111,8 +109,7 @@ new_epichains_summary <- function(chains_summary,
                                   chains_run = integer(),
                                   statistic = character(),
                                   stat_max = integer(),
-                                  intvn_mean_reduction = double()
-                                  ) {
+                                  intvn_mean_reduction = double()) {
   # Assemble the elements of the object
   obj <- structure(
     chains_summary,
@@ -144,8 +141,7 @@ epichains_summary <- function(chains_summary,
                               chains_run = integer(),
                               statistic = character(),
                               stat_max = integer(),
-                              intvn_mean_reduction = double()
-                              ) {
+                              intvn_mean_reduction = double()) {
   # Check that inputs are well specified
   checkmate::assert_vector(chains_summary)
   checkmate::assert_integerish(chains_run, null.ok = TRUE)
@@ -219,29 +215,29 @@ format.epichains_tree <- function(x, ...) {
       sprintf(
         "%s",
         "\n"
-        ),
+      ),
       sprintf(
         "Chains simulated: %s",
         chain_info[["chains_run"]]
-        ),
+      ),
       sprintf(
-          "Number of ancestors (known): %s",
-          chain_info[["unique_ancestors"]]
-        ),
-        sprintf(
-          "Number of generations: %s",
-          chain_info[["max_generation"]]
-        )
+        "Number of ancestors (known): %s",
+        chain_info[["unique_ancestors"]]
+      ),
+      sprintf(
+        "Number of generations: %s",
+        chain_info[["max_generation"]]
       )
     )
+  )
 
   # Offer more information to view the full dataset
   writeLines(
     sprintf(
       "%s %s", "Use `as.data.frame(<object_name>)`",
       "to view the full output in the console."
-      )
     )
+  )
   invisible(x)
 }
 
@@ -266,24 +262,24 @@ format.epichains_summary <- function(x, ...) {
     sprintf(
       "\n Number of chains simulated: %s",
       chain_info[["unique_chains"]]
-      )
     )
+  )
   writeLines(
     c(
       sprintf(
         "\n Simulated chain %ss: \n",
         attr(x, "statistic", exact = TRUE)
-        ),
+      ),
       sprintf(
         "Max: %s",
         chain_info[["max_chain_stat"]]
-        ),
+      ),
       sprintf(
         "Min: %s",
         chain_info[["min_chain_stat"]]
-        )
       )
     )
+  )
 
   invisible(x)
 }
@@ -315,7 +311,7 @@ summary.epichains_tree <- function(object, ...) {
     max_time = max_time,
     unique_ancestors = n_unique_ancestors,
     max_generation = max_generation
-    )
+  )
 
   return(out)
 }
@@ -338,16 +334,16 @@ summary.epichains_summary <- function(object, ...) {
 
   if (all(is.infinite(object))) {
     max_chain_stat <- min_chain_stat <- Inf
-    } else {
-      max_chain_stat <- max(object[!is.infinite(object)])
-      min_chain_stat <- min(object[!is.infinite(object)])
-    }
+  } else {
+    max_chain_stat <- max(object[!is.infinite(object)])
+    min_chain_stat <- min(object[!is.infinite(object)])
+  }
 
-    out <- list(
-      chains_run = chains_run,
-      max_chain_stat = max_chain_stat,
-      min_chain_stat = min_chain_stat
-    )
+  out <- list(
+    chains_run = chains_run,
+    max_chain_stat = max_chain_stat,
+    min_chain_stat = min_chain_stat
+  )
 
   return(out)
 }
@@ -483,11 +479,11 @@ tail.epichains_tree <- function(x, ...) {
 #' cases_per_gen <- aggregate(chains, grouping_var = "generation")
 #' head(cases_per_gen)
 aggregate.epichains_tree <- function(x,
-                                grouping_var = c(
-                                  "time",
-                                  "generation"
-                                ),
-                                ...) {
+                                     grouping_var = c(
+                                       "time",
+                                       "generation"
+                                     ),
+                                     ...) {
   validate_epichains_tree(x)
 
   # Get grouping variable
