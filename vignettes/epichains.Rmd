@@ -109,8 +109,8 @@ likelihood_ind_eg
 
 *epichains* ships with functions for the analytical solutions of some
 transmission chain "size" and "length" distributions. For the size
-distributions, we provide the `poisson`, `negative binomial`, and `gamma-borel`
-mixture. For the length distribution, we provide the `poisson` and `geometric`
+distributions, we provide the poisson, negative binomial, and gamma-borel
+mixture. For the length distribution, we provide the poisson and geometric
 distributions. These can be used with `likelihood()` based on what is specified
 for `offspring_dist` and `statistic`.
 
