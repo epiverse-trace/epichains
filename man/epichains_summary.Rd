@@ -5,10 +5,10 @@
 \title{Create an \verb{<epichains_summary>} object}
 \usage{
 epichains_summary(
-  chains_summary = vector(),
+  chains_summary,
   chains_run = integer(),
   statistic = character(),
-  stat_max = double(),
+  stat_max = integer(),
   intvn_mean_reduction = double()
 )
 }
