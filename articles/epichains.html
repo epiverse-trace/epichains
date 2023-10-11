@@ -84,7 +84,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Getting started with epichains</h1>
-                        <h4 data-toc-skip class="author">James Azam</h4>
+                        <h4 data-toc-skip class="author">James M. Azam and Sebastian Funk</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/HEAD/vignettes/epichains.Rmd" class="external-link"><code>vignettes/epichains.Rmd</code></a></small>
@@ -93,8 +93,476 @@
 
     
     
-<p>WIP</p>
-  </main>
+<p><em>epichains</em> provides methods to analyse and simulate the size and length
+of branching processes with an arbitrary offspring distribution. These
+can be used, for example, to analyse the distribution of chain sizes
+or length of infectious disease outbreaks, as discussed in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003" role="doc-biblioref">2003</a>)</span> and
+<span class="citation">Blumberg and Lloyd-Smith (<a href="#ref-blumberg2013" role="doc-biblioref">2013</a>)</span>.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/epichains" class="external-link">"epichains"</a></span><span class="op">)</span></span></code></pre></div>
+</details><div class="section level2">
+<h2 id="chain-likelihoods">Chain likelihoods<a class="anchor" aria-label="anchor" href="#chain-likelihoods"></a>
+</h2>
+<div class="section level3">
+<h3 id="likelihood">
+<a href="https://epiverse-trace.github.io/epichains/reference/likelihood.html"><code>likelihood()</code></a><a class="anchor" aria-label="anchor" href="#likelihood"></a>
+</h3>
+<p>This function calculates the likelihood/loglikelihood of observing a vector of outbreak summaries obtained from transmission chains. “Outbreak summaries” here refer to transmission chain sizes or lengths/durations.</p>
+<p><code><a href="../reference/likelihood.html">likelihood()</a></code> requires a vector of chain summaries (sizes or lengths),
+<code>chains</code>, the corresponding statistic to calculate, <code>statistic</code>, the offspring
+distribution, <code>offspring_dist</code> and its associated parameters. <code>offspring_dist</code>
+is specified as the “base name” of the inbuilt distributions in R, for example,
+“pois”, “nbinom”, etc. <code><a href="../reference/likelihood.html">likelihood()</a></code> also requires <code>nsim_obs</code>, which is the
+number of simulations to run if the likelihoods do not have a closed-form
+solution and must be simulated. This argument will be explained further in
+the next section.</p>
+<p>By default, the result is a log-likelihood but if <code>log = FALSE</code>, then
+likelihoods are returned.</p>
+<p>Let’s look at the following example where we estimate the log-likelihood of
+observing <code>chain_sizes</code>.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
+<span><span class="co"># example of observed chain sizes</span></span>
+<span><span class="co"># randomly generate 20 chains of size between 1 to 10</span></span>
+<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">chain_sizes</span></span>
+<span><span class="co">#&gt;  [1]  4  7  4  9  1  3  7  5  1  8 10  2  1  2  4  5 10  6  8  7</span></span></code></pre></div>
+</details><details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># estimate loglikelihood of the observed chain sizes</span></span>
+<span><span class="va">likelihood_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
+<span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  nsim_obs <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.5</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Print the estimate</span></span>
+<span><span class="va">likelihood_eg</span></span>
+<span><span class="co">#&gt; [1] -67.82879</span></span></code></pre></div>
+</details>
+</div>
+<div class="section level3">
+<h3 id="joint-and-individual-log-likelihoods">Joint and individual log-likelihoods<a class="anchor" aria-label="anchor" href="#joint-and-individual-log-likelihoods"></a>
+</h3>
+<p><code><a href="../reference/likelihood.html">likelihood()</a></code>, by default, returns the joint log-likelihood. If instead,
+the individual log-likelihoods are required, then the <code>individual</code> argument
+must be set to <code>TRUE</code>. To return likelihoods instead, set <code>log = FALSE</code>.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
+<span><span class="co"># example of observed chain sizes</span></span>
+<span><span class="co"># randomly generate 20 chains of size between 1 to 10</span></span>
+<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">chain_sizes</span></span>
+<span><span class="co">#&gt;  [1]  4  7  4  9  1  3  7  5  1  8 10  2  1  2  4  5 10  6  8  7</span></span></code></pre></div>
+</details><details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># estimate loglikelihood of the observed chain sizes</span></span>
+<span><span class="va">likelihood_ind_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
+<span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  nsim_obs <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  individual <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Print the estimate</span></span>
+<span><span class="va">likelihood_ind_eg</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt;  [1] -3.098612 -4.508584 -3.098612 -5.269208 -0.500000 -2.480829 -4.508584</span></span>
+<span><span class="co">#&gt;  [8] -3.622329 -0.500000 -4.900542 -5.619471 -1.693147 -0.500000 -1.693147</span></span>
+<span><span class="co">#&gt; [15] -3.098612 -3.622329 -5.619471 -4.086190 -4.900542 -4.508584</span></span></code></pre></div>
+</details>
+</div>
+<div class="section level3">
+<h3 id="how-likelihood-works">How <code>likelihood()</code> works<a class="anchor" aria-label="anchor" href="#how-likelihood-works"></a>
+</h3>
+<p><em>epichains</em> ships with functions for the analytical solutions of some
+transmission chain “size” and “length” distributions. For the size
+distributions, we provide the poisson, negative binomial, and gamma-borel
+mixture. For the length distribution, we provide the poisson and geometric
+distributions. These can be used with <code><a href="../reference/likelihood.html">likelihood()</a></code> based on what is specified
+for <code>offspring_dist</code> and <code>statistic</code>.</p>
+<p>If an analytical solution does not exist, we provide <code><a href="../reference/offspring_ll.html">offspring_ll()</a></code>, which
+uses simulations to approximate the probability distributions
+(<a href="https://en.wikipedia.org/wiki/Empirical_distribution_function" class="external-link">using a linear approximation to the cumulative
+distribution</a>
+for unobserved sizes/lengths). In this case, an extra argument <code>nsim_offspring</code>
+must be passed to <code><a href="../reference/likelihood.html">likelihood()</a></code> to specify the number of simulations to be
+used for this approximation.</p>
+<p>For example, let’s look at an example where <code>chain_sizes</code> is observed and we
+want to calculate the likelihood of this being drawn from a binomial
+distribution with probability <code>prob = 0.9</code>.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
+<span><span class="co"># example of observed chain sizes; randomly generate 20 chains of size 1 to 10</span></span>
+<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># get their likelihood</span></span>
+<span><span class="va">liks</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
+<span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"binom"</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  prob <span class="op">=</span> <span class="fl">0.9</span>,</span>
+<span>  nsim_offspring <span class="op">=</span> <span class="fl">250</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">liks</span></span>
+<span><span class="co">#&gt; [1] -56.76805</span></span></code></pre></div>
+</details>
+</div>
+<div class="section level3">
+<h3 id="observation-probability">Observation probability<a class="anchor" aria-label="anchor" href="#observation-probability"></a>
+</h3>
+<p><code><a href="../reference/likelihood.html">likelihood()</a></code> uses the argument <code>obs_prob</code> to model the observation
+probability.</p>
+<p>By default, it assumes perfect observation, where <code>obs_prob = 1</code>
+(See <code><a href="../reference/likelihood.html">?likelihood</a></code>), meaning that all transmission events are observed and
+recorded in the data.</p>
+<p>If observations are imperfect, the <code>obs_prob</code> must be
+less than 1. In the case of imperfect observation, “true” chain sizes
+or lengths are simulated <code>nsim_obs</code> times, and the likelihood calculated for
+each of the simulations.</p>
+<p>For example, if the probability of observing each case is <code>obs_prob = 0.30</code>,
+we use</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
+<span><span class="co"># example of observed chain sizes; randomly generate 20 chains of size 1 to 10</span></span>
+<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># get their likelihood</span></span>
+<span><span class="va">liks</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
+<span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  obs_prob <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  nsim_obs <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">liks</span></span>
+<span><span class="co">#&gt;  [1] -183.8670 -162.1382 -166.6720 -170.1077 -152.9557 -157.9814 -166.0587</span></span>
+<span><span class="co">#&gt;  [8] -174.8488 -156.4197 -160.0229</span></span></code></pre></div>
+</details><p>This returns <code>10</code> likelihood values (because <code>nsim_obs = 10</code>), which can be
+averaged to come up with an overall likelihood estimate.</p>
+<p>To find out about the usage of the <code><a href="../reference/likelihood.html">likelihood()</a></code> function, you can run
+<code><a href="../reference/likelihood.html">?likelihood</a></code> to access its <code>R</code> help file.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="chain-simulation">Chain simulation<a class="anchor" aria-label="anchor" href="#chain-simulation"></a>
+</h2>
+<p>There are three simulation functions, herein referred to collectively as the <code>simulate_*()</code> functions.</p>
+<div class="section level3">
+<h3 id="simulate_tree">
+<a href="https://epiverse-trace.github.io/epichains/reference/simulate_tree.html"><code>simulate_tree()</code></a><a class="anchor" aria-label="anchor" href="#simulate_tree"></a>
+</h3>
+<p><code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> simulates an outbreak from a given number of infections.
+It retains and returns information on infectors (ancestors), infectees, the generation of infection, and the time, if a serial distribution is specified.</p>
+<p>Let’s look at an example where we simulate the transmission trees of <span class="math inline">\(10\)</span> initial infections/chains. We
+assume a poisson offspring distribution with mean, <span class="math inline">\(\text{lambda} = 0.9\)</span>, and a serial interval of <span class="math inline">\(3\)</span> days:</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="co"># Define serial distribution</span></span>
+<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
+<span>  nchains <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  serials_dist <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">3</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_eg</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt; tree head (from first known ancestor) &gt;</span></span>
+<span><span class="co">#&gt;    chain_id sim_id ancestor generation time</span></span>
+<span><span class="co">#&gt; 11        2      2        1          2    3</span></span>
+<span><span class="co">#&gt; 13        3      2        1          2    3</span></span>
+<span><span class="co">#&gt; 14        4      2        1          2    3</span></span>
+<span><span class="co">#&gt; 16        5      2        1          2    3</span></span>
+<span><span class="co">#&gt; 19        7      2        1          2    3</span></span>
+<span><span class="co">#&gt; 20        8      2        1          2    3</span></span></code></pre></div>
+</details>
+</div>
+<div class="section level3">
+<h3 id="simulate_summary">
+<a href="https://epiverse-trace.github.io/epichains/reference/simulate_summary.html"><code>simulate_summary()</code></a><a class="anchor" aria-label="anchor" href="#simulate_summary"></a>
+</h3>
+<p><code><a href="../reference/simulate_summary.html">simulate_summary()</a></code> is basically <code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> except that it does not retain
+information on each infector and infectee. It returns the eventual size or length/duration of each transmission chain.</p>
+<p>Here is an example to simulate the previous examples without intervention,
+returning the size of each of the <span class="math inline">\(10\)</span> chains. It assumes a poisson offspring distribution with
+mean of <span class="math inline">\(0.9\)</span>.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">simulate_summary_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
+<span>  nchains <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Print the results</span></span>
+<span><span class="va">simulate_summary_eg</span></span>
+<span><span class="co">#&gt; `epichains` object </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  [1]   1 Inf   4   4 Inf   1   2 Inf   5   3</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Simulated chain sizes: </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Max: 5</span></span>
+<span><span class="co">#&gt; Min: 1</span></span></code></pre></div>
+</details>
+</div>
+<div class="section level3">
+<h3 id="simulate_tree_from_pop">
+<a href="https://epiverse-trace.github.io/epichains/reference/simulate_tree_from_pop.html"><code>simulate_tree_from_pop()</code></a><a class="anchor" aria-label="anchor" href="#simulate_tree_from_pop"></a>
+</h3>
+<p><code><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code> simulates outbreaks based on a specified population size and pre-existing immunity until the susceptible pool runs out.</p>
+<p>Here is a quick example where we simulate an outbreak in a population of size <span class="math inline">\(1000\)</span>. We assume individuals have a poisson offspring distribution with mean, <span class="math inline">\(\text{lambda} = 1\)</span>, and serial interval of <span class="math inline">\(3\)</span>:</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span>
+<span><span class="co"># Define serial distribution</span></span>
+<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">sim_tree_from_pop_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop</a></span><span class="op">(</span></span>
+<span>  pop <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_from_pop_eg</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt; tree head (from first known ancestor) &gt;</span></span>
+<span><span class="co">#&gt;   sim_id ancestor generation time</span></span>
+<span><span class="co">#&gt; 2      2        1          2    3</span></span>
+<span><span class="co">#&gt; 3      3        1          2    3</span></span>
+<span><span class="co">#&gt; 4      4        1          2    3</span></span>
+<span><span class="co">#&gt; 5      5        1          2    3</span></span>
+<span><span class="co">#&gt; 6      6        2          3    6</span></span>
+<span><span class="co">#&gt; 7      7        6          4    9</span></span></code></pre></div>
+</details><div class="section level4">
+<h4 id="simulating-chains-with-interventions">Simulating chains with interventions<a class="anchor" aria-label="anchor" href="#simulating-chains-with-interventions"></a>
+</h4>
+<p>All the <code>simulate_*()</code> functions can model interventions that reduce the <span class="math inline">\(R_0\)</span>,
+using the <code>intvn_mean_reduction</code> argument. In general, these can be
+interpreted as population-level interventions.</p>
+<p>To illustrate this, we will use the previous examples for each function and specify
+a population-level intervention that reduces <span class="math inline">\(R_0\)</span> by <span class="math inline">\(50\%\)</span>.</p>
+<p>Using <code><a href="../reference/simulate_tree.html">simulate_tree()</a></code>, we can specify an initial number of cases
+and a population level intervention, <code>intvn_mean_reduction</code>, that reduces <span class="math inline">\(R_0\)</span> by <span class="math inline">\(50\%\)</span>.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="co"># Define serial distribution</span></span>
+<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">sim_tree_intvn_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
+<span>  nchains <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  intvn_mean_reduction <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_intvn_eg</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt; tree head (from first known ancestor) &gt;</span></span>
+<span><span class="co">#&gt;    chain_id sim_id ancestor generation time</span></span>
+<span><span class="co">#&gt; 11        2      2        1          2    3</span></span>
+<span><span class="co">#&gt; 12        4      2        1          2    3</span></span>
+<span><span class="co">#&gt; 13        5      2        1          2    3</span></span>
+<span><span class="co">#&gt; 15        8      2        1          2    3</span></span>
+<span><span class="co">#&gt; 14        5      3        1          2    3</span></span>
+<span><span class="co">#&gt; 16        2      3        2          3    6</span></span></code></pre></div>
+</details><p>Here is an example with <code><a href="../reference/simulate_summary.html">simulate_summary()</a></code>, modelling an intervention that reduces <span class="math inline">\(R_0\)</span> by <span class="math inline">\(50\%\)</span>.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">simulate_summary_intvn_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
+<span>  nchains <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  intvn_mean_reduction <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Print the results</span></span>
+<span><span class="va">simulate_summary_intvn_eg</span></span>
+<span><span class="co">#&gt; `epichains` object </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  [1] 5 3 3 3 5 2 2 1 1 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Simulated chain sizes: </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Max: 5</span></span>
+<span><span class="co">#&gt; Min: 1</span></span></code></pre></div>
+</details><p>Finally, let’s use <code><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code>.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span>
+<span><span class="co"># Define serial distribution</span></span>
+<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">sim_tree_from_pop_intvn_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop</a></span><span class="op">(</span></span>
+<span>  pop <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  intvn_mean_reduction <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_from_pop_intvn_eg</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt; tree head (from first known ancestor) &gt;</span></span>
+<span><span class="co">#&gt;   sim_id ancestor generation time</span></span>
+<span><span class="co">#&gt; 2      2        1          2    3</span></span>
+<span><span class="co">#&gt; 3      3        1          2    3</span></span>
+<span><span class="co">#&gt; 4      4        1          2    3</span></span></code></pre></div>
+</details>
+</div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="other-functionalities">Other functionalities<a class="anchor" aria-label="anchor" href="#other-functionalities"></a>
+</h2>
+<div class="section level3">
+<h3 id="summarising">Summarising<a class="anchor" aria-label="anchor" href="#summarising"></a>
+</h3>
+<p>You can run <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on <code>&lt;epichains&gt;</code> objects to get useful summaries.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Example with simulate_tree()</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="co"># Define serial distribution</span></span>
+<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
+<span>  nchains <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_tree_eg</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $chains_run</span></span>
+<span><span class="co">#&gt; [1] 10</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $max_time</span></span>
+<span><span class="co">#&gt; [1] 12</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $unique_ancestors</span></span>
+<span><span class="co">#&gt; [1] 9</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $max_generation</span></span>
+<span><span class="co">#&gt; [1] 5</span></span>
+<span></span>
+<span><span class="co"># Example with simulate_summary()</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">simulate_summary_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
+<span>  nchains <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Get summaries</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">simulate_summary_eg</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $chains_run</span></span>
+<span><span class="co">#&gt; [1] 10</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $max_chain_stat</span></span>
+<span><span class="co">#&gt; [1] 5</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $min_chain_stat</span></span>
+<span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+</details>
+</div>
+<div class="section level3">
+<h3 id="aggregating">Aggregating<a class="anchor" aria-label="anchor" href="#aggregating"></a>
+</h3>
+<p>You can aggregate <code>&lt;epichains&gt;</code> objects returned by the <code>simulate_*()</code> functions into a time series, which is a <code>&lt;data.frame&gt;</code> with columns “cases” and either “generation” or “time”, depending on the value of <code>grouping_var</code>.</p>
+<p>To aggregate over “time”, you must have specified a serial interval distribution in the simulation step.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Example with simulate_tree()</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Define serial distribution</span></span>
+<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
+<span>  nchains <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_tree_eg</span>, grouping_var <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   time cases</span></span>
+<span><span class="co">#&gt; 1    0    10</span></span>
+<span><span class="co">#&gt; 2    3    13</span></span>
+<span><span class="co">#&gt; 3    6    15</span></span>
+<span><span class="co">#&gt; 4    9    18</span></span>
+<span><span class="co">#&gt; 5   12     2</span></span></code></pre></div>
+</details>
+</div>
+<div class="section level3">
+<h3 id="plotting">Plotting<a class="anchor" aria-label="anchor" href="#plotting"></a>
+</h3>
+<p>Aggregated <code>&lt;epichains&gt;</code> objects can easily be plotted using base R or <code>ggplot2</code> with little to no data manipulation.</p>
+<p>Here is an end-to-end example from simulation through aggregation to plotting.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Run simulation with simulate_tree()</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="co"># Define serial distribution</span></span>
+<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
+<span>  nchains <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Aggregate cases over time</span></span>
+<span><span class="va">sim_aggreg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_tree_eg</span>, grouping_var <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot cases over time</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim_aggreg</span>, type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span></span></code></pre></div>
+</details><p><img src="epichains_files/figure-html/unnamed-chunk-17-1.png"><!-- --></p>
+</div>
+</div>
+<div class="section level2 unnumbered">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-blumberg2013" class="csl-entry">
+Blumberg, S., and J. O. Lloyd-Smith. 2013. <span>“Comparing Methods for Estimating R0 from the Size Distribution of Subcritical Transmission Chains.”</span> <em>Epidemics</em> 5 (3): 131–45. <a href="https://doi.org/10.1016/j.epidem.2013.05.002" class="external-link">https://doi.org/10.1016/j.epidem.2013.05.002</a>.
+</div>
+<div id="ref-farrington2003" class="csl-entry">
+Farrington, C. P., M. N. Kanaan, and N. J. Gay. 2003. <span>“Branching Process Models for Surveillance of Infectious Diseases Controlled by Mass Vaccination.”</span> <em>Biostatistics (Oxford, England)</em> 4 (2): 279–95. <a href="https://doi.org/10.1093/biostatistics/4.2.279" class="external-link">https://doi.org/10.1093/biostatistics/4.2.279</a>.
+</div>
+</div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
