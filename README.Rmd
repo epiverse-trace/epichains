@@ -81,7 +81,7 @@ length.
 population size and information on the offspring distribution. You can also
 specify a given level of pre-existing immunity. This function returns
 an object with columns that track information on who infected whom, the
-generation of infection, and the time of infection.
+generation of infection and, if a serial interval is given, the time of infection.
 
 * `likelihood()`: calculates the loglikelihood (or likelihood, depending
 on the value of `log`) of observing a vector of transmission chain sizes or
