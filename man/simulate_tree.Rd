@@ -9,7 +9,6 @@ simulate_tree(
   statistic = c("size", "length"),
   offspring_dist,
   stat_max = Inf,
-  intvn_mean_reduction = 0,
   serials_dist,
   t0 = 0,
   tf = Inf,
@@ -35,12 +34,6 @@ numbers).}
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
-
-\item{intvn_mean_reduction}{A number between 0
-and 1 for scaling/reducing the mean of \code{offspring_dist}. Serves as
-population-level intervention. \code{intvn_mean_reduction} = 0
-implies no intervention impact and \code{intvn_mean_reduction} = 1 implies full
-impact.}
 
 \item{serials_dist}{The serial interval distribution function; the name
 of a user-defined named or anonymous function with only one argument \code{n},
@@ -128,19 +121,6 @@ chains <- simulate_tree(
   serials_dist = function(x) 3,
   lambda = 2
 )
-
-# Run model with intervention a 50\% reduction in R0.
-chains_with_intvn <- simulate_tree(
-  nchains = 10,
-  statistic = "size",
-  offspring_dist = "pois",
-  intvn_mean_reduction = 0.5,
-  stat_max = 10,
-  serials_dist = function(x) 3,
-  lambda = 2
-)
-
-chains_with_intvn
 }
 \references{
 Lehtinen S, Ashcroft P, Bonhoeffer S. On the relationship

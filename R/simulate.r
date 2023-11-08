@@ -1,6 +1,5 @@
 #' Simulate transmission trees from an initial number of infections
 #'
-#' @inheritParams intvn_reduce_mean
 #' @param nchains Number of chains to simulate.
 #' @param offspring_dist Offspring distribution: a character string
 #' corresponding to the R distribution function (e.g., "pois" for Poisson,
@@ -98,19 +97,6 @@
 #'   serials_dist = function(x) 3,
 #'   lambda = 2
 #' )
-#'
-#' # Run model with intervention a 50% reduction in R0.
-#' chains_with_intvn <- simulate_tree(
-#'   nchains = 10,
-#'   statistic = "size",
-#'   offspring_dist = "pois",
-#'   intvn_mean_reduction = 0.5,
-#'   stat_max = 10,
-#'   serials_dist = function(x) 3,
-#'   lambda = 2
-#' )
-#'
-#' chains_with_intvn
 #' @references
 #' Lehtinen S, Ashcroft P, Bonhoeffer S. On the relationship
 #' between serial interval, infectiousness profile and generation time.
@@ -127,7 +113,6 @@
 #' 1186–1204. \doi{https://doi.org/10.3390/ijerph7031204}
 simulate_tree <- function(nchains, statistic = c("size", "length"),
                           offspring_dist, stat_max = Inf,
-                          intvn_mean_reduction = 0,
                           serials_dist, t0 = 0,
                           tf = Inf, ...) {
   statistic <- match.arg(statistic)
@@ -137,28 +122,12 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
   # check that offspring is properly specified
   check_offspring_valid(offspring_dist)
 
-  # Check that the intvn_mean_reduction is well specified
-  checkmate::assert_number(
-    intvn_mean_reduction,
-    lower = 0,
-    upper = 1
-  )
-
   # check that offspring function exists in base R
   roffspring_name <- paste0("r", offspring_dist)
   check_offspring_func_valid(roffspring_name)
 
   # Gather offspring distribution parameters
   pars <- list(...)
-
-  # Prepare interventions if specified
-  if (intvn_mean_reduction > 0) {
-    pars <- intvn_reduce_mean(
-      intvn_mean_reduction = intvn_mean_reduction,
-      offspring_dist = offspring_dist,
-      pars_list = pars
-    )
-  }
 
   if (!missing(serials_dist)) {
     check_serial_valid(serials_dist)
@@ -284,7 +253,6 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 #' Simulate transmission chains sizes/lengths
 #'
 #' @inheritParams simulate_tree
-#' @inheritParams intvn_reduce_mean
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
 #' @inheritSection simulate_tree Calculating chain sizes and lengths
@@ -303,22 +271,9 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 #'   stat_max = 10,
 #'   lambda = 2
 #' )
-#'
-#' # Run model with intervention a 50% reduction in R0.
-#' chain_summary_with_intvn <- simulate_summary(
-#'   nchains = 10,
-#'   statistic = "size",
-#'   offspring_dist = "pois",
-#'   intvn_mean_reduction = 0.5,
-#'   stat_max = 10,
-#'   lambda = 2
-#' )
-#'
-#' chain_summary_with_intvn
 #' @export
 simulate_summary <- function(nchains, statistic = c("size", "length"),
                              offspring_dist,
-                             intvn_mean_reduction = 0,
                              stat_max = Inf, ...) {
   statistic <- match.arg(statistic)
 
@@ -327,28 +282,12 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
   # check that offspring is properly specified
   check_offspring_valid(offspring_dist)
 
-  # Check that the intvn_mean_reduction is well specified
-  checkmate::assert_number(
-    intvn_mean_reduction,
-    lower = 0,
-    upper = 1
-  )
-
   # check that offspring function exists in base R
   roffspring_name <- paste0("r", offspring_dist)
   check_offspring_func_valid(roffspring_name)
 
   # Gather offspring distribution parameters
   pars <- list(...)
-
-  # Prepare interventions if specified
-  if (intvn_mean_reduction > 0) {
-    pars <- intvn_reduce_mean(
-      intvn_mean_reduction = intvn_mean_reduction,
-      offspring_dist = offspring_dist,
-      pars_list = pars
-    )
-  }
 
   # Initialisations
   stat_track <- rep(1, nchains) ## track length or size (depending on `stat`)
@@ -404,7 +343,6 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' population
 #'
 #' @inheritParams simulate_tree
-#' @inheritParams intvn_mean_reduction
 #' @param pop The susceptible population size.
 #' @param offspring_dist Offspring distribution: a character string
 #' corresponding to the R distribution function (e.g., "pois" for Poisson,
@@ -465,21 +403,9 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' size = 1.1,
 #' serials_dist = function(x) 3
 #' )
-#'
-#' # Simulate with negative binomial offspring with intervention (50%
-#' # reduction in R0)
-#' simulate_tree_from_pop(
-#'   pop = 100,
-#'   offspring_dist = "nbinom",
-#'   intvn_mean_reduction = 0.5,
-#'   mu = 0.5,
-#'   size = 1.1,
-#'   serials_dist = function(x) 3
-#' )
 #' @export
 simulate_tree_from_pop <- function(pop,
                                    offspring_dist = c("pois", "nbinom"),
-                                   intvn_mean_reduction = 0,
                                    serials_dist,
                                    initial_immune = 0,
                                    t0 = 0,
@@ -487,24 +413,8 @@ simulate_tree_from_pop <- function(pop,
                                    ...) {
   offspring_dist <- match.arg(offspring_dist)
 
-  # Check that the intvn_mean_reduction is well specified
-  checkmate::assert_number(
-    intvn_mean_reduction,
-    lower = 0,
-    upper = 1
-  )
-
   # Gather offspring distribution parameters
   pars <- list(...)
-
-  # Prepare interventions if specified
-  if (intvn_mean_reduction > 0) {
-    pars <- intvn_reduce_mean(
-      intvn_mean_reduction = intvn_mean_reduction,
-      offspring_dist = offspring_dist,
-      pars_list = pars
-    )
-  }
 
   if (offspring_dist == "pois") {
     ## Use a right truncated poisson distribution
