@@ -8,7 +8,6 @@ simulate_summary(
   nchains,
   statistic = c("size", "length"),
   offspring_dist,
-  intvn_mean_reduction = 0,
   stat_max = Inf,
   ...
 )
@@ -28,12 +27,6 @@ Can be one of:
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}
-
-\item{intvn_mean_reduction}{A number between 0
-and 1 for scaling/reducing the mean of \code{offspring_dist}. Serves as
-population-level intervention. \code{intvn_mean_reduction} = 0
-implies no intervention impact and \code{intvn_mean_reduction} = 1 implies full
-impact.}
 
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above the specified value, are set to \code{Inf}.}
@@ -105,18 +98,6 @@ simulate_summary(
   stat_max = 10,
   lambda = 2
 )
-
-# Run model with intervention a 50\% reduction in R0.
-chain_summary_with_intvn <- simulate_summary(
-  nchains = 10,
-  statistic = "size",
-  offspring_dist = "pois",
-  intvn_mean_reduction = 0.5,
-  stat_max = 10,
-  lambda = 2
-)
-
-chain_summary_with_intvn
 }
 \seealso{
 \itemize{
