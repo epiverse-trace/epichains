@@ -31,8 +31,13 @@ _epichains_ does not provide any direct functionality for studying public health
 However, the flexible simulation functionality that it includes can be used to consider some specific changes to the parameters that can be interpreted as the result of control measures.
 Here we investigate the effect on outbreak sizes, but the same approaches could be used for investigating chain lengths (using the `statistic` argument to `simulate_summary`) or the time progression of outbreaks (using the `simulate_tree` function).
 
-```{r}
+```{r load_libraries}
+## main package
 library("epichains")
+## for plotting
+library("ggplot2")
+## for truncating the offspring distribution later
+library("truncdist")
 ```
 
 As a base case we consider the spread of an infection with a negative binomial offspring distribution with mean 1.2 and overdispersion parameter 0.5.
@@ -46,7 +51,6 @@ sims <- simulate_summary(
 
 We then plot the resulting distribution of chain sizes
 ```{r uncontrolled_chains_plot}
-library("ggplot2")
 sims[is.infinite(sims)] <- 100 # Replace infections > 99 with 100 for plotting.
 ggplot(data.frame(x = sims), aes(x = x)) +
   geom_histogram(breaks = seq(0, 100, by = 5), closed = "left") +
@@ -103,7 +107,7 @@ Having defined this, we can generate simulations as before:
 
 ```{r simulate_chains_ind_control}
 sims <- simulate_summary(
-  nchains = 200, offspring_dist = "nbinom_ind", stat_max = 99, mu = 1.2, 
+  nchains = 200, offspring_dist = "nbinom_ind", stat_max = 99, mu = 1.2,
   size = 0.5, control = 0.25
 )
 sims[is.infinite(sims)] <- 100 # Replace infections > 99 with 100 for plotting.
@@ -123,7 +127,6 @@ This can be done, for example, using the [truncdist](https://cran.r-project.org/
 We use this to define a truncated negative binomial offspring distribution:
 
 ```{r negbin_truncated}
-library("truncdist")
 rnbinom_truncated <- function(n, ..., max = Inf) {
   return(rtrunc(n = n, spec = "nbinom", b = max, ...))
 }
@@ -134,7 +137,7 @@ This can be likened to a disease control strategy where gatherings are limited t
 
 ```{r simulate_chains_truncated}
 sims <- simulate_summary(
-  nchains = 200, offspring_dist = "nbinom_truncated", stat_max = 99, mu = 1.2, 
+  nchains = 200, offspring_dist = "nbinom_truncated", stat_max = 99, mu = 1.2,
   size = 0.5, max =  10
 )
 sims[is.infinite(sims)] <- 100 # Replace infections > 99 with 100 for plotting.
