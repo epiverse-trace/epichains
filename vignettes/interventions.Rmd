@@ -47,7 +47,7 @@ sims <- simulate_summary(
 We then plot the resulting distribution of chain sizes
 ```{r uncontrolled_chains_plot}
 library("ggplot2")
-sims[is.infinite(sims)] <- 100
+sims[is.infinite(sims)] <- 100 # Replace infections > 99 with 100 for plotting.
 ggplot(data.frame(x = sims), aes(x = x)) +
   geom_histogram(breaks = seq(0, 100, by = 5), closed = "left") +
   scale_x_continuous(breaks = c(0, 25, 50, 75, 100),
@@ -55,7 +55,7 @@ ggplot(data.frame(x = sims), aes(x = x)) +
   theme_bw()
 ```
 
-# Reductions in the strength of transmission
+# Reducing the strength of transmission
 
 Following [@lloyd-smith2005] we consider two ways in which disease control interventions can reduce the reproduction number: _population-wide_ and _individual-specific_ control.
 
@@ -68,7 +68,7 @@ For example, to reduce R by 25% at the population level we scale the `mu` parame
 sims <- simulate_summary(
   nchains = 200, offspring_dist = "nbinom", stat_max = 99, mu = 0.9, size = 0.5
 )
-sims[is.infinite(sims)] <- 100
+sims[is.infinite(sims)] <- 100 # Replace infections > 99 with 100 for plotting.
 ggplot(data.frame(x = sims), aes(x = x)) +
   geom_histogram(breaks = seq(0, 100, by = 5), closed = "left") +
   scale_x_continuous(breaks = c(0, 25, 50, 75, 100),
@@ -90,7 +90,7 @@ rnbinom_ind <- function(n, ..., control = 0) {
   ## for each individual, decide whether they transmit further
   transmits <- rbinom(n = n, prob = 1 - control, size = 1)
   ## check if anyone transmits further
-  if (sum(transmits) > 0L) {
+  if (any(transmits == 1L)) {
     ## for those that transmit, sample from negative binomial with given
     ## parameters
     offspring[which(transmits == 1L)] <- rnbinom(n = n, ...)
@@ -106,7 +106,7 @@ sims <- simulate_summary(
   nchains = 200, offspring_dist = "nbinom_ind", stat_max = 99, mu = 1.2, 
   size = 0.5, control = 0.25
 )
-sims[is.infinite(sims)] <- 100
+sims[is.infinite(sims)] <- 100 # Replace infections > 99 with 100 for plotting.
 ggplot(data.frame(x = sims), aes(x = x)) +
   geom_histogram(breaks = seq(0, 100, by = 5), closed = "left") +
   scale_x_continuous(breaks = c(0, 25, 50, 75, 100),
@@ -130,13 +130,14 @@ rnbinom_truncated <- function(n, ..., max = Inf) {
 ```
 
 We use this to simulate chains in a situation where the maximum of secondary cases that each infected person can generate is 10.
+This can be likened to a disease control strategy where gatherings are limited to 10 people.
 
 ```{r simulate_chains_truncated}
 sims <- simulate_summary(
   nchains = 200, offspring_dist = "nbinom_truncated", stat_max = 99, mu = 1.2, 
   size = 0.5, max =  10
 )
-sims[is.infinite(sims)] <- 100
+sims[is.infinite(sims)] <- 100 # Replace infections > 99 with 100 for plotting.
 ggplot(data.frame(x = sims), aes(x = x)) +
   geom_histogram(breaks = seq(0, 100, by = 5), closed = "left") +
   scale_x_continuous(breaks = c(0, 25, 50, 75, 100),
@@ -156,7 +157,8 @@ control <- 1 - pgamma(6, shape = 25, rate = 5)
 signif(control, 2)
 ```
 
-# References
 
 In other words, this would prevent `r round(100 * control)`% of infections in this example.
 The value of `control` can be used in the examples above to study the effect on outbreak sizes.
+
+# References
