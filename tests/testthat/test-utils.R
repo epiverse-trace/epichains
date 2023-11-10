@@ -98,7 +98,7 @@ test_that("Chain sizes sampler is numerically correct", {
 })
 
 test_that("Reparametrized distributions throw warnings", {
-  expect_warning(
+  expect_error(
     rnbinom_mean_disp(
       n = 5,
       mn = 4,
@@ -109,11 +109,11 @@ test_that("Reparametrized distributions throw warnings", {
 })
 
 test_that("Log-probabilities throw warnings", {
-  expect_warning(
+  expect_error(
     complementary_logprob(0.1),
     "is not <= 0"
   )
-  expect_warning(
+  expect_error(
     complementary_logprob(Inf),
     "is not <= 0"
   )
