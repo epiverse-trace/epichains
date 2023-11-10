@@ -296,9 +296,6 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
   check_offspring_func_valid(roffspring_name)
 
   checkmate::assert_numeric(stat_max, lower = 0)
-  check_serial_valid(serials_dist)
-  checkmate::assert_number(t0, lower = 0, finite = TRUE)
-  checkmate::assert_number(tf, lower = 0, finite = TRUE)
 
   # Gather offspring distribution parameters
   pars <- list(...)
