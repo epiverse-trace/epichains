@@ -6,6 +6,10 @@
 #' @author Sebastian Funk
 #' @keywords internal
 complementary_logprob <- function(x) {
+  checkmate::assert_numeric(
+    x, lower = -Inf, upper = 0
+  )
+
   tryCatch(log1p(-sum(exp(x))), error = function(e) -Inf)
 }
 
