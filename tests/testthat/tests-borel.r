@@ -5,5 +5,5 @@ test_that("We can calculate probabilities and sample", {
 })
 
 test_that("Errors are thrown", {
-  expect_error(dborel(0, 0.5), "greater than 0")
+  expect_error(dborel(0, 0.5), "is not >= 1")
 })
