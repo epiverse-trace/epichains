@@ -100,6 +100,13 @@ gborel_size_ll <- function(x, size, prob, mu) {
 #' @author Sebastian Funk
 #' @keywords internal
 pois_length_ll <- function(x, lambda) {
+  checkmate::assert_numeric(
+    x, lower = 0, any.missing = FALSE
+  )
+  checkmate::assert_number(
+    lambda, finite = TRUE, lower = 0
+  )
+
   ## iterated exponential function
   arg <- exp(lambda * exp(-lambda))
   itex <- 1
