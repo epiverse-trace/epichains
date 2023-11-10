@@ -10,9 +10,9 @@ rnbinom_mean_disp(n, mn, disp)
 \arguments{
 \item{n}{number of samples to draw}
 
-\item{mn}{mean of distribution}
+\item{mn}{mean of distribution; Must be > 0.}
 
-\item{disp}{dispersion coefficient (var/mean)}
+\item{disp}{dispersion coefficient (var/mean); Must be > 1.}
 }
 \value{
 vector containing the random numbers

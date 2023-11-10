@@ -43,8 +43,8 @@ rgen_length <- function(n, x, prob) {
 #' Negative binomial random numbers parametrized
 #' in terms of mean and dispersion coefficient
 #' @param n number of samples to draw
-#' @param mn mean of distribution
-#' @param disp dispersion coefficient (var/mean)
+#' @param mn mean of distribution; Must be > 0.
+#' @param disp dispersion coefficient (var/mean); Must be > 1.
 #' @return vector containing the random numbers
 #' @author Flavio Finger
 #' @export

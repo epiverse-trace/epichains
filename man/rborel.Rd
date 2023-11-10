@@ -9,7 +9,7 @@ rborel(n, mu, infinite = Inf)
 \arguments{
 \item{n}{Number of random variates to generate.}
 
-\item{mu}{mu parameter.}
+\item{mu}{mu parameter (the poisson mean); non-negative.}
 
 \item{infinite}{Any number to treat as infinite; simulations will be
 stopped if this number is reached}
