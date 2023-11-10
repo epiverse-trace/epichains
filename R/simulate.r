@@ -130,7 +130,7 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 
   checkmate::assert_numeric(stat_max, lower = 0)
   check_serial_valid(serials_dist)
-  checkmate::assert_number(t0, lower = 0, finite = TRUE)
+  checkmate::assert_numeric(t0, lower = 0, finite = TRUE)
   checkmate::assert_number(tf, lower = 0, finite = TRUE)
 
   # Gather offspring distribution parameters
