@@ -52,6 +52,7 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <h6 class="dropdown-header" data-toc-skip>Package vignettes</h6>
     <a class="dropdown-item" href="../articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a>
+    <a class="dropdown-item" href="../articles/interventions.html">Modelling disease control interventions</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6>
     <a class="dropdown-item" href="../articles/branching_process_literature.html">Literature on branching process applications</a>
@@ -344,87 +345,7 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="co">#&gt; 5      5        1          2    3</span></span>
 <span><span class="co">#&gt; 6      6        2          3    6</span></span>
 <span><span class="co">#&gt; 7      7        6          4    9</span></span></code></pre></div>
-</details><div class="section level4">
-<h4 id="simulating-chains-with-interventions">Simulating chains with interventions<a class="anchor" aria-label="anchor" href="#simulating-chains-with-interventions"></a>
-</h4>
-<p>All the <code>simulate_*()</code> functions can model interventions that reduce the <span class="math inline">\(R_0\)</span>,
-using the <code>intvn_mean_reduction</code> argument. In general, these can be
-interpreted as population-level interventions.</p>
-<p>To illustrate this, we will use the previous examples for each function and specify
-a population-level intervention that reduces <span class="math inline">\(R_0\)</span> by <span class="math inline">\(50\%\)</span>.</p>
-<p>Using <code><a href="../reference/simulate_tree.html">simulate_tree()</a></code>, we can specify an initial number of cases
-and a population level intervention, <code>intvn_mean_reduction</code>, that reduces <span class="math inline">\(R_0\)</span> by <span class="math inline">\(50\%\)</span>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="co"># Define serial distribution</span></span>
-<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">sim_tree_intvn_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
-<span>  nchains <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
-<span>  intvn_mean_reduction <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span>,</span>
-<span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_intvn_eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt; tree head (from first known ancestor) &gt;</span></span>
-<span><span class="co">#&gt;    chain_id sim_id ancestor generation time</span></span>
-<span><span class="co">#&gt; 11        2      2        1          2    3</span></span>
-<span><span class="co">#&gt; 12        4      2        1          2    3</span></span>
-<span><span class="co">#&gt; 13        5      2        1          2    3</span></span>
-<span><span class="co">#&gt; 15        8      2        1          2    3</span></span>
-<span><span class="co">#&gt; 14        5      3        1          2    3</span></span>
-<span><span class="co">#&gt; 16        2      3        2          3    6</span></span></code></pre></div>
-</details><p>Here is an example with <code><a href="../reference/simulate_summary.html">simulate_summary()</a></code>, modelling an intervention that reduces <span class="math inline">\(R_0\)</span> by <span class="math inline">\(50\%\)</span>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">simulate_summary_intvn_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
-<span>  nchains <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
-<span>  intvn_mean_reduction <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Print the results</span></span>
-<span><span class="va">simulate_summary_intvn_eg</span></span>
-<span><span class="co">#&gt; `epichains` object </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  [1] 5 3 3 3 5 2 2 1 1 1</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Simulated chain sizes: </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Max: 5</span></span>
-<span><span class="co">#&gt; Min: 1</span></span></code></pre></div>
-</details><p>Finally, let’s use <code><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span>
-<span><span class="co"># Define serial distribution</span></span>
-<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">sim_tree_from_pop_intvn_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop</a></span><span class="op">(</span></span>
-<span>  pop <span class="op">=</span> <span class="fl">1000</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
-<span>  intvn_mean_reduction <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>  lambda <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_from_pop_intvn_eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt; tree head (from first known ancestor) &gt;</span></span>
-<span><span class="co">#&gt;   sim_id ancestor generation time</span></span>
-<span><span class="co">#&gt; 2      2        1          2    3</span></span>
-<span><span class="co">#&gt; 3      3        1          2    3</span></span>
-<span><span class="co">#&gt; 4      4        1          2    3</span></span></code></pre></div>
 </details>
-</div>
 </div>
 </div>
 <div class="section level2">
@@ -434,7 +355,7 @@ and a population level intervention, <code>intvn_mean_reduction</code>, that red
 <h3 id="summarising">Summarising<a class="anchor" aria-label="anchor" href="#summarising"></a>
 </h3>
 <p>You can run <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on <code>&lt;epichains&gt;</code> objects to get useful summaries.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example with simulate_tree()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="co"># Define serial distribution</span></span>
@@ -492,7 +413,7 @@ and a population level intervention, <code>intvn_mean_reduction</code>, that red
 </h3>
 <p>You can aggregate <code>&lt;epichains&gt;</code> objects returned by the <code>simulate_*()</code> functions into a time series, which is a <code>&lt;data.frame&gt;</code> with columns “cases” and either “generation” or “time”, depending on the value of <code>grouping_var</code>.</p>
 <p>To aggregate over “time”, you must have specified a serial interval distribution in the simulation step.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example with simulate_tree()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -524,7 +445,7 @@ and a population level intervention, <code>intvn_mean_reduction</code>, that red
 </h3>
 <p>Aggregated <code>&lt;epichains&gt;</code> objects can easily be plotted using base R or <code>ggplot2</code> with little to no data manipulation.</p>
 <p>Here is an end-to-end example from simulation through aggregation to plotting.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Run simulation with simulate_tree()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="co"># Define serial distribution</span></span>
@@ -546,7 +467,7 @@ and a population level intervention, <code>intvn_mean_reduction</code>, that red
 <span></span>
 <span><span class="co"># Plot cases over time</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim_aggreg</span>, type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span></span></code></pre></div>
-</details><p><img src="epichains_files/figure-html/unnamed-chunk-17-1.png"><!-- --></p>
+</details><p><img src="epichains_files/figure-html/unnamed-chunk-14-1.png"><!-- --></p>
 </div>
 </div>
 <div class="section level2 unnumbered">
