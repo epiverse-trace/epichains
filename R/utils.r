@@ -55,6 +55,16 @@ rgen_length <- function(n, x, prob) {
 #' @examples
 #' rnbinom_mean_disp(n = 5, mn = 4, disp = 2)
 rnbinom_mean_disp <- function(n, mn, disp) {
+  checkmate::assert_number(
+    n, lower = 1, finite = TRUE, na.ok = FALSE
+  )
+  checkmate::assert_number(
+    disp, lower = 1, finite = TRUE, na.ok = FALSE
+  )
+  checkmate::assert_number(
+    mn, lower = 1E-100, finite = TRUE, na.ok = FALSE
+  )
+
   size <- mn / (disp - 1)
   stats::rnbinom(n, size = size, mu = mn)
 }
