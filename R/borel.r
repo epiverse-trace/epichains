@@ -7,6 +7,13 @@
 ##' @author Sebastian Funk
 ##' @export
 dborel <- function(x, mu, log = FALSE) {
+  checkmate::assert_numeric(
+    x, lower = 1, upper = Inf
+  )
+  checkmate::assert_number(
+    mu, lower = 0, finite = TRUE, na.ok = FALSE
+  )
+
   if (x < 1) stop("'x' must be greater than 0")
   ld <- -mu * x + (x - 1) * log(mu * x) - lgamma(x + 1)
   if (!log) ld <- exp(ld)
@@ -24,6 +31,13 @@ dborel <- function(x, mu, log = FALSE) {
 ##' @author Sebastian Funk
 ##' @export
 rborel <- function(n, mu, infinite = Inf) {
+  checkmate::assert_number(
+    n, lower = 1, finite = TRUE, na.ok = FALSE
+  )
+  checkmate::assert_number(
+    mu, lower = 0, finite = TRUE, na.ok = FALSE
+  )
+  # Run simulations
   simulate_summary(
     nchains = n,
     offspring_dist = "pois",
