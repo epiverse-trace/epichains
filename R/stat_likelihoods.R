@@ -168,6 +168,17 @@ geom_length_ll <- function(x, prob) {
 #' )
 offspring_ll <- function(x, offspring_dist, statistic,
                          nsim_offspring = 100, ...) {
+  # Input checking
+  checkmate::assert_numeric(
+    x, lower = 0, any.missing = FALSE
+  )
+  # check that offspring is properly specified
+  check_offspring_valid(offspring_dist)
+  checkmate::assert_character(statistic)
+  checkmate::assert_numeric(
+    nsim_offspring, lower = 1
+  )
+
   # Simulate the chains
   dist <- simulate_summary(
     nchains = nsim_offspring,
