@@ -126,6 +126,13 @@ pois_length_ll <- function(x, lambda) {
 #' @author Sebastian Funk
 #' @keywords internal
 geom_length_ll <- function(x, prob) {
+  checkmate::assert_numeric(
+    x, lower = 0, any.missing = FALSE
+  )
+  checkmate::assert_number(
+    prob, lower = 0, upper = 1
+  )
+
   lambda <- 1 / prob
   GkmGkm1 <- (1 - lambda^(x)) / (1 - lambda^(x + 1)) -
     (1 - lambda^(x - 1)) / (1 - lambda^(x))
