@@ -6,6 +6,13 @@
 #' @author Sebastian Funk
 #' @keywords internal
 pois_size_ll <- function(x, lambda) {
+  checkmate::assert_numeric(
+    x, lower = 0, any.missing = FALSE
+  )
+  checkmate::assert_number(
+    lambda, finite = TRUE, lower = 0
+  )
+
   (x - 1) * log(lambda) - lambda * x + (x - 2) * log(x) - lgamma(x)
 }
 
