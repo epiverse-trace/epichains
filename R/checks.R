@@ -38,7 +38,7 @@ check_offspring_func_valid <- function(roffspring_name) {
 #'
 #' @keywords internal
 check_serial_valid <- function(serials_dist) {
-  if (!checkmate::test_function(serials_dist)) {
+  if (!checkmate::test_function(serials_dist, nargs = 1)) {
     stop(sprintf(
       "%s %s",
       "The `serials_dist` argument must be a function",
