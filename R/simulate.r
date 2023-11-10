@@ -117,7 +117,9 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
                           tf = Inf, ...) {
   statistic <- match.arg(statistic)
 
+  # Input checking
   check_nchains_valid(nchains = nchains)
+  checkmate::assert_character(statistic)
 
   # check that offspring is properly specified
   check_offspring_valid(offspring_dist)
@@ -125,6 +127,11 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
   # check that offspring function exists in base R
   roffspring_name <- paste0("r", offspring_dist)
   check_offspring_func_valid(roffspring_name)
+
+  checkmate::assert_numeric(stat_max, lower = 0)
+  check_serial_valid(serials_dist)
+  checkmate::assert_number(t0, lower = 0, finite = TRUE)
+  checkmate::assert_number(tf, lower = 0, finite = TRUE)
 
   # Gather offspring distribution parameters
   pars <- list(...)
@@ -277,7 +284,9 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
                              stat_max = Inf, ...) {
   statistic <- match.arg(statistic)
 
+  # Input checking
   check_nchains_valid(nchains = nchains)
+  checkmate::assert_character(statistic)
 
   # check that offspring is properly specified
   check_offspring_valid(offspring_dist)
@@ -285,6 +294,11 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
   # check that offspring function exists in base R
   roffspring_name <- paste0("r", offspring_dist)
   check_offspring_func_valid(roffspring_name)
+
+  checkmate::assert_numeric(stat_max, lower = 0)
+  check_serial_valid(serials_dist)
+  checkmate::assert_number(t0, lower = 0, finite = TRUE)
+  checkmate::assert_number(tf, lower = 0, finite = TRUE)
 
   # Gather offspring distribution parameters
   pars <- list(...)
@@ -412,6 +426,14 @@ simulate_tree_from_pop <- function(pop,
                                    tf = Inf,
                                    ...) {
   offspring_dist <- match.arg(offspring_dist)
+
+  # Input checking
+  checkmate::assert_number(pop, lower = 1, finite = TRUE)
+  checkmate::assert_string(offspring_dist)
+  checkmate::assert_function(serials_dist, nargs = 1)
+  checkmate::assert_number(initial_immune, lower = 0, upper = pop - 1)
+  checkmate::assert_number(t0, lower = 0, finite = TRUE)
+  checkmate::assert_number(tf, lower = 0, finite = TRUE)
 
   # Gather offspring distribution parameters
   pars <- list(...)
