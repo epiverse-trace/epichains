@@ -46,32 +46,34 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
                        exclude = NULL, individual = FALSE, ...) {
   statistic <- match.arg(statistic)
 
-  ## checks
-  checkmate::assert_numeric(chains, lower = 0, upper = Inf)
+  ## Input checking
+  ## Check nsim_obs when specified
+  if (!missing(nsim_obs)) {
+    checkmate::assert_number(
+      nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
+    )
+  }
+
+  checkmate::assert_numeric(
+    chains, lower = 0, upper = Inf, any.missing = FALSE
+  )
   checkmate::assert_character(statistic)
   check_offspring_valid(offspring_dist)
-  checkmate::assert_number(
-    nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
-  )
   checkmate::assert_number(
     obs_prob, lower = 0, upper = 1, finite = TRUE, na.ok = FALSE
   )
   checkmate::assert_number(
-    stat_max, lower = 0, finite = TRUE, na.ok = FALSE
+    stat_max, lower = 0, na.ok = FALSE
   )
   checkmate::assert_logical(
-    log,
-    any.missing = FALSE,
-    all.missing = FALSE,
-    len = 1
+    log, any.missing = FALSE, all.missing = FALSE, len = 1
   )
   checkmate::assert_logical(
-    individual,
-    any.missing = FALSE,
-    all.missing = FALSE,
-    len = 1
+    individual, any.missing = FALSE, all.missing = FALSE, len = 1
   )
-  checkmate::assert_numeric(exclude, null.ok = TRUE)
+  checkmate::assert_numeric(
+    exclude, null.ok = TRUE
+  )
 
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
