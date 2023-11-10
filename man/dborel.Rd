@@ -7,9 +7,9 @@
 dborel(x, mu, log = FALSE)
 }
 \arguments{
-\item{x}{Vector of integers.}
+\item{x}{Vector of quantiles; integer.}
 
-\item{mu}{mu parameter.}
+\item{mu}{mu parameter (the poisson mean); non-negative.}
 
 \item{log}{Logical; if TRUE, probabilities p are given as log(p).}
 }
