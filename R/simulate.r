@@ -128,10 +128,19 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
   roffspring_name <- paste0("r", offspring_dist)
   check_offspring_func_valid(roffspring_name)
 
-  checkmate::assert_numeric(stat_max, lower = 0)
-  check_serial_valid(serials_dist)
-  checkmate::assert_numeric(t0, lower = 0, finite = TRUE)
-  checkmate::assert_number(tf, lower = 0, finite = TRUE)
+  checkmate::assert_number(
+    stat_max, lower = 0
+  )
+
+  if (!missing(serials_dist)) {
+    check_serial_valid(serials_dist)
+  }
+  checkmate::assert_numeric(
+    t0, lower = 0, finite = TRUE
+  )
+  checkmate::assert_number(
+    tf, lower = 0
+  )
 
   # Gather offspring distribution parameters
   pars <- list(...)
@@ -295,7 +304,9 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
   roffspring_name <- paste0("r", offspring_dist)
   check_offspring_func_valid(roffspring_name)
 
-  checkmate::assert_numeric(stat_max, lower = 0)
+  checkmate::assert_number(
+    stat_max, lower = 0
+  )
 
   # Gather offspring distribution parameters
   pars <- list(...)
@@ -425,12 +436,22 @@ simulate_tree_from_pop <- function(pop,
   offspring_dist <- match.arg(offspring_dist)
 
   # Input checking
-  checkmate::assert_number(pop, lower = 1, finite = TRUE)
+  checkmate::assert_number(
+    pop, lower = 1, finite = TRUE
+  )
   checkmate::assert_string(offspring_dist)
-  checkmate::assert_function(serials_dist, nargs = 1)
-  checkmate::assert_number(initial_immune, lower = 0, upper = pop - 1)
-  checkmate::assert_number(t0, lower = 0, finite = TRUE)
-  checkmate::assert_number(tf, lower = 0, finite = TRUE)
+  if (!missing(serials_dist)) {
+    check_serial_valid(serials_dist)
+  }
+  checkmate::assert_number(
+    initial_immune, lower = 0, upper = pop - 1
+  )
+  checkmate::assert_number(
+    t0, lower = 0, finite = TRUE
+  )
+  checkmate::assert_number(
+    tf, lower = 0
+  )
 
   # Gather offspring distribution parameters
   pars <- list(...)
