@@ -47,17 +47,32 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   statistic <- match.arg(statistic)
 
   ## checks
+  checkmate::assert_numeric(chains, lower = 0, upper = Inf)
+  checkmate::assert_character(statistic)
   check_offspring_valid(offspring_dist)
+  checkmate::assert_number(
+    nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
+  )
+  checkmate::assert_number(
+    obs_prob, lower = 0, upper = 1, finite = TRUE, na.ok = FALSE
+  )
+  checkmate::assert_number(
+    stat_max, lower = 0, finite = TRUE, na.ok = FALSE
+  )
   checkmate::assert_logical(
     log,
     any.missing = FALSE,
     all.missing = FALSE,
     len = 1
   )
+  checkmate::assert_logical(
+    individual,
+    any.missing = FALSE,
+    all.missing = FALSE,
+    len = 1
+  )
+  checkmate::assert_numeric(exclude, null.ok = TRUE)
 
-  if (obs_prob <= 0 || obs_prob > 1) {
-    stop("'obs_prob' is a probability and must be between 0 and 1 inclusive")
-  }
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
