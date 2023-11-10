@@ -66,6 +66,23 @@ nbinom_size_ll <- function(x, size, prob, mu) {
 #' @author Sebastian Funk
 #' @keywords internal
 gborel_size_ll <- function(x, size, prob, mu) {
+  checkmate::assert_numeric(
+    x, lower = 0, any.missing = FALSE
+  )
+  checkmate::assert_number(
+    size, finite = TRUE, lower = 0
+  )
+  if (!missing(prob)) {
+    checkmate::assert_number(
+      prob, lower = 0, upper = 1
+    )
+  }
+  if (!missing(mu)) {
+    checkmate::assert_number(
+      mu, finite = TRUE, lower = 0
+    )
+  }
+
   if (!missing(prob)) {
     if (!missing(mu)) stop("'prob' and 'mu' both specified")
     mu <- size * (1 - prob) / prob
