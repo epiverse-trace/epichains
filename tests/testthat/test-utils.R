@@ -104,17 +104,17 @@ test_that("Reparametrized distributions throw warnings", {
       mn = 4,
       disp = 0.9
     ),
-    "NAs produced"
+    "not >= 1"
   )
 })
 
 test_that("Log-probabilities throw warnings", {
   expect_warning(
     complementary_logprob(0.1),
-    "NaNs produced"
+    "is not <= 0"
   )
   expect_warning(
     complementary_logprob(Inf),
-    "NaNs produced"
+    "is not <= 0"
   )
 })

@@ -168,7 +168,7 @@ test_that("Errors are thrown", {
       lambda = 0.5,
       obs_prob = 3
     ),
-    "must be between 0 and 1"
+    "is not <= 1"
   )
   expect_error(
     likelihood(
