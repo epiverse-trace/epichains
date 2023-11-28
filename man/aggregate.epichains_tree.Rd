@@ -2,7 +2,8 @@
 % Please edit documentation in R/epichains.R
 \name{aggregate.epichains_tree}
 \alias{aggregate.epichains_tree}
-\title{Aggregate cases in \verb{<epichains_tree>} objects by "time" or "generation"}
+\title{Aggregate cases in \verb{<epichains_tree>} objects by "generation" or "time", if
+present}
 \usage{
 \method{aggregate}{epichains_tree}(x, grouping_var = c("time", "generation"), ...)
 }
@@ -19,7 +20,8 @@ A \verb{<data.frame>} object of cases by \code{grouping_var}.
 }
 \description{
 This function provides a quick way to create a time series of cases over
-time or generation from simulated \verb{<epichains_tree>} objects.
+generation or time (if serials_dist was specified) from simulated
+\verb{<epichains_tree>} objects.
 }
 \examples{
 set.seed(123)

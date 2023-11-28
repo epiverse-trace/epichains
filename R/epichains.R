@@ -435,11 +435,13 @@ tail.epichains_tree <- function(x, ...) {
   utils::tail(as.data.frame(x), ...)
 }
 
-#' Aggregate cases in `<epichains_tree>` objects by "time" or "generation"
+#' Aggregate cases in `<epichains_tree>` objects by "generation" or "time", if
+#' present
 #'
 #' @description
 #' This function provides a quick way to create a time series of cases over
-#' time or generation from simulated `<epichains_tree>` objects.
+#' generation or time (if serials_dist was specified) from simulated
+#' `<epichains_tree>` objects.
 #'
 #' @param x An `<epichains_tree>` object.
 #' @param grouping_var The variable to aggregate by. Options include
