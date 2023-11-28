@@ -241,8 +241,8 @@ Here is a quick example where we simulate an outbreak in a population of size $1
 ```{r}
 set.seed(7)
 # Define serial distribution
-serial_func <- function(x) {
-  return(3)
+serial_func <- function(n) {
+  return(rep(3, n))
 }
 
 sim_tree_from_pop_eg <- simulate_tree_from_pop(
@@ -264,8 +264,8 @@ You can run `summary()` on `<epichains>` objects to get useful summaries.
 # Example with simulate_tree()
 set.seed(123)
 # Define serial distribution
-serial_func <- function(x) {
-  return(3)
+serial_func <- function(n) {
+  return(rep(3, n))
 }
 
 sim_tree_eg <- simulate_tree(
@@ -304,8 +304,8 @@ To aggregate over "time", you must have specified a serial interval distribution
 set.seed(123)
 
 # Define serial distribution
-serial_func <- function(x) {
-  return(3)
+serial_func <- function(n) {
+  return(rep(3, n))
 }
 
 sim_tree_eg <- simulate_tree(
@@ -329,8 +329,8 @@ Here is an end-to-end example from simulation through aggregation to plotting.
 # Run simulation with simulate_tree()
 set.seed(123)
 # Define serial distribution
-serial_func <- function(x) {
-  return(3)
+serial_func <- function(n) {
+  return(rep(3, n))
 }
 
 sim_tree_eg <- simulate_tree(
