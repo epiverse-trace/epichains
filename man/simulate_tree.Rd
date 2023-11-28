@@ -5,7 +5,7 @@
 \title{Simulate transmission trees from an initial number of infections}
 \usage{
 simulate_tree(
-  nchains,
+  ntrees,
   statistic = c("size", "length"),
   offspring_dist,
   stat_max = Inf,
@@ -16,7 +16,7 @@ simulate_tree(
 )
 }
 \arguments{
-\item{nchains}{Number of chains to simulate.}
+\item{ntrees}{Number of trees to simulate.}
 
 \item{statistic}{String; Statistic (size/length) to calculate. Used to
 determine stopping criteria for simulations when \code{stat_max} is finite.
@@ -41,7 +41,7 @@ called \code{n}, that returns a numeric vector of \code{n} randomly sampled seri
 intervals. See details.}
 
 \item{t0}{Start time (if serial interval is given); either a single value
-or a vector of same length as \code{nchains} (number of simulations) with
+or a vector of same length as \code{ntrees} (number of simulations) with
 initial times. Defaults to 0.}
 
 \item{tf}{End time (if serial interval is given).}
@@ -115,7 +115,7 @@ where \code{...} are the other arguments to \verb{simulate_*()}.
 \examples{
 set.seed(123)
 chains <- simulate_tree(
-  nchains = 10,
+  ntrees = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,

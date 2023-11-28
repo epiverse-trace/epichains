@@ -22,14 +22,14 @@ test_that("Simulators return epichains objects", {
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
   )
   #' Simulate a tree of infections with serials
   tree_sim_raw2 <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -38,7 +38,7 @@ test_that("Simulators return epichains objects", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -85,14 +85,14 @@ test_that("print.epichains works for simulation functions", {
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
   )
   #' Simulate a tree of infections with serials
   tree_sim_raw2 <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -101,7 +101,7 @@ test_that("print.epichains works for simulation functions", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -133,14 +133,14 @@ test_that("summary.epichains works as expected", {
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
   )
   #' Simulate a tree of infections with serials
   tree_sim_raw2 <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -149,7 +149,7 @@ test_that("summary.epichains works as expected", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -157,7 +157,7 @@ test_that("summary.epichains works as expected", {
   #' Simulate case where all the chain statistics are Inf
   set.seed(11223)
   epichains_summary_all_infs <- simulate_summary(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -239,14 +239,14 @@ test_that("validate_epichains works", {
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
   )
   #' Simulate a tree of infections with serials
   tree_sim_raw2 <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -255,7 +255,7 @@ test_that("validate_epichains works", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -301,14 +301,14 @@ test_that("is_chains_tree works", {
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
   )
   #' Simulate a tree of infections with serials
   tree_sim_raw2 <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -317,7 +317,7 @@ test_that("is_chains_tree works", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -359,14 +359,14 @@ test_that("is_chains_summary works", {
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
   )
   #' Simulate a tree of infections with serials
   tree_sim_raw2 <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -375,7 +375,7 @@ test_that("is_chains_summary works", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -402,7 +402,7 @@ test_that("aggregate.epichains method returns correct objects", {
   set.seed(12)
   #' Simulate a tree of infections with serials
   tree_sim_raw2 <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -439,7 +439,7 @@ test_that("aggregate.epichains method throws errors", {
   expect_error(
     aggregate(
       simulate_tree(
-        nchains = 10,
+        ntrees = 10,
         statistic = "size",
         offspring_dist = "pois",
         stat_max = 10,
@@ -455,7 +455,7 @@ test_that("aggregate.epichains method is numerically correct", {
   set.seed(12)
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -463,7 +463,7 @@ test_that("aggregate.epichains method is numerically correct", {
   )
   #' Simulate a tree of infections with serials
   tree_sim_raw2 <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -508,14 +508,14 @@ test_that("head and tail print output as expected", {
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
   )
   #' Simulate a tree of infections with serials
   tree_sim_raw2 <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -551,14 +551,14 @@ test_that("head and tail return data.frames", {
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
   )
   #' Simulate a tree of infections with serials
   tree_sim_raw2 <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,

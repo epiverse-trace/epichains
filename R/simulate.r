@@ -1,6 +1,6 @@
 #' Simulate transmission trees from an initial number of infections
 #'
-#' @param nchains Number of chains to simulate.
+#' @param ntrees Number of trees to simulate.
 #' @param offspring_dist Offspring distribution: a character string
 #' corresponding to the R distribution function (e.g., "pois" for Poisson,
 #' where \code{\link{rpois}} is the R function to generate Poisson random
@@ -20,7 +20,7 @@
 #' called `n`, that returns a numeric vector of `n` randomly sampled serial
 #' intervals. See details.
 #' @param t0 Start time (if serial interval is given); either a single value
-#' or a vector of same length as `nchains` (number of simulations) with
+#' or a vector of same length as `ntrees` (number of simulations) with
 #' initial times. Defaults to 0.
 #' @param tf End time (if serial interval is given).
 #' @param ... Parameters of the offspring distribution as required by R.
@@ -91,7 +91,7 @@
 #' @examples
 #' set.seed(123)
 #' chains <- simulate_tree(
-#'   nchains = 10,
+#'   ntrees = 10,
 #'   statistic = "size",
 #'   offspring_dist = "pois",
 #'   stat_max = 10,
@@ -112,14 +112,14 @@
 #' Jacob C. (2010). Branching processes: their role in epidemiology.
 #' International journal of environmental research and public health, 7(3),
 #' 1186–1204. \doi{https://doi.org/10.3390/ijerph7031204}
-simulate_tree <- function(nchains, statistic = c("size", "length"),
+simulate_tree <- function(ntrees, statistic = c("size", "length"),
                           offspring_dist, stat_max = Inf,
                           serials_dist, t0 = 0,
                           tf = Inf, ...) {
   statistic <- match.arg(statistic)
 
   # Input checking
-  check_nchains_valid(nchains = nchains)
+  check_ntrees_valid(ntrees = ntrees)
   checkmate::assert_character(statistic)
 
   # check that offspring is properly specified
@@ -153,15 +153,15 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
   }
 
   # Initialisations
-  stat_track <- rep(1, nchains) # track length or size (depending on `statistic`) #nolint
-  n_offspring <- rep(1, nchains) # current number of offspring
-  sim <- seq_len(nchains) # track chains that are still being simulated
-  ancestor_ids <- rep(1, nchains) # all chains start in generation 1
+  stat_track <- rep(1, ntrees) # track length or size (depending on `statistic`) #nolint
+  n_offspring <- rep(1, ntrees) # current number of offspring
+  sim <- seq_len(ntrees) # track chains that are still being simulated
+  ancestor_ids <- rep(1, ntrees) # all chains start in generation 1
 
   # initialise data frame to hold the transmission trees
   generation <- 1L
   tree_df <- data.frame(
-    chain_id = seq_len(nchains),
+    chain_id = seq_len(ntrees),
     sim_id = 1L,
     ancestor = NA_integer_,
     generation = generation
@@ -190,7 +190,7 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
     indices <- rep(sim, n_offspring[sim])
 
     # initialise placeholder for the number of offspring
-    n_offspring <- rep(0, nchains)
+    n_offspring <- rep(0, ntrees)
     # assign offspring sum to indices still being simulated
     n_offspring[sim] <- tapply(next_gen, indices, sum)
 
@@ -257,7 +257,7 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 
   structure(
     tree_df,
-    chains = nchains,
+    chains = ntrees,
     chain_type = "chains_tree",
     rownames = NULL,
     track_pop = FALSE,
@@ -282,20 +282,20 @@ simulate_tree <- function(nchains, statistic = c("size", "length"),
 #'   susceptible or partially immune population.
 #' @examples
 #' simulate_summary(
-#'   nchains = 10,
+#'   ntrees = 10,
 #'   statistic = "size",
 #'   offspring_dist = "pois",
 #'   stat_max = 10,
 #'   lambda = 2
 #' )
 #' @export
-simulate_summary <- function(nchains, statistic = c("size", "length"),
+simulate_summary <- function(ntrees, statistic = c("size", "length"),
                              offspring_dist,
                              stat_max = Inf, ...) {
   statistic <- match.arg(statistic)
 
   # Input checking
-  check_nchains_valid(nchains = nchains)
+  check_ntrees_valid(ntrees = ntrees)
   checkmate::assert_character(statistic)
 
   # check that offspring is properly specified
@@ -313,11 +313,11 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
   pars <- list(...)
 
   # Initialisations
-  stat_track <- rep(1, nchains) ## track length or size (depending on `stat`)
-  n_offspring <- rep(1, nchains) ## current number of offspring
-  sim <- seq_len(nchains) ## track chains that are still being simulated
+  stat_track <- rep(1, ntrees) ## track length or size (depending on `stat`)
+  n_offspring <- rep(1, ntrees) ## current number of offspring
+  sim <- seq_len(ntrees) ## track chains that are still being simulated
 
-  ## next, simulate nchains chains
+  ## next, simulate ntrees chains
   while (length(sim) > 0) {
     ## simulate next generation
     next_gen <- do.call(
@@ -335,7 +335,7 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
     indices <- rep(sim, n_offspring[sim])
 
     ## initialise number of offspring
-    n_offspring <- rep(0, nchains)
+    n_offspring <- rep(0, ntrees)
     ## assign offspring sum to indices still being simulated
     n_offspring[sim] <- tapply(next_gen, indices, sum)
 
@@ -357,7 +357,7 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
     stat_track,
     chain_type = "chains_summary",
     statistic = statistic,
-    chains = nchains,
+    chains = ntrees,
     class = c("epichains", class(stat_track))
   )
 }

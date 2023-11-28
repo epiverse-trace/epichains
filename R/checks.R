@@ -58,9 +58,9 @@ check_serial_valid <- function(serials_dist) {
 }
 
 
-#' Check that nchains is greater than 0 and not infinity
+#' Check that `ntrees` is greater than 0 and not infinity
 #'
-#' @param nchains Number of chains to simulate.
+#' @param ntrees Number of trees to simulate.
 #'
 #' @keywords internal
 check_ntrees_valid <- function(ntrees) {

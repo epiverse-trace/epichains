@@ -22,14 +22,14 @@ test_that("Simulators work", {
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
   )
   #' Simulate a tree of infections with serials
   tree_sim_raw2 <- simulate_tree(
-    nchains = 10,
+    ntrees = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -38,7 +38,7 @@ test_that("Simulators work", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -67,7 +67,7 @@ test_that("Simulators work", {
   expect_true(
     all(
       simulate_tree(
-        nchains = 10,
+        ntrees = 10,
         statistic = "size",
         offspring_dist = "pois",
         stat_max = 10,
@@ -82,7 +82,7 @@ test_that("Simulators work", {
 test_that("simulate_tree throws errors", {
   expect_error(
     simulate_tree(
-      nchains = 2,
+      ntrees = 2,
       offspring_dist = "s",
       statistic = "length",
       lambda = 0.9
@@ -91,7 +91,7 @@ test_that("simulate_tree throws errors", {
   )
   expect_error(
     simulate_tree(
-      nchains = 2,
+      ntrees = 2,
       offspring_dist = "lnorm",
       statistic = "length",
       meanlog = 0.9,
@@ -101,7 +101,7 @@ test_that("simulate_tree throws errors", {
   )
   expect_error(
     simulate_tree(
-      nchains = 2,
+      ntrees = 2,
       offspring_dist = s,
       statistic = "length",
       meanlog = 0.9,
@@ -111,7 +111,7 @@ test_that("simulate_tree throws errors", {
   )
   expect_error(
     simulate_tree(
-      nchains = 2,
+      ntrees = 2,
       offspring_dist = "pois",
       statistic = "size",
       lambda = 0.9,
@@ -121,7 +121,7 @@ test_that("simulate_tree throws errors", {
   )
   expect_error(
     simulate_tree(
-      nchains = 2,
+      ntrees = 2,
       offspring_dist = c(1, 2),
       statistic = "length",
       lambda = 0.9
@@ -130,7 +130,7 @@ test_that("simulate_tree throws errors", {
   )
   expect_error(
     simulate_tree(
-      nchains = 2,
+      ntrees = 2,
       offspring_dist = "pois",
       statistic = "size",
       lambda = 0.9,
@@ -143,7 +143,7 @@ test_that("simulate_tree throws errors", {
 test_that("simulate_summary throws errors", {
   expect_error(
     simulate_summary(
-      nchains = 2,
+      ntrees = 2,
       offspring_dist = "s",
       statistic = "length",
       lambda = 0.9
@@ -152,7 +152,7 @@ test_that("simulate_summary throws errors", {
   )
   expect_error(
     simulate_summary(
-      nchains = 2,
+      ntrees = 2,
       offspring_dist = "lnorm",
       statistic = "length",
       meanlog = 0.9,
@@ -162,7 +162,7 @@ test_that("simulate_summary throws errors", {
   )
   expect_error(
     simulate_summary(
-      nchains = 2,
+      ntrees = 2,
       offspring_dist = s,
       statistic = "length",
       meanlog = 0.9,
@@ -172,7 +172,7 @@ test_that("simulate_summary throws errors", {
   )
   expect_error(
     simulate_summary(
-      nchains = 2,
+      ntrees = 2,
       offspring_dist = c(1, 2),
       statistic = "length",
       lambda = 0.9
@@ -226,7 +226,7 @@ test_that("simulate_tree is numerically correct", {
   set.seed(12)
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -297,7 +297,7 @@ test_that("simulate_summary is numerically correct", {
   set.seed(12)
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    nchains = 2,
+    ntrees = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
