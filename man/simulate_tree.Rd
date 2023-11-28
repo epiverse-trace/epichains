@@ -35,9 +35,10 @@ numbers).}
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
 
-\item{serials_dist}{The serial interval distribution function; the name
-of a user-defined named or anonymous function with only one argument \code{n},
-representing the number of serial intervals to generate. See details.}
+\item{serials_dist}{The serial interval distribution function; the name of a
+user-defined named or anonymous function with only one argument, usually
+called \code{n}, that returns a numeric vector of \code{n} randomly sampled serial
+intervals. See details.}
 
 \item{t0}{Start time (if serial interval is given); either a single value
 or a vector of same length as \code{nchains} (number of simulations) with
