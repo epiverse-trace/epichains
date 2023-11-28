@@ -45,6 +45,13 @@ check_serial_valid <- function(serials_dist) {
       "(see details in ?sim_chain_tree)."
     ))
   }
+  x <- serials_dist(10)
+  if (!checkmate::test_numeric(x, len = 10)) {
+    stop(
+      "The return values of `serials_dist` must be a numeric vector of length ",
+      "`n`."
+    )
+  }
 }
 
 
