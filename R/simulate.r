@@ -339,7 +339,7 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
     chains_summary = stat_track,
     chains_run = nchains,
     statistic = statistic,
-    stat_max = stat_max,
+    stat_max = stat_max
   )
 
   return(out)
