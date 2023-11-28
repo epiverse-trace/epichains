@@ -63,8 +63,8 @@ check_serial_valid <- function(serials_dist) {
 #' @param nchains Number of chains to simulate.
 #'
 #' @keywords internal
-check_nchains_valid <- function(nchains) {
-  if (!checkmate::test_count(nchains, positive = TRUE)) {
-    stop("`nchains` must be > 0 but less than `Inf`")
+check_ntrees_valid <- function(ntrees) {
+  if (!checkmate::test_count(ntrees, positive = TRUE)) {
+    stop("`ntrees` must be > 0 but less than `Inf`")
   }
 }
