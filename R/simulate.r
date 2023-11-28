@@ -243,7 +243,6 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     chains_run = nchains,
     statistic = statistic,
     stat_max = stat_max,
-    intvn_mean_reduction = intvn_mean_reduction,
     track_pop = FALSE
   )
   return(out)
@@ -341,7 +340,6 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
     chains_run = nchains,
     statistic = statistic,
     stat_max = stat_max,
-    intvn_mean_reduction = intvn_mean_reduction
   )
 
   return(out)
@@ -555,7 +553,6 @@ simulate_tree_from_pop <- function(pop,
     chains_run = NULL,
     statistic = NULL,
     stat_max = NULL,
-    intvn_mean_reduction = intvn_mean_reduction,
     track_pop = TRUE
   )
   return(out)
