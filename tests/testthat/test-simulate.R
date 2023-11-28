@@ -33,7 +33,7 @@ test_that("Simulators work", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    serials_dist = function(x) 3,
+    serials_dist = function(n) rep(3, n),
     lambda = 2
   )
   #' Simulate chain statistics
@@ -71,7 +71,7 @@ test_that("Simulators work", {
         statistic = "size",
         offspring_dist = "pois",
         stat_max = 10,
-        serials_dist = function(x) 3,
+        serials_dist = function(n) rep(3, n),
         lambda = 2,
         tf = 5
       )$time < 5
