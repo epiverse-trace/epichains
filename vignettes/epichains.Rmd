@@ -199,7 +199,7 @@ serial_func <- function(x) {
 }
 
 sim_tree_eg <- simulate_tree(
-  nchains = 10,
+  ntrees = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
@@ -222,7 +222,7 @@ mean of $0.9$.
 set.seed(123)
 
 simulate_summary_eg <- simulate_summary(
-  nchains = 10,
+  ntrees = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
@@ -269,7 +269,7 @@ serial_func <- function(n) {
 }
 
 sim_tree_eg <- simulate_tree(
-  nchains = 10,
+  ntrees = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
@@ -283,7 +283,7 @@ summary(sim_tree_eg)
 set.seed(123)
 
 simulate_summary_eg <- simulate_summary(
-  nchains = 10,
+  ntrees = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
@@ -309,7 +309,7 @@ serial_func <- function(n) {
 }
 
 sim_tree_eg <- simulate_tree(
-  nchains = 10,
+  ntrees = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
@@ -334,7 +334,7 @@ serial_func <- function(n) {
 }
 
 sim_tree_eg <- simulate_tree(
-  nchains = 10,
+  ntrees = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,

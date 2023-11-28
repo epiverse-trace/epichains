@@ -25,7 +25,7 @@ Aggregate cases in \verb{<epichains>} objects by "time" or "generation"
 \examples{
 set.seed(123)
 chains <- simulate_tree(
-  nchains = 10,
+  ntrees = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,

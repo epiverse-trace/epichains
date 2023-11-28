@@ -5,7 +5,7 @@
 \title{Simulate transmission chains sizes/lengths}
 \usage{
 simulate_summary(
-  nchains,
+  ntrees,
   statistic = c("size", "length"),
   offspring_dist,
   stat_max = Inf,
@@ -13,7 +13,7 @@ simulate_summary(
 )
 }
 \arguments{
-\item{nchains}{Number of chains to simulate.}
+\item{ntrees}{Number of trees to simulate.}
 
 \item{statistic}{String; Statistic (size/length) to calculate. Used to
 determine stopping criteria for simulations when \code{stat_max} is finite.
@@ -92,7 +92,7 @@ where \code{...} are the other arguments to \verb{simulate_*()}.
 
 \examples{
 simulate_summary(
-  nchains = 10,
+  ntrees = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,

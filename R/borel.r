@@ -39,7 +39,7 @@ rborel <- function(n, mu, infinite = Inf) {
   )
   # Run simulations
   simulate_summary(
-    nchains = n,
+    ntrees = n,
     offspring_dist = "pois",
     statistic = "size",
     stat_max = infinite,
