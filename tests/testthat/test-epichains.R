@@ -33,7 +33,7 @@ test_that("Simulators return epichains objects", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    serials_dist = function(x) 3,
+    serials_dist = function(n) rep(3, n),
     lambda = 2
   )
   #' Simulate chain statistics
@@ -96,7 +96,7 @@ test_that("print.epichains works for simulation functions", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    serials_dist = function(x) 3,
+    serials_dist = function(n) rep(3, n),
     lambda = 2
   )
   #' Simulate chain statistics
@@ -144,7 +144,7 @@ test_that("summary.epichains works as expected", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    serials_dist = function(x) 3,
+    serials_dist = function(n) rep(3, n),
     lambda = 2
   )
   #' Simulate chain statistics
@@ -250,7 +250,7 @@ test_that("validate_epichains works", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    serials_dist = function(x) 3,
+    serials_dist = function(n) rep(3, n),
     lambda = 2
   )
   #' Simulate chain statistics
@@ -312,7 +312,7 @@ test_that("is_chains_tree works", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    serials_dist = function(x) 3,
+    serials_dist = function(n) rep(3, n),
     lambda = 2
   )
   #' Simulate chain statistics
@@ -370,7 +370,7 @@ test_that("is_chains_summary works", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    serials_dist = function(x) 3,
+    serials_dist = function(n) rep(3, n),
     lambda = 2
   )
   #' Simulate chain statistics
@@ -406,7 +406,7 @@ test_that("aggregate.epichains method returns correct objects", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    serials_dist = function(x) 3,
+    serials_dist = function(n) rep(3, n),
     lambda = 2
   )
   #' Create aggregates
@@ -467,7 +467,7 @@ test_that("aggregate.epichains method is numerically correct", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    serials_dist = function(x) 3,
+    serials_dist = function(n) rep(3, n),
     lambda = 2
   )
   #' Create aggregates
@@ -519,7 +519,7 @@ test_that("head and tail print output as expected", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    serials_dist = function(x) 3,
+    serials_dist = function(n) rep(3, n),
     lambda = 2
   )
   expect_snapshot(head(susc_outbreak_raw))
@@ -562,7 +562,7 @@ test_that("head and tail return data.frames", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    serials_dist = function(x) 3,
+    serials_dist = function(n) rep(3, n),
     lambda = 2
   )
   #' Expectations

@@ -95,7 +95,7 @@
 #'   statistic = "size",
 #'   offspring_dist = "pois",
 #'   stat_max = 10,
-#'   serials_dist = function(x) 3,
+#'   serials_dist = function(n) rep(3, n),
 #'   lambda = 2
 #' )
 #' @references
@@ -416,7 +416,7 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #'   pop = 100,
 #'   offspring_dist = "pois",
 #'   lambda = 0.5,
-#'   serials_dist = function(x) 3
+#'   serials_dist = function(n) rep(3, n)
 #' )
 #'
 #' # Simulate with negative binomial offspring
@@ -424,7 +424,7 @@ simulate_summary <- function(nchains, statistic = c("size", "length"),
 #' pop = 100, offspring_dist = "nbinom",
 #' mu = 0.5,
 #' size = 1.1,
-#' serials_dist = function(x) 3
+#' serials_dist = function(n) rep(3, n)
 #' )
 #' @export
 simulate_tree_from_pop <- function(pop,
