@@ -21,7 +21,6 @@ new_epichains_tree <- function(tree_df,
                                chains_run = integer(),
                                statistic = character(),
                                stat_max = integer(),
-                               intvn_mean_reduction = double(),
                                track_pop = logical()) {
   # Assemble the elements of the object
   obj <- structure(
@@ -29,7 +28,6 @@ new_epichains_tree <- function(tree_df,
     chains_run = chains_run,
     statistic = statistic,
     stat_max = stat_max,
-    intvn_mean_reduction = intvn_mean_reduction,
     track_pop = track_pop,
     class = c("epichains_tree", "data.frame")
   )
@@ -61,13 +59,11 @@ epichains_tree <- function(tree_df,
                            chains_run = integer(),
                            statistic = character(),
                            stat_max = integer(),
-                           intvn_mean_reduction = double(),
                            track_pop = logical()) {
   # Check that inputs are well specified
   checkmate::assert_data_frame(tree_df)
   checkmate::assert_integerish(chains_run, null.ok = TRUE)
   checkmate::assert_character(statistic, null.ok = TRUE)
-  checkmate::assert_double(intvn_mean_reduction)
   checkmate::assert_logical(track_pop)
   checkmate::assert_number(stat_max, null.ok = TRUE)
 
@@ -77,7 +73,6 @@ epichains_tree <- function(tree_df,
     chains_run = chains_run,
     statistic = statistic,
     stat_max = stat_max,
-    intvn_mean_reduction = intvn_mean_reduction,
     track_pop = track_pop
   )
 
@@ -108,15 +103,13 @@ epichains_tree <- function(tree_df,
 new_epichains_summary <- function(chains_summary,
                                   chains_run = integer(),
                                   statistic = character(),
-                                  stat_max = integer(),
-                                  intvn_mean_reduction = double()) {
+                                  stat_max = integer()) {
   # Assemble the elements of the object
   obj <- structure(
     chains_summary,
     chains_run = chains_run,
     statistic = statistic,
     stat_max = stat_max,
-    intvn_mean_reduction = intvn_mean_reduction,
     class = c("epichains_summary", "vector")
   )
   return(obj)
@@ -140,13 +133,11 @@ new_epichains_summary <- function(chains_summary,
 epichains_summary <- function(chains_summary,
                               chains_run = integer(),
                               statistic = character(),
-                              stat_max = integer(),
-                              intvn_mean_reduction = double()) {
+                              stat_max = integer()) {
   # Check that inputs are well specified
   checkmate::assert_vector(chains_summary)
   checkmate::assert_integerish(chains_run, null.ok = TRUE)
   checkmate::assert_character(statistic)
-  checkmate::assert_double(intvn_mean_reduction)
   checkmate::assert_number(stat_max, null.ok = TRUE)
 
   # Create <epichains_summary> object
@@ -154,8 +145,7 @@ epichains_summary <- function(chains_summary,
     chains_summary,
     chains_run = chains_run,
     statistic = statistic,
-    stat_max = stat_max,
-    intvn_mean_reduction = intvn_mean_reduction
+    stat_max = stat_max
   )
 
   # Validate the created object

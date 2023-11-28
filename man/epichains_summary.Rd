@@ -8,8 +8,7 @@ epichains_summary(
   chains_summary,
   chains_run = integer(),
   statistic = character(),
-  stat_max = integer(),
-  intvn_mean_reduction = double()
+  stat_max = integer()
 )
 }
 \arguments{
@@ -29,12 +28,6 @@ Can be one of:
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
-
-\item{intvn_mean_reduction}{A number between 0
-and 1 for scaling/reducing the mean of \code{offspring_dist}. Serves as
-population-level intervention. \code{intvn_mean_reduction} = 0
-implies no intervention impact and \code{intvn_mean_reduction} = 1 implies full
-impact.}
 }
 \value{
 An \verb{<epichains_summary>} object
