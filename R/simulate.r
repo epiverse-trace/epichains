@@ -15,9 +15,10 @@
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to this value.
 #' Defaults to `Inf`.
-#' @param serials_dist The serial interval distribution function; the name
-#' of a user-defined named or anonymous function with only one argument `n`,
-#' representing the number of serial intervals to generate. See details.
+#' @param serials_dist The serial interval distribution function; the name of a
+#' user-defined named or anonymous function with only one argument, usually
+#' called `n`, that returns a numeric vector of `n` randomly sampled serial
+#' intervals. See details.
 #' @param t0 Start time (if serial interval is given); either a single value
 #' or a vector of same length as `nchains` (number of simulations) with
 #' initial times. Defaults to 0.

@@ -23,9 +23,10 @@ corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers). Only supports "pois" and "nbinom".}
 
-\item{serials_dist}{The serial interval distribution function; the name
-of a user-defined named or anonymous function with only one argument \code{n},
-representing the number of serial intervals to generate. See details.}
+\item{serials_dist}{The serial interval distribution function; the name of a
+user-defined named or anonymous function with only one argument, usually
+called \code{n}, that returns a numeric vector of \code{n} randomly sampled serial
+intervals. See details.}
 
 \item{initial_immune}{The number of initial immunes in the population.
 Must be less than \code{pop} - 1.}
