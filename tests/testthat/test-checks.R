@@ -12,6 +12,14 @@ test_that("Checks work", {
     "must be a function"
   )
   expect_error(
+    check_serial_valid(function(x) rep("a", 10)),
+    "numeric"
+  )
+  expect_error(
+    check_serial_valid(function(x) 3),
+    "vector of length"
+  )
+  expect_error(
     check_nchains_valid(1.1),
     "less than"
   )
