@@ -5,16 +5,16 @@
     Output
       `epichains` object
       
-      < tree head (from first known ancestor) >
+      < tree head (from first known infector) >
       
-      [1] sim_id     ancestor   generation time      
+      [1] sim_id      infector_id generation  time       
       <0 rows> (or 0-length row.names)
       
       < tree tail >
       
-        sim_id ancestor generation time
-      1      1       NA          1    0
-      Number of ancestors (known): 0
+      [1] sim_id      infector_id generation  time       
+      <0 rows> (or 0-length row.names)
+      Number of infectors (known): 0
       Number of generations: 1
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
@@ -25,7 +25,7 @@
     Output
       `epichains` object
       
-      < tree head (from first known ancestor) >
+      < tree head (from first known infector) >
       
         sim_id ancestor generation     time
       2      2        1          2 42.57973
@@ -55,7 +55,7 @@
     Output
       `epichains` object
       
-      < tree head (from first known ancestor) >
+      < tree head (from first known infector) >
       
          chain_id sim_id ancestor generation
       3         1      2        1          2
@@ -86,7 +86,7 @@
     Output
       `epichains` object
       
-      < tree head (from first known ancestor) >
+      < tree head (from first known infector) >
       
          chain_id sim_id ancestor generation time
       11        1      2        1          2    3
@@ -106,7 +106,7 @@
       105        4     22        9          4    9
       106        4     23        9          4    9
       Chains simulated: 10
-      Number of ancestors (known): 9
+      Number of infectors (known): 9
       Number of generations: 5
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
@@ -129,9 +129,9 @@
     Code
       head(susc_outbreak_raw)
     Output
-      < tree head (from first known ancestor) >
+      < tree head (from first known infector) >
       
-      [1] sim_id     ancestor   generation time      
+      [1] sim_id      infector_id generation  time       
       <0 rows> (or 0-length row.names)
 
 ---
@@ -139,7 +139,7 @@
     Code
       head(susc_outbreak_raw2)
     Output
-      < tree head (from first known ancestor) >
+      < tree head (from first known infector) >
       
         sim_id ancestor generation     time
       2      2        1          2 42.57973
@@ -154,7 +154,7 @@
     Code
       head(tree_sim_raw)
     Output
-      < tree head (from first known ancestor) >
+      < tree head (from first known infector) >
       
          chain_id sim_id ancestor generation
       3         1      2        1          2
@@ -169,7 +169,7 @@
     Code
       head(tree_sim_raw2)
     Output
-      < tree head (from first known ancestor) >
+      < tree head (from first known infector) >
       
          chain_id sim_id ancestor generation time
       11        1      2        1          2    3
@@ -187,8 +187,8 @@
       
       < tree tail >
       
-        sim_id ancestor generation time
-      1      1       NA          1    0
+      [1] sim_id      infector_id generation  time       
+      <0 rows> (or 0-length row.names)
 
 ---
 
