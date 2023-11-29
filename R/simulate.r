@@ -10,7 +10,7 @@
 #' Can be one of:
 #' \itemize{
 #'   \item "size": the total number of offspring.
-#'   \item "length": the total number of ancestors.
+#'   \item "length": the total number of infectors.
 #' }
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to this value.
@@ -25,10 +25,8 @@
 #' @param tf End time (if serial interval is given).
 #' @param ... Parameters of the offspring distribution as required by R.
 #' @return An `<epichains>` object, which is basically a `<data.frame>` with
-#' columns `chain_id` (chain ID), `sim_id` (a unique ID within each simulation
-#' for each individual), `ancestor`
-#' (the ID of the ancestor of each individual), `generation`, and
-#' `time` (of infection)
+#' columns `infectee_id`, `sim_id` (a unique ID within each simulation
+#' for each infectee), `infector_id`, `generation`, and `time` (of infection)
 #' @author James M. Azam, Sebastian Funk
 #' @export
 #nolint start
@@ -163,7 +161,7 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
   tree_df <- data.frame(
     chain_id = seq_len(ntrees),
     sim_id = 1L,
-    ancestor = NA_integer_,
+    infector_id = NA_integer_,
     generation = generation
   )
 
@@ -201,10 +199,10 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
       n_offspring = n_offspring
     )
 
-    # record times/ancestors
+    # record times/infectors
     if (sum(n_offspring[sim]) > 0) {
-      ancestors <- rep(ancestor_ids, next_gen)
-      current_max_id <- unname(tapply(ancestor_ids, indices, max))
+      infectors <- rep(infector_ids, next_gen)
+      current_max_id <- unname(tapply(infector_ids, indices, max))
       indices <- rep(sim, n_offspring[sim])
 
       # create new ids
@@ -217,9 +215,9 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
       # store new simulation results
       new_df <-
         data.frame(
-          chain_id = indices,
+          infectee_id = indices,
           sim_id = ids,
-          ancestor = ancestors,
+          infector_id = infectors,
           generation = generation
         )
 
@@ -244,7 +242,7 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
       if (!missing(serials_dist)) {
         times <- times[indices %in% sim]
       }
-      ancestor_ids <- ids[indices %in% sim]
+      infector_ids <- ids[indices %in% sim]
     }
   }
 
@@ -252,8 +250,8 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     tree_df <- tree_df[tree_df$time < tf, ]
   }
 
-  # sort by sim_id and ancestor
-  tree_df <- tree_df[order(tree_df$sim_id, tree_df$ancestor), ]
+  # sort by sim_id and infector
+  tree_df <- tree_df[order(tree_df$sim_id, tree_df$infector_id), ]
 
   structure(
     tree_df,
@@ -376,9 +374,8 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
 #' @param t0 Start time; Defaults to 0.
 #' @param tf End time; Defaults to `Inf`.
 #' @return An `<epichains>` object, which is basically a `<data.frame>` with
-#' columns `sim_id` (a unique ID within each simulation for each individual
-#' of the chain), `ancestor` (the ID of the ancestor of each individual),
-#' `generation`, and `time` (of infection).
+#' columns `sim_id` (a unique ID within each simulation for each infectee
+#' in the chain), `infector_id`, `generation`, and `time` (of infection).
 #' @details
 #' # Offspring distributions
 #' Currently, `offspring_dist` only supports "pois" & "nbinom".
@@ -501,7 +498,7 @@ simulate_tree_from_pop <- function(pop,
   ## initializations
   tree_df <- data.frame(
     sim_id = 1L,
-    ancestor = NA_integer_,
+    infector_id = NA_integer_,
     generation = 1L,
     time = t0,
     offspring_generated = FALSE # tracks simulation and dropped afterwards
@@ -544,7 +541,7 @@ simulate_tree_from_pop <- function(pop,
 
       new_df <- data.frame(
         sim_id = current_max_id + seq_len(n_offspring),
-        ancestor = id_parent,
+        infector_id = id_parent,
         generation = gen_parent + 1L,
         time = new_times + t_parent,
         offspring_generated = FALSE
@@ -562,8 +559,8 @@ simulate_tree_from_pop <- function(pop,
   ## have been generated in the last generation
   tree_df <- tree_df[tree_df$time <= tf, ]
 
-  # sort by sim_id and ancestor
-  tree_df <- tree_df[order(tree_df$sim_id, tree_df$ancestor), ]
+  # sort by sim_id and infector
+  tree_df <- tree_df[order(tree_df$sim_id, tree_df$infector_id), ]
   tree_df$offspring_generated <- NULL
 
   structure(

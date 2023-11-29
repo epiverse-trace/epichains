@@ -23,7 +23,7 @@ determine stopping criteria for simulations when \code{stat_max} is finite.
 Can be one of:
 \itemize{
 \item "size": the total number of offspring.
-\item "length": the total number of ancestors.
+\item "length": the total number of infectors.
 }}
 
 \item{offspring_dist}{Offspring distribution: a character string
@@ -50,10 +50,8 @@ initial times. Defaults to 0.}
 }
 \value{
 An \verb{<epichains>} object, which is basically a \verb{<data.frame>} with
-columns \code{chain_id} (chain ID), \code{sim_id} (a unique ID within each simulation
-for each individual), \code{ancestor}
-(the ID of the ancestor of each individual), \code{generation}, and
-\code{time} (of infection)
+columns \code{infectee_id}, \code{sim_id} (a unique ID within each simulation
+for each infectee), \code{infector_id}, \code{generation}, and \code{time} (of infection)
 }
 \description{
 Simulate transmission trees from an initial number of infections

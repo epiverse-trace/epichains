@@ -39,9 +39,8 @@ Must be less than \code{pop} - 1.}
 }
 \value{
 An \verb{<epichains>} object, which is basically a \verb{<data.frame>} with
-columns \code{sim_id} (a unique ID within each simulation for each individual
-of the chain), \code{ancestor} (the ID of the ancestor of each individual),
-\code{generation}, and \code{time} (of infection).
+columns \code{sim_id} (a unique ID within each simulation for each infectee
+in the chain), \code{infector_id}, \code{generation}, and \code{time} (of infection).
 }
 \description{
 Simulate transmission trees from a susceptible or partially immune

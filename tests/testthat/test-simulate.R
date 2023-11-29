@@ -239,7 +239,7 @@ test_that("simulate_tree is numerically correct", {
     2.00
   )
   expect_identical(
-    tree_sim_summary$unique_ancestors,
+    tree_sim_summary$unique_infectors,
     2L
   )
   expect_identical(
@@ -247,7 +247,7 @@ test_that("simulate_tree is numerically correct", {
     3L
   )
   expect_identical(
-    tree_sim_raw$chain_id,
+    tree_sim_raw$infectee_id,
     c(1L, 2L, 2L, 2L, 2L, 2L, 2L)
   )
   expect_identical(
@@ -255,7 +255,7 @@ test_that("simulate_tree is numerically correct", {
     c(1, 1, 2, 3, 4, 5, 6)
   )
   expect_identical(
-    tree_sim_raw$ancestor,
+    tree_sim_raw$infector_id,
     c(NA, NA, 1, 1, 2, 2, 2)
   )
   expect_identical(
@@ -268,7 +268,7 @@ test_that("simulate_tree is numerically correct", {
     2.0
   )
   expect_identical(
-    tree_sim_summary$unique_ancestors,
+    tree_sim_summary$unique_infectors,
     2L
   )
   expect_identical(
@@ -276,7 +276,7 @@ test_that("simulate_tree is numerically correct", {
     3L
   )
   expect_identical(
-    tree_sim_raw$chain_id,
+    tree_sim_raw$infectee_id,
     c(1L, 2L, 2L, 2L, 2L, 2L, 2L)
   )
   expect_identical(
@@ -284,7 +284,7 @@ test_that("simulate_tree is numerically correct", {
     c(1, 1, 2, 3, 4, 5, 6)
   )
   expect_identical(
-    tree_sim_raw$ancestor,
+    tree_sim_raw$infector_id,
     c(NA, NA, 1, 1, 2, 2, 2)
   )
   expect_identical(
@@ -336,7 +336,7 @@ test_that("simulate_tree_from_pop is numerically correct", {
   susc_outbreak_summary <- summary(susc_outbreak_raw)
   #' Expectations
   expect_identical(
-    susc_outbreak_summary$unique_ancestors,
+    susc_outbreak_summary$unique_infectors,
     0L
   )
   expect_identical(
@@ -353,7 +353,7 @@ test_that("simulate_tree_from_pop is numerically correct", {
     1L
   )
   expect_identical(
-    susc_outbreak_raw$ancestor,
+    susc_outbreak_raw$infector_id,
     NA_integer_
   )
   expect_identical(

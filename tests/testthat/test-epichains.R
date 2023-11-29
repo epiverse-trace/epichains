@@ -169,7 +169,7 @@ test_that("summary.epichains works as expected", {
     c(
       "chains_run",
       "max_time",
-      "unique_ancestors",
+      "unique_infectors",
       "max_generation"
     )
   )
@@ -178,7 +178,7 @@ test_that("summary.epichains works as expected", {
     c(
       "chains_run",
       "max_time",
-      "unique_ancestors",
+      "unique_infectors",
       "max_generation"
     )
   )
@@ -187,7 +187,7 @@ test_that("summary.epichains works as expected", {
     c(
       "chains_run",
       "max_time",
-      "unique_ancestors",
+      "unique_infectors",
       "max_generation"
     )
   )
@@ -196,7 +196,7 @@ test_that("summary.epichains works as expected", {
     c(
       "chains_run",
       "max_time",
-      "unique_ancestors",
+      "unique_infectors",
       "max_generation"
     )
   )
