@@ -20,7 +20,7 @@ determine stopping criteria for simulations when \code{stat_max} is finite.
 Can be one of:
 \itemize{
 \item "size": the total number of offspring.
-\item "length": the total number of ancestors.
+\item "length": the total number of infectors.
 }}
 
 \item{nsim_offspring}{Number of simulations of the offspring distribution
