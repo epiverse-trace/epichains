@@ -8,7 +8,7 @@ population}
 simulate_tree_from_pop(
   pop,
   offspring_dist = c("pois", "nbinom"),
-  serials_dist,
+  gen_interval,
   initial_immune = 0,
   t0 = 0,
   tf = Inf,
@@ -23,10 +23,9 @@ corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers). Only supports "pois" and "nbinom".}
 
-\item{serials_dist}{The serial interval distribution function; the name of a
-user-defined named or anonymous function with only one argument, usually
-called \code{n}, that returns a numeric vector of \code{n} randomly sampled serial
-intervals. See details.}
+\item{gen_interval}{The generation interval function; the name
+of a user-defined named or anonymous function with only one argument \code{n},
+representing the number of generation intervals to generate. See details.}
 
 \item{initial_immune}{The number of initial immunes in the population.
 Must be less than \code{pop} - 1.}
@@ -74,53 +73,13 @@ This is why \code{size} must be greater than 1.
 }
 }
 
-\section{The serial interval (\code{serials_dist})}{
-\subsection{Assumptions/disambiguation}{
-
-In epidemiology, the generation interval is the duration between successive
-infectious events in a chain of transmission. Similarly, the serial
-interval is the duration between observed symptom onset times between
-successive cases in a transmission chain. The generation interval is
-often hard to observe because exact times of infection are hard to
-measure hence, the serial interval is often used instead . Here, we
-use the serial interval to represent what would normally be called the
-generation interval, that is, the time between successive cases.
-
-See References below for some literature on the subject.
-}
-
-\subsection{Specifying \code{serials_dist}}{
-
-\code{serials_dist} must be specified as a named or
-\href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function}
-with one argument.
-
-For example, assuming we want to specify the serial interval
-distribution as a random log-normally distributed variable with
-\code{meanlog = 0.58} and \code{sdlog = 1.58}, we could define a named function,
-let's call it "serial_interval", with only one argument representing the
-number of serial intervals to sample:
-\code{serial_interval <- function(n){rlnorm(n, 0.58, 1.38)}},
-and assign the name of the function to \code{serials_dist} in
-the simulation function, i.e.
-\code{`simulate_*`(..., serials_dist = serial_interval)},
-where \code{...} are the other arguments to \verb{simulate_*()} and * is a placeholder
-for the rest of simulation function's name.
-
-Alternatively, we could assign an anonymous function to \code{serials_dist}
-in the \verb{simulate_*()} call, i.e.
-\code{simulate_*(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})},
-where \code{...} are the other arguments to \verb{simulate_*()}.
-}
-}
-
 \examples{
 # Simulate with poisson offspring
 simulate_tree_from_pop(
   pop = 100,
   offspring_dist = "pois",
   lambda = 0.5,
-  serials_dist = function(n) rep(3, n)
+  gen_interval = function(x) 3
 )
 
 # Simulate with negative binomial offspring
@@ -128,7 +87,7 @@ simulate_tree_from_pop(
 pop = 100, offspring_dist = "nbinom",
 mu = 0.5,
 size = 1.1,
-serials_dist = function(n) rep(3, n)
+gen_interval = function(x) 3
 )
 }
 \seealso{

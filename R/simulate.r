@@ -15,14 +15,13 @@
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to this value.
 #' Defaults to `Inf`.
-#' @param serials_dist The serial interval distribution function; the name of a
-#' user-defined named or anonymous function with only one argument, usually
-#' called `n`, that returns a numeric vector of `n` randomly sampled serial
-#' intervals. See details.
-#' @param t0 Start time (if serial interval is given); either a single value
-#' or a vector of same length as `ntrees` (number of simulations) with
+#' @param gen_interval The generation interval function; the name
+#' of a user-defined named or anonymous function with only one argument `n`,
+#' representing the number of generation intervals to generate. See details.
+#' @param t0 Start time (if generation interval is given); either a single value
+#' or a vector of same length as `nchains` (number of simulations) with
 #' initial times. Defaults to 0.
-#' @param tf End time (if serial interval is given).
+#' @param tf End time (if generation interval is given).
 #' @param ... Parameters of the offspring distribution as required by R.
 #' @return An `<epichains>` object, which is basically a `<data.frame>` with
 #' columns `infectee_id`, `sim_id` (a unique ID within each simulation
@@ -44,41 +43,27 @@
 #' The distribution of secondary cases, \eqn{X_{t, i}} is modelled by the
 #' offspring distribution (`offspring_dist`).
 #'
-#' # The serial interval (`serials_dist`)
-#' ## Assumptions/disambiguation
+#' ## Specifying `gen_interval`
 #'
-#' In epidemiology, the generation interval is the duration between successive
-#' infectious events in a chain of transmission. Similarly, the serial
-#' interval is the duration between observed symptom onset times between
-#' successive cases in a transmission chain. The generation interval is
-#' often hard to observe because exact times of infection are hard to
-#' measure hence, the serial interval is often used instead . Here, we
-#' use the serial interval to represent what would normally be called the
-#' generation interval, that is, the time between successive cases.
-#'
-#' See References below for some literature on the subject.
-#'
-#' ## Specifying `serials_dist`
-#'
-#' `serials_dist` must be specified as a named or
+#' `gen_interval` must be specified as a named or
 #' [anonymous/inline/unnamed function](https://en.wikipedia.org/wiki/Anonymous_function#R)
 #' with one argument.
 #'
-#' For example, assuming we want to specify the serial interval
-#' distribution as a random log-normally distributed variable with
+#' For example, assuming we want to specify the generation interval
+#' as a random log-normally distributed variable with
 #' `meanlog = 0.58` and `sdlog = 1.58`, we could define a named function,
-#' let's call it "serial_interval", with only one argument representing the
-#' number of serial intervals to sample:
-#' \code{serial_interval <- function(n){rlnorm(n, 0.58, 1.38)}},
-#' and assign the name of the function to `serials_dist` in
+#' let's call it "gen_interval", with only one argument representing the
+#' number of generation intervals to sample:
+#' \code{gen_interval_func <- function(n){rlnorm(n, 0.58, 1.38)}},
+#' and assign the name of the function to `gen_interval` in
 #' the simulation function, i.e.
-#' \code{`simulate_*`(..., serials_dist = serial_interval)},
+#' \code{`simulate_*`(..., gen_interval = gen_interval_func)},
 #' where `...` are the other arguments to `simulate_*()` and * is a placeholder
 #' for the rest of simulation function's name.
 #'
-#' Alternatively, we could assign an anonymous function to `serials_dist`
+#' Alternatively, we could assign an anonymous function to `gen_interval`
 #' in the `simulate_*()` call, i.e.
-#' \code{simulate_*(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})},
+#' \code{simulate_*(..., gen_interval = function(n){rlnorm(n, 0.58, 1.38)})},
 #' where `...` are the other arguments to `simulate_*()`.
 #nolint end
 #' @seealso
@@ -93,7 +78,7 @@
 #'   statistic = "size",
 #'   offspring_dist = "pois",
 #'   stat_max = 10,
-#'   serials_dist = function(n) rep(3, n),
+#'   gen_interval = function(x) 3,
 #'   lambda = 2
 #' )
 #' @references
@@ -112,7 +97,7 @@
 #' 1186–1204. \doi{https://doi.org/10.3390/ijerph7031204}
 simulate_tree <- function(ntrees, statistic = c("size", "length"),
                           offspring_dist, stat_max = Inf,
-                          serials_dist, t0 = 0,
+                          gen_interval, t0 = 0,
                           tf = Inf, ...) {
   statistic <- match.arg(statistic)
 
@@ -131,8 +116,8 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     stat_max, lower = 0
   )
 
-  if (!missing(serials_dist)) {
-    check_serial_valid(serials_dist)
+  if (!missing(gen_interval)) {
+    check_gen_interval_valid(gen_interval)
   }
   checkmate::assert_numeric(
     t0, lower = 0, finite = TRUE
@@ -144,10 +129,10 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
   # Gather offspring distribution parameters
   pars <- list(...)
 
-  if (!missing(serials_dist)) {
-    check_serial_valid(serials_dist)
+  if (!missing(gen_interval)) {
+    check_gen_interval_valid(gen_interval)
   } else if (!missing(tf)) {
-    stop("If `tf` is specified, `serials_dist` must be specified too.")
+    stop("If `tf` is specified, `gen_interval` must be specified too.")
   }
 
   # Initialisations
@@ -165,7 +150,7 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     generation = generation
   )
 
-  if (!missing(serials_dist)) {
+  if (!missing(gen_interval)) {
     tree_df$time <- t0
     times <- tree_df$time
   }
@@ -221,10 +206,10 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
           generation = generation
         )
 
-      # if a serial interval model/function was specified, use it
-      # to generate serial intervals for the cases
-      if (!missing(serials_dist)) {
-        times <- rep(times, next_gen) + serials_dist(sum(n_offspring))
+      # if a generation interval model/function was specified, use it
+      # to generate generation intervals for the cases
+      if (!missing(gen_interval)) {
+        times <- rep(times, next_gen) + gen_interval(sum(n_offspring))
         current_min_time <- unname(tapply(times, indices, min))
         new_df$time <- times
       }
@@ -235,11 +220,11 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     ## the specified maximum size/length
     sim <- which(n_offspring > 0 & stat_track < stat_max)
     if (length(sim) > 0) {
-      if (!missing(serials_dist)) {
+      if (!missing(gen_interval)) {
         ## only continue to simulate chains that don't go beyond tf
         sim <- intersect(sim, unique(indices)[current_min_time < tf])
       }
-      if (!missing(serials_dist)) {
+      if (!missing(gen_interval)) {
         times <- times[indices %in% sim]
       }
       infector_ids <- ids[indices %in% sim]
@@ -271,7 +256,6 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
 #' @inheritSection simulate_tree Calculating chain sizes and lengths
-#' @inheritSection simulate_tree The serial interval (`serials_dist`)
 #' @author James M. Azam, Sebastian Funk
 #' @seealso
 #' * [simulate_tree()] for simulating transmission trees from an
@@ -400,7 +384,6 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
 #'  * the maximal chain statistic is limited by `pop` instead of
 #'  `stat_max` (in `simulate_tree()`),
 #'  * `offspring_dist` can only handle "pois" and "nbinom".
-#' @inheritSection simulate_tree The serial interval (`serials_dist`)
 #' @author Flavio Finger, James M. Azam, Sebastian Funk
 #' @seealso
 #' * [simulate_tree()] for simulating transmission trees from an
@@ -413,7 +396,7 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
 #'   pop = 100,
 #'   offspring_dist = "pois",
 #'   lambda = 0.5,
-#'   serials_dist = function(n) rep(3, n)
+#'   gen_interval = function(x) 3
 #' )
 #'
 #' # Simulate with negative binomial offspring
@@ -421,12 +404,12 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
 #' pop = 100, offspring_dist = "nbinom",
 #' mu = 0.5,
 #' size = 1.1,
-#' serials_dist = function(n) rep(3, n)
+#' gen_interval = function(x) 3
 #' )
 #' @export
 simulate_tree_from_pop <- function(pop,
                                    offspring_dist = c("pois", "nbinom"),
-                                   serials_dist,
+                                   gen_interval,
                                    initial_immune = 0,
                                    t0 = 0,
                                    tf = Inf,
@@ -438,8 +421,8 @@ simulate_tree_from_pop <- function(pop,
     pop, lower = 1, finite = TRUE
   )
   checkmate::assert_string(offspring_dist)
-  if (!missing(serials_dist)) {
-    check_serial_valid(serials_dist)
+  if (!missing(gen_interval)) {
+    check_gen_interval_valid(gen_interval)
   }
   checkmate::assert_number(
     initial_immune, lower = 0, upper = pop - 1
@@ -532,11 +515,11 @@ simulate_tree_from_pop <- function(pop,
 
     ## add to df
     if (n_offspring > 0) {
-      ## draw serial times
-      new_times <- serials_dist(n_offspring)
+      ## draw generation times
+      new_times <- gen_interval(n_offspring)
 
       if (any(new_times < 0)) {
-        stop("Serial interval must be >= 0.")
+        stop("Generation interval must be >= 0.")
       }
 
       new_df <- data.frame(

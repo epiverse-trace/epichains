@@ -9,7 +9,7 @@ simulate_tree(
   statistic = c("size", "length"),
   offspring_dist,
   stat_max = Inf,
-  serials_dist,
+  gen_interval,
   t0 = 0,
   tf = Inf,
   ...
@@ -35,16 +35,15 @@ numbers).}
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
 
-\item{serials_dist}{The serial interval distribution function; the name of a
-user-defined named or anonymous function with only one argument, usually
-called \code{n}, that returns a numeric vector of \code{n} randomly sampled serial
-intervals. See details.}
+\item{gen_interval}{The generation interval function; the name
+of a user-defined named or anonymous function with only one argument \code{n},
+representing the number of generation intervals to generate. See details.}
 
-\item{t0}{Start time (if serial interval is given); either a single value
-or a vector of same length as \code{ntrees} (number of simulations) with
+\item{t0}{Start time (if generation interval is given); either a single value
+or a vector of same length as \code{nchains} (number of simulations) with
 initial times. Defaults to 0.}
 
-\item{tf}{End time (if serial interval is given).}
+\item{tf}{End time (if generation interval is given).}
 
 \item{...}{Parameters of the offspring distribution as required by R.}
 }
@@ -68,44 +67,27 @@ at time \eqn{t}, and \eqn{I_{0, i} = L_{0, i} = 1}.
 
 The distribution of secondary cases, \eqn{X_{t, i}} is modelled by the
 offspring distribution (\code{offspring_dist}).
-}
+\subsection{Specifying \code{gen_interval}}{
 
-\section{The serial interval (\code{serials_dist})}{
-\subsection{Assumptions/disambiguation}{
-
-In epidemiology, the generation interval is the duration between successive
-infectious events in a chain of transmission. Similarly, the serial
-interval is the duration between observed symptom onset times between
-successive cases in a transmission chain. The generation interval is
-often hard to observe because exact times of infection are hard to
-measure hence, the serial interval is often used instead . Here, we
-use the serial interval to represent what would normally be called the
-generation interval, that is, the time between successive cases.
-
-See References below for some literature on the subject.
-}
-
-\subsection{Specifying \code{serials_dist}}{
-
-\code{serials_dist} must be specified as a named or
+\code{gen_interval} must be specified as a named or
 \href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function}
 with one argument.
 
-For example, assuming we want to specify the serial interval
-distribution as a random log-normally distributed variable with
+For example, assuming we want to specify the generation interval
+as a random log-normally distributed variable with
 \code{meanlog = 0.58} and \code{sdlog = 1.58}, we could define a named function,
-let's call it "serial_interval", with only one argument representing the
-number of serial intervals to sample:
-\code{serial_interval <- function(n){rlnorm(n, 0.58, 1.38)}},
-and assign the name of the function to \code{serials_dist} in
+let's call it "gen_interval", with only one argument representing the
+number of generation intervals to sample:
+\code{gen_interval_func <- function(n){rlnorm(n, 0.58, 1.38)}},
+and assign the name of the function to \code{gen_interval} in
 the simulation function, i.e.
-\code{`simulate_*`(..., serials_dist = serial_interval)},
+\code{`simulate_*`(..., gen_interval = gen_interval_func)},
 where \code{...} are the other arguments to \verb{simulate_*()} and * is a placeholder
 for the rest of simulation function's name.
 
-Alternatively, we could assign an anonymous function to \code{serials_dist}
+Alternatively, we could assign an anonymous function to \code{gen_interval}
 in the \verb{simulate_*()} call, i.e.
-\code{simulate_*(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})},
+\code{simulate_*(..., gen_interval = function(n){rlnorm(n, 0.58, 1.38)})},
 where \code{...} are the other arguments to \verb{simulate_*()}.
 }
 }
@@ -117,7 +99,7 @@ chains <- simulate_tree(
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
-  serials_dist = function(n) rep(3, n),
+  gen_interval = function(x) 3,
   lambda = 2
 )
 }

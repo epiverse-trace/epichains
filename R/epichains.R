@@ -259,7 +259,7 @@ tail.epichains <- function(x, ...) {
 #'   statistic = "size",
 #'   offspring_dist = "pois",
 #'   stat_max = 10,
-#'   serials_dist = function(n) rep(3, n),
+#'   gen_interval = function(x) 3,
 #'   lambda = 2
 #' )
 #' chains
