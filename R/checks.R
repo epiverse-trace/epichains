@@ -30,22 +30,19 @@ check_offspring_func_valid <- function(roffspring_name) {
 }
 
 
-#' Check if the serials_dist argument is valid.
+#' Check if the gen_interval argument is specified as a function
 #'
-#' Check if the serials_dist argument is a function with one argument `n`
-#' and returns a numerical vector of length `n`.
-#'
-#' @param serials_dist The serial interval distribution function; the name of a
+#' @param gen_interval The generation interval function; the name of a
 #' user-defined named or anonymous function with only one argument `n`,
-#' representing the number of serial intervals to generate.
+#' representing the number of generation intervals to sample.
 #'
 #' @keywords internal
-check_serial_valid <- function(serials_dist) {
-  if (!checkmate::test_function(serials_dist, nargs = 1)) {
+check_gen_interval_valid <- function(gen_interval) {
+  if (!checkmate::test_function(gen_interval, nargs = 1)) {
     stop(sprintf(
       "%s %s",
-      "The `serials_dist` argument must be a function",
-      "(see details in ?sim_chain_tree)."
+      "The `gen_interval` argument must be a function",
+      "(see details in ?simulate_tree)."
     ))
   }
   x <- serials_dist(10)
