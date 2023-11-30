@@ -30,7 +30,10 @@ check_offspring_func_valid <- function(roffspring_name) {
 }
 
 
-#' Check if the serials_dist argument is specified as a function
+#' Check if the serials_dist argument is valid.
+#'
+#' Check if the serials_dist argument is a function with one argument `n`
+#' and returns a numerical vector of length `n`.
 #'
 #' @param serials_dist The serial interval distribution function; the name of a
 #' user-defined named or anonymous function with only one argument `n`,
