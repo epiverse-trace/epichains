@@ -48,8 +48,8 @@ check_generation_time_valid <- function(generation_time) {
   x <- generation_time(10)
   if (!checkmate::test_numeric(x, len = 10)) {
     stop(
-      "The return values of `serials_dist` must be a numeric vector of length ",
-      "`n`."
+      "The return values of `generation_time`",
+      "must be a numeric vector of length `n`."
     )
   }
 }
