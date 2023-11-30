@@ -1,4 +1,4 @@
-#' Construct a `<epichains_tree>` object
+#' Construct an `<epichains_tree>` object
 #'
 #' @description
 #' `new_epichains_tree()` constructs an `<epichains_tree>` object from a
@@ -276,7 +276,7 @@ format.epichains_summary <- function(x, ...) {
 
 #' Summary method for `epichains_tree` class
 #'
-#' @param object An `epichains_tree` object
+#' @param object An `<epichains_tree>` object
 #' @param ... further arguments passed to or from other methods
 #'
 #' @return List of summaries
@@ -342,7 +342,7 @@ summary.epichains_summary <- function(object, ...) {
 #'
 #' @param x An R object
 #'
-#' @return logical, `TRUE` if the object is an `epichains_tree` and `FALSE`
+#' @return logical, `TRUE` if the object is an `<epichains_tree>` and `FALSE`
 #' otherwise
 #' @author James M. Azam
 #' @export
