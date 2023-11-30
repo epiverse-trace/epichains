@@ -444,11 +444,11 @@ tail.epichains_tree <- function(x, ...) {
 #' `<epichains_tree>` objects.
 #'
 #' @param x An `<epichains_tree>` object.
-#' @param grouping_var The variable to aggregate by. Options include
+#' @param by The variable to aggregate by. Options include
 #' "time" and "generation".
 #' @param ... Other arguments passed to aggregate.
 #' @importFrom stats aggregate
-#' @return A `<data.frame>` object of cases by `grouping_var`.
+#' @return A `<data.frame>` object of cases by `by`.
 #' @author James M. Azam
 #' @export
 #' @examples
@@ -464,14 +464,14 @@ tail.epichains_tree <- function(x, ...) {
 #' chains
 #'
 #' # Aggregate cases per time
-#' cases_per_time <- aggregate(chains, grouping_var = "time")
+#' cases_per_time <- aggregate(chains, by = "time")
 #' head(cases_per_time)
 #'
 #' # Aggregate cases per generation
-#' cases_per_gen <- aggregate(chains, grouping_var = "generation")
+#' cases_per_gen <- aggregate(chains, by = "generation")
 #' head(cases_per_gen)
 aggregate.epichains_tree <- function(x,
-                                     grouping_var = c(
+                                     by = c(
                                        "time",
                                        "generation"
                                      ),
@@ -479,9 +479,9 @@ aggregate.epichains_tree <- function(x,
   validate_epichains_tree(x)
 
   # Get grouping variable
-  grouping_var <- match.arg(grouping_var)
+  by <- match.arg(by)
 
-  out <- if (grouping_var == "time") {
+  out <- if (by == "time") {
     if (is.null(x$time)) {
       stop(
         "Object must have a time column. ",
@@ -495,7 +495,7 @@ aggregate.epichains_tree <- function(x,
       list(time = x$time),
       FUN = NROW
     )
-  } else if (grouping_var == "generation") {
+  } else if (by == "generation") {
     # Count the number of cases per time
     stats::aggregate(
       list(cases = x$sim_id),

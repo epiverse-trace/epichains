@@ -5,18 +5,18 @@
 \title{Aggregate cases in \verb{<epichains_tree>} objects by "generation" or "time", if
 present}
 \usage{
-\method{aggregate}{epichains_tree}(x, grouping_var = c("time", "generation"), ...)
+\method{aggregate}{epichains_tree}(x, by = c("time", "generation"), ...)
 }
 \arguments{
 \item{x}{An \verb{<epichains_tree>} object.}
 
-\item{grouping_var}{The variable to aggregate by. Options include
+\item{by}{The variable to aggregate by. Options include
 "time" and "generation".}
 
 \item{...}{Other arguments passed to aggregate.}
 }
 \value{
-A \verb{<data.frame>} object of cases by \code{grouping_var}.
+A \verb{<data.frame>} object of cases by \code{by}.
 }
 \description{
 This function provides a quick way to create a time series of cases over
@@ -36,11 +36,11 @@ chains <- simulate_tree(
 chains
 
 # Aggregate cases per time
-cases_per_time <- aggregate(chains, grouping_var = "time")
+cases_per_time <- aggregate(chains, by = "time")
 head(cases_per_time)
 
 # Aggregate cases per generation
-cases_per_gen <- aggregate(chains, grouping_var = "generation")
+cases_per_gen <- aggregate(chains, by = "generation")
 head(cases_per_gen)
 }
 \author{

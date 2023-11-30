@@ -408,11 +408,11 @@ test_that("aggregate.epichains_tree method returns correct objects", {
   #' Create aggregates
   aggreg_by_gen <- aggregate(
     tree_sim_raw2,
-    grouping_var = "generation"
+    by = "generation"
   )
   aggreg_by_time <- aggregate(
     tree_sim_raw2,
-    grouping_var = "time"
+    by = "time"
   )
   #' Expectations for aggregated <epichains_tree>
   expect_named(
@@ -435,7 +435,7 @@ test_that("aggregate.epichains_tree method throws errors", {
         stat_max = 10,
         lambda = 2
       ),
-      grouping_var = "time"
+      by = "time"
     ),
     "Object must have a time column"
   )
@@ -463,11 +463,11 @@ test_that("aggregate.epichains_tree method is numerically correct", {
   #' Create aggregates
   aggreg_by_gen <- aggregate(
     tree_sim_raw,
-    grouping_var = "generation"
+    by = "generation"
   )
   aggreg_by_time <- aggregate(
     tree_sim_raw2,
-    grouping_var = "time"
+    by = "time"
   )
   expect_identical(
     aggreg_by_gen$cases,
