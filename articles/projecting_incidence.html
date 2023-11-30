@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Projecting infectious disease incidence: a COVID-19 example">
 <meta property="og:description" content="epichains">
@@ -35,7 +35,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="../logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">epichains</a>
@@ -315,12 +315,12 @@ by rows with <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_output</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt; tree head (from first known ancestor) &gt;</span></span>
 <span><span class="co">#&gt;    chain_id sim_id ancestor generation      time sim</span></span>
-<span><span class="co">#&gt; 14        7      2        1          2 11.178089   1</span></span>
-<span><span class="co">#&gt; 15       11      2        1          2 10.048846   1</span></span>
-<span><span class="co">#&gt; 16       12      2        1          2 14.097486   1</span></span>
-<span><span class="co">#&gt; 17       13      2        1          2 10.110700   1</span></span>
-<span><span class="co">#&gt; 18        7      3        1          2  5.497689   1</span></span>
-<span><span class="co">#&gt; 19       11      3        1          2 10.386782   1</span></span></code></pre></div>
+<span><span class="co">#&gt; 14        2      2        1          2  5.016390   1</span></span>
+<span><span class="co">#&gt; 15        3      2        1          2  5.873854   1</span></span>
+<span><span class="co">#&gt; 16        4      2        1          2  6.247421   1</span></span>
+<span><span class="co">#&gt; 17        7      2        1          2  7.647613   1</span></span>
+<span><span class="co">#&gt; 18        8      2        1          2 11.807737   1</span></span>
+<span><span class="co">#&gt; 19        9      2        1          2 23.014033   1</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level2">
@@ -346,9 +346,9 @@ aggregating the number of cases per day of each simulation.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     1     0     1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     1     2     1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     1     3     1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     1     4     4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     1     6     8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     1     8     3</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     1     4     5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     1     6    12</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     1     7    11</span></span></code></pre></div>
 </details><p>Next, we will add a date column to the results of each simulation
 set. We will use the date of the first case in the observed data
 as the reference start date.</p>
@@ -371,9 +371,9 @@ as the reference start date.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     1     0     1 2020-03-05</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     1     2     1 2020-03-06</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     1     3     1 2020-03-07</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     1     4     4 2020-03-08</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     1     6     8 2020-03-09</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     1     8     3 2020-03-10</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     1     4     5 2020-03-08</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     1     6    12 2020-03-09</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     1     7    11 2020-03-10</span></span></code></pre></div>
 </details><p>Now we will aggregate the simulations by day and evaluate the median
 daily cases across all simulations.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -391,9 +391,9 @@ daily cases across all simulations.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2020-03-05          1  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2020-03-06          1  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2020-03-07          1  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2020-03-08          4.5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2020-03-09          4  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2020-03-10          7.5</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2020-03-08          4  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2020-03-09          4.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2020-03-10          7</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level2">
