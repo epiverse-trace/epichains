@@ -29,7 +29,7 @@ new_epichains_tree <- function(tree_df,
     statistic = statistic,
     stat_max = stat_max,
     track_pop = track_pop,
-    class = c("epichains_tree", "data.frame")
+    class = c("epichains_tree", class(tree_df))
   )
   return(obj)
 }
@@ -110,7 +110,7 @@ new_epichains_summary <- function(chains_summary,
     nchains = nchains,
     statistic = statistic,
     stat_max = stat_max,
-    class = c("epichains_summary", "vector")
+    class = c("epichains_summary", class(chains_summary))
   )
   return(obj)
 }
