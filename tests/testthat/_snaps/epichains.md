@@ -117,12 +117,12 @@
     Output
       `epichains` object 
       
-      [1] 1 3
+      [1] 9 6
       
        Simulated chain lengths: 
       
-      Max: 3
-      Min: 1
+      Max: 9
+      Min: 6
 
 # head and tail print output as expected
 
