@@ -45,7 +45,7 @@ check_generation_time_valid <- function(generation_time) {
       "(see details in ?simulate_tree)."
     ))
   }
-  x <- serials_dist(10)
+  x <- generation_time(10)
   if (!checkmate::test_numeric(x, len = 10)) {
     stop(
       "The return values of `serials_dist` must be a numeric vector of length ",
