@@ -187,10 +187,9 @@ There are three simulation functions, herein referred to collectively as the `si
 ### [`simulate_tree()`](https://epiverse-trace.github.io/epichains/reference/simulate_tree.html) 
 
 `simulate_tree()` simulates an outbreak from a given number of infections.
-It retains and returns information on infectors (ancestors), infectees, the generation of infection, and the time, if a generation interval distribution is specified.
+It retains and returns information on infectors (ancestors), infectees, the generation of infection, and the time, if a generation time function is specified.
 
-Let's look at an example where we simulate the transmission trees of $10$ initial infections/chains. We 
-assume a poisson offspring distribution with mean, $\text{lambda} = 0.9$, and a generation interval of $3$ days:
+Let's look at an example where we simulate the transmission trees of $10$ initial infections/chains. We assume a poisson offspring distribution with mean, $\text{lambda} = 0.9$, and a generation time of $3$ days:
 ```{r}
 set.seed(123)
 # Define generation interval
@@ -237,7 +236,7 @@ simulate_summary_eg
 
 `simulate_tree_from_pop()` simulates outbreaks based on a specified population size and pre-existing immunity until the susceptible pool runs out.
   
-Here is a quick example where we simulate an outbreak in a population of size $1000$. We assume individuals have a poisson offspring distribution with mean, $\text{lambda} = 1$, and generation interval of $3$:
+Here is a quick example where we simulate an outbreak in a population of size $1000$. We assume individuals have a poisson offspring distribution with mean, $\text{lambda} = 1$, and generation time of $3$:
 ```{r}
 set.seed(7)
 # Define generation interval
