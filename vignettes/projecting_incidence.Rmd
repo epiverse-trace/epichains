@@ -137,7 +137,7 @@ log_mean <- log((mu^2) / (sqrt(sgma^2 + mu^2)))  # log mean
 log_sd <- sqrt(log(1 + (sgma / mu)^2)) # log sd
 
 #' serial interval function
-gen_interval <- function(sample_size) {
+generation_time <- function(sample_size) {
   si <- rlnorm(sample_size, meanlog = log_mean, sdlog = log_sd)
   return(si)
 }
@@ -234,7 +234,7 @@ sim_chain_sizes <- lapply(
       size = size,
       statistic = "size",
       stat_max = stat_max,
-      gen_interval = gen_interval,
+      generation_time = generation_time,
       t0 = t0,
       tf = tf
     ) %>%

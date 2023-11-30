@@ -9,7 +9,7 @@ simulate_tree(
   statistic = c("size", "length"),
   offspring_dist,
   stat_max = Inf,
-  gen_interval,
+  generation_time,
   t0 = 0,
   tf = Inf,
   ...
@@ -35,7 +35,7 @@ numbers).}
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
 
-\item{gen_interval}{The generation interval function; the name
+\item{generation_time}{The generation interval function; the name
 of a user-defined named or anonymous function with only one argument \code{n},
 representing the number of generation intervals to generate. See details.}
 
@@ -67,27 +67,27 @@ at time \eqn{t}, and \eqn{I_{0, i} = L_{0, i} = 1}.
 
 The distribution of secondary cases, \eqn{X_{t, i}} is modelled by the
 offspring distribution (\code{offspring_dist}).
-\subsection{Specifying \code{gen_interval}}{
+\subsection{Specifying \code{generation_time}}{
 
-\code{gen_interval} must be specified as a named or
+\code{generation_time} must be specified as a named or
 \href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function}
 with one argument.
 
-For example, assuming we want to specify the generation interval
+For example, assuming we want to specify the generation time
 as a random log-normally distributed variable with
 \code{meanlog = 0.58} and \code{sdlog = 1.58}, we could define a named function,
-let's call it "gen_interval", with only one argument representing the
+let's call it "generation_time_fn", with only one argument representing the
 number of generation intervals to sample:
-\code{gen_interval_func <- function(n){rlnorm(n, 0.58, 1.38)}},
-and assign the name of the function to \code{gen_interval} in
+\code{generation_time_fn <- function(n){rlnorm(n, 0.58, 1.38)}},
+and assign the name of the function to \code{generation_time} in
 the simulation function, i.e.
-\code{`simulate_*`(..., gen_interval = gen_interval_func)},
+\code{`simulate_*`(..., generation_time = generation_time_fn)},
 where \code{...} are the other arguments to \verb{simulate_*()} and * is a placeholder
 for the rest of simulation function's name.
 
-Alternatively, we could assign an anonymous function to \code{gen_interval}
+Alternatively, we could assign an anonymous function to \code{generation_time}
 in the \verb{simulate_*()} call, i.e.
-\code{simulate_*(..., gen_interval = function(n){rlnorm(n, 0.58, 1.38)})},
+\code{simulate_*(..., generation_time = function(n){rlnorm(n, 0.58, 1.38)})},
 where \code{...} are the other arguments to \verb{simulate_*()}.
 }
 }
@@ -99,7 +99,7 @@ chains <- simulate_tree(
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
-  gen_interval = function(x) 3,
+  generation_time = function(x) 3,
   lambda = 2
 )
 }

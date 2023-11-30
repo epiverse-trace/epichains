@@ -30,18 +30,18 @@ check_offspring_func_valid <- function(roffspring_name) {
 }
 
 
-#' Check if the gen_interval argument is specified as a function
+#' Check if the generation_time argument is specified as a function
 #'
-#' @param gen_interval The generation interval function; the name of a
+#' @param generation_time The generation interval function; the name of a
 #' user-defined named or anonymous function with only one argument `n`,
 #' representing the number of generation intervals to sample.
 #'
 #' @keywords internal
-check_gen_interval_valid <- function(gen_interval) {
-  if (!checkmate::test_function(gen_interval, nargs = 1)) {
+check_generation_time_valid <- function(generation_time) {
+  if (!checkmate::test_function(generation_time, nargs = 1)) {
     stop(sprintf(
       "%s %s",
-      "The `gen_interval` argument must be a function",
+      "The `generation_time` argument must be a function",
       "(see details in ?simulate_tree)."
     ))
   }

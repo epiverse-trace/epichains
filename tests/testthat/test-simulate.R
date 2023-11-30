@@ -1,5 +1,5 @@
 #' Define global variables and options for simulations
-gen_interval <- function(n) {
+generation_time <- function(n) {
   rlnorm(n, meanlog = 0.58, sdlog = 1.58)
 }
 
@@ -10,7 +10,7 @@ test_that("Simulators work", {
     pop = 100,
     offspring_dist = "pois",
     lambda = 0.9,
-    gen_interval = gen_interval
+    generation_time = generation_time
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
@@ -18,7 +18,7 @@ test_that("Simulators work", {
     offspring_dist = "nbinom",
     mu = 1,
     size = 1.1,
-    gen_interval = gen_interval
+    generation_time = generation_time
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
@@ -33,7 +33,7 @@ test_that("Simulators work", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    gen_interval = function(x) 3,
+    generation_time = function(x) 3,
     lambda = 2
   )
   #' Simulate chain statistics
@@ -71,7 +71,7 @@ test_that("Simulators work", {
         statistic = "size",
         offspring_dist = "pois",
         stat_max = 10,
-        gen_interval = function(x) 3,
+        generation_time = function(x) 3,
         lambda = 2,
         tf = 5
       )$time < 5
@@ -115,7 +115,7 @@ test_that("simulate_tree throws errors", {
       offspring_dist = "pois",
       statistic = "size",
       lambda = 0.9,
-      gen_interval = c(1, 2)
+      generation_time = c(1, 2)
     ),
     "must be a function"
   )
@@ -187,7 +187,7 @@ test_that("simulate_tree_from_pop throws errors", {
       pop = 100,
       offspring_dist = "binom",
       offspring_mean = 0.5,
-      gen_interval = gen_interval
+      generation_time = generation_time
     ),
     "should be one of"
   )
@@ -197,7 +197,7 @@ test_that("simulate_tree_from_pop throws errors", {
       offspring_dist = "nbinom",
       mu = 0.5,
       size = 0.9,
-      gen_interval = gen_interval
+      generation_time = generation_time
     ),
     "> 1"
   )
@@ -207,7 +207,7 @@ test_that("simulate_tree_from_pop throws errors", {
       offspring_dist = p,
       offspring_mean = 0.5,
       offspring_disp = 0.9,
-      gen_interval = gen_interval
+      generation_time = generation_time
     ),
     "not found"
   )
@@ -216,7 +216,7 @@ test_that("simulate_tree_from_pop throws errors", {
       pop = 100,
       offspring_dist = "nbinom",
       offspring_mean = 0.5,
-      gen_interval = gen_interval
+      generation_time = generation_time
     ),
     "must be specified"
   )
@@ -330,7 +330,7 @@ test_that("simulate_tree_from_pop is numerically correct", {
     pop = 100,
     offspring_dist = "pois",
     lambda = 0.9,
-    gen_interval = gen_interval
+    generation_time = generation_time
   )
   #' Summarise the results
   susc_outbreak_summary <- summary(susc_outbreak_raw)

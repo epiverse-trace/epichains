@@ -8,7 +8,7 @@ population}
 simulate_tree_from_pop(
   pop,
   offspring_dist = c("pois", "nbinom"),
-  gen_interval,
+  generation_time,
   initial_immune = 0,
   t0 = 0,
   tf = Inf,
@@ -23,7 +23,7 @@ corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers). Only supports "pois" and "nbinom".}
 
-\item{gen_interval}{The generation interval function; the name
+\item{generation_time}{The generation interval function; the name
 of a user-defined named or anonymous function with only one argument \code{n},
 representing the number of generation intervals to generate. See details.}
 
@@ -79,7 +79,7 @@ simulate_tree_from_pop(
   pop = 100,
   offspring_dist = "pois",
   lambda = 0.5,
-  gen_interval = function(x) 3
+  generation_time = function(x) 3
 )
 
 # Simulate with negative binomial offspring
@@ -87,7 +87,7 @@ simulate_tree_from_pop(
 pop = 100, offspring_dist = "nbinom",
 mu = 0.5,
 size = 1.1,
-gen_interval = function(x) 3
+generation_time = function(x) 3
 )
 }
 \seealso{

@@ -29,7 +29,7 @@ chains <- simulate_tree(
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
-  gen_interval = function(x) 3,
+  generation_time = function(x) 3,
   lambda = 2
 )
 chains
