@@ -15,7 +15,7 @@
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to this value.
 #' Defaults to `Inf`.
-#' @param gen_interval The generation interval function; the name
+#' @param generation_time The generation interval function; the name
 #' of a user-defined named or anonymous function with only one argument `n`,
 #' representing the number of generation intervals to generate. See details.
 #' @param t0 Start time (if generation interval is given); either a single value
@@ -43,27 +43,27 @@
 #' The distribution of secondary cases, \eqn{X_{t, i}} is modelled by the
 #' offspring distribution (`offspring_dist`).
 #'
-#' ## Specifying `gen_interval`
+#' ## Specifying `generation_time`
 #'
-#' `gen_interval` must be specified as a named or
+#' `generation_time` must be specified as a named or
 #' [anonymous/inline/unnamed function](https://en.wikipedia.org/wiki/Anonymous_function#R)
 #' with one argument.
 #'
-#' For example, assuming we want to specify the generation interval
+#' For example, assuming we want to specify the generation time
 #' as a random log-normally distributed variable with
 #' `meanlog = 0.58` and `sdlog = 1.58`, we could define a named function,
-#' let's call it "gen_interval", with only one argument representing the
+#' let's call it "generation_time_fn", with only one argument representing the
 #' number of generation intervals to sample:
-#' \code{gen_interval_func <- function(n){rlnorm(n, 0.58, 1.38)}},
-#' and assign the name of the function to `gen_interval` in
+#' \code{generation_time_fn <- function(n){rlnorm(n, 0.58, 1.38)}},
+#' and assign the name of the function to `generation_time` in
 #' the simulation function, i.e.
-#' \code{`simulate_*`(..., gen_interval = gen_interval_func)},
+#' \code{`simulate_*`(..., generation_time = generation_time_fn)},
 #' where `...` are the other arguments to `simulate_*()` and * is a placeholder
 #' for the rest of simulation function's name.
 #'
-#' Alternatively, we could assign an anonymous function to `gen_interval`
+#' Alternatively, we could assign an anonymous function to `generation_time`
 #' in the `simulate_*()` call, i.e.
-#' \code{simulate_*(..., gen_interval = function(n){rlnorm(n, 0.58, 1.38)})},
+#' \code{simulate_*(..., generation_time = function(n){rlnorm(n, 0.58, 1.38)})},
 #' where `...` are the other arguments to `simulate_*()`.
 #nolint end
 #' @seealso
@@ -78,7 +78,7 @@
 #'   statistic = "size",
 #'   offspring_dist = "pois",
 #'   stat_max = 10,
-#'   gen_interval = function(x) 3,
+#'   generation_time = function(x) 3,
 #'   lambda = 2
 #' )
 #' @references
@@ -97,7 +97,7 @@
 #' 1186–1204. \doi{https://doi.org/10.3390/ijerph7031204}
 simulate_tree <- function(ntrees, statistic = c("size", "length"),
                           offspring_dist, stat_max = Inf,
-                          gen_interval, t0 = 0,
+                          generation_time, t0 = 0,
                           tf = Inf, ...) {
   statistic <- match.arg(statistic)
 
@@ -116,8 +116,8 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     stat_max, lower = 0
   )
 
-  if (!missing(gen_interval)) {
-    check_gen_interval_valid(gen_interval)
+  if (!missing(generation_time)) {
+    check_generation_time_valid(generation_time)
   }
   checkmate::assert_numeric(
     t0, lower = 0, finite = TRUE
@@ -129,10 +129,10 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
   # Gather offspring distribution parameters
   pars <- list(...)
 
-  if (!missing(gen_interval)) {
-    check_gen_interval_valid(gen_interval)
+  if (!missing(generation_time)) {
+    check_generation_time_valid(generation_time)
   } else if (!missing(tf)) {
-    stop("If `tf` is specified, `gen_interval` must be specified too.")
+    stop("If `tf` is specified, `generation_time` must be specified too.")
   }
 
   # Initialisations
@@ -150,7 +150,7 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     generation = generation
   )
 
-  if (!missing(gen_interval)) {
+  if (!missing(generation_time)) {
     tree_df$time <- t0
     times <- tree_df$time
   }
@@ -208,8 +208,8 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
 
       # if a generation interval model/function was specified, use it
       # to generate generation intervals for the cases
-      if (!missing(gen_interval)) {
-        times <- rep(times, next_gen) + gen_interval(sum(n_offspring))
+      if (!missing(generation_time)) {
+        times <- rep(times, next_gen) + generation_time(sum(n_offspring))
         current_min_time <- unname(tapply(times, indices, min))
         new_df$time <- times
       }
@@ -220,11 +220,11 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     ## the specified maximum size/length
     sim <- which(n_offspring > 0 & stat_track < stat_max)
     if (length(sim) > 0) {
-      if (!missing(gen_interval)) {
+      if (!missing(generation_time)) {
         ## only continue to simulate chains that don't go beyond tf
         sim <- intersect(sim, unique(indices)[current_min_time < tf])
       }
-      if (!missing(gen_interval)) {
+      if (!missing(generation_time)) {
         times <- times[indices %in% sim]
       }
       infector_ids <- ids[indices %in% sim]
@@ -396,7 +396,7 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
 #'   pop = 100,
 #'   offspring_dist = "pois",
 #'   lambda = 0.5,
-#'   gen_interval = function(x) 3
+#'   generation_time = function(x) 3
 #' )
 #'
 #' # Simulate with negative binomial offspring
@@ -404,12 +404,12 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
 #' pop = 100, offspring_dist = "nbinom",
 #' mu = 0.5,
 #' size = 1.1,
-#' gen_interval = function(x) 3
+#' generation_time = function(x) 3
 #' )
 #' @export
 simulate_tree_from_pop <- function(pop,
                                    offspring_dist = c("pois", "nbinom"),
-                                   gen_interval,
+                                   generation_time,
                                    initial_immune = 0,
                                    t0 = 0,
                                    tf = Inf,
@@ -421,8 +421,8 @@ simulate_tree_from_pop <- function(pop,
     pop, lower = 1, finite = TRUE
   )
   checkmate::assert_string(offspring_dist)
-  if (!missing(gen_interval)) {
-    check_gen_interval_valid(gen_interval)
+  if (!missing(generation_time)) {
+    check_generation_time_valid(generation_time)
   }
   checkmate::assert_number(
     initial_immune, lower = 0, upper = pop - 1
@@ -516,7 +516,7 @@ simulate_tree_from_pop <- function(pop,
     ## add to df
     if (n_offspring > 0) {
       ## draw generation times
-      new_times <- gen_interval(n_offspring)
+      new_times <- generation_time(n_offspring)
 
       if (any(new_times < 0)) {
         stop("Generation interval must be >= 0.")

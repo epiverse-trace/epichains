@@ -8,7 +8,7 @@ test_that("Checks work", {
     "does not exist"
   )
   expect_error(
-    check_gen_interval_valid("a"),
+    check_generation_time_valid("a"),
     "must be a function"
   )
   expect_error(

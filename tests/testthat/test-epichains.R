@@ -10,7 +10,7 @@ test_that("Simulators return epichains objects", {
     pop = 100,
     offspring_dist = "pois",
     lambda = 0.9,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
@@ -18,7 +18,7 @@ test_that("Simulators return epichains objects", {
     offspring_dist = "nbinom",
     mu = 1,
     size = 1.1,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
@@ -33,7 +33,7 @@ test_that("Simulators return epichains objects", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    gen_interval = function(x) 3,
+    generation_time = function(x) 3,
     lambda = 2
   )
   #' Simulate chain statistics
@@ -73,7 +73,7 @@ test_that("print.epichains works for simulation functions", {
     pop = 100,
     offspring_dist = "pois",
     lambda = 0.9,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
@@ -81,7 +81,7 @@ test_that("print.epichains works for simulation functions", {
     offspring_dist = "nbinom",
     mu = 1,
     size = 1.1,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
@@ -96,7 +96,7 @@ test_that("print.epichains works for simulation functions", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    gen_interval = function(x) 3,
+    generation_time = function(x) 3,
     lambda = 2
   )
   #' Simulate chain statistics
@@ -121,7 +121,7 @@ test_that("summary.epichains works as expected", {
     pop = 100,
     offspring_dist = "pois",
     lambda = 0.9,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
@@ -129,7 +129,7 @@ test_that("summary.epichains works as expected", {
     offspring_dist = "nbinom",
     mu = 1,
     size = 1.1,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
@@ -144,7 +144,7 @@ test_that("summary.epichains works as expected", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    gen_interval = function(x) 3,
+    generation_time = function(x) 3,
     lambda = 2
   )
   #' Simulate chain statistics
@@ -227,7 +227,7 @@ test_that("validate_epichains works", {
     pop = 100,
     offspring_dist = "pois",
     lambda = 0.9,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
@@ -235,7 +235,7 @@ test_that("validate_epichains works", {
     offspring_dist = "nbinom",
     mu = 1,
     size = 1.1,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
@@ -250,7 +250,7 @@ test_that("validate_epichains works", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    gen_interval = function(x) 3,
+    generation_time = function(x) 3,
     lambda = 2
   )
   #' Simulate chain statistics
@@ -289,7 +289,7 @@ test_that("is_chains_tree works", {
     pop = 100,
     offspring_dist = "pois",
     lambda = 0.9,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
@@ -297,7 +297,7 @@ test_that("is_chains_tree works", {
     offspring_dist = "nbinom",
     mu = 1,
     size = 1.1,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
@@ -312,7 +312,7 @@ test_that("is_chains_tree works", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    gen_interval = function(x) 3,
+    generation_time = function(x) 3,
     lambda = 2
   )
   #' Simulate chain statistics
@@ -347,7 +347,7 @@ test_that("is_chains_summary works", {
     pop = 100,
     offspring_dist = "pois",
     lambda = 0.9,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
@@ -355,7 +355,7 @@ test_that("is_chains_summary works", {
     offspring_dist = "nbinom",
     mu = 1,
     size = 1.1,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
@@ -370,7 +370,7 @@ test_that("is_chains_summary works", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    gen_interval = function(x) 3,
+    generation_time = function(x) 3,
     lambda = 2
   )
   #' Simulate chain statistics
@@ -406,7 +406,7 @@ test_that("aggregate.epichains method returns correct objects", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    gen_interval = function(x) 3,
+    generation_time = function(x) 3,
     lambda = 2
   )
   #' Create aggregates
@@ -467,7 +467,7 @@ test_that("aggregate.epichains method is numerically correct", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    gen_interval = function(x) 3,
+    generation_time = function(x) 3,
     lambda = 2
   )
   #' Create aggregates
@@ -496,7 +496,7 @@ test_that("head and tail print output as expected", {
     pop = 100,
     offspring_dist = "pois",
     lambda = 0.9,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
@@ -504,7 +504,7 @@ test_that("head and tail print output as expected", {
     offspring_dist = "nbinom",
     mu = 1,
     size = 1.1,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
@@ -519,7 +519,7 @@ test_that("head and tail print output as expected", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    gen_interval = function(x) 3,
+    generation_time = function(x) 3,
     lambda = 2
   )
   expect_snapshot(head(susc_outbreak_raw))
@@ -539,7 +539,7 @@ test_that("head and tail return data.frames", {
     pop = 100,
     offspring_dist = "pois",
     lambda = 0.9,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
   susc_outbreak_raw2 <- simulate_tree_from_pop(
@@ -547,7 +547,7 @@ test_that("head and tail return data.frames", {
     offspring_dist = "nbinom",
     mu = 1,
     size = 1.1,
-    gen_interval = serial_func
+    generation_time = serial_func
   )
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_tree(
@@ -562,7 +562,7 @@ test_that("head and tail return data.frames", {
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
-    gen_interval = function(x) 3,
+    generation_time = function(x) 3,
     lambda = 2
   )
   #' Expectations
