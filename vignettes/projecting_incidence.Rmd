@@ -92,23 +92,29 @@ t0 <- rep(days_since_index, seed_cases$cases)
 t0
 ```
 
-### Serial interval
+### Generation time
 
-Next, we will set up the serial interval distribution, that is, the time
-between successive onsets of cases in a transmission chain.
-
-The log-normal distribution is commonly used in epidemiology to characterise 
-quantities such as the serial interval because it has a large variance 
-and can only be positive-valued [@nishiura2007; @limpert2001]. 
+In epidemiology, the generation interval is the duration between successive
+infectious events in a chain of transmission. Similarly, the serial
+interval is the duration between observed symptom onset times between
+successive cases in a transmission chain. The generation interval is
+often hard to observe because exact times of infection are hard to
+measure hence, the serial interval is often used instead. Here, we
+use the serial interval to represent what would normally be called the
+generation interval, that is, the time between successive cases.
 
 In this example, we will assume based on COVID-19 literature that the 
 serial interval, S, is log-normal distributed with parameters, 
-$\mu = 4.7$ and $\sigma = 2.9$ [@pearson2020]. Note that when the distribution
-is described this way, it means $\mu$ and $\sigma$ are the expected value 
-and standard deviation of the natural logarithm of the serial interval. Hence, 
-in order to sample the "back-transformed" measured serial interval with 
-expectation/mean, $E[S]$ and standard deviation, $SD [S]$, 
-we can use the following parametrisation:
+$\mu = 4.7$ and $\sigma = 2.9$ [@pearson2020]. The log-normal distribution is
+commonly used in epidemiology to characterise quantities such as the serial
+interval because it has a large variance and can only be positive-valued
+[@nishiura2007; @limpert2001].
+
+Note that when the distribution is described this way, it means $\mu$ and
+$\sigma$ are the expected value and standard deviation of the natural
+logarithm of the serial interval. Hence, in order to sample the
+"back-transformed" measured serial interval with expectation/mean, $E[S]$
+and standard deviation, $SD [S]$, we can use the following parametrisation:
 
 \begin{align}
 E[S] &= \ln \left( \dfrac{\mu^2}{(\sqrt{\mu^2 + \sigma^2}} \right) \\
@@ -120,13 +126,13 @@ SD [S] &= \sqrt {\ln \left(1 + \dfrac{\sigma^2}{\mu^2} \right)}
 See ["log-normal_distribution" on Wikipedia](https://en.wikipedia.org/wiki/Log-normal_distribution) for a
 detailed explanation of this parametrisation.
 
-We will now set up the serial interval function with the appropriate inputs.
+We will now set up the generation time function with the appropriate inputs.
 We adopt R's random lognormal distribution generator (`rlnorm()`) that
 takes `meanlog` and `sdlog` as arguments, which we define with the
 parametrisation above as `log_mean()` and `log_sd()` respectively and wrap it in 
-the `serial_interval()` function. Moreover, `serial_interval()` takes one
-argument `sample_size` as is required by _epichains_ 
-(See `?epichains::simulate_tree`), which is further passed to `rlnorm()` as the 
+the `generation_time_fn()` function. Moreover, `generation_time_fn()` takes one
+argument `n` as is required by _epichains_ (See `?epichains::simulate_tree`),
+which is further passed to `rlnorm()` as the 
 first argument to determine the number of observations to sample
 (See `?rlnorm`).
 ```{r input_prep3, message=FALSE}
@@ -137,9 +143,9 @@ log_mean <- log((mu^2) / (sqrt(sgma^2 + mu^2)))  # log mean
 log_sd <- sqrt(log(1 + (sgma / mu)^2)) # log sd
 
 #' serial interval function
-generation_time <- function(sample_size) {
-  si <- rlnorm(sample_size, meanlog = log_mean, sdlog = log_sd)
-  return(si)
+generation_time <- function(n) {
+  gt <- rlnorm(n, meanlog = log_mean, sdlog = log_sd)
+  return(gt)
 }
 ```
 
