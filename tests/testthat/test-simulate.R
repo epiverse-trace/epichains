@@ -235,7 +235,7 @@ test_that("simulate_tree is numerically correct", {
   tree_sim_summary <- summary(tree_sim_raw)
   #' Expectations
   expect_identical(
-    tree_sim_summary$chains_run,
+    tree_sim_summary$nchains,
     2.00
   )
   expect_identical(
@@ -264,7 +264,7 @@ test_that("simulate_tree is numerically correct", {
   )
   #' Expectations for intervention simulation
   expect_identical(
-    tree_sim_summary$chains_run,
+    tree_sim_summary$nchains,
     2.0
   )
   expect_identical(
@@ -306,7 +306,7 @@ test_that("simulate_summary is numerically correct", {
   chain_summary_summaries <- summary(chain_summary_raw)
   #' Expectations
   expect_identical(
-    chain_summary_summaries$chains_run,
+    chain_summary_summaries$nchains,
     2.00
   )
   expect_identical(
@@ -347,7 +347,7 @@ test_that("simulate_tree_from_pop is numerically correct", {
     susc_outbreak_summary$max_generation,
     1L
   )
-  expect_null(susc_outbreak_summary$chains_run)
+  expect_null(susc_outbreak_summary$nchains)
   expect_identical(
     susc_outbreak_raw$sim_id,
     1L

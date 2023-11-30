@@ -6,7 +6,7 @@
 \usage{
 new_epichains_summary(
   chains_summary,
-  chains_run = integer(),
+  nchains = integer(),
   statistic = character(),
   stat_max = integer()
 )
@@ -14,7 +14,7 @@ new_epichains_summary(
 \arguments{
 \item{chains_summary}{a \verb{<vector>} of chain sizes and lengths.}
 
-\item{chains_run}{Number of chains/cases used to generate the outbreak;
+\item{nchains}{Number of chains/cases used to generate the outbreak;
 Integer}
 
 \item{statistic}{String; Statistic (size/length) to calculate. Used to

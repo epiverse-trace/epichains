@@ -240,7 +240,7 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
 
   out <- epichains_tree(
     tree_df = tree_df,
-    chains_run = nchains,
+    nchains = nchains,
     statistic = statistic,
     stat_max = stat_max,
     track_pop = FALSE
@@ -337,7 +337,7 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
 
   out <- epichains_summary(
     chains_summary = stat_track,
-    chains_run = nchains,
+    nchains = nchains,
     statistic = statistic,
     stat_max = stat_max
   )
@@ -550,7 +550,7 @@ simulate_tree_from_pop <- function(pop,
 
   out <- epichains_tree(
     tree_df,
-    chains_run = NULL,
+    nchains = NULL,
     statistic = NULL,
     stat_max = NULL,
     track_pop = TRUE

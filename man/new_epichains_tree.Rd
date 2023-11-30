@@ -6,7 +6,7 @@
 \usage{
 new_epichains_tree(
   tree_df,
-  chains_run = integer(),
+  nchains = integer(),
   statistic = character(),
   stat_max = integer(),
   track_pop = logical()
@@ -17,7 +17,7 @@ new_epichains_tree(
 "ancestor", and "generation". Also has optional columns for "time", and
 "chain_id".}
 
-\item{chains_run}{Number of chains/cases used to generate the outbreak;
+\item{nchains}{Number of chains/cases used to generate the outbreak;
 Integer}
 
 \item{statistic}{String; Statistic (size/length) to calculate. Used to

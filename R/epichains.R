@@ -11,21 +11,21 @@
 #' @param tree_df a `<data.frame>` containing at least columns for "chain_id",
 #' "ancestor", and "generation". Also has optional columns for "time", and
 #' "chain_id".
-#' @param chains_run Number of chains/cases used to generate the outbreak;
+#' @param nchains Number of chains/cases used to generate the outbreak;
 #' Integer
 #' @param track_pop Was the susceptible population tracked; Logical
 #' @inheritParams epichains_tree
 #' @author James M. Azam
 #' @keywords internal
 new_epichains_tree <- function(tree_df,
-                               chains_run = integer(),
+                               nchains = integer(),
                                statistic = character(),
                                stat_max = integer(),
                                track_pop = logical()) {
   # Assemble the elements of the object
   obj <- structure(
     tree_df,
-    chains_run = chains_run,
+    nchains = nchains,
     statistic = statistic,
     stat_max = stat_max,
     track_pop = track_pop,
@@ -56,13 +56,13 @@ new_epichains_tree <- function(tree_df,
 #' @author James M. Azam
 #' @export
 epichains_tree <- function(tree_df,
-                           chains_run = integer(),
+                           nchains = integer(),
                            statistic = character(),
                            stat_max = integer(),
                            track_pop = logical()) {
   # Check that inputs are well specified
   checkmate::assert_data_frame(tree_df)
-  checkmate::assert_integerish(chains_run, null.ok = TRUE)
+  checkmate::assert_integerish(nchains, null.ok = TRUE)
   checkmate::assert_character(statistic, null.ok = TRUE)
   checkmate::assert_logical(track_pop)
   checkmate::assert_number(stat_max, null.ok = TRUE)
@@ -70,7 +70,7 @@ epichains_tree <- function(tree_df,
   # Create <epichains_tree> object
   epichains_tree <- new_epichains_tree(
     tree_df = tree_df,
-    chains_run = chains_run,
+    nchains = nchains,
     statistic = statistic,
     stat_max = stat_max,
     track_pop = track_pop
@@ -101,13 +101,13 @@ epichains_tree <- function(tree_df,
 #' @author James M. Azam
 #' @keywords internal
 new_epichains_summary <- function(chains_summary,
-                                  chains_run = integer(),
+                                  nchains = integer(),
                                   statistic = character(),
                                   stat_max = integer()) {
   # Assemble the elements of the object
   obj <- structure(
     chains_summary,
-    chains_run = chains_run,
+    nchains = nchains,
     statistic = statistic,
     stat_max = stat_max,
     class = c("epichains_summary", "vector")
@@ -131,19 +131,19 @@ new_epichains_summary <- function(chains_summary,
 #' @author James M. Azam
 #' @export
 epichains_summary <- function(chains_summary,
-                              chains_run = integer(),
+                              nchains = integer(),
                               statistic = character(),
                               stat_max = integer()) {
   # Check that inputs are well specified
   checkmate::assert_vector(chains_summary)
-  checkmate::assert_integerish(chains_run, null.ok = TRUE)
+  checkmate::assert_integerish(nchains, null.ok = TRUE)
   checkmate::assert_character(statistic)
   checkmate::assert_number(stat_max, null.ok = TRUE)
 
   # Create <epichains_summary> object
   epichains_summary <- new_epichains_summary(
     chains_summary,
-    chains_run = chains_run,
+    nchains = nchains,
     statistic = statistic,
     stat_max = stat_max
   )
@@ -208,7 +208,7 @@ format.epichains_tree <- function(x, ...) {
       ),
       sprintf(
         "Chains simulated: %s",
-        chain_info[["chains_run"]]
+        chain_info[["nchains"]]
       ),
       sprintf(
         "Number of ancestors (known): %s",
@@ -287,7 +287,7 @@ summary.epichains_tree <- function(object, ...) {
   validate_epichains_tree(object)
 
   # Get the summaries
-  chains_run <- attr(object, "chains_run", exact = TRUE)
+  nchains <- attr(object, "nchains", exact = TRUE)
 
   max_time <- ifelse(("time" %in% names(object)), max(object$time), NA)
 
@@ -297,7 +297,7 @@ summary.epichains_tree <- function(object, ...) {
 
   # List of summaries
   out <- list(
-    chains_run = chains_run,
+    nchains = nchains,
     max_time = max_time,
     unique_ancestors = n_unique_ancestors,
     max_generation = max_generation
@@ -319,7 +319,7 @@ summary.epichains_summary <- function(object, ...) {
   validate_epichains_summary(object)
 
   # Get the summaries
-  chains_run <- attr(object, "chains_run", exact = TRUE)
+  nchains <- attr(object, "nchains", exact = TRUE)
 
 
   if (all(is.infinite(object))) {
@@ -330,7 +330,7 @@ summary.epichains_summary <- function(object, ...) {
   }
 
   out <- list(
-    chains_run = chains_run,
+    nchains = nchains,
     max_chain_stat = max_chain_stat,
     min_chain_stat = min_chain_stat
   )

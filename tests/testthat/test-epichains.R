@@ -167,7 +167,7 @@ test_that("summary.epichains_tree works as expected", {
   expect_named(
     summary(tree_sim_raw),
     c(
-      "chains_run",
+      "nchains",
       "max_time",
       "unique_infectors",
       "max_generation"
@@ -176,7 +176,7 @@ test_that("summary.epichains_tree works as expected", {
   expect_named(
     summary(tree_sim_raw2),
     c(
-      "chains_run",
+      "nchains",
       "max_time",
       "unique_infectors",
       "max_generation"
@@ -185,7 +185,7 @@ test_that("summary.epichains_tree works as expected", {
   expect_named(
     summary(susc_outbreak_raw),
     c(
-      "chains_run",
+      "nchains",
       "max_time",
       "unique_infectors",
       "max_generation"
@@ -194,7 +194,7 @@ test_that("summary.epichains_tree works as expected", {
   expect_named(
     summary(susc_outbreak_raw2),
     c(
-      "chains_run",
+      "nchains",
       "max_time",
       "unique_infectors",
       "max_generation"
@@ -203,7 +203,7 @@ test_that("summary.epichains_tree works as expected", {
   expect_named(
     summary(chain_summary_raw),
     c(
-      "chains_run",
+      "nchains",
       "max_chain_stat",
       "min_chain_stat"
     )
