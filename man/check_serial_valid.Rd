@@ -2,7 +2,7 @@
 % Please edit documentation in R/checks.R
 \name{check_serial_valid}
 \alias{check_serial_valid}
-\title{Check if the serials_dist argument is specified as a function}
+\title{Check if the serials_dist argument is valid.}
 \usage{
 check_serial_valid(serials_dist)
 }
@@ -12,6 +12,7 @@ user-defined named or anonymous function with only one argument \code{n},
 representing the number of serial intervals to generate.}
 }
 \description{
-Check if the serials_dist argument is specified as a function
+Check if the serials_dist argument is a function with one argument \code{n}
+and returns a numerical vector of length \code{n}.
 }
 \keyword{internal}
