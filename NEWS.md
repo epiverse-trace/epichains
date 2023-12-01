@@ -1,4 +1,4 @@
-# epichains 0.1.9999
+# epichains 0.0.9999
 
 ## Documentation
 * A vignette outlining how to simulate interventions has been added
