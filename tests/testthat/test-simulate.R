@@ -209,7 +209,7 @@ test_that("simulate_tree_from_pop throws errors", {
       offspring_disp = 0.9,
       generation_time = generation_time_fn
     ),
-    "not found"
+    "'arg' must be NULL or a character vector"
   )
   expect_error(
     simulate_tree_from_pop(
