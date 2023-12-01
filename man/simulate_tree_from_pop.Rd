@@ -23,9 +23,9 @@ corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers). Only supports "pois" and "nbinom".}
 
-\item{generation_time}{The generation interval function; the name
+\item{generation_time}{The generation time function; the name
 of a user-defined named or anonymous function with only one argument \code{n},
-representing the number of generation intervals to generate. See details.}
+representing the number of generation times to sample.}
 
 \item{initial_immune}{The number of initial immunes in the population.
 Must be less than \code{pop} - 1.}

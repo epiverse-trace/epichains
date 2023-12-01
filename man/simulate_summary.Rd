@@ -58,7 +58,7 @@ For example, assuming we want to specify the generation time
 as a random log-normally distributed variable with
 \code{meanlog = 0.58} and \code{sdlog = 1.58}, we could define a named function,
 let's call it "generation_time_fn", with only one argument representing the
-number of generation intervals to sample:
+number of generation times to sample:
 \code{generation_time_fn <- function(n){rlnorm(n, 0.58, 1.38)}},
 and assign the name of the function to \code{generation_time} in
 the simulation function, i.e.
