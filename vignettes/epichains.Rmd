@@ -237,7 +237,7 @@ simulate_summary_eg
 
 `simulate_tree_from_pop()` simulates outbreaks based on a specified population size and pre-existing immunity until the susceptible pool runs out.
   
-Here is a quick example where we simulate an outbreak in a population of size $1000$. We assume individuals have a poisson offspring distribution with mean, $\text{lambda} = 1$, and generation time of $3$:
+Here is a quick example where we simulate an outbreak in a population of size $1000$. We assume individuals have a poisson offspring distribution with mean, $\text{lambda} = 1$, and fixed generation time of $3$:
 ```{r}
 set.seed(7)
 # Define generation time
