@@ -204,12 +204,12 @@ test_that("simulate_tree_from_pop throws errors", {
   expect_error(
     simulate_tree_from_pop(
       pop = 100,
-      offspring_dist = p,
+      offspring_dist = "pp",
       offspring_mean = 0.5,
       offspring_disp = 0.9,
       generation_time = generation_time_fn
     ),
-    "'arg' must be NULL or a character vector"
+    "should be one of"
   )
   expect_error(
     simulate_tree_from_pop(
