@@ -82,7 +82,7 @@ population</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">simulate_tree_from_pop</span><span class="op">(</span></span>
 <span>  <span class="va">pop</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pois"</span>, <span class="st">"nbinom"</span><span class="op">)</span>,</span>
-<span>  <span class="va">serials_dist</span>,</span>
+<span>  <span class="va">generation_time</span>,</span>
 <span>  initial_immune <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  t0 <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  tf <span class="op">=</span> <span class="cn">Inf</span>,</span>
@@ -103,11 +103,10 @@ where <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link"
 numbers). Only supports "pois" and "nbinom".</p></dd>
 
 
-<dt>serials_dist</dt>
-<dd><p>The serial interval distribution function; the name of a
-user-defined named or anonymous function with only one argument, usually
-called <code>n</code>, that returns a numeric vector of <code>n</code> randomly sampled serial
-intervals. See details.</p></dd>
+<dt>generation_time</dt>
+<dd><p>The generation time function; the name
+of a user-defined named or anonymous function with only one argument <code>n</code>,
+representing the number of generation times to sample.</p></dd>
 
 
 <dt>initial_immune</dt>
@@ -159,49 +158,6 @@ This is why <code>size</code> must be greater than 1.</p>
 <li><p><code>offspring_dist</code> can only handle "pois" and "nbinom".</p></li>
 </ul></div>
     <div class="section level2">
-    <h2 id="the-serial-interval-serials-dist-">The serial interval (<code>serials_dist</code>)<a class="anchor" aria-label="anchor" href="#the-serial-interval-serials-dist-"></a></h2>
-    
-<div class="section">
-<h3 id="assumptions-disambiguation">Assumptions/disambiguation<a class="anchor" aria-label="anchor" href="#assumptions-disambiguation"></a></h3>
-
-
-<p>In epidemiology, the generation interval is the duration between successive
-infectious events in a chain of transmission. Similarly, the serial
-interval is the duration between observed symptom onset times between
-successive cases in a transmission chain. The generation interval is
-often hard to observe because exact times of infection are hard to
-measure hence, the serial interval is often used instead . Here, we
-use the serial interval to represent what would normally be called the
-generation interval, that is, the time between successive cases.</p>
-<p>See References below for some literature on the subject.</p>
-</div>
-
-<div class="section">
-<h3 id="specifying-serials-dist">Specifying <code>serials_dist</code><a class="anchor" aria-label="anchor" href="#specifying-serials-dist"></a></h3>
-
-
-<p><code>serials_dist</code> must be specified as a named or
-<a href="https://en.wikipedia.org/wiki/Anonymous_function#R" class="external-link">anonymous/inline/unnamed function</a>
-with one argument.</p>
-<p>For example, assuming we want to specify the serial interval
-distribution as a random log-normally distributed variable with
-<code>meanlog = 0.58</code> and <code>sdlog = 1.58</code>, we could define a named function,
-let's call it "serial_interval", with only one argument representing the
-number of serial intervals to sample:
-<code>serial_interval &lt;- function(n){rlnorm(n, 0.58, 1.38)}</code>,
-and assign the name of the function to <code>serials_dist</code> in
-the simulation function, i.e.
-<code>`simulate_*`(..., serials_dist = serial_interval)</code>,
-where <code>...</code> are the other arguments to <code>simulate_*()</code> and * is a placeholder
-for the rest of simulation function's name.</p>
-<p>Alternatively, we could assign an anonymous function to <code>serials_dist</code>
-in the <code>simulate_*()</code> call, i.e.
-<code>simulate_*(..., serials_dist = function(n){rlnorm(n, 0.58, 1.38)})</code>,
-where <code>...</code> are the other arguments to <code>simulate_*()</code>.</p>
-</div>
-
-    </div>
-    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index">
 <ul><li><p><code><a href="simulate_tree.html">simulate_tree()</a></code> for simulating transmission trees from an
@@ -222,7 +178,7 @@ statistics (sizes or lengths) without the infection tree.</p></li>
 <span class="r-in"><span>  pop <span class="op">=</span> <span class="fl">100</span>,</span></span>
 <span class="r-in"><span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span></span>
 <span class="r-in"><span>  lambda <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
-<span class="r-in"><span>  serials_dist <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  generation_time <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> `epichains` object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -244,7 +200,7 @@ statistics (sizes or lengths) without the infection tree.</p></li>
 <span class="r-in"><span>pop <span class="op">=</span> <span class="fl">100</span>, offspring_dist <span class="op">=</span> <span class="st">"nbinom"</span>,</span></span>
 <span class="r-in"><span>mu <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
 <span class="r-in"><span>size <span class="op">=</span> <span class="fl">1.1</span>,</span></span>
-<span class="r-in"><span>serials_dist <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span></span>
+<span class="r-in"><span>generation_time <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> `epichains` object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

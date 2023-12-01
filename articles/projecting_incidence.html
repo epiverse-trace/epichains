@@ -171,21 +171,27 @@ create a corresponding seeding time for each individual, which we’ll call
 </details>
 </div>
 <div class="section level3">
-<h3 id="serial-interval">Serial interval<a class="anchor" aria-label="anchor" href="#serial-interval"></a>
+<h3 id="generation-time">Generation time<a class="anchor" aria-label="anchor" href="#generation-time"></a>
 </h3>
-<p>Next, we will set up the serial interval distribution, that is, the time
-between successive onsets of cases in a transmission chain.</p>
-<p>The log-normal distribution is commonly used in epidemiology to characterise
-quantities such as the serial interval because it has a large variance
-and can only be positive-valued <span class="citation">(<a href="#ref-nishiura2007" role="doc-biblioref">Nishiura 2007</a>; <a href="#ref-limpert2001" role="doc-biblioref">Limpert, Stahel, and Abbt 2001</a>)</span>.</p>
+<p>In epidemiology, the generation time (also called the generation interval) is
+the duration between successive infectious events in a chain of transmission.
+Similarly, the serial interval is the duration between observed symptom onset
+times between successive cases in a transmission chain. The generation
+interval is often hard to observe because exact times of infection are hard to
+measure hence, the serial interval is often used instead. Here, we
+use the serial interval and interpret the simulated case data to represent
+symptom onset.</p>
 <p>In this example, we will assume based on COVID-19 literature that the
 serial interval, S, is log-normal distributed with parameters,
-<span class="math inline">\(\mu = 4.7\)</span> and <span class="math inline">\(\sigma = 2.9\)</span> <span class="citation">(<a href="#ref-pearson2020" role="doc-biblioref">Pearson et al. 2020</a>)</span>. Note that when the distribution
-is described this way, it means <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are the expected value
-and standard deviation of the natural logarithm of the serial interval. Hence,
-in order to sample the “back-transformed” measured serial interval with
-expectation/mean, <span class="math inline">\(E[S]\)</span> and standard deviation, <span class="math inline">\(SD [S]\)</span>,
-we can use the following parametrisation:</p>
+<span class="math inline">\(\mu = 4.7\)</span> and <span class="math inline">\(\sigma = 2.9\)</span> <span class="citation">(<a href="#ref-pearson2020" role="doc-biblioref">Pearson et al. 2020</a>)</span>. The log-normal distribution is
+commonly used in epidemiology to characterise quantities such as the serial
+interval because it has a large variance and can only be positive-valued
+<span class="citation">(<a href="#ref-nishiura2007" role="doc-biblioref">Nishiura 2007</a>; <a href="#ref-limpert2001" role="doc-biblioref">Limpert, Stahel, and Abbt 2001</a>)</span>.</p>
+<p>Note that when the distribution is described this way, it means <span class="math inline">\(\mu\)</span> and
+<span class="math inline">\(\sigma\)</span> are the expected value and standard deviation of the natural
+logarithm of the serial interval. Hence, in order to sample the
+“back-transformed” measured serial interval with expectation/mean, <span class="math inline">\(E[S]\)</span>
+and standard deviation, <span class="math inline">\(SD [S]\)</span>, we can use the following parametrisation:</p>
 <p><span class="math display">\[\begin{align}
 E[S] &amp;= \ln \left( \dfrac{\mu^2}{(\sqrt{\mu^2 + \sigma^2}} \right) \\
 
@@ -193,13 +199,13 @@ SD [S] &amp;= \sqrt {\ln \left(1 + \dfrac{\sigma^2}{\mu^2} \right)}
 \end{align}\]</span></p>
 <p>See <a href="https://en.wikipedia.org/wiki/Log-normal_distribution" class="external-link">“log-normal_distribution” on Wikipedia</a> for a
 detailed explanation of this parametrisation.</p>
-<p>We will now set up the serial interval function with the appropriate inputs.
+<p>We will now set up the generation time function with the appropriate inputs.
 We adopt R’s random lognormal distribution generator (<code><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm()</a></code>) that
 takes <code>meanlog</code> and <code>sdlog</code> as arguments, which we define with the
 parametrisation above as <code>log_mean()</code> and <code>log_sd()</code> respectively and wrap it in
-the <code>serial_interval()</code> function. Moreover, <code>serial_interval()</code> takes one
-argument <code>sample_size</code> as is required by <em>epichains</em>
-(See <code><a href="../reference/simulate_tree.html">?epichains::simulate_tree</a></code>), which is further passed to <code><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm()</a></code> as the
+the <code>generation_time_fn()</code> function. Moreover, <code>generation_time_fn()</code> takes one
+argument <code>n</code> as is required by <em>epichains</em> (See <code><a href="../reference/simulate_tree.html">?epichains::simulate_tree</a></code>),
+which is further passed to <code><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm()</a></code> as the
 first argument to determine the number of observations to sample
 (See <code><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">?rlnorm</a></code>).</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -210,9 +216,9 @@ first argument to determine the number of observations to sample
 <span><span class="va">log_sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="op">(</span><span class="va">sgma</span> <span class="op">/</span> <span class="va">mu</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># log sd</span></span>
 <span></span>
 <span><span class="co">#' serial interval function</span></span>
-<span><span class="va">serials_dist</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sample_size</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">si</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="va">sample_size</span>, meanlog <span class="op">=</span> <span class="va">log_mean</span>, sdlog <span class="op">=</span> <span class="va">log_sd</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">si</span><span class="op">)</span></span>
+<span><span class="va">generation_time</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="va">n</span>, meanlog <span class="op">=</span> <span class="va">log_mean</span>, sdlog <span class="op">=</span> <span class="va">log_sd</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 </details>
 </div>
@@ -271,9 +277,10 @@ assume a maximum chain size of <span class="math inline">\(1000\)</span>.</p>
 <div class="section level2">
 <h2 id="modelling-assumptions">Modelling assumptions<a class="anchor" aria-label="anchor" href="#modelling-assumptions"></a>
 </h2>
-<p><code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> makes the following simplifying assumptions:</p>
+<p>This exercise makes the following simplifying assumptions:</p>
 <ol style="list-style-type: decimal">
 <li>All cases are observed.</li>
+<li>Cases are observed exactly at the time of infection.</li>
 <li>There is no reporting delay.</li>
 <li>Reporting rate is constant through the course of the epidemic.</li>
 <li>No interventions have been implemented.</li>
@@ -301,7 +308,7 @@ by rows with <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html
 <span>      size <span class="op">=</span> <span class="va">size</span>,</span>
 <span>      statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>      stat_max <span class="op">=</span> <span class="va">stat_max</span>,</span>
-<span>      serials_dist <span class="op">=</span> <span class="va">serials_dist</span>,</span>
+<span>      generation_time <span class="op">=</span> <span class="va">generation_time</span>,</span>
 <span>      t0 <span class="op">=</span> <span class="va">t0</span>,</span>
 <span>      tf <span class="op">=</span> <span class="va">tf</span></span>
 <span>    <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>

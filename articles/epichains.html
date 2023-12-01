@@ -262,14 +262,14 @@ averaged to come up with an overall likelihood estimate.</p>
 <a href="https://epiverse-trace.github.io/epichains/reference/simulate_tree.html"><code>simulate_tree()</code></a><a class="anchor" aria-label="anchor" href="#simulate_tree"></a>
 </h3>
 <p><code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> simulates an outbreak from a given number of infections.
-It retains and returns information on infectors (ancestors), infectees, the generation of infection, and the time, if a serial distribution is specified.</p>
-<p>Let’s look at an example where we simulate the transmission trees of <span class="math inline">\(10\)</span> initial infections/chains. We
-assume a poisson offspring distribution with mean, <span class="math inline">\(\text{lambda} = 0.9\)</span>, and a serial interval of <span class="math inline">\(3\)</span> days:</p>
+It retains and returns information on infectors (ancestors), infectees, the generation of infection, and the time, if a generation time function is specified.</p>
+<p>Let’s look at an example where we simulate the transmission trees of <span class="math inline">\(10\)</span> initial infections/chains. We assume a poisson offspring distribution with mean, <span class="math inline">\(\text{lambda} = 0.9\)</span>, and a generation time of <span class="math inline">\(3\)</span> days:</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="co"># Define serial distribution</span></span>
-<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co"># Define generation time</span></span>
+<span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
@@ -277,7 +277,7 @@ assume a poisson offspring distribution with mean, <span class="math inline">\(\
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  serials_dist <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span>,</span>
+<span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -329,19 +329,20 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <a href="https://epiverse-trace.github.io/epichains/reference/simulate_tree_from_pop.html"><code>simulate_tree_from_pop()</code></a><a class="anchor" aria-label="anchor" href="#simulate_tree_from_pop"></a>
 </h3>
 <p><code><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code> simulates outbreaks based on a specified population size and pre-existing immunity until the susceptible pool runs out.</p>
-<p>Here is a quick example where we simulate an outbreak in a population of size <span class="math inline">\(1000\)</span>. We assume individuals have a poisson offspring distribution with mean, <span class="math inline">\(\text{lambda} = 1\)</span>, and serial interval of <span class="math inline">\(3\)</span>:</p>
+<p>Here is a quick example where we simulate an outbreak in a population of size <span class="math inline">\(1000\)</span>. We assume individuals have a poisson offspring distribution with mean, <span class="math inline">\(\text{lambda} = 1\)</span>, and fixed generation time of <span class="math inline">\(3\)</span>:</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span>
-<span><span class="co"># Define serial distribution</span></span>
-<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Define generation time</span></span>
+<span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">sim_tree_from_pop_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop</a></span><span class="op">(</span></span>
 <span>  pop <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span></span>
+<span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_from_pop_eg</span><span class="op">)</span></span>
@@ -366,9 +367,10 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example with simulate_tree()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="co"># Define serial distribution</span></span>
-<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Define generation time</span></span>
+<span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
@@ -376,7 +378,7 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span>,</span>
+<span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -420,14 +422,15 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <h3 id="aggregating">Aggregating<a class="anchor" aria-label="anchor" href="#aggregating"></a>
 </h3>
 <p>You can aggregate <code>&lt;epichains&gt;</code> objects returned by the <code>simulate_*()</code> functions into a time series, which is a <code>&lt;data.frame&gt;</code> with columns “cases” and either “generation” or “time”, depending on the value of <code>grouping_var</code>.</p>
-<p>To aggregate over “time”, you must have specified a serial interval distribution in the simulation step.</p>
+<p>To aggregate over “time”, you must have specified a generation time distribution in the simulation step.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example with simulate_tree()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Define serial distribution</span></span>
-<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Define generation time</span></span>
+<span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
@@ -435,7 +438,7 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span>,</span>
+<span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -456,9 +459,10 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Run simulation with simulate_tree()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="co"># Define serial distribution</span></span>
-<span><span class="va">serial_func</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Define generation time</span></span>
+<span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
@@ -466,7 +470,7 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  serials_dist <span class="op">=</span> <span class="va">serial_func</span>,</span>
+<span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="op">)</span></span>
 <span></span>
