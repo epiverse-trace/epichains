@@ -94,14 +94,14 @@ t0
 
 ### Generation time
 
-In epidemiology, the generation interval is the duration between successive
+In epidemiology, the generation time (also called the generation interval) is the duration between successive
 infectious events in a chain of transmission. Similarly, the serial
 interval is the duration between observed symptom onset times between
 successive cases in a transmission chain. The generation interval is
 often hard to observe because exact times of infection are hard to
 measure hence, the serial interval is often used instead. Here, we
-use the serial interval to represent what would normally be called the
-generation interval, that is, the time between successive cases.
+use the serial interval and interpret the simulated case data to represent
+symptom onset.
 
 In this example, we will assume based on COVID-19 literature that the 
 serial interval, S, is log-normal distributed with parameters, 
