@@ -1,10 +1,5 @@
 # epichains 0.0.9999
 
-## Documentation
-* A vignette outlining how to simulate interventions has been added
-
-# epichains 0.1.0
-
 ## Package name change
 
 * `epichains` is a re-implementation of `bpmodels` with a focus on providing
@@ -43,6 +38,10 @@
 * `print()`
 * `summary()`
 * `aggregate()`
+
+## Documentation
+
+* A vignette outlining how to simulate interventions has been added
 
 # bpmodels 0.2.1
 
