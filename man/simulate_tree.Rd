@@ -35,15 +35,15 @@ numbers).}
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
 
-\item{generation_time}{The generation interval function; the name
+\item{generation_time}{The generation time function; the name
 of a user-defined named or anonymous function with only one argument \code{n},
-representing the number of generation intervals to generate. See details.}
+representing the number of generation times to sample.}
 
-\item{t0}{Start time (if generation interval is given); either a single value
+\item{t0}{Start time (if generation time is given); either a single value
 or a vector of same length as \code{nchains} (number of simulations) with
 initial times. Defaults to 0.}
 
-\item{tf}{End time (if generation interval is given).}
+\item{tf}{End time (if generation time is given).}
 
 \item{...}{Parameters of the offspring distribution as required by R.}
 }
@@ -77,7 +77,7 @@ For example, assuming we want to specify the generation time
 as a random log-normally distributed variable with
 \code{meanlog = 0.58} and \code{sdlog = 1.58}, we could define a named function,
 let's call it "generation_time_fn", with only one argument representing the
-number of generation intervals to sample:
+number of generation times to sample:
 \code{generation_time_fn <- function(n){rlnorm(n, 0.58, 1.38)}},
 and assign the name of the function to \code{generation_time} in
 the simulation function, i.e.

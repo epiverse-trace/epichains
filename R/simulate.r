@@ -15,13 +15,13 @@
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to this value.
 #' Defaults to `Inf`.
-#' @param generation_time The generation interval function; the name
+#' @param generation_time The generation time function; the name
 #' of a user-defined named or anonymous function with only one argument `n`,
-#' representing the number of generation intervals to generate. See details.
-#' @param t0 Start time (if generation interval is given); either a single value
+#' representing the number of generation times to sample.
+#' @param t0 Start time (if generation time is given); either a single value
 #' or a vector of same length as `nchains` (number of simulations) with
 #' initial times. Defaults to 0.
-#' @param tf End time (if generation interval is given).
+#' @param tf End time (if generation time is given).
 #' @param ... Parameters of the offspring distribution as required by R.
 #' @return An `<epichains>` object, which is basically a `<data.frame>` with
 #' columns `infectee_id`, `sim_id` (a unique ID within each simulation
@@ -53,7 +53,7 @@
 #' as a random log-normally distributed variable with
 #' `meanlog = 0.58` and `sdlog = 1.58`, we could define a named function,
 #' let's call it "generation_time_fn", with only one argument representing the
-#' number of generation intervals to sample:
+#' number of generation times to sample:
 #' \code{generation_time_fn <- function(n){rlnorm(n, 0.58, 1.38)}},
 #' and assign the name of the function to `generation_time` in
 #' the simulation function, i.e.
@@ -206,8 +206,8 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
           generation = generation
         )
 
-      # if a generation interval model/function was specified, use it
-      # to generate generation intervals for the cases
+      # if a generation time model/function was specified, use it
+      # to generate generation times for the cases
       if (!missing(generation_time)) {
         times <- rep(times, next_gen) + generation_time(sum(n_offspring))
         current_min_time <- unname(tapply(times, indices, min))
@@ -519,7 +519,7 @@ simulate_tree_from_pop <- function(pop,
       new_times <- generation_time(n_offspring)
 
       if (any(new_times < 0)) {
-        stop("Generation interval must be >= 0.")
+        stop("Generation time must be >= 0.")
       }
 
       new_df <- data.frame(

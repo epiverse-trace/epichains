@@ -7,9 +7,9 @@
 check_generation_time_valid(generation_time)
 }
 \arguments{
-\item{generation_time}{The generation interval function; the name of a
-user-defined named or anonymous function with only one argument \code{n},
-representing the number of generation intervals to sample.}
+\item{generation_time}{The generation time function; the name
+of a user-defined named or anonymous function with only one argument \code{n},
+representing the number of generation times to sample.}
 }
 \description{
 Check if the generation_time argument is specified as a function

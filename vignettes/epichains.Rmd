@@ -300,7 +300,7 @@ summary(simulate_summary_eg)
 
 You can aggregate `<epichains>` objects returned by the `simulate_*()` functions into a time series, which is a `<data.frame>` with columns "cases"  and either "generation" or "time", depending on the value of `grouping_var`.
 
-To aggregate over "time", you must have specified a generation interval distribution in the simulation step.
+To aggregate over "time", you must have specified a generation time distribution in the simulation step.
 ```{r include=TRUE,echo=TRUE}
 # Example with simulate_tree()
 set.seed(123)
