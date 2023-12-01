@@ -95,7 +95,7 @@
 <dd><p>String; Statistic (size/length) to calculate. Used to
 determine stopping criteria for simulations when <code>stat_max</code> is finite.
 Can be one of:</p><ul><li><p>"size": the total number of offspring.</p></li>
-<li><p>"length": the total number of ancestors.</p></li>
+<li><p>"length": the total number of infectors.</p></li>
 </ul></dd>
 
 
@@ -138,12 +138,8 @@ initial times. Defaults to 0.</p></dd>
     
 
 <p>An <code>&lt;epichains&gt;</code> object, which is basically a <code>&lt;data.frame&gt;</code> with
-columns <code>chain_id</code> (chain ID), <code>sim_id</code> (a unique ID within each simulation
-for each individual), <code>ancestor</code></p>
-
-
-<p>(the ID of the ancestor of each individual), <code>generation</code>, and
-<code>time</code> (of infection)</p>
+columns <code>infectee_id</code>, <code>sim_id</code> (a unique ID within each simulation
+for each infectee), <code>infector_id</code>, <code>generation</code>, and <code>time</code> (of infection)</p>
     </div>
     <div class="section level2">
     <h2 id="calculating-chain-sizes-and-lengths">Calculating chain sizes and lengths<a class="anchor" aria-label="anchor" href="#calculating-chain-sizes-and-lengths"></a></h2>

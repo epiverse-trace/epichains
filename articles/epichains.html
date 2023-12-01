@@ -282,14 +282,14 @@ assume a poisson offspring distribution with mean, <span class="math inline">\(\
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt; tree head (from first known ancestor) &gt;</span></span>
-<span><span class="co">#&gt;    chain_id sim_id ancestor generation time</span></span>
-<span><span class="co">#&gt; 11        2      2        1          2    3</span></span>
-<span><span class="co">#&gt; 13        3      2        1          2    3</span></span>
-<span><span class="co">#&gt; 14        4      2        1          2    3</span></span>
-<span><span class="co">#&gt; 16        5      2        1          2    3</span></span>
-<span><span class="co">#&gt; 19        7      2        1          2    3</span></span>
-<span><span class="co">#&gt; 20        8      2        1          2    3</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt; tree head (from first known infector) &gt;</span></span>
+<span><span class="co">#&gt;    infectee_id sim_id infector_id generation time</span></span>
+<span><span class="co">#&gt; 11           2      2           1          2    3</span></span>
+<span><span class="co">#&gt; 12           3      2           1          2    3</span></span>
+<span><span class="co">#&gt; 13           4      2           1          2    3</span></span>
+<span><span class="co">#&gt; 14           5      2           1          2    3</span></span>
+<span><span class="co">#&gt; 15           7      2           1          2    3</span></span>
+<span><span class="co">#&gt; 16           8      2           1          2    3</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level3">
@@ -345,14 +345,14 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_from_pop_eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt; tree head (from first known ancestor) &gt;</span></span>
-<span><span class="co">#&gt;   sim_id ancestor generation time</span></span>
-<span><span class="co">#&gt; 2      2        1          2    3</span></span>
-<span><span class="co">#&gt; 3      3        1          2    3</span></span>
-<span><span class="co">#&gt; 4      4        1          2    3</span></span>
-<span><span class="co">#&gt; 5      5        1          2    3</span></span>
-<span><span class="co">#&gt; 6      6        2          3    6</span></span>
-<span><span class="co">#&gt; 7      7        6          4    9</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt; tree head (from first known infector) &gt;</span></span>
+<span><span class="co">#&gt;   sim_id infector_id generation time</span></span>
+<span><span class="co">#&gt; 2      2           1          2    3</span></span>
+<span><span class="co">#&gt; 3      3           1          2    3</span></span>
+<span><span class="co">#&gt; 4      4           1          2    3</span></span>
+<span><span class="co">#&gt; 5      5           1          2    3</span></span>
+<span><span class="co">#&gt; 6      6           2          3    6</span></span>
+<span><span class="co">#&gt; 7      7           6          4    9</span></span></code></pre></div>
 </details>
 </div>
 </div>
@@ -387,7 +387,7 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="co">#&gt; $max_time</span></span>
 <span><span class="co">#&gt; [1] 12</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $unique_ancestors</span></span>
+<span><span class="co">#&gt; $unique_infectors</span></span>
 <span><span class="co">#&gt; [1] 9</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $max_generation</span></span>

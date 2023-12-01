@@ -132,9 +132,8 @@ Must be less than <code>pop</code> - 1.</p></dd>
     
 
 <p>An <code>&lt;epichains&gt;</code> object, which is basically a <code>&lt;data.frame&gt;</code> with
-columns <code>sim_id</code> (a unique ID within each simulation for each individual
-of the chain), <code>ancestor</code> (the ID of the ancestor of each individual),
-<code>generation</code>, and <code>time</code> (of infection).</p>
+columns <code>sim_id</code> (a unique ID within each simulation for each infectee
+in the chain), <code>infector_id</code>, <code>generation</code>, and <code>time</code> (of infection).</p>
     </div>
     <div class="section level2">
     <h2 id="offspring-distributions">Offspring distributions<a class="anchor" aria-label="anchor" href="#offspring-distributions"></a></h2>
@@ -227,16 +226,16 @@ statistics (sizes or lengths) without the infection tree.</p></li>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> `epichains` object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt; tree head (from first known ancestor) &gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt; tree head (from first known infector) &gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] sim_id     ancestor   generation time      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] sim_id      infector_id generation  time       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;0 rows&gt; (or 0-length row.names)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt; tree tail &gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   sim_id ancestor generation time</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1       NA          1    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of ancestors (known): 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   sim_id infector_id generation time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1          NA          1    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of infectors (known): 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of generations: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Use `as.data.frame(&lt;object_name&gt;)` to view the full output in the console.</span>
 <span class="r-in"><span></span></span>
@@ -249,16 +248,16 @@ statistics (sizes or lengths) without the infection tree.</p></li>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> `epichains` object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt; tree head (from first known ancestor) &gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt; tree head (from first known infector) &gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] sim_id     ancestor   generation time      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] sim_id      infector_id generation  time       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;0 rows&gt; (or 0-length row.names)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt; tree tail &gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   sim_id ancestor generation time</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1       NA          1    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of ancestors (known): 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   sim_id infector_id generation time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1          NA          1    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of infectors (known): 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of generations: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Use `as.data.frame(&lt;object_name&gt;)` to view the full output in the console.</span>
 </code></pre></div>
