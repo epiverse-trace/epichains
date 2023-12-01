@@ -88,23 +88,23 @@
       
       < tree head (from first known infector) >
       
-         infectee_id sim_id infector_id generation time
-      11           1      2           1          2    3
-      12           2      2           1          2    3
-      13           3      2           1          2    3
-      14           4      2           1          2    3
-      15           5      2           1          2    3
-      16           6      2           1          2    3
+         infectee_id sim_id infector_id generation      time
+      11           1      2           1          2 2.6525084
+      12           2      2           1          2 0.2397245
+      13           4      2           1          2 0.9737101
+      14           5      2           1          2 0.2385887
+      15           6      2           1          2 1.7212668
+      16           7      2           1          2 1.3509058
       
       < tree tail >
       
-          infectee_id sim_id infector_id generation time
-      138          10     19           9          4    9
-      139           2     20           6          4    9
-      140           4     20           9          4    9
-      141           4     21           9          4    9
-      142           4     22           9          4    9
-      143           4     23           9          4    9
+          infectee_id sim_id infector_id generation      time
+      119           9     15           8          5 19.146936
+      120           2     16           8          4  2.941326
+      121           9     16           8          5 17.447014
+      122          10     16           9          4 17.017684
+      123           2     17           9          4  7.368167
+      124           2     18           9          4  7.931447
       Chains simulated: 10
       Number of infectors (known): 9
       Number of generations: 5
@@ -171,13 +171,13 @@
     Output
       < tree head (from first known infector) >
       
-         infectee_id sim_id infector_id generation time
-      11           1      2           1          2    3
-      12           2      2           1          2    3
-      13           3      2           1          2    3
-      14           4      2           1          2    3
-      15           5      2           1          2    3
-      16           6      2           1          2    3
+         infectee_id sim_id infector_id generation      time
+      11           1      2           1          2 2.6525084
+      12           2      2           1          2 0.2397245
+      13           4      2           1          2 0.9737101
+      14           5      2           1          2 0.2385887
+      15           6      2           1          2 1.7212668
+      16           7      2           1          2 1.3509058
 
 ---
 
@@ -230,11 +230,11 @@
       
       < tree tail >
       
-          infectee_id sim_id infector_id generation time
-      138          10     19           9          4    9
-      139           2     20           6          4    9
-      140           4     20           9          4    9
-      141           4     21           9          4    9
-      142           4     22           9          4    9
-      143           4     23           9          4    9
+          infectee_id sim_id infector_id generation      time
+      119           9     15           8          5 19.146936
+      120           2     16           8          4  2.941326
+      121           9     16           8          5 17.447014
+      122          10     16           9          4 17.017684
+      123           2     17           9          4  7.368167
+      124           2     18           9          4  7.931447
 
