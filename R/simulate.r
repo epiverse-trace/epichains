@@ -159,7 +159,7 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
   # initialise data frame to hold the transmission trees
   generation <- 1L
   tree_df <- data.frame(
-    chain_id = seq_len(ntrees),
+    infectee_id = seq_len(ntrees),
     sim_id = 1L,
     infector_id = NA_integer_,
     generation = generation
