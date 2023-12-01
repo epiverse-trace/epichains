@@ -154,7 +154,7 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
   stat_track <- rep(1, ntrees) # track length or size (depending on `statistic`) #nolint
   n_offspring <- rep(1, ntrees) # current number of offspring
   sim <- seq_len(ntrees) # track chains that are still being simulated
-  ancestor_ids <- rep(1, ntrees) # all chains start in generation 1
+  infector_ids <- rep(1, ntrees) # all chains start in generation 1
 
   # initialise data frame to hold the transmission trees
   generation <- 1L
