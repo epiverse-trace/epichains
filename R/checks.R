@@ -32,9 +32,7 @@ check_offspring_func_valid <- function(roffspring_name) {
 
 #' Check if the generation_time argument is specified as a function
 #'
-#' @param generation_time The generation interval function; the name of a
-#' user-defined named or anonymous function with only one argument `n`,
-#' representing the number of generation intervals to sample.
+#' @inheritParams simulate_tree
 #'
 #' @keywords internal
 check_generation_time_valid <- function(generation_time) {
