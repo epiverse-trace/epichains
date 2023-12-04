@@ -40,7 +40,7 @@ of a user-defined named or anonymous function with only one argument \code{n},
 representing the number of generation times to sample.}
 
 \item{t0}{Start time (if generation time is given); either a single value
-or a vector of same length as \code{nchains} (number of simulations) with
+or a vector of same length as \code{ntrees} (number of simulations) with
 initial times. Defaults to 0.}
 
 \item{tf}{End time (if generation time is given).}

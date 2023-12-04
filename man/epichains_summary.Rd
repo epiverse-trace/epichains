@@ -6,7 +6,7 @@
 \usage{
 epichains_summary(
   chains_summary,
-  nchains = integer(),
+  ntrees = integer(),
   statistic = character(),
   stat_max = integer()
 )
@@ -14,15 +14,14 @@ epichains_summary(
 \arguments{
 \item{chains_summary}{a \verb{<vector>} of chain sizes and lengths.}
 
-\item{nchains}{Number of chains/cases used to generate the outbreak;
-Integer}
+\item{ntrees}{Number of initial cases used to generate the outbreak; Integer}
 
 \item{statistic}{String; Statistic (size/length) to calculate. Used to
 determine stopping criteria for simulations when \code{stat_max} is finite.
 Can be one of:
 \itemize{
 \item "size": the total number of offspring.
-\item "length": the total number of ancestors.
+\item "length": the total number of infectors.
 }}
 
 \item{stat_max}{A cut off for the chain statistic (size/length) being
