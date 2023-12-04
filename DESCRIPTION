@@ -1,0 +1,53 @@
+Package: epichains
+Title: Simulating and Analysing Transmission Chain Statistics Using Branching Process
+    Models
+Version: 0.1.0
+Authors@R: c(
+    person("James M.", "Azam", , "james.azam@lshtm.ac.uk", role = c("aut", "cre"),
+           comment = c(ORCID = "https://orcid.org/0000-0001-5782-7330")),
+    person("Zhian N.", "Kamvar", , "zkamvar@gmail.com", role = "ctb",
+           comment = c(ORCID = "https://orcid.org/0000-0003-1458-7108")),
+    person("Flavio", "Finger", , "flavio.finger@epicentre.msf.org", role = "aut",
+           comment = c(ORCID = "https://orcid.org/0000-0002-8613-5170")),
+    person("Sebastian", "Funk", , "sebastian.funk@lshtm.ac.uk", role = "aut",
+           comment = c(ORCID = "https://orcid.org/0000-0002-2842-3406"))
+           )
+Description: Provides methods to simulate and analyse the size and length
+    of branching processes with an arbitrary offspring distribution. These
+    can be used, for example, to analyse the distribution of chain sizes
+    or length of infectious disease outbreaks, as discussed in Farrington
+    et al. (2003) <doi:10.1093/biostatistics/4.2.279>.
+License: MIT + file LICENSE
+URL: https://github.com/epiverse-trace/epichains,
+    https://epiverse-trace.github.io/epichains/
+BugReports: https://github.com/epiverse-trace/epichains/issues
+Depends:
+    R (>= 3.6.0)
+Imports: 
+    checkmate,
+    stats,
+    utils
+Suggests:
+    bookdown,
+    covr,
+    dplyr,
+    epiparameter,
+    ggplot2,
+    knitr,
+    lubridate,
+    rmarkdown,
+    spelling,
+    testthat,
+    truncdist,
+    usethis
+VignetteBuilder:
+    knitr
+Remotes:
+    github::epiverse-trace/epiparameter
+Config/Needs/website:epiverse-trace/epiversetheme
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Language: en-GB
