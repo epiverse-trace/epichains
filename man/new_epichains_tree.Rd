@@ -6,7 +6,7 @@
 \usage{
 new_epichains_tree(
   tree_df,
-  nchains = integer(),
+  ntrees = integer(),
   statistic = character(),
   stat_max = integer(),
   track_pop = logical()

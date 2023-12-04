@@ -19,7 +19,7 @@
 #' of a user-defined named or anonymous function with only one argument `n`,
 #' representing the number of generation times to sample.
 #' @param t0 Start time (if generation time is given); either a single value
-#' or a vector of same length as `nchains` (number of simulations) with
+#' or a vector of same length as `ntrees` (number of simulations) with
 #' initial times. Defaults to 0.
 #' @param tf End time (if generation time is given).
 #' @param ... Parameters of the offspring distribution as required by R.
@@ -337,7 +337,7 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
 
   out <- epichains_summary(
     chains_summary = stat_track,
-    nchains = nchains,
+    ntrees = ntrees,
     statistic = statistic,
     stat_max = stat_max
   )
@@ -550,7 +550,7 @@ simulate_tree_from_pop <- function(pop,
 
   out <- epichains_tree(
     tree_df,
-    nchains = NULL,
+    ntrees = NULL,
     statistic = NULL,
     stat_max = NULL,
     track_pop = TRUE
