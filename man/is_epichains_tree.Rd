@@ -10,7 +10,7 @@ is_epichains_tree(x)
 \item{x}{An R object}
 }
 \value{
-logical, \code{TRUE} if the object is an \code{epichains_tree} and \code{FALSE}
+logical, \code{TRUE} if the object is an \verb{<epichains_tree>} and \code{FALSE}
 otherwise
 }
 \description{

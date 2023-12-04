@@ -23,7 +23,7 @@
 #' initial times. Defaults to 0.
 #' @param tf End time (if generation time is given).
 #' @param ... Parameters of the offspring distribution as required by R.
-#' @return An `<epichains>` object, which is basically a `<data.frame>` with
+#' @return An `<epichains_tree>` object, which is basically a `<data.frame>`
 #' columns `infectee_id`, `sim_id` (a unique ID within each simulation
 #' for each infectee), `infector_id`, `generation`, and `time` (of infection)
 #' @author James M. Azam, Sebastian Funk

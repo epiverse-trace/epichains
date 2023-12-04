@@ -31,7 +31,7 @@ Can be one of:
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
 
-\item{track_pop}{Was the susceptible population tracked; Logical}
+\item{track_pop}{Was the susceptible population tracked? Logical}
 }
 \value{
 An \verb{<epichains_tree>} object
@@ -40,13 +40,14 @@ An \verb{<epichains_tree>} object
 \code{epichains_tree()} constructs an \verb{<epichains_tree>} object, which is
 inherently an \verb{<data.frame>} object that stores some of the inputs
 passed to the \code{simulate_tree()} and \code{simulate_tree_from_pop()} and the
-simulated output. The stored attributes are useful for scenario
-analyses where the inputs are required for downstream analyses.
+simulated output. The stored attributes are useful for downstream
+analyses and reproducibility. This function checks the validity of the
+object created to ensure it has the right columns and column types.
 
 An \verb{<epichains_tree>} object contains a \verb{<data.frame>} of the simulated
-outbreak with ids for each case/chain and the chain the produced, the
-number of cases/chains used for the simulation, the statistic that was
-tracked, the intervention level, and whether the susceptible population was
+outbreak tree with ids for each infector and infectee, generation, and
+optionally, time, the number of initial cases used for the simulation,
+the statistic that was tracked, and whether the susceptible population was
 tracked.
 }
 \author{

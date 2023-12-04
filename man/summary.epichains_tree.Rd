@@ -2,12 +2,12 @@
 % Please edit documentation in R/epichains.R
 \name{summary.epichains_tree}
 \alias{summary.epichains_tree}
-\title{Summary method for \code{epichains_tree} class}
+\title{Summary method for \verb{<epichains_tree>} class}
 \usage{
 \method{summary}{epichains_tree}(object, ...)
 }
 \arguments{
-\item{object}{An \code{epichains_tree} object}
+\item{object}{An \verb{<epichains_tree>} object}
 
 \item{...}{further arguments passed to or from other methods}
 }
@@ -15,7 +15,7 @@
 List of summaries
 }
 \description{
-Summary method for \code{epichains_tree} class
+Summary method for \verb{<epichains_tree>} class
 }
 \author{
 James M. Azam
