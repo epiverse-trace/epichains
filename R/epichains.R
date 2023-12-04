@@ -8,12 +8,11 @@
 #' `new_epichains_tree()` on its own as is called within `epichains_tree()`
 #' after the arguments have been checked. To create an `<epichains_tree>`
 #' object, use `epichains_tree()`.
-#' @param tree_df a `<data.frame>` containing at least columns for "chain_id",
-#' "ancestor", and "generation". Also has optional columns for "time", and
-#' "chain_id".
-#' @param nchains Number of chains/cases used to generate the outbreak;
-#' Integer
-#' @param track_pop Was the susceptible population tracked; Logical
+#' @param tree_df a `<data.frame>` containing at least columns for
+#' "infectee_id", "infector_id", and "generation". Also has optional columns
+#' for "time", and "chain_id".
+#' @param ntrees Number of initial cases used to generate the outbreak; Integer
+#' @param track_pop Was the susceptible population tracked? Logical
 #' @inheritParams epichains_tree
 #' @author James M. Azam
 #' @keywords internal
@@ -196,7 +195,7 @@ format.epichains_tree <- function(x, ...) {
   writeLines(sprintf("`<epichains_tree>` object\n"))
 
   # print head of the object
-  writeLines("< tree head (from first known ancestor) >\n")
+  writeLines("< tree head (from first known infector_id) >\n")
   print(head(x))
 
   # print summary information
@@ -211,8 +210,8 @@ format.epichains_tree <- function(x, ...) {
         tree_info[["ntrees"]]
       ),
       sprintf(
-        "Number of ancestors (known): %s",
-        chain_info[["unique_ancestors"]]
+        "Number of infectors (known): %s",
+        tree_info[["unique_infectors"]]
       ),
       sprintf(
         "Number of generations: %s",
@@ -291,7 +290,9 @@ summary.epichains_tree <- function(object, ...) {
 
   max_time <- ifelse(("time" %in% names(object)), max(object$time), NA)
 
-  n_unique_ancestors <- length(unique(object$ancestor[!is.na(object$ancestor)]))
+  n_unique_infectors <- length(
+    unique(object$infector_id[!is.na(object$infector_id)])
+  )
 
   max_generation <- max(object$generation)
 
@@ -299,7 +300,7 @@ summary.epichains_tree <- function(object, ...) {
   out <- list(
     ntrees = ntrees,
     max_time = max_time,
-    unique_ancestors = n_unique_ancestors,
+    unique_infectors = n_unique_infectors,
     max_generation = max_generation
   )
 
@@ -375,19 +376,17 @@ validate_epichains_tree <- function(x) {
   }
 
   # check for class invariants
-
-  if (is_chains_tree(x)) {
-    stopifnot(
-      "object does not contain the correct columns" =
-        c("sim_id", "infector_id", "generation") %in%
-        colnames(x),
+  stopifnot(
+    "object does not contain the correct columns" =
+      c("sim_id", "infector_id", "generation") %in%
+      colnames(x),
     "column `sim_id` must be a numeric" =
-        is.numeric(x$sim_id),
-      "column `infector_id` must be a numeric" =
-        is.numeric(x$infector_id),
-      "column `generation` must be a numeric" =
-        is.numeric(x$generation)
-    )
+      is.numeric(x$sim_id),
+    "column `infector_id` must be a numeric" =
+      is.numeric(x$infector_id),
+    "column `generation` must be a numeric" =
+      is.numeric(x$generation)
+  )
 
   invisible(x)
 }
@@ -418,14 +417,14 @@ validate_epichains_summary <- function(x) {
 #' @export
 #' @details
 #' This returns the top rows of an `<epichains_tree>` object. Note that
-#' the object is originally sorted by `sim_id` and `ancestor` and the first
-#' unknown ancestors (NA) have been dropped from
+#' the object is originally sorted by `sim_id` and `infector_id` and the first
+#' unknown infectors (NA) have been dropped from
 #' printing method.
 #'
 #' To view the full output, use `as.data.frame(<object_name>)`.
 head.epichains_tree <- function(x, ...) {
-  # print head of the simulation output from the first known ancestor
-  x <- x[!is.na(x$ancestor), ]
+  # print head of the simulation output from the first known infector_id
+  x <- x[!is.na(x$infector_id), ]
   utils::head(as.data.frame(x), ...)
 }
 

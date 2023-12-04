@@ -22,8 +22,8 @@ Object of class \code{data.frame}
 }
 \details{
 This returns the top rows of an \verb{<epichains_tree>} object. Note that
-the object is originally sorted by \code{sim_id} and \code{ancestor} and the first
-unknown ancestors (NA) have been dropped from
+the object is originally sorted by \code{sim_id} and \code{infector_id} and the first
+unknown infectors (NA) have been dropped from
 printing method.
 
 To view the full output, use \verb{as.data.frame(<object_name>)}.
