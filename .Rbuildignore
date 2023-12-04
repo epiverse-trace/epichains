@@ -1,0 +1,17 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^\.github$
+^codecov\.yml$
+^README\.Rmd$
+^\.lintr$
+^\.gitattributes$
+^\_pkgdown.yml$
+^cran-comments\.md$
+^doc$
+^docs$
+^Meta$
+^pkgdown$
+^data-raw$
+^CITATION\.cff$
+^_pkgdown\.yml$
