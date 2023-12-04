@@ -235,9 +235,9 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     tree_df <- tree_df[tree_df$time < tf, ]
   }
 
-  # sort by sim_id and ancestor
-  tree_df <- tree_df[order(tree_df$sim_id, tree_df$ancestor), ]
-
+  # sort by sim_id and infector_id
+  tree_df <- tree_df[order(tree_df$sim_id, tree_df$infector_id), ]
+  rownames(tree_df) <- NULL
   out <- epichains_tree(
     tree_df = tree_df,
     nchains = nchains,
@@ -547,6 +547,7 @@ simulate_tree_from_pop <- function(pop,
   # sort by sim_id and infector
   tree_df <- tree_df[order(tree_df$sim_id, tree_df$infector_id), ]
   tree_df$offspring_generated <- NULL
+  rownames(tree_df) <- NULL
 
   out <- epichains_tree(
     tree_df,
