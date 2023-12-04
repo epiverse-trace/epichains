@@ -191,7 +191,7 @@ format.epichains_tree <- function(x, ...) {
   validate_epichains_tree(x)
 
   # summarise the information stored in x
-  chain_info <- summary(x)
+  tree_info <- summary(x)
 
   writeLines(sprintf("`<epichains_tree>` object\n"))
 
@@ -216,7 +216,7 @@ format.epichains_tree <- function(x, ...) {
       ),
       sprintf(
         "Number of generations: %s",
-        chain_info[["max_generation"]]
+        tree_info[["max_generation"]]
       )
     )
   )
@@ -244,14 +244,14 @@ format.epichains_summary <- function(x, ...) {
   validate_epichains_summary(x)
 
   # summarise the information stored in x
-  chain_info <- summary(x)
+  statistics <- summary(x)
 
   writeLines(sprintf("`epichains_summary` object \n"))
   print(as.vector(x))
   writeLines(
     sprintf(
-      "\n Number of chains simulated: %s",
-      chain_info[["unique_chains"]]
+      "\n Number of trees simulated: %s",
+      statistics[["unique_trees"]]
     )
   )
   writeLines(
@@ -262,11 +262,11 @@ format.epichains_summary <- function(x, ...) {
       ),
       sprintf(
         "Max: %s",
-        chain_info[["max_chain_stat"]]
+        statistics[["max_tree_stat"]]
       ),
       sprintf(
         "Min: %s",
-        chain_info[["min_chain_stat"]]
+        statistics[["min_stat"]]
       )
     )
   )
@@ -325,16 +325,16 @@ summary.epichains_summary <- function(object, ...) {
 
 
   if (all(is.infinite(object))) {
-    max_chain_stat <- min_chain_stat <- Inf
+    max_stat <- min_stat <- Inf
   } else {
-    max_chain_stat <- max(object[!is.infinite(object)])
-    min_chain_stat <- min(object[!is.infinite(object)])
+    max_stat <- max(object[!is.infinite(object)])
+    min_stat <- min(object[!is.infinite(object)])
   }
 
   out <- list(
     ntrees = ntrees,
-    max_chain_stat = max_chain_stat,
-    min_chain_stat = min_chain_stat
+    max_stat = max_stat,
+    min_stat = min_stat
   )
 
   return(out)

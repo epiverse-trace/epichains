@@ -204,18 +204,18 @@ test_that("summary.epichains_tree works as expected", {
     summary(chain_summary_raw),
     c(
       "ntrees",
-      "max_chain_stat",
-      "min_chain_stat"
+      "max_stat",
+      "min_stat"
     )
   )
   expect_true(
     is.infinite(
-      summary(epichains_summary_all_infs)$min_chain_stat
+      summary(epichains_summary_all_infs)$min_stat
     )
   )
   expect_true(
     is.infinite(
-      summary(epichains_summary_all_infs)$max_chain_stat
+      summary(epichains_summary_all_infs)$max_stat
     )
   )
 })
