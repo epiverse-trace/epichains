@@ -136,10 +136,10 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
   }
 
   # Initialisations
-  stat_track <- rep(1, ntrees) # track length or size (depending on `statistic`) #nolint
+  stat_track <- rep(1, ntrees) # track length or size (depending on `statistic`)
   n_offspring <- rep(1, ntrees) # current number of offspring
-  sim <- seq_len(ntrees) # track chains that are still being simulated
-  infector_ids <- rep(1, ntrees) # all chains start in generation 1
+  sim <- seq_len(ntrees) # track trees that are still being simulated
+  infector_ids <- rep(1, ntrees)
 
   # initialise data frame to hold the transmission trees
   generation <- 1L
@@ -155,7 +155,7 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     times <- tree_df$time
   }
 
-  # next, simulate n chains
+  # next, simulate n trees
   while (length(sim) > 0) {
     # simulate next generation
     next_gen <- do.call(
@@ -216,12 +216,12 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
       tree_df <- rbind(tree_df, new_df)
     }
 
-    ## only continue to simulate chains that have offspring and aren't of
+    ## only continue to simulate trees that have offspring and aren't of
     ## the specified maximum size/length
     sim <- which(n_offspring > 0 & stat_track < stat_max)
     if (length(sim) > 0) {
       if (!missing(generation_time)) {
-        ## only continue to simulate chains that don't go beyond tf
+        ## only continue to simulate trees that don't go beyond tf
         sim <- intersect(sim, unique(indices)[current_min_time < tf])
       }
       if (!missing(generation_time)) {
@@ -240,7 +240,7 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
   rownames(tree_df) <- NULL
   out <- epichains_tree(
     tree_df = tree_df,
-    nchains = nchains,
+    ntrees = ntrees,
     statistic = statistic,
     stat_max = stat_max,
     track_pop = FALSE
@@ -297,9 +297,9 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
   # Initialisations
   stat_track <- rep(1, ntrees) ## track length or size (depending on `stat`)
   n_offspring <- rep(1, ntrees) ## current number of offspring
-  sim <- seq_len(ntrees) ## track chains that are still being simulated
+  sim <- seq_len(ntrees) ## track trees that are still being simulated
 
-  ## next, simulate ntrees chains
+  ## next, simulate ntrees trees
   while (length(sim) > 0) {
     ## simulate next generation
     next_gen <- do.call(
@@ -328,7 +328,7 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
       n_offspring = n_offspring
     )
 
-    ## only continue to simulate chains that offspring and aren't of
+    ## only continue to simulate trees that have offspring and aren't of
     ## stat_max size/length
     sim <- which(n_offspring > 0 & stat_track < stat_max)
   }
@@ -491,7 +491,7 @@ simulate_tree_from_pop <- function(pop,
   susc <- pop - initial_immune - 1L
   t <- t0
 
-  ## continue if any unsimulated chains have t <= tf
+  ## continue if any unsimulated trees have t <= tf
   ## AND there is still susceptibles left
   while (any(tree_df$time[!tree_df$offspring_generated] <= tf) && susc > 0) {
     ## select from which case to generate offspring
