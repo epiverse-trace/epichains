@@ -1,0 +1,19 @@
+url: https://epiverse-trace.github.io/epichains/
+template:
+  package: epiversetheme
+  bslib:
+    font_weight_base : 300
+development:
+  mode: auto
+articles:
+- title: Package vignettes
+  navbar: Package vignettes
+  contents:
+  - projecting_incidence
+  - interventions
+- title: Modelling guides and background
+  navbar: Modelling guides and background
+  contents:
+  - branching_process_literature
+  - theoretical_background
+
