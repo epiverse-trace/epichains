@@ -274,7 +274,7 @@ format.epichains_summary <- function(x, ...) {
   invisible(x)
 }
 
-#' Summary method for `epichains_tree` class
+#' Summary method for `<epichains_tree>` class
 #'
 #' @param object An `<epichains_tree>` object
 #' @param ... further arguments passed to or from other methods
