@@ -282,7 +282,6 @@ It retains and returns information on infectors (ancestors), infectees, the gene
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt; tree head (from first known infector) &gt;</span></span>
 <span><span class="co">#&gt;    infectee_id sim_id infector_id generation time</span></span>
 <span><span class="co">#&gt; 11           2      2           1          2    3</span></span>
 <span><span class="co">#&gt; 12           3      2           1          2    3</span></span>
@@ -314,13 +313,12 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span></span>
 <span><span class="co"># Print the results</span></span>
 <span><span class="va">simulate_summary_eg</span></span>
-<span><span class="co">#&gt; `epichains` object </span></span>
+<span><span class="co">#&gt; `epichains_summary` object </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  [1]   1 Inf   4   4 Inf   1   2 Inf   5   3</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Simulated chain sizes: </span></span>
+<span><span class="co">#&gt;  Simulated tree sizes: </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Max: 5</span></span>
 <span><span class="co">#&gt; Min: 1</span></span></code></pre></div>
 </details>
 </div>
@@ -346,7 +344,6 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_from_pop_eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt; tree head (from first known infector) &gt;</span></span>
 <span><span class="co">#&gt;   sim_id infector_id generation time</span></span>
 <span><span class="co">#&gt; 2      2           1          2    3</span></span>
 <span><span class="co">#&gt; 3      3           1          2    3</span></span>
@@ -383,7 +380,7 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_tree_eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $chains_run</span></span>
+<span><span class="co">#&gt; $ntrees</span></span>
 <span><span class="co">#&gt; [1] 10</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $max_time</span></span>
@@ -408,13 +405,13 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span></span>
 <span><span class="co"># Get summaries</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">simulate_summary_eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $chains_run</span></span>
+<span><span class="co">#&gt; $ntrees</span></span>
 <span><span class="co">#&gt; [1] 10</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $max_chain_stat</span></span>
+<span><span class="co">#&gt; $max_stat</span></span>
 <span><span class="co">#&gt; [1] 5</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $min_chain_stat</span></span>
+<span><span class="co">#&gt; $min_stat</span></span>
 <span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
 </details>
 </div>

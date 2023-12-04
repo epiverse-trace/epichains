@@ -120,7 +120,7 @@ representing the number of generation times to sample.</p></dd>
 
 <dt>t0</dt>
 <dd><p>Start time (if generation time is given); either a single value
-or a vector of same length as <code>nchains</code> (number of simulations) with
+or a vector of same length as <code>ntrees</code> (number of simulations) with
 initial times. Defaults to 0.</p></dd>
 
 
@@ -136,8 +136,10 @@ initial times. Defaults to 0.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>An <code>&lt;epichains&gt;</code> object, which is basically a <code>&lt;data.frame&gt;</code> with
-columns <code>infectee_id</code>, <code>sim_id</code> (a unique ID within each simulation
+<p>An <code>&lt;epichains_tree&gt;</code> object, which is basically a <code>&lt;data.frame&gt;</code></p>
+
+
+<p>with columns <code>infectee_id</code>, <code>sim_id</code> (a unique ID within each simulation
 for each infectee), <code>infector_id</code>, <code>generation</code>, and <code>time</code> (of infection)</p>
     </div>
     <div class="section level2">
