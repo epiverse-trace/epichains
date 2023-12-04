@@ -19,6 +19,7 @@
 new_epichains_tree <- function(tree_df,
                                ntrees = integer(),
                                statistic = character(),
+                               offspring_dist = character(),
                                stat_max = integer(),
                                track_pop = logical()) {
   # Assemble the elements of the object
@@ -26,6 +27,7 @@ new_epichains_tree <- function(tree_df,
     tree_df,
     ntrees = ntrees,
     statistic = statistic,
+    offspring_dist = offspring_dist,
     stat_max = stat_max,
     track_pop = track_pop,
     class = c("epichains_tree", class(tree_df))
@@ -58,12 +60,15 @@ new_epichains_tree <- function(tree_df,
 epichains_tree <- function(tree_df,
                            ntrees = integer(),
                            statistic = character(),
+                           offspring_dist = character(),
                            stat_max = integer(),
                            track_pop = logical()) {
   # Check that inputs are well specified
   checkmate::assert_data_frame(tree_df)
   checkmate::assert_integerish(ntrees, null.ok = TRUE)
   checkmate::assert_character(statistic, null.ok = TRUE)
+  check_offspring_valid(offspring_dist)
+  check_offspring_func_valid(paste0("r", offspring_dist))
   checkmate::assert_logical(track_pop)
   checkmate::assert_number(stat_max, null.ok = TRUE)
 
@@ -72,6 +77,7 @@ epichains_tree <- function(tree_df,
     tree_df = tree_df,
     ntrees = ntrees,
     statistic = statistic,
+    offspring_dist = offspring_dist,
     stat_max = stat_max,
     track_pop = track_pop
   )
@@ -103,12 +109,14 @@ epichains_tree <- function(tree_df,
 new_epichains_summary <- function(chains_summary,
                                   ntrees = integer(),
                                   statistic = character(),
+                                  offspring_dist = character(),
                                   stat_max = integer()) {
   # Assemble the elements of the object
   obj <- structure(
     chains_summary,
     ntrees = ntrees,
     statistic = statistic,
+    offspring_dist = offspring_dist,
     stat_max = stat_max,
     class = c("epichains_summary", class(chains_summary))
   )
@@ -133,11 +141,14 @@ new_epichains_summary <- function(chains_summary,
 epichains_summary <- function(chains_summary,
                               ntrees = integer(),
                               statistic = character(),
+                              offspring_dist = character(),
                               stat_max = integer()) {
   # Check that inputs are well specified
   checkmate::assert_vector(chains_summary)
   checkmate::assert_integerish(ntrees, null.ok = TRUE)
   checkmate::assert_character(statistic)
+  check_offspring_valid(offspring_dist)
+  check_offspring_func_valid(paste0("r", offspring_dist))
   checkmate::assert_number(stat_max, null.ok = TRUE)
 
   # Create <epichains_summary> object
@@ -145,6 +156,7 @@ epichains_summary <- function(chains_summary,
     chains_summary,
     ntrees = ntrees,
     statistic = statistic,
+    offspring_dist = offspring_dist,
     stat_max = stat_max
   )
 

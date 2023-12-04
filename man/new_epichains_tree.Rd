@@ -8,6 +8,7 @@ new_epichains_tree(
   tree_df,
   ntrees = integer(),
   statistic = character(),
+  offspring_dist = character(),
   stat_max = integer(),
   track_pop = logical()
 )
@@ -26,6 +27,11 @@ Can be one of:
 \item "size": the total number of offspring.
 \item "length": the total number of infectors.
 }}
+
+\item{offspring_dist}{Offspring distribution: a character string
+corresponding to the R distribution function (e.g., "pois" for Poisson,
+where \code{\link{rpois}} is the R function to generate Poisson random
+numbers).}
 
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above the specified value, are set to this value.
