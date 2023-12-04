@@ -13,9 +13,9 @@ epichains_tree(
 )
 }
 \arguments{
-\item{tree_df}{a \verb{<data.frame>} containing at least columns for "chain_id",
-"ancestor", and "generation". Also has optional columns for "time", and
-"chain_id".}
+\item{tree_df}{a \verb{<data.frame>} containing at least columns for
+"infectee_id", "infector_id", and "generation". Also has optional columns
+for "time", and "chain_id".}
 
 \item{ntrees}{Number of trees to simulate.}
 
@@ -24,7 +24,7 @@ determine stopping criteria for simulations when \code{stat_max} is finite.
 Can be one of:
 \itemize{
 \item "size": the total number of offspring.
-\item "length": the total number of ancestors.
+\item "length": the total number of infectors.
 }}
 
 \item{stat_max}{A cut off for the chain statistic (size/length) being
