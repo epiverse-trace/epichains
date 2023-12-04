@@ -2,7 +2,7 @@
 % Please edit documentation in R/epichains.R
 \name{new_epichains_tree}
 \alias{new_epichains_tree}
-\title{Construct a \verb{<epichains_tree>} object}
+\title{Construct an \verb{<epichains_tree>} object}
 \usage{
 new_epichains_tree(
   tree_df,
@@ -32,7 +32,7 @@ Can be one of:
 computed. Results above the specified value, are set to this value.
 Defaults to \code{Inf}.}
 
-\item{track_pop}{Was the susceptible population tracked; Logical}
+\item{track_pop}{Was the susceptible population tracked? Logical}
 }
 \description{
 \code{new_epichains_tree()} constructs an \verb{<epichains_tree>} object from a

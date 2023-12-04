@@ -48,7 +48,7 @@ initial times. Defaults to 0.}
 \item{...}{Parameters of the offspring distribution as required by R.}
 }
 \value{
-An \verb{<epichains>} object, which is basically a \verb{<data.frame>} with
+An \verb{<epichains_tree>} object, which is basically a \verb{<data.frame>}
 columns \code{infectee_id}, \code{sim_id} (a unique ID within each simulation
 for each infectee), \code{infector_id}, \code{generation}, and \code{time} (of infection)
 }
