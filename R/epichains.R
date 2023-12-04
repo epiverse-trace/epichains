@@ -39,13 +39,14 @@ new_epichains_tree <- function(tree_df,
 #' `epichains_tree()` constructs an `<epichains_tree>` object, which is
 #' inherently an `<data.frame>` object that stores some of the inputs
 #' passed to the `simulate_tree()` and `simulate_tree_from_pop()` and the
-#' simulated output. The stored attributes are useful for scenario
-#' analyses where the inputs are required for downstream analyses.
+#' simulated output. The stored attributes are useful for downstream
+#' analyses and reproducibility. This function checks the validity of the
+#' object created to ensure it has the right columns and column types.
 #'
 #' An `<epichains_tree>` object contains a `<data.frame>` of the simulated
-#' outbreak with ids for each case/chain and the chain the produced, the
-#' number of cases/chains used for the simulation, the statistic that was
-#' tracked, the intervention level, and whether the susceptible population was
+#' outbreak tree with ids for each infector and infectee, generation, and
+#' optionally, time, the number of initial cases used for the simulation,
+#' the statistic that was tracked, and whether the susceptible population was
 #' tracked.
 #'
 #' @inheritParams simulate_tree
@@ -120,9 +121,9 @@ new_epichains_summary <- function(chains_summary,
 #' `epichains_summary()` constructs an `<epichains_summary>` object.
 #'
 #' An `<epichains_summary>` object is a `<vector>` of the simulated
-#' chain sizes or lengths. It also stores information on the
-#' number of cases/chains used for the simulation, and the statistic that was
-#' tracked, the intervention level.
+#' tree sizes or lengths. It also stores information on the number of initial
+#' cases used for the simulation, and the statistic that was tracked,
+#' the intervention level.
 #'
 #' @inheritParams new_epichains_summary
 #'
