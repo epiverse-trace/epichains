@@ -242,6 +242,7 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
     tree_df = tree_df,
     ntrees = ntrees,
     statistic = statistic,
+    offspring_dist = offspring_dist,
     stat_max = stat_max,
     track_pop = FALSE
   )
@@ -339,6 +340,7 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
     chains_summary = stat_track,
     ntrees = ntrees,
     statistic = statistic,
+    offspring_dist = offspring_dist,
     stat_max = stat_max
   )
 
@@ -552,6 +554,7 @@ simulate_tree_from_pop <- function(pop,
     tree_df,
     ntrees = NULL,
     statistic = NULL,
+    offspring_dist = offspring_dist,
     stat_max = NULL,
     track_pop = TRUE
   )
