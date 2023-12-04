@@ -343,7 +343,6 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
   )
 
   return(out)
-    intvn_mean_reduction = intvn_mean_reduction
 }
 
 #' Simulate transmission trees from a susceptible or partially immune
