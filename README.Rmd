@@ -12,9 +12,9 @@ link-citations: true
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = file.path("man", "figures", "README-"),
+  collapse  = TRUE,
+  comment   = "#>",
+  fig.path  = file.path("man", "figures", "README-"),
   out.width = "100%"
 )
 ```
@@ -37,13 +37,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 _{{ packagename }}_ is an R package to simulate, analyse, and visualize the size 
 and length of branching processes with a given offspring distribution. These 
-models are often used in infectious disease epidemiology, where the chains represent chains of
-transmission, and the offspring distribution represents the distribution of 
-secondary infections caused by an infected individual. 
+models are often used in infectious disease epidemiology, where the chains represent chains of transmission, and the offspring distribution represents the distribution of secondary infections caused by an infected individual. 
 
 _{{ packagename }}_ re-implements [bpmodels]("https://github.com/epiverse-trace/bpmodels/")
 by providing bespoke functions and data structures that allow easy
-manipulation and interoperability with other Epiverse-TRACE packages, for example, [superspreading]("https://github.com/epiverse-trace/superspreading/") and [epiparameter]("https://github.com/epiverse-trace/epiparameter/"), and potentially some existing packages for handling transmission chains, for example, [epicontacts](https://github.com/reconhub/epicontacts).
+manipulation and interoperability with other Epiverse-TRACE packages, for example, [superspreading]("https://github.com/epiverse-trace/superspreading/") and [epiparameter]("https://github.com/epiverse-trace/epiparameter/"), and potentially some already existing packages for handling transmission chains, for example, [epicontacts](https://github.com/reconhub/epicontacts).
 
 _{{ packagename }}_ is developed at the [Centre for the Mathematical Modelling of Infectious Diseases](https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases) at the London School of Hygiene and Tropical Medicine as part of the [Epiverse Initiative](https://data.org/initiatives/epiverse/).
 
@@ -51,9 +49,10 @@ _{{ packagename }}_ is developed at the [Centre for the Mathematical Modelling o
 
 The latest development version of the _{{ packagename }}_ package can be installed via
 
-```{r include=TRUE,eval=FALSE}
+```{r include=TRUE, eval=FALSE}
 # check whether {pak} is installed
 if (!require("pak")) install.packages("pak")
+# install {epichains}
 pak::pak("{{ gh_repo }}")
 ```
 
@@ -69,27 +68,77 @@ _{{ packagename }}_ provides four main functions:
 
 * `simulate_tree()`: simulates transmission chains using an initial number of
 cases and information on the offspring distribution. This function returns
-an object with columns that track information on who infected whom, the
-generation of infection and, if a generation time function is specified, the
-time of infection.
+an object of type `data frame` with 5 columns that track information on who infected whom, the generation of infection and, if a generation time function is specified, the time of infection.
+
+```{r eval=FALSE}
+set.seed(123)
+chains <- simulate_tree(
+  ntrees          = 10,
+  statistic       = "size",
+  offspring_dist  = "pois",
+  stat_max        = 10,
+  generation_time = function(n) rep(3, n),
+  lambda          = 2
+)
+```
 
 * `simulate_summary()`: simulates a vector of transmission chain sizes or
 lengths using an initial number of cases and information on the offspring
-distribution. This function only returns a vector of realized chain size or
-length.
+distribution. This function only returns a vector of realized chain size or length.
+
+```{r eval=FALSE}
+simulate_summary(
+  ntrees         = 10,
+  statistic      = "size",
+  offspring_dist = "pois",
+  stat_max       = 10,
+  lambda         = 2
+)
+```
 
 * `simulate_tree_from_pop()`: simulates transmission chains given an initial
 population size and information on the offspring distribution. You can also
 specify a given level of pre-existing immunity. This function returns
-an object with columns that track information on who infected whom, the
-generation of infection and, if a generation time function is given, the
+an object of type `data frame` with 4 columns that track information on who infected whom, the generation of infection and, if a generation time function is given, the
 time of infection.
 
-* `likelihood()`: calculates the loglikelihood (or likelihood, depending
+```{r eval=FALSE}
+# SIMULATE WITH POISSON OFFSPRING
+simulate_tree_from_pop(
+  pop             = 100,
+  offspring_dist  = "pois",
+  lambda          = 0.5,
+  generation_time = function(n) rep(3, n)
+)
+
+# SIMULATE WITH NEGATIVE BINOMIAL OFFSPRING
+simulate_tree_from_pop(
+  pop             = 100,
+  offspring_dist  = "nbinom",
+  mu              = 0.5,
+  size            = 1.1,
+  generation_time = function(n) rep(3, n)
+)
+```
+
+* `likelihood()`: calculates the log likelihood (or likelihood, depending
 on the value of `log`) of observing a vector of transmission chain sizes or
 lengths.
 
-The objects returned by the `simulate_*()` functions can be summarised with
+```{r eval=FALSE}
+set.seed(121)
+# RANDOMLY GENERATE 20 CHAINS OF SIZE 1 TO 10
+chain_sizes <- sample(1:10, 20, replace = TRUE)
+likelihood(
+  chains         = chain_sizes,
+  statistic      = "size",
+  offspring_dist = "pois",
+  nsim_obs       = 100,
+  lambda         = 0.5
+)
+```
+
+The objects returned by the `simulate_*()` functions can be summarized with
 `summary()` and aggregated into a `<data.frame>` of cases per time or generation
 with `aggregate()`. Aggregated results can also be passed on to `plot()` with
 its own arguments to customize the resulting plots. 

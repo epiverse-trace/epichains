@@ -74,12 +74,12 @@
 #' @examples
 #' set.seed(123)
 #' chains <- simulate_tree(
-#'   ntrees = 10,
-#'   statistic = "size",
-#'   offspring_dist = "pois",
-#'   stat_max = 10,
+#'   ntrees          = 10,
+#'   statistic       = "size",
+#'   offspring_dist  = "pois",
+#'   stat_max        = 10,
 #'   generation_time = function(n) rep(3, n),
-#'   lambda = 2
+#'   lambda          = 2
 #' )
 #' @references
 #' Lehtinen S, Ashcroft P, Bonhoeffer S. On the relationship
@@ -265,11 +265,11 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
 #'   susceptible or partially immune population.
 #' @examples
 #' simulate_summary(
-#'   ntrees = 10,
-#'   statistic = "size",
+#'   ntrees         = 10,
+#'   statistic      = "size",
 #'   offspring_dist = "pois",
-#'   stat_max = 10,
-#'   lambda = 2
+#'   stat_max       = 10,
+#'   lambda         = 2
 #' )
 #' @export
 simulate_summary <- function(ntrees, statistic = c("size", "length"),
@@ -396,18 +396,19 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
 #' @examples
 #' # Simulate with poisson offspring
 #' simulate_tree_from_pop(
-#'   pop = 100,
-#'   offspring_dist = "pois",
-#'   lambda = 0.5,
+#'   pop             = 100,
+#'   offspring_dist  = "pois",
+#'   lambda          = 0.5,
 #'   generation_time = function(n) rep(3, n)
 #' )
 #'
 #' # Simulate with negative binomial offspring
 #' simulate_tree_from_pop(
-#' pop = 100, offspring_dist = "nbinom",
-#' mu = 0.5,
-#' size = 1.1,
-#' generation_time = function(n) rep(3, n)
+#'   pop             = 100,
+#'   offspring_dist  = "nbinom",
+#'   mu              = 0.5,
+#'   size            = 1.1,
+#'   generation_time = function(n) rep(3, n)
 #' )
 #' @export
 simulate_tree_from_pop <- function(pop,
