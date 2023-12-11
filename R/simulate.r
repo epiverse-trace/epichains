@@ -95,15 +95,20 @@
 #' Jacob C. (2010). Branching processes: their role in epidemiology.
 #' International journal of environmental research and public health, 7(3),
 #' 1186–1204. \doi{https://doi.org/10.3390/ijerph7031204}
-simulate_tree <- function(ntrees, statistic = c("size", "length"),
-                          offspring_dist, stat_max = Inf,
-                          generation_time, t0 = 0,
-                          tf = Inf, ...) {
+simulate_tree <- function(ntrees,
+                          offspring_dist,
+                          generation_time,
+                          statistic = c("size", "length"),
+                          stat_max  = Inf,
+                          t0        = 0L,
+                          tf        = Inf, ...) {
   statistic <- match.arg(statistic)
 
   # Input checking
   check_ntrees_valid(ntrees = ntrees)
-  checkmate::assert_character(statistic)
+  checkmate::assert_character(statistic, min.len = 1L, any.missing = FALSE,
+                              null.ok = FALSE)
+  checkmate::assert_choice(statistic, choices = c("size", "length"))
 
   # check that offspring is properly specified
   check_offspring_valid(offspring_dist)
@@ -112,19 +117,13 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
   roffspring_name <- paste0("r", offspring_dist)
   check_offspring_func_valid(roffspring_name)
 
-  checkmate::assert_number(
-    stat_max, lower = 0
-  )
+  checkmate::assert_number(stat_max, lower = 0L)
 
   if (!missing(generation_time)) {
     check_generation_time_valid(generation_time)
   }
-  checkmate::assert_numeric(
-    t0, lower = 0, finite = TRUE
-  )
-  checkmate::assert_number(
-    tf, lower = 0
-  )
+  checkmate::assert_numeric(t0, lower = 0L, finite = TRUE)
+  checkmate::assert_number(tf, lower = 0L)
 
   # Gather offspring distribution parameters
   pars <- list(...)
@@ -136,27 +135,27 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
   }
 
   # Initialisations
-  stat_track <- rep(1, ntrees) # track length or size (depending on `statistic`)
-  n_offspring <- rep(1, ntrees) # current number of offspring
-  sim <- seq_len(ntrees) # track trees that are still being simulated
-  infector_ids <- rep(1, ntrees)
+  stat_track   <- rep(1L, ntrees) # track length or size
+  n_offspring  <- rep(1L, ntrees) # current number of offspring
+  sim          <- seq_len(ntrees) # track trees that are still being simulated
+  infector_ids <- rep(1L, ntrees)
 
-  # initialise data frame to hold the transmission trees
+  # initialize data frame to hold the transmission trees
   generation <- 1L
-  tree_df <- data.frame(
+  tree_df    <- data.frame(
     infectee_id = seq_len(ntrees),
-    sim_id = 1L,
+    sim_id      = 1L,
     infector_id = NA_integer_,
-    generation = generation
+    generation  = generation
   )
 
   if (!missing(generation_time)) {
-    tree_df$time <- t0
-    times <- tree_df$time
+    tree_df[["time"]] <- t0
+    times             <- tree_df[["time"]]
   }
 
   # next, simulate n trees
-  while (length(sim) > 0) {
+  while (length(sim) > 0L) {
     # simulate next generation
     next_gen <- do.call(
       get(roffspring_name),
@@ -165,86 +164,87 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
         pars
       )
     )
-    if (any(next_gen %% 1 > 0)) {
+    if (any(next_gen %% 1L > 0L)) {
       stop("Offspring distribution must return integers")
     }
 
     # record indices corresponding to the number of offspring
-    indices <- rep(sim, n_offspring[sim])
+    indices          <- rep(sim, n_offspring[sim])
 
     # initialise placeholder for the number of offspring
-    n_offspring <- rep(0, ntrees)
+    n_offspring      <- rep(0L, ntrees)
+
     # assign offspring sum to indices still being simulated
     n_offspring[sim] <- tapply(next_gen, indices, sum)
 
     # track size/length
     stat_track <- update_chain_stat(
-      stat_type = statistic,
+      stat_type   = statistic,
       stat_latest = stat_track,
       n_offspring = n_offspring
     )
 
     # record times/infectors
-    if (sum(n_offspring[sim]) > 0) {
-      infectors <- rep(infector_ids, next_gen)
+    if (sum(n_offspring[sim]) > 0L) {
+      infectors      <- rep(infector_ids, next_gen)
       current_max_id <- unname(tapply(infector_ids, indices, max))
-      indices <- rep(sim, n_offspring[sim])
+      indices        <- rep(sim, n_offspring[sim])
 
       # create new ids
-      ids <- rep(current_max_id, n_offspring[sim]) +
+      ids            <- rep(current_max_id, n_offspring[sim]) +
         unlist(lapply(n_offspring[sim], seq_len))
 
       # increment the generation
-      generation <- generation + 1L
+      generation     <- generation + 1L
 
       # store new simulation results
-      new_df <-
-        data.frame(
-          infectee_id = indices,
-          sim_id = ids,
-          infector_id = infectors,
-          generation = generation
-        )
+      new_df         <- data.frame(
+        infectee_id = indices,
+        sim_id      = ids,
+        infector_id = infectors,
+        generation  = generation
+      )
 
       # if a generation time model/function was specified, use it
       # to generate generation times for the cases
       if (!missing(generation_time)) {
-        times <- rep(times, next_gen) + generation_time(sum(n_offspring))
+        times        <- rep(times, next_gen) + generation_time(sum(n_offspring))
         current_min_time <- unname(tapply(times, indices, min))
-        new_df$time <- times
+        new_df[["time"]] <- times
       }
-      tree_df <- rbind(tree_df, new_df)
+      tree_df            <- rbind(tree_df, new_df)
     }
 
     ## only continue to simulate trees that have offspring and aren't of
     ## the specified maximum size/length
-    sim <- which(n_offspring > 0 & stat_track < stat_max)
-    if (length(sim) > 0) {
+    sim           <- which(n_offspring > 0L & stat_track < stat_max)
+    if (length(sim) > 0L) {
       if (!missing(generation_time)) {
         ## only continue to simulate trees that don't go beyond tf
-        sim <- intersect(sim, unique(indices)[current_min_time < tf])
+        sim        <- intersect(sim, unique(indices)[current_min_time < tf])
       }
       if (!missing(generation_time)) {
-        times <- times[indices %in% sim]
+        times      <- times[indices %in% sim]
       }
       infector_ids <- ids[indices %in% sim]
     }
   }
 
   if (!missing(tf)) {
-    tree_df <- tree_df[tree_df$time < tf, ]
+    tree_df <- tree_df[tree_df[["time"]] < tf, ]
   }
 
   # sort by sim_id and infector_id
-  tree_df <- tree_df[order(tree_df$sim_id, tree_df$infector_id), ]
+  tree_df           <- tree_df[order(tree_df[["sim_id"]],
+                                     tree_df[["infector_id"]]), ]
   rownames(tree_df) <- NULL
-  out <- epichains_tree(
-    tree_df = tree_df,
-    ntrees = ntrees,
-    statistic = statistic,
+  out               <- epichains_tree(
+    tree_df        = tree_df,
+    ntrees         = ntrees,
+    statistic      = statistic,
     offspring_dist = offspring_dist,
-    stat_max = stat_max,
-    track_pop = FALSE
+    stat_max       = stat_max,
+    track_pop      = FALSE
   )
   return(out)
 }
@@ -272,14 +272,17 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
 #'   lambda         = 2
 #' )
 #' @export
-simulate_summary <- function(ntrees, statistic = c("size", "length"),
+simulate_summary <- function(ntrees,
+                             statistic = c("size", "length"),
                              offspring_dist,
                              stat_max = Inf, ...) {
   statistic <- match.arg(statistic)
 
   # Input checking
   check_ntrees_valid(ntrees = ntrees)
-  checkmate::assert_character(statistic)
+  checkmate::assert_character(statistic, min.len = 1, any.missing = FALSE,
+                              null.ok = FALSE)
+  checkmate::assert_choice(statistic, choices = c("size", "length"))
 
   # check that offspring is properly specified
   check_offspring_valid(offspring_dist)

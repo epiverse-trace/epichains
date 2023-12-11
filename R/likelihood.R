@@ -2,16 +2,18 @@
 #'
 #' @inheritParams offspring_ll
 #' @inheritParams simulate_summary
+#'
 #' @param chains Vector of chain summaries (sizes/lengths)
 #' @param nsim_obs Number of simulations if the log-likelihood/likelihood is to
-#' be approximated for imperfect observations.
+#'    be approximated for imperfect observations.
 #' @param log Logical; Should the log-likelihoods be transformed to
-#' likelihoods? (Defaults to TRUE).
+#'    likelihoods? (Defaults to TRUE).
 #' @param obs_prob Observation probability (assumed constant)
 #' @param exclude A vector of indices of the sizes/lengths to exclude from the
-#' log-likelihood calculation.
+#'    log-likelihood calculation.
 #' @param individual If TRUE, a vector of individual log-likelihood/likelihood
-#' contributions will be returned rather than the sum/product.
+#'    contributions will be returned rather than the sum/product.
+#'
 #' @return
 #' If \code{log = TRUE}
 #'
@@ -28,54 +30,66 @@
 #' except that likelihoods, instead of log-likelihoods, are calculated in all
 #' cases. Moreover, the joint likelihoods are the product, instead of the sum,
 #' of the individual likelihoods.
+#'
 #' @seealso offspring_ll(), pois_size_ll(), nbinom_size_ll(), gborel_size_ll(),
 #' pois_length_ll(), geom_length_ll()
+#'
 #' @author Sebastian Funk
+#'
 #' @examples
 #' # example of observed chain sizes
 #' set.seed(121)
 #' # randomly generate 20 chains of size 1 to 10
 #' chain_sizes <- sample(1:10, 20, replace = TRUE)
 #' likelihood(
-#'   chains = chain_sizes, statistic = "size",
-#'   offspring_dist = "pois", nsim_obs = 100, lambda = 0.5
+#'   chains         = chain_sizes,
+#'   statistic      = "size",
+#'   offspring_dist = "pois",
+#'   nsim_obs       = 100,
+#'   lambda         = 0.5
 #' )
 #' @export
-likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
-                       nsim_obs, log = TRUE, obs_prob = 1, stat_max = Inf,
-                       exclude = NULL, individual = FALSE, ...) {
+likelihood <- function(chains,
+                       offspring_dist,
+                       nsim_obs,
+                       statistic  = c("size", "length"),
+                       log        = TRUE,
+                       obs_prob   = 1L,
+                       stat_max   = Inf,
+                       exclude    = NULL,
+                       individual = FALSE, ...) {
   statistic <- match.arg(statistic)
 
   ## Input checking
   ## Check nsim_obs when specified
   if (!missing(nsim_obs)) {
     checkmate::assert_number(
-      nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
+      nsim_obs, lower = 1L, finite = TRUE, na.ok = FALSE
     )
   }
 
   checkmate::assert_numeric(
-    chains, lower = 0, upper = Inf, any.missing = FALSE
+    chains, lower = 0L, upper = Inf, any.missing = FALSE
   )
   checkmate::assert_character(statistic)
   check_offspring_valid(offspring_dist)
   checkmate::assert_number(
-    obs_prob, lower = 0, upper = 1, finite = TRUE, na.ok = FALSE
+    obs_prob, lower = 0L, upper = 1L, finite = TRUE, na.ok = FALSE
   )
   checkmate::assert_number(
-    stat_max, lower = 0, na.ok = FALSE
+    stat_max, lower = 0L, na.ok = FALSE
   )
   checkmate::assert_logical(
-    log, any.missing = FALSE, all.missing = FALSE, len = 1
+    log, any.missing = FALSE, all.missing = FALSE, len = 1L
   )
   checkmate::assert_logical(
-    individual, any.missing = FALSE, all.missing = FALSE, len = 1
+    individual, any.missing = FALSE, all.missing = FALSE, len = 1L
   )
   checkmate::assert_numeric(
     exclude, null.ok = TRUE
   )
 
-  if (obs_prob < 1) {
+  if (obs_prob < 1L) {
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
     }
@@ -91,7 +105,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     ), simplify = FALSE)
     stat_rep_vect <- unlist(stat_rep_list)
     if (!is.finite(stat_max)) {
-      stat_max <- max(stat_rep_vect) + 1
+      stat_max <- max(stat_rep_vect) + 1L
     }
   } else {
     chains[chains >= stat_max] <- stat_max
@@ -102,7 +116,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   ## determine for which sizes to calculate the log-likelihood
   ## (for true chain size)
   if (any(stat_rep_vect == stat_max)) {
-    calc_sizes <- seq_len(stat_max - 1)
+    calc_sizes <- seq_len(stat_max - 1L)
   } else {
     calc_sizes <- unique(c(stat_rep_vect, exclude))
   }
@@ -122,10 +136,10 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
         offspring_ll,
         c(
           list(
-            x = calc_sizes,
+            x              = calc_sizes,
             offspring_dist = offspring_dist,
-            statistic = statistic,
-            stat_max = stat_max
+            statistic      = statistic,
+            stat_max       = stat_max
           ),
           pars
         )
@@ -154,7 +168,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   ## if individual == FALSE, return the joint log-likelihood
   ## (sum of the log-likelihoods)
   if (!individual) {
-    chains_likelihood <- vapply(chains_likelihood, sum, 0)
+    chains_likelihood <- vapply(chains_likelihood, sum, 0L)
   }
 
   ## transform log-likelihoods into likelihoods if required

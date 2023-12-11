@@ -1,9 +1,10 @@
 #' Check if offspring argument is specified as a character string
 #'
 #' @param offspring_dist Offspring distribution: a character string
-#' corresponding to the R distribution function (e.g., "pois" for Poisson,
-#' where \code{\link{rpois}} is the R function to generate Poisson random
-#' numbers).
+#'    corresponding to the R distribution function (e.g., "pois" for Poisson,
+#'    where \code{\link{rpois}} is the R function to generate Poisson random
+#'    numbers).
+#'
 #' @keywords internal
 check_offspring_valid <- function(offspring_dist) {
   if (!checkmate::test_string(offspring_dist)) {
@@ -19,8 +20,9 @@ check_offspring_valid <- function(offspring_dist) {
 #' Check if constructed random number generator for offspring exists
 #'
 #' @param roffspring_name Constructed random offspring sampler: a character
-#' string corresponding to the R distribution function (e.g., "rpois" for
-#' Poisson.
+#'    string corresponding to the R distribution function (e.g., "rpois" for
+#'    Poisson.
+#'
 #' @keywords internal
 check_offspring_func_valid <- function(roffspring_name) {
   if (!(exists(roffspring_name)) ||
@@ -36,15 +38,15 @@ check_offspring_func_valid <- function(roffspring_name) {
 #'
 #' @keywords internal
 check_generation_time_valid <- function(generation_time) {
-  if (!checkmate::test_function(generation_time, nargs = 1)) {
+  if (!checkmate::test_function(generation_time, nargs = 1L)) {
     stop(sprintf(
       "%s %s",
       "The `generation_time` argument must be a function",
       "(see details in ?simulate_tree)."
     ))
   }
-  x <- generation_time(10)
-  if (!checkmate::test_numeric(x, len = 10)) {
+  x <- generation_time(10L)
+  if (!checkmate::test_numeric(x, len = 10L)) {
     stop(
       "The return values of `generation_time`",
       "must be a numeric vector of length `n`."
