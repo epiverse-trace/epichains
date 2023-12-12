@@ -29,15 +29,13 @@ distribution represents the distribution of secondary infections caused
 by an infected individual.
 
 *epichains* re-implements
-[bpmodels](%22https://github.com/epiverse-trace/bpmodels/%22) by
-providing bespoke functions and data structures that allow easy
-manipulation and interoperability with other Epiverse-TRACE packages,
-for example,
-[superspreading](%22https://github.com/epiverse-trace/superspreading/%22)
-and
-[epiparameter](%22https://github.com/epiverse-trace/epiparameter/%22),
-and potentially some existing packages for handling transmission chains,
-for example, [epicontacts](https://github.com/reconhub/epicontacts).
+[bpmodels](https://github.com/epiverse-trace/bpmodels/) by providing
+bespoke functions and data structures that allow easy manipulation and
+interoperability with other Epiverse-TRACE packages, for example,
+[superspreading](https://github.com/epiverse-trace/superspreading/) and
+[epiparameter](https://github.com/epiverse-trace/epiparameter/), and
+potentially some existing packages for handling transmission chains, for
+example, [epicontacts](https://github.com/reconhub/epicontacts).
 
 *epichains* is developed at the [Centre for the Mathematical Modelling
 of Infectious
