@@ -1,5 +1,5 @@
 ---
-title: "Theoretical background for bpmodels"
+title: "Theoretical background for epichains"
 author: "Sebastian Funk and James Azam"
 output:
   bookdown::html_vignette2:
@@ -11,7 +11,7 @@ bibliography: references.json
 link-citations: true
 vignette: >
   %\VignetteEncoding{UTF-8}
-  %\VignetteIndexEntry{Theoretical background for bpmodels}
+  %\VignetteIndexEntry{Theoretical background for epichains}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options:
   chunk_output_type: console
@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-_bpmodels_ provides methods to analyse and simulate the size and length of branching processes with an arbitrary offspring distribution.
+_epichains_ provides methods to analyse and simulate the size and length of branching processes with an arbitrary offspring distribution.
 In this vignette we lay out the mathematical concepts behind the functionality available
 in the package.
 

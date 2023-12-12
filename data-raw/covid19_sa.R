@@ -15,8 +15,6 @@ covid19_sa <- covid19_sa %>%
   select(date) %>%
   mutate(date = lubridate::dmy(date)) %>%
   filter(date <= min(date) + lubridate::days(15)) %>%
-  group_by(date) %>%
-  summarise(cases = n()) %>%
-  ungroup()
+  count(date)
 
 use_data(covid19_sa, overwrite = TRUE)

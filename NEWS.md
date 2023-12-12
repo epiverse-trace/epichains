@@ -1,6 +1,7 @@
 # epichains 0.1.9999
 
 ## Documentation
+
 * A vignette outlining how to simulate interventions has been added
 
 # epichains 0.1.0

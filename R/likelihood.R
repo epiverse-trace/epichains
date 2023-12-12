@@ -142,13 +142,13 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     likelihoods[exclude] <- -Inf
 
     stat_rep_list <- lapply(stat_rep_list, function(y) {
-      y[!(y %in% exclude)]
+      setdiff(y, exclude)
     })
   }
 
   ## assign likelihoods
   chains_likelihood <- lapply(stat_rep_list, function(sx) {
-    likelihoods[sx[!(sx %in% exclude)]]
+    likelihoods[setdiff(sx, exclude)]
   })
 
   ## if individual == FALSE, return the joint log-likelihood
