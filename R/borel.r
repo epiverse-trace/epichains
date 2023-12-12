@@ -14,7 +14,6 @@ dborel <- function(x, mu, log = FALSE) {
     mu, lower = 0, finite = TRUE, na.ok = FALSE
   )
 
-  if (x < 1) stop("'x' must be greater than 0")
   ld <- -mu * x + (x - 1) * log(mu * x) - lgamma(x + 1)
   if (!log) ld <- exp(ld)
   return(ld)

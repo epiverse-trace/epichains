@@ -47,7 +47,7 @@ This function calculates the likelihood/loglikelihood of observing a vector of o
 `chains`, the corresponding statistic to calculate, `statistic`, the offspring
 distribution, `offspring_dist` and its associated parameters. `offspring_dist`
 is specified as the "base name" of the inbuilt distributions in R, for example,
-"pois", "nbinom", etc. `likelihood()` also requires `nsim_obs`, which is the
+"pois", "nbinom", etc. `likelihood()` also requires `nsim_offspring`, which is the
 number of simulations to run if the likelihoods do not have a closed-form
 solution and must be simulated. This argument will be explained further in
 the next section.

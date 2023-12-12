@@ -7,11 +7,10 @@
 #' @keywords internal
 check_offspring_valid <- function(offspring_dist) {
   if (!checkmate::test_string(offspring_dist)) {
-    stop(sprintf(
-      "%s %s",
+    stop(
       "'offspring_dist' must be specified as a character string.",
       "Did you forget to enclose it in quotes?"
-    ))
+    )
   }
 }
 
@@ -37,11 +36,10 @@ check_offspring_func_valid <- function(roffspring_name) {
 #' @keywords internal
 check_generation_time_valid <- function(generation_time) {
   if (!checkmate::test_function(generation_time, nargs = 1)) {
-    stop(sprintf(
-      "%s %s",
+    stop(
       "The `generation_time` argument must be a function",
       "(see details in ?simulate_tree)."
-    ))
+    )
   }
   x <- generation_time(10)
   if (!checkmate::test_numeric(x, len = 10)) {

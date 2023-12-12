@@ -27,8 +27,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-_epichains_ does not provide any direct functionality for studying public health interventions.
-However, the flexible simulation functionality that it includes can be used to consider some specific changes to the parameters that can be interpreted as the result of control measures.
+_epichains_ does not provide any direct functionality for studying reductions in transmission (e.g. from public health interventions).
+However, the flexible simulation functionality that it includes can be used to consider some specific changes to the parameters that can be interpreted as the result of changes in social behaviour or control measures.
 Here we investigate the effect on outbreak sizes, but the same approaches could be used for investigating chain lengths (using the `statistic` argument to `simulate_summary`) or the time progression of outbreaks (using the `simulate_tree` function).
 
 ```{r load_libraries}

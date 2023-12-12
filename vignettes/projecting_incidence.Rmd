@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-Branching processes can be used to project infectious disease trends in time
+Branching processes can be used to project stochastic infectious disease trends in time
 provided we can characterize the distribution of times between
 successive cases (serial interval), and the distribution of secondary cases
 produced by a single individual (offspring distribution). Such simulations can
@@ -269,9 +269,7 @@ aggregating the number of cases per day of each simulation.
 # Daily number of cases for each simulation
 incidence_ts <- sim_output %>%
   mutate(day = ceiling(time)) %>%
-  group_by(sim, day) %>%
-  summarise(cases = n()) %>%
-  ungroup()
+  count(sim, day)
 
 head(incidence_ts)
 ```
