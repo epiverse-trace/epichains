@@ -181,7 +181,7 @@ print.epichains_tree <- function(x, ...) {
 #' Print an `<epichains_summary>` object
 #'
 #' @param x An `<epichains_summary>` object.
-#' @param ... Other parameters passed to `print()`.
+#' @param ... ignored.
 #' @return Invisibly returns an `<epichains_summary>`. Called for
 #' side-effects.
 #' @author James M. Azam
@@ -193,7 +193,7 @@ print.epichains_summary <- function(x, ...) {
 #' Format method for `<epichains_tree>` class
 #'
 #' @param x An `<epichains_tree>` object
-#' @param ... further arguments passed to or from other methods
+#' @param ... ignored
 #' @return Invisibly returns an `<epichains_tree>`.
 #' Called for printing side-effects.
 #' @author James M. Azam
@@ -246,7 +246,7 @@ format.epichains_tree <- function(x, ...) {
 #' Format method for `<epichains_summary>` class
 #'
 #' @param x An `<epichains_summary>` object
-#' @param ... further arguments passed to or from other methods
+#' @param ... ignored
 #' @return Invisibly returns an `<epichains_summary>`. Called for printing
 #' side-effects.
 #' @author James M. Azam
@@ -289,7 +289,7 @@ format.epichains_summary <- function(x, ...) {
 #' Summary method for `<epichains_tree>` class
 #'
 #' @param object An `<epichains_tree>` object
-#' @param ... further arguments passed to or from other methods
+#' @param ... ignored
 #'
 #' @return List of summaries
 #' @author James M. Azam
@@ -323,7 +323,7 @@ summary.epichains_tree <- function(object, ...) {
 #' Summary method for `<epichains_summary>` class
 #'
 #' @param object An `<epichains_summary>` object
-#' @param ... further arguments passed to or from other methods
+#' @param ... ignored
 #'
 #' @return List of summaries
 #' @author James M. Azam
@@ -458,7 +458,7 @@ tail.epichains_tree <- function(x, ...) {
 #' @param x An `<epichains_tree>` object.
 #' @param by The variable to aggregate by. Options include
 #' "time" and "generation".
-#' @param ... Other arguments passed to aggregate.
+#' @param ... ignored.
 #' @importFrom stats aggregate
 #' @return A `<data.frame>` object of cases by `by`.
 #' @author James M. Azam
