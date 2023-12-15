@@ -125,52 +125,6 @@ but relatively intuitive epidemiological simulations.
 * [TransPhylo](https://xavierdidelot.github.io/TransPhylo/index.html): reconstructs infectious disease transmission using genomic data
 
 
-### Review and comparison of functionalities in the existing packages 
-
-::: {.callout-note}
-Most of the notes below are copied ditto from the source files of
-the packages but with minor edits and commentaries.
-:::
-
-#### `simulacr`
-
-A Poisson branching process is used to generate 
-new cases in time, using the distribution of the reproduction number (R) 
-and of the duration of the infectious period to determine rates of infection. 
-
-A density-dependence term is used so that individual infectiousness 
-decreases with the proportion of susceptible individuals in the population. 
-This is the same as what `bpmodels::chain_sim_susc()` achieves. 
-
-Individual infectiousness is determined as $R \times w(t - t_{onset})$ 
-where $R$ is the individual reproduction number, $w$ is the PMF of the 
-duration of the infectious period, $t$ is current time, and $t_{onset}$ 
-is the date of symptom onset for the considered individual.
-
-The number of new cases at time *t* is taken from a *Poisson distributio*n 
-with a rate of infection \eqn{\lambda_t n_s / n} where $\lambda_t$ is the 
-sum of all individual infectiousness at time *t*, $n_s$ is the number of 
-susceptible individuals in the population, and *n* is the 
-total population size.
-
-For each simulated case, using user-specified distributions, the simulator 
-generates an individual with:
-
-  - reproduction number, 
-  - time/date of infection, 
-  - time/date of symptom onset, and 
-  - reporting delay (time interval between symptom onset and case 
-  notification). 
-
-Distributions can be provided either as:
-
-  - `distcrete` objects, 
-  - functions computing the probability mass functions (PMF), or 
-  - vectors of numbers taken as the PMF for values
-  on $0, 1, ..., \text{length(input)} - 1$.
-
-#### `ringbp`
-
 ## Introducing `epichains`: a unifying package for transmission chains
 
 ### Current functionality
