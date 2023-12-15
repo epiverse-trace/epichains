@@ -1,10 +1,6 @@
 ---
 title: "Design Principles for {epichains}"
 subtitle: "An R package for simulating, handling, and analysing transmission chains in R"
-output:
-  bookdown::html_vignette2:
-    fig_caption: yes
-    code_folding: show
 pkgdown:
   as_is: true
 bibliography: references.json
