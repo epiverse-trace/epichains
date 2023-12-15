@@ -45,9 +45,7 @@
 #'
 #' ## Specifying `generation_time`
 #'
-#' `generation_time` must be specified as a named or
-#' [anonymous/inline/unnamed function](https://en.wikipedia.org/wiki/Anonymous_function#R)
-#' with one argument.
+#' `generation_time` must be specified as a function with one argument.
 #'
 #' For example, assuming we want to specify the generation time
 #' as a random log-normally distributed variable with
