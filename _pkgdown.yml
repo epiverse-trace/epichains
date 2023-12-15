@@ -55,4 +55,8 @@ articles:
   contents:
   - branching_process_literature
   - theoretical_background
+- title: Developer Documentation
+  navbar: Developer Documentation
+  contents:
+  - design-principles
 
