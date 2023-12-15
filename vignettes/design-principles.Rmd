@@ -41,11 +41,14 @@ This document is primarily intended to be read by those interested in understand
 
 ## Overview
 
-### Transmission chains and branching processes
+## Dependencies
 
-Branching processes are stochastic models that provide a simple way 
-to model the early phase of an outbreak. They only require data on 
-cases and are useful for drawing inferences on $R_0$ [@farrington2003].
+* Input validation:
+  - [checkmate](https://github.com/mllg/checkmate/): exports many `test_*()`,
+  `check_*()` and `assert_*()` functions and is available on CRAN.
+* Fast data manipulation:
+  - [data.table](https://rdatatable.gitlab.io/data.table/): provides a
+  high-performance version of base R’s `<data.frame>`.
 
 Branching processes have some limitations. For instance, they do not not 
 take into account the depletion of susceptibles in the population. Additionally, 
@@ -319,29 +322,4 @@ tagged columns using [linelist](https://github.com/reconhub/linelist) package.
 
 * functions for decomposing case count time series into linelists with 
 tagged columns (not aware of packages for achieving this).
-
-
-### Dependencies
-
-This new architecture might require the following dependencies:
-
-* For handling simulations:
-
-  - [epicontacts](https://github.com/reconhub/epicontacts/): for 
-shared s3 methods??? (TBC)
-  - [projections](https://github.com/reconhub/projections/): for 
-shared summary, print, and visualization methods?? (TBC)
-  - [simulacr](https://github.com/reconhub/simulacr/): for 
-shared summary, print, and visualization methods?? (TBC)
-  - [linelist](https://github.com/reconhub/linelist/): for tagging 
-  linelists as raw inputs into `epichains`?? (TBC)
-
-* Visual outlook:
-
-  - [cli](https://github.com/r-lib/cli/) for printing 
-messages, errors, warnings, progress bar, and other user-facing features.
-
-* Input validation:
-
-  - [checkmate](https://github.com/mllg/checkmate/) for input validation.
 
