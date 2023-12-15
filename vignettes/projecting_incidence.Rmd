@@ -269,7 +269,7 @@ aggregating the number of cases per day of each simulation.
 # Daily number of cases for each simulation
 incidence_ts <- sim_output %>%
   mutate(day = ceiling(time)) %>%
-  count(sim, day, name = "cases") |> 
+  count(sim, day, name = "cases") %>%
   as_tibble()
 
 head(incidence_ts)
