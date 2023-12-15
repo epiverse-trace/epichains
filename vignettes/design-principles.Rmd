@@ -1,7 +1,6 @@
 ---
-title: "Simulating, handling, and analysing transmission chains in R"
-subtitle: "Designing an ecosystem for transmission chain simulation and analysis"
-author: "James Azam"
+title: "Design Principles for {epichains}"
+subtitle: "An R package for simulating, handling, and analysing transmission chains in R"
 output:
   bookdown::html_vignette2:
     fig_caption: yes
@@ -9,14 +8,40 @@ output:
 pkgdown:
   as_is: true
 bibliography: references.json
-link-citations: true
+output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteEncoding{UTF-8}
-  %\VignetteIndexEntry{Simulating, handling, and analysing transmission chains in R}
+  %\VignetteIndexEntry{Design Principles for {epichains}}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
-  chunk_output_type: console
+  %\VignetteEncoding{UTF-8}
 ---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette outlines the design decisions that have been taken during the development of the {epichains} R package, and provides some of the reasoning, and possible pros and cons of each decision.
+
+This document is primarily intended to be read by those interested in understanding the code within the package and for potential package contributors.
+
+## Scope
+
+## Input/Output/Interoperability
+
+## Design decisions
+
+## Dependencies
+
+
+
+
+
+
+
+
+
 
 ## Overview
 
