@@ -22,11 +22,9 @@ knitr::opts_chunk$set(
 # _{{ packagename }}_: Methods for simulating and analysing the size and length of transmission chains from branching process models <img src="man/figures/logo.svg" align="right" height="130" />
 
 <!-- badges: start -->
-![GitHub R package version](https://img.shields.io/github/r-package/v/epiverse-trace/epichains)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![R-CMD-check](https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/github/epiverse-trace/epichains/branch/main/graphs/badge.svg)](https://codecov.io/github/epiverse-trace/epichains)
-![GitHub contributors](https://img.shields.io/github/contributors/epiverse-trace/epichains)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
