@@ -50,7 +50,7 @@
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="index.html">epichains</a>
 
-    <small class="nav-text text-muted me-auto version-number" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-danger me-auto version-number" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9999</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6>
     <a class="dropdown-item" href="articles/branching_process_literature.html">Literature on branching process applications</a>
-    <a class="dropdown-item" href="articles/theoretical_background.html">Theoretical background for bpmodels</a>
+    <a class="dropdown-item" href="articles/theoretical_background.html">Theoretical background for epichains</a>
   </div>
 </li>
 <li class="nav-item">
@@ -108,7 +108,7 @@
 <!-- badges: start -->
 
 <p><em>epichains</em> is an R package to simulate, analyse, and visualize the size and length of branching processes with a given offspring distribution. These models are often used in infectious disease epidemiology, where the chains represent chains of transmission, and the offspring distribution represents the distribution of secondary infections caused by an infected individual.</p>
-<p><em>epichains</em> re-implements <a href="%22https://github.com/epiverse-trace/bpmodels/%22" class="external-link">bpmodels</a> by providing bespoke functions and data structures that allow easy manipulation and interoperability with other Epiverse-TRACE packages, for example, <a href="%22https://github.com/epiverse-trace/superspreading/%22" class="external-link">superspreading</a> and <a href="%22https://github.com/epiverse-trace/epiparameter/%22" class="external-link">epiparameter</a>, and potentially some existing packages for handling transmission chains, for example, <a href="https://github.com/reconhub/epicontacts" class="external-link">epicontacts</a>.</p>
+<p><em>epichains</em> re-implements <a href="https://github.com/epiverse-trace/bpmodels/" class="external-link">bpmodels</a> by providing bespoke functions and data structures that allow easy manipulation and interoperability with other Epiverse-TRACE packages, for example, <a href="https://github.com/epiverse-trace/superspreading/" class="external-link">superspreading</a> and <a href="https://github.com/epiverse-trace/epiparameter/" class="external-link">epiparameter</a>, and potentially some existing packages for handling transmission chains, for example, <a href="https://github.com/reconhub/epicontacts" class="external-link">epicontacts</a>.</p>
 <p><em>epichains</em> is developed at the <a href="https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases" class="external-link">Centre for the Mathematical Modelling of Infectious Diseases</a> at the London School of Hygiene and Tropical Medicine as part of the <a href="https://data.org/initiatives/epiverse/" class="external-link">Epiverse Initiative</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -162,19 +162,24 @@
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"epichains"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; To cite package epichains in publications use:</span></span>
+<span><span class="co">#&gt; To cite package 'epichains' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   Sebastian Funk, Flavio Finger, and James M. Azam (2023). epichains:</span></span>
-<span><span class="co">#&gt;   Analysing transmission chain statistics using branching process</span></span>
-<span><span class="co">#&gt;   models, website: https://github.com/epiverse-trace/epichains/</span></span>
+<span><span class="co">#&gt;   Azam J, Finger F, Funk S (2023). _epichains: Simulating and Analysing</span></span>
+<span><span class="co">#&gt;   Transmission Chain Statistics Using Branching Process Models_. R</span></span>
+<span><span class="co">#&gt;   package version 0.0.0.9999,</span></span>
+<span><span class="co">#&gt;   https://epiverse-trace.github.io/epichains/,</span></span>
+<span><span class="co">#&gt;   &lt;https://github.com/epiverse-trace/epichains&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   @Manual{,</span></span>
-<span><span class="co">#&gt;     title = {epichains: Analysing transmission chain statistics using branching process models},</span></span>
-<span><span class="co">#&gt;     author = {{Sebastian Funk} and {Flavio Finger} and {James M. Azam}},</span></span>
+<span><span class="co">#&gt;     title = {epichains: Simulating and Analysing Transmission Chain Statistics Using</span></span>
+<span><span class="co">#&gt; Branching Process Models},</span></span>
+<span><span class="co">#&gt;     author = {James M. Azam and Flavio Finger and Sebastian Funk},</span></span>
 <span><span class="co">#&gt;     year = {2023},</span></span>
-<span><span class="co">#&gt;     url = {https://github.com/epiverse-trace/epichains/},</span></span>
+<span><span class="co">#&gt;     note = {R package version 0.0.0.9999, </span></span>
+<span><span class="co">#&gt; https://epiverse-trace.github.io/epichains/},</span></span>
+<span><span class="co">#&gt;     url = {https://github.com/epiverse-trace/epichains},</span></span>
 <span><span class="co">#&gt;   }</span></span></code></pre></div>
 </div>
 </div>
@@ -228,7 +233,15 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
+<li><a href="https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://codecov.io/github/epiverse-trace/epichains" class="external-link"><img src="https://codecov.io/github/epiverse-trace/epichains/branch/main/graphs/badge.svg" alt="codecov"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>

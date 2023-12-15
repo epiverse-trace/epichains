@@ -17,7 +17,7 @@
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="../logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">epichains</a>
 
-    <small class="nav-text text-muted me-auto version-number" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-danger me-auto version-number" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9999</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6>
     <a class="dropdown-item" href="../articles/branching_process_literature.html">Literature on branching process applications</a>
-    <a class="dropdown-item" href="../articles/theoretical_background.html">Theoretical background for bpmodels</a>
+    <a class="dropdown-item" href="../articles/theoretical_background.html">Theoretical background for epichains</a>
   </div>
 </li>
 <li class="nav-item">
@@ -63,7 +63,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Simulate transmission chains sizes/lengths</h1>
-      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/HEAD/R/simulate.r" class="external-link"><code>R/simulate.r</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/HEAD/R/simulate.R" class="external-link"><code>R/simulate.R</code></a></small>
       <div class="d-none name"><code>simulate_summary.Rd</code></div>
     </div>
 
@@ -127,9 +127,7 @@ offspring distribution (<code>offspring_dist</code>).</p><div class="section">
 <h3 id="specifying-generation-time">Specifying <code>generation_time</code><a class="anchor" aria-label="anchor" href="#specifying-generation-time"></a></h3>
 
 
-<p><code>generation_time</code> must be specified as a named or
-<a href="https://en.wikipedia.org/wiki/Anonymous_function#R" class="external-link">anonymous/inline/unnamed function</a>
-with one argument.</p>
+<p><code>generation_time</code> must be specified as a function with one argument.</p>
 <p>For example, assuming we want to specify the generation time
 as a random log-normally distributed variable with
 <code>meanlog = 0.58</code> and <code>sdlog = 1.58</code>, we could define a named function,

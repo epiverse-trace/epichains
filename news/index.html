@@ -17,7 +17,7 @@
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="../logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">epichains</a>
 
-    <small class="nav-text text-muted me-auto version-number" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-danger me-auto version-number" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9999</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6>
     <a class="dropdown-item" href="../articles/branching_process_literature.html">Literature on branching process applications</a>
-    <a class="dropdown-item" href="../articles/theoretical_background.html">Theoretical background for bpmodels</a>
+    <a class="dropdown-item" href="../articles/theoretical_background.html">Theoretical background for epichains</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -67,22 +67,17 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.9999" id="epichains-019999">epichains 0.1.9999<a class="anchor" aria-label="anchor" href="#epichains-019999"></a></h2>
-<div class="section level3">
-<h3 id="documentation-0-1-9999">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-1-9999"></a></h3>
-<ul><li>A vignette outlining how to simulate interventions has been added</li>
+<h2 class="pkg-version" data-toc-text="0.0.9999" id="epichains-009999">epichains 0.0.9999<a class="anchor" aria-label="anchor" href="#epichains-009999"></a></h2>
+<ul><li>
+<code>epichains</code> is a re-implementation of <code>bpmodels</code> with a focus on providing a dedicated class of data structures for easy manipulation and interoperability with other new tools in the Epiverse and existing ecosystem.</li>
+</ul><div class="section level3">
+<h3 id="documentation-0-0-9999">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-0-9999"></a></h3>
+<ul><li>A vignette outlining how to simulate interventions has been added.</li>
 </ul></div>
-</div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0" id="epichains-010">epichains 0.1.0<a class="anchor" aria-label="anchor" href="#epichains-010"></a></h2>
 <div class="section level3">
-<h3 id="package-name-change-0-1-0">Package name change<a class="anchor" aria-label="anchor" href="#package-name-change-0-1-0"></a></h3>
+<h3 id="functions-0-0-9999">Functions<a class="anchor" aria-label="anchor" href="#functions-0-0-9999"></a></h3>
 <ul><li>
-<code>epichains</code> is a re-implementation of <code>bpmodels</code> with a focus on providing a dedicated class of data structures for easy manipulation and interoperability with other new tools in the pipeline.</li>
-</ul><div class="section level4">
-<h4 id="functions-0-1-0">Functions<a class="anchor" aria-label="anchor" href="#functions-0-1-0"></a></h4>
-<ul><li>
-<code><a href="../reference/simulate_tree.html">simulate_tree()</a></code>: simulate transmission trees from a given number of chains.</li>
+<code><a href="../reference/simulate_tree.html">simulate_tree()</a></code>: simulate transmission trees from a given number of initial cases.</li>
 <li>
 <code><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code>: simulate transmission trees from a given population size and initial immunity.</li>
 <li>
@@ -90,36 +85,11 @@
 <li>
 <code><a href="../reference/likelihood.html">likelihood()</a></code>: estimate the likelihood/loglikelihood of observing chains of given sizes/lengths.</li>
 </ul></div>
-<div class="section level4">
-<h4 id="classes-0-1-0">Classes<a class="anchor" aria-label="anchor" href="#classes-0-1-0"></a></h4>
-<ul><li>An <code>epichains</code> class, which inherits from <code>data.frame</code> with attributes for tracking:
-<ul><li>
-<code>chains</code>: number of chains simulated</li>
-<li>
-<code>chain_type</code>:
-<ul><li>
-<code>chains_tree</code>, if returned from <code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> or <code><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code>
-</li>
-<li>
-<code>chains_summary</code>, if returned from <code><a href="../reference/simulate_summary.html">simulate_summary()</a></code>.</li>
-</ul></li>
-<li>
-<code>track_pop</code>: whether the susceptible population is tracked or not.</li>
-</ul></li>
-<li>An <code>epichains_aggregate_df</code> class, which inherits from <code>data.frame</code> with attributes for tracking:
-<ul><li>
-<code>chain_type</code>: as defined above, and</li>
-<li>
-<code>aggregated_over</code>: the variable(s) over which aggregation was done: “time”, “generation” or “both”. Useful for easy plotting with the <code>plot</code> method (see methods section below).</li>
-</ul></li>
+<div class="section level3">
+<h3 id="methods-0-0-9999">Methods<a class="anchor" aria-label="anchor" href="#methods-0-0-9999"></a></h3>
+<ul><li>Use <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> to obtain more insightful results compared to previously in {bpmodels}.</li>
+<li>Use <code><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate()</a></code> to aggregate results from <code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> and <code><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code> into cases by “generation” and “time” (if time is simulated)</li>
 </ul></div>
-<div class="section level4">
-<h4 id="methods-0-1-0">Methods<a class="anchor" aria-label="anchor" href="#methods-0-1-0"></a></h4>
-<ul><li><code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code></li>
-<li><code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code></li>
-<li><code><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate()</a></code></li>
-</ul></div>
-</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
