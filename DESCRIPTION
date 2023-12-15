@@ -26,6 +26,7 @@ Depends:
 Imports: 
     checkmate,
     stats,
+    truncdist,
     utils
 Suggests:
     bookdown,
@@ -38,7 +39,6 @@ Suggests:
     rmarkdown,
     spelling,
     testthat,
-    truncdist,
     usethis
 VignetteBuilder:
     knitr
