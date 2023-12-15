@@ -451,14 +451,13 @@ simulate_tree_from_pop <- function(pop,
     }
   } else if (offspring_dist == "nbinom") {
     if (is.null(pars$size)) {
-      stop(sprintf("%s", "'size' must be specified."))
+      stop("'size' must be specified.")
     } else if (pars$size <= 1) { ## dispersion coefficient
-      stop(sprintf(
-        "%s %s %s",
+      stop(
         "Offspring distribution 'nbinom' requires",
         "argument 'size' > 1.",
         "Use 'pois' if there is no overdispersion."
-      ))
+      )
     }
     ## get distribution params from mean and dispersion
     offspring_func <- function(n, susc) {
