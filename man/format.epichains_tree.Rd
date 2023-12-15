@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{An \verb{<epichains_tree>} object}
 
-\item{...}{further arguments passed to or from other methods}
+\item{...}{ignored}
 }
 \value{
 Invisibly returns an \verb{<epichains_tree>}.

@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{An \verb{<epichains_summary>} object.}
 
-\item{...}{Other parameters passed to \code{print()}.}
+\item{...}{ignored.}
 }
 \value{
 Invisibly returns an \verb{<epichains_summary>}. Called for

@@ -9,7 +9,7 @@
 \arguments{
 \item{object}{An \verb{<epichains_summary>} object}
 
-\item{...}{further arguments passed to or from other methods}
+\item{...}{ignored}
 }
 \value{
 List of summaries

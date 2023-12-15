@@ -13,7 +13,7 @@ present}
 \item{by}{The variable to aggregate by. Options include
 "time" and "generation".}
 
-\item{...}{Other arguments passed to aggregate.}
+\item{...}{ignored.}
 }
 \value{
 A \verb{<data.frame>} object of cases by \code{by}.
