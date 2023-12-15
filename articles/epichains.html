@@ -319,6 +319,7 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Simulated tree sizes: </span></span>
 <span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Max: 5</span></span>
 <span><span class="co">#&gt; Min: 1</span></span></code></pre></div>
 </details>
 </div>
@@ -418,7 +419,7 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <div class="section level3">
 <h3 id="aggregating">Aggregating<a class="anchor" aria-label="anchor" href="#aggregating"></a>
 </h3>
-<p>You can aggregate <code>&lt;epichains&gt;</code> objects returned by the <code>simulate_*()</code> functions into a time series, which is a <code>&lt;data.frame&gt;</code> with columns “cases” and either “generation” or “time”, depending on the value of <code>grouping_var</code>.</p>
+<p>You can aggregate <code>&lt;epichains&gt;</code> objects returned by the <code>simulate_*()</code> functions into a time series, which is a <code>&lt;data.frame&gt;</code> with columns “cases” and either “generation” or “time”, depending on the value of <code>by</code>.</p>
 <p>To aggregate over “time”, you must have specified a generation time distribution in the simulation step.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example with simulate_tree()</span></span>
@@ -439,7 +440,7 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_tree_eg</span>, grouping_var <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_tree_eg</span>, by <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   time cases</span></span>
 <span><span class="co">#&gt; 1    0    10</span></span>
 <span><span class="co">#&gt; 2    3    13</span></span>
@@ -472,7 +473,7 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Aggregate cases over time</span></span>
-<span><span class="va">sim_aggreg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_tree_eg</span>, grouping_var <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
+<span><span class="va">sim_aggreg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_tree_eg</span>, by <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot cases over time</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim_aggreg</span>, type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span></span></code></pre></div>
