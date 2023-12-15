@@ -50,9 +50,7 @@ The distribution of secondary cases, \eqn{X_{t, i}} is modelled by the
 offspring distribution (\code{offspring_dist}).
 \subsection{Specifying \code{generation_time}}{
 
-\code{generation_time} must be specified as a named or
-\href{https://en.wikipedia.org/wiki/Anonymous_function#R}{anonymous/inline/unnamed function}
-with one argument.
+\code{generation_time} must be specified as a function with one argument.
 
 For example, assuming we want to specify the generation time
 as a random log-normally distributed variable with
