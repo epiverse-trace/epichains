@@ -300,7 +300,7 @@ summary(simulate_summary_eg)
 
 ### Aggregating
 
-You can aggregate `<epichains>` objects returned by the `simulate_*()` functions into a time series, which is a `<data.frame>` with columns "cases"  and either "generation" or "time", depending on the value of `grouping_var`.
+You can aggregate `<epichains>` objects returned by the `simulate_*()` functions into a time series, which is a `<data.frame>` with columns "cases"  and either "generation" or "time", depending on the value of `by`.
 
 To aggregate over "time", you must have specified a generation time distribution in the simulation step.
 ```{r include=TRUE,echo=TRUE}
@@ -322,7 +322,7 @@ sim_tree_eg <- simulate_tree(
   lambda = 0.9
 )
 
-aggregate(sim_tree_eg, grouping_var = "time")
+aggregate(sim_tree_eg, by = "time")
 ```
 
 ### Plotting
@@ -349,7 +349,7 @@ sim_tree_eg <- simulate_tree(
 )
 
 # Aggregate cases over time
-sim_aggreg <- aggregate(sim_tree_eg, grouping_var = "time")
+sim_aggreg <- aggregate(sim_tree_eg, by = "time")
 
 # Plot cases over time
 plot(sim_aggreg, type = "b")
