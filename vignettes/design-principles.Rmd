@@ -391,25 +391,3 @@ messages, errors, warnings, progress bar, and other user-facing features.
 
   - [checkmate](https://github.com/mllg/checkmate/) for input validation.
 
-
-## Learning resources
-
-### Free videos lectures and books
-
-1. Applied epi handbook [chapter](https://epirhandbook.com/en/transmission-chains.html) on handling, analysing, and visualizing transmission chains and contact tracing data with `epicontacts`.
-2. Complete video [lecture/tutorial](https://www.youtube.com/watch?v=TsOPFKQmuDc&list=PLRogqfr-vZMfvcLjjmXnb0wk6MPTzhph-) on branching processes. Topics include: introduction to branching processes, probability generating functions, and extinction probabilities. 
-  
-## Bibliography
-
-#### Single-type models
-
-- Blumberg S, Lloyd-Smith J. Comparing methods for estimating R0 from the size distribution of sub- critical transmission chains. Epidemics. 2013; 5(3):131–45. doi: <https://doi.org/10.1016/j.epidem.2013.05.002> PMID: 24021520
-- Blumberg S, Lloyd-Smith JO. Inference of R0 and transmission heterogeneity from the size distribution of stuttering chains. PLoS Comput Biol. 2013; 9(5):e1002993. doi: <https://doi.org/10.1371/journal.pcbi.1002993> PMID: 23658504
-- Farrington C, Kanaan M, Gay N. Branching process models for surveillance of infectious diseases con- trolled by mass vaccination. Biostatistics. 2003; 4(2):279. doi: <https://doi.org/10.1093/biostatistics/4.2.279> PMID: 12925522
-- Nishiura H, Yan P, Sleeman CK, Mode CJ. Estimating the transmission potential of supercritical pro- cesses based on the final size distribution of minor outbreaks. J Theor Biol. 2012; 294:48–55. doi: <https://doi.org/10.1016/j.jtbi.2011.10.039> PMID: 22079419
-
-#### Multi-type models
-
-- Kucharski, A. J., & Edmunds, W. J. (2015). Characterizing the Transmission Potential of Zoonotic Infections from Minor Outbreaks. PLoS Computational Biology, 11(4), 1–17. <https://doi.org/10.1371/journal.pcbi.1004154>
-
-### Used in-text
