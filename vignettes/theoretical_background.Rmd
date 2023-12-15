@@ -54,7 +54,7 @@ The length $L$ of a chain is the number of generations that have been simulated 
 
 By characterising a chains of cases by their size of length we can conduct inference to learn about the underlying parameters $\theta$ from observation of chain sizes or chain lengths [@blumberg2013].
 In general this is only possible for _subcritical_ branching processes, i.e. ones where the mean number of offspring is less than 1, as otherwise the branching process could grow forever.
-However, we can expand the theory to _supercritical_ branching processes, i.e. ones where the mean number of offspring is greater than 1, by defining a cutoff of chain size or length beyond which we treat the chain as if it had infinite size or length, respectively.
+However, we can expand the theory to _supercritical_ branching processes, i.e. ones where the mean number of offspring is greater than 1, by defining a cut off of chain size or length beyond which we treat the chain as if it had infinite size or length, respectively.
 
 ## Size and length distributions for some offspring distributions
 
