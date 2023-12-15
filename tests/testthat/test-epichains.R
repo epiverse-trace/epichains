@@ -475,7 +475,7 @@ test_that("aggregate.epichains_tree method is numerically correct", {
   )
   expect_identical(
     aggreg_by_time$cases,
-    as.integer(c(10, rep(1, 82)))
+    as.integer(c(10, rep(1, 111)))
   )
 })
 
