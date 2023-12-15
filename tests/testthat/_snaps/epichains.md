@@ -94,6 +94,7 @@
       
        Simulated tree lengths: 
       
+      Max: 1
       Min: 1
 
 # head and tail print output as expected
