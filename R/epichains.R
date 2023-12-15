@@ -274,7 +274,7 @@ format.epichains_summary <- function(x, ...) {
       ),
       sprintf(
         "Max: %s",
-        statistics[["max_tree_stat"]]
+        statistics[["max_stat"]]
       ),
       sprintf(
         "Min: %s",
