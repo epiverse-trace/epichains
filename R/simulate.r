@@ -116,6 +116,8 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
 
   if (!missing(generation_time)) {
     check_generation_time_valid(generation_time)
+  } else if (!missing(tf)) {
+    stop("If `tf` is specified, `generation_time` must be specified too.")
   }
   checkmate::assert_numeric(
     t0, lower = 0, finite = TRUE
@@ -126,12 +128,6 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
 
   # Gather offspring distribution parameters
   pars <- list(...)
-
-  if (!missing(generation_time)) {
-    check_generation_time_valid(generation_time)
-  } else if (!missing(tf)) {
-    stop("If `tf` is specified, `generation_time` must be specified too.")
-  }
 
   # Initialisations
   stat_track <- rep(1, ntrees) # track length or size (depending on `statistic`)
