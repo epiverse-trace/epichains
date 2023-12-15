@@ -69,18 +69,18 @@
       
       < tree head (from first known infector_id) >
       
-         infectee_id sim_id infector_id generation      time
-      11           1      2           1          2 2.6525084
-      12           2      2           1          2 0.2397245
-      13           4      2           1          2 0.9737101
-      14           5      2           1          2 0.2385887
-      15           6      2           1          2 1.7212668
-      16           7      2           1          2 1.3509058
+         infectee_id sim_id infector_id generation        time
+      11           1      2           1          2  8.59503360
+      12           4      2           1          2  6.67409463
+      13           5      2           1          2 39.15336234
+      14           6      2           1          2  0.05985497
+      15           7      2           1          2 10.90473704
+      16           8      2           1          2  2.65250841
       
       
       Trees simulated: 10
       Number of infectors (known): 9
-      Number of generations: 5
+      Number of generations: 4
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
 ---
@@ -90,11 +90,11 @@
     Output
       `epichains_summary` object 
       
-      [1] 9 6
+      [1] 1 1
       
        Simulated tree lengths: 
       
-      Min: 6
+      Min: 1
 
 # head and tail print output as expected
 
@@ -135,13 +135,13 @@
     Code
       head(tree_sim_raw2)
     Output
-         infectee_id sim_id infector_id generation      time
-      11           1      2           1          2 2.6525084
-      12           2      2           1          2 0.2397245
-      13           4      2           1          2 0.9737101
-      14           5      2           1          2 0.2385887
-      15           6      2           1          2 1.7212668
-      16           7      2           1          2 1.3509058
+         infectee_id sim_id infector_id generation        time
+      11           1      2           1          2  8.59503360
+      12           4      2           1          2  6.67409463
+      13           5      2           1          2 39.15336234
+      14           6      2           1          2  0.05985497
+      15           7      2           1          2 10.90473704
+      16           8      2           1          2  2.65250841
 
 ---
 
@@ -183,10 +183,10 @@
       tail(tree_sim_raw2)
     Output
           infectee_id sim_id infector_id generation      time
-      119           9     15           8          5 19.146936
-      120           2     16           8          4  2.941326
-      121           9     16           8          5 17.447014
-      122          10     16           9          4 17.017684
-      123           2     17           9          4  7.368167
-      124           2     18           9          4  7.931447
+      119           7     17           7          4  8.286840
+      120           4     18           8          4  8.848239
+      121           4     19           8          4 13.561793
+      122           4     20           9          4  7.895412
+      123           4     21           9          4 15.349377
+      124           4     22           9          4 11.014223
 
