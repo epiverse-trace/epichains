@@ -1,49 +1,31 @@
-# epichains 0.1.9999
+# epichains 0.0.9999
+
+* `epichains` is a re-implementation of `bpmodels` with a focus on providing
+a dedicated class of data structures for easy manipulation and interoperability
+with other new tools in the Epiverse and existing ecosystem.
 
 ## Documentation
 
-* A vignette outlining how to simulate interventions has been added
+* A vignette outlining how to simulate interventions has been added.
 
-# epichains 0.1.0
+## Functions
 
-## Package name change
-
-* `epichains` is a re-implementation of `bpmodels` with a focus on providing
-  a dedicated class of data structures for easy manipulation and interoperability
-  with other new tools in the pipeline.
-
-### Functions
-
-* `simulate_tree()`: simulate transmission trees from a given number of chains.
+* `simulate_tree()`: simulate transmission trees from a given number of initial
+cases.
 * `simulate_tree_from_pop()`: simulate transmission trees from a given 
-  population size and initial immunity.
+population size and initial immunity.
 * `simulate_summary()`: simulate a vector of observed transmission chains 
-  sizes/lengths from a given number of chains.
+sizes/lengths from a given number of chains.
 * `likelihood()`: estimate the likelihood/loglikelihood of observing
-  chains of given sizes/lengths.
+chains of given sizes/lengths.
 
-### Classes
+## Methods
 
-* An `epichains` class, which inherits from `data.frame` with attributes for
-  tracking:
-  - `chains`: number of chains simulated
-  - `chain_type`:
-    - `chains_tree`, if returned from `simulate_tree()` or 
-      `simulate_tree_from_pop()`
-    - `chains_summary`, if returned from `simulate_summary()`.
-  - `track_pop`: whether the susceptible population is tracked or not.
-* An `epichains_aggregate_df` class, which inherits from `data.frame` with
-  attributes for tracking:
-  - `chain_type`: as defined above, and
-  - `aggregated_over`: the variable(s) over which aggregation was done: "time",
-  "generation" or "both". Useful for easy plotting with the `plot` method (see
-  methods section below).
-
-### Methods
-
-* `print()`
-* `summary()`
-* `aggregate()`
+* Use `print()` and `summary()` to obtain more insightful results compared to
+previously in {bpmodels}.
+* Use `aggregate()` to aggregate results from `simulate_tree()` and
+`simulate_tree_from_pop()` into cases by "generation" and "time" (if time is
+simulated)
 
 # bpmodels 0.2.1
 
