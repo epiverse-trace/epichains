@@ -141,9 +141,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     likelihoods <- likelihoods - log(-expm1(sum(likelihoods[exclude])))
     likelihoods[exclude] <- -Inf
 
-    stat_rep_list <- lapply(stat_rep_list, function(y) {
-      setdiff(y, exclude)
-    })
+    stat_rep_list <- lapply(stat_rep_list, setdiff, exclude)
   }
 
   ## assign likelihoods
