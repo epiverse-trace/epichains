@@ -24,22 +24,58 @@ This document is primarily intended to be read by those interested in understand
 
 ## Scope
 
+{epichains} aims to provide four three functionalities:
+
+* Branching process models for simulating transmission chains using the
+`simulate_tree()` and `simulate_summary()` functions,
+* Modelling of the offspring distribution using shipped mixture distributions
+like `rborel()`.
+* Estimation of the likelihood of
+observing transmission chains of given sizes or lengths. This can be achieved
+in two ways:
+  - Closed form or analytical likelihoods that take the form <distribution>_<chain_statistic_type_ll>, for example,
+`gborel_size_ll()` and `pois_length_ll()`.
+  - Simulation using `offspring_ll()`.
+
 ## Input/Output/Interoperability
+
+`simulate_tree()` returns an `<epichains_tree>` object that stores both
+the simulated output and parameter values used to achieve the simulation.
+`print()` and `summary()` methods are implemented for the `<epichains_tree>`
+class to help return insightful output based on the simulated transmission
+chains. Future support will be provided for `<epidist>` objects from the
+{epiparameter} package to allow for interoperability. Storing
+inputs and outputs in the `<epichains_tree>` object eases the extra work
+needed to be done by the user to set up scenario analyses.
+
+`simulate_summary()` returns a vector.
 
 ## Design decisions
 
-## Dependencies
+### `<epichains_tree>` class
 
+* Objects of this class have attributes to store simulation
+  metadata (all inputs, including `statistic`,`stat_max`,
+  `offspring_dist`, `generation_time`, `pop_size`, e.t.c.,).
 
+* Columns of `<epichains_tree>`: 
+  * `generation_time` (numeric)
+  * `infector_id` (factor) 
+  * `infectee_id` (factor) 
+  * `generation` (integer)
 
+### Methods
 
+* `print.epichains_tree()`: function to format and pretty 
+print `<epichains_tree>` objects.
 
+* `summary.epichains_tree()`: function to summarise an
+`<epichains_tree>` into the eventual outcome of the chain statistic simulated,
+and with the same length as the index cases. All values above `stat_max`
+are set to `Inf` with the same logic as in `simulate_summary()`.
 
-
-
-
-
-## Overview
+* `aggregate.epichains_tree()`: function to aggregate the simulated
+chains into cases by "generation" or "time", if it was simulated.
 
 ## Dependencies
 
@@ -50,25 +86,15 @@ This document is primarily intended to be read by those interested in understand
   - [data.table](https://rdatatable.gitlab.io/data.table/): provides a
   high-performance version of base R’s `<data.frame>`.
 
-Branching processes have some limitations. For instance, they do not not 
-take into account the depletion of susceptibles in the population. Additionally, 
-They do not account for under ascertainment of cases. 
 
-## Existing R packages
+## Related R packages
 
-As far as we know, below are the existing R packages for simulating and handling transmission chains. 
-
-:::{.callout-note}
-It is our vision to streamline these packages and make them interoperable
-in a simple ecosystem. If you are interested in contributing in any way, 
-reach out to James Azam by email (james.azam@lshtm.ac.uk). Moreoever, 
-if you are aware of any packages or code bases that are not on this list, 
-please direct us to them.
-:::
+As far as we know, below are the existing R packages for simulating and
+handling transmission chains. 
 
 * [bpmodels](https://github.com/epiverse-trace/bpmodels): provides methods 
 for analysing the size and length of transmission chains from branching 
-process models.
+process models. {bpmodels} is the predecessor of {epichains}.
 
 * [earlyR](https://github.com/reconhub/earlyR): estimates the reproduction 
 number (R), in the early stages of an outbreak. The model requires a 
@@ -125,201 +151,5 @@ variables on the transmission process (e.g. dual-host systems
 population structure), alone or taken together, to create complex 
 but relatively intuitive epidemiological simulations.
 
-* [TransPhylo](https://xavierdidelot.github.io/TransPhylo/index.html): reconstructs infectious disease transmission using genomic data
-
-
-## Introducing `epichains`: a unifying package for transmission chains
-
-### Current functionality
-
-`bpmodels` provides 3 functions: `chain_sim()`, `chain_sim_susc()`, and
-`chain_ll()`.
-
-#### Single-type branching processes
-
-`chain_sim()` uses a homogeneous Galton-Watson branching process to
-simulate transmission chains assuming cases randomly produce offspring 
-(new cases) according to a given distribution. 
-
-<!-- $P(I = r) = a_r \dfrac{\theta^r}{A(\theta)}$, where $\theta$ is the -->
-<!-- canonical parameter and $A(\theta) = \sum a_r \theta^r$, where $a^r \ge 0$. -->
-
-The simulation algorithm is as follows:
-
-Let us denote the size of the population in the n-th generation by $Z_n$. The 
-simulation process starts with an initial population of $Z_0$ infected 
-individuals. Each infected individual produces a random number 
-of offspring and until the end of their serial interval. The population 
-size in the next generation, $Z1$ is the sum of the offspring. 
-The offspring go on to produce new offspring, which gives the next 
-generation, and so on.
-
-#### Simulate populations with pre-existing immunity
-
-`chain_sim_susc()` simulates chains of transmission, one step at a time, 
-in a  population with some immunity. 
-
-The function generates new cases over time based on a specified 
-offspring distribution and a serial interval distribution, 
-specified as one of the random number generators in R, for example, `rpois`. 
-
-Currently, `chain_sim_susc()` implements two offspring distributions: 
-truncated poisson and truncated negative binomial distribution. 
-The simulator achieves this by implementing light wrappers around 
-the `rtrunc` function from the [truncdist](https://cran.r-project.org/web/packages/truncdist/index.html) 
-package.
-
-The poisson distribution has mean, 
-$\lambda = \dfrac{S \times R_0}{N}$, where $S$ is the current size of 
-the susceptible population, $R_0$ is the expected average number of 
-secondary cases per infected individual, and $N$ is the population size, 
-which is assumed to be constant.
-
-The negative binomial offspring distribution uses the mean and dispersion 
-parametrization (see \code{?rnbinom}), where the mean, 
-$mu = \dfrac{S \times R_0}{N} $, where
-$S$ is the current size of the susceptible population, $R_0$ is the
-expected average number of secondary cases per infected individual,
-and $N$ is the population size, which is assumed to be constant. The
-size is also given as $\dfrac{mu}{k-1}$, where $k$ is the negative binomial
-dispersion parameter.
-
-
-### (Ideal) new features
-
-The goal is for `epichains` to work with existing packages and 
-provide extensions for new transmission chain packages. 
-
-Hence, we envision for it to:
-
-* Have a model with interventions like in `ringbp`:
-  - Interventions should ideally be introducable in a composable form similar to [epidemics]("https://github.com/epiverse-trace/epidemics/") package is being 
-  developed this way (For a more complex inspiration, see [langchain](https://github.com/hwchase17/langchain)).
-
-* Reduce input wrangling by accepting at best, a cleaned linelist with 
-onset dates, or onset times, or at worst, case count time series.
-  - If the input data is a time series, there's a need for packages/methods
-  to "simulate" onset times in conjunction with the time series. 
-
-* Provide conversion between the available packages for simulating 
-transmission chains (`projections`, `epicontacts`, etc).
-
-* Allow specifying multiple distributions for generating offspring and 
-the serial interval (possibly through `quickfit`):
-  * Allow for comparing different scenarios in first bullet (offspring,
-  serial, intervention).
-
-* Allow simulating multiple runs of the same model and saving the output
-in a tidy way (via an extra argument, which defaults to 1).
-
-* Allow plotting the whole or part of the network (via custom subsetting in
-the plotting function).
-
-* Interoperability primarily with: 
-  - `epicontacts`: currently requires `epichains` to simulate contact-tracing
-  - * `quickfit`: for comparing multiple models 
-  - [epiparameter](https://github.com/epiverse-trace/epiparameter) for specifying 
-parameter values and distributions.
-  - `superspreading`: for estimating/fitting offspring distributions
-
-:::{.callout-important}
-Due to the large number of packages for simulating transmission chains 
-and the variations in terminology, there might be a need to unify the 
-grammar and terminology. This will provide a philosophical framework 
-for developing and using packages in this ecosystem in a structured way. 
-:::
-
-### Practical - centered on actual decision-making - use cases for `epichains` 
-
-#### Sources of use cases
-
-* outbreak sitreps, 
-* literature, and 
-* nCOV-2019/COVID-19 reports (NICD, SPI-M, etc)
-
-#### General use cases
-
-* Simulating outbreak clusters with `chain_sim()`: what will the outbreak 
-size be?
-* Simulating the likelihood of observing clusters of certain sizes and 
-lengths with `chain_ll()`
-* Estimating R0 and superspreading from observed clusters
-  - Fitting branching processes to time series of confirmed cases.
-  - Fitting branching processes to observed transmission chains derived from 
-  contact tracing.
-
-#### Worked examples
-
-* Analyse UK measles outbreak data
-* Current Marburg outbreak cluster analysis with `bpmodels`.
-* Concept around [this paper on estimating superspreading in 
-COVID-19 with outbreak sizes from outside 
-China](10.12688/wellcomeopenres.15842.3).
-* Concept around [this paper about estimating R0 from 
-initial point-source exposure sizes 
-and durations](10.12688/wellcomeopenres.15718.1)
-
-
-
-### Design
-
-In the design of this new package, we aim to follow principles 
-that are closely aligned to the [tidyverse design principles](https://design.tidyverse.org/unifying-principles.html).
-
-#### S3 class: `epichains` 
-
-* **new object** (`epichains`): for handling transmission chains:
-  - Objects of this class will have attributes to store key simulation 
-  metadata (value for `infinite` from `chain_sim()`, `stat` = length/size 
-  specified, `chains.type` = if `tree = TRUE`, `chains_tree`, else, 
-  `chains_vec`).
-  
-  - `epichains`: constructor of the `epichains` 
-  object; Initiates data/output storage and retrieval/subsetting (inherit 
-  from `data.frame`/`tibble`).
-
-* **is.epichains**: validator to check whether an object 
-is a `epichains` object, based on defined class invariants, else 
-throw error.
-
-#### Class invariants
-
-* Minimal set of columns: 
-  * `generation` (numeric), 
-  * `infector id` (factor), 
-  * `infectee id` (factor), and 
-  * `time`  of infection (double/non-integer times)
-- Optional columns:
- * `integer time` (numeric): created with a call to mutate or base R 
- equivalents
- * `sex/gender` (factor)
- * e.t.c., 
-
-#### Methods
-
-* **Output {print.epichains}**: function to format and pretty 
-print `epichains` objects, depending on whether they are of 
-type `chains_tree` or `chains_vec`.
-
-* **Summary {summary.epichains}**: function to calculate the 
-following summaries: number of chains, min and max chain length/size, 
-average chain length/size, and others as may be required. This will 
-depend on whether an object is of type "tree" or "notree".
-
-* **Plotting {plot.epichains}**: function to plot transmission 
-chains in different ways:
-
-  * trees/chains plotted as a network
-  * cluster sizes per onset date (if specified by user) as barplots
-  
-* **Aggregation {aggregate.epichains}**: function to aggregate the simulated
-chains in terms of the "time" column, "generation", or "both".
-
-### Helper functions/utils
-
-* functions for passing whole linelists to `epichains` and with 
-tagged columns using [linelist](https://github.com/reconhub/linelist) package.
-
-* functions for decomposing case count time series into linelists with 
-tagged columns (not aware of packages for achieving this).
-
+* [TransPhylo](https://xavierdidelot.github.io/TransPhylo/index.html):
+reconstructs infectious disease transmission using genomic data.
