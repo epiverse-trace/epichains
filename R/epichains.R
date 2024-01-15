@@ -17,11 +17,11 @@
 #' @author James M. Azam
 #' @keywords internal
 new_epichains_tree <- function(tree_df,
-                               ntrees = integer(),
-                               statistic = character(),
-                               offspring_dist = character(),
-                               stat_max = integer(),
-                               track_pop = logical()) {
+                               ntrees,
+                               statistic,
+                               offspring_dist,
+                               stat_max,
+                               track_pop) {
   # Assemble the elements of the object
   obj <- structure(
     tree_df,
@@ -58,11 +58,11 @@ new_epichains_tree <- function(tree_df,
 #' @author James M. Azam
 #' @export
 epichains_tree <- function(tree_df,
-                           ntrees = integer(),
-                           statistic = character(),
-                           offspring_dist = character(),
-                           stat_max = integer(),
-                           track_pop = logical()) {
+                           ntrees,
+                           statistic,
+                           offspring_dist,
+                           stat_max,
+                           track_pop) {
   # Check that inputs are well specified
   checkmate::assert_data_frame(tree_df)
   checkmate::assert_integerish(ntrees, null.ok = TRUE)
@@ -107,10 +107,10 @@ epichains_tree <- function(tree_df,
 #' @author James M. Azam
 #' @keywords internal
 new_epichains_summary <- function(chains_summary,
-                                  ntrees = integer(),
-                                  statistic = character(),
-                                  offspring_dist = character(),
-                                  stat_max = integer()) {
+                                  ntrees,
+                                  statistic,
+                                  offspring_dist,
+                                  stat_max) {
   # Assemble the elements of the object
   obj <- structure(
     chains_summary,
@@ -139,10 +139,10 @@ new_epichains_summary <- function(chains_summary,
 #' @author James M. Azam
 #' @export
 epichains_summary <- function(chains_summary,
-                              ntrees = integer(),
-                              statistic = character(),
-                              offspring_dist = character(),
-                              stat_max = integer()) {
+                              ntrees,
+                              statistic,
+                              offspring_dist,
+                              stat_max) {
   # Check that inputs are well specified
   checkmate::assert_vector(chains_summary)
   checkmate::assert_integerish(ntrees, null.ok = TRUE)

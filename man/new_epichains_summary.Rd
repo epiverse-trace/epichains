@@ -6,10 +6,10 @@
 \usage{
 new_epichains_summary(
   chains_summary,
-  ntrees = integer(),
-  statistic = character(),
-  offspring_dist = character(),
-  stat_max = integer()
+  ntrees,
+  statistic,
+  offspring_dist,
+  stat_max
 )
 }
 \arguments{
