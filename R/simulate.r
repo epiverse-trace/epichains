@@ -97,14 +97,12 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
                           offspring_dist, stat_max = Inf,
                           generation_time, t0 = 0,
                           tf = Inf, ...) {
-  statistic <- match.arg(statistic)
-
   # Input checking
   check_ntrees_valid(ntrees = ntrees)
-  checkmate::assert_character(statistic)
-
-  # check that offspring is properly specified
-  check_offspring_valid(offspring_dist)
+  checkmate::assert_choice(
+    statistic,
+    choices = c("size", "length")
+  )
 
   # check that offspring function exists in base R
   roffspring_name <- paste0("r", offspring_dist)
@@ -269,11 +267,12 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
 simulate_summary <- function(ntrees, statistic = c("size", "length"),
                              offspring_dist,
                              stat_max = Inf, ...) {
-  statistic <- match.arg(statistic)
-
   # Input checking
   check_ntrees_valid(ntrees = ntrees)
-  checkmate::assert_character(statistic)
+  checkmate::assert_choice(
+    statistic,
+    choices = c("size", "length")
+  )
 
   # check that offspring is properly specified
   check_offspring_valid(offspring_dist)
@@ -411,13 +410,14 @@ simulate_tree_from_pop <- function(pop,
                                    t0 = 0,
                                    tf = Inf,
                                    ...) {
-  offspring_dist <- match.arg(offspring_dist)
-
   # Input checking
   checkmate::assert_number(
     pop, lower = 1, finite = TRUE
   )
-  checkmate::assert_string(offspring_dist)
+  checkmate::assert_choice(
+    offspring_dist,
+    choices = c("pois", "nbinom")
+  )
   if (!missing(generation_time)) {
     check_generation_time_valid(generation_time)
   }
