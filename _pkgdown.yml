@@ -5,6 +5,56 @@ template:
     font_weight_base : 300
 development:
   mode: auto
+
+reference:
+  - title: Simulate branching processes
+    contents:
+    - starts_with("simulate_")
+
+  - title: Calculate (log)likelihoods
+    contents:
+    - likelihood
+    - offspring_ll
+
+  - subtitle: Analytical likelihoods
+    desc: Analytical likelihoods of chain size/length distributions
+    contents:
+    - ends_with("size_ll")
+    - ends_with("length_ll")
+
+  - title: epichains classes
+
+  - subtitle: epichains_tree object
+    desc: Class constructor, validator, and methods
+    contents:
+    - epichains_tree
+    - is_epichains_tree
+    - validate_epichains_tree
+    - aggregate.epichains_tree
+    - summary.epichains_tree
+
+  - subtitle: epichains_summary object
+    desc: Class constructor, validator, and methods
+    contents:
+    - epichains_summary
+    - is_epichains_summary
+    - validate_epichains_summary
+    - aggregate.epichains_summary
+    - summary.epichains_summary
+
+  - title: Special distributions
+    contents:
+    - dborel
+    - rborel
+    - rnbinom_mean_disp
+
+  - title: Miscellaneous
+
+  - subtitle: Data
+    desc: Data stored in the package
+    contents:
+    - covid19_sa
+
 articles:
 - title: Package vignettes
   navbar: Package vignettes
