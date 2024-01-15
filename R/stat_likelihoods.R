@@ -28,7 +28,7 @@ pois_size_ll <- function(x, lambda) {
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @keywords internal
-nbinom_size_ll <- function(x, size, prob, mu) {
+nbinom_size_ll <- function(x, size, prob = NULL, mu = NULL) {
   checkmate::assert_numeric(
     x, lower = 0, any.missing = FALSE
   )
@@ -65,7 +65,7 @@ nbinom_size_ll <- function(x, size, prob, mu) {
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @keywords internal
-gborel_size_ll <- function(x, size, prob, mu) {
+gborel_size_ll <- function(x, size, prob = NULL, mu = NULL) {
   checkmate::assert_numeric(
     x, lower = 0, any.missing = FALSE
   )
