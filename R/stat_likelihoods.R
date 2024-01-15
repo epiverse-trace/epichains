@@ -173,7 +173,7 @@ offspring_ll <- function(x, offspring_dist, statistic,
     x, lower = 0, any.missing = FALSE
   )
   # check that offspring is properly specified
-  check_offspring_valid(offspring_dist)
+  checkmate::assert_string(offspring_dist)
   checkmate::assert_character(statistic)
   checkmate::assert_numeric(
     nsim_offspring, lower = 1
