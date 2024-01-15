@@ -1,20 +1,3 @@
-#' Check if offspring argument is specified as a character string
-#'
-#' @param offspring_dist Offspring distribution: a character string
-#' corresponding to the R distribution function (e.g., "pois" for Poisson,
-#' where \code{\link{rpois}} is the R function to generate Poisson random
-#' numbers).
-#' @keywords internal
-check_offspring_valid <- function(offspring_dist) {
-  if (!checkmate::test_string(offspring_dist)) {
-    stop(
-      "'offspring_dist' must be specified as a character string.",
-      "Did you forget to enclose it in quotes?"
-    )
-  }
-}
-
-
 #' Check if constructed random number generator for offspring exists
 #'
 #' @param roffspring_name Constructed random offspring sampler: a character
@@ -50,14 +33,4 @@ check_generation_time_valid <- function(generation_time) {
   }
 }
 
-
-#' Check that `ntrees` is greater than 0 and not infinity
-#'
-#' @param ntrees Number of trees to simulate.
-#'
-#' @keywords internal
-check_ntrees_valid <- function(ntrees) {
-  if (!checkmate::test_count(ntrees, positive = TRUE)) {
-    stop("`ntrees` must be > 0 but less than `Inf`")
-  }
 }

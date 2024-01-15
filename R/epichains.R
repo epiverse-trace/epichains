@@ -67,7 +67,7 @@ epichains_tree <- function(tree_df,
   checkmate::assert_data_frame(tree_df)
   checkmate::assert_integerish(ntrees, null.ok = TRUE)
   checkmate::assert_character(statistic, null.ok = TRUE)
-  check_offspring_valid(offspring_dist)
+  checkmate::assert_string(offspring_dist)
   check_offspring_func_valid(paste0("r", offspring_dist))
   checkmate::assert_logical(track_pop)
   checkmate::assert_number(stat_max, null.ok = TRUE)
@@ -147,7 +147,7 @@ epichains_summary <- function(chains_summary,
   checkmate::assert_vector(chains_summary)
   checkmate::assert_integerish(ntrees, null.ok = TRUE)
   checkmate::assert_character(statistic)
-  check_offspring_valid(offspring_dist)
+  checkmate::assert_string(offspring_dist)
   check_offspring_func_valid(paste0("r", offspring_dist))
   checkmate::assert_number(stat_max, null.ok = TRUE)
 

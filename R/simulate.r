@@ -98,11 +98,12 @@ simulate_tree <- function(ntrees, statistic = c("size", "length"),
                           generation_time, t0 = 0,
                           tf = Inf, ...) {
   # Input checking
-  check_ntrees_valid(ntrees = ntrees)
+  checkmate::assert_count(ntrees, positive = TRUE)
   checkmate::assert_choice(
     statistic,
     choices = c("size", "length")
   )
+  checkmate::assert_string(offspring_dist)
 
   # check that offspring function exists in base R
   roffspring_name <- paste0("r", offspring_dist)
@@ -268,14 +269,14 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
                              offspring_dist,
                              stat_max = Inf, ...) {
   # Input checking
-  check_ntrees_valid(ntrees = ntrees)
+  checkmate::assert_count(ntrees, positive = TRUE)
   checkmate::assert_choice(
     statistic,
     choices = c("size", "length")
   )
 
   # check that offspring is properly specified
-  check_offspring_valid(offspring_dist)
+  checkmate::assert_string(offspring_dist)
 
   # check that offspring function exists in base R
   roffspring_name <- paste0("r", offspring_dist)

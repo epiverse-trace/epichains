@@ -58,7 +58,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     chains, lower = 0, upper = Inf, any.missing = FALSE
   )
   checkmate::assert_character(statistic)
-  check_offspring_valid(offspring_dist)
+  checkmate::assert_string(offspring_dist)
   checkmate::assert_number(
     obs_prob, lower = 0, upper = 1, finite = TRUE, na.ok = FALSE
   )
