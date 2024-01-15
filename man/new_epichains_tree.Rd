@@ -6,11 +6,11 @@
 \usage{
 new_epichains_tree(
   tree_df,
-  ntrees = integer(),
-  statistic = character(),
-  offspring_dist = character(),
-  stat_max = integer(),
-  track_pop = logical()
+  ntrees,
+  statistic,
+  offspring_dist,
+  stat_max,
+  track_pop
 )
 }
 \arguments{

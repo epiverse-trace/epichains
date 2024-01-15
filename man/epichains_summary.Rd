@@ -4,13 +4,7 @@
 \alias{epichains_summary}
 \title{Create an \verb{<epichains_summary>} object}
 \usage{
-epichains_summary(
-  chains_summary,
-  ntrees = integer(),
-  statistic = character(),
-  offspring_dist = character(),
-  stat_max = integer()
-)
+epichains_summary(chains_summary, ntrees, statistic, offspring_dist, stat_max)
 }
 \arguments{
 \item{chains_summary}{a \verb{<vector>} of chain sizes and lengths.}
