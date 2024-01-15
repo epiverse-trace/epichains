@@ -18,19 +18,7 @@ check_offspring_func_valid <- function(roffspring_name) {
 #'
 #' @keywords internal
 check_generation_time_valid <- function(generation_time) {
-  if (!checkmate::test_function(generation_time, nargs = 1)) {
-    stop(
-      "The `generation_time` argument must be a function",
-      "(see details in ?simulate_tree)."
-    )
-  }
+  checkmate::assert_function(generation_time, nargs = 1)
   x <- generation_time(10)
-  if (!checkmate::test_numeric(x, len = 10)) {
-    stop(
-      "The return values of `generation_time`",
-      "must be a numeric vector of length `n`."
-    )
-  }
-}
-
+  checkmate::assert_numeric(x, len = 10)
 }
