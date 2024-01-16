@@ -39,7 +39,6 @@ reference:
     - epichains_summary
     - is_epichains_summary
     - validate_epichains_summary
-    - aggregate.epichains_summary
     - summary.epichains_summary
 
   - title: Special distributions
