@@ -215,8 +215,15 @@ simulate_chains <- function(
     next_gen <- rbinom(n = next_gen, size = next_gen, prob = susc_pop / pop)
     # Adjust next_gen if sum exceeds the number of susceptibles
     if (sum(next_gen) > susc_pop) {
-      scaling_factor <- susc_pop / sum(next_gen)
-      next_gen <- floor(next_gen * scaling_factor)
+      ## create hypothetical next generation population to sample from
+      next_gen_pop <- rep(seq_along(next_gen), times = next_gen)
+      ## sample from hypothetical next generation
+      next_gen_sample <- sample(x = next_gen_pop, size = susc_pop)
+      ## create adjusted next_gen vector
+      next_gen <- rep(0L, length(next_gen))
+      ## count occurrences in next generation sample
+      next_gen_count <- table(next_gen_sample)
+      next_gen[as.integer(names(next_gen_count))] <- unname(next_gen_count)
     }
     # record indices corresponding to the number of offspring
     indices <- rep(sim, n_offspring[sim])
