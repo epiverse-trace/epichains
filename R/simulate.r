@@ -270,6 +270,7 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
                              stat_max = Inf, ...) {
   # Input checking
   checkmate::assert_count(ntrees, positive = TRUE)
+  statistic <- match.arg(statistic)
   checkmate::assert_choice(
     statistic,
     choices = c("size", "length")
@@ -415,6 +416,7 @@ simulate_tree_from_pop <- function(pop,
   checkmate::assert_number(
     pop, lower = 1, finite = TRUE
   )
+  offspring_dist <- match.arg(offspring_dist)
   checkmate::assert_choice(
     offspring_dist,
     choices = c("pois", "nbinom")
