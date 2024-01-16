@@ -158,7 +158,7 @@ test_that("Errors are thrown", {
       statistic = "size",
       lambda = 0.5
     ),
-    "must be specified as a character string"
+    "Must be of type"
   )
   expect_error(
     likelihood(

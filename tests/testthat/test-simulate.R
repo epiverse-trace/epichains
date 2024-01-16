@@ -87,7 +87,7 @@ test_that("simulate_tree throws errors", {
       statistic = "length",
       lambda = 0.9
     ),
-    "does not exist"
+    "not found"
   )
   expect_error(
     simulate_tree(
@@ -117,7 +117,7 @@ test_that("simulate_tree throws errors", {
       lambda = 0.9,
       generation_time = c(1, 2)
     ),
-    "must be a function"
+    "Must be a function"
   )
   expect_error(
     simulate_tree(
@@ -126,7 +126,7 @@ test_that("simulate_tree throws errors", {
       statistic = "length",
       lambda = 0.9
     ),
-    "character string"
+    "Must be of type"
   )
   expect_error(
     simulate_tree(
@@ -148,7 +148,7 @@ test_that("simulate_summary throws errors", {
       statistic = "length",
       lambda = 0.9
     ),
-    "does not exist"
+    "not found"
   )
   expect_error(
     simulate_summary(
@@ -177,7 +177,7 @@ test_that("simulate_summary throws errors", {
       statistic = "length",
       lambda = 0.9
     ),
-    "character string"
+    "Must be of type"
   )
 })
 
