@@ -308,7 +308,7 @@ simulate_chains <- function(
     offspring_dist = offspring_dist,
     stat_max = stat_max,
     track_pop = !missing(pop)
-    )
+  )
   return(out)
 }
 
