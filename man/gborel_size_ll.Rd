@@ -4,7 +4,7 @@
 \alias{gborel_size_ll}
 \title{Log-likelihood of the size of chains with gamma-Borel offspring distribution}
 \usage{
-gborel_size_ll(x, size, prob = NULL, mu = NULL)
+gborel_size_ll(x, size, prob, mu)
 }
 \arguments{
 \item{x}{vector of sizes}
