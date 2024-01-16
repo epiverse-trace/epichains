@@ -5,7 +5,7 @@
 \title{Log-likelihood of the size of chains with Negative-Binomial offspring
 distribution}
 \usage{
-nbinom_size_ll(x, size, prob = NULL, mu = NULL)
+nbinom_size_ll(x, size, prob, mu)
 }
 \arguments{
 \item{x}{vector of sizes}
