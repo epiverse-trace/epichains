@@ -188,7 +188,7 @@ simulate_chains <- function(
   # cases. An improvement of this could take the form of an extra argument that
   # defines a percentage of initial cases suspected to be imported. We can
   # then substract only the non-imported cases from pop.
-  susc_pop <- round(pop * (1 - percent_immune))
+  susc_pop <- max(round(pop * (1 - percent_immune)) - index_cases, 0)
 
   # Add optional columns
   if (!missing(generation_time)) {
