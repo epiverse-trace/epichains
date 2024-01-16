@@ -32,6 +32,9 @@ reference:
     - validate_epichains_tree
     - aggregate.epichains_tree
     - summary.epichains_tree
+    - format.epichains_tree
+    - print.epichains_tree
+    - head.epichains_tree
 
   - subtitle: epichains_summary object
     desc: Class constructor, validator, and methods
@@ -40,6 +43,8 @@ reference:
     - is_epichains_summary
     - validate_epichains_summary
     - summary.epichains_summary
+    - format.epichains_summary
+    - print.epichains_summary
 
   - title: Special distributions
     contents:
