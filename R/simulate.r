@@ -211,6 +211,8 @@ simulate_chains <- function(
     if (any(next_gen %% 1 > 0)) {
       stop("Offspring distribution must return integers")
     }
+    # Sample susceptible offspring to be infected from all possible offspring
+    next_gen <- rbinom(n = next_gen, size = next_gen, prob = susc_pop / pop)
     # Adjust next_gen if sum exceeds the number of susceptibles
     if (sum(next_gen) > susc_pop) {
       scaling_factor <- susc_pop / sum(next_gen)
