@@ -123,23 +123,31 @@
 #' "Branching Process Models for Surveillance of Infectious Diseases
 #' Controlled by Mass Vaccination.” Biostatistics (Oxford, England)
 #' 4 (2): 279–95. \doi{https://doi.org/10.1093/biostatistics/4.2.279}.
-simulate_chains <- function(
-    index_cases,
-    statistic = c("size", "length"),
-    offspring_dist,
-    ...,
-    stat_max = Inf,
-    pop = Inf,
-    percent_immune = 0,
-    generation_time = NULL,
-    t0 = 0,
-    tf = Inf) {
+simulate_chains <- function(index_cases,
+                            statistic = c("size", "length"),
+                            offspring_dist,
+                            ...,
+                            stat_max = Inf,
+                            pop = Inf,
+                            percent_immune = 0,
+                            generation_time = NULL,
+                            t0 = 0,
+                            tf = Inf) {
   # Input checking
-  checkmate::assert_count(index_cases, positive = TRUE)
-  checkmate::assert_choice(statistic, choices = c("size", "length"))
+  checkmate::assert_count(
+    index_cases,
+    positive = TRUE
+  )
+  checkmate::assert_choice(
+    statistic,
+    choices = c("size", "length")
+  )
   checkmate::assert_string(offspring_dist)
   # check that offspring function exists in the environment
-  roffspring_name <- paste0("r", offspring_dist)
+  roffspring_name <- paste0(
+    "r",
+    offspring_dist
+  )
   check_offspring_func_valid(roffspring_name)
   checkmate::assert(
     is.infinite(stat_max) ||
@@ -211,18 +219,29 @@ simulate_chains <- function(
       stop("Offspring distribution must return integers")
     }
     # Sample susceptible offspring to be infected from all possible offspring
-    next_gen <- rbinom(n = next_gen, size = next_gen, prob = susc_pop / pop)
-    # Adjust next_gen if sum exceeds the number of susceptibles
+    next_gen <- stats::rbinom(
+      n = next_gen,
+      size = next_gen,
+      prob = susc_pop / pop
+    )
     # Adjust next_gen if the number of offspring is greater than the
     # susceptible population.
     if (sum(next_gen) > susc_pop) {
       ## create hypothetical next generation individuals to sample from
-      next_gen_pop <- rep(seq_along(next_gen), times = next_gen)
-      ## sample from hypothetical next generation
-      next_gen_sample <- sample(x = next_gen_pop, size = susc_pop)
+      next_gen_pop <- rep(
+        seq_along(next_gen),
+        times = next_gen
+      )
       ## sample from hypothetical individuals so that total = susc_pop
+      next_gen_sample <- sample(
+        x = next_gen_pop,
+        size = susc_pop
+      )
       ## create adjusted next_gen vector
-      next_gen <- rep(0L, length(next_gen))
+      next_gen <- rep(
+        0L,
+        length(next_gen)
+      )
       ## count occurrences in next generation sample
       next_gen_count <- table(next_gen_sample)
       next_gen[as.integer(names(next_gen_count))] <- unname(next_gen_count)
