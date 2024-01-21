@@ -186,11 +186,6 @@ simulate_chains <- function(
     )
   )
   # Initialise susceptible population
-  # I think this currently implicitly assumes the initial cases are imported
-  # (not subtracted from pop). If not, we'll have to subtract the non-imported
-  # cases. An improvement of this could take the form of an extra argument that
-  # defines a percentage of initial cases suspected to be imported. We can
-  # then substract only the non-imported cases from pop.
   susc_pop <- max(round(pop * (1 - percent_immune)) - index_cases, 0)
 
   # Add optional columns
