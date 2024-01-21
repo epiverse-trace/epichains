@@ -2,7 +2,7 @@
 % Please edit documentation in R/simulate.R
 \name{simulate_chains}
 \alias{simulate_chains}
-\title{Simulate transmission chains from an initial number of infections}
+\title{Simulate transmission chains}
 \usage{
 simulate_chains(
   index_cases,
