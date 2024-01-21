@@ -198,7 +198,7 @@ simulate_chains <- function(
   }
   # next, simulate n trees
   while (length(sim) > 0 && susc_pop > 0) {
-    # simulate next generation
+    # sample next generation of offspring
     next_gen <- do.call(
       roffspring_name,
       c(
@@ -206,17 +206,21 @@ simulate_chains <- function(
         pars
       )
     )
+    # check that offspring distribution returns integers
     if (any(next_gen %% 1 > 0)) {
       stop("Offspring distribution must return integers")
     }
     # Sample susceptible offspring to be infected from all possible offspring
     next_gen <- rbinom(n = next_gen, size = next_gen, prob = susc_pop / pop)
     # Adjust next_gen if sum exceeds the number of susceptibles
+    # Adjust next_gen if the number of offspring is greater than the
+    # susceptible population.
     if (sum(next_gen) > susc_pop) {
-      ## create hypothetical next generation population to sample from
+      ## create hypothetical next generation individuals to sample from
       next_gen_pop <- rep(seq_along(next_gen), times = next_gen)
       ## sample from hypothetical next generation
       next_gen_sample <- sample(x = next_gen_pop, size = susc_pop)
+      ## sample from hypothetical individuals so that total = susc_pop
       ## create adjusted next_gen vector
       next_gen <- rep(0L, length(next_gen))
       ## count occurrences in next generation sample
@@ -240,7 +244,9 @@ simulate_chains <- function(
       stat_latest = stat_track,
       n_offspring = n_offspring
     )
-
+    # Adorn the new offspring with their information: their ids, their
+    # infector's ids, and the generation they were infected in.
+    # Also update the susceptible population and generation.
     if (sum(n_offspring[sim]) > 0) {
       infectors <- rep(infector_ids, next_gen)
       current_max_id <- unname(tapply(infector_ids, indices, max))
@@ -276,8 +282,8 @@ simulate_chains <- function(
       }
     }
 
-    ## only continue to simulate trees that have offspring and aren't of
-    ## the specified maximum size/length
+    ## Find chains that can still be simulated: those that have still offspring
+    ## and aren't of the specified stat_max
     sim <- which(n_offspring > 0 & stat_track < stat_max)
     if (length(sim) > 0) {
       if (!missing(generation_time)) {
