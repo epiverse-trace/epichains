@@ -1,4 +1,4 @@
-#' Simulate transmission chains from an initial number of infections
+#' Simulate transmission chains
 #'
 #' @param index_cases Number of index cases to simulate transmission chains for.
 #' @param offspring_dist Offspring distribution: a `<character>` string
