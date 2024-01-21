@@ -66,7 +66,12 @@ with columns \code{infectee_id}, \code{sim_id} (a unique ID within each simulati
 for each infectee), \code{infector_id}, \code{generation}, and \code{time} (of infection)
 }
 \description{
-Simulate transmission chains from an initial number of infections
+Generates transmission chains using a simple branching process model that
+accepts an index number of cases that seed the outbreak, a distribution
+of offspring per case, and a chain size or length/duration (statistic)
+to track. It optionally accepts other population related inputs
+such as the population size (defaults to Inf) and percentage of the
+population initially immune (defaults to 0).
 }
 \section{Calculating chain sizes and lengths}{
 The function simulates the chain size for individual \eqn{i} at time
