@@ -299,9 +299,9 @@ simulate_chains <- function(
   }
 
   # Post processing
-  rownames(tree_df) <- NULL
-  # sort by sim_id and infector_id
+  #   # sort by sim_id and infector_id
   tree_df <- tree_df[order(tree_df$sim_id, tree_df$infector_id), ]
+  rownames(tree_df) <- NULL
   out <- epichains_tree(
     tree_df,
     ntrees = index_cases,
