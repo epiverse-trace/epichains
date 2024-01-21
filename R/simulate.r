@@ -61,7 +61,8 @@
 #'
 #' ## Specifying `generation_time`
 #'
-#' `generation_time` must be specified as a function with one argument, `n`.
+#' The argument `generation_time` must be specified as a function with
+#' one argument, `n`.
 #'
 #' For example, assuming we want to specify the generation time as a random
 #' log-normally distributed variable with `meanlog = 0.58` and `sdlog = 1.58`,
