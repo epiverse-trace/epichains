@@ -153,14 +153,6 @@ Farrington, C. P., M. N. Kanaan, and N. J. Gay. 2003.
 Controlled by Mass Vaccination.” Biostatistics (Oxford, England)
 4 (2): 279–95. \doi{https://doi.org/10.1093/biostatistics/4.2.279}.
 }
-\seealso{
-\itemize{
-\item \code{\link[=simulate_summary]{simulate_summary()}} for simulating transmission chains the vector of
-chain statistics (sizes or lengths) without tracking the infection tree.
-This is an abridged version of \code{simulate_chains()} that is faster and
-uses less memory.
-}
-}
 \author{
 James M. Azam, Sebastian Funk
 }
