@@ -81,11 +81,6 @@
 #' OR \code{simulate_*(..., generation_time = \(n){rlnorm(n, 0.58, 1.38)})},
 #' where `...` are the other arguments to `simulate_*()`.
 #nolint end
-#' @seealso
-#' * [simulate_summary()] for simulating transmission chains the vector of
-#'   chain statistics (sizes or lengths) without tracking the infection tree.
-#'   This is an abridged version of `simulate_chains()` that is faster and
-#'   uses less memory.
 #' @examples
 #' set.seed(123)
 #' # Using a Poisson offspring distribution
