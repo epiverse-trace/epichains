@@ -87,7 +87,8 @@ The distribution of secondary cases, \eqn{X_{t, i}} is modelled by the
 offspring distribution (\code{offspring_dist}).
 \subsection{Specifying \code{generation_time}}{
 
-\code{generation_time} must be specified as a function with one argument, \code{n}.
+The argument \code{generation_time} must be specified as a function with
+one argument, \code{n}.
 
 For example, assuming we want to specify the generation time as a random
 log-normally distributed variable with \code{meanlog = 0.58} and \code{sdlog = 1.58},
