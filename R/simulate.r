@@ -82,8 +82,8 @@
 #' where `...` are the other arguments to `simulate_*()`.
 #nolint end
 #' @examples
-#' set.seed(123)
 #' # Using a Poisson offspring distribution
+#' set.seed(32)
 #' chains_pois_offspring <- simulate_chains(
 #'   index_cases = 10,
 #'   pop = 100,
@@ -97,6 +97,7 @@
 #' chains_pois_offspring
 #'
 #' # Using a Negative binomial offspring distribution
+#' set.seed(32)
 #' chains_nbinom_offspring <- simulate_chains(
 #'   index_cases = 10,
 #'   pop = 100,
