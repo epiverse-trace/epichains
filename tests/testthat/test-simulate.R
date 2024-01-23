@@ -232,7 +232,7 @@ test_that("simulate_chains throws errors", {
       offspring_dist = "s",
       lambda = 0.9
     ),
-    "does not exist"
+    "object 'rs' not found"
   )
   expect_error(
     simulate_chains(
