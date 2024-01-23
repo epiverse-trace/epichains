@@ -262,7 +262,7 @@ test_that("simulate_chains throws errors", {
       lambda = 0.9,
       generation_time = c(1, 2)
     ),
-    "must be a function"
+    "Must be a function"
   )
   expect_error(
     simulate_chains(
