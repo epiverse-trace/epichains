@@ -247,13 +247,13 @@ simulate_chains <- function(index_cases,
       next_gen_count <- table(next_gen_sample)
       next_gen[as.integer(names(next_gen_count))] <- unname(next_gen_count)
     }
-    # record indices corresponding to the number of offspring
-    indices <- rep(sim, n_offspring[sim])
+    # record parent ids corresponding to the number of offspring
+    parent_ids <- rep(sim, n_offspring[sim])
 
     # initialise placeholder for the number of offspring
     n_offspring <- rep(0, index_cases)
     # assign offspring sum to indices still being simulated
-    n_offspring[sim] <- if (all(next_gen) == 0) {
+    n_offspring[sim] <- tapply(next_gen, parent_ids, sum)
       0
     } else {
       tapply(next_gen, indices, sum)
@@ -269,8 +269,8 @@ simulate_chains <- function(index_cases,
     # Also update the susceptible population and generation.
     if (sum(n_offspring[sim]) > 0) {
       infectors <- rep(infector_ids, next_gen)
-      current_max_id <- unname(tapply(infector_ids, indices, max))
-      indices <- rep(sim, n_offspring[sim])
+      current_max_id <- unname(tapply(infector_ids, parent_ids, max))
+      parent_ids <- rep(sim, n_offspring[sim])
 
       # create new ids
       ids <- rep(current_max_id, n_offspring[sim]) +
@@ -284,7 +284,7 @@ simulate_chains <- function(index_cases,
       # store new simulation results
       tree_df[[generation]] <-
         data.frame(
-          infectee_id = indices,
+          infectee_id = parent_ids,
           sim_id = ids,
           infector_id = infectors,
           generation = generation
@@ -294,7 +294,7 @@ simulate_chains <- function(index_cases,
       # to generate generation times for the cases
       if (!missing(generation_time)) {
         times <- rep(times, next_gen) + generation_time(sum(n_offspring))
-        current_min_time <- unname(tapply(times, indices, min))
+        current_min_time <- unname(tapply(times, parent_ids, min))
         tree_df[[generation]]$time <- times
       }
       if (!missing(pop)) {
@@ -308,12 +308,12 @@ simulate_chains <- function(index_cases,
     if (length(sim) > 0) {
       if (!missing(generation_time)) {
         ## only continue to simulate trees that don't go beyond tf
-        sim <- intersect(sim, unique(indices)[current_min_time < tf])
+        sim <- intersect(sim, unique(parent_ids)[current_min_time < tf])
       }
       if (!missing(generation_time)) {
-        times <- times[indices %in% sim]
+        times <- times[parent_ids %in% sim]
       }
-      infector_ids <- ids[indices %in% sim]
+      infector_ids <- ids[parent_ids %in% sim]
     }
   }
 
