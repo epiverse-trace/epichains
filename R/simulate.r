@@ -220,10 +220,17 @@ simulate_chains <- function(index_cases,
       stop("Offspring distribution must return integers")
     }
     # Sample susceptible offspring to be infected from all possible offspring
+    # We first adjust for the case where susceptible can be Inf but prob is max
+    # 1.
+    binom_prob <- ifelse(
+      is.infinite(susc_pop),
+      1,
+      susc_pop / pop
+    )
     next_gen <- stats::rbinom(
       n = length(next_gen),
       size = next_gen,
-      prob = susc_pop / pop
+      prob = binom_prob
     )
     # Adjust next_gen if the number of offspring is greater than the
     # susceptible population.
