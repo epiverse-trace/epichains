@@ -254,10 +254,6 @@ simulate_chains <- function(index_cases,
     n_offspring <- rep(0, index_cases)
     # assign offspring sum to indices still being simulated
     n_offspring[sim] <- tapply(next_gen, parent_ids, sum)
-      0
-    } else {
-      tapply(next_gen, indices, sum)
-    }
     # track size/length
     stat_track <- update_chain_stat(
       stat_type = statistic,
