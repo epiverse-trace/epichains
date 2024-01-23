@@ -155,8 +155,8 @@ simulate_chains <- function(index_cases,
       checkmate::assert_integerish(stat_max, lower = 0)
   )
   checkmate::assert(
-    checkmate::assert_integerish(pop, lower = 0) ||
-      is.infinite(pop)
+    is.infinite(pop) ||
+      checkmate::assert_integerish(pop, lower = 1)
   )
   checkmate::assert_number(
     percent_immune,
