@@ -221,7 +221,7 @@ simulate_chains <- function(index_cases,
     }
     # Sample susceptible offspring to be infected from all possible offspring
     next_gen <- stats::rbinom(
-      n = next_gen,
+      n = length(next_gen),
       size = next_gen,
       prob = susc_pop / pop
     )
