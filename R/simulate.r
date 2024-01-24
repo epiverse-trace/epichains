@@ -218,9 +218,10 @@ simulate_chains <- function(index_cases,
       )
     )
     # check that offspring distribution returns integers
-    if (any(next_gen %% 1 > 0)) {
-      stop("Offspring distribution must return integers")
-    }
+    stopifnot(
+      "Offspring distribution must return integers" =
+        !all(next_gen %% 1 > 0)
+    )
     # Sample susceptible offspring to be infected from all possible offspring
     # We first adjust for the case where susceptible can be Inf but prob is max
     # 1.
