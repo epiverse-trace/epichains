@@ -237,24 +237,10 @@ simulate_chains <- function(index_cases,
     # Adjust next_gen if the number of offspring is greater than the
     # susceptible population.
     if (sum(next_gen) > susc_pop) {
-      ## create hypothetical next generation individuals to sample from
-      next_gen_pop <- rep(
-        seq_along(next_gen),
-        times = next_gen
+      next_gen <- adjust_next_gen(
+        next_gen = next_gen,
+        susc_pop = susc_pop
       )
-      ## sample from hypothetical individuals so that total = susc_pop
-      next_gen_sample <- sample(
-        x = next_gen_pop,
-        size = susc_pop
-      )
-      ## create adjusted next_gen vector
-      next_gen <- rep(
-        0L,
-        length(next_gen)
-      )
-      ## count occurrences in next generation sample
-      next_gen_count <- table(next_gen_sample)
-      next_gen[as.integer(names(next_gen_count))] <- unname(next_gen_count)
     }
     # record parent ids corresponding to the number of offspring
     parent_ids <- rep(sim, n_offspring[sim])
