@@ -87,8 +87,6 @@
 #' set.seed(32)
 #' chains_pois_offspring <- simulate_chains(
 #'   index_cases = 10,
-#'   pop = 100,
-#'   percent_immune = 0,
 #'   statistic = "size",
 #'   offspring_dist = "pois",
 #'   stat_max = 10,
@@ -98,7 +96,7 @@
 #' chains_pois_offspring
 #'
 #' # Using a Negative binomial offspring distribution and simulating from a
-#' # infinite population up to chain size 10.
+#' # finite population up to chain size 10.
 #' set.seed(32)
 #' chains_nbinom_offspring <- simulate_chains(
 #'   index_cases = 10,
