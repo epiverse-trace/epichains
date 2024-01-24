@@ -41,3 +41,32 @@ construct_offspring_ll_name <- function(offspring_dist, chain_statistic) {
   ll_name <- paste(offspring_dist, chain_statistic, "ll", sep = "_")
   return(ll_name)
 }
+
+#' Adjust next generation vector to match susceptible population size
+#'
+#' @param next_gen numeric; vector of next generation offspring
+#' @param susc_pop numeric; susceptible population size
+#'
+#' @return numeric; adjusted next generation offspring vector
+#' @keywords internal
+adjust_next_gen <- function(next_gen, susc_pop) {
+  ## create hypothetical next generation individuals to sample from
+  next_gen_pop <- rep(
+    seq_along(next_gen),
+    times = next_gen
+  )
+  ## sample from hypothetical individuals so that total = susc_pop
+  next_gen_sample <- sample(
+    x = next_gen_pop,
+    size = susc_pop
+  )
+  ## create adjusted next_gen vector
+  next_gen <- rep(
+    0L,
+    length(next_gen)
+  )
+  ## count occurrences in next generation sample
+  next_gen_count <- table(next_gen_sample)
+  next_gen[as.integer(names(next_gen_count))] <- unname(next_gen_count)
+  next_gen
+}
