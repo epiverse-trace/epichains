@@ -24,9 +24,9 @@ generation or time (if serials_dist was specified) from simulated
 \verb{<epichains_tree>} objects.
 }
 \examples{
-set.seed(123)
-chains <- simulate_tree(
-  ntrees = 10,
+set.seed(32)
+chains <- simulate_chains(
+  index_cases = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
