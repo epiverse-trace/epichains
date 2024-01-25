@@ -58,25 +58,22 @@ library("epichains")
 
 ## Quick start
 
-*epichains* provides four main functions:
+*epichains* provides two main functions:
 
-- `simulate_tree()`: simulates transmission chains using an initial
-  number of cases and information on the offspring distribution. This
-  function returns an object with columns that track information on who
-  infected whom, the generation of infection and, if a generation time
-  function is specified, the time of infection.
+- `simulate_chains()`: simulates transmission chains using a simple
+  branching process model that accepts an index number of cases that
+  seed the outbreak, a distribution of offspring per case, and a chain
+  statistic to track (size or length/duration). It optionally accepts
+  other population related inputs such as the population size (defaults
+  to Inf) and percentage of the population initially immune (defaults to
+  0). This function returns an object with columns that track
+  information on who infected whom, the generation of infection and, if
+  a generation time function is specified, the time of infection.
 
-- `simulate_summary()`: simulates a vector of transmission chain sizes
-  or lengths using an initial number of cases and information on the
-  offspring distribution. This function only returns a vector of
-  realized chain size or length.
-
-- `simulate_tree_from_pop()`: simulates transmission chains given an
-  initial population size and information on the offspring distribution.
-  You can also specify a given level of pre-existing immunity. This
-  function returns an object with columns that track information on who
-  infected whom, the generation of infection and, if a generation time
-  function is given, the time of infection.
+- `simulate_summary()`: provides a performant version of
+  `simulate_chains()` that only tracks and return a vector of realized
+  chain sizes or lengths/durations for each index case without details
+  of the infection tree.
 
 - `likelihood()`: calculates the loglikelihood (or likelihood, depending
   on the value of `log`) of observing a vector of transmission chain
@@ -129,7 +126,7 @@ By contributing to this project, you agree to abide by its terms.
 citation("epichains")
 #> To cite package 'epichains' in publications use:
 #> 
-#>   Azam J, Finger F, Funk S (2023). _epichains: Simulating and Analysing
+#>   Azam J, Finger F, Funk S (2024). _epichains: Simulating and Analysing
 #>   Transmission Chain Statistics Using Branching Process Models_. R
 #>   package version 0.0.0.9999,
 #>   https://epiverse-trace.github.io/epichains/,
@@ -141,7 +138,7 @@ citation("epichains")
 #>     title = {epichains: Simulating and Analysing Transmission Chain Statistics Using
 #> Branching Process Models},
 #>     author = {James M. Azam and Flavio Finger and Sebastian Funk},
-#>     year = {2023},
+#>     year = {2024},
 #>     note = {R package version 0.0.0.9999, 
 #> https://epiverse-trace.github.io/epichains/},
 #>     url = {https://github.com/epiverse-trace/epichains},
