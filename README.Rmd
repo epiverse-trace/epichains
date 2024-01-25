@@ -63,25 +63,21 @@ library("epichains")
 
 ## Quick start
 
-_{{ packagename }}_ provides four main functions:
+_{{ packagename }}_ provides two main functions:
 
-* `simulate_tree()`: simulates transmission chains using an initial number of
-cases and information on the offspring distribution. This function returns
+* `simulate_chains()`: simulates transmission chains using a simple
+branching process model that accepts an index number of cases that seed
+the outbreak, a distribution of offspring per case, and a chain statistic
+to track (size or length/duration). It optionally accepts other population
+related inputs such as the population size (defaults to Inf) and percentage
+of the population initially immune (defaults to 0). This function returns
 an object with columns that track information on who infected whom, the
 generation of infection and, if a generation time function is specified, the
 time of infection.
 
-* `simulate_summary()`: simulates a vector of transmission chain sizes or
-lengths using an initial number of cases and information on the offspring
-distribution. This function only returns a vector of realized chain size or
-length.
-
-* `simulate_tree_from_pop()`: simulates transmission chains given an initial
-population size and information on the offspring distribution. You can also
-specify a given level of pre-existing immunity. This function returns
-an object with columns that track information on who infected whom, the
-generation of infection and, if a generation time function is given, the
-time of infection.
+* `simulate_summary()`: provides a performant version of `simulate_chains()`
+that only tracks and return a vector of realized chain sizes or
+lengths/durations for each index case without details of the infection tree.
 
 * `likelihood()`: calculates the loglikelihood (or likelihood, depending
 on the value of `log`) of observing a vector of transmission chain sizes or
