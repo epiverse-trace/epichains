@@ -20,15 +20,17 @@ likelihood(
 \arguments{
 \item{chains}{Vector of chain summaries (sizes/lengths)}
 
-\item{statistic}{String; Statistic (size/length) to calculate. Used to
-determine stopping criteria for simulations when \code{stat_max} is finite.
+\item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
+criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
 Can be one of:
 \itemize{
-\item "size": the total number of offspring.
-\item "length": the total number of infectors.
+\item "size": the total number of cases produced by a chain before it goes
+extinct.
+\item "length": the total number of ancestors produced by a chain before
+it goes extinct.
 }}
 
-\item{offspring_dist}{Offspring distribution: a character string
+\item{offspring_dist}{Offspring distribution: a \verb{<character>} string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}

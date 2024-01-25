@@ -17,7 +17,7 @@ update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
 
 #' Return a function for calculating chain statistics
 #'
-#' @inheritParams simulate_tree
+#' @inheritParams simulate_chains
 #'
 #' @return a function for calculating chain statistics
 #' @keywords internal
@@ -33,7 +33,7 @@ get_statistic_func <- function(chain_statistic) {
 #' Construct name of analytical function for estimating loglikelihood of
 #' offspring
 #'
-#' @inheritParams simulate_tree
+#' @inheritParams simulate_chains
 #'
 #' @return an analytical offspring likelihood function
 #' @keywords internal

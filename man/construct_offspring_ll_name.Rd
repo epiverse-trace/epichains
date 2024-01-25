@@ -8,7 +8,7 @@ offspring}
 construct_offspring_ll_name(offspring_dist, chain_statistic)
 }
 \arguments{
-\item{offspring_dist}{Offspring distribution: a character string
+\item{offspring_dist}{Offspring distribution: a \verb{<character>} string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}

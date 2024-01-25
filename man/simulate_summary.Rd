@@ -15,15 +15,17 @@ simulate_summary(
 \arguments{
 \item{ntrees}{Number of trees to simulate.}
 
-\item{statistic}{String; Statistic (size/length) to calculate. Used to
-determine stopping criteria for simulations when \code{stat_max} is finite.
+\item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
+criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
 Can be one of:
 \itemize{
-\item "size": the total number of offspring.
-\item "length": the total number of infectors.
+\item "size": the total number of cases produced by a chain before it goes
+extinct.
+\item "length": the total number of ancestors produced by a chain before
+it goes extinct.
 }}
 
-\item{offspring_dist}{Offspring distribution: a character string
+\item{offspring_dist}{Offspring distribution: a \verb{<character>} string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}
@@ -50,14 +52,14 @@ The distribution of secondary cases, \eqn{X_{t, i}} is modelled by the
 offspring distribution (\code{offspring_dist}).
 \subsection{Specifying \code{generation_time}}{
 
-\code{generation_time} must be specified as a function with one argument.
+The argument \code{generation_time} must be specified as a function with
+one argument, \code{n}.
 
-For example, assuming we want to specify the generation time
-as a random log-normally distributed variable with
-\code{meanlog = 0.58} and \code{sdlog = 1.58}, we could define a named function,
-let's call it "generation_time_fn", with only one argument representing the
-number of generation times to sample:
-\code{generation_time_fn <- function(n){rlnorm(n, 0.58, 1.38)}},
+For example, assuming we want to specify the generation time as a random
+log-normally distributed variable with \code{meanlog = 0.58} and \code{sdlog = 1.58},
+we could define a named function, let's call it "generation_time_fn",
+with only one argument representing the number of generation times to
+sample: \code{generation_time_fn <- function(n){rlnorm(n, 0.58, 1.38)}},
 and assign the name of the function to \code{generation_time} in
 the simulation function, i.e.
 \code{`simulate_*`(..., generation_time = generation_time_fn)},
@@ -66,7 +68,8 @@ for the rest of simulation function's name.
 
 Alternatively, we could assign an anonymous function to \code{generation_time}
 in the \verb{simulate_*()} call, i.e.
-\code{simulate_*(..., generation_time = function(n){rlnorm(n, 0.58, 1.38)})},
+\code{simulate_*(..., generation_time = function(n){rlnorm(n, 0.58, 1.38)})}
+OR \code{simulate_*(..., generation_time = \(n){rlnorm(n, 0.58, 1.38)})},
 where \code{...} are the other arguments to \verb{simulate_*()}.
 }
 }
@@ -79,14 +82,6 @@ simulate_summary(
   stat_max = 10,
   lambda = 2
 )
-}
-\seealso{
-\itemize{
-\item \code{\link[=simulate_tree]{simulate_tree()}} for simulating transmission trees from an
-initial number of infections.
-\item \code{\link[=simulate_tree_from_pop]{simulate_tree_from_pop()}} for simulating transmission trees from a
-susceptible or partially immune population.
-}
 }
 \author{
 James M. Azam, Sebastian Funk
