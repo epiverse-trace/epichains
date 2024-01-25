@@ -15,7 +15,7 @@ check_offspring_func_valid <- function(roffspring_name) {
 
 #' Check if the generation_time argument is specified as a function
 #'
-#' @inheritParams simulate_tree
+#' @inheritParams simulate_chains
 #'
 #' @keywords internal
 check_generation_time_valid <- function(generation_time) {

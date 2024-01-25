@@ -11,24 +11,25 @@ epichains_tree(tree_df, ntrees, statistic, offspring_dist, stat_max, track_pop)
 "infectee_id", "infector_id", and "generation". Also has optional columns
 for "time", and "chain_id".}
 
-\item{ntrees}{Number of trees to simulate.}
+\item{ntrees}{Number of initial cases used to generate the outbreak; Integer}
 
-\item{statistic}{String; Statistic (size/length) to calculate. Used to
-determine stopping criteria for simulations when \code{stat_max} is finite.
+\item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
+criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
 Can be one of:
 \itemize{
-\item "size": the total number of offspring.
-\item "length": the total number of infectors.
+\item "size": the total number of cases produced by a chain before it goes
+extinct.
+\item "length": the total number of ancestors produced by a chain before
+it goes extinct.
 }}
 
-\item{offspring_dist}{Offspring distribution: a character string
+\item{offspring_dist}{Offspring distribution: a \verb{<character>} string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}
 
 \item{stat_max}{A cut off for the chain statistic (size/length) being
-computed. Results above the specified value, are set to this value.
-Defaults to \code{Inf}.}
+computed. Results above \code{stat_max} are set to \code{stat_max}. Defaults to \code{Inf}.}
 
 \item{track_pop}{Was the susceptible population tracked? Logical}
 }

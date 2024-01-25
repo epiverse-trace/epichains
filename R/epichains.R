@@ -49,7 +49,7 @@ new_epichains_tree <- function(tree_df,
 #' the statistic that was tracked, and whether the susceptible population was
 #' tracked.
 #'
-#' @inheritParams simulate_tree
+#' @inheritParams simulate_chains
 #' @inheritParams new_epichains_tree
 #'
 #' @return An `<epichains_tree>` object
@@ -101,7 +101,7 @@ epichains_tree <- function(tree_df,
 #'
 #' @param chains_summary a `<vector>` of chain sizes and lengths.
 #' @inheritParams new_epichains_tree
-#' @inheritParams simulate_tree
+#' @inheritParams simulate_chains
 #' @author James M. Azam
 #' @keywords internal
 new_epichains_summary <- function(chains_summary,
