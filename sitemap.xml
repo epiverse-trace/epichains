@@ -40,6 +40,9 @@
     <loc>https://epiverse-trace.github.io/epichains/news/index.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/adjust_next_gen.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/aggregate.epichains_tree.html</loc>
   </url>
   <url>
@@ -134,6 +137,9 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/rnbinom_mean_disp.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/simulate_chains.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/simulate_summary.html</loc>
