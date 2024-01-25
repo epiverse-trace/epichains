@@ -23,15 +23,13 @@ new_epichains_tree <- function(tree_df,
                                stat_max,
                                track_pop) {
   # Assemble the elements of the object
-  obj <- structure(
-    tree_df,
-    ntrees = ntrees,
-    statistic = statistic,
-    offspring_dist = offspring_dist,
-    stat_max = stat_max,
-    track_pop = track_pop,
-    class = c("epichains_tree", class(tree_df))
-  )
+  obj <- tree_df
+  class(obj) <- c("epichains_tree", class(obj))
+  attr(obj, "ntrees") <- ntrees
+  attr(obj, "statistic") <- statistic
+  attr(obj, "offspring_dist") <- offspring_dist
+  attr(obj, "stat_max") <- stat_max
+  attr(obj, "track_pop") <- track_pop
   return(obj)
 }
 
@@ -112,14 +110,12 @@ new_epichains_summary <- function(chains_summary,
                                   offspring_dist,
                                   stat_max) {
   # Assemble the elements of the object
-  obj <- structure(
-    chains_summary,
-    ntrees = ntrees,
-    statistic = statistic,
-    offspring_dist = offspring_dist,
-    stat_max = stat_max,
-    class = c("epichains_summary", class(chains_summary))
-  )
+  obj <- chains_summary
+  class(obj) <- c("epichains_summary", class(chains_summary))
+  attr(obj, "ntrees") <- ntrees
+  attr(obj, "statistic") <- statistic
+  attr(obj, "offspring_dist") <- offspring_dist
+  attr(obj, "stat_max") <- stat_max
   return(obj)
 }
 
