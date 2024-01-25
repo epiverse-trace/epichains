@@ -34,7 +34,7 @@ Branching processes can be used to project stochastic infectious disease trends 
 provided we can characterize the distribution of times between
 successive cases (serial interval), and the distribution of secondary cases
 produced by a single individual (offspring distribution). Such simulations can
-be achieved in _epichains_ with the `simulate_tree()` function and
+be achieved in _epichains_ with the `simulate_chains()` function and
 @pearson2020, and @abbott2020 illustrate its application to COVID-19.
 
 The purpose of this vignette is to use early data on COVID-19 in South Africa 
@@ -70,11 +70,11 @@ head(seed_cases)
 
 ## Setting up the inputs  
 
-We will now proceed to set up `simulate_tree()` for the simulations.
+We will now proceed to set up `simulate_chains()` for the simulations.
 
 ### Onset times 
 
-`simulate_tree()` requires a vector of seeding times, `t0`, for each
+`simulate_chains()` requires a vector of seeding times, `t0`, for each
 chain/individual/simulation.
 
 To get this, we will use the observation date of the index case as the
@@ -131,7 +131,7 @@ We adopt R's random lognormal distribution generator (`rlnorm()`) that
 takes `meanlog` and `sdlog` as arguments, which we define with the
 parametrisation above as `log_mean()` and `log_sd()` respectively and wrap it in 
 the `generation_time_fn()` function. Moreover, `generation_time_fn()` takes one
-argument `n` as is required by _epichains_ (See `?epichains::simulate_tree`),
+argument `n` as is required by _epichains_ (See `?epichains::simulate_chains`),
 which is further passed to `rlnorm()` as the 
 first argument to determine the number of observations to sample
 (See `?rlnorm`).
@@ -184,7 +184,7 @@ tf <- max(days_since_index) + projection_window
 tf
 ```
 
-`simulate_tree()` is stochastic, meaning the results are different every
+`simulate_chains()` is stochastic, meaning the results are different every
 time it is run for the same set of parameters. We will, therefore, run the
 simulations $100$ times and aggregate the results.
 
@@ -198,7 +198,7 @@ Lastly, since, we have specified that $R0 > 1$, it means the epidemic could
 potentially grow without end. Hence, we must specify an end point for the
 simulations. 
 
-`simulate_tree()` provides the `stat_max` argument for this purpose.
+`simulate_chains()` provides the `stat_max` argument for this purpose.
 Above `stat_max`, the simulation is cut off. If this value is 
 not specified, it assumes a value of infinity. Here, we will
 assume a maximum chain size of $1000$.
@@ -233,8 +233,8 @@ set.seed(1234)
 sim_chain_sizes <- lapply(
   seq_len(sim_rep),
   function(sim) {
-    simulate_tree(
-      ntrees = length(t0),
+    simulate_chains(
+      index_cases = length(t0),
       offspring_dist = "nbinom",
       mu = mu,
       size = size,
