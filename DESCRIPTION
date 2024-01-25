@@ -26,7 +26,6 @@ Depends:
 Imports: 
     checkmate,
     stats,
-    truncdist,
     utils
 Suggests:
     bookdown,
