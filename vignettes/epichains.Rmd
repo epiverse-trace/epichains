@@ -182,26 +182,33 @@ averaged to come up with an overall likelihood estimate.
 To find out about the usage of the `likelihood()` function, you can run
 `?likelihood` to access its `R` help file.
 
-## Chain simulation
+## Transmission chains simulation
 
-There are three simulation functions, herein referred to collectively as the `simulate_*()` functions.
+There are two simulation functions, herein referred to collectively as the `simulate_*()` functions.
 
-### [`simulate_tree()`](https://epiverse-trace.github.io/epichains/reference/simulate_tree.html) 
+### [`simulate_chains()`](https://epiverse-trace.github.io/epichains/reference/simulate_chains.html) 
 
-`simulate_tree()` simulates an outbreak from a given number of infections.
-It retains and returns information on infectors (ancestors), infectees, the generation of infection, and the time, if a generation time function is specified.
+`simulate_chains()` simulates an outbreak from a given number of infections and
+an offspring distribution. By default, it assumes the population is infinite
+with no pre-existing immunity.
 
-Let's look at an example where we simulate the transmission trees of $10$ initial infections/chains. We assume a poisson offspring distribution with mean, $\text{lambda} = 0.9$, and a generation time of $3$ days:
+The function tracks and returns information on infectors (ancestors),
+infectees, the generation of infection, and the time, if a generation time
+function is specified.
+
+Let's look at an example where we simulate a transmission tree for $10$ index
+cases. We assume a poisson offspring distribution with mean,
+$\text{lambda} = 0.9$, and a generation time of $3$ days:
 ```{r}
-set.seed(123)
+set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
   gt <- rep(3, n)
   return(gt)
 }
 
-sim_tree_eg <- simulate_tree(
-  ntrees = 10,
+sim_chains <- simulate_chains(
+  index_cases = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
@@ -209,17 +216,49 @@ sim_tree_eg <- simulate_tree(
   lambda = 0.9
 )
 
-head(sim_tree_eg)
+head(sim_chains)
 ```
+
+Beyond the defaults, `simulate_chains()` can also simulate outbreaks based on
+a specified population size and pre-existing immunity until the susceptible
+pool runs out.
+  
+Here is a quick example where we simulate an outbreak in a population of
+size $1000$ with $10$ index cases and $10/%$ pre-existing immunity. We assume
+individuals have a poisson offspring distribution with mean,
+$\text{lambda} = 1$, and fixed generation time of $3$:
+```{r}
+set.seed(32)
+# Define generation time
+generation_time_fn <- function(n) {
+  gt <- rep(3, n)
+  return(gt)
+}
+
+sim_chains_with_pop <- simulate_chains(
+  pop = 1000,
+  index_cases = 10,
+  percent_immune = 0.1,
+  offspring_dist = "pois",
+  statistic = "size",
+  lambda = 1,
+  generation_time = generation_time_fn
+)
+
+head(sim_chains_with_pop)
+```
+
 
 ### [`simulate_summary()`](https://epiverse-trace.github.io/epichains/reference/simulate_summary.html)
 
-`simulate_summary()` is basically `simulate_tree()` except that it does not retain
-information on each infector and infectee. It returns the eventual size or length/duration of each transmission chain.
+`simulate_summary()` is a performant version of `simulate_chains()` that
+does not track information on each infector and infectee. It returns the
+eventual size or length/duration of each transmission chain. This function is
+especially useful for calculating numerical likelihoods in `likelihood()`.
 
 Here is an example to simulate the previous examples without intervention,
-returning the size of each of the $10$ chains. It assumes a poisson offspring distribution with
-mean of $0.9$.
+returning the size of each of the $10$ chains. It assumes a poisson offspring
+distribution with mean of $0.9$.
 ```{r}
 set.seed(123)
 
@@ -235,45 +274,21 @@ simulate_summary_eg <- simulate_summary(
 simulate_summary_eg
 ```
 
-### [`simulate_tree_from_pop()`](https://epiverse-trace.github.io/epichains/reference/simulate_tree_from_pop.html)
-
-`simulate_tree_from_pop()` simulates outbreaks based on a specified population size and pre-existing immunity until the susceptible pool runs out.
-  
-Here is a quick example where we simulate an outbreak in a population of size $1000$. We assume individuals have a poisson offspring distribution with mean, $\text{lambda} = 1$, and fixed generation time of $3$:
-```{r}
-set.seed(7)
-# Define generation time
-generation_time_fn <- function(n) {
-  gt <- rep(3, n)
-  return(gt)
-}
-
-sim_tree_from_pop_eg <- simulate_tree_from_pop(
-  pop = 1000,
-  offspring_dist = "pois",
-  lambda = 1,
-  generation_time = generation_time_fn
-)
-
-head(sim_tree_from_pop_eg)
-```
-
 ## Other functionalities
 
 ### Summarising
 
-You can run `summary()` on `<epichains>` objects to get useful summaries.
+You can run `summary()` on `<epichains_tree>` objects to get useful summaries.
 ```{r include=TRUE,echo=TRUE}
-# Example with simulate_tree()
-set.seed(123)
+set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
   gt <- rep(3, n)
   return(gt)
 }
 
-sim_tree_eg <- simulate_tree(
-  ntrees = 10,
+sim_chains <- simulate_chains(
+  index_cases = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
@@ -281,7 +296,7 @@ sim_tree_eg <- simulate_tree(
   lambda = 0.9
 )
 
-summary(sim_tree_eg)
+summary(sim_chains)
 
 # Example with simulate_summary()
 set.seed(123)
@@ -300,12 +315,15 @@ summary(simulate_summary_eg)
 
 ### Aggregating
 
-You can aggregate `<epichains>` objects returned by the `simulate_*()` functions into a time series, which is a `<data.frame>` with columns "cases"  and either "generation" or "time", depending on the value of `by`.
+You can aggregate `<epichains_tree>` objects returned by `simulate_chains()`
+a `<data.frame>` with columns "cases" and either "generation" or "time",
+depending on the value of `by`.
 
-To aggregate over "time", you must have specified a generation time distribution in the simulation step.
+To aggregate over "time", you must have specified a generation time
+distribution (`generation_time`) in the simulation step.
 ```{r include=TRUE,echo=TRUE}
-# Example with simulate_tree()
-set.seed(123)
+# Example with simulate_chains()
+set.seed(32)
 
 # Define generation time
 generation_time_fn <- function(n) {
@@ -313,8 +331,8 @@ generation_time_fn <- function(n) {
   return(gt)
 }
 
-sim_tree_eg <- simulate_tree(
-  ntrees = 10,
+sim_chains <- simulate_chains(
+  index_cases = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
@@ -322,37 +340,45 @@ sim_tree_eg <- simulate_tree(
   lambda = 0.9
 )
 
-aggregate(sim_tree_eg, by = "time")
+aggregate(sim_chains, by = "time")
 ```
 
 ### Plotting
 
-Aggregated `<epichains>` objects can easily be plotted using base R or `ggplot2` with little to no data manipulation.
+Aggregated `<epichains_tree>` objects can easily be plotted using base R
+or `ggplot2` with little to no data manipulation.
 
 Here is an end-to-end example from simulation through aggregation to plotting.
 ```{r}
-# Run simulation with simulate_tree()
-set.seed(123)
+# Run simulation with simulate_chains()
+set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
   gt <- rep(3, n)
   return(gt)
 }
 
-sim_tree_eg <- simulate_tree(
-  ntrees = 10,
+sim_chains <- simulate_chains(
+  index_cases = 10,
   statistic = "size",
   offspring_dist = "pois",
-  stat_max = 10,
+  stat_max = 1000,
   generation_time = generation_time_fn,
-  lambda = 0.9
+  lambda = 2
 )
 
 # Aggregate cases over time
-sim_aggreg <- aggregate(sim_tree_eg, by = "time")
+sim_chains_aggreg <- aggregate(sim_chains, by = "time")
 
 # Plot cases over time
-plot(sim_aggreg, type = "b")
+plot(
+  sim_chains_aggreg,
+  type = "b",
+  col = "red",
+  lwd = 2,
+  xlab = "Time",
+  ylab = "Cases"
+)
 ```
 
 ## References
