@@ -4,12 +4,18 @@
 \alias{epichains_summary}
 \title{Create an \verb{<epichains_summary>} object}
 \usage{
-epichains_summary(chains_summary, ntrees, statistic, offspring_dist, stat_max)
+epichains_summary(
+  chains_summary,
+  index_cases,
+  statistic,
+  offspring_dist,
+  stat_max
+)
 }
 \arguments{
 \item{chains_summary}{a \verb{<vector>} of chain sizes and lengths.}
 
-\item{ntrees}{Number of initial cases used to generate the outbreak; Integer}
+\item{index_cases}{Number of index cases to simulate transmission chains for.}
 
 \item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
 criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.

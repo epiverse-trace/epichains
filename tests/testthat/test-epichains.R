@@ -44,7 +44,7 @@ test_that("Simulators return epichains objects", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    ntrees = 2,
+    index_cases = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -111,7 +111,7 @@ test_that("print.epichains_tree works for simulation functions", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    ntrees = 2,
+    index_cases = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -163,7 +163,7 @@ test_that("summary.epichains_tree works as expected", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    ntrees = 2,
+    index_cases = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -171,7 +171,7 @@ test_that("summary.epichains_tree works as expected", {
   #' Simulate case where all the chain statistics are Inf
   set.seed(11223)
   epichains_summary_all_infs <- simulate_summary(
-    ntrees = 10,
+    index_cases = 10,
     statistic = "size",
     offspring_dist = "pois",
     stat_max = 10,
@@ -181,7 +181,7 @@ test_that("summary.epichains_tree works as expected", {
   expect_named(
     summary(tree_sim_raw),
     c(
-      "ntrees",
+      "index_cases",
       "max_time",
       "unique_infectors",
       "max_generation"
@@ -190,7 +190,7 @@ test_that("summary.epichains_tree works as expected", {
   expect_named(
     summary(tree_sim_raw2),
     c(
-      "ntrees",
+      "index_cases",
       "max_time",
       "unique_infectors",
       "max_generation"
@@ -199,7 +199,7 @@ test_that("summary.epichains_tree works as expected", {
   expect_named(
     summary(susc_outbreak_raw),
     c(
-      "ntrees",
+      "index_cases",
       "max_time",
       "unique_infectors",
       "max_generation"
@@ -208,7 +208,7 @@ test_that("summary.epichains_tree works as expected", {
   expect_named(
     summary(susc_outbreak_raw2),
     c(
-      "ntrees",
+      "index_cases",
       "max_time",
       "unique_infectors",
       "max_generation"
@@ -217,7 +217,7 @@ test_that("summary.epichains_tree works as expected", {
   expect_named(
     summary(chain_summary_raw),
     c(
-      "ntrees",
+      "index_cases",
       "max_stat",
       "min_stat"
     )
@@ -273,7 +273,7 @@ test_that("validate_epichains_tree works", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    ntrees = 2,
+    index_cases = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -335,7 +335,7 @@ test_that("is_chains_tree works", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    ntrees = 2,
+    index_cases = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -397,7 +397,7 @@ test_that("is_chains_summary works", {
   )
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    ntrees = 2,
+    index_cases = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9

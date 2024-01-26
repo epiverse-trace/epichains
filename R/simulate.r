@@ -320,7 +320,7 @@ simulate_chains <- function(index_cases,
   rownames(tree_df) <- NULL
   out <- epichains_tree(
     tree_df,
-    ntrees = index_cases,
+    index_cases = index_cases,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max,
@@ -332,25 +332,24 @@ simulate_chains <- function(index_cases,
 #' Simulate transmission chains sizes/lengths
 #'
 #' @inheritParams simulate_chains
-#' @param ntrees Number of trees to simulate.
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
 #' @inheritSection simulate_chains Calculating chain sizes and lengths
 #' @author James M. Azam, Sebastian Funk
 #' @examples
 #' simulate_summary(
-#'   ntrees = 10,
+#'   index_cases = 10,
 #'   statistic = "size",
 #'   offspring_dist = "pois",
 #'   stat_max = 10,
 #'   lambda = 2
 #' )
 #' @export
-simulate_summary <- function(ntrees, statistic = c("size", "length"),
+simulate_summary <- function(index_cases, statistic = c("size", "length"),
                              offspring_dist,
                              stat_max = Inf, ...) {
   # Input checking
-  checkmate::assert_count(ntrees, positive = TRUE)
+  checkmate::assert_count(index_cases, positive = TRUE)
   statistic <- match.arg(statistic)
   checkmate::assert_choice(
     statistic,
@@ -372,11 +371,11 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
   pars <- list(...)
 
   # Initialisations
-  stat_track <- rep(1, ntrees) ## track length or size (depending on `stat`)
-  n_offspring <- rep(1, ntrees) ## current number of offspring
-  sim <- seq_len(ntrees) ## track trees that are still being simulated
+  stat_track <- rep(1, index_cases) ## track length or size (depending on `stat`)
+  n_offspring <- rep(1, index_cases) ## current number of offspring
+  sim <- seq_len(index_cases) ## track trees that are still being simulated
 
-  ## next, simulate ntrees trees
+  ## next, simulate trees from index cases
   while (length(sim) > 0) {
     ## simulate next generation
     next_gen <- do.call(
@@ -394,7 +393,7 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
     indices <- rep(sim, n_offspring[sim])
 
     ## initialise number of offspring
-    n_offspring <- rep(0, ntrees)
+    n_offspring <- rep(0, index_cases)
     ## assign offspring sum to indices still being simulated
     n_offspring[sim] <- tapply(next_gen, indices, sum)
 
@@ -414,7 +413,7 @@ simulate_summary <- function(ntrees, statistic = c("size", "length"),
 
   out <- epichains_summary(
     chains_summary = stat_track,
-    ntrees = ntrees,
+    index_cases = index_cases,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max

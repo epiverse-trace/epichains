@@ -5,7 +5,7 @@
 \title{Simulate transmission chains sizes/lengths}
 \usage{
 simulate_summary(
-  ntrees,
+  index_cases,
   statistic = c("size", "length"),
   offspring_dist,
   stat_max = Inf,
@@ -13,7 +13,7 @@ simulate_summary(
 )
 }
 \arguments{
-\item{ntrees}{Number of trees to simulate.}
+\item{index_cases}{Number of index cases to simulate transmission chains for.}
 
 \item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
 criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
@@ -76,7 +76,7 @@ where \code{...} are the other arguments to \verb{simulate_*()}.
 
 \examples{
 simulate_summary(
-  ntrees = 10,
+  index_cases = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,

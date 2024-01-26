@@ -11,13 +11,12 @@
 #' @param tree_df a `<data.frame>` containing at least columns for
 #' "infectee_id", "infector_id", and "generation". Also has optional columns
 #' for "time", and "chain_id".
-#' @param ntrees Number of initial cases used to generate the outbreak; Integer
 #' @param track_pop Was the susceptible population tracked? Logical
 #' @inheritParams epichains_tree
 #' @author James M. Azam
 #' @keywords internal
 new_epichains_tree <- function(tree_df,
-                               ntrees,
+                               index_cases,
                                statistic,
                                offspring_dist,
                                stat_max,
@@ -25,7 +24,7 @@ new_epichains_tree <- function(tree_df,
   # Assemble the elements of the object
   obj <- tree_df
   class(obj) <- c("epichains_tree", class(obj))
-  attr(obj, "ntrees") <- ntrees
+  attr(obj, "index_cases") <- index_cases
   attr(obj, "statistic") <- statistic
   attr(obj, "offspring_dist") <- offspring_dist
   attr(obj, "stat_max") <- stat_max
@@ -56,14 +55,14 @@ new_epichains_tree <- function(tree_df,
 #' @author James M. Azam
 #' @export
 epichains_tree <- function(tree_df,
-                           ntrees,
+                           index_cases,
                            statistic,
                            offspring_dist,
                            stat_max,
                            track_pop) {
   # Check that inputs are well specified
   checkmate::assert_data_frame(tree_df)
-  checkmate::assert_integerish(ntrees, null.ok = TRUE)
+  checkmate::assert_integerish(index_cases, null.ok = TRUE)
   checkmate::assert_character(statistic, null.ok = TRUE)
   checkmate::assert_string(offspring_dist)
   check_offspring_func_valid(paste0("r", offspring_dist))
@@ -73,7 +72,7 @@ epichains_tree <- function(tree_df,
   # Create <epichains_tree> object
   epichains_tree <- new_epichains_tree(
     tree_df = tree_df,
-    ntrees = ntrees,
+    index_cases = index_cases,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max,
@@ -105,14 +104,14 @@ epichains_tree <- function(tree_df,
 #' @author James M. Azam
 #' @keywords internal
 new_epichains_summary <- function(chains_summary,
-                                  ntrees,
+                                  index_cases,
                                   statistic,
                                   offspring_dist,
                                   stat_max) {
   # Assemble the elements of the object
   obj <- chains_summary
   class(obj) <- c("epichains_summary", class(chains_summary))
-  attr(obj, "ntrees") <- ntrees
+  attr(obj, "index_cases") <- index_cases
   attr(obj, "statistic") <- statistic
   attr(obj, "offspring_dist") <- offspring_dist
   attr(obj, "stat_max") <- stat_max
@@ -135,13 +134,13 @@ new_epichains_summary <- function(chains_summary,
 #' @author James M. Azam
 #' @export
 epichains_summary <- function(chains_summary,
-                              ntrees,
+                              index_cases,
                               statistic,
                               offspring_dist,
                               stat_max) {
   # Check that inputs are well specified
   checkmate::assert_vector(chains_summary)
-  checkmate::assert_integerish(ntrees, null.ok = TRUE)
+  checkmate::assert_integerish(index_cases, null.ok = TRUE)
   checkmate::assert_character(statistic)
   checkmate::assert_string(offspring_dist)
   check_offspring_func_valid(paste0("r", offspring_dist))
@@ -150,7 +149,7 @@ epichains_summary <- function(chains_summary,
   # Create <epichains_summary> object
   epichains_summary <- new_epichains_summary(
     chains_summary,
-    ntrees = ntrees,
+    index_cases = index_cases,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max
@@ -216,7 +215,7 @@ format.epichains_tree <- function(x, ...) {
       ),
       sprintf(
         "Trees simulated: %s",
-        tree_info[["ntrees"]]
+        tree_info[["index_cases"]]
       ),
       sprintf(
         "Number of infectors (known): %s",
@@ -295,7 +294,7 @@ summary.epichains_tree <- function(object, ...) {
   validate_epichains_tree(object)
 
   # Get the summaries
-  ntrees <- attr(object, "ntrees", exact = TRUE)
+  index_cases <- attr(object, "index_cases", exact = TRUE)
 
   max_time <- ifelse(("time" %in% names(object)), max(object$time), NA)
 
@@ -307,7 +306,7 @@ summary.epichains_tree <- function(object, ...) {
 
   # List of summaries
   out <- list(
-    ntrees = ntrees,
+    index_cases = index_cases,
     max_time = max_time,
     unique_infectors = n_unique_infectors,
     max_generation = max_generation
@@ -329,7 +328,7 @@ summary.epichains_summary <- function(object, ...) {
   validate_epichains_summary(object)
 
   # Get the summaries
-  ntrees <- attr(object, "ntrees", exact = TRUE)
+  index_cases <- attr(object, "index_cases", exact = TRUE)
 
 
   if (all(is.infinite(object))) {
@@ -340,7 +339,7 @@ summary.epichains_summary <- function(object, ...) {
   }
 
   out <- list(
-    ntrees = ntrees,
+    index_cases = index_cases,
     max_stat = max_stat,
     min_stat = min_stat
   )

@@ -7,7 +7,7 @@ test_that("simulate_summary has expected shape", {
   set.seed(12)
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    ntrees = 2,
+    index_cases = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -228,7 +228,7 @@ test_that("simulate_chains throws errors", {
 test_that("simulate_summary throws errors", {
   expect_error(
     simulate_summary(
-      ntrees = 2,
+      index_cases = 2,
       offspring_dist = "s",
       statistic = "length",
       lambda = 0.9
@@ -237,7 +237,7 @@ test_that("simulate_summary throws errors", {
   )
   expect_error(
     simulate_summary(
-      ntrees = 2,
+      index_cases = 2,
       offspring_dist = "lnorm",
       statistic = "length",
       meanlog = 0.9,
@@ -247,7 +247,7 @@ test_that("simulate_summary throws errors", {
   )
   expect_error(
     simulate_summary(
-      ntrees = 2,
+      index_cases = 2,
       offspring_dist = s,
       statistic = "length",
       meanlog = 0.9,
@@ -257,7 +257,7 @@ test_that("simulate_summary throws errors", {
   )
   expect_error(
     simulate_summary(
-      ntrees = 2,
+      index_cases = 2,
       offspring_dist = c(1, 2),
       statistic = "length",
       lambda = 0.9
@@ -281,7 +281,7 @@ test_that("simulate_chains is numerically correct", {
   sim_chains_summary <- summary(sim_chains_small_susc)
   #' Expectations
   expect_identical(
-    sim_chains_summary$ntrees,
+    sim_chains_summary$index_cases,
     10.00
   )
   expect_identical(
@@ -340,7 +340,7 @@ test_that("simulate_summary is numerically correct", {
   set.seed(12)
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
-    ntrees = 2,
+    index_cases = 2,
     offspring_dist = "pois",
     statistic = "length",
     lambda = 0.9
@@ -349,7 +349,7 @@ test_that("simulate_summary is numerically correct", {
   chain_summary_summaries <- summary(chain_summary_raw)
   #' Expectations
   expect_identical(
-    chain_summary_summaries$ntrees,
+    chain_summary_summaries$index_cases,
     2.00
   )
   expect_identical(

@@ -263,7 +263,7 @@ distribution with mean of $0.9$.
 set.seed(123)
 
 simulate_summary_eg <- simulate_summary(
-  ntrees = 10,
+  index_cases = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
@@ -302,7 +302,7 @@ summary(sim_chains)
 set.seed(123)
 
 simulate_summary_eg <- simulate_summary(
-  ntrees = 10,
+  index_cases = 10,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
