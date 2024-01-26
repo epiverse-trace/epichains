@@ -261,7 +261,7 @@ simulate_chains <- function(index_cases,
 
       # create new ids
       ids <- rep(current_max_id, n_offspring[sim]) +
-        unlist(lapply(n_offspring[sim], seq_len))
+        sequence(n_offspring[sim])
 
       # increment the generation
       generation <- generation + 1L
