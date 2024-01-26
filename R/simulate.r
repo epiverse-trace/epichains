@@ -371,7 +371,7 @@ simulate_summary <- function(index_cases, statistic = c("size", "length"),
   pars <- list(...)
 
   # Initialisations
-  stat_track <- rep(1, index_cases) ## track length or size (depending on `stat`)
+  stat_track <- rep(1, index_cases) ## track statistic
   n_offspring <- rep(1, index_cases) ## current number of offspring
   sim <- seq_len(index_cases) ## track trees that are still being simulated
 
