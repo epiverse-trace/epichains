@@ -68,5 +68,5 @@ adjust_next_gen <- function(next_gen, susc_pop) {
   ## count occurrences in next generation sample
   next_gen_count <- table(next_gen_sample)
   next_gen[as.integer(names(next_gen_count))] <- unname(next_gen_count)
-  next_gen
+  return(next_gen)
 }

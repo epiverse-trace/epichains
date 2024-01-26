@@ -434,13 +434,17 @@ validate_epichains_summary <- function(x) {
 head.epichains_tree <- function(x, ...) {
   # print head of the simulation output from the first known infector_id
   x <- x[!is.na(x$infector_id), ]
-  utils::head(as.data.frame(x), ...)
+  return(
+    utils::head(as.data.frame(x), ...)
+  )
 }
 
 #' @rdname head.epichains_tree
 #' @export
 tail.epichains_tree <- function(x, ...) {
-  utils::tail(as.data.frame(x), ...)
+  return(
+    utils::tail(as.data.frame(x), ...)
+  )
 }
 
 #' Aggregate cases in `<epichains_tree>` objects by "generation" or "time", if

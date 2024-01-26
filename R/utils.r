@@ -10,7 +10,8 @@ complementary_logprob <- function(x) {
     x, lower = -Inf, upper = 0
   )
 
-  tryCatch(log1p(-sum(exp(x))), error = function(e) -Inf)
+  out <- tryCatch(log1p(-sum(exp(x))), error = function(e) -Inf)
+  return(out)
 }
 
 #' Samples size (the number of trials) of a binomial distribution
@@ -24,7 +25,8 @@ complementary_logprob <- function(x) {
 #' @author Sebastian Funk
 #' @keywords internal
 rbinom_size <- function(n, x, prob) {
-  x + stats::rnbinom(n, x + 1, prob)
+  out <- x + stats::rnbinom(n, x + 1, prob)
+  return(out)
 }
 
 #' Samples chain lengths with given observation probabilities
@@ -39,9 +41,10 @@ rbinom_size <- function(n, x, prob) {
 #' @author Sebastian Funk
 #' @keywords internal
 rgen_length <- function(n, x, prob) {
-  x +
+  out <- x +
     ceiling(log(stats::runif(n, 0, 1)) / log(1 - prob) - 1) +
     ceiling(log(stats::runif(n, 0, 1)) / log(1 - prob) - 1)
+  return(out)
 }
 
 #' Negative binomial random numbers parametrized
@@ -66,5 +69,6 @@ rnbinom_mean_disp <- function(n, mn, disp) {
   )
 
   size <- mn / (disp - 1)
-  stats::rnbinom(n, size = size, mu = mn)
+  out <- stats::rnbinom(n, size = size, mu = mn)
+  return(out)
 }
