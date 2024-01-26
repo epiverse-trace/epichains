@@ -212,7 +212,7 @@ simulate_chains <- function(index_cases,
     next_gen <- do.call(
       roffspring_name,
       c(
-        list(n = sum(n_offspring[sim])),
+        list(n = sum(n_offspring)),
         pars
       )
     )
@@ -254,7 +254,7 @@ simulate_chains <- function(index_cases,
     # Adorn the new offspring with their information: their ids, their
     # infector's ids, and the generation they were infected in.
     # Also update the susceptible population and generation.
-    if (sum(n_offspring[sim]) > 0) {
+    if (sum(n_offspring) > 0) {
       infectors <- rep(infector_ids, next_gen)
       current_max_id <- unname(tapply(infector_ids, parent_ids, max))
       parent_ids <- rep(sim, n_offspring[sim])
@@ -266,7 +266,7 @@ simulate_chains <- function(index_cases,
       # increment the generation
       generation <- generation + 1L
       # Update susceptible population
-      susc_pop <- susc_pop - sum(n_offspring[sim])
+      susc_pop <- susc_pop - sum(n_offspring)
 
       # store new simulation results
       tree_df[[generation]] <-
