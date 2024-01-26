@@ -296,8 +296,6 @@ simulate_chains <- function(index_cases,
       if (!missing(generation_time)) {
         ## only continue to simulate trees that don't go beyond tf
         sim <- intersect(sim, unique(parent_ids)[current_min_time < tf])
-      }
-      if (!missing(generation_time)) {
         times <- times[parent_ids %in% sim]
       }
       infector_ids <- ids[parent_ids %in% sim]
