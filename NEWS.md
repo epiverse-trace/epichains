@@ -4,6 +4,9 @@
 a dedicated class of data structures for easy manipulation and interoperability
 with other new tools in the Epiverse and existing ecosystem.
 
+* The `offspring_dist` argument has been changed to no longer accept a character
+  string, but instead now accepts a function
+
 ## Documentation
 
 * A vignette outlining how to simulate interventions has been added.
