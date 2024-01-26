@@ -45,7 +45,8 @@ We simulate 200 chains tracking up to 99 infections:
 
 ```{r simulate_chains}
 sims <- simulate_summary(
-  index_cases = 200, offspring_dist = "nbinom", stat_max = 99, mu = 1.2, size = 0.5
+  index_cases = 200, offspring_dist = "nbinom", stat_max = 99, mu = 1.2,
+  size = 0.5
 )
 ```
 
@@ -70,7 +71,8 @@ For example, to reduce R by 25% at the population level we scale the `mu` parame
 
 ```{r simulate_chains_pop_control}
 sims <- simulate_summary(
-  index_cases = 200, offspring_dist = "nbinom", stat_max = 99, mu = 0.9, size = 0.5
+  index_cases = 200, offspring_dist = "nbinom", stat_max = 99, mu = 0.9,
+  size = 0.5
 )
 sims[is.infinite(sims)] <- 100 # Replace infections > 99 with 100 for plotting.
 ggplot(data.frame(x = sims), aes(x = x)) +
@@ -137,8 +139,8 @@ This can be likened to a disease control strategy where gatherings are limited t
 
 ```{r simulate_chains_truncated}
 sims <- simulate_summary(
-  index_cases = 200, offspring_dist = "nbinom_truncated", stat_max = 99, mu = 1.2,
-  size = 0.5, max =  10
+  index_cases = 200, offspring_dist = "nbinom_truncated", stat_max = 99,
+  mu = 1.2, size = 0.5, max =  10
 )
 sims[is.infinite(sims)] <- 100 # Replace infections > 99 with 100 for plotting.
 ggplot(data.frame(x = sims), aes(x = x)) +
