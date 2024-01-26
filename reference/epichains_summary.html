@@ -85,7 +85,13 @@ the intervention level.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">epichains_summary</span><span class="op">(</span><span class="va">chains_summary</span>, <span class="va">ntrees</span>, <span class="va">statistic</span>, <span class="va">offspring_dist</span>, <span class="va">stat_max</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">epichains_summary</span><span class="op">(</span></span>
+<span>  <span class="va">chains_summary</span>,</span>
+<span>  <span class="va">index_cases</span>,</span>
+<span>  <span class="va">statistic</span>,</span>
+<span>  <span class="va">offspring_dist</span>,</span>
+<span>  <span class="va">stat_max</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -94,8 +100,8 @@ the intervention level.</p>
 <dd><p>a <code>&lt;vector&gt;</code> of chain sizes and lengths.</p></dd>
 
 
-<dt>ntrees</dt>
-<dd><p>Number of initial cases used to generate the outbreak; Integer</p></dd>
+<dt>index_cases</dt>
+<dd><p>Number of index cases to simulate transmission chains for.</p></dd>
 
 
 <dt>statistic</dt>

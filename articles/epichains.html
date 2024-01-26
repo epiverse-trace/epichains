@@ -345,7 +345,7 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">simulate_summary_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
-<span>  ntrees <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -390,7 +390,7 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $ntrees</span></span>
+<span><span class="co">#&gt; $index_cases</span></span>
 <span><span class="co">#&gt; [1] 10</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $max_time</span></span>
@@ -406,7 +406,7 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">simulate_summary_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
-<span>  ntrees <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -415,7 +415,7 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <span></span>
 <span><span class="co"># Get summaries</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">simulate_summary_eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $ntrees</span></span>
+<span><span class="co">#&gt; $index_cases</span></span>
 <span><span class="co">#&gt; [1] 10</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $max_stat</span></span>
