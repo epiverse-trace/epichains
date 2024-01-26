@@ -254,26 +254,32 @@ averaged to come up with an overall likelihood estimate.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="chain-simulation">Chain simulation<a class="anchor" aria-label="anchor" href="#chain-simulation"></a>
+<h2 id="transmission-chains-simulation">Transmission chains simulation<a class="anchor" aria-label="anchor" href="#transmission-chains-simulation"></a>
 </h2>
-<p>There are three simulation functions, herein referred to collectively as the <code>simulate_*()</code> functions.</p>
+<p>There are two simulation functions, herein referred to collectively as the <code>simulate_*()</code> functions.</p>
 <div class="section level3">
-<h3 id="simulate_tree">
-<a href="https://epiverse-trace.github.io/epichains/reference/simulate_tree.html"><code>simulate_tree()</code></a><a class="anchor" aria-label="anchor" href="#simulate_tree"></a>
+<h3 id="simulate_chains">
+<a href="https://epiverse-trace.github.io/epichains/reference/simulate_chains.html"><code>simulate_chains()</code></a><a class="anchor" aria-label="anchor" href="#simulate_chains"></a>
 </h3>
-<p><code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> simulates an outbreak from a given number of infections.
-It retains and returns information on infectors (ancestors), infectees, the generation of infection, and the time, if a generation time function is specified.</p>
-<p>Let’s look at an example where we simulate the transmission trees of <span class="math inline">\(10\)</span> initial infections/chains. We assume a poisson offspring distribution with mean, <span class="math inline">\(\text{lambda} = 0.9\)</span>, and a generation time of <span class="math inline">\(3\)</span> days:</p>
+<p><code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> simulates an outbreak from a given number of infections and
+an offspring distribution. By default, it assumes the population is infinite
+with no pre-existing immunity.</p>
+<p>The function tracks and returns information on infectors (ancestors),
+infectees, the generation of infection, and the time, if a generation time
+function is specified.</p>
+<p>Let’s look at an example where we simulate a transmission tree for <span class="math inline">\(10\)</span> index
+cases. We assume a poisson offspring distribution with mean,
+<span class="math inline">\(\text{lambda} = 0.9\)</span>, and a generation time of <span class="math inline">\(3\)</span> days:</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
-<span>  ntrees <span class="op">=</span> <span class="fl">10</span>,</span>
+<span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
+<span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -281,26 +287,61 @@ It retains and returns information on infectors (ancestors), infectees, the gene
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_eg</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    infectee_id sim_id infector_id generation time</span></span>
-<span><span class="co">#&gt; 11           2      2           1          2    3</span></span>
-<span><span class="co">#&gt; 12           3      2           1          2    3</span></span>
-<span><span class="co">#&gt; 13           4      2           1          2    3</span></span>
-<span><span class="co">#&gt; 14           5      2           1          2    3</span></span>
-<span><span class="co">#&gt; 15           7      2           1          2    3</span></span>
-<span><span class="co">#&gt; 16           8      2           1          2    3</span></span></code></pre></div>
+<span><span class="co">#&gt; 11           1      2           1          2    3</span></span>
+<span><span class="co">#&gt; 12           2      2           1          2    3</span></span>
+<span><span class="co">#&gt; 13           3      2           1          2    3</span></span>
+<span><span class="co">#&gt; 14           4      2           1          2    3</span></span>
+<span><span class="co">#&gt; 15           6      2           1          2    3</span></span>
+<span><span class="co">#&gt; 16           7      2           1          2    3</span></span></code></pre></div>
+</details><p>Beyond the defaults, <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> can also simulate outbreaks based on
+a specified population size and pre-existing immunity until the susceptible
+pool runs out.</p>
+<p>Here is a quick example where we simulate an outbreak in a population of
+size <span class="math inline">\(1000\)</span> with <span class="math inline">\(10\)</span> index cases and <span class="math inline">\(10/%\)</span> pre-existing immunity. We assume
+individuals have a poisson offspring distribution with mean,
+<span class="math inline">\(\text{lambda} = 1\)</span>, and fixed generation time of <span class="math inline">\(3\)</span>:</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
+<span><span class="co"># Define generation time</span></span>
+<span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">sim_chains_with_pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
+<span>  pop <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  percent_immune <span class="op">=</span> <span class="fl">0.1</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_chains_with_pop</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    infectee_id sim_id infector_id generation time susc_pop</span></span>
+<span><span class="co">#&gt; 11           1      2           1          2    3      877</span></span>
+<span><span class="co">#&gt; 12           2      2           1          2    3      877</span></span>
+<span><span class="co">#&gt; 13           3      2           1          2    3      877</span></span>
+<span><span class="co">#&gt; 14           4      2           1          2    3      877</span></span>
+<span><span class="co">#&gt; 15           6      2           1          2    3      877</span></span>
+<span><span class="co">#&gt; 16           7      2           1          2    3      877</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level3">
 <h3 id="simulate_summary">
 <a href="https://epiverse-trace.github.io/epichains/reference/simulate_summary.html"><code>simulate_summary()</code></a><a class="anchor" aria-label="anchor" href="#simulate_summary"></a>
 </h3>
-<p><code><a href="../reference/simulate_summary.html">simulate_summary()</a></code> is basically <code><a href="../reference/simulate_tree.html">simulate_tree()</a></code> except that it does not retain
-information on each infector and infectee. It returns the eventual size or length/duration of each transmission chain.</p>
+<p><code><a href="../reference/simulate_summary.html">simulate_summary()</a></code> is a performant version of <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> that
+does not track information on each infector and infectee. It returns the
+eventual size or length/duration of each transmission chain. This function is
+especially useful for calculating numerical likelihoods in <code><a href="../reference/likelihood.html">likelihood()</a></code>.</p>
 <p>Here is an example to simulate the previous examples without intervention,
-returning the size of each of the <span class="math inline">\(10\)</span> chains. It assumes a poisson offspring distribution with
-mean of <span class="math inline">\(0.9\)</span>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+returning the size of each of the <span class="math inline">\(10\)</span> chains. It assumes a poisson offspring
+distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">simulate_summary_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
@@ -323,37 +364,6 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="co">#&gt; Min: 1</span></span></code></pre></div>
 </details>
 </div>
-<div class="section level3">
-<h3 id="simulate_tree_from_pop">
-<a href="https://epiverse-trace.github.io/epichains/reference/simulate_tree_from_pop.html"><code>simulate_tree_from_pop()</code></a><a class="anchor" aria-label="anchor" href="#simulate_tree_from_pop"></a>
-</h3>
-<p><code><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code> simulates outbreaks based on a specified population size and pre-existing immunity until the susceptible pool runs out.</p>
-<p>Here is a quick example where we simulate an outbreak in a population of size <span class="math inline">\(1000\)</span>. We assume individuals have a poisson offspring distribution with mean, <span class="math inline">\(\text{lambda} = 1\)</span>, and fixed generation time of <span class="math inline">\(3\)</span>:</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span>
-<span><span class="co"># Define generation time</span></span>
-<span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">sim_tree_from_pop_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree_from_pop.html">simulate_tree_from_pop</a></span><span class="op">(</span></span>
-<span>  pop <span class="op">=</span> <span class="fl">1000</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
-<span>  lambda <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_tree_from_pop_eg</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   sim_id infector_id generation time</span></span>
-<span><span class="co">#&gt; 2      2           1          2    3</span></span>
-<span><span class="co">#&gt; 3      3           1          2    3</span></span>
-<span><span class="co">#&gt; 4      4           1          2    3</span></span>
-<span><span class="co">#&gt; 5      5           1          2    3</span></span>
-<span><span class="co">#&gt; 6      6           2          3    6</span></span>
-<span><span class="co">#&gt; 7      7           6          4    9</span></span></code></pre></div>
-</details>
-</div>
 </div>
 <div class="section level2">
 <h2 id="other-functionalities">Other functionalities<a class="anchor" aria-label="anchor" href="#other-functionalities"></a>
@@ -361,18 +371,17 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <div class="section level3">
 <h3 id="summarising">Summarising<a class="anchor" aria-label="anchor" href="#summarising"></a>
 </h3>
-<p>You can run <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on <code>&lt;epichains&gt;</code> objects to get useful summaries.</p>
+<p>You can run <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on <code>&lt;epichains_tree&gt;</code> objects to get useful summaries.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Example with simulate_tree()</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
-<span>  ntrees <span class="op">=</span> <span class="fl">10</span>,</span>
+<span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
+<span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -380,18 +389,18 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_tree_eg</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $ntrees</span></span>
 <span><span class="co">#&gt; [1] 10</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $max_time</span></span>
-<span><span class="co">#&gt; [1] 12</span></span>
+<span><span class="co">#&gt; [1] 18</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $unique_infectors</span></span>
-<span><span class="co">#&gt; [1] 9</span></span>
+<span><span class="co">#&gt; [1] 8</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $max_generation</span></span>
-<span><span class="co">#&gt; [1] 5</span></span>
+<span><span class="co">#&gt; [1] 7</span></span>
 <span></span>
 <span><span class="co"># Example with simulate_summary()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
@@ -419,11 +428,14 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <div class="section level3">
 <h3 id="aggregating">Aggregating<a class="anchor" aria-label="anchor" href="#aggregating"></a>
 </h3>
-<p>You can aggregate <code>&lt;epichains&gt;</code> objects returned by the <code>simulate_*()</code> functions into a time series, which is a <code>&lt;data.frame&gt;</code> with columns “cases” and either “generation” or “time”, depending on the value of <code>by</code>.</p>
-<p>To aggregate over “time”, you must have specified a generation time distribution in the simulation step.</p>
+<p>You can aggregate <code>&lt;epichains_tree&gt;</code> objects returned by <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code>
+a <code>&lt;data.frame&gt;</code> with columns “cases” and either “generation” or “time”,
+depending on the value of <code>by</code>.</p>
+<p>To aggregate over “time”, you must have specified a generation time
+distribution (<code>generation_time</code>) in the simulation step.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Example with simulate_tree()</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># Example with simulate_chains()</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
@@ -431,8 +443,8 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
-<span>  ntrees <span class="op">=</span> <span class="fl">10</span>,</span>
+<span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
+<span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -440,43 +452,53 @@ mean of <span class="math inline">\(0.9\)</span>.</p>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_tree_eg</span>, by <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_chains</span>, by <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   time cases</span></span>
 <span><span class="co">#&gt; 1    0    10</span></span>
-<span><span class="co">#&gt; 2    3    13</span></span>
-<span><span class="co">#&gt; 3    6    15</span></span>
-<span><span class="co">#&gt; 4    9    18</span></span>
-<span><span class="co">#&gt; 5   12     2</span></span></code></pre></div>
+<span><span class="co">#&gt; 2    3    12</span></span>
+<span><span class="co">#&gt; 3    6    14</span></span>
+<span><span class="co">#&gt; 4    9    17</span></span>
+<span><span class="co">#&gt; 5   12     3</span></span>
+<span><span class="co">#&gt; 6   15     4</span></span>
+<span><span class="co">#&gt; 7   18     3</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level3">
 <h3 id="plotting">Plotting<a class="anchor" aria-label="anchor" href="#plotting"></a>
 </h3>
-<p>Aggregated <code>&lt;epichains&gt;</code> objects can easily be plotted using base R or <code>ggplot2</code> with little to no data manipulation.</p>
+<p>Aggregated <code>&lt;epichains_tree&gt;</code> objects can easily be plotted using base R
+or <code>ggplot2</code> with little to no data manipulation.</p>
 <p>Here is an end-to-end example from simulation through aggregation to plotting.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Run simulation with simulate_tree()</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># Run simulation with simulate_chains()</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="va">sim_tree_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_tree.html">simulate_tree</a></span><span class="op">(</span></span>
-<span>  ntrees <span class="op">=</span> <span class="fl">10</span>,</span>
+<span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
+<span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
-<span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  stat_max <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span>,</span>
-<span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
+<span>  lambda <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Aggregate cases over time</span></span>
-<span><span class="va">sim_aggreg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_tree_eg</span>, by <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
+<span><span class="va">sim_chains_aggreg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_chains</span>, by <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot cases over time</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim_aggreg</span>, type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span></span>
+<span>  <span class="va">sim_chains_aggreg</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"b"</span>,</span>
+<span>  col <span class="op">=</span> <span class="st">"red"</span>,</span>
+<span>  lwd <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="st">"Time"</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"Cases"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </details><p><img src="epichains_files/figure-html/unnamed-chunk-14-1.png"><!-- --></p>
 </div>
 </div>

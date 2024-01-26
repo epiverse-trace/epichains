@@ -89,15 +89,17 @@
 
 
 <dt>statistic</dt>
-<dd><p>String; Statistic (size/length) to calculate. Used to
-determine stopping criteria for simulations when <code>stat_max</code> is finite.
-Can be one of:</p><ul><li><p>"size": the total number of offspring.</p></li>
-<li><p>"length": the total number of infectors.</p></li>
+<dd><p><code>&lt;String&gt;</code>; Chain statistic to track as the stopping
+criteria for each chain being simulated when <code>stat_max</code> is not <code>Inf</code>.
+Can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
+extinct.</p></li>
+<li><p>"length": the total number of ancestors produced by a chain before
+it goes extinct.</p></li>
 </ul></dd>
 
 
 <dt>offspring_dist</dt>
-<dd><p>Offspring distribution: a character string
+<dd><p>Offspring distribution: a <code>&lt;character&gt;</code> string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> is the R function to generate Poisson random
 numbers).</p></dd>
@@ -127,13 +129,13 @@ offspring distribution (<code>offspring_dist</code>).</p><div class="section">
 <h3 id="specifying-generation-time">Specifying <code>generation_time</code><a class="anchor" aria-label="anchor" href="#specifying-generation-time"></a></h3>
 
 
-<p><code>generation_time</code> must be specified as a function with one argument.</p>
-<p>For example, assuming we want to specify the generation time
-as a random log-normally distributed variable with
-<code>meanlog = 0.58</code> and <code>sdlog = 1.58</code>, we could define a named function,
-let's call it "generation_time_fn", with only one argument representing the
-number of generation times to sample:
-<code>generation_time_fn &lt;- function(n){rlnorm(n, 0.58, 1.38)}</code>,
+<p>The argument <code>generation_time</code> must be specified as a function with
+one argument, <code>n</code>.</p>
+<p>For example, assuming we want to specify the generation time as a random
+log-normally distributed variable with <code>meanlog = 0.58</code> and <code>sdlog = 1.58</code>,
+we could define a named function, let's call it "generation_time_fn",
+with only one argument representing the number of generation times to
+sample: <code>generation_time_fn &lt;- function(n){rlnorm(n, 0.58, 1.38)}</code>,
 and assign the name of the function to <code>generation_time</code> in
 the simulation function, i.e.
 <code>`simulate_*`(..., generation_time = generation_time_fn)</code>,
@@ -141,19 +143,11 @@ where <code>...</code> are the other arguments to <code>simulate_*()</code> and 
 for the rest of simulation function's name.</p>
 <p>Alternatively, we could assign an anonymous function to <code>generation_time</code>
 in the <code>simulate_*()</code> call, i.e.
-<code>simulate_*(..., generation_time = function(n){rlnorm(n, 0.58, 1.38)})</code>,
+<code>simulate_*(..., generation_time = function(n){rlnorm(n, 0.58, 1.38)})</code>
+OR <code>simulate_*(..., generation_time = \(n){rlnorm(n, 0.58, 1.38)})</code>,
 where <code>...</code> are the other arguments to <code>simulate_*()</code>.</p>
 </div>
 
-    </div>
-    <div class="section level2">
-    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index">
-<ul><li><p><code><a href="simulate_tree.html">simulate_tree()</a></code> for simulating transmission trees from an
-initial number of infections.</p></li>
-<li><p><code><a href="simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code> for simulating transmission trees from a
-susceptible or partially immune population.</p></li>
-</ul></div>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>

@@ -99,15 +99,17 @@ the intervention level.</p>
 
 
 <dt>statistic</dt>
-<dd><p>String; Statistic (size/length) to calculate. Used to
-determine stopping criteria for simulations when <code>stat_max</code> is finite.
-Can be one of:</p><ul><li><p>"size": the total number of offspring.</p></li>
-<li><p>"length": the total number of infectors.</p></li>
+<dd><p><code>&lt;String&gt;</code>; Chain statistic to track as the stopping
+criteria for each chain being simulated when <code>stat_max</code> is not <code>Inf</code>.
+Can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
+extinct.</p></li>
+<li><p>"length": the total number of ancestors produced by a chain before
+it goes extinct.</p></li>
 </ul></dd>
 
 
 <dt>offspring_dist</dt>
-<dd><p>Offspring distribution: a character string
+<dd><p>Offspring distribution: a <code>&lt;character&gt;</code> string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> is the R function to generate Poisson random
 numbers).</p></dd>
@@ -115,8 +117,7 @@ numbers).</p></dd>
 
 <dt>stat_max</dt>
 <dd><p>A cut off for the chain statistic (size/length) being
-computed. Results above the specified value, are set to this value.
-Defaults to <code>Inf</code>.</p></dd>
+computed. Results above <code>stat_max</code> are set to <code>stat_max</code>. Defaults to <code>Inf</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

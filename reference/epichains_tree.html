@@ -90,7 +90,7 @@ tracked."><meta property="og:image" content="https://epiverse-trace.github.io/ep
     <div class="ref-description section level2">
     <p><code>epichains_tree()</code> constructs an <code>&lt;epichains_tree&gt;</code> object, which is
 inherently an <code>&lt;data.frame&gt;</code> object that stores some of the inputs
-passed to the <code><a href="simulate_tree.html">simulate_tree()</a></code> and <code><a href="simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code> and the
+passed to the <code>simulate_tree()</code> and <code>simulate_tree_from_pop()</code> and the
 simulated output. The stored attributes are useful for downstream
 analyses and reproducibility. This function checks the validity of the
 object created to ensure it has the right columns and column types.</p>
@@ -115,19 +115,21 @@ for "time", and "chain_id".</p></dd>
 
 
 <dt>ntrees</dt>
-<dd><p>Number of trees to simulate.</p></dd>
+<dd><p>Number of initial cases used to generate the outbreak; Integer</p></dd>
 
 
 <dt>statistic</dt>
-<dd><p>String; Statistic (size/length) to calculate. Used to
-determine stopping criteria for simulations when <code>stat_max</code> is finite.
-Can be one of:</p><ul><li><p>"size": the total number of offspring.</p></li>
-<li><p>"length": the total number of infectors.</p></li>
+<dd><p><code>&lt;String&gt;</code>; Chain statistic to track as the stopping
+criteria for each chain being simulated when <code>stat_max</code> is not <code>Inf</code>.
+Can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
+extinct.</p></li>
+<li><p>"length": the total number of ancestors produced by a chain before
+it goes extinct.</p></li>
 </ul></dd>
 
 
 <dt>offspring_dist</dt>
-<dd><p>Offspring distribution: a character string
+<dd><p>Offspring distribution: a <code>&lt;character&gt;</code> string
 corresponding to the R distribution function (e.g., "pois" for Poisson,
 where <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> is the R function to generate Poisson random
 numbers).</p></dd>
@@ -135,8 +137,7 @@ numbers).</p></dd>
 
 <dt>stat_max</dt>
 <dd><p>A cut off for the chain statistic (size/length) being
-computed. Results above the specified value, are set to this value.
-Defaults to <code>Inf</code>.</p></dd>
+computed. Results above <code>stat_max</code> are set to <code>stat_max</code>. Defaults to <code>Inf</code>.</p></dd>
 
 
 <dt>track_pop</dt>

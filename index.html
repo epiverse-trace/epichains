@@ -125,11 +125,10 @@
 <div class="section level2">
 <h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<p><em>epichains</em> provides four main functions:</p>
+<p><em>epichains</em> provides two main functions:</p>
 <ul>
-<li><p><code><a href="reference/simulate_tree.html">simulate_tree()</a></code>: simulates transmission chains using an initial number of cases and information on the offspring distribution. This function returns an object with columns that track information on who infected whom, the generation of infection and, if a generation time function is specified, the time of infection.</p></li>
-<li><p><code><a href="reference/simulate_summary.html">simulate_summary()</a></code>: simulates a vector of transmission chain sizes or lengths using an initial number of cases and information on the offspring distribution. This function only returns a vector of realized chain size or length.</p></li>
-<li><p><code><a href="reference/simulate_tree_from_pop.html">simulate_tree_from_pop()</a></code>: simulates transmission chains given an initial population size and information on the offspring distribution. You can also specify a given level of pre-existing immunity. This function returns an object with columns that track information on who infected whom, the generation of infection and, if a generation time function is given, the time of infection.</p></li>
+<li><p><code><a href="reference/simulate_chains.html">simulate_chains()</a></code>: simulates transmission chains using a simple branching process model that accepts an index number of cases that seed the outbreak, a distribution of offspring per case, and a chain statistic to track (size or length/duration). It optionally accepts other population related inputs such as the population size (defaults to Inf) and percentage of the population initially immune (defaults to 0). This function returns an object with columns that track information on who infected whom, the generation of infection and, if a generation time function is specified, the time of infection.</p></li>
+<li><p><code><a href="reference/simulate_summary.html">simulate_summary()</a></code>: provides a performant version of <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> that only tracks and returns a vector of realized chain sizes or lengths/durations for each index case without details of the infection tree.</p></li>
 <li><p><code><a href="reference/likelihood.html">likelihood()</a></code>: calculates the loglikelihood (or likelihood, depending on the value of <code>log</code>) of observing a vector of transmission chain sizes or lengths.</p></li>
 </ul>
 <p>The objects returned by the <code>simulate_*()</code> functions can be summarised with <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> and aggregated into a <code>&lt;data.frame&gt;</code> of cases per time or generation with <code><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate()</a></code>. Aggregated results can also be passed on to <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> with its own arguments to customize the resulting plots.</p>
@@ -164,7 +163,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"epichains"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; To cite package 'epichains' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   Azam J, Finger F, Funk S (2023). _epichains: Simulating and Analysing</span></span>
+<span><span class="co">#&gt;   Azam J, Finger F, Funk S (2024). _epichains: Simulating and Analysing</span></span>
 <span><span class="co">#&gt;   Transmission Chain Statistics Using Branching Process Models_. R</span></span>
 <span><span class="co">#&gt;   package version 0.0.0.9999,</span></span>
 <span><span class="co">#&gt;   https://epiverse-trace.github.io/epichains/,</span></span>
@@ -176,7 +175,7 @@
 <span><span class="co">#&gt;     title = {epichains: Simulating and Analysing Transmission Chain Statistics Using</span></span>
 <span><span class="co">#&gt; Branching Process Models},</span></span>
 <span><span class="co">#&gt;     author = {James M. Azam and Flavio Finger and Sebastian Funk},</span></span>
-<span><span class="co">#&gt;     year = {2023},</span></span>
+<span><span class="co">#&gt;     year = {2024},</span></span>
 <span><span class="co">#&gt;     note = {R package version 0.0.0.9999, </span></span>
 <span><span class="co">#&gt; https://epiverse-trace.github.io/epichains/},</span></span>
 <span><span class="co">#&gt;     url = {https://github.com/epiverse-trace/epichains},</span></span>
