@@ -72,7 +72,7 @@ chain_sizes
 likelihood_eg <- likelihood(
   chains = chain_sizes,
   statistic = "size",
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   nsim_obs = 100,
   lambda = 0.5
 )
@@ -98,7 +98,7 @@ chain_sizes
 likelihood_ind_eg <- likelihood(
   chains = chain_sizes,
   statistic = "size",
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   nsim_obs = 100,
   lambda = 0.5,
   individual = TRUE
@@ -134,7 +134,7 @@ chain_sizes <- sample(1:10, 20, replace = TRUE)
 # get their likelihood
 liks <- likelihood(
   chains = chain_sizes,
-  offspring_dist = "binom",
+  offspring_dist = rbinom,
   statistic = "size",
   size = 1,
   prob = 0.9,
@@ -168,7 +168,7 @@ chain_sizes <- sample(1:10, 20, replace = TRUE)
 liks <- likelihood(
   chains = chain_sizes,
   statistic = "size",
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   obs_prob = 0.3,
   lambda = 0.5,
   nsim_obs = 10
@@ -210,7 +210,7 @@ generation_time_fn <- function(n) {
 sim_chains <- simulate_chains(
   index_cases = 10,
   statistic = "size",
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   stat_max = 10,
   generation_time = generation_time_fn,
   lambda = 0.9
@@ -239,7 +239,7 @@ sim_chains_with_pop <- simulate_chains(
   pop = 1000,
   index_cases = 10,
   percent_immune = 0.1,
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   statistic = "size",
   lambda = 1,
   generation_time = generation_time_fn
@@ -265,7 +265,7 @@ set.seed(123)
 simulate_summary_eg <- simulate_summary(
   index_cases = 10,
   statistic = "size",
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   stat_max = 10,
   lambda = 0.9
 )
@@ -290,7 +290,7 @@ generation_time_fn <- function(n) {
 sim_chains <- simulate_chains(
   index_cases = 10,
   statistic = "size",
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   stat_max = 10,
   generation_time = generation_time_fn,
   lambda = 0.9
@@ -304,7 +304,7 @@ set.seed(123)
 simulate_summary_eg <- simulate_summary(
   index_cases = 10,
   statistic = "size",
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   stat_max = 10,
   lambda = 0.9
 )
@@ -334,7 +334,7 @@ generation_time_fn <- function(n) {
 sim_chains <- simulate_chains(
   index_cases = 10,
   statistic = "size",
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   stat_max = 10,
   generation_time = generation_time_fn,
   lambda = 0.9
@@ -361,7 +361,7 @@ generation_time_fn <- function(n) {
 sim_chains <- simulate_chains(
   index_cases = 10,
   statistic = "size",
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   stat_max = 1000,
   generation_time = generation_time_fn,
   lambda = 2

@@ -30,10 +30,14 @@ extinct.
 it goes extinct.
 }}
 
-\item{offspring_dist}{Offspring distribution: a \verb{<character>} string
-corresponding to the R distribution function (e.g., "pois" for Poisson,
-where \code{\link{rpois}} is the R function to generate Poisson random
-numbers).}
+\item{offspring_dist}{Offspring distribution: a function like the ones
+provided by R to generate random numbers from given distributions (e.g.,
+\code{\link{rpois}} for Poisson). More specifically, the function needs to
+accept at least one argument, \code{n}, which is the number of random
+numbers to generate. It can accept further arguments, which will be passed
+on to the random number generating functions. Examples that can be provided
+here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for negative
+binomial offspring, or custom functions.}
 
 \item{nsim_obs}{Number of simulations if the log-likelihood/likelihood is to
 be approximated for imperfect observations.}
@@ -82,7 +86,7 @@ set.seed(121)
 chain_sizes <- sample(1:10, 20, replace = TRUE)
 likelihood(
   chains = chain_sizes, statistic = "size",
-  offspring_dist = "pois", nsim_obs = 100, lambda = 0.5
+  offspring_dist = rpois, nsim_obs = 100, lambda = 0.5
 )
 }
 \seealso{

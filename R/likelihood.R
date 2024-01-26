@@ -38,7 +38,7 @@
 #' chain_sizes <- sample(1:10, 20, replace = TRUE)
 #' likelihood(
 #'   chains = chain_sizes, statistic = "size",
-#'   offspring_dist = "pois", nsim_obs = 100, lambda = 0.5
+#'   offspring_dist = rpois, nsim_obs = 100, lambda = 0.5
 #' )
 #' @export
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
@@ -58,7 +58,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     chains, lower = 0, upper = Inf, any.missing = FALSE
   )
   checkmate::assert_character(statistic)
-  checkmate::assert_string(offspring_dist)
+  .check_offspring_func_valid(offspring_dist)
   checkmate::assert_number(
     obs_prob, lower = 0, upper = 1, finite = TRUE, na.ok = FALSE
   )
@@ -109,7 +109,11 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
   ## get log-likelihood function as given by offspring_dist and statistic
   likelihoods <- vector(mode = "numeric")
-  ll_func <- .construct_offspring_ll_name(offspring_dist, statistic)
+
+  func_name <- tail(as.character(substitute(offspring_dist)), 1)
+  dist_name <- substr(func_name, 2, nchar(func_name))
+  ll_func <- paste(dist_name, statistic, "ll", sep = "_")
+
   pars <- as.list(unlist(list(...))) ## converts vectors to lists
 
   ## calculate log-likelihoods

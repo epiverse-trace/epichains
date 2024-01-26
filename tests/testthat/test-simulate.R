@@ -8,7 +8,7 @@ test_that("simulate_summary has expected shape", {
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -25,7 +25,7 @@ test_that("simulate_chains has expected shape", {
   set.seed(32) # this seed gives a sizeable outcome
   sim_chains_raw <- simulate_chains(
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     stat_max = 10,
     lambda = 2
@@ -35,7 +35,7 @@ test_that("simulate_chains has expected shape", {
   set.seed(32) # this seed gives a sizeable outcome
   sim_chains_raw_gt <- simulate_chains(
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9,
     generation_time = generation_time_fn
@@ -47,7 +47,7 @@ test_that("simulate_chains has expected shape", {
     pop = 100,
     percent_immune = 0.50,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 2,
     generation_time = generation_time_fn
@@ -58,7 +58,7 @@ test_that("simulate_chains has expected shape", {
   sim_chains_max_tf <- simulate_chains(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     lambda = 2,
     stat_max = 10,
     generation_time = generation_time_fn,
@@ -140,7 +140,7 @@ test_that("simulate_chains throws errors", {
   expect_error(
     simulate_chains(
       index_cases = 0,
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       statistic = "length",
       lambda = 0.9
     ),
@@ -149,7 +149,7 @@ test_that("simulate_chains throws errors", {
   expect_error(
     simulate_chains(
       index_cases = 0.1,
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       statistic = "length",
       lambda = 0.9
     ),
@@ -158,7 +158,7 @@ test_that("simulate_chains throws errors", {
   expect_error(
     simulate_chains(
       index_cases = 1,
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       statistic = "length",
       lambda = 0.9,
       pop = 0
@@ -169,16 +169,16 @@ test_that("simulate_chains throws errors", {
     simulate_chains(
       index_cases = 2,
       statistic = "length",
-      offspring_dist = "s",
+      offspring_dist = s,
       lambda = 0.9
     ),
-    "object 'rs' not found"
+    "object 's' not found"
   )
   expect_error(
     simulate_chains(
       index_cases = 2,
       statistic = "length",
-      offspring_dist = "lnorm",
+      offspring_dist = rlnorm,
       meanlog = 0.9,
       sdlog = 0.9
     ),
@@ -187,18 +187,8 @@ test_that("simulate_chains throws errors", {
   expect_error(
     simulate_chains(
       index_cases = 2,
-      statistic = "length",
-      offspring_dist = s,
-      meanlog = 0.9,
-      sdlog = 0.9
-    ),
-    "not found"
-  )
-  expect_error(
-    simulate_chains(
-      index_cases = 2,
       statistic = "size",
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       lambda = 0.9,
       generation_time = c(1, 2)
     ),
@@ -211,13 +201,13 @@ test_that("simulate_chains throws errors", {
       offspring_dist = c(1, 2),
       lambda = 0.9
     ),
-    "Must be of type"
+    "Must be a function"
   )
   expect_error(
     simulate_chains(
       index_cases = 2,
       statistic = "size",
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       lambda = 0.9,
       tf = 5
     ),
@@ -229,16 +219,16 @@ test_that("simulate_summary throws errors", {
   expect_error(
     simulate_summary(
       index_cases = 2,
-      offspring_dist = "s",
+      offspring_dist = s,
       statistic = "length",
       lambda = 0.9
     ),
-    "not found"
+    "object 's' not found"
   )
   expect_error(
     simulate_summary(
       index_cases = 2,
-      offspring_dist = "lnorm",
+      offspring_dist = rlnorm,
       statistic = "length",
       meanlog = 0.9,
       sdlog = 0.9
@@ -248,21 +238,11 @@ test_that("simulate_summary throws errors", {
   expect_error(
     simulate_summary(
       index_cases = 2,
-      offspring_dist = s,
-      statistic = "length",
-      meanlog = 0.9,
-      sdlog = 0.9
-    ),
-    "not found"
-  )
-  expect_error(
-    simulate_summary(
-      index_cases = 2,
       offspring_dist = c(1, 2),
       statistic = "length",
       lambda = 0.9
     ),
-    "Must be of type"
+    "Must be a function"
   )
 })
 
@@ -275,7 +255,7 @@ test_that("simulate_summary is numerically correct",{
     pop = 11,
     percent_immune = 0,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 2
   )
@@ -306,7 +286,7 @@ test_that("simulate_chains is numerically correct", {
     pop = 100,
     percent_immune = 0.50,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 2,
     generation_time = generation_time_fn
@@ -338,7 +318,7 @@ test_that("simulate_chains produces expected snapshots", {
     pop = 100,
     percent_immune = 0.50,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 2,
     generation_time = generation_time_fn
@@ -346,7 +326,7 @@ test_that("simulate_chains produces expected snapshots", {
   set.seed(32)
   sim_chains_inf_susc <- simulate_chains(
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "size",
     stat_max = 100,
     lambda = 2,
@@ -360,7 +340,7 @@ test_that("simulate_chains produces expected snapshots", {
     pop = 11,
     percent_immune = 0,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 2
   )
@@ -375,7 +355,7 @@ test_that("simulate_summary is numerically correct", {
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )

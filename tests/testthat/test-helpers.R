@@ -1,13 +1,3 @@
-test_that("construct_offspring_ll_name works correctly", {
-  expect_identical(
-    .construct_offspring_ll_name(
-      offspring_dist = "pois",
-      chain_statistic = "size"
-    ),
-    "pois_size_ll"
-  )
-})
-
 test_that("update_chain_stat works correctly", {
   stat_latest <- 1
   n_offspring <- 2

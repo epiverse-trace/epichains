@@ -33,7 +33,7 @@ set.seed(32)
 chains_pois_offspring <- simulate_chains(
   index_cases = 10,
   statistic = "size",
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   stat_max = 10,
   generation_time = function(n) rep(3, n),
   lambda = 2
@@ -43,7 +43,7 @@ set.seed(32)
 chains_pois_offspring <- simulate_chains(
   index_cases = 10,
   statistic = "size",
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   stat_max = 10,
   generation_time = function(n) rep(3, n),
   lambda = 2

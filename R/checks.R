@@ -1,15 +1,10 @@
 #' Check if constructed random number generator for offspring exists
+#' and has an `n` argument.
 #'
-#' @param roffspring_name Constructed random offspring sampler: a character
-#' string corresponding to the R distribution function (e.g., "rpois" for
-#' Poisson.
+#' @inheritParams simulate_chains
 #' @keywords internal
-.check_offspring_func_valid <- function(roffspring_name) {
-  checkmate::assert(
-    exists(roffspring_name) ||
-      checkmate::assert_function(get(roffspring_name)),
-    .var.name = "offspring_dist"
-  )
+.check_offspring_func_valid <- function(offspring_dist) {
+  checkmate::assert_function(offspring_dist, args = "n")
 }
 
 

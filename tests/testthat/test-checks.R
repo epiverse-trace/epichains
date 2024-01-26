@@ -1,6 +1,6 @@
 test_that("Checks work", {
   expect_error(
-    .check_offspring_func_valid("rrpois"),
+    .check_offspring_func_valid(rrpois),
     "not found"
   )
   expect_error(

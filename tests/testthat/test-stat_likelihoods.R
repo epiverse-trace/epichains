@@ -85,7 +85,7 @@ test_that("Generic offspring log-likelihoods are calculated", {
     all(
       offspring_ll(
         x = chains,
-        offspring_dist = "pois",
+        offspring_dist = rpois,
         nsim_offspring = 100,
         statistic = "size",
         lambda = 0.82
@@ -95,7 +95,7 @@ test_that("Generic offspring log-likelihoods are calculated", {
   expect_length(
     offspring_ll(
       x = chains,
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       nsim_offspring = 100,
       statistic = "size",
       lambda = 0.82
@@ -130,7 +130,7 @@ test_that("Likelihood function returns the right object classes", {
     likelihood(
       chains = chains,
       statistic = "size",
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       nsim_obs = 100,
       lambda = 0.5,
       obs_prob = 0.5,
@@ -142,7 +142,7 @@ test_that("Likelihood function returns the right object classes", {
     likelihood(
       chains = chains,
       statistic = "size",
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       nsim_obs = 3,
       lambda = 0.5,
       obs_prob = 0.5,
@@ -154,7 +154,7 @@ test_that("Likelihood function returns the right object classes", {
     likelihood(
       chains = chains,
       statistic = "size",
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       nsim_obs = 3,
       lambda = 0.5,
       obs_prob = 1,
@@ -166,7 +166,7 @@ test_that("Likelihood function returns the right object classes", {
     likelihood(
       chains = chains,
       statistic = "size",
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       nsim_obs = 100,
       lambda = 0.5,
       obs_prob = 1,

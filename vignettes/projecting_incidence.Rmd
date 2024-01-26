@@ -235,7 +235,7 @@ sim_chain_sizes <- lapply(
   function(sim) {
     simulate_chains(
       index_cases = length(t0),
-      offspring_dist = "nbinom",
+      offspring_dist = rnbinom,
       mu = mu,
       size = size,
       statistic = "size",
