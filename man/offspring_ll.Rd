@@ -10,10 +10,14 @@ offspring_ll(x, offspring_dist, statistic, nsim_offspring = 100, ...)
 \arguments{
 \item{x}{Vector of chain summaries (sizes/lengths)}
 
-\item{offspring_dist}{Offspring distribution: a \verb{<character>} string
-corresponding to the R distribution function (e.g., "pois" for Poisson,
-where \code{\link{rpois}} is the R function to generate Poisson random
-numbers).}
+\item{offspring_dist}{Offspring distribution: a function like the ones
+provided by R to generate random numbers from given distributions (e.g.,
+\code{\link{rpois}} for Poisson). More specifically, the function needs to
+accept at least one argument, \code{n}, which is the number of random
+numbers to generate. It can accept further arguments, which will be passed
+on to the random number generating functions. Examples that can be provided
+here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for negative
+binomial offspring, or custom functions.}
 
 \item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
 criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
@@ -43,7 +47,7 @@ cumulative distribution function (ecdf).
 set.seed(123)
 chain_size_ll <- offspring_ll(
   x = c(1, 5, 6, 8, 7, 8, 10),
-  offspring_dist = "pois",
+  offspring_dist = rpois,
   statistic = "size",
   lambda = 0.82
 )

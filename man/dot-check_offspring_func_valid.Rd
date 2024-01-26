@@ -2,16 +2,23 @@
 % Please edit documentation in R/checks.R
 \name{.check_offspring_func_valid}
 \alias{.check_offspring_func_valid}
-\title{Check if constructed random number generator for offspring exists}
+\title{Check if constructed random number generator for offspring exists
+and has an \code{n} argument.}
 \usage{
-.check_offspring_func_valid(roffspring_name)
+.check_offspring_func_valid(offspring_dist)
 }
 \arguments{
-\item{roffspring_name}{Constructed random offspring sampler: a character
-string corresponding to the R distribution function (e.g., "rpois" for
-Poisson.}
+\item{offspring_dist}{Offspring distribution: a function like the ones
+provided by R to generate random numbers from given distributions (e.g.,
+\code{\link{rpois}} for Poisson). More specifically, the function needs to
+accept at least one argument, \code{n}, which is the number of random
+numbers to generate. It can accept further arguments, which will be passed
+on to the random number generating functions. Examples that can be provided
+here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for negative
+binomial offspring, or custom functions.}
 }
 \description{
 Check if constructed random number generator for offspring exists
+and has an \code{n} argument.
 }
 \keyword{internal}

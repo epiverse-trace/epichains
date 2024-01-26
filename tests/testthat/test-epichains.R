@@ -9,7 +9,7 @@ test_that("Simulators return epichains objects", {
   susc_outbreak_raw <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     lambda = 0.9,
     statistic = "size",
     generation_time = generation_time_fn
@@ -18,7 +18,7 @@ test_that("Simulators return epichains objects", {
   susc_outbreak_raw2 <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "nbinom",
+    offspring_dist = rnbinom,
     statistic = "size",
     mu = 1,
     size = 1.1,
@@ -28,7 +28,7 @@ test_that("Simulators return epichains objects", {
   #' no generation time
   tree_sim_raw <- simulate_chains(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -37,7 +37,7 @@ test_that("Simulators return epichains objects", {
   tree_sim_raw2 <- simulate_chains(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     stat_max = 10,
     generation_time = generation_time_fn,
     lambda = 2
@@ -45,7 +45,7 @@ test_that("Simulators return epichains objects", {
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -78,7 +78,7 @@ test_that("print.epichains_tree works for simulation functions", {
   susc_outbreak_raw <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "size",
     lambda = 0.9,
     generation_time = generation_time_fn
@@ -87,7 +87,7 @@ test_that("print.epichains_tree works for simulation functions", {
   susc_outbreak_raw2 <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "nbinom",
+    offspring_dist = rnbinom,
     statistic = "size",
     mu = 1,
     size = 1.1,
@@ -96,7 +96,7 @@ test_that("print.epichains_tree works for simulation functions", {
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_chains(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -104,7 +104,7 @@ test_that("print.epichains_tree works for simulation functions", {
   tree_sim_raw2 <- simulate_chains(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     stat_max = 10,
     generation_time = generation_time_fn,
     lambda = 2
@@ -112,7 +112,7 @@ test_that("print.epichains_tree works for simulation functions", {
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -130,7 +130,7 @@ test_that("summary.epichains_tree works as expected", {
   susc_outbreak_raw <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "size",
     lambda = 0.9,
     generation_time = generation_time_fn
@@ -139,7 +139,7 @@ test_that("summary.epichains_tree works as expected", {
   susc_outbreak_raw2 <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "nbinom",
+    offspring_dist = rnbinom,
     statistic = "size",
     mu = 1,
     size = 1.1,
@@ -148,7 +148,7 @@ test_that("summary.epichains_tree works as expected", {
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_chains(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -156,7 +156,7 @@ test_that("summary.epichains_tree works as expected", {
   tree_sim_raw2 <- simulate_chains(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     stat_max = 10,
     generation_time = generation_time_fn,
     lambda = 2
@@ -164,7 +164,7 @@ test_that("summary.epichains_tree works as expected", {
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -173,7 +173,7 @@ test_that("summary.epichains_tree works as expected", {
   epichains_summary_all_infs <- simulate_summary(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     stat_max = 10,
     lambda = 3
   )
@@ -240,7 +240,7 @@ test_that("validate_epichains_tree works", {
   susc_outbreak_raw <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "size",
     lambda = 0.9,
     generation_time = generation_time_fn
@@ -249,7 +249,7 @@ test_that("validate_epichains_tree works", {
   susc_outbreak_raw2 <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "nbinom",
+    offspring_dist = rnbinom,
     statistic = "size",
     mu = 1,
     size = 1.1,
@@ -258,7 +258,7 @@ test_that("validate_epichains_tree works", {
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_chains(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -266,7 +266,7 @@ test_that("validate_epichains_tree works", {
   tree_sim_raw2 <- simulate_chains(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     stat_max = 10,
     generation_time = generation_time_fn,
     lambda = 2
@@ -274,7 +274,7 @@ test_that("validate_epichains_tree works", {
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -302,7 +302,7 @@ test_that("is_chains_tree works", {
   susc_outbreak_raw <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "size",
     lambda = 0.9,
     generation_time = generation_time_fn
@@ -311,7 +311,7 @@ test_that("is_chains_tree works", {
   susc_outbreak_raw2 <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "nbinom",
+    offspring_dist = rnbinom,
     statistic = "size",
     mu = 1,
     size = 1.1,
@@ -320,7 +320,7 @@ test_that("is_chains_tree works", {
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_chains(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -328,7 +328,7 @@ test_that("is_chains_tree works", {
   tree_sim_raw2 <- simulate_chains(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     stat_max = 10,
     generation_time = generation_time_fn,
     lambda = 2
@@ -336,7 +336,7 @@ test_that("is_chains_tree works", {
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -364,7 +364,7 @@ test_that("is_chains_summary works", {
   susc_outbreak_raw <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "size",
     lambda = 0.9,
     generation_time = generation_time_fn
@@ -373,7 +373,7 @@ test_that("is_chains_summary works", {
   susc_outbreak_raw2 <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "nbinom",
+    offspring_dist = rnbinom,
     statistic = "size",
     mu = 1,
     size = 1.1,
@@ -382,7 +382,7 @@ test_that("is_chains_summary works", {
   #' Simulate a tree of infections without serials
   tree_sim_raw <- simulate_chains(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -390,7 +390,7 @@ test_that("is_chains_summary works", {
   tree_sim_raw2 <- simulate_chains(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     stat_max = 10,
     generation_time = generation_time_fn,
     lambda = 2
@@ -398,7 +398,7 @@ test_that("is_chains_summary works", {
   #' Simulate chain statistics
   chain_summary_raw <- simulate_summary(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )
@@ -426,7 +426,7 @@ test_that("aggregate.epichains_tree method returns correct objects", {
   chain_sim <- simulate_chains(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     stat_max = 10,
     generation_time = generation_time_fn,
     lambda = 2
@@ -457,7 +457,7 @@ test_that("aggregate.epichains_tree method throws errors", {
       simulate_chains(
         index_cases = 10,
         statistic = "size",
-        offspring_dist = "pois",
+        offspring_dist = rpois,
         stat_max = 10,
         lambda = 2
       ),
@@ -474,7 +474,7 @@ test_that("aggregate.epichains_tree method is numerically correct", {
   tree_sim_raw <- simulate_chains(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     stat_max = 10,
     lambda = 2
   )
@@ -483,7 +483,7 @@ test_that("aggregate.epichains_tree method is numerically correct", {
   tree_sim_raw2 <- simulate_chains(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     stat_max = 10,
     generation_time = generation_time_fn,
     lambda = 2
@@ -513,7 +513,7 @@ test_that("head and tail print output as expected", {
   susc_outbreak_raw <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "size",
     lambda = 0.9,
     generation_time = generation_time_fn
@@ -522,7 +522,7 @@ test_that("head and tail print output as expected", {
   tree_sim_raw2 <- simulate_chains(
     index_cases = 10,
     statistic = "size",
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     stat_max = 10,
     generation_time = generation_time_fn,
     lambda = 2
@@ -539,7 +539,7 @@ test_that("head and tail return data.frames", {
   outbreak_finite_pop <- simulate_chains(
     pop = 100,
     index_cases = 10,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "size",
     lambda = 0.9,
     generation_time = generation_time_fn
@@ -548,7 +548,7 @@ test_that("head and tail return data.frames", {
   #' without generation times
   outbreak_infinite_pop <- simulate_chains(
     index_cases = 2,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
   )

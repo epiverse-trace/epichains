@@ -21,11 +21,7 @@ pois_size_ll <- function(x, lambda) {
 #' distribution
 #'
 #' @param x vector of sizes
-#' @param size the dispersion parameter (often called \code{k} in ecological
-#'   applications)
-#' @param prob probability of success (in the parameterisation with
-#'   \code{prob}, see also \code{\link[stats]{NegBinomial}})
-#' @param mu mean parameter
+#' @inheritParams rgborel
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @keywords internal
@@ -167,7 +163,7 @@ geom_length_ll <- function(x, prob) {
 #' set.seed(123)
 #' chain_size_ll <- offspring_ll(
 #'   x = c(1, 5, 6, 8, 7, 8, 10),
-#'   offspring_dist = "pois",
+#'   offspring_dist = rpois,
 #'   statistic = "size",
 #'   lambda = 0.82
 #' )
@@ -178,7 +174,7 @@ offspring_ll <- function(x, offspring_dist, statistic,
     x, lower = 0, any.missing = FALSE
   )
   # check that offspring is properly specified
-  checkmate::assert_string(offspring_dist)
+  .check_offspring_func_valid(offspring_dist)
   checkmate::assert_character(statistic)
   checkmate::assert_numeric(
     nsim_offspring, lower = 1

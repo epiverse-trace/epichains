@@ -7,7 +7,7 @@ test_that(
       likelihood(
         chains = chains,
         statistic = "size",
-        offspring_dist = "pois",
+        offspring_dist = rpois,
         lambda = 0.5
       ),
       0
@@ -16,7 +16,7 @@ test_that(
       likelihood(
         chains = chains,
         statistic = "size",
-        offspring_dist = "pois",
+        offspring_dist = rpois,
         lambda = 0.5,
         exclude = 1
       ),
@@ -26,7 +26,7 @@ test_that(
       likelihood(
         chains = chains,
         statistic = "size",
-        offspring_dist = "pois",
+        offspring_dist = rpois,
         lambda = 0.5,
         stat_max = 5
       ),
@@ -36,7 +36,7 @@ test_that(
       likelihood(
         chains = chains,
         statistic = "size",
-        offspring_dist = "pois",
+        offspring_dist = rpois,
         lambda = 0.5,
         obs_prob = 0.5,
         nsim_obs = 1
@@ -47,7 +47,7 @@ test_that(
       likelihood(
         chains = chains,
         statistic = "size",
-        offspring_dist = "pois",
+        offspring_dist = rpois,
         lambda = 0.5,
         stat_max = 5,
         obs_prob = 0.5,
@@ -59,7 +59,7 @@ test_that(
       likelihood(
         chains = chains,
         statistic = "length",
-        offspring_dist = "binom",
+        offspring_dist = rbinom,
         size = 1,
         prob = 0.5
       ),
@@ -69,7 +69,7 @@ test_that(
       likelihood(
         chains = chains,
         statistic = "length",
-        offspring_dist = "binom",
+        offspring_dist = rbinom,
         size = 1,
         prob = 0.5,
         log = FALSE
@@ -80,7 +80,7 @@ test_that(
       likelihood(
         chains = chains,
         statistic = "length",
-        offspring_dist = "binom",
+        offspring_dist = rbinom,
         size = 1,
         prob = 0.5,
         individual = FALSE,
@@ -97,7 +97,7 @@ test_that("Likelihoods are numerically correct", {
       likelihood(
         chains = chains,
         statistic = "size",
-        offspring_dist = "pois",
+        offspring_dist = rpois,
         lambda = 0.5
       ), 5
     ),
@@ -108,7 +108,7 @@ test_that("Likelihoods are numerically correct", {
       likelihood(
         chains = chains,
         statistic = "size",
-        offspring_dist = "nbinom",
+        offspring_dist = rnbinom,
         mu = 0.5,
         size = 0.2
       ), 5
@@ -120,7 +120,7 @@ test_that("Likelihoods are numerically correct", {
       likelihood(
         chains = chains,
         statistic = "size",
-        offspring_dist = "gborel",
+        offspring_dist = rgborel,
         prob = 0.5,
         size = 0.2
       ), 5
@@ -132,7 +132,7 @@ test_that("Likelihoods are numerically correct", {
       likelihood(
         chains = chains,
         statistic = "length",
-        offspring_dist = "pois",
+        offspring_dist = rpois,
         lambda = 0.5
       ), 5
     ),
@@ -143,7 +143,7 @@ test_that("Likelihoods are numerically correct", {
       likelihood(
         chains = chains,
         statistic = "length",
-        offspring_dist = "geom",
+        offspring_dist = rgeom,
         prob = 0.5
       ), 5
     ),
@@ -159,12 +159,12 @@ test_that("Errors are thrown", {
       statistic = "size",
       lambda = 0.5
     ),
-    "Must be of type"
+    "Must be a function"
   )
   expect_error(
     likelihood(
       chains = chains,
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       statistic = "size",
       lambda = 0.5,
       obs_prob = 3
@@ -174,7 +174,7 @@ test_that("Errors are thrown", {
   expect_error(
     likelihood(
       chains = chains,
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       statistic = "size",
       lambda = 0.5,
       obs_prob = 0.5
@@ -185,7 +185,7 @@ test_that("Errors are thrown", {
     likelihood(
       chains = chains,
       statistic = "size",
-      offspring_dist = "pois",
+      offspring_dist = rpois,
       nsim_obs = 100,
       lambda = 0.5,
       log = "s"

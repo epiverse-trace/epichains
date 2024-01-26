@@ -64,8 +64,7 @@ epichains_tree <- function(tree_df,
   checkmate::assert_data_frame(tree_df)
   checkmate::assert_integerish(index_cases, null.ok = TRUE)
   checkmate::assert_character(statistic, null.ok = TRUE)
-  checkmate::assert_string(offspring_dist)
-  .check_offspring_func_valid(paste0("r", offspring_dist))
+  .check_offspring_func_valid(offspring_dist)
   checkmate::assert_logical(track_pop)
   checkmate::assert_number(stat_max, null.ok = TRUE)
 
@@ -142,8 +141,7 @@ epichains_summary <- function(chains_summary,
   checkmate::assert_vector(chains_summary)
   checkmate::assert_integerish(index_cases, null.ok = TRUE)
   checkmate::assert_character(statistic)
-  checkmate::assert_string(offspring_dist)
-  .check_offspring_func_valid(paste0("r", offspring_dist))
+  .check_offspring_func_valid(offspring_dist)
   checkmate::assert_number(stat_max, null.ok = TRUE)
 
   # Create <epichains_summary> object
@@ -435,7 +433,7 @@ validate_epichains_summary <- function(x) {
 #' chains_pois_offspring <- simulate_chains(
 #'   index_cases = 10,
 #'   statistic = "size",
-#'   offspring_dist = "pois",
+#'   offspring_dist = rpois,
 #'   stat_max = 10,
 #'   generation_time = function(n) rep(3, n),
 #'   lambda = 2
@@ -456,7 +454,7 @@ head.epichains_tree <- function(x, ...) {
 #' chains_pois_offspring <- simulate_chains(
 #'   index_cases = 10,
 #'   statistic = "size",
-#'   offspring_dist = "pois",
+#'   offspring_dist = rpois,
 #'   stat_max = 10,
 #'   generation_time = function(n) rep(3, n),
 #'   lambda = 2
@@ -489,7 +487,7 @@ tail.epichains_tree <- function(x, ...) {
 #' chains <- simulate_chains(
 #'   index_cases = 10,
 #'   statistic = "size",
-#'   offspring_dist = "pois",
+#'   offspring_dist = rpois,
 #'   stat_max = 10,
 #'   generation_time = function(n) rep(3, n),
 #'   lambda = 2

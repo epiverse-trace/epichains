@@ -45,10 +45,46 @@ rborel <- function(n, mu, infinite = Inf) {
   # Run simulations
   out <- simulate_summary(
     index_cases = n,
-    offspring_dist = "pois",
+    offspring_dist = rpois,
     statistic = "size",
     stat_max = infinite,
     lambda = mu
   )
   return(out)
+}
+
+##' Generate random numbers from a Gamma-Borel mixture distribution
+##'
+##' @inheritParams rborel
+##' @importFrom stats rgamma rpois
+##' @param size the dispersion parameter (often called \code{k} in ecological
+##'   applications)
+##' @param prob probability of success (in the parameterisation with
+##'   \code{prob}, see also \code{\link[stats]{NegBinomial}})
+##' @param mu mean parameter
+##' @return Vector of random numbers
+##' @author Sebastian Funk
+##' @export
+rgborel <- function(n, size, prob, mu, infinite = Inf) {
+  checkmate::assert_number(
+    size, finite = TRUE, lower = 0
+  )
+  if (!missing(prob)) {
+    checkmate::assert_number(
+      prob, lower = 0, upper = 1
+    )
+  }
+  if (!missing(mu)) {
+    checkmate::assert_number(
+      mu, finite = TRUE, lower = 0
+    )
+  }
+  if (!missing(prob)) {
+    if (!missing(mu)) stop("'prob' and 'mu' both specified")
+    mu <- size * (1 - prob) / prob
+  }
+  ## first, sample from gamma
+  x <- rgamma(n, shape = size, rate = size / mu)
+  ## then, sample from borel
+  return(vapply(x, rborel, n = 1, infinite = infinite, FUN.VALUE = numeric(1)))
 }

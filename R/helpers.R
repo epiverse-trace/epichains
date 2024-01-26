@@ -31,18 +31,6 @@
   )
 }
 
-#' Construct name of analytical function for estimating loglikelihood of
-#' offspring
-#'
-#' @inheritParams simulate_chains
-#'
-#' @return an analytical offspring likelihood function
-#' @keywords internal
-.construct_offspring_ll_name <- function(offspring_dist, chain_statistic) {
-  ll_name <- paste(offspring_dist, chain_statistic, "ll", sep = "_")
-  return(ll_name)
-}
-
 #' Adjust next generation vector to match susceptible population size
 #'
 #' @param next_gen numeric; vector of next generation offspring

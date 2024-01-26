@@ -8,10 +8,14 @@
 #' such as the population size (defaults to Inf) and percentage of the
 #' population initially immune (defaults to 0).
 #' @param index_cases Number of index cases to simulate transmission chains for.
-#' @param offspring_dist Offspring distribution: a `<character>` string
-#' corresponding to the R distribution function (e.g., "pois" for Poisson,
-#' where \code{\link{rpois}} is the R function to generate Poisson random
-#' numbers).
+#' @param offspring_dist Offspring distribution: a function like the ones
+#' provided by R to generate random numbers from given distributions (e.g.,
+#' \code{\link{rpois}} for Poisson). More specifically, the function needs to
+#' accept at least one argument, \code{n}, which is the number of random
+#' numbers to generate. It can accept further arguments, which will be passed
+#' on to the random number generating functions. Examples that can be provided
+#' here are `rpois` for Poisson distributed offspring, `rnbinom` for negative
+#' binomial offspring, or custom functions.
 #' @param statistic `<String>`; Chain statistic to track as the stopping
 #' criteria for each chain being simulated when `stat_max` is not `Inf`.
 #' Can be one of:
@@ -88,7 +92,7 @@
 #' chains_pois_offspring <- simulate_chains(
 #'   index_cases = 10,
 #'   statistic = "size",
-#'   offspring_dist = "pois",
+#'   offspring_dist = rpois,
 #'   stat_max = 10,
 #'   generation_time = function(n) rep(3, n),
 #'   lambda = 2
@@ -103,7 +107,7 @@
 #'   pop = 100,
 #'   percent_immune = 0,
 #'   statistic = "size",
-#'   offspring_dist = "nbinom",
+#'   offspring_dist = rnbinom,
 #'   stat_max = 10,
 #'   generation_time = function(n) rep(3, n),
 #'   mu = 2,
@@ -144,13 +148,7 @@ simulate_chains <- function(index_cases,
     statistic,
     choices = c("size", "length")
   )
-  checkmate::assert_string(offspring_dist)
-  # check that offspring function exists in the environment
-  roffspring_name <- paste0(
-    "r",
-    offspring_dist
-  )
-  .check_offspring_func_valid(roffspring_name)
+  .check_offspring_func_valid(offspring_dist)
   checkmate::assert(
     is.infinite(stat_max) ||
       checkmate::assert_integerish(stat_max, lower = 0)
@@ -210,7 +208,7 @@ simulate_chains <- function(index_cases,
   while (length(sim) > 0 && susc_pop > 0) {
     # sample next generation of offspring
     next_gen <- do.call(
-      roffspring_name,
+      offspring_dist,
       c(
         list(n = sum(n_offspring[sim])),
         pars
@@ -370,7 +368,7 @@ simulate_chains <- function(index_cases,
 #' simulate_summary(
 #'   index_cases = 20,
 #'   statistic = "size",
-#'   offspring_dist = "pois",
+#'   offspring_dist = rpois,
 #'   stat_max = 10,
 #'   lambda = 0.9
 #' )
@@ -382,7 +380,7 @@ simulate_chains <- function(index_cases,
 #'   percent_immune = 0.1,
 #'   index_cases = 20,
 #'   statistic = "size",
-#'   offspring_dist = "nbinom",
+#'   offspring_dist = rnbinom,
 #'   stat_max = 10,
 #'   mu = 0.9,
 #'   size = 0.36
@@ -404,11 +402,7 @@ simulate_summary <- function(index_cases,
   )
 
   # check that offspring is properly specified
-  checkmate::assert_string(offspring_dist)
-
-  # check that offspring function exists in base R
-  roffspring_name <- paste0("r", offspring_dist)
-  .check_offspring_func_valid(roffspring_name)
+  .check_offspring_func_valid(offspring_dist)
 
   checkmate::assert_number(
     stat_max, lower = 0
@@ -436,7 +430,7 @@ simulate_summary <- function(index_cases,
   while (length(sim) > 0 && susc_pop > 0) {
     ## simulate next generation
     next_gen <- do.call(
-      get(roffspring_name),
+      offspring_dist,
       c(
         list(n = sum(n_offspring[sim])),
         pars
