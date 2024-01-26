@@ -186,7 +186,7 @@ offspring_ll <- function(x, offspring_dist, statistic,
 
   # Simulate the chains
   dist <- simulate_summary(
-    ntrees = nsim_offspring,
+    index_cases = nsim_offspring,
     offspring_dist = offspring_dist,
     statistic = statistic,
     ...

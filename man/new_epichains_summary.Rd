@@ -6,7 +6,7 @@
 \usage{
 new_epichains_summary(
   chains_summary,
-  ntrees,
+  index_cases,
   statistic,
   offspring_dist,
   stat_max
@@ -15,7 +15,7 @@ new_epichains_summary(
 \arguments{
 \item{chains_summary}{a \verb{<vector>} of chain sizes and lengths.}
 
-\item{ntrees}{Number of initial cases used to generate the outbreak; Integer}
+\item{index_cases}{Number of index cases to simulate transmission chains for.}
 
 \item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
 criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
