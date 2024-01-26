@@ -37,11 +37,12 @@ rborel <- function(n, mu, infinite = Inf) {
     mu, lower = 0, finite = TRUE, na.ok = FALSE
   )
   # Run simulations
-  simulate_summary(
+  out <- simulate_summary(
     ntrees = n,
     offspring_dist = "pois",
     statistic = "size",
     stat_max = infinite,
     lambda = mu
   )
+  return(out)
 }

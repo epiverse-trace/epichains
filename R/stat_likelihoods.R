@@ -13,7 +13,8 @@ pois_size_ll <- function(x, lambda) {
     lambda, finite = TRUE, lower = 0
   )
 
-  (x - 1) * log(lambda) - lambda * x + (x - 2) * log(x) - lgamma(x)
+  out <- (x - 1) * log(lambda) - lambda * x + (x - 2) * log(x) - lgamma(x)
+  return(out)
 }
 
 #' Log-likelihood of the size of chains with Negative-Binomial offspring
@@ -49,9 +50,10 @@ nbinom_size_ll <- function(x, size, prob, mu) {
     if (!missing(mu)) stop("'prob' and 'mu' both specified")
     mu <- size * (1 - prob) / prob
   }
-  lgamma(size * x + (x - 1)) - (lgamma(size * x) + lgamma(x + 1)) +
+  out <- lgamma(size * x + (x - 1)) - (lgamma(size * x) + lgamma(x + 1)) +
     (x - 1) * log(mu / size) -
     (size * x + (x - 1)) * log(1 + mu / size)
+  return(out)
 }
 
 #' Log-likelihood of the size of chains with gamma-Borel offspring distribution
@@ -87,9 +89,10 @@ gborel_size_ll <- function(x, size, prob, mu) {
     if (!missing(mu)) stop("'prob' and 'mu' both specified")
     mu <- size * (1 - prob) / prob
   }
-  lgamma(size + x - 1) -
+  out <- lgamma(size + x - 1) -
     (lgamma(x + 1) + lgamma(size)) - size * log(mu / size) +
     (x - 1) * log(x) - (size + x - 1) * log(x + size / mu)
+  return(out)
 }
 
 #' Log-likelihood of the length of chains with Poisson offspring distribution
@@ -114,7 +117,8 @@ pois_length_ll <- function(x, lambda) {
 
   Gk <- c(0, exp(-lambda) * itex) ## set G_{0}=1
 
-  log(Gk[x + 1] - Gk[x])
+  out <- log(Gk[x + 1] - Gk[x])
+  return(out)
 }
 
 #' Log-likelihood of the length of chains with geometric offspring distribution
@@ -137,7 +141,8 @@ geom_length_ll <- function(x, prob) {
   GkmGkm1 <- (1 - lambda^(x)) / (1 - lambda^(x + 1)) -
     (1 - lambda^(x - 1)) / (1 - lambda^(x))
 
-  log(GkmGkm1)
+  out <- log(GkmGkm1)
+  return(out)
 }
 
 #' Log-likelihood of the summary (size/length) of chains with generic offspring
