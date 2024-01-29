@@ -2,7 +2,7 @@
 % Please edit documentation in R/simulate.R
 \name{simulate_summary}
 \alias{simulate_summary}
-\title{Simulate transmission chains sizes/lengths}
+\title{Simulate a vector of transmission chains sizes/lengths}
 \usage{
 simulate_summary(
   index_cases,
