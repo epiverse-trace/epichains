@@ -150,7 +150,7 @@ simulate_chains <- function(index_cases,
     "r",
     offspring_dist
   )
-  check_offspring_func_valid(roffspring_name)
+  .check_offspring_func_valid(roffspring_name)
   checkmate::assert(
     is.infinite(stat_max) ||
       checkmate::assert_integerish(stat_max, lower = 0)
@@ -164,7 +164,7 @@ simulate_chains <- function(index_cases,
     lower = 0, upper = 1
   )
   if (!missing(generation_time)) {
-    check_generation_time_valid(generation_time)
+    .check_generation_time_valid(generation_time)
   } else if (!missing(tf)) {
     stop("If `tf` is specified, `generation_time` must be specified too.")
   }
@@ -237,7 +237,7 @@ simulate_chains <- function(index_cases,
     # Adjust next_gen if the number of offspring is greater than the
     # susceptible population.
     if (sum(next_gen) > susc_pop) {
-      next_gen <- adjust_next_gen(
+      next_gen <- .adjust_next_gen(
         next_gen = next_gen,
         susc_pop = susc_pop
       )
@@ -250,7 +250,7 @@ simulate_chains <- function(index_cases,
     # assign offspring sum to indices still being simulated
     n_offspring[sim] <- tapply(next_gen, parent_ids, sum)
     # track size/length
-    stat_track <- update_chain_stat(
+    stat_track <- .update_chain_stat(
       stat_type = statistic,
       stat_latest = stat_track,
       n_offspring = n_offspring
@@ -363,7 +363,7 @@ simulate_summary <- function(index_cases, statistic = c("size", "length"),
 
   # check that offspring function exists in base R
   roffspring_name <- paste0("r", offspring_dist)
-  check_offspring_func_valid(roffspring_name)
+  .check_offspring_func_valid(roffspring_name)
 
   checkmate::assert_number(
     stat_max, lower = 0
@@ -400,7 +400,7 @@ simulate_summary <- function(index_cases, statistic = c("size", "length"),
     n_offspring[sim] <- tapply(next_gen, indices, sum)
 
     # track size/length
-    stat_track <- update_chain_stat(
+    stat_track <- .update_chain_stat(
       stat_type = statistic,
       stat_latest = stat_track,
       n_offspring = n_offspring
