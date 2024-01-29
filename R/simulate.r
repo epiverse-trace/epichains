@@ -305,7 +305,9 @@ simulate_chains <- function(index_cases,
   # Combine the results
   tree_df <- do.call(rbind, tree_df)
 
-  tree_df <- tree_df[tree_df$time < tf, ]
+  if (!missing(tf)) {
+    tree_df <- tree_df[tree_df$time < tf, ]
+  }
 
   # Post processing
   #   # sort by sim_id and infector_id
