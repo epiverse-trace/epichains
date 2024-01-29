@@ -44,6 +44,24 @@ to track. It optionally accepts other population related inputs
 such as the population size (defaults to Inf) and percentage of the
 population initially immune (defaults to 0).
 }
+\section{\code{simulate_summary()} vs \code{simulate_chains()}}{
+\code{simulate_summary()} is a time-invariant version of \code{simulate_chains()}. In
+particular, it does not track the details of individual transmission events
+but deals with eventual chain statistics, that is, the statistic
+realised by a chain after dying out.
+
+It is useful for generating a vector of chain sizes or lengths for a given
+number of index cases, if details of who infected whom and the timing of
+infection are not of interest.
+
+This function is used in \code{{epichains}} for calculating likelihoods in
+the \code{likelihood()} function and for sampling from the borel
+distribution (See ?epichains::rborel). It is used extensively in the
+vignette on
+\href{https://epiverse-trace.github.io/epichains/articles/interventions.html}{modelling disease control},
+where only data on observed chain sizes and lengths are available.
+}
+
 \section{Calculating chain sizes and lengths}{
 The function simulates the chain size for individual \eqn{i} at time
 \eqn{t}, \eqn{I_{t, i}}, as:
