@@ -413,7 +413,14 @@ simulate_summary <- function(index_cases,
   checkmate::assert_number(
     stat_max, lower = 0
   )
-
+  checkmate::assert(
+    is.infinite(pop) ||
+      checkmate::assert_integerish(pop, lower = 1)
+  )
+  checkmate::assert_number(
+    percent_immune,
+    lower = 0, upper = 1
+  )
   # Gather offspring distribution parameters
   pars <- list(...)
 
@@ -422,8 +429,11 @@ simulate_summary <- function(index_cases,
   n_offspring <- rep(1, index_cases) ## current number of offspring
   sim <- seq_len(index_cases) ## track trees that are still being simulated
 
-  ## next, simulate trees from index cases
-  while (length(sim) > 0) {
+  # Initialise susceptible population
+  susc_pop <- max(round(pop * (1 - percent_immune)) - index_cases, 0)
+
+  ## next, simulate transmission chains from index cases
+  while (length(sim) > 0 && susc_pop > 0) {
     ## simulate next generation
     next_gen <- do.call(
       get(roffspring_name),
@@ -434,6 +444,26 @@ simulate_summary <- function(index_cases,
     )
     if (any(next_gen %% 1 > 0)) {
       stop("Offspring distribution must return integers")
+    # Sample susceptible offspring to be infected from all possible offspring
+    # We first adjust for the case where susceptible can be Inf but prob is max
+    # 1.
+    binom_prob <- ifelse(
+      is.infinite(susc_pop),
+      1,
+      susc_pop / pop
+    )
+    next_gen <- stats::rbinom(
+      n = length(next_gen),
+      size = next_gen,
+      prob = binom_prob
+    )
+    # Adjust next_gen if the number of offspring is greater than the
+    # susceptible population.
+    if (sum(next_gen) > susc_pop) {
+      next_gen <- adjust_next_gen(
+        next_gen = next_gen,
+        susc_pop = susc_pop
+      )
     }
 
     ## record indices corresponding to the number of offspring
@@ -450,7 +480,8 @@ simulate_summary <- function(index_cases,
       stat_latest = stat_track,
       n_offspring = n_offspring
     )
-
+    # Update susceptible population
+    susc_pop <- susc_pop - sum(n_offspring[sim])
     ## only continue to simulate trees that have offspring and aren't of
     ## stat_max size/length
     sim <- which(n_offspring > 0 & stat_track < stat_max)

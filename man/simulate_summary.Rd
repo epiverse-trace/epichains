@@ -8,8 +8,10 @@ simulate_summary(
   index_cases,
   statistic = c("size", "length"),
   offspring_dist,
+  ...,
   stat_max = Inf,
-  ...
+  pop = Inf,
+  percent_immune = 0
 )
 }
 \arguments{
@@ -30,10 +32,19 @@ corresponding to the R distribution function (e.g., "pois" for Poisson,
 where \code{\link{rpois}} is the R function to generate Poisson random
 numbers).}
 
+\item{...}{Parameters of the offspring distribution as required by R.}
+
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above the specified value, are set to \code{Inf}.}
 
-\item{...}{Parameters of the offspring distribution as required by R.}
+\item{pop}{\verb{<Integer>}; Population size. Used alongside \code{percent_immune}. to
+define the susceptible population. Defaults to \code{Inf}.}
+
+\item{percent_immune}{\verb{<numeric>}; Percent of the population immune to
+infection at the start of the simulation. Used alongside \code{pop} to initialise
+the susceptible population. Accepted values lie between 0 and 1.
+Defaults to 0.}
+}
 \value{
 a vector of chain sizes or lengths (of class \verb{<epichains_summary>})
 with a value for each index case.
