@@ -13,7 +13,6 @@ linters: all_linters(
       )
     ),
     function_argument_linter = NULL,
-    cyclocomp_linter(25L),
     indentation_linter = NULL, # unstable as of lintr 3.1.0
     # Use minimum R declared in DESCRIPTION or fall back to current R version.
     # Install etdev package from https://github.com/epiverse-trace/etdev
