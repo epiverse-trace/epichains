@@ -326,7 +326,7 @@ simulate_chains <- function(index_cases,
 }
 # nolint end
 
-#' Simulate transmission chains sizes/lengths
+#' Simulate a vector of transmission chains sizes/lengths
 #'
 #' @inheritParams simulate_chains
 #' @param stat_max A cut off for the chain statistic (size/length) being
