@@ -468,14 +468,13 @@ simulate_summary <- function(index_cases,
         susc_pop = susc_pop
       )
     }
-
-    ## record indices corresponding to the number of offspring
-    indices <- rep(sim, n_offspring[sim])
+    ## record parent_ids corresponding to the number of offspring
+    parent_ids <- rep(sim, n_offspring[sim])
 
     ## initialise number of offspring
     n_offspring <- rep(0, index_cases)
-    ## assign offspring sum to indices still being simulated
-    n_offspring[sim] <- tapply(next_gen, indices, sum)
+    ## assign offspring sum to parents still being simulated
+    n_offspring[sim] <- tapply(next_gen, parent_ids, sum)
 
     # track size/length
     stat_track <- .update_chain_stat(
