@@ -350,9 +350,13 @@ simulate_chains <- function(index_cases,
 #'   lambda = 2
 #' )
 #' @export
-simulate_summary <- function(index_cases, statistic = c("size", "length"),
+simulate_summary <- function(index_cases,
+                             statistic = c("size", "length"),
                              offspring_dist,
-                             stat_max = Inf, ...) {
+                             ...,
+                             stat_max = Inf,
+                             pop = Inf,
+                             percent_immune = 0) {
   # Input checking
   checkmate::assert_count(index_cases, positive = TRUE)
   statistic <- match.arg(statistic)
