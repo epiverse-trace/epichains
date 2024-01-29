@@ -342,6 +342,7 @@ simulate_chains <- function(index_cases,
 #' @return a vector of chain sizes or lengths (of class `<epichains_summary>`)
 #' with a value for each index case.
 #' @inheritSection simulate_chains Calculating chain sizes and lengths
+#' @inherit simulate_chains references
 #' @details
 #' # `simulate_summary()` vs `simulate_chains()`
 #' `simulate_summary()` is a time-invariant version of `simulate_chains()`. In

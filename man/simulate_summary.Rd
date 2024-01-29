@@ -126,6 +126,21 @@ simulate_summary(
   size = 0.36
 )
 }
+\references{
+Jacob C. (2010). Branching processes: their role in epidemiology.
+International journal of environmental research and public health, 7(3),
+1186–1204. \doi{https://doi.org/10.3390/ijerph7031204}
+
+Blumberg, S., and J. O. Lloyd-Smith. 2013. "Comparing Methods for
+Estimating R0 from the Size Distribution of Subcritical Transmission
+Chains." Epidemics 5 (3): 131–45.
+\doi{https://doi.org/10.1016/j.epidem.2013.05.002}.
+
+Farrington, C. P., M. N. Kanaan, and N. J. Gay. 2003.
+"Branching Process Models for Surveillance of Infectious Diseases
+Controlled by Mass Vaccination.” Biostatistics (Oxford, England)
+4 (2): 279–95. \doi{https://doi.org/10.1093/biostatistics/4.2.279}.
+}
 \author{
 James M. Azam, Sebastian Funk
 }
