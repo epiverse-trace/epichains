@@ -328,6 +328,14 @@ simulate_chains <- function(index_cases,
 
 #' Simulate a vector of transmission chains sizes/lengths
 #'
+#' @description
+#' Generates a vector of transmission chain sizes and lengths with a
+#' value for each index case. It uses a simple branching process model that
+#' accepts an index number of cases that seed the outbreak, a distribution
+#' of offspring per case, and a chain size or length/duration (statistic)
+#' to track. It optionally accepts other population related inputs
+#' such as the population size (defaults to Inf) and percentage of the
+#' population initially immune (defaults to 0).
 #' @inheritParams simulate_chains
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.

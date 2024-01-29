@@ -36,7 +36,13 @@ computed. Results above the specified value, are set to \code{Inf}.}
 \item{...}{Parameters of the offspring distribution as required by R.}
 }
 \description{
-Simulate transmission chains sizes/lengths
+Generates a vector of transmission chain sizes and lengths with a
+value for each index case. It uses a simple branching process model that
+accepts an index number of cases that seed the outbreak, a distribution
+of offspring per case, and a chain size or length/duration (statistic)
+to track. It optionally accepts other population related inputs
+such as the population size (defaults to Inf) and percentage of the
+population initially immune (defaults to 0).
 }
 \section{Calculating chain sizes and lengths}{
 The function simulates the chain size for individual \eqn{i} at time
