@@ -102,12 +102,28 @@ where \code{...} are the other arguments to \verb{simulate_*()}.
 }
 
 \examples{
+# Simulate chain sizes with a poisson offspring distribution, assuming an
+# infinite population and no immunity.
+set.seed(32)
 simulate_summary(
-  index_cases = 10,
+  index_cases = 20,
   statistic = "size",
   offspring_dist = "pois",
   stat_max = 10,
-  lambda = 2
+  lambda = 0.9
+)
+# Simulate chain sizes with a negative binomial distribution and assuming
+# a finite population and 10\% immunity.
+set.seed(32)
+simulate_summary(
+  pop = 1000,
+  percent_immune = 0.1,
+  index_cases = 20,
+  statistic = "size",
+  offspring_dist = "nbinom",
+  stat_max = 10,
+  mu = 0.9,
+  size = 0.36
 )
 }
 \author{
