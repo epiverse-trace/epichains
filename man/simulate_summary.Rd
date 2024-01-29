@@ -88,28 +88,6 @@ at time \eqn{t}, and \eqn{I_{0, i} = L_{0, i} = 1}.
 
 The distribution of secondary cases, \eqn{X_{t, i}} is modelled by the
 offspring distribution (\code{offspring_dist}).
-\subsection{Specifying \code{generation_time}}{
-
-The argument \code{generation_time} must be specified as a function with
-one argument, \code{n}.
-
-For example, assuming we want to specify the generation time as a random
-log-normally distributed variable with \code{meanlog = 0.58} and \code{sdlog = 1.58},
-we could define a named function, let's call it "generation_time_fn",
-with only one argument representing the number of generation times to
-sample: \code{generation_time_fn <- function(n){rlnorm(n, 0.58, 1.38)}},
-and assign the name of the function to \code{generation_time} in
-the simulation function, i.e.
-\code{`simulate_*`(..., generation_time = generation_time_fn)},
-where \code{...} are the other arguments to \verb{simulate_*()} and * is a placeholder
-for the rest of simulation function's name.
-
-Alternatively, we could assign an anonymous function to \code{generation_time}
-in the \verb{simulate_*()} call, i.e.
-\code{simulate_*(..., generation_time = function(n){rlnorm(n, 0.58, 1.38)})}
-OR \code{simulate_*(..., generation_time = \(n){rlnorm(n, 0.58, 1.38)})},
-where \code{...} are the other arguments to \verb{simulate_*()}.
-}
 }
 
 \examples{
