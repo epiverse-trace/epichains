@@ -34,6 +34,9 @@ numbers).}
 computed. Results above the specified value, are set to \code{Inf}.}
 
 \item{...}{Parameters of the offspring distribution as required by R.}
+\value{
+a vector of chain sizes or lengths (of class \verb{<epichains_summary>})
+with a value for each index case.
 }
 \description{
 Generates a vector of transmission chain sizes and lengths with a

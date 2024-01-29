@@ -339,6 +339,8 @@ simulate_chains <- function(index_cases,
 #' @inheritParams simulate_chains
 #' @param stat_max A cut off for the chain statistic (size/length) being
 #' computed. Results above the specified value, are set to `Inf`.
+#' @return a vector of chain sizes or lengths (of class `<epichains_summary>`)
+#' with a value for each index case.
 #' @inheritSection simulate_chains Calculating chain sizes and lengths
 #' @details
 #' # `simulate_summary()` vs `simulate_chains()`
