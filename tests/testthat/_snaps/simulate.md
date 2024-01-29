@@ -1,3 +1,17 @@
+# simulate_summary is numerically correct
+
+    Code
+      sim_summary_small_pop
+    Output
+      `epichains_summary` object 
+      
+       [1] 1 1 1 1 1 2 1 1 1 1
+      
+       Simulated tree lengths: 
+      
+      Max: 2
+      Min: 1
+
 # simulate_chains produces expected snapshots
 
     Code

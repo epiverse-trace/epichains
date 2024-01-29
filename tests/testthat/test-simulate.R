@@ -266,6 +266,40 @@ test_that("simulate_summary throws errors", {
   )
 })
 
+test_that("simulate_summary is numerically correct",{
+  # Run a simulation in a small population so that
+  # we encounter the case where we have more potential offspring than
+  # susceptible individuals
+  set.seed(32) # this seed gives a sizeable outcome
+  sim_summary_small_pop <- simulate_summary(
+    pop = 11,
+    percent_immune = 0,
+    index_cases = 10,
+    offspring_dist = "pois",
+    statistic = "length",
+    lambda = 2
+  )
+  #' summarise the results
+  sim_summary_summarised <- summary(sim_summary_small_pop)
+  expect_identical(
+    as.vector(sim_summary_small_pop),
+    c(1, 1, 1, 1, 1, 2, 1, 1, 1, 1)
+  )
+  expect_identical(
+    length(sim_summary_small_pop),
+    as.integer(sim_summary_summarised$index_cases)
+  )
+  expect_identical(
+    sim_summary_summarised$max_stat,
+    2
+  )
+  expect_identical(
+    sim_summary_summarised$min_stat,
+    1
+  )
+  expect_snapshot(sim_summary_small_pop)
+})
+
 test_that("simulate_chains is numerically correct", {
   set.seed(32) # this seed gives a sizeable outcome
   sim_chains_small_susc <- simulate_chains(
