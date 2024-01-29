@@ -37,7 +37,7 @@ get_statistic_func <- function(chain_statistic) {
 #'
 #' @return an analytical offspring likelihood function
 #' @keywords internal
-construct_offspring_ll_name <- function(offspring_dist, chain_statistic) {
+.construct_offspring_ll_name <- function(offspring_dist, chain_statistic) {
   ll_name <- paste(offspring_dist, chain_statistic, "ll", sep = "_")
   return(ll_name)
 }
@@ -49,7 +49,7 @@ construct_offspring_ll_name <- function(offspring_dist, chain_statistic) {
 #'
 #' @return numeric; adjusted next generation offspring vector
 #' @keywords internal
-adjust_next_gen <- function(next_gen, susc_pop) {
+.adjust_next_gen <- function(next_gen, susc_pop) {
   ## create hypothetical next generation individuals to sample from
   next_gen_pop <- rep(
     seq_along(next_gen),

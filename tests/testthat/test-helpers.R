@@ -1,6 +1,6 @@
 test_that("construct_offspring_ll_name works correctly", {
   expect_identical(
-    construct_offspring_ll_name(
+    .construct_offspring_ll_name(
       offspring_dist = "pois",
       chain_statistic = "size"
     ),
@@ -12,7 +12,7 @@ test_that("update_chain_stat works correctly", {
   stat_latest <- 1
   n_offspring <- 2
   expect_identical(
-    update_chain_stat(
+    .update_chain_stat(
       stat_type = "size",
       stat_latest = stat_latest,
       n_offspring = n_offspring
@@ -20,7 +20,7 @@ test_that("update_chain_stat works correctly", {
     stat_latest + n_offspring
   )
   expect_identical(
-    update_chain_stat(
+    .update_chain_stat(
       stat_type = "length",
       stat_latest = stat_latest,
       n_offspring = n_offspring
@@ -31,11 +31,11 @@ test_that("update_chain_stat works correctly", {
 
 test_that("get_statistic_func works correctly", {
   expect_identical(
-    get_statistic_func(chain_statistic = "size"),
+    .get_statistic_func(chain_statistic = "size"),
     rbinom_size
   )
   expect_identical(
-    get_statistic_func(chain_statistic = "length"),
+    .get_statistic_func(chain_statistic = "length"),
     rgen_length
   )
 })

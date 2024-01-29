@@ -80,7 +80,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
     }
 
-    statistic_func <- get_statistic_func(statistic)
+    statistic_func <- .get_statistic_func(statistic)
 
     stat_rep_list <- replicate(nsim_obs, pmin(
       statistic_func(
@@ -109,7 +109,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
   ## get log-likelihood function as given by offspring_dist and statistic
   likelihoods <- vector(mode = "numeric")
-  ll_func <- construct_offspring_ll_name(offspring_dist, statistic)
+  ll_func <- .construct_offspring_ll_name(offspring_dist, statistic)
   pars <- as.list(unlist(list(...))) ## converts vectors to lists
 
   ## calculate log-likelihoods
