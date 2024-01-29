@@ -442,8 +442,11 @@ simulate_summary <- function(index_cases,
         pars
       )
     )
-    if (any(next_gen %% 1 > 0)) {
-      stop("Offspring distribution must return integers")
+    # check that offspring distribution returns integers
+    stopifnot(
+      "Offspring distribution must return integers" =
+        !all(next_gen %% 1 > 0)
+    )
     # Sample susceptible offspring to be infected from all possible offspring
     # We first adjust for the case where susceptible can be Inf but prob is max
     # 1.
