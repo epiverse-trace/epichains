@@ -85,8 +85,9 @@ at time \eqn{t}, and \eqn{I_{0, i} = L_{0, i} = 1}.
 
 The distribution of secondary cases, \eqn{X_{t, i}} is modelled by the
 offspring distribution (\code{offspring_dist}).
-\subsection{Specifying \code{generation_time}}{
+}
 
+\section{Specifying \code{generation_time}}{
 The argument \code{generation_time} must be specified as a function with
 one argument, \code{n}.
 
@@ -106,7 +107,6 @@ in the \verb{simulate_*()} call, i.e.
 \code{simulate_*(..., generation_time = function(n){rlnorm(n, 0.58, 1.38)})}
 OR \code{simulate_*(..., generation_time = \(n){rlnorm(n, 0.58, 1.38)})},
 where \code{...} are the other arguments to \verb{simulate_*()}.
-}
 }
 
 \examples{
