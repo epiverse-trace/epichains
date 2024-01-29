@@ -5,14 +5,14 @@
 #' @param n_offspring A vector of offspring per chain.
 #' @return A vector of chain statistics (size/length).
 #' @keywords internal
-update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
-  if (stat_type == "size") {
-    stat_latest <- stat_latest + n_offspring
-  } else if (stat_type == "length") {
-    stat_latest <- stat_latest + pmin(1, n_offspring)
-  }
-
-  return(stat_latest)
+.update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
+  return(
+    switch(
+      stat_type,
+      size = stat_latest + n_offspring,
+      length = stat_latest + pmin(1, n_offspring)
+    )
+  )
 }
 
 #' Return a function for calculating chain statistics
@@ -21,13 +21,14 @@ update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
 #'
 #' @return a function for calculating chain statistics
 #' @keywords internal
-get_statistic_func <- function(chain_statistic) {
-  func <- if (chain_statistic == "size") {
-    rbinom_size
-  } else if (chain_statistic == "length") {
-    rgen_length
-  }
-  return(func)
+.get_statistic_func <- function(chain_statistic) {
+  return(
+    switch(
+      chain_statistic,
+      size = rbinom_size,
+      length = rgen_length
+    )
+  )
 }
 
 #' Construct name of analytical function for estimating loglikelihood of
