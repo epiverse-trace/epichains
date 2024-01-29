@@ -59,7 +59,7 @@
 #' The distribution of secondary cases, \eqn{X_{t, i}} is modelled by the
 #' offspring distribution (`offspring_dist`).
 #'
-#' ## Specifying `generation_time`
+#' # Specifying `generation_time`
 #'
 #' The argument `generation_time` must be specified as a function with
 #' one argument, `n`.
