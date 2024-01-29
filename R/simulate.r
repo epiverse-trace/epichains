@@ -305,6 +305,7 @@ simulate_chains <- function(index_cases,
   # Combine the results
   tree_df <- do.call(rbind, tree_df)
 
+  # time column only exists if tf was specified
   if (!missing(tf)) {
     tree_df <- tree_df[tree_df$time < tf, ]
   }
