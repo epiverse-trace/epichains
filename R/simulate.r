@@ -124,7 +124,7 @@
 #' "Branching Process Models for Surveillance of Infectious Diseases
 #' Controlled by Mass Vaccination.” Biostatistics (Oxford, England)
 #' 4 (2): 279–95. \doi{https://doi.org/10.1093/biostatistics/4.2.279}.
-# nolint start: cyclocomp_linter
+# nolint start: cyclocomp_linter.
 simulate_chains <- function(index_cases,
                             statistic = c("size", "length"),
                             offspring_dist,
