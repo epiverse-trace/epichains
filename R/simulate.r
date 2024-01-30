@@ -450,11 +450,12 @@ simulate_summary <- function(index_cases,
     # Sample susceptible offspring to be infected from all possible offspring
     # We first adjust for the case where susceptible can be Inf but prob is max
     # 1.
-    binom_prob <- ifelse(
-      is.infinite(susc_pop),
+    binom_prob <- min(
       1,
-      susc_pop / pop
+      susc_pop / pop,
+      na.rm = TRUE
     )
+
     next_gen <- stats::rbinom(
       n = length(next_gen),
       size = next_gen,
