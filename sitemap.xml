@@ -40,28 +40,34 @@
     <loc>https://epiverse-trace.github.io/epichains/news/index.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/adjust_next_gen.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/aggregate.epichains_tree.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/check_generation_time_valid.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/check_offspring_func_valid.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/complementary_logprob.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/construct_offspring_ll_name.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/covid19_sa.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/dborel.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-adjust_next_gen.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_generation_time_valid.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_offspring_func_valid.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-construct_offspring_ll_name.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-get_statistic_func.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-update_chain_stat.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/epichains-package.html</loc>
@@ -83,9 +89,6 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/geom_length_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/get_statistic_func.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/head.epichains_tree.html</loc>
@@ -149,9 +152,6 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/summary.epichains_tree.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/update_chain_stat.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/validate_epichains_summary.html</loc>
