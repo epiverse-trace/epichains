@@ -483,7 +483,7 @@ simulate_summary <- function(index_cases,
       n_offspring = n_offspring
     )
     # Update susceptible population
-    susc_pop <- susc_pop - sum(n_offspring[sim])
+    susc_pop <- susc_pop - sum(n_offspring)
     ## only continue to simulate trees that have offspring and aren't of
     ## stat_max size/length
     sim <- which(n_offspring > 0 & stat_track < stat_max)
