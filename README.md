@@ -71,7 +71,7 @@ library("epichains")
   a generation time function is specified, the time of infection.
 
 - `simulate_summary()`: provides a performant version of
-  `simulate_chains()` that only tracks and returns a vector of realized
+  `simulate_chains()` that only tracks and return a vector of realized
   chain sizes or lengths/durations for each index case without details
   of the infection tree.
 
