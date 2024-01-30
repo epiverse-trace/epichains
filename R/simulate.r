@@ -212,7 +212,7 @@ simulate_chains <- function(index_cases,
     next_gen <- do.call(
       roffspring_name,
       c(
-        list(n = sum(n_offspring)),
+        list(n = sum(n_offspring[sim])),
         pars
       )
     )
