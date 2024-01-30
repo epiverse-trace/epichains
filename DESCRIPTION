@@ -5,6 +5,8 @@ Version: 0.0.0.9999
 Authors@R: c(
     person("James M.", "Azam", , "james.azam@lshtm.ac.uk", role = c("aut", "cre"),
            comment = c(ORCID = "https://orcid.org/0000-0001-5782-7330")),
+    person("Hugo", "Gruson", , "hugo@data.org", role = c("ctb"),
+           comment = c(ORCID = "https://orcid.org/0000-0002-4094-1476")),
     person("Zhian N.", "Kamvar", , "zkamvar@gmail.com", role = "ctb",
            comment = c(ORCID = "https://orcid.org/0000-0003-1458-7108")),
     person("Flavio", "Finger", , "flavio.finger@epicentre.msf.org", role = "aut",
