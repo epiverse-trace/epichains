@@ -464,7 +464,7 @@ simulate_summary <- function(index_cases,
     # Adjust next_gen if the number of offspring is greater than the
     # susceptible population.
     if (sum(next_gen) > susc_pop) {
-      next_gen <- adjust_next_gen(
+      next_gen <- .adjust_next_gen(
         next_gen = next_gen,
         susc_pop = susc_pop
       )
