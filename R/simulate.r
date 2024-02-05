@@ -206,12 +206,12 @@ simulate_chains <- function(index_cases,
   }
   # next, simulate n trees
   while (length(sim) > 0 && susc_pop > 0) {
-    # sample next generation of offspring
-    next_gen <- do.call(
-      offspring_dist,
-      c(
-        list(n = sum(n_offspring[sim])),
-        pars
+    # simulate the next possible offspring
+    next_gen <- .sample_possible_offspring(
+      offspring_func = roffspring_name,
+      offspring_func_pars = pars,
+      n_offspring = n_offspring,
+      chains = sim
       )
     )
     # check that offspring distribution returns integers
@@ -428,14 +428,14 @@ simulate_summary <- function(index_cases,
 
   ## next, simulate transmission chains from index cases
   while (length(sim) > 0 && susc_pop > 0) {
-    ## simulate next generation
-    next_gen <- do.call(
-      offspring_dist,
-      c(
-        list(n = sum(n_offspring[sim])),
-        pars
-      )
+    # simulate the possible next generation of offspring
+    next_gen <- .sample_possible_offspring(
+      offspring_func = roffspring_name,
+      offspring_func_pars = pars,
+      n_offspring = n_offspring,
+      chains = sim
     )
+    # from all possible offspring, get those that are infectible
     # check that offspring distribution returns integers
     stopifnot(
       "Offspring distribution must return integers" =

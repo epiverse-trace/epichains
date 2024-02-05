@@ -51,7 +51,42 @@
   ss <- max(round(pop * (1 - percent_immune)) - index_cases, 0)
   return(ss)
 }
+
+#' Sample all possible offspring for the next generation
+#'
+#' @description
+#' Sample next generation of offspring using offspring distribution and
+#' associated parameters. This function is used internally, and input
+#' checking is not performed here, only in the context where it is used.
+#' Using it directly is not recommended.
+#' @param offspring_func A function to sample offspring
+#' @param offspring_func_pars A list of parameters for the offspring function
+#' @param n_offspring A vector of the number of offspring per chain
+#' @param chains Indices of chains/infectors being simulated
+#'
+#' @return A vector of the number of offspring per chain
+#' @keywords internal
+.sample_possible_offspring <- function(offspring_func,
+                                       offspring_func_pars,
+                                       n_offspring,
+                                       chains) {
+
+  possible_new_offspring <- do.call(
+    offspring_func,
+    c(
+      list(n = sum(n_offspring[chains])),
+      offspring_func_pars
+    )
+  )
+  # check that offspring distribution returns integers
+  stopifnot(
+    "Offspring distribution must return integers" =
+      !all(possible_new_offspring %% 1 > 0)
+  )
+
+  return(possible_new_offspring)
 }
+
 #'
 #' @param next_gen numeric; vector of next generation offspring
 #' @param susc_pop numeric; susceptible population size

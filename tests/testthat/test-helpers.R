@@ -84,6 +84,25 @@ test_that(".init_susc_pop works correctly", {
     "double"
   )
 })
+
+test_that(".init_susc_pop works correctly", {
+  expect_length(
+    .sample_possible_offspring(
+      offspring_func = "rpois",
+      offspring_func_pars = list(lambda = 1),
+      n_offspring = 10,
+      chains = 1
+    ), 10
+  )
+  expect_error(
+    .sample_possible_offspring(
+      offspring_func = "rnorm",
+      offspring_func_pars = list(mean = 0, sd = 1),
+      n_offspring = 10,
+      chains = 1
+    ),
+    "Offspring distribution must return integers"
+  )
 })
   )
 })
