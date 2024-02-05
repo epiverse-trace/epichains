@@ -104,5 +104,24 @@ test_that(".init_susc_pop works correctly", {
     "Offspring distribution must return integers"
   )
 })
+
+test_that(".init_susc_pop works correctly", {
+  next_gen <- c(1, 2, 5)
+  expect_length(
+    .get_infectible_offspring(
+      new_offspring = next_gen,
+      susc_pop = 1,
+      pop = 20
+    ),
+    length(next_gen)
+  )
+  # If the susceptible population in infinite, next_gen should be returned
+  expect_identical(
+    .get_infectible_offspring(
+      new_offspring = next_gen,
+      susc_pop = Inf,
+      pop = Inf
+    ),
+    as.integer(next_gen)
   )
 })

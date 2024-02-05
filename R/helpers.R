@@ -87,7 +87,39 @@
   return(possible_new_offspring)
 }
 
+#' Sample the number of infectible offspring from all possible offspring
 #'
+#' @description
+#' Sample susceptible offspring to be infected from all possible offspring.
+#' This function is used internally, and input checking is not
+#' performed here, only in the context where it is used. Using it directly
+#' is not recommended.
+#' @inheritParams simulate_chains
+#' @param new_offspring A vector of the possible new offspring per chain
+#' produced by [.sample_possible_offspring()]
+#' @return A vector of the number of offspring that can be infected given the
+#' current susceptible population size
+#' @keywords internal
+.get_infectible_offspring <- function(new_offspring,
+                                      susc_pop,
+                                      pop) {
+  # We first adjust for the case where susceptible can be Inf but prob can only
+  # be maximum 1.
+  binom_prob <- min(1, susc_pop / pop, na.rm = TRUE)
+  # Sample the number of infectible offspring from all possible offspring
+  infectible_offspring <- stats::rbinom(
+    n = length(new_offspring),
+    size = new_offspring,
+    prob = binom_prob
+  )
+  return(infectible_offspring)
+}
+
+#' Adjust new offspring if it exceeds the susceptible population size
+#' @description
+#' This function is used internally, and input checking is not
+#' performed here, only in the context where it is used. Using it directly
+#' is not recommended.
 #' @param next_gen numeric; vector of next generation offspring
 #' @param susc_pop numeric; susceptible population size
 #'
