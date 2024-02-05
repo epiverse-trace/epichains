@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{.adjust_next_gen}
 \alias{.adjust_next_gen}
-\title{Adjust next generation vector to match susceptible population size}
+\title{Adjust new offspring if it exceeds the susceptible population size}
 \usage{
 .adjust_next_gen(next_gen, susc_pop)
 }
@@ -15,6 +15,8 @@
 numeric; adjusted next generation offspring vector
 }
 \description{
-Adjust next generation vector to match susceptible population size
+This function is used internally, and input checking is not
+performed here, only in the context where it is used. Using it directly
+is not recommended.
 }
 \keyword{internal}
