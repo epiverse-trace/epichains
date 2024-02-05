@@ -35,6 +35,24 @@
 
 #' Adjust next generation vector to match susceptible population size
 #'
+#' @description Calculates the initial susceptible population size given
+#' the total population size, the percent immune, and the number of index
+#' cases. This function is used internally, and input checking is not
+#' performed here, only in the context where it is used. Using it directly
+#' is not recommended.
+#'
+#' @inheritParams simulate_chains
+#'
+#' @return numeric; initial susceptible population size
+#' @keywords internal
+.init_susc_pop <- function(pop,
+                           percent_immune,
+                           index_cases) {
+  ss <- max(round(pop * (1 - percent_immune)) - index_cases, 0)
+  return(ss)
+}
+}
+#'
 #' @param next_gen numeric; vector of next generation offspring
 #' @param susc_pop numeric; susceptible population size
 #'

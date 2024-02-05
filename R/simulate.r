@@ -194,7 +194,7 @@ simulate_chains <- function(index_cases,
     )
   )
   # Initialise susceptible population
-  susc_pop <- max(round(pop * (1 - percent_immune)) - index_cases, 0)
+  susc_pop <- .init_susc_pop(pop, percent_immune, index_cases)
 
   # Add optional columns
   if (!missing(generation_time)) {
@@ -424,7 +424,7 @@ simulate_summary <- function(index_cases,
   sim <- seq_len(index_cases) ## track trees that are still being simulated
 
   # Initialise susceptible population
-  susc_pop <- max(round(pop * (1 - percent_immune)) - index_cases, 0)
+  susc_pop <- .init_susc_pop(pop, percent_immune, index_cases)
 
   ## next, simulate transmission chains from index cases
   while (length(sim) > 0 && susc_pop > 0) {
