@@ -41,3 +41,49 @@ test_that("get_statistic_func works correctly", {
     "chain_statistic must be 'size' or 'length'"
   )
 })
+
+test_that(".init_susc_pop works correctly", {
+  expect_identical(
+    .init_susc_pop(
+      pop = 10,
+      percent_immune = 0.5,
+      index_cases = 1
+    ),
+    4
+  )
+  expect_identical(
+    .init_susc_pop(
+      pop = 0,
+      percent_immune = 0.5,
+      index_cases = 1
+    ),
+    0
+  )
+  expect_identical(
+    .init_susc_pop(
+      pop = 10,
+      percent_immune = 0,
+      index_cases = 0
+    ),
+    10
+  )
+  expect_length(
+    .init_susc_pop(
+      pop = 10,
+      percent_immune = 0,
+      index_cases = 1
+    ),
+    1
+  )
+  expect_type(
+    .init_susc_pop(
+      pop = 10,
+      percent_immune = 0,
+      index_cases = 1
+    ),
+    "double"
+  )
+})
+})
+  )
+})
