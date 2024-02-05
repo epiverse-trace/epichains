@@ -213,23 +213,13 @@ simulate_chains <- function(index_cases,
       n_offspring = n_offspring,
       chains = sim
       )
+    # from all possible offspring, get those that could be infected
+    next_gen <- .get_infectible_offspring(
+      new_offspring = next_gen,
+      susc_pop = susc_pop,
+      pop = pop
     )
-    # check that offspring distribution returns integers
-    stopifnot(
-      "Offspring distribution must return integers" =
-        !all(next_gen %% 1 > 0)
-    )
-    # Sample susceptible offspring to be infected from all possible offspring
-    # We first adjust for the case where susceptible can be Inf but prob is max
-    # 1.
-    binom_prob <- min(1, susc_pop / pop, na.rm = TRUE)
-    next_gen <- stats::rbinom(
-      n = length(next_gen),
-      size = next_gen,
-      prob = binom_prob
-    )
-    # Adjust next_gen if the number of offspring is greater than the
-    # susceptible population.
+    # Adjust the infectibles if they exceed the susceptible population
     if (sum(next_gen) > susc_pop) {
       next_gen <- .adjust_next_gen(
         next_gen = next_gen,
@@ -436,27 +426,13 @@ simulate_summary <- function(index_cases,
       chains = sim
     )
     # from all possible offspring, get those that are infectible
-    # check that offspring distribution returns integers
-    stopifnot(
-      "Offspring distribution must return integers" =
-        !all(next_gen %% 1 > 0)
-    )
-    # Sample susceptible offspring to be infected from all possible offspring
-    # We first adjust for the case where susceptible can be Inf but prob is max
-    # 1.
-    binom_prob <- min(
-      1,
-      susc_pop / pop,
-      na.rm = TRUE
-    )
-
-    next_gen <- stats::rbinom(
-      n = length(next_gen),
-      size = next_gen,
-      prob = binom_prob
+    next_gen <- .get_infectible_offspring(
+      new_offspring = next_gen,
+      susc_pop = susc_pop,
+      pop = pop
     )
     # Adjust next_gen if the number of offspring is greater than the
-    # susceptible population.
+    # susceptible population
     if (sum(next_gen) > susc_pop) {
       next_gen <- .adjust_next_gen(
         next_gen = next_gen,
