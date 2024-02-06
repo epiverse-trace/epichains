@@ -22,6 +22,7 @@ Negative binomial random numbers parametrized
 in terms of mean and dispersion coefficient
 }
 \examples{
+set.seed(32)
 rnbinom_mean_disp(n = 5, mn = 4, disp = 2)
 }
 \author{

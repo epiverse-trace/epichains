@@ -1,4 +1,5 @@
 chains <- c(1, 1, 4, 7)
+set.seed(12)
 test_that(
   "Likelihoods can be calculated",
   {

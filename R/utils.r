@@ -56,6 +56,7 @@ rgen_length <- function(n, x, prob) {
 #' @author Flavio Finger
 #' @export
 #' @examples
+#' set.seed(32)
 #' rnbinom_mean_disp(n = 5, mn = 4, disp = 2)
 rnbinom_mean_disp <- function(n, mn, disp) {
   checkmate::assert_number(
