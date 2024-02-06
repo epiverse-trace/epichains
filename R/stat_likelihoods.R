@@ -55,11 +55,7 @@ nbinom_size_ll <- function(x, size, prob, mu) {
 #' Log-likelihood of the size of chains with gamma-Borel offspring distribution
 #'
 #' @param x vector of sizes
-#' @param size the dispersion parameter (often called \code{k} in ecological
-#'   applications)
-#' @param prob probability of success (in the parameterisation with
-#'   \code{prob}, see also \code{\link[stats]{NegBinomial}})
-#' @param mu mean parameter
+#' @inheritParams rgborel
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @keywords internal
