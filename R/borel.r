@@ -6,6 +6,9 @@
 ##' @return Probability mass.
 ##' @author Sebastian Funk
 ##' @export
+##' @examples
+##' set.seed(32)
+##' dborel(1:5, 1)
 dborel <- function(x, mu, log = FALSE) {
   checkmate::assert_numeric(
     x, lower = 1, upper = Inf
@@ -29,6 +32,9 @@ dborel <- function(x, mu, log = FALSE) {
 ##' @return Vector of random numbers
 ##' @author Sebastian Funk
 ##' @export
+##' @examples
+##' set.seed(32)
+##' rborel(5, 1)
 rborel <- function(n, mu, infinite = Inf) {
   checkmate::assert_number(
     n, lower = 1, finite = TRUE, na.ok = FALSE

@@ -28,6 +28,28 @@ printing method.
 
 To view the full output, use \verb{as.data.frame(<object_name>)}.
 }
+\examples{
+set.seed(32)
+chains_pois_offspring <- simulate_chains(
+  index_cases = 10,
+  statistic = "size",
+  offspring_dist = "pois",
+  stat_max = 10,
+  generation_time = function(n) rep(3, n),
+  lambda = 2
+)
+head(chains_pois_offspring)
+set.seed(32)
+chains_pois_offspring <- simulate_chains(
+  index_cases = 10,
+  statistic = "size",
+  offspring_dist = "pois",
+  stat_max = 10,
+  generation_time = function(n) rep(3, n),
+  lambda = 2
+)
+tail(chains_pois_offspring)
+}
 \author{
 James M. Azam
 }
