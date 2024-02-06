@@ -66,6 +66,11 @@ rborel <- function(n, mu, infinite = Inf) {
 ##' @author Sebastian Funk
 ##' @export
 rgborel <- function(n, size, prob, mu, infinite = Inf) {
+  ## This function was introduced to support estimating likelihoods using a
+  ## Gamma-Borel mixture distribution. It is not actually called (it only needs)
+  ## to exist and could be a dummy. However, the function is here included with
+  ## its "correct implementation" for documentation/clarity purposes, as well as
+  ## for simulations.
   checkmate::assert_number(
     size, finite = TRUE, lower = 0
   )
