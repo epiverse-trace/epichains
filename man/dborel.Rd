@@ -19,6 +19,10 @@ Probability mass.
 \description{
 Density of the Borel distribution
 }
+\examples{
+set.seed(32)
+dborel(1:5, 1)
+}
 \author{
 Sebastian Funk
 }

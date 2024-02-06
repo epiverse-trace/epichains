@@ -430,6 +430,17 @@ validate_epichains_summary <- function(x) {
 #' printing method.
 #'
 #' To view the full output, use `as.data.frame(<object_name>)`.
+#' @examples
+#' set.seed(32)
+#' chains_pois_offspring <- simulate_chains(
+#'   index_cases = 10,
+#'   statistic = "size",
+#'   offspring_dist = "pois",
+#'   stat_max = 10,
+#'   generation_time = function(n) rep(3, n),
+#'   lambda = 2
+#' )
+#' head(chains_pois_offspring)
 head.epichains_tree <- function(x, ...) {
   # print head of the simulation output from the first known infector_id
   x <- x[!is.na(x$infector_id), ]
@@ -440,6 +451,17 @@ head.epichains_tree <- function(x, ...) {
 
 #' @rdname head.epichains_tree
 #' @export
+#' @examples
+#' set.seed(32)
+#' chains_pois_offspring <- simulate_chains(
+#'   index_cases = 10,
+#'   statistic = "size",
+#'   offspring_dist = "pois",
+#'   stat_max = 10,
+#'   generation_time = function(n) rep(3, n),
+#'   lambda = 2
+#' )
+#' tail(chains_pois_offspring)
 tail.epichains_tree <- function(x, ...) {
   return(
     utils::tail(as.data.frame(x), ...)
