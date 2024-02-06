@@ -10,7 +10,8 @@
     switch(
       stat_type,
       size = stat_latest + n_offspring,
-      length = stat_latest + pmin(1, n_offspring)
+      length = stat_latest + pmin(1, n_offspring),
+      stop("stat_type must be 'size' or 'length'")
     )
   )
 }
@@ -26,7 +27,8 @@
     switch(
       chain_statistic,
       size = rbinom_size,
-      length = rgen_length
+      length = rgen_length,
+      stop("chain_statistic must be 'size' or 'length'")
     )
   )
 }
