@@ -68,8 +68,12 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.9999" id="epichains-009999">epichains 0.0.9999<a class="anchor" aria-label="anchor" href="#epichains-009999"></a></h2>
-<ul><li>
-<code>epichains</code> is a re-implementation of <code>bpmodels</code> with a focus on providing a dedicated class of data structures for easy manipulation and interoperability with other new tools in the Epiverse and existing ecosystem.</li>
+<ul><li><p><code>epichains</code> is a re-implementation of <code>bpmodels</code> with a focus on providing a dedicated class of data structures for easy manipulation and interoperability with other new tools in the Epiverse and existing ecosystem.</p></li>
+<li>
+<p>The <code>offspring_dist</code> argument has been changed to no longer accept a character string, but instead now accepts a function (<a href="https://github.com/epiverse-trace/epichains/issues/25" class="external-link">#25</a>, <a href="https://github.com/epiverse-trace/epichains/issues/167" class="external-link">#167</a>, <a href="https://github.com/epiverse-trace/epichains/issues/188" class="external-link">#188</a>). This expands the number of possible functions a user can use and is no longer restricted to distributions with a corresponding random number generator function starting with <code>r...()</code>. For example:</p>
+<p>```r # This was not possible in earlier versions of this package. my_poisson_wrapper &lt;- function(n) { rpois(n, lambda = 0.9) } chain_summary_raw &lt;- simulate_summary( index_cases = 2, offspring_dist = my_poisson_wrapper, statistic = “length” )</p>
+<p>In adding this functionality an <code>rgborel</code> function was also added; this is because of a difference from previous behaviour, where the ll function name could be informed from the string passed and now it needs a function with that name; the function itself is not actually called when estimating the likelihood if the corresponding ll function exists so this could, in principle, be an empty dummy function; however, the function is included for documentation/clarity purposes, as well as for simulations.</p>
+</li>
 </ul><div class="section level3">
 <h3 id="documentation-0-0-9999">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-0-9999"></a></h3>
 <ul><li>A vignette outlining how to simulate interventions has been added.</li>

@@ -61,9 +61,6 @@
     <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_offspring_func_valid.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-construct_offspring_ll_name.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/dot-get_statistic_func.html</loc>
   </url>
   <url>
@@ -134,6 +131,9 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/rborel.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/rgborel.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/rgen_length.html</loc>

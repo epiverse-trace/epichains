@@ -120,11 +120,12 @@ or length of infectious disease outbreaks, as discussed in <span class="citation
 <p><code><a href="../reference/likelihood.html">likelihood()</a></code> requires a vector of chain summaries (sizes or lengths),
 <code>chains</code>, the corresponding statistic to calculate, <code>statistic</code>, the offspring
 distribution, <code>offspring_dist</code> and its associated parameters. <code>offspring_dist</code>
-is specified as the “base name” of the inbuilt distributions in R, for example,
-“pois”, “nbinom”, etc. <code><a href="../reference/likelihood.html">likelihood()</a></code> also requires <code>nsim_offspring</code>, which is the
-number of simulations to run if the likelihoods do not have a closed-form
-solution and must be simulated. This argument will be explained further in
-the next section.</p>
+is specified as the function that is used to generate random numbers, i.e.
+<code>rpois</code> for Poisson, <code>rnbinom</code> for negative binomial, or a custom function. If no
+the closed-form solution is available then simulated replicates are used to
+estimate the likelihoods. In that case <code><a href="../reference/likelihood.html">likelihood()</a></code> also requires
+<code>nsim_offspring</code>, which is the number of simulations to run . This argument will
+be explained further in the next section.</p>
 <p>By default, the result is a log-likelihood but if <code>log = FALSE</code>, then
 likelihoods are returned.</p>
 <p>Let’s look at the following example where we estimate the log-likelihood of
@@ -141,7 +142,7 @@ observing <code>chain_sizes</code>.</p>
 <span><span class="va">likelihood_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
 <span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
 <span>  nsim_obs <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.5</span></span>
 <span><span class="op">)</span></span>
@@ -168,7 +169,7 @@ must be set to <code>TRUE</code>. To return likelihoods instead, set <code>log =
 <span><span class="va">likelihood_ind_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
 <span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
 <span>  nsim_obs <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  individual <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -207,7 +208,7 @@ distribution with probability <code>prob = 0.9</code>.</p>
 <span><span class="co"># get their likelihood</span></span>
 <span><span class="va">liks</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
 <span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"binom"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rbinom</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  size <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  prob <span class="op">=</span> <span class="fl">0.9</span>,</span>
@@ -239,7 +240,7 @@ we use</p>
 <span><span class="va">liks</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
 <span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
 <span>  obs_prob <span class="op">=</span> <span class="fl">0.3</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  nsim_obs <span class="op">=</span> <span class="fl">10</span></span>
@@ -281,7 +282,7 @@ cases. We assume a poisson offspring distribution with mean,
 <span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
@@ -314,7 +315,7 @@ individuals have a poisson offspring distribution with mean,
 <span>  pop <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  percent_immune <span class="op">=</span> <span class="fl">0.1</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span></span>
@@ -347,7 +348,7 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="va">simulate_summary_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="op">)</span></span>
@@ -383,7 +384,7 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
@@ -408,7 +409,7 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="va">simulate_summary_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
 <span><span class="op">)</span></span>
@@ -446,7 +447,7 @@ distribution (<code>generation_time</code>) in the simulation step.</p>
 <span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span>
@@ -481,7 +482,7 @@ or <code>ggplot2</code> with little to no data manipulation.</p>
 <span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
 <span>  stat_max <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  generation_time <span class="op">=</span> <span class="va">generation_time_fn</span>,</span>
 <span>  lambda <span class="op">=</span> <span class="fl">2</span></span>

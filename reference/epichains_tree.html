@@ -136,10 +136,14 @@ it goes extinct.</p></li>
 
 
 <dt>offspring_dist</dt>
-<dd><p>Offspring distribution: a <code>&lt;character&gt;</code> string
-corresponding to the R distribution function (e.g., "pois" for Poisson,
-where <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> is the R function to generate Poisson random
-numbers).</p></dd>
+<dd><p>Offspring distribution: a function like the ones
+provided by R to generate random numbers from given distributions (e.g.,
+<code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> for Poisson). More specifically, the function needs to
+accept at least one argument, <code>n</code>, which is the number of random
+numbers to generate. It can accept further arguments, which will be passed
+on to the random number generating functions. Examples that can be provided
+here are <code>rpois</code> for Poisson distributed offspring, <code>rnbinom</code> for negative
+binomial offspring, or custom functions.</p></dd>
 
 
 <dt>stat_max</dt>

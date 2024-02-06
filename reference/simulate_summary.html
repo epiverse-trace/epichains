@@ -75,7 +75,7 @@ population initially immune (defaults to 0)."><meta property="og:image" content=
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Simulate a vector of transmission chains sizes/lengths</h1>
-      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/HEAD/R/simulate.R" class="external-link"><code>R/simulate.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/HEAD/R/simulate.r" class="external-link"><code>R/simulate.r</code></a></small>
       <div class="d-none name"><code>simulate_summary.Rd</code></div>
     </div>
 
@@ -119,10 +119,14 @@ it goes extinct.</p></li>
 
 
 <dt>offspring_dist</dt>
-<dd><p>Offspring distribution: a <code>&lt;character&gt;</code> string
-corresponding to the R distribution function (e.g., "pois" for Poisson,
-where <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> is the R function to generate Poisson random
-numbers).</p></dd>
+<dd><p>Offspring distribution: a function like the ones
+provided by R to generate random numbers from given distributions (e.g.,
+<code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> for Poisson). More specifically, the function needs to
+accept at least one argument, <code>n</code>, which is the number of random
+numbers to generate. It can accept further arguments, which will be passed
+on to the random number generating functions. Examples that can be provided
+here are <code>rpois</code> for Poisson distributed offspring, <code>rnbinom</code> for negative
+binomial offspring, or custom functions.</p></dd>
 
 
 <dt>...</dt>
@@ -211,7 +215,7 @@ Controlled by Mass Vaccination.” Biostatistics (Oxford, England)
 <span class="r-in"><span><span class="fu">simulate_summary</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  index_cases <span class="op">=</span> <span class="fl">20</span>,</span></span>
 <span class="r-in"><span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span></span>
-<span class="r-in"><span>  offspring_dist <span class="op">=</span> <span class="st">"pois"</span>,</span></span>
+<span class="r-in"><span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span></span>
 <span class="r-in"><span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span></span>
 <span class="r-in"><span>  lambda <span class="op">=</span> <span class="fl">0.9</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
@@ -232,7 +236,7 @@ Controlled by Mass Vaccination.” Biostatistics (Oxford, England)
 <span class="r-in"><span>  percent_immune <span class="op">=</span> <span class="fl">0.1</span>,</span></span>
 <span class="r-in"><span>  index_cases <span class="op">=</span> <span class="fl">20</span>,</span></span>
 <span class="r-in"><span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span></span>
-<span class="r-in"><span>  offspring_dist <span class="op">=</span> <span class="st">"nbinom"</span>,</span></span>
+<span class="r-in"><span>  offspring_dist <span class="op">=</span> <span class="va">rnbinom</span>,</span></span>
 <span class="r-in"><span>  stat_max <span class="op">=</span> <span class="fl">10</span>,</span></span>
 <span class="r-in"><span>  mu <span class="op">=</span> <span class="fl">0.9</span>,</span></span>
 <span class="r-in"><span>  size <span class="op">=</span> <span class="fl">0.36</span></span></span>
