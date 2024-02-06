@@ -1,6 +1,6 @@
-# Contributing to bpmodels
+# Contributing to epichains
 
-This outlines how to propose a change to bpmodels.
+This outlines how to propose a change to epichains.
 
 ## Making changes
 
@@ -16,7 +16,7 @@ feature request see [feature request](../.github/ISSUE_TEMPLATE/feature_request.
 See [pull request template](../.github/PULL_REQUEST_TEMPLATE/pull_request_template.md)
 
 *   Fork the package and clone onto your computer. If you haven't done 
-this before, we recommend using `usethis::create_from_github("epiverse-trace/bpmodels", fork = TRUE)`.
+this before, we recommend using `usethis::create_from_github("epiverse-trace/epichains", fork = TRUE)`.
 
 *   Install all development dependencies with `devtools::install_dev_deps()`, 
 and then make sure the package passes R CMD check by running `devtools::check()`. 
@@ -46,6 +46,6 @@ unit tests.
 
 ## Code of Conduct
 
-Please note that `bpmodels` is released with a
+Please note that `epichains` is released with a
 [Contributor Code of Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md). By contributing to this
 project you agree to abide by its terms.
