@@ -5,7 +5,21 @@ a dedicated class of data structures for easy manipulation and interoperability
 with other new tools in the Epiverse and existing ecosystem.
 
 * The `offspring_dist` argument has been changed to no longer accept a character
-  string, but instead now accepts a function
+  string, but instead now accepts a function (#25, #167, #188).
+  This expands the number of possible functions a user can use and is no longer 
+  restricted to distributions with a corresponding random number generator function
+  starting with `r...()`. For example:
+  
+  ```r
+  # This was not possible in earlier versions of this package.
+  my_poisson_wrapper <- function(n) {
+    rpois(n, lambda = 0.9)
+  }
+  chain_summary_raw <- simulate_summary(
+    index_cases = 2,
+    offspring_dist = my_poisson_wrapper,
+    statistic = "length"
+  )
 
 ## Documentation
 
