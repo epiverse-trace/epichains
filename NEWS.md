@@ -21,6 +21,8 @@ with other new tools in the Epiverse and existing ecosystem.
     statistic = "length"
   )
 
+  In adding this functionality an `rgborel` function was also added; this is because of a difference from previous behaviour, where the ll function name could be informed from the string passed and now it needs a function with that name; the function itself is not actually called when estimating the likelihood if the corresponding ll function exists so this could, in principle, be an empty dummy function; however, the function is included for documentation/clarity purposes, as well as for simulations.
+
 ## Documentation
 
 * A vignette outlining how to simulate interventions has been added.
