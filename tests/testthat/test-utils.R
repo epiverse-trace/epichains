@@ -1,4 +1,5 @@
 test_that("Reparametrized distributions work", {
+  set.seed(12)
   expect_length(
     rnbinom_mean_disp(
       n = 5,
