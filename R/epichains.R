@@ -140,7 +140,7 @@ epichains <- function(tree_df,
 #'
 #' @return An `<epichains_summary>` object
 #' @author James M. Azam
-#' @export
+#' @keywords internal
 .epichains_summary <- function(chains_summary,
                               index_cases,
                               offspring_dist,
