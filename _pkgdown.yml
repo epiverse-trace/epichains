@@ -14,13 +14,6 @@ reference:
   - title: Calculate (log)likelihoods
     contents:
     - likelihood
-    - offspring_ll
-
-  - subtitle: Analytical likelihoods
-    desc: Analytical likelihoods of chain size/length distributions
-    contents:
-    - ends_with("size_ll")
-    - ends_with("length_ll")
 
   - title: epichains classes
 
@@ -39,12 +32,7 @@ reference:
   - subtitle: epichains_summary object
     desc: Class constructor, validator, and methods
     contents:
-    - epichains_summary
-    - is_epichains_summary
-    - validate_epichains_summary
     - summary.epichains_summary
-    - format.epichains_summary
-    - print.epichains_summary
 
   - title: Special distributions
     contents:
