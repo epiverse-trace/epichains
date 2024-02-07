@@ -30,11 +30,11 @@ test_that("update_chain_stat works correctly", {
 test_that("get_statistic_func works correctly", {
   expect_identical(
     .get_statistic_func(chain_statistic = "size"),
-    rbinom_size
+    .rbinom_size
   )
   expect_identical(
     .get_statistic_func(chain_statistic = "length"),
-    rgen_length
+    .rgen_length
   )
   expect_error(
     .get_statistic_func(chain_statistic = "foo"),
