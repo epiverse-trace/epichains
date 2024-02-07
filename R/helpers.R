@@ -26,8 +26,8 @@
   return(
     switch(
       chain_statistic,
-      size = rbinom_size,
-      length = rgen_length,
+      size = .rbinom_size,
+      length = .rgen_length,
       stop("chain_statistic must be 'size' or 'length'")
     )
   )

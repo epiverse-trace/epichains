@@ -5,7 +5,7 @@
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @keywords internal
-pois_size_ll <- function(x, lambda) {
+.pois_size_ll <- function(x, lambda) {
   checkmate::assert_numeric(
     x, lower = 0, any.missing = FALSE
   )
@@ -25,7 +25,7 @@ pois_size_ll <- function(x, lambda) {
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @keywords internal
-nbinom_size_ll <- function(x, size, prob, mu) {
+.nbinom_size_ll <- function(x, size, prob, mu) {
   checkmate::assert_numeric(
     x, lower = 0, any.missing = FALSE
   )
@@ -59,7 +59,7 @@ nbinom_size_ll <- function(x, size, prob, mu) {
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @keywords internal
-gborel_size_ll <- function(x, size, prob, mu) {
+.gborel_size_ll <- function(x, size, prob, mu) {
   checkmate::assert_numeric(
     x, lower = 0, any.missing = FALSE
   )
@@ -94,7 +94,7 @@ gborel_size_ll <- function(x, size, prob, mu) {
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @keywords internal
-pois_length_ll <- function(x, lambda) {
+.pois_length_ll <- function(x, lambda) {
   checkmate::assert_numeric(
     x, lower = 0, any.missing = FALSE
   )
@@ -121,7 +121,7 @@ pois_length_ll <- function(x, lambda) {
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @keywords internal
-geom_length_ll <- function(x, prob) {
+.geom_length_ll <- function(x, prob) {
   checkmate::assert_numeric(
     x, lower = 0, any.missing = FALSE
   )
@@ -152,7 +152,7 @@ geom_length_ll <- function(x, prob) {
 #' @param ... any parameters to pass to \code{\link{simulate_summary}}
 #' @return log-likelihood values
 #' @author Sebastian Funk
-#' @export
+#' @keywords internal
 #' @seealso [simulate_summary()] for simulating a summary of the transmission
 #' chains statistic (without the tree of infections)
 #' @examples
@@ -163,7 +163,7 @@ geom_length_ll <- function(x, prob) {
 #'   statistic = "size",
 #'   lambda = 0.82
 #' )
-offspring_ll <- function(x, offspring_dist, statistic,
+.offspring_ll <- function(x, offspring_dist, statistic,
                          nsim_offspring = 100, ...) {
   # Input checking
   checkmate::assert_numeric(

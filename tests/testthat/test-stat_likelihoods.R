@@ -3,7 +3,7 @@ chains <- c(1, 1, 4, 7)
 test_that("Analytical chain size distributions are numerically correct", {
   expect_identical(
     round(
-      nbinom_size_ll(
+      .nbinom_size_ll(
         x = chains,
         mu = 0.5,
         size = 0.2
@@ -14,7 +14,7 @@ test_that("Analytical chain size distributions are numerically correct", {
   )
   expect_identical(
     round(
-      nbinom_size_ll(
+      .nbinom_size_ll(
         x = chains,
         prob = 0.5,
         size = 0.2
@@ -25,7 +25,7 @@ test_that("Analytical chain size distributions are numerically correct", {
   )
   expect_identical(
     round(
-      gborel_size_ll(
+      .gborel_size_ll(
         x = chains,
         mu = 0.5,
         size = 0.2
@@ -36,7 +36,7 @@ test_that("Analytical chain size distributions are numerically correct", {
   )
   expect_identical(
     round(
-      gborel_size_ll(
+      .gborel_size_ll(
         x = chains,
         prob = 0.5,
         size = 0.2
@@ -47,7 +47,7 @@ test_that("Analytical chain size distributions are numerically correct", {
   )
   expect_identical(
     round(
-      pois_size_ll(
+      .pois_size_ll(
         x = chains,
         lambda = 0.2
       ),
@@ -60,7 +60,7 @@ test_that("Analytical chain size distributions are numerically correct", {
 test_that("Analytical chain lengths distributions are numerically correct", {
   expect_identical(
     round(
-      pois_length_ll(
+      .pois_length_ll(
         x = chains,
         lambda = 0.5
       ),
@@ -70,7 +70,7 @@ test_that("Analytical chain lengths distributions are numerically correct", {
   )
   expect_identical(
     round(
-      geom_length_ll(
+      .geom_length_ll(
         x = chains,
         prob = 0.5
       ),
@@ -83,7 +83,7 @@ test_that("Analytical chain lengths distributions are numerically correct", {
 test_that("Generic offspring log-likelihoods are calculated", {
   expect_true(
     all(
-      offspring_ll(
+      .offspring_ll(
         x = chains,
         offspring_dist = rpois,
         nsim_offspring = 100,
@@ -93,7 +93,7 @@ test_that("Generic offspring log-likelihoods are calculated", {
     )
   )
   expect_length(
-    offspring_ll(
+    .offspring_ll(
       x = chains,
       offspring_dist = rpois,
       nsim_offspring = 100,
@@ -106,7 +106,7 @@ test_that("Generic offspring log-likelihoods are calculated", {
 
 test_that("Errors are thrown", {
   expect_error(
-    nbinom_size_ll(
+    .nbinom_size_ll(
       x = chains,
       mu = 0.5,
       size = 0.2,
@@ -115,7 +115,7 @@ test_that("Errors are thrown", {
     "both specified"
   )
   expect_error(
-    gborel_size_ll(
+    .gborel_size_ll(
       x = chains,
       mu = 0.5,
       size = 0.2,

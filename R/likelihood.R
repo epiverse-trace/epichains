@@ -1,6 +1,6 @@
 #' Estimate the log-likelihood/likelihood for observed branching processes
 #'
-#' @inheritParams offspring_ll
+#' @inheritParams .offspring_ll
 #' @inheritParams simulate_summary
 #' @param chains Vector of chain summaries (sizes/lengths)
 #' @param nsim_obs Number of simulations to be used to approximate the
@@ -127,7 +127,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   } else {
     likelihoods[calc_sizes] <-
       do.call(
-        offspring_ll,
+        .offspring_ll,
         c(
           list(
             x = calc_sizes,
@@ -142,7 +142,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
   ## assign probabilities to stat_max outbreak sizes
   if (any(stat_rep_vect == stat_max)) {
-    likelihoods[stat_max] <- complementary_logprob(likelihoods)
+    likelihoods[stat_max] <- .complementary_logprob(likelihoods)
   }
 
   if (!missing(exclude)) {

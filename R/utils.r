@@ -5,7 +5,7 @@
 #' @return value
 #' @author Sebastian Funk
 #' @keywords internal
-complementary_logprob <- function(x) {
+.complementary_logprob <- function(x) {
   checkmate::assert_numeric(
     x, lower = -Inf, upper = 0
   )
@@ -24,7 +24,7 @@ complementary_logprob <- function(x) {
 #' @return sampled sizes
 #' @author Sebastian Funk
 #' @keywords internal
-rbinom_size <- function(n, x, prob) {
+.rbinom_size <- function(n, x, prob) {
   out <- x + stats::rnbinom(n, x + 1, prob)
   return(out)
 }
@@ -40,7 +40,7 @@ rbinom_size <- function(n, x, prob) {
 #' @return sampled lengths
 #' @author Sebastian Funk
 #' @keywords internal
-rgen_length <- function(n, x, prob) {
+.rgen_length <- function(n, x, prob) {
   out <- x +
     ceiling(log(stats::runif(n, 0, 1)) / log(1 - prob) - 1) +
     ceiling(log(stats::runif(n, 0, 1)) / log(1 - prob) - 1)
