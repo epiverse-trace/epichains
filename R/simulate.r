@@ -432,7 +432,7 @@ simulate_summary <- function(index_cases,
 
   stat_track[stat_track >= stat_max] <- Inf
 
-  out <- epichains_summary(
+  out <- .epichains_summary(
     chains_summary = stat_track,
     index_cases = index_cases,
     statistic = statistic,

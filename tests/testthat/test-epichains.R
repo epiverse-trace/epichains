@@ -269,19 +269,19 @@ test_that("validate_epichains works", {
   )
   #' Expectations
   expect_invisible(
-    validate_epichains(susc_outbreak_raw)
+    .validate_epichains_tree(susc_outbreak_raw)
   )
   expect_invisible(
-    validate_epichains(susc_outbreak_raw2)
+    .validate_epichains_tree(susc_outbreak_raw2)
   )
   expect_invisible(
-    validate_epichains(tree_sim_raw)
+    .validate_epichains_tree(tree_sim_raw)
   )
   expect_invisible(
-    validate_epichains(tree_sim_raw2)
+    .validate_epichains_tree(tree_sim_raw2)
   )
   expect_invisible(
-    validate_epichains_summary(chain_summary_raw)
+    .validate_epichains_summary(chain_summary_raw)
   )
 })
 
@@ -331,19 +331,19 @@ test_that("is_chains_tree works", {
   )
   #' Expectations
   expect_true(
-    is_epichains(susc_outbreak_raw)
+    .is_epichains_tree(susc_outbreak_raw)
   )
   expect_true(
-    is_epichains(susc_outbreak_raw2)
+    .is_epichains_tree(susc_outbreak_raw2)
   )
   expect_true(
-    is_epichains(tree_sim_raw)
+    .is_epichains_tree(tree_sim_raw)
   )
   expect_true(
-    is_epichains(tree_sim_raw2)
+    .is_epichains_tree(tree_sim_raw2)
   )
   expect_false(
-    is_epichains(chain_summary_raw)
+    .is_epichains_tree(chain_summary_raw)
   )
 })
 
@@ -393,19 +393,19 @@ test_that("is_chains_summary works", {
   )
   #' Expectations
   expect_true(
-    is_epichains_summary(chain_summary_raw)
+    .is_epichains_summary(chain_summary_raw)
   )
   expect_false(
-    is_epichains_summary(susc_outbreak_raw)
+    .is_epichains_summary(susc_outbreak_raw)
   )
   expect_false(
-    is_epichains_summary(susc_outbreak_raw2)
+    .is_epichains_summary(susc_outbreak_raw2)
   )
   expect_false(
-    is_epichains_summary(tree_sim_raw)
+    .is_epichains_summary(tree_sim_raw)
   )
   expect_false(
-    is_epichains_summary(tree_sim_raw2)
+    .is_epichains_summary(tree_sim_raw2)
   )
 })
 

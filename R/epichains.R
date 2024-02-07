@@ -111,7 +111,7 @@ epichains <- function(tree_df,
 #' @inheritParams simulate_chains
 #' @author James M. Azam
 #' @keywords internal
-new_epichains_summary <- function(chains_summary,
+.new_epichains_summary <- function(chains_summary,
                                   index_cases,
                                   statistic,
                                   offspring_dist,
@@ -136,12 +136,12 @@ new_epichains_summary <- function(chains_summary,
 #' cases used for the simulation, and the statistic that was tracked,
 #' the intervention level.
 #'
-#' @inheritParams new_epichains_summary
+#' @inheritParams .new_epichains_summary
 #'
 #' @return An `<epichains_summary>` object
 #' @author James M. Azam
 #' @export
-epichains_summary <- function(chains_summary,
+.epichains_summary <- function(chains_summary,
                               index_cases,
                               offspring_dist,
                               statistic = c("size", "length"),
@@ -168,7 +168,7 @@ epichains_summary <- function(chains_summary,
   )
 
   # Create <epichains_summary> object
-  epichains_summary <- new_epichains_summary(
+  epichains_summary <- .new_epichains_summary(
     chains_summary,
     index_cases = index_cases,
     statistic = statistic,
@@ -177,7 +177,7 @@ epichains_summary <- function(chains_summary,
   )
 
   # Validate the created object
-  validate_epichains_summary(epichains_summary)
+  .validate_epichains_summary(epichains_summary)
 
   return(epichains_summary)
 }
@@ -263,10 +263,10 @@ format.epichains <- function(x, ...) {
 #' @return Invisibly returns an `<epichains_summary>`. Called for printing
 #' side-effects.
 #' @author James M. Azam
-#' @export
+#' @keywords internal
 format.epichains_summary <- function(x, ...) {
   # check that x is an <epichains_summary> object
-  validate_epichains_summary(x)
+  .validate_epichains_summary(x)
 
   # summarise the information stored in x
   statistics <- summary(x)
@@ -401,7 +401,7 @@ summary.epichains <- function(object, ...) {
 #' @export
 summary.epichains_summary <- function(object, ...) {
   # Check that object has <epichains_summary> class
-  validate_epichains_summary(object)
+  .validate_epichains_summary(object)
 
   # Get the summaries
   index_cases <- attr(object, "index_cases", exact = TRUE)
@@ -443,7 +443,7 @@ is_epichains <- function(x) {
 #' otherwise
 #' @author James M. Azam
 #' @export
-is_epichains_summary <- function(x) {
+.is_epichains_summary <- function(x) {
   inherits(x, "epichains_summary")
 }
 
@@ -482,8 +482,8 @@ validate_epichains <- function(x) {
 #' @return No return.
 #' @author James M. Azam
 #' @export
-validate_epichains_summary <- function(x) {
-  if (!is_epichains_summary(x)) {
+.validate_epichains_summary <- function(x) {
+  if (!.is_epichains_summary(x)) {
     stop("Object must have an `<epichains_summary>` class")
   }
 
