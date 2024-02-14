@@ -18,3 +18,69 @@
   x <- generation_time(10)
   checkmate::assert_numeric(x, len = 10)
 }
+
+#' Check inputs to `simulate_chains()` and `simulate_summary()`
+#'
+#' @param sim_func <character>; The simulation function to check
+#'
+#' @inheritParams simulate_chains
+#' @return NULL; called for side effects
+#' @keywords internal
+.check_sim_args <- function(
+    func_name = c("simulate_chains", "simulate_summary"),
+    index_cases,
+    statistic,
+    offspring_dist,
+    stat_max,
+    pop,
+    percent_immune,
+    generation_time = NULL,
+    t0 = NULL,
+    tf = NULL) {
+  func_name <- match.arg(func_name)
+  # Input checking
+  checkmate::assert_count(
+    index_cases,
+    positive = TRUE
+  )
+  checkmate::assert_choice(
+    statistic,
+    choices = c("size", "length")
+  )
+  checkmate::assert_string(offspring_dist)
+  # check that offspring function exists in the environment
+  roffspring_name <- paste0(
+    "r",
+    offspring_dist
+  )
+  .check_offspring_func_valid(roffspring_name)
+  checkmate::assert(
+    is.infinite(stat_max) ||
+      checkmate::assert_integerish(stat_max, lower = 0)
+  )
+  checkmate::assert(
+    is.infinite(pop) ||
+      checkmate::assert_integerish(pop, lower = 1)
+  )
+  checkmate::assert_number(
+    percent_immune,
+    lower = 0, upper = 1
+  )
+
+  if (func_name == "simulate_chains") {
+    if (!missing(generation_time)) {
+      .check_generation_time_valid(generation_time)
+    } else if (!missing(tf)) {
+      stop("If `tf` is specified, `generation_time` must be specified too.")
+    }
+    checkmate::assert_numeric(
+      t0,
+      lower = 0, finite = TRUE
+    )
+    checkmate::assert_number(
+      tf,
+      lower = 0
+    )
+  }
+  invisible(NULL)
+}
