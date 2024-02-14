@@ -80,7 +80,7 @@
   invisible(NULL)
 }
 
-#' Check that the statistic and stat_max arguments are valid
+#' Check that the `statistic` and `stat_max` arguments are valid
 #'
 #' @inheritParams simulate_chains
 #' @description
