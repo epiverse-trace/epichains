@@ -83,6 +83,11 @@
 #' Check that the statistic and stat_max arguments are valid
 #'
 #' @inheritParams simulate_chains
+#' @description
+#' The function treats these two arguments as related and checks
+#' them in one place to remove repeated checks in several places in the
+#' package.
+#'
 #'
 #' @return NULL; called for side effects
 #' @keywords internal
