@@ -34,8 +34,10 @@
     stat_max,
     pop,
     percent_immune,
+    generation_time_specified,
     generation_time = NULL,
     t0 = NULL,
+    tf_specified,
     tf = NULL) {
   # Get the function name
   func_name <- match.arg(func_name)
@@ -61,11 +63,9 @@
   )
 
   if (func_name == "simulate_chains") {
-    # Check generation time is properly specified and if tf
-    # is specified, generation_time is also specified
-    if (!missing(generation_time)) {
+    if (!generation_time_specified) {
       .check_generation_time_valid(generation_time)
-    } else if (!missing(tf)) {
+    } else if (!tf_specified) {
       stop("If `tf` is specified, `generation_time` must be specified too.")
     }
     checkmate::assert_numeric(
