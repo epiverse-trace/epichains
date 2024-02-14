@@ -2,7 +2,7 @@
 % Please edit documentation in R/checks.R
 \name{.check_statistic_args}
 \alias{.check_statistic_args}
-\title{Check that the statistic and stat_max arguments are valid}
+\title{Check that the \code{statistic} and \code{stat_max} arguments are valid}
 \usage{
 .check_statistic_args(statistic, stat_max)
 }
