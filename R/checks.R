@@ -92,7 +92,7 @@
 #' @return NULL; called for side effects
 #' @keywords internal
 .check_statistic_args <- function(statistic,
-                                  stat_max){
+                                  stat_max) {
   checkmate::assert_choice(
     statistic,
     choices = c("size", "length")
