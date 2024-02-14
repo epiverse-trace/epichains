@@ -139,40 +139,19 @@ simulate_chains <- function(index_cases,
                             generation_time = NULL,
                             t0 = 0,
                             tf = Inf) {
-  # Input checking
-  checkmate::assert_count(
-    index_cases,
-    positive = TRUE
-  )
-  checkmate::assert_choice(
-    statistic,
-    choices = c("size", "length")
-  )
-  .check_offspring_func_valid(offspring_dist)
-  checkmate::assert(
-    is.infinite(stat_max) ||
-      checkmate::assert_integerish(stat_max, lower = 0)
-  )
-  checkmate::assert(
-    is.infinite(pop) ||
-      checkmate::assert_integerish(pop, lower = 1)
-  )
-  checkmate::assert_number(
-    percent_immune,
-    lower = 0, upper = 1
-  )
-  if (!missing(generation_time)) {
-    .check_generation_time_valid(generation_time)
-  } else if (!missing(tf)) {
-    stop("If `tf` is specified, `generation_time` must be specified too.")
-  }
-  checkmate::assert_numeric(
-    t0,
-    lower = 0, finite = TRUE
-  )
-  checkmate::assert_number(
-    tf,
-    lower = 0
+  # Check inputs
+  func_name <- as.character(match.call()[[1]])
+  .check_sim_args(
+    func_name = func_name,
+    index_cases = index_cases,
+    statistic = statistic,
+    offspring_dist = offspring_dist,
+    stat_max = stat_max,
+    pop = pop,
+    percent_immune = percent_immune,
+    generation_time = generation_time,
+    t0 = t0,
+    tf = tf
   )
   # Gather offspring distribution parameters
   pars <- list(...)
@@ -383,27 +362,16 @@ simulate_summary <- function(index_cases,
                              stat_max = Inf,
                              pop = Inf,
                              percent_immune = 0) {
-  # Input checking
-  checkmate::assert_count(index_cases, positive = TRUE)
-  statistic <- match.arg(statistic)
-  checkmate::assert_choice(
-    statistic,
-    choices = c("size", "length")
-  )
-
-  # check that offspring is properly specified
-  .check_offspring_func_valid(offspring_dist)
-
-  checkmate::assert_number(
-    stat_max, lower = 0
-  )
-  checkmate::assert(
-    is.infinite(pop) ||
-      checkmate::assert_integerish(pop, lower = 1)
-  )
-  checkmate::assert_number(
-    percent_immune,
-    lower = 0, upper = 1
+  # Check inputs
+  func_name <- as.character(match.call()[[1]])
+  .check_sim_args(
+    func_name = func_name,
+    index_cases = index_cases,
+    statistic = statistic,
+    offspring_dist = offspring_dist,
+    stat_max = stat_max,
+    pop = pop,
+    percent_immune = percent_immune
   )
   # Gather offspring distribution parameters
   pars <- list(...)
