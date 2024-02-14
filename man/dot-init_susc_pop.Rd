@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{.init_susc_pop}
 \alias{.init_susc_pop}
-\title{Initialize the susceptible population size}
+\title{Adjust next generation vector to match susceptible population size}
 \usage{
 .init_susc_pop(pop, percent_immune, index_cases)
 }
