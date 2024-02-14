@@ -37,26 +37,19 @@
     generation_time = NULL,
     t0 = NULL,
     tf = NULL) {
+  # Get the function name
   func_name <- match.arg(func_name)
   # Input checking
   checkmate::assert_count(
     index_cases,
     positive = TRUE
   )
-  checkmate::assert_choice(
+  # check that offspring is a function with argument "n"
+  .check_offspring_func_valid(offspring_dist)
+  # check that arguments related to the statistic are valid
+  .check_statistic_args(
     statistic,
-    choices = c("size", "length")
-  )
-  checkmate::assert_string(offspring_dist)
-  # check that offspring function exists in the environment
-  roffspring_name <- paste0(
-    "r",
-    offspring_dist
-  )
-  .check_offspring_func_valid(roffspring_name)
-  checkmate::assert(
-    is.infinite(stat_max) ||
-      checkmate::assert_integerish(stat_max, lower = 0)
+    stat_max
   )
   checkmate::assert(
     is.infinite(pop) ||
@@ -68,6 +61,8 @@
   )
 
   if (func_name == "simulate_chains") {
+    # Check generation time is properly specified and if tf
+    # is specified, generation_time is also specified
     if (!missing(generation_time)) {
       .check_generation_time_valid(generation_time)
     } else if (!missing(tf)) {
@@ -83,4 +78,26 @@
     )
   }
   invisible(NULL)
+}
+
+#' Check that the statistic and stat_max arguments are valid
+#'
+#' @inheritParams simulate_chains
+#'
+#' @return NULL; called for side effects
+#' @keywords internal
+.check_statistic_args <- function(statistic,
+                                  stat_max){
+  checkmate::assert_choice(
+    statistic,
+    choices = c("size", "length")
+  )
+  checkmate::assert(
+    is.infinite(stat_max) ||
+      checkmate::assert_integerish(
+        stat_max,
+        lower = 0,
+        null.ok = FALSE
+    )
+  )
 }
