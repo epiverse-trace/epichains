@@ -63,9 +63,9 @@
   )
 
   if (func_name == "simulate_chains") {
-    if (!generation_time_specified) {
+    if (generation_time_specified) {
       .check_generation_time_valid(generation_time)
-    } else if (!tf_specified) {
+    } else if (tf_specified) {
       stop("If `tf` is specified, `generation_time` must be specified too.")
     }
     checkmate::assert_numeric(
