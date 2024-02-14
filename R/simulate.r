@@ -187,7 +187,7 @@ simulate_chains <- function(index_cases,
   while (length(sim) > 0 && susc_pop > 0) {
     # simulate the next possible offspring
     next_gen <- .sample_possible_offspring(
-      offspring_func = roffspring_name,
+      offspring_func = offspring_dist,
       offspring_func_pars = pars,
       n_offspring = n_offspring,
       chains = sim
@@ -388,7 +388,7 @@ simulate_summary <- function(index_cases,
   while (length(sim) > 0 && susc_pop > 0) {
     # simulate the possible next generation of offspring
     next_gen <- .sample_possible_offspring(
-      offspring_func = roffspring_name,
+      offspring_func = offspring_dist,
       offspring_func_pars = pars,
       n_offspring = n_offspring,
       chains = sim
