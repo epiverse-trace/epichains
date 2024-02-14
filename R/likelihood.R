@@ -53,17 +53,17 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
       nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
     )
   }
-
   checkmate::assert_numeric(
     chains, lower = 0, upper = Inf, any.missing = FALSE
   )
-  checkmate::assert_character(statistic)
+  # check that arguments related to the statistic are valid
+  .check_statistic_args(
+    statistic,
+    stat_max
+  )
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert_number(
     obs_prob, lower = 0, upper = 1, finite = TRUE, na.ok = FALSE
-  )
-  checkmate::assert_number(
-    stat_max, lower = 0, na.ok = FALSE
   )
   checkmate::assert_logical(
     log, any.missing = FALSE, all.missing = FALSE, len = 1
@@ -74,7 +74,6 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   checkmate::assert_numeric(
     exclude, null.ok = TRUE
   )
-
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
