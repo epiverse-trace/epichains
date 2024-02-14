@@ -169,13 +169,7 @@ offspring_ll <- function(x, offspring_dist, statistic,
   checkmate::assert_numeric(
     x, lower = 0, any.missing = FALSE
   )
-  # check that offspring is properly specified
-  .check_offspring_func_valid(offspring_dist)
-  checkmate::assert_character(statistic)
-  checkmate::assert_numeric(
-    nsim_offspring, lower = 1
-  )
-
+  # Remaining checks are done in simulate_summary()
   # Simulate the chains
   dist <- simulate_summary(
     index_cases = nsim_offspring,
