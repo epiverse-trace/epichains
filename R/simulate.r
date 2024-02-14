@@ -144,8 +144,8 @@ simulate_chains <- function(index_cases,
   # We need to check if the generation time and tf are specified here before
   # calling .check_sim_args() to not obfuscate the meaning of missing()
   # in the checker function.
-  generation_time_specified <- missing(generation_time)
-  tf_specified <- missing(tf)
+  generation_time_specified <- !missing(generation_time)
+  tf_specified <- !missing(tf)
   # Run checks
   .check_sim_args(
     func_name = func_name,
