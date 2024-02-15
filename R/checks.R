@@ -97,11 +97,12 @@
     choices = c("size", "length")
   )
   checkmate::assert(
-    is.infinite(stat_max) ||
+    is.infinite(stat_max),
       checkmate::assert_integerish(
         stat_max,
         lower = 1,
         null.ok = FALSE
-    )
+    ),
+    combine = "or"
   )
 }
