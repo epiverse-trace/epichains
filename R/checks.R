@@ -98,7 +98,7 @@
   )
   checkmate::assert(
     is.infinite(stat_max),
-      checkmate::assert_integerish(
+      checkmate::check_integerish(
         stat_max,
         lower = 1,
         null.ok = FALSE
