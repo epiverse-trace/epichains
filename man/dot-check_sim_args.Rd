@@ -12,11 +12,10 @@
   stat_max,
   pop,
   percent_immune,
-  generation_time_specified,
-  generation_time = NULL,
-  t0 = NULL,
   tf_specified,
-  tf = NULL
+  tf = NULL,
+  generation_time = NULL,
+  t0 = NULL
 )
 }
 \arguments{
@@ -52,6 +51,9 @@ infection at the start of the simulation. Used alongside \code{pop} to initialis
 the susceptible population. Accepted values lie between 0 and 1.
 Defaults to 0.}
 
+\item{tf}{Cut-off for the infection times (if generation time is given).
+Defaults to \code{Inf}.}
+
 \item{generation_time}{The generation time function; the name
 of a user-defined named or anonymous function with only one argument \code{n},
 representing the number of generation times to sample.}
@@ -60,9 +62,6 @@ representing the number of generation times to sample.}
 or a vector of same length as \code{index_cases} (number of initial cases) with
 corresponding initial times. Defaults to 0, meaning all cases started at
 time 0.}
-
-\item{tf}{Cut-off for the infection times (if generation time is given).
-Defaults to \code{Inf}.}
 
 \item{sim_func}{\if{html}{\out{<character>}}; The simulation function to check}
 }
