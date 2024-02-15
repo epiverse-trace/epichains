@@ -100,7 +100,7 @@
     is.infinite(stat_max) ||
       checkmate::assert_integerish(
         stat_max,
-        lower = 0,
+        lower = 1,
         null.ok = FALSE
     )
   )
