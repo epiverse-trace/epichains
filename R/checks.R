@@ -68,13 +68,13 @@
     } else if (tf_specified) {
       stop("If `tf` is specified, `generation_time` must be specified too.")
     }
-    checkmate::assert_numeric(
-      t0,
-      lower = 0, finite = TRUE
-    )
     checkmate::assert_number(
       tf,
       lower = 0
+    )
+    checkmate::assert_numeric(
+      t0,
+      lower = 0, finite = TRUE
     )
   }
   invisible(NULL)
