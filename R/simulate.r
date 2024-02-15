@@ -398,7 +398,7 @@ simulate_summary <- function(index_cases,
       chains = sim
     )
     # from all possible offspring, get those that are infectible
-    next_gen <- .get_infectible_offspring(
+    next_gen <- .get_susceptible_offspring(
       new_offspring = next_gen,
       susc_pop = susc_pop,
       pop = pop
