@@ -34,10 +34,10 @@
     stat_max,
     pop,
     percent_immune,
-    generation_time,
-    t0,
     tf_specified,
-    tf) {
+    tf = NULL,
+    generation_time = NULL,
+    t0 = NULL) {
   # Get the function name
   func_name <- match.arg(func_name)
   # Input checking
