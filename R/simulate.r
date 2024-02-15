@@ -199,7 +199,7 @@ simulate_chains <- function(index_cases,
       offspring_func_pars = pars,
       n_offspring = n_offspring,
       chains = sim
-      )
+    )
     # from all possible offspring, get those that could be infected
     next_gen <- .get_infectible_offspring(
       new_offspring = next_gen,
