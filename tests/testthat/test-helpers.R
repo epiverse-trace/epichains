@@ -108,7 +108,7 @@ test_that(".init_susc_pop works correctly", {
 test_that(".init_susc_pop works correctly", {
   next_gen <- c(1, 2, 5)
   expect_length(
-    .get_infectible_offspring(
+    .get_susceptible_offspring(
       new_offspring = next_gen,
       susc_pop = 1,
       pop = 20
@@ -117,7 +117,7 @@ test_that(".init_susc_pop works correctly", {
   )
   # If the susceptible population in infinite, next_gen should be returned
   expect_identical(
-    .get_infectible_offspring(
+    .get_susceptible_offspring(
       new_offspring = next_gen,
       susc_pop = Inf,
       pop = Inf

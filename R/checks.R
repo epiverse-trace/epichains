@@ -36,9 +36,8 @@
     percent_immune,
     generation_time,
     t0,
-    t0 = NULL,
     tf_specified,
-    tf = NULL) {
+    tf) {
   # Get the function name
   func_name <- match.arg(func_name)
   # Input checking
