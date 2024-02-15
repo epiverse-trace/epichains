@@ -140,10 +140,8 @@ simulate_chains <- function(index_cases,
                             tf = Inf) {
   # Check inputs
   func_name <- as.character(match.call()[[1]])
-  # We need to check if the generation time and tf are specified here before
-  # calling .check_sim_args() to not obfuscate the meaning of missing()
-  # in the checker function.
-  generation_time_specified <- !missing(generation_time)
+  # Determine if tf is specified. Use to check if tf is specified
+  # but generation_time is not, which is an error.
   tf_specified <- !missing(tf)
   # Run checks
   .check_sim_args(
@@ -154,7 +152,6 @@ simulate_chains <- function(index_cases,
     stat_max = stat_max,
     pop = pop,
     percent_immune = percent_immune,
-    generation_time_specified = generation_time_specified,
     generation_time = generation_time,
     t0 = t0,
     tf_specified = tf_specified,

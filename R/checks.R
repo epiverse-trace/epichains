@@ -34,8 +34,8 @@
     stat_max,
     pop,
     percent_immune,
-    generation_time_specified,
-    generation_time = NULL,
+    generation_time,
+    t0,
     t0 = NULL,
     tf_specified,
     tf = NULL) {
@@ -63,7 +63,7 @@
   )
 
   if (func_name == "simulate_chains") {
-    if (generation_time_specified) {
+    if (!is.null(generation_time)) {
       .check_generation_time_valid(generation_time)
     } else if (tf_specified) {
       stop("If `tf` is specified, `generation_time` must be specified too.")

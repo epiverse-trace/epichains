@@ -24,7 +24,7 @@ test_that("Checks work", {
       stat_max = 10,
       pop = 10,
       percent_immune = 0.1,
-      generation_time_specified = FALSE,
+      generation_time = NULL,
       t0 = 0,
       tf_specified = TRUE,
       tf = 10
@@ -112,13 +112,12 @@ test_that("Checks work", {
       stat_max = 10,
       pop = 10,
       percent_immune = 0.1,
-      generation_time_specified = TRUE,
       generation_time = NULL,
       t0 = 0,
       tf_specified = TRUE,
       tf = 10
     ),
-    "Must be a function, not 'NULL'"
+    "If `tf` is specified, `generation_time` must be specified too."
   )
   expect_error(
     .check_sim_args(
@@ -129,7 +128,6 @@ test_that("Checks work", {
       stat_max = 10,
       pop = 10,
       percent_immune = 0.1,
-      generation_time_specified = TRUE,
       generation_time = function(x) rep(3, 10),
       t0 = -1,
       tf_specified = TRUE,
@@ -146,7 +144,6 @@ test_that("Checks work", {
       stat_max = 10,
       pop = 10,
       percent_immune = 0.1,
-      generation_time_specified = TRUE,
       generation_time = function(x) rep(3, 10),
       t0 = 0,
       tf_specified = TRUE,
@@ -163,7 +160,6 @@ test_that("Checks work", {
       stat_max = 10,
       pop = 10,
       percent_immune = 0.1,
-      generation_time_specified = TRUE,
       generation_time = function(x) rep(3, 10),
       t0 = 0,
       tf_specified = TRUE,
