@@ -138,7 +138,7 @@ simulate_chains <- function(index_cases,
                             generation_time = NULL,
                             t0 = 0,
                             tf = Inf) {
-  # Check inputs
+  # Get function name (safeguard against function name changes)
   func_name <- as.character(match.call()[[1]])
   # Determine if tf is specified. Use to check if tf is specified
   # but generation_time is not, which is an error.
@@ -365,8 +365,9 @@ simulate_summary <- function(index_cases,
                              stat_max = Inf,
                              pop = Inf,
                              percent_immune = 0) {
-  # Check inputs
+  # Get function name (safeguard against function name changes)
   func_name <- as.character(match.call()[[1]])
+  # Run checks
   .check_sim_args(
     func_name = func_name,
     index_cases = index_cases,
