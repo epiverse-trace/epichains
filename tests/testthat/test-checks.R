@@ -1,18 +1,13 @@
-# Default function to check wrongly specified arguments and return an error
-# message
+# A function that passes all checks in .check_sim_args but returns an error
+# message if the supplied arguments are invalid
 .check_sim_args_default <- function(...) {
     default_args <- list(
-        func_name = "simulate_chains",
         index_cases = 10,
         statistic = "size",
         offspring_dist = rpois,
         stat_max = 10,
         pop = 10,
-        percent_immune = 0.1,
-        generation_time = function(x) rep(3, 10),
-        t0 = 0,
-        tf_specified = TRUE,
-        tf = 10
+        percent_immune = 0.1
     )
     # Modify the default arguments with the user's arguments
     new_args <- modifyList(
@@ -34,6 +29,34 @@
     # Return the output
     return(out)
 }
+
+# A function that passes all checks in `.check_time_args` but returns an error
+# message if the supplied arguments are invalid
+.check_time_args_default <- function(...) {
+    default_args <- list(
+        t0 = 0,
+        tf_specified = FALSE, # tf is not specified but default tf = Inf below
+        tf = Inf,
+        generation_time = NULL
+    )
+    new_args <- modifyList(
+        default_args,
+        list(...)
+    )
+    out <- tryCatch(
+        expr = {
+            do.call(
+                .check_time_args,
+                new_args
+            )
+        },
+        error = function(e) {
+            stop(e)
+        }
+    )
+    return(out)
+}
+
 
 test_that("Smaller checker functions work", {
     expect_error(
@@ -61,6 +84,7 @@ test_that("Smaller checker functions work", {
 })
 
 test_that(".check_sim_args() returns errors", {
+    # Checks with .check_sim_args
     expect_no_error(
         .check_sim_args_default()
     )
@@ -113,24 +137,30 @@ test_that(".check_sim_args() returns errors", {
         ),
         "Element 1 is not <= 1."
     )
+})
+
+test_that(".check_time_args() returns errors", {
+    # Checks with .check_time_args
+    expect_no_error(
+        .check_time_args_default()
+    )
     # t0 cannot be negative
     expect_error(
-        .check_sim_args_default(
+        .check_time_args_default(
             t0 = -1
         ),
         "Element 1 is not >= 0."
     )
     # tf cannot be negative
     expect_error(
-        .check_sim_args_default(
+        .check_time_args_default(
             tf = -1
         ),
         "Element 1 is not >= 0."
     )
     # If tf is specified, generation_time must be specified too
     expect_error(
-        .check_sim_args_default(
-            generation_time = NULL,
+        .check_time_args_default(
             tf_specified = TRUE,
             tf = 10
         ),
