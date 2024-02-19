@@ -5,17 +5,12 @@
 \title{Check inputs to \code{simulate_chains()} and \code{simulate_summary()}}
 \usage{
 .check_sim_args(
-  func_name = c("simulate_chains", "simulate_summary"),
   index_cases,
   statistic,
   offspring_dist,
   stat_max,
   pop,
-  percent_immune,
-  tf_specified,
-  tf = NULL,
-  generation_time = NULL,
-  t0 = NULL
+  percent_immune
 )
 }
 \arguments{
@@ -50,18 +45,6 @@ define the susceptible population. Defaults to \code{Inf}.}
 infection at the start of the simulation. Used alongside \code{pop} to initialise
 the susceptible population. Accepted values lie between 0 and 1.
 Defaults to 0.}
-
-\item{tf}{Cut-off for the infection times (if generation time is given).
-Defaults to \code{Inf}.}
-
-\item{generation_time}{The generation time function; the name
-of a user-defined named or anonymous function with only one argument \code{n},
-representing the number of generation times to sample.}
-
-\item{t0}{Start time (if generation time is given); either a single value
-or a vector of same length as \code{index_cases} (number of initial cases) with
-corresponding initial times. Defaults to 0, meaning all cases started at
-time 0.}
 
 \item{sim_func}{\if{html}{\out{<character>}}; The simulation function to check}
 }

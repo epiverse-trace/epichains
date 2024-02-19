@@ -138,20 +138,21 @@ simulate_chains <- function(index_cases,
                             generation_time = NULL,
                             t0 = 0,
                             tf = Inf) {
-  # Get function name (safeguard against function name changes)
-  func_name <- as.character(match.call()[[1]])
-  # Determine if tf is specified. Use to check if tf is specified
-  # but generation_time is not, which is an error.
-  tf_specified <- !missing(tf)
-  # Run checks
+  # Check offspring and population-related arguments
   .check_sim_args(
-    func_name = func_name,
     index_cases = index_cases,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max,
     pop = pop,
-    percent_immune = percent_immune,
+    percent_immune = percent_immune
+  )
+  # Check time-related arguments
+  # Since tf is passed to .check_time_args, we need to check if it is specified
+  # in this function environment. If tf is specified, we expect generation_time
+  # to be specified too.
+  tf_specified <- !missing(tf)
+  .check_time_args(
     generation_time = generation_time,
     t0 = t0,
     tf_specified = tf_specified,
@@ -365,11 +366,8 @@ simulate_summary <- function(index_cases,
                              stat_max = Inf,
                              pop = Inf,
                              percent_immune = 0) {
-  # Get function name (safeguard against function name changes)
-  func_name <- as.character(match.call()[[1]])
-  # Run checks
+  # Check offspring and population-related arguments
   .check_sim_args(
-    func_name = func_name,
     index_cases = index_cases,
     statistic = statistic,
     offspring_dist = offspring_dist,
