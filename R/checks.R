@@ -27,19 +27,12 @@
 #' @return NULL; called for side effects
 #' @keywords internal
 .check_sim_args <- function(
-    func_name = c("simulate_chains", "simulate_summary"),
     index_cases,
     statistic,
     offspring_dist,
     stat_max,
     pop,
-    percent_immune,
-    tf_specified,
-    tf = NULL,
-    generation_time = NULL,
-    t0 = NULL) {
-  # Get the function name
-  func_name <- match.arg(func_name)
+    percent_immune) {
   # Input checking
   checkmate::assert_count(
     index_cases,
@@ -60,22 +53,6 @@
     percent_immune,
     lower = 0, upper = 1
   )
-
-  if (func_name == "simulate_chains") {
-    if (!is.null(generation_time)) {
-      .check_generation_time_valid(generation_time)
-    } else if (tf_specified) {
-      stop("If `tf` is specified, `generation_time` must be specified too.")
-    }
-    checkmate::assert_number(
-      tf,
-      lower = 0
-    )
-    checkmate::assert_numeric(
-      t0,
-      lower = 0, finite = TRUE
-    )
-  }
   invisible(NULL)
 }
 
@@ -86,8 +63,6 @@
 #' The function treats these two arguments as related and checks
 #' them in one place to remove repeated checks in several places in the
 #' package.
-#'
-#'
 #' @return NULL; called for side effects
 #' @keywords internal
 .check_statistic_args <- function(statistic,
@@ -104,5 +79,40 @@
         null.ok = FALSE
     ),
     combine = "or"
+  )
+}
+
+#' Check inputs that control time events
+#'
+#' @description
+#' This function checks the time-related inputs, i.e., start time of each chain,
+#' `t0`, the end time of the simulation, `tf`, and the generation time,
+#' generation_time. It also checks that the generation_time argument is
+#' specified if `tf` is specified as these go hand-in-hand.
+#'
+#' @param tf_specified <logical>; Whether the `tf` argument is specified. Only
+#' makes sense in the context where this function is called, i.e., in
+#' [simulate_chains()]. If `tf` is specified, generation_time must be specified.
+#' @inheritParams simulate_chains
+#' @return NULL; called for side effects
+#' @keywords internal
+.check_time_args <- function(tf_specified,
+                             tf,
+                             generation_time,
+                             t0) {
+  # if tf is specified, generation_time must be specified too
+  if (!is.null(generation_time)) {
+    .check_generation_time_valid(generation_time)
+  } else if (tf_specified) {
+      stop("If `tf` is specified, `generation_time` must be specified too.")
+  }
+  checkmate::assert_number(
+    tf,
+    lower = 0
+  )
+  checkmate::assert_numeric(
+    t0,
+    lower = 0,
+    finite = TRUE
   )
 }
