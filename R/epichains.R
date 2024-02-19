@@ -195,9 +195,6 @@ format.epichains_tree <- function(x, ...) {
   # check that x is an <epichains_tree> object
   validate_epichains_tree(x)
 
-  # summarise the information stored in x
-  tree_info <- summary(x)
-
   writeLines(sprintf("`<epichains_tree>` object\n"))
 
   # print head of the object
@@ -213,15 +210,15 @@ format.epichains_tree <- function(x, ...) {
       ),
       sprintf(
         "Trees simulated: %s",
-        tree_info[["index_cases"]]
+        attr(x, "index_cases")
       ),
       sprintf(
         "Number of infectors (known): %s",
-        tree_info[["unique_infectors"]]
+        length(unique(x$infector_id))
       ),
       sprintf(
         "Number of generations: %s",
-        tree_info[["max_generation"]]
+        max(x$generation)
       )
     )
   )
@@ -281,36 +278,96 @@ format.epichains_summary <- function(x, ...) {
 
 #' Summary method for `<epichains_tree>` class
 #'
+#' This calculates the chain statistic (size/length) for the simulated
+#' chains and returns an object with the same information as that returned
+#' by an equivalent `simulate_summary()` call.
+#'
 #' @param object An `<epichains_tree>` object
 #' @param ... ignored
 #'
-#' @return List of summaries
+#' @return An `<epichains_summary>` object containing the chain summary
+#' statistics as follows:
+#' "size": the total number of cases produced by a chain before it
+#' goes extinct.
+#' "length": the total number of infectors produced by a chain before
+#' it goes extinct.
 #' @author James M. Azam
 #' @export
+#' @examples
+#' # Using a Negative binomial offspring distribution and simulating from a
+#' finite population up to chain size 10.
+#' set.seed(32)
+#' sim_chains_nbinom <- simulate_chains(
+#'   index_cases = 10,
+#'   pop = 100,
+#'   percent_immune = 0,
+#'   statistic = "size",
+#'   offspring_dist = rnbinom,
+#'   stat_max = 10,
+#'   generation_time = function(n) rep(3, n),
+#'   mu = 2,
+#'   size = 0.2
+#' )
+#' # Summarise the simulated chains
+#' sim_chains_nbinom_summary <- summary(sim_chains_nbinom)
+#' sim_chains_nbinom_summary
+#'
+#' # Same results can be obtained using `simulate_summary()`
+#' set.seed(32)
+#' sim_summary_nbinom <- simulate_summary(
+#'   index_cases = 10,
+#'   pop = 100,
+#'   percent_immune = 0,
+#'   statistic = "size",
+#'   offspring_dist = rnbinom,
+#'   stat_max = 10,
+#'   mu = 2,
+#'   size = 0.2
+#' )
+#' sim_summary_nbinom
+#'
+#' # Check that the results are the same
+#' setequal(sim_chains_nbinom_summary, sim_summary_nbinom)
 summary.epichains_tree <- function(object, ...) {
   # Check that object has <epichains_tree> class
   validate_epichains_tree(object)
 
-  # Get the summaries
-  index_cases <- attr(object, "index_cases", exact = TRUE)
+  # Get relevant attributes (opportunity for a .as_epichains_summary() method?)
+  statistic <- attr(object, "statistic")
+  index_cases <- attr(object, "index_cases")
+  max_sim_id <- max(object$sim_id)
+  stat_max <- attr(object, "stat_max")
+  offspring_dist <- attr(object, "offspring_dist")
 
-  max_time <- ifelse(("time" %in% names(object)), max(object$time), NA)
+  # Initialize summary statistics
+  chain_summaries <- vector(length = index_cases, mode = "integer")
 
-  n_unique_infectors <- length(
-    unique(object$infector_id[!is.na(object$infector_id)])
-  )
+  # Determine the type of statistic
+  if (statistic == "size") {
+    # Size: how many times each case appears in the dataset
+    for (i in seq_len(index_cases)) {
+      chain_summaries[i] <- sum(object$infectee_id == i)
+    }
+  } else {
+    # Length: each case's last sim_id
+    for (i in seq_len(index_cases)) {
+      max_case_index <- max(which(object$infectee_id == i))
+      chain_summaries[i] <- object$sim_id[max_case_index]
+    }
+  }
+  # Apply truncation
+  chain_summaries[chain_summaries >= stat_max] <- Inf
 
-  max_generation <- max(object$generation)
-
-  # List of summaries
-  out <- list(
+  # Create an <epichains_summary> object
+  chain_summaries <- epichains_summary(
+    chains_summary = chain_summaries,
     index_cases = index_cases,
-    max_time = max_time,
-    unique_infectors = n_unique_infectors,
-    max_generation = max_generation
+    statistic = statistic,
+    offspring_dist = offspring_dist,
+    stat_max = stat_max
   )
 
-  return(out)
+  return(chain_summaries)
 }
 
 #' Summary method for `<epichains_summary>` class

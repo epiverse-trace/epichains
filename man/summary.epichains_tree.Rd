@@ -12,10 +12,53 @@
 \item{...}{ignored}
 }
 \value{
-List of summaries
+An \verb{<epichains_summary>} object containing the chain summary
+statistics as follows:
+"size": the total number of cases produced by a chain before it
+goes extinct.
+"length": the total number of infectors produced by a chain before
+it goes extinct.
 }
 \description{
-Summary method for \verb{<epichains_tree>} class
+This calculates the chain statistic (size/length) for the simulated
+chains and returns an object with the same information as that returned
+by an equivalent \code{simulate_summary()} call.
+}
+\examples{
+# Using a Negative binomial offspring distribution and simulating from a
+finite population up to chain size 10.
+set.seed(32)
+sim_chains_nbinom <- simulate_chains(
+  index_cases = 10,
+  pop = 100,
+  percent_immune = 0,
+  statistic = "size",
+  offspring_dist = rnbinom,
+  stat_max = 10,
+  generation_time = function(n) rep(3, n),
+  mu = 2,
+  size = 0.2
+)
+# Summarise the simulated chains
+sim_chains_nbinom_summary <- summary(sim_chains_nbinom)
+sim_chains_nbinom_summary
+
+# Same results can be obtained using `simulate_summary()`
+set.seed(32)
+sim_summary_nbinom <- simulate_summary(
+  index_cases = 10,
+  pop = 100,
+  percent_immune = 0,
+  statistic = "size",
+  offspring_dist = rnbinom,
+  stat_max = 10,
+  mu = 2,
+  size = 0.2
+)
+sim_summary_nbinom
+
+# Check that the results are the same
+setequal(sim_chains_nbinom_summary, sim_summary_nbinom)
 }
 \author{
 James M. Azam
