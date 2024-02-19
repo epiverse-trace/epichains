@@ -61,7 +61,25 @@
     <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_offspring_func_valid.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_sim_args.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_statistic_args.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_time_args.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/dot-get_statistic_func.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-get_susceptible_offspring.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-init_susc_pop.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-sample_possible_offspring.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/dot-update_chain_stat.html</loc>
