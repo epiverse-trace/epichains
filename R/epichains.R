@@ -335,9 +335,6 @@ summary.epichains_tree <- function(object, ...) {
   # Get relevant attributes for computing summaries
   statistic <- attr(object, "statistic")
   index_cases <- attr(object, "index_cases")
-  max_sim_id <- max(object$sim_id)
-  stat_max <- attr(object, "stat_max")
-  offspring_dist <- attr(object, "offspring_dist")
 
   # Initialize summary statistics
   chain_summaries <- vector(length = index_cases, mode = "integer")
@@ -355,6 +352,12 @@ summary.epichains_tree <- function(object, ...) {
       chain_summaries[i] <- object$sim_id[max_case_index]
     }
   }
+
+  # Create an <epichains_summary> object
+  # Get other required attributes from passed object
+  stat_max <- attr(object, "stat_max")
+  offspring_dist <- attr(object, "offspring_dist")
+
   # Apply truncation
   chain_summaries[chain_summaries >= stat_max] <- Inf
 
@@ -366,7 +369,6 @@ summary.epichains_tree <- function(object, ...) {
     offspring_dist = offspring_dist,
     stat_max = stat_max
   )
-
   return(chain_summaries)
 }
 
