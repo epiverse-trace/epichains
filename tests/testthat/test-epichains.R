@@ -3,6 +3,48 @@ generation_time_fn <- function(n) {
   rlnorm(n, meanlog = 0.58, sdlog = 1.58)
 }
 
+# Default simulate chains functions for testing with varying inputs
+shared_args <- list(
+  index_cases = 10,
+  offspring_dist = rpois,
+  statistic = "size",
+  lambda = 0.9
+)
+
+simulate_chains_default <- function(...){
+  default_args <- c(
+    shared_args,
+    generation_time = generation_time_fn
+  )
+  # Get new args
+  new_args <- list(...)
+
+  modified_args <- modifyList(default_args, new_args)
+
+  out <- do.call(
+    simulate_chains,
+    modified_args
+  )
+  return(out)
+}
+
+# Default simulate chains functions for testing with varying inputs
+simulate_summary_default <- function(...) {
+  # Get new args
+  new_args <- list(...)
+
+  modified_args <- modifyList(
+    shared_args,
+    new_args
+  )
+
+  out <- do.call(
+    simulate_summary,
+    modified_args
+  )
+  return(out)
+}
+
 test_that("Simulators return epichains objects", {
   set.seed(12)
   #' Simulate an outbreak from a finite population with pois offspring
@@ -125,112 +167,40 @@ test_that("print.epichains_tree works for simulation functions", {
 })
 
 test_that("summary.epichains_tree works as expected", {
-  set.seed(12)
-  #' Simulate an outbreak from a susceptible population (pois)
-  susc_outbreak_raw <- simulate_chains(
-    pop = 100,
-    index_cases = 10,
-    offspring_dist = rpois,
-    statistic = "size",
-    lambda = 0.9,
-    generation_time = generation_time_fn
+  set.seed(32)
+  #' Simulate an outbreak from a susceptible population (pois), tracking
+  #' the chain sizes
+  chain_size_tree_sim <- simulate_chains_default(generation_time = NULL)
+  # get the summary
+  chain_size_tree_sim_summary <- summary(chain_size_tree_sim)
+  #' Simulate the size statistic for the same outbreak
+  chain_size_summary_sim <- simulate_summary_default()
+  #' Simulate an outbreak from a susceptible population (pois), tracking
+  #' the chain lengths
+  chain_length_tree_sim <- simulate_chains_default(
+    generation_time = NULL,
+    statistic = "length"
   )
-  #' Simulate an outbreak from a susceptible population (nbinom)
-  susc_outbreak_raw2 <- simulate_chains(
-    pop = 100,
-    index_cases = 10,
-    offspring_dist = rnbinom,
-    statistic = "size",
-    mu = 1,
-    size = 1.1,
-    generation_time = generation_time_fn
-  )
-  #' Simulate a tree of infections without serials
-  tree_sim_raw <- simulate_chains(
-    index_cases = 2,
-    offspring_dist = rpois,
-    statistic = "length",
-    lambda = 0.9
-  )
-  #' Simulate a tree of infections with serials
-  tree_sim_raw2 <- simulate_chains(
-    index_cases = 10,
-    statistic = "size",
-    offspring_dist = rpois,
-    stat_max = 10,
-    generation_time = generation_time_fn,
-    lambda = 2
-  )
-  #' Simulate chain statistics
-  chain_summary_raw <- simulate_summary(
-    index_cases = 2,
-    offspring_dist = rpois,
-    statistic = "length",
-    lambda = 0.9
-  )
-  #' Simulate case where all the chain statistics are Inf
-  set.seed(11223)
-  epichains_summary_all_infs <- simulate_summary(
-    index_cases = 10,
-    statistic = "size",
-    offspring_dist = rpois,
-    stat_max = 10,
-    lambda = 3
-  )
-  #' Expectations
-  expect_named(
-    summary(tree_sim_raw),
-    c(
-      "index_cases",
-      "max_time",
-      "unique_infectors",
-      "max_generation"
-    )
-  )
-  expect_named(
-    summary(tree_sim_raw2),
-    c(
-      "index_cases",
-      "max_time",
-      "unique_infectors",
-      "max_generation"
-    )
-  )
-  expect_named(
-    summary(susc_outbreak_raw),
-    c(
-      "index_cases",
-      "max_time",
-      "unique_infectors",
-      "max_generation"
-    )
-  )
-  expect_named(
-    summary(susc_outbreak_raw2),
-    c(
-      "index_cases",
-      "max_time",
-      "unique_infectors",
-      "max_generation"
-    )
-  )
-  expect_named(
-    summary(chain_summary_raw),
-    c(
-      "index_cases",
-      "max_stat",
-      "min_stat"
+  # get the summary
+  chain_length_tree_sim_summary <- summary(chain_length_tree_sim)
+  #' Simulate the length statistic for the same outbreak
+  chain_length_summary_sim <- simulate_summary_default(statistic = "length")
+  #' Expect the results from the tree and the summary to be the same
+  expect_true(
+    identical(
+      chain_size_tree_sim_summary,
+      chain_size_summary_sim
     )
   )
   expect_true(
-    is.infinite(
-      summary(epichains_summary_all_infs)$min_stat
+    identical(
+      chain_length_tree_sim_summary,
+      chain_length_summary_sim
     )
   )
-  expect_true(
-    is.infinite(
-      summary(epichains_summary_all_infs)$max_stat
-    )
+  expect_s3_class(
+    chain_size_tree_sim_summary,
+    "epichains_summary"
   )
 })
 
