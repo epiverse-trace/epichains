@@ -25,8 +25,8 @@ chains and returns an object with the same information as that returned
 by an equivalent \code{simulate_summary()} call.
 }
 \examples{
-# Using a Negative binomial offspring distribution and simulating from a
-finite population up to chain size 10.
+# Using a negative binomial offspring distribution and simulating from a
+# finite population up to chain size 10.
 set.seed(32)
 sim_chains_nbinom <- simulate_chains(
   index_cases = 10,

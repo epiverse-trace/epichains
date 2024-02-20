@@ -294,8 +294,8 @@ format.epichains_summary <- function(x, ...) {
 #' @author James M. Azam
 #' @export
 #' @examples
-#' # Using a Negative binomial offspring distribution and simulating from a
-#' finite population up to chain size 10.
+#' # Using a negative binomial offspring distribution and simulating from a
+#' # finite population up to chain size 10.
 #' set.seed(32)
 #' sim_chains_nbinom <- simulate_chains(
 #'   index_cases = 10,
@@ -332,7 +332,7 @@ summary.epichains_tree <- function(object, ...) {
   # Check that object has <epichains_tree> class
   validate_epichains_tree(object)
 
-  # Get relevant attributes (opportunity for a .as_epichains_summary() method?)
+  # Get relevant attributes for computing summaries
   statistic <- attr(object, "statistic")
   index_cases <- attr(object, "index_cases")
   max_sim_id <- max(object$sim_id)
@@ -342,7 +342,7 @@ summary.epichains_tree <- function(object, ...) {
   # Initialize summary statistics
   chain_summaries <- vector(length = index_cases, mode = "integer")
 
-  # Determine the type of statistic
+  # Calculate the chain summary statistics
   if (statistic == "size") {
     # Size: how many times each case appears in the dataset
     for (i in seq_len(index_cases)) {
@@ -358,7 +358,7 @@ summary.epichains_tree <- function(object, ...) {
   # Apply truncation
   chain_summaries[chain_summaries >= stat_max] <- Inf
 
-  # Create an <epichains_summary> object
+  # Return an <epichains_summary> object
   chain_summaries <- epichains_summary(
     chains_summary = chain_summaries,
     index_cases = index_cases,
