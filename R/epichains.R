@@ -348,8 +348,8 @@ summary.epichains_tree <- function(object, ...) {
   } else {
     # Length: each case's last sim_id
     for (i in seq_len(index_cases)) {
-      max_case_index <- max(which(object$infectee_id == i))
-      chain_summaries[i] <- object$sim_id[max_case_index]
+      index_case_rows <- which(object$infector_id == i)
+      chain_summaries[i] <- length(unique((object$sim_id[index_case_rows])))
     }
   }
 
