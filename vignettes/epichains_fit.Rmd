@@ -1,0 +1,262 @@
+---
+title: "Estimating parameters with Bayesian methods"
+author: "Adam Kucharski"
+output:
+  bookdown::html_vignette2:
+    fig_caption: yes
+    code_folding: show
+pkgdown:
+  as_is: true
+bibliography: references.json
+link-citations: true
+vignette: >
+  %\VignetteIndexEntry{Estimating parameters}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+# Introduction
+
+This document compares Bayesian estimation methods across several R packages using a two-parameter likelihood function to estimate $R$ and $k$ from data on MERS-CoV- outbreak clusters.
+
+We will use [Markov chain Monte Carlo (MCMC)](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo) to estimate the parameters. We run 1000 iterations for each MCMC algorithm and compare the results.
+
+## Load packages to compare
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+# Load epichains
+if (!require("pak")) install.packages("pak")
+pak::pak("epiverse-trace/epichains")
+library(epichains)
+
+# Load MCMC packages from CRAN
+library(MCMCpack)
+library(mcmcensemble)
+library(greta)
+library(BayesianTools)
+
+# Load MCMC packages from GitHub - to explore later
+#library(LazyMCMC) 
+#library(DrJacoby) 
+
+# Load additional helper packages from CRAN
+library(coda) # For effective sample size calculations and summary statistics
+library(knitr) # For kable()
+```
+
+
+## Data
+MERS cluster sizes from [Cauchemez et al, Lancet Inf Dis, 2013](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(13)70304-9/fulltext).
+```{r}
+# Define data
+mers_clusters = c(rep(1,27),c(2,2),c(3,4),c(4,3),c(5,2),7,13,26)
+
+# Show summary table of frequencies
+freq_df <- as.data.frame(table(mers_clusters)); names(freq_df) <- c("Cluster size", "Frequency")
+
+# Create a table for the HTML document
+knitr::kable(freq_df, caption = "Frequencies of MERS Clusters")
+```
+
+## Likelihood
+
+```{r}
+# Define likelihood function
+lik_function <- function(param) {
+  if (any(param <= 0)) return(-Inf) # Ensure positive parameters
+  
+  # Extract values of R and k
+  r_val <- as.numeric(param[1])
+  k_val <- as.numeric(param[2])
+
+  # Define likelihood
+  log_likelihood <- likelihood(
+    chains = mers_clusters,
+    statistic = "size",
+    offspring_dist = rnbinom,
+    size = k_val,
+    mu = r_val
+  )
+  
+  # Assume non-informative priors for R and k
+  log_prior <- 0 # But could add informative priors here if required
+
+  # Return log-posterior (log-likelihood + log-prior)
+  return(log_likelihood + log_prior)
+}
+```
+
+## Define Common Parameters
+
+```{r common-params}
+# Define number of MCMC iterations
+n_iter <- 1000
+
+# Define 'burn in' period for fitting, to be discarded
+n_burn <- 200
+
+# Initial guess for c(R,k):
+init_param <- c(R=0.5, k=0.5)
+```
+
+## MCMCpack
+
+[{MCMCpack}](https://cran.r-project.org/web/packages/MCMCpack/index.html) is an R package for Bayesian statistical inference through Markov Chain Monte Carlo (MCMC) methods, offering a broad array of algorithms and models for efficient and straightforward Bayesian estimation.
+
+**Benefits**: Provides multiple functions for Bayesian inference using Markov Chain Monte Carlo (MCMC), with straightforward implementation for a wide range of models.
+
+**Limitations**: The focus on more traditional MCMC methods may limit flexibility in implementing more complex or custom models compared to some newer, more flexible frameworks (e.g. described in following sections).
+
+```{r MCMCpack-run, message=FALSE, warning=FALSE, fig.width=7, fig.height=6}
+# Benchmark time to run
+start_time <- Sys.time()
+
+# Run MCMC to estimate parameters
+result_mcmcpack <- MCMCmetrop1R(lik_function, 
+                                theta.init = init_param, 
+                                burnin = n_burn, 
+                                mcmc = n_iter, 
+                                thin = 1)
+
+# Store time and effective sample size
+time_mcmcpack <- Sys.time() - start_time 
+ess_mcmcpack <- effectiveSize(result_mcmcpack)
+
+# Plot posterior estimates
+plot(result_mcmcpack)
+```
+
+## BayesianTools
+
+[{BayesianTools}](https://cran.r-project.org/web/packages/BayesianTools/vignettes/BayesianTools.html) is an R package that provides a framework for Bayesian inference, offering a suite of tools for model fitting, comparison, and visualization across a wide range of sampling algorithms.
+
+**Benefits**: Provides an integrated environment for Bayesian model calibration, comparison, and validation, with support for various MCMC samplers and the ability to integrate with other packages.
+
+**Limitations**: While it offers broad functionality, it may not be as optimized for specific model types as packages dedicated to particular methodologies or statistical models.
+
+```{r BayesianTools-run, message=FALSE, warning=FALSE, fig.width=7, fig.height=6}
+# Define a BayesianSetup object with your likelihood and priors
+bayesian_setup = createBayesianSetup(likelihood = lik_function, 
+                                    lower = rep(0,2), 
+                                    upper = rep(3,2))
+
+start_time <- Sys.time()
+result_bayesiantools <- runMCMC(bayesian_setup, 
+                                sampler = "Metropolis", 
+                                settings = list(iterations = n_iter))
+
+# Store time and effective sample size
+time_bayesiantools <- Sys.time() - start_time 
+ess_bayesiantools <- effectiveSize(getSample(result_bayesiantools))
+
+# Plot posterior estimates
+plot(result_bayesiantools)
+```
+
+
+## mcmcensemble
+
+[{mcmcensemble}](https://hugogruson.fr/mcmcensemble/) is an R package designed to perform Bayesian inference using ensemble samplers with affine invariance, which are particularly effective for high-dimensional parameter spaces. It's part of the broader landscape of MCMC tools in R, offering unique advantages and facing specific limitations.
+
+**Benefits**: MCMCensemble uses ensemble sampling methods, which can improve the efficiency and convergence of MCMC algorithms in complex, high-dimensional parameter spaces. This is particularly useful for problems where traditional MCMC methods struggle. The affine-invariant ensemble sampling feature allows the algorithm to be less sensitive to the scaling and correlation of parameters, reducing the need for extensive tuning of the MCMC sampler.
+
+**Limitations**: Users unfamiliar with ensemble methods or affine invariance principles may face a steeper learning curve compared to more straightforward MCMC packages.
+
+```{r MCMCEnsemble-run, message=FALSE, warning=FALSE, eval=FALSE}
+# Number of ensembles
+n_walkers <- 1
+
+# Define random initial values for ensemble estimation
+init_ensemble <- data.frame(
+                    "R" = rnorm(n_walkers,init_param[["R"]], 0.1),
+                    "k" = rnorm(n_walkers,init_param[["k"]], 0.1)
+                  )
+
+start_time <- Sys.time()
+
+# Run MCMC to estimate parameters
+result_mcmcensemble <- MCMCEnsemble(lik_function, 
+                                    inits = init_ensemble,
+                                    max.iter = n_iter, 
+                                    n.walkers = n_walkers, # ensemble size
+                                    method = "stretch") # proposal method
+
+# Store time and effective sample size
+time_mcmcensemble <- time_bayesiantools <- Sys.time() - start_time 
+ess_mcmcensemble <- effectiveSize(result_mcmcensemble)
+
+# Plot posterior estimates
+plot(result_mcmcpack)
+```
+
+Note: this returns an error `Error in sample.int(length(x), size, replace, prob) : invalid first argument`. Perhaps the log likelihood needs to be able to take vector arguments?
+
+## Greta
+
+[{greta}](https://greta-stats.org/) is an R package that allows for flexible and scalable Bayesian model fitting, which uses TensorFlow for high-performance computation and supports complex probabilistic models through simple user syntax.
+
+**Benefits**: Has TensorFlow as a backend, which enables efficient computation for large datasets and complex models, including deep learning approaches in Bayesian frameworks.
+
+**Limitations**: Requires more set-up and installation (e.g. python environment), and can require more domain knowledge to select appropriate machine learning models.
+
+```{r greta-run, message=FALSE, warning=FALSE, eval=FALSE}
+# Set up priors
+param1 <- greta::normal(init_param[["R"]], 0.1)  # Prior for R
+param2 <- greta::lognormal(0, 1)  # Prior for k
+
+
+
+# Use the custom likelihood function in the model
+likelihood <- greta::distribution(lik_function(c(param1, param2)))
+model <- greta::model(likelihood)
+
+# Run MCMC
+start_time <- Sys.time()
+result_greta <- greta::mcmc(model, n_samples = n_iter)
+
+# Store time and effective sample size
+time_greta <- Sys.time() - start_time 
+ess_greta <- effectiveSize(result_greta)
+
+# Plot posterior estimates
+plot(result_mcmcpack)
+```
+
+Note: currently returns a python dependency error. Probably a version update that is mismatched somewhere.
+
+# Results Comparison
+
+```{r results-comparison}
+package_names <- c("MCMCensemble", "BayesianTools")
+
+# Define helper function to calculate median and 95% credible interval from data.frame of MCMC samples
+get_param <- function(x){
+  apply(x,2,function(y){val = signif(quantile(y,c(0.5,0.025,0.0975)),3);
+                        val_text <- paste0(val[1]," (95%: CrI: ",val[2],"-",val[3],")")})
+}
+
+# Get posterior median and 95% CrI
+posterior_estimates <- rbind(get_param(result_mcmcpack),
+                             get_param(getSample(result_bayesiantools)))
+
+# Get effective sample size and times
+ess_vals <- rbind(ess_mcmcpack,ess_bayesiantools)
+time_vals <- c(time_mcmcpack,time_bayesiantools)
+
+# Compile table
+results_table <- data.frame(
+  Package = package_names,
+  Posterior_R = posterior_estimates[,1],
+  Posterior_k = posterior_estimates[,2],
+  ESS_R = ess_vals[,1],
+  ESS_k = ess_vals[,2],
+  Run_Time = time_vals
+)
+
+# Output the table with kable
+knitr::kable(results_table, caption = "MCMC Comparison Table", align = 'c')
+```
+
+
