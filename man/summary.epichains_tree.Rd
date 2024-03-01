@@ -35,7 +35,6 @@ sim_chains_nbinom <- simulate_chains(
   statistic = "size",
   offspring_dist = rnbinom,
   stat_max = 10,
-  generation_time = function(n) rep(3, n),
   mu = 2,
   size = 0.2
 )

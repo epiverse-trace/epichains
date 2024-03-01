@@ -304,7 +304,6 @@ format.epichains_summary <- function(x, ...) {
 #'   statistic = "size",
 #'   offspring_dist = rnbinom,
 #'   stat_max = 10,
-#'   generation_time = function(n) rep(3, n),
 #'   mu = 2,
 #'   size = 0.2
 #' )
@@ -338,22 +337,19 @@ summary.epichains_tree <- function(object, ...) {
 
   # Initialize summary statistics
   chain_summaries <- vector(length = index_cases, mode = "integer")
-
-  # Calculate the chain summary statistics
+  # Calculate the summary statistic based on the specified statistic type
   if (statistic == "size") {
-    # Size: how many times each case appears in the dataset
-    for (i in seq_len(index_cases)) {
-      chain_summaries[i] <- sum(object$infectee_id == i)
-    }
+    # size is the number of infectees produced by a chain before it goes
+    # extinct.
+    chain_summaries <- as.numeric(table(object$infectee_id))
   } else {
-    # Length: each case's last sim_id
+    # length is the number of infectors generations a chain produces before
+    # it goes extinct.
     for (i in seq_len(index_cases)) {
-      index_case_rows <- which(object$infector_id == i)
-      chain_summaries[i] <- length(unique((object$sim_id[index_case_rows])))
+      chain_generations <- object[object$infectee_id == i, "generation"]
+      chain_summaries[i] <- max(chain_generations)
     }
   }
-
-  # Create an <epichains_summary> object
   # Get other required attributes from passed object
   stat_max <- attr(object, "stat_max")
   offspring_dist <- attr(object, "offspring_dist")
