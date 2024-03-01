@@ -17,7 +17,7 @@
       
       
       Trees simulated: 10
-      Number of infectors (known): 7
+      Number of infectors (known): 8
       Number of generations: 6
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
@@ -31,17 +31,17 @@
       < tree head (from first known infector_id) >
       
          infectee_id sim_id infector_id generation       time susc_pop
-      11           3      2           1          2 0.86230340       86
-      12           4      2           1          2 0.04755749       86
-      13           7      2           1          2 0.71374277       86
-      14          10      2           1          2 5.76461704       86
-      15           3      3           2          3 1.29009990       83
-      16           7      3           2          3 1.13146371       83
+      11           1      2           1          2  6.5291176       82
+      12           3      2           1          2  4.5366156       82
+      13           4      2           1          2  0.4951176       82
+      14           6      2           1          2  8.9518883       82
+      15           7      2           1          2 20.7565268       82
+      16           8      2           1          2  8.4553011       82
       
       
       Trees simulated: 10
-      Number of infectors (known): 5
-      Number of generations: 6
+      Number of infectors (known): 4
+      Number of generations: 4
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
 ---
@@ -53,13 +53,18 @@
       
       < tree head (from first known infector_id) >
       
-      [1] infectee_id sim_id      infector_id generation 
-      <0 rows> (or 0-length row.names)
+        infectee_id sim_id infector_id generation
+      3           1      2           1          2
+      4           2      2           1          2
+      5           1      3           2          3
+      6           2      3           2          3
+      7           1      4           2          3
+      8           2      4           3          4
       
       
       Trees simulated: 2
-      Number of infectors (known): 0
-      Number of generations: 1
+      Number of infectors (known): 60
+      Number of generations: 15
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
 ---
@@ -72,17 +77,17 @@
       < tree head (from first known infector_id) >
       
          infectee_id sim_id infector_id generation       time
-      11           1      2           1          2 48.7001430
-      12           2      2           1          2  3.3254875
-      13           3      2           1          2 14.1529291
-      14           4      2           1          2  0.6986002
-      15           5      2           1          2  7.1331106
-      16           6      2           1          2  0.7425929
+      11           1      2           1          2 1.16906106
+      12           2      2           1          2 1.93214311
+      13           3      2           1          2 7.87852902
+      14           4      2           1          2 5.75296347
+      15           5      2           1          2 7.19513227
+      16           6      2           1          2 0.06998357
       
       
       Trees simulated: 10
       Number of infectors (known): 9
-      Number of generations: 5
+      Number of generations: 7
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
 ---
@@ -92,12 +97,12 @@
     Output
       `epichains_summary` object 
       
-      [1] 1 1
+      [1] 15  5
       
        Simulated tree lengths: 
       
-      Max: 1
-      Min: 1
+      Max: 15
+      Min: 5
 
 # head and tail print output as expected
 
