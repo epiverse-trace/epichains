@@ -84,9 +84,13 @@ on the value of `log`) of observing a vector of transmission chain sizes or
 lengths.
 
 The objects returned by the `simulate_*()` functions can be summarised with
-`summary()` and aggregated into a `<data.frame>` of cases per time or generation
-with `aggregate()`. Aggregated results can also be passed on to `plot()` with
-its own arguments to customize the resulting plots. 
+`summary()`. Running `summary()` on the output of `simulate_chains()` will
+return the same output as `simulate_summary()` using the same inputs.
+
+Objects returned from `simulate_chains()` can be aggregated into a
+`<data.frame>` of cases per time or generation
+with the function `aggregate()`. The aggregated results can also be passed
+on to `plot()` with its own arguments to customize the resulting plots.
 
 Each of the listed functionalities is demonstrated in detail
 in the ["Getting Started" vignette](https://epiverse-trace.github.io/epichains/articles/epichains.html).
