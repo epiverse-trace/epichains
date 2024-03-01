@@ -126,6 +126,7 @@ test_that("print.epichains_tree works for simulation functions", {
     generation_time = generation_time_fn
   )
   #' Simulate an outbreak from a susceptible population (nbinom)
+  set.seed(32)
   susc_outbreak_raw2 <- simulate_chains(
     pop = 100,
     index_cases = 10,
@@ -136,6 +137,7 @@ test_that("print.epichains_tree works for simulation functions", {
     generation_time = generation_time_fn
   )
   #' Simulate a tree of infections without serials
+  set.seed(32)
   tree_sim_raw <- simulate_chains(
     index_cases = 2,
     offspring_dist = rpois,
@@ -143,6 +145,7 @@ test_that("print.epichains_tree works for simulation functions", {
     lambda = 0.9
   )
   #' Simulate a tree of infections with generation times
+  set.seed(32)
   tree_sim_raw2 <- simulate_chains(
     index_cases = 10,
     statistic = "size",
@@ -152,6 +155,7 @@ test_that("print.epichains_tree works for simulation functions", {
     lambda = 2
   )
   #' Simulate chain statistics
+  set.seed(32)
   chain_summary_raw <- simulate_summary(
     index_cases = 2,
     offspring_dist = rpois,
@@ -174,9 +178,11 @@ test_that("summary.epichains_tree works as expected", {
   # get the summary
   chain_size_tree_sim_summary <- summary(chain_size_tree_sim)
   #' Simulate the size statistic for the same outbreak
+  set.seed(32)
   chain_size_summary_sim <- simulate_summary_default()
   #' Simulate an outbreak from a susceptible population (pois), tracking
   #' the chain lengths
+  set.seed(32)
   chain_length_tree_sim <- simulate_chains_default(
     generation_time = NULL,
     statistic = "length"
@@ -184,6 +190,7 @@ test_that("summary.epichains_tree works as expected", {
   # get the summary
   chain_length_tree_sim_summary <- summary(chain_length_tree_sim)
   #' Simulate the length statistic for the same outbreak
+  set.seed(32)
   chain_length_summary_sim <- simulate_summary_default(statistic = "length")
   #' Expect the results from the tree and the summary to be the same
   expect_true(
