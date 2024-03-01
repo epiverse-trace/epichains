@@ -279,7 +279,8 @@ simulate_summary_eg
 
 ### Summarising
 
-You can run `summary()` on `<epichains_tree>` objects to get useful summaries.
+You can run `summary()` on the object returned by `simulate_chains()` to
+obtain the chain summaries per index case.
 ```{r include=TRUE,echo=TRUE}
 set.seed(32)
 # Define generation time
@@ -300,7 +301,7 @@ sim_chains <- simulate_chains(
 summary(sim_chains)
 
 # Example with simulate_summary()
-set.seed(123)
+set.seed(32)
 
 simulate_summary_eg <- simulate_summary(
   index_cases = 10,
@@ -312,6 +313,23 @@ simulate_summary_eg <- simulate_summary(
 
 # Get summaries
 summary(simulate_summary_eg)
+```
+
+This summary is the same as the output of `simulate_summary()` if the same
+inputs are used. `simulate_summary()` is a more performant version of
+`simulate_chains()`, hence, you can use it instead, if you are only interested
+in the summary of the simulated chains without details about the infection
+tree.
+
+We can confirm if the two outputs are the same using `base::setequal()`
+
+```{r include=TRUE,echo=TRUE}
+setequal(
+  # summary of output from simulate_chains()
+  summary(sim_chains),
+  # results from simulate_summary()
+  simulate_summary_eg
+)
 ```
 
 ### Aggregating
