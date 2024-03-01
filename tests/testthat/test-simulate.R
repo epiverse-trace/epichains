@@ -295,20 +295,26 @@ test_that("simulate_chains is numerically correct", {
   sim_chains_summary <- summary(sim_chains_small_susc)
   #' Expectations
   expect_identical(
-    sim_chains_summary$index_cases,
-    10.00
+    max(sim_chains_summary),
+    5
   )
   expect_identical(
-    sim_chains_summary$unique_infectors,
-    5L
+    as.vector(sim_chains_summary),
+    c(3, 5, 2, 3, 2, 2, 2, 1, 2, 2)
   )
   expect_identical(
-    sim_chains_summary$max_generation,
-    5L
+    min(sim_chains_summary),
+    1
   )
+  # each index case has a single summary value so expect the length of the
+  # summary vector to be equal to the number of index cases.
   expect_identical(
-    max(sim_chains_small_susc$sim_id),
-    7
+    length(sim_chains_summary),
+    as.integer(attr(sim_chains_summary, "index_cases"))
+  )
+  expect_s3_class(
+    sim_chains_summary,
+    "epichains_summary"
   )
 })
 
