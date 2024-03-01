@@ -5,7 +5,7 @@
 <!-- `packagename` is extracted from the DESCRIPTION file -->
 <!-- `gh_repo` is extracted via a special environment variable in GitHub Actions -->
 
-# *{{ packagename }}*: Methods for simulating and analysing the size and length of transmission chains from branching process models <img src="man/figures/logo.svg" align="right" height="130" />
+# *epichains*: Methods for simulating and analysing the size and length of transmission chains from branching process models <img src="man/figures/logo.svg" align="right" height="130" />
 
 <!-- badges: start -->
 
@@ -17,14 +17,14 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-*{{ packagename }}* is an R package to simulate, analyse, and visualize
-the size and length of branching processes with a given offspring
-distribution. These models are often used in infectious disease
-epidemiology, where the chains represent chains of transmission, and the
-offspring distribution represents the distribution of secondary
-infections caused by an infected individual.
+*epichains* is an R package to simulate, analyse, and visualize the size
+and length of branching processes with a given offspring distribution.
+These models are often used in infectious disease epidemiology, where
+the chains represent chains of transmission, and the offspring
+distribution represents the distribution of secondary infections caused
+by an infected individual.
 
-*{{ packagename }}* re-implements
+*epichains* re-implements
 [bpmodels](https://github.com/epiverse-trace/bpmodels/) by providing
 bespoke functions and data structures that allow easy manipulation and
 interoperability with other Epiverse-TRACE packages, for example,
@@ -33,21 +33,21 @@ interoperability with other Epiverse-TRACE packages, for example,
 potentially some existing packages for handling transmission chains, for
 example, [epicontacts](https://github.com/reconhub/epicontacts).
 
-*{{ packagename }}* is developed at the [Centre for the Mathematical
-Modelling of Infectious
+*epichains* is developed at the [Centre for the Mathematical Modelling
+of Infectious
 Diseases](https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases)
 at the London School of Hygiene and Tropical Medicine as part of the
 [Epiverse Initiative](https://data.org/initiatives/epiverse/).
 
 ## Installation
 
-The latest development version of the *{{ packagename }}* package can be
+The latest development version of the *epichains* package can be
 installed via
 
 ``` r
 # check whether {pak} is installed
 if (!require("pak")) install.packages("pak")
-pak::pak("{{ gh_repo }}")
+pak::pak("epiverse-trace/epichains")
 ```
 
 To load the package, use
@@ -58,7 +58,7 @@ library("epichains")
 
 ## Quick start
 
-*{{ packagename }}* provides two main functions:
+*epichains* provides two main functions:
 
 - `simulate_chains()`: simulates transmission chains using a simple
   branching process model that accepts an index number of cases that
@@ -102,7 +102,7 @@ We have also collated a bibliography of branching process applications
 in epidemiology. These can be found in the [literature
 vignette](https://epiverse-trace.github.io/epichains/articles/branching_process_literature.html).
 
-Specific use cases of *{{ packagename }}* can be found in the [online
+Specific use cases of *epichains* can be found in the [online
 documentation as package
 vignettes](https://epiverse-trace.github.io/epichains/), under
 “Articles”.
@@ -120,8 +120,8 @@ guide](https://github.com/epiverse-trace/epichains/blob/main/.github/CONTRIBUTIN
 
 ## Code of conduct
 
-Please note that the *{{ packagename }}* project is released with a
-[Contributor Code of
+Please note that the *epichains* project is released with a [Contributor
+Code of
 Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
@@ -131,7 +131,7 @@ By contributing to this project, you agree to abide by its terms.
 citation("epichains")
 #> To cite package 'epichains' in publications use:
 #> 
-#>   Azam J, Finger F, Funk S (????). _epichains: Simulating and Analysing
+#>   Azam J, Finger F, Funk S (2024). _epichains: Simulating and Analysing
 #>   Transmission Chain Statistics Using Branching Process Models_. R
 #>   package version 0.0.0.9999,
 #>   https://epiverse-trace.github.io/epichains/,
@@ -140,9 +140,10 @@ citation("epichains")
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {epichains: Simulating and Analysing Transmission Chain Statistics Using Branching Process
-#> Models},
+#>     title = {epichains: Simulating and Analysing Transmission Chain Statistics Using
+#> Branching Process Models},
 #>     author = {James M. Azam and Flavio Finger and Sebastian Funk},
+#>     year = {2024},
 #>     note = {R package version 0.0.0.9999, 
 #> https://epiverse-trace.github.io/epichains/},
 #>     url = {https://github.com/epiverse-trace/epichains},
