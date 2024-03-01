@@ -31,7 +31,7 @@
       
       
       Trees simulated: 10
-      Number of infectors (known): 5
+      Number of infectors (known): 6
       Number of generations: 5
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
@@ -54,7 +54,7 @@
       
       
       Trees simulated: 10
-      Number of infectors (known): 97
+      Number of infectors (known): 98
       Number of generations: 12
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
@@ -72,7 +72,7 @@
       
       
       Trees simulated: 10
-      Number of infectors (known): 1
+      Number of infectors (known): 2
       Number of generations: 2
       Use `as.data.frame(<object_name>)` to view the full output in the console.
 
