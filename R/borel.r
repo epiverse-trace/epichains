@@ -50,6 +50,7 @@ rborel <- function(n, mu, infinite = Inf) {
     stat_max = infinite,
     lambda = mu
   )
+  out <- as.numeric(out)
   return(out)
 }
 
