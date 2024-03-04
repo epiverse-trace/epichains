@@ -21,7 +21,7 @@ applications)}
 stopped if this number is reached}
 }
 \value{
-Vector of random numbers
+Numeric vector of random numbers
 }
 \description{
 Generate random numbers from a Gamma-Borel mixture distribution
