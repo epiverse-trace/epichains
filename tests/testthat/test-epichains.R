@@ -209,6 +209,18 @@ test_that("summary.epichains_tree works as expected", {
     chain_size_tree_sim_summary,
     "epichains_summary"
   )
+  expect_true(
+    setequal(
+      chain_size_tree_sim_summary,
+      chain_size_summary_sim
+    )
+  )
+  expect_true(
+    setequal(
+      chain_length_tree_sim_summary,
+      chain_length_summary_sim
+    )
+  )
 })
 
 test_that("validate_epichains_tree works", {
