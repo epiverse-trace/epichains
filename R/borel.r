@@ -63,7 +63,7 @@ rborel <- function(n, mu, infinite = Inf) {
 ##' @param prob probability of success (in the parameterisation with
 ##'   \code{prob}, see also \code{\link[stats]{NegBinomial}})
 ##' @param mu mean parameter
-##' @return Vector of random numbers
+##' @return Numeric vector of random numbers
 ##' @author Sebastian Funk
 ##' @export
 rgborel <- function(n, size, prob, mu, infinite = Inf) {
