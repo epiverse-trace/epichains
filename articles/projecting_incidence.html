@@ -110,9 +110,9 @@ provided we can characterize the distribution of times between
 successive cases (serial interval), and the distribution of secondary cases
 produced by a single individual (offspring distribution). Such simulations can
 be achieved in <em>epichains</em> with the <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> function and
-<span class="citation">Pearson et al. (<a href="#ref-pearson2020" role="doc-biblioref">2020</a>)</span>, and <span class="citation">Abbott et al. (<a href="#ref-abbott2020" role="doc-biblioref">2020</a>)</span> illustrate its application to COVID-19.</p>
+<span class="citation">Pearson et al. (<a href="#ref-pearson2020">2020</a>)</span>, and <span class="citation">Abbott et al. (<a href="#ref-abbott2020">2020</a>)</span> illustrate its application to COVID-19.</p>
 <p>The purpose of this vignette is to use early data on COVID-19 in South Africa
-<span class="citation">(<a href="#ref-marivate2020" role="doc-biblioref">Marivate and Combrink 2020</a>)</span> to illustrate how <em>epichains</em> can be used to project an
+<span class="citation">(<a href="#ref-marivate2020">Marivate and Combrink 2020</a>)</span> to illustrate how <em>epichains</em> can be used to project an
 outbreak.</p>
 <p>Let’s load the required packages</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -183,10 +183,10 @@ use the serial interval and interpret the simulated case data to represent
 symptom onset.</p>
 <p>In this example, we will assume based on COVID-19 literature that the
 serial interval, S, is log-normal distributed with parameters,
-<span class="math inline">\(\mu = 4.7\)</span> and <span class="math inline">\(\sigma = 2.9\)</span> <span class="citation">(<a href="#ref-pearson2020" role="doc-biblioref">Pearson et al. 2020</a>)</span>. The log-normal distribution is
+<span class="math inline">\(\mu = 4.7\)</span> and <span class="math inline">\(\sigma = 2.9\)</span> <span class="citation">(<a href="#ref-pearson2020">Pearson et al. 2020</a>)</span>. The log-normal distribution is
 commonly used in epidemiology to characterise quantities such as the serial
 interval because it has a large variance and can only be positive-valued
-<span class="citation">(<a href="#ref-nishiura2007" role="doc-biblioref">Nishiura 2007</a>; <a href="#ref-limpert2001" role="doc-biblioref">Limpert, Stahel, and Abbt 2001</a>)</span>.</p>
+<span class="citation">(<a href="#ref-nishiura2007">Nishiura 2007</a>; <a href="#ref-limpert2001">Limpert, Stahel, and Abbt 2001</a>)</span>.</p>
 <p>Note that when the distribution is described this way, it means <span class="math inline">\(\mu\)</span> and
 <span class="math inline">\(\sigma\)</span> are the expected value and standard deviation of the natural
 logarithm of the serial interval. Hence, in order to sample the
@@ -230,10 +230,10 @@ drives the mechanism behind how individual cases infect other cases. The
 appropriate way to model the offspring distribution is to capture both the
 population-level transmissibility (<span class="math inline">\(R0\)</span>) and the individual-level heterogeneity
 in transmission (“superspreading”). The negative binomial distribution is
-commonly used in this case <span class="citation">(<a href="#ref-lloyd-smith2005" role="doc-biblioref">Lloyd-Smith et al. 2005</a>)</span>.</p>
+commonly used in this case <span class="citation">(<a href="#ref-lloyd-smith2005">Lloyd-Smith et al. 2005</a>)</span>.</p>
 <p>For this example, we will assume that the offspring distribution is
-characterised by a negative binomial with <span class="math inline">\(mu = 2.5\)</span> <span class="citation">(<a href="#ref-abbott2020" role="doc-biblioref">Abbott et al. 2020</a>)</span> and
-<span class="math inline">\(size = 0.58\)</span> <span class="citation">(<a href="#ref-wang2020" role="doc-biblioref">Wang et al. 2020</a>)</span>.</p>
+characterised by a negative binomial with <span class="math inline">\(mu = 2.5\)</span> <span class="citation">(<a href="#ref-abbott2020">Abbott et al. 2020</a>)</span> and
+<span class="math inline">\(size = 0.58\)</span> <span class="citation">(<a href="#ref-wang2020">Wang et al. 2020</a>)</span>.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fl">2.5</span></span>
 <span><span class="va">size</span> <span class="op">&lt;-</span> <span class="fl">0.58</span></span></code></pre></div>
@@ -500,7 +500,7 @@ Figure 1: COVID-19 incidence in South Africa projected over a two week window in
 <div class="section level2 unnumbered">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-abbott2020" class="csl-entry">
 Abbott, Sam, Joel Hellewell, James Munday, Sebastian Funk, CMMID nCoV working group, et al. 2020. <span>“The Transmissibility of Novel Coronavirus in the Early Stages of the 2019-20 Outbreak in Wuhan: Exploring Initial Point-Source Exposure Sizes and Durations Using Scenario Analysis.”</span> <em>Wellcome Open Research</em> 5.
 </div>

@@ -105,8 +105,8 @@
 <p><em>epichains</em> provides methods to analyse and simulate the size and length
 of branching processes with an arbitrary offspring distribution. These
 can be used, for example, to analyse the distribution of chain sizes
-or length of infectious disease outbreaks, as discussed in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003" role="doc-biblioref">2003</a>)</span> and
-<span class="citation">Blumberg and Lloyd-Smith (<a href="#ref-blumberg2013" role="doc-biblioref">2013</a>)</span>.</p>
+or length of infectious disease outbreaks, as discussed in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003">2003</a>)</span> and
+<span class="citation">Blumberg and Lloyd-Smith (<a href="#ref-blumberg2013">2013</a>)</span>.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/epichains" class="external-link">"epichains"</a></span><span class="op">)</span></span></code></pre></div>
 </details><div class="section level2">
@@ -372,7 +372,8 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <div class="section level3">
 <h3 id="summarising">Summarising<a class="anchor" aria-label="anchor" href="#summarising"></a>
 </h3>
-<p>You can run <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on <code>&lt;epichains_tree&gt;</code> objects to get useful summaries.</p>
+<p>You can run <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the object returned by <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> to
+obtain the chain summaries per index case.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
@@ -391,20 +392,17 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $index_cases</span></span>
-<span><span class="co">#&gt; [1] 10</span></span>
+<span><span class="co">#&gt; `epichains_summary` object </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $max_time</span></span>
-<span><span class="co">#&gt; [1] 18</span></span>
+<span><span class="co">#&gt;  [1] Inf   2 Inf   2   1 Inf   3 Inf   9   1</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $unique_infectors</span></span>
-<span><span class="co">#&gt; [1] 8</span></span>
+<span><span class="co">#&gt;  Simulated tree sizes: </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $max_generation</span></span>
-<span><span class="co">#&gt; [1] 7</span></span>
+<span><span class="co">#&gt; Max: 9</span></span>
+<span><span class="co">#&gt; Min: 1</span></span>
 <span></span>
 <span><span class="co"># Example with simulate_summary()</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">simulate_summary_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -420,10 +418,24 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="co">#&gt; [1] 10</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $max_stat</span></span>
-<span><span class="co">#&gt; [1] 5</span></span>
+<span><span class="co">#&gt; [1] 9</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $min_stat</span></span>
 <span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+</details><p>This summary is the same as the output of <code><a href="../reference/simulate_summary.html">simulate_summary()</a></code> if the same
+inputs are used. <code><a href="../reference/simulate_summary.html">simulate_summary()</a></code> is a more performant version of
+<code><a href="../reference/simulate_chains.html">simulate_chains()</a></code>, hence, you can use it instead, if you are only interested
+in the summary of the simulated chains without details about the infection
+tree.</p>
+<p>We can confirm if the two outputs are the same using <code><a href="https://rdrr.io/r/base/sets.html" class="external-link">base::setequal()</a></code></p>
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setequal</a></span><span class="op">(</span></span>
+<span>  <span class="co"># summary of output from simulate_chains()</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">)</span>,</span>
+<span>  <span class="co"># results from simulate_summary()</span></span>
+<span>  <span class="va">simulate_summary_eg</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level3">
@@ -434,7 +446,7 @@ a <code>&lt;data.frame&gt;</code> with columns “cases” and either “generat
 depending on the value of <code>by</code>.</p>
 <p>To aggregate over “time”, you must have specified a generation time
 distribution (<code>generation_time</code>) in the simulation step.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example with simulate_chains()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span></span>
@@ -470,7 +482,7 @@ distribution (<code>generation_time</code>) in the simulation step.</p>
 <p>Aggregated <code>&lt;epichains_tree&gt;</code> objects can easily be plotted using base R
 or <code>ggplot2</code> with little to no data manipulation.</p>
 <p>Here is an end-to-end example from simulation through aggregation to plotting.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Run simulation with simulate_chains()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
@@ -500,13 +512,13 @@ or <code>ggplot2</code> with little to no data manipulation.</p>
 <span>  xlab <span class="op">=</span> <span class="st">"Time"</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">"Cases"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-</details><p><img src="epichains_files/figure-html/unnamed-chunk-14-1.png"><!-- --></p>
+</details><p><img src="epichains_files/figure-html/unnamed-chunk-15-1.png"><!-- --></p>
 </div>
 </div>
 <div class="section level2 unnumbered">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-blumberg2013" class="csl-entry">
 Blumberg, S., and J. O. Lloyd-Smith. 2013. <span>“Comparing Methods for Estimating R0 from the Size Distribution of Subcritical Transmission Chains.”</span> <em>Epidemics</em> 5 (3): 131–45. <a href="https://doi.org/10.1016/j.epidem.2013.05.002" class="external-link">https://doi.org/10.1016/j.epidem.2013.05.002</a>.
 </div>

@@ -109,7 +109,7 @@ in the package.</p>
 <h2 id="branching-processes">Branching processes<a class="anchor" aria-label="anchor" href="#branching-processes"></a>
 </h2>
 <p><a href="https://en.wikipedia.org/wiki/Branching_process" class="external-link">Branching processes</a> are a class of models that are used to model the growth of populations. They assume that each member of the population produces a number of offspring, <span class="math inline">\(Z\)</span>, that is a random variable with probability mass function <span class="math inline">\(p(Z = z | \theta)\)</span>, called the <em>offspring distribution</em>.
-Their use has a long history in epidemiology, where the population is interpreted as a pathogen, and the offspring as new hosts that it infects <span class="citation">(<a href="#ref-farrington2003" role="doc-biblioref">Farrington, Kanaan, and Gay 2003</a>)</span>.
+Their use has a long history in epidemiology, where the population is interpreted as a pathogen, and the offspring as new hosts that it infects <span class="citation">(<a href="#ref-farrington2003">Farrington, Kanaan, and Gay 2003</a>)</span>.
 Below we will call these infected individuals <em>cases</em> but the methods could be applied in other contexts where branching processes are to be used.</p>
 </div>
 <div class="section level2">
@@ -129,7 +129,7 @@ The length <span class="math inline">\(L\)</span> of a chain is the number of ge
 <div class="section level2">
 <h2 id="inference">Inference<a class="anchor" aria-label="anchor" href="#inference"></a>
 </h2>
-<p>By characterising a chains of cases by their size of length we can conduct inference to learn about the underlying parameters <span class="math inline">\(\theta\)</span> from observation of chain sizes or chain lengths <span class="citation">(<a href="#ref-blumberg2013" role="doc-biblioref">Blumberg and Lloyd-Smith 2013</a>)</span>.
+<p>By characterising a chains of cases by their size of length we can conduct inference to learn about the underlying parameters <span class="math inline">\(\theta\)</span> from observation of chain sizes or chain lengths <span class="citation">(<a href="#ref-blumberg2013">Blumberg and Lloyd-Smith 2013</a>)</span>.
 In general this is only possible for <em>subcritical</em> branching processes, i.e. ones where the mean number of offspring is less than 1, as otherwise the branching process could grow forever.
 However, we can expand the theory to <em>supercritical</em> branching processes, i.e. ones where the mean number of offspring is greater than 1, by defining a cut off of chain size or length beyond which we treat the chain as if it had infinite size or length, respectively.</p>
 <div class="section level3">
@@ -144,14 +144,14 @@ and a <a href="https://en.wikipedia.org/wiki/Gamma_distribution" class="external
 <h4 id="negative-binomial-and-special-cases">Negative binomial and special cases<a class="anchor" aria-label="anchor" href="#negative-binomial-and-special-cases"></a>
 </h4>
 <p>If the offspring distribution is a Poisson distribution, we can interpret its rate parameter <span class="math inline">\(\lambda\)</span> as the basic reproduction number <span class="math inline">\(R_{0}\)</span> of the pathogen.
-In the more general case where the offspring definition can be <em>overdispersed</em> leading to <em>superspreading</em> we can use a negative binomial offspring distribution with mean <span class="math inline">\(\mu\)</span> and overdispersion <span class="math inline">\(k\)</span> <span class="citation">Blumberg and Lloyd-Smith (<a href="#ref-blumberg2013" role="doc-biblioref">2013</a>)</span>.
+In the more general case where the offspring definition can be <em>overdispersed</em> leading to <em>superspreading</em> we can use a negative binomial offspring distribution with mean <span class="math inline">\(\mu\)</span> and overdispersion <span class="math inline">\(k\)</span> <span class="citation">Blumberg and Lloyd-Smith (<a href="#ref-blumberg2013">2013</a>)</span>.
 In that case, the mean parameter <span class="math inline">\(\mu\)</span> is interpreted as the basic reproduction number <span class="math inline">\(R_0\)</span> of the pathogen.
 The negative binomial distribution arises from a Poisson-gamma mixture and thus a branching process with negative binomial distributed offspring can be interpreted as one with Poisson distributed offspring where the basic reproduction number <span class="math inline">\(R_0\)</span> itself varies according to a gamma distribution.
 The amount of variation in <span class="math inline">\(R_0\)</span> is then interpreted as individual-level variation in transmission representing overdispersion or superspreading, and the degree to which this happens is given by the overdispersion parameter <span class="math inline">\(k\)</span>.</p>
 <div class="section level5">
 <h5 id="size-distributions">Size distributions<a class="anchor" aria-label="anchor" href="#size-distributions"></a>
 </h5>
-<p>The probability <span class="math inline">\(p\)</span> of a chain of size <span class="math inline">\(S\)</span> given <span class="math inline">\(R_0\)</span> and <span class="math inline">\(k\)</span> in a branching process with negative binomial offspring distribution is given in Eq. 9 of <span class="citation">Blumberg and Lloyd-Smith (<a href="#ref-blumberg2013" role="doc-biblioref">2013</a>)</span></p>
+<p>The probability <span class="math inline">\(p\)</span> of a chain of size <span class="math inline">\(S\)</span> given <span class="math inline">\(R_0\)</span> and <span class="math inline">\(k\)</span> in a branching process with negative binomial offspring distribution is given in Eq. 9 of <span class="citation">Blumberg and Lloyd-Smith (<a href="#ref-blumberg2013">2013</a>)</span></p>
 <p><span class="math display">\[
 p(S|R_0, k) = \frac{\Gamma(kS + S - 1)}{\Gamma(kS)\Gamma(S + 1)} \frac{\left(\frac{R_0}{k}\right)^{S - 1}}{\left( 1 + \frac{R_0}{k} \right)^{kS + S - 1}}
 \]</span></p>
@@ -162,7 +162,7 @@ The corresponding log-likelihood is</p>
 \mathrm{LL}(S) = &amp;\log\Gamma(kS + S  - 1) - \left(\log\Gamma(kS) + \log\Gamma(S - 1) \right) \\
 &amp; + (S-1) \log \frac{R_0}{k} - (SR_0 + (S - 1)) \log \left(1 + \frac{R_0}{k}\right)
 \end{align}\]</span></p>
-<p>The log-likelihood for Poisson distributed offspring follows from this where <span class="math inline">\(k\)</span> tends to infinity (corresponding to Eq. 2.2 in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003" role="doc-biblioref">2003</a>)</span>)</p>
+<p>The log-likelihood for Poisson distributed offspring follows from this where <span class="math inline">\(k\)</span> tends to infinity (corresponding to Eq. 2.2 in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003">2003</a>)</span>)</p>
 <p><span class="math display">\[
 \mathrm{LL}(S) = (S - 1) \log R_0 - S R_0 + (S - 2) \log S - \log\Gamma(S)
 \]</span></p>
@@ -174,7 +174,7 @@ The corresponding log-likelihood is</p>
 <div class="section level5">
 <h5 id="length-distributions">Length distributions<a class="anchor" aria-label="anchor" href="#length-distributions"></a>
 </h5>
-<p>The cumulative mass function <span class="math inline">\(F(L)\)</span> of observing a chain of length <span class="math inline">\(L\)</span> when offspring is Poisson distributed is given by Eq. (2.5) in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003" role="doc-biblioref">2003</a>)</span> (there called “outbreak duration”):</p>
+<p>The cumulative mass function <span class="math inline">\(F(L)\)</span> of observing a chain of length <span class="math inline">\(L\)</span> when offspring is Poisson distributed is given by Eq. (2.5) in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003">2003</a>)</span> (there called “outbreak duration”):</p>
 <p><span class="math display">\[
 F(L) = e^{-R_0} E_L \left( e^{R_0 e^{-R_0} } \right)
 \]</span></p>
@@ -189,7 +189,7 @@ F(L) = \frac{ 1- R_0^{L + 1} } {1 - R_0^{L - 2}}
 <div class="section level4">
 <h4 id="gamma-borel-mixture">Gamma-Borel mixture<a class="anchor" aria-label="anchor" href="#gamma-borel-mixture"></a>
 </h4>
-<p>The probability distribution of outbreak sizes from a branching process with a Poisson offspring distribution (Eq. 2.2 in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003" role="doc-biblioref">2003</a>)</span>) is a special case of the <a href="https://en.wikipedia.org/wiki/Borel_distribution#Borel%E2%80%93Tanner_distribution" class="external-link">Borel-Tanner distribution</a> starting with 1 individual.
+<p>The probability distribution of outbreak sizes from a branching process with a Poisson offspring distribution (Eq. 2.2 in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003">2003</a>)</span>) is a special case of the <a href="https://en.wikipedia.org/wiki/Borel_distribution#Borel%E2%80%93Tanner_distribution" class="external-link">Borel-Tanner distribution</a> starting with 1 individual.
 An alternative to the negative binomial offspring distribution which represents a Poisson-gamma mixture is a Borel-gamma mixture.
 This could represent situations where the variation is not at the <em>individual level</em> but at the <em>chain level</em>, i.e. transmission chains is homogeneous but there is heterogeneity between chains.
 In that case, it can be shown that the resulting log-likelihood of chain sizes is</p>
@@ -214,7 +214,7 @@ In order to improve this approximation a linear approximation is applied to the 
 p(S|\theta) = P(S|\theta) - P(S - 1|\theta)
 \]</span>
 and a an equivalent relationship is used for <span class="math inline">\(L\)</span>.</p>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-blumberg2013" class="csl-entry">
 Blumberg, S., and J. O. Lloyd-Smith. 2013. <span>“Comparing Methods for Estimating R0 from the Size Distribution of Subcritical Transmission Chains.”</span> <em>Epidemics</em> 5 (3): 131–45. <a href="https://doi.org/10.1016/j.epidem.2013.05.002" class="external-link">https://doi.org/10.1016/j.epidem.2013.05.002</a>.
 </div>

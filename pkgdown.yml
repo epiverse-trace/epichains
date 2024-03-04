@@ -1,4 +1,4 @@
-pandoc: 2.19.2
+pandoc: 3.1.11
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
@@ -7,7 +7,7 @@ articles:
   interventions: interventions.html
   projecting_incidence: projecting_incidence.html
   theoretical_background: theoretical_background.html
-last_built: 2024-02-20T17:23Z
+last_built: 2024-03-04T17:41Z
 urls:
   reference: https://epiverse-trace.github.io/epichains/reference
   article: https://epiverse-trace.github.io/epichains/articles
