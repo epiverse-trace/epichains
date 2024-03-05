@@ -104,8 +104,16 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
       nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
     )
   }
-  checkmate::assert_numeric(
-    chains, lower = 0, upper = Inf, any.missing = FALSE
+  checkmate::assert(
+    checkmate::check_numeric(
+      chains, lower = 0, upper = Inf, any.missing = FALSE
+    ),
+    checkmate::check_class(
+      chains, "epichains_tree"
+    ),
+    checkmate::check_class(
+      chains, "epichains_summary"
+    )
   )
   # check that arguments related to the statistic are valid
   .check_statistic_args(
