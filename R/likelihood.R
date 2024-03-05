@@ -44,6 +44,53 @@
 #'   chains = chain_sizes, statistic = "size",
 #'   offspring_dist = rpois, nsim_obs = 100, lambda = 0.5
 #' )
+#' # Example using an <epichains_tree> object
+#' set.seed(32)
+#' chains_tree_eg <- simulate_chains(
+#'  index_cases = 10,
+#'  pop = 100,
+#'  percent_immune = 0,
+#'  statistic = "size",
+#'  offspring_dist = rnbinom,
+#'  stat_max = 10,
+#'  generation_time = function(n) rep(3, n),
+#'  mu = 2,
+#'  size = 0.2
+#')
+#'
+#' chains_tree_eg_lik <- likelihood(
+#'   chains = chains_tree_eg,
+#'   statistic = "size",
+#'   offspring_dist = rnbinom,
+#'   nsim_obs = 100,
+#'   mu = 2,
+#'   size = 0.2,
+#'   stat_max = 10
+#' )
+#' chains_tree_eg_lik
+#'
+#' # Example using a <epichains_summary> object
+#' set.seed(32)
+#' chains_summary_eg <- simulate_summary(
+#'  index_cases = 10,
+#'   pop = 100,
+#'   percent_immune = 0,
+#'   statistic = "size",
+#'   offspring_dist = rnbinom,
+#'   stat_max = 10,
+#'   mu = 2,
+#'   size = 0.2
+#' )
+#' chains_summary_eg_lik <- likelihood(
+#'   chains = chains_summary_eg,
+#'   statistic = "size",
+#'   offspring_dist = rnbinom,
+#'   nsim_obs = 100,
+#'   mu = 2,
+#'   size = 0.2,
+#'   stat_max = 10
+#' )
+#' chains_summary_eg_lik
 #' @export
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
                        nsim_obs, obs_prob = 1, log = TRUE, stat_threshold = Inf,
