@@ -30,13 +30,9 @@ summary_benchmarks <- bench::mark(
     },
     sim_summary = {
         set.seed(32)
-        simulate_summary(
-            index_cases = 10,
-            statistic = "size",
-            offspring_dist = rnbinom,
-            stat_max = 1000,
-            mu = 2,
-            size = 0.2
+        do.call(
+            simulate_summary,
+            shared_args
         )
     }
 )
