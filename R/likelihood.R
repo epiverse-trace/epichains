@@ -133,6 +133,11 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   checkmate::assert_numeric(
     exclude, null.ok = TRUE
   )
+  # likelihood can also work with a summarised <epichains_tree> object
+  if (is_epichains_tree(chains)) {
+    chains <- summary(chains)
+  }
+
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
