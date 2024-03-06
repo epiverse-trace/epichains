@@ -81,19 +81,6 @@ references:
     address: Vienna, Austria
   year: '2024'
 - type: software
-  title: truncdist
-  abstract: 'truncdist: Truncated Random Variables'
-  notes: Imports
-  repository: https://CRAN.R-project.org/package=truncdist
-  authors:
-  - family-names: Novomestky
-    given-names: Frederick
-    email: fn334@nyu.edu
-  - family-names: Nadarajah
-    given-names: Saralees
-    email: saralees.nadarajah@manchester.ac.uk
-  year: '2023'
-- type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
   notes: Imports
@@ -173,9 +160,8 @@ references:
   - family-names: Dunnington
     given-names: Dewey
     orcid: https://orcid.org/0000-0002-9415-4582
-  - family-names: Brand
+  - family-names: van den Brand
     given-names: Teun
-    name-particle: van den
     orcid: https://orcid.org/0000-0002-9335-7468
   year: '2024'
 - type: software
@@ -273,4 +259,17 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2023'
+  year: '2024'
+- type: software
+  title: truncdist
+  abstract: 'truncdist: Truncated Random Variables'
+  notes: Suggests
+  repository: https://CRAN.R-project.org/package=truncdist
+  authors:
+  - family-names: Novomestky
+    given-names: Frederick
+    email: fn334@nyu.edu
+  - family-names: Nadarajah
+    given-names: Saralees
+    email: saralees.nadarajah@manchester.ac.uk
+  year: '2024'
