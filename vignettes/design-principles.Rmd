@@ -82,13 +82,13 @@ chains into cases by "generation" or "time", if it was simulated.
 * Input validation:
   - [checkmate](https://github.com/mllg/checkmate/): exports many `test_*()`,
   `check_*()` and `assert_*()` functions and is available on CRAN.
-* Fast data manipulation:
-  - [data.table](https://rdatatable.gitlab.io/data.table/): provides a
-  high-performance version of base R’s `<data.frame>`.
 
+## Development journey
 
-## Related R packages
-
+{epichains} is a successor to the [bpmodels](https://github.com/epiverse-trace/bpmodels) #nolint package, which had the same functionality but not structured in an
+object-oriented manner. The package was developed to provide a more structured
+and object-oriented approach to simulating and handling transmission
+chains in R.
 As far as we know, below are the existing R packages for simulating and
 handling transmission chains. 
 
