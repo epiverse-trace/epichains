@@ -18,63 +18,95 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette outlines the design decisions that have been taken during the development of the {epichains} R package, and provides some of the reasoning, and possible pros and cons of each decision.
+This vignette outlines the design decisions that have been taken during the
+development of the {epichains} R package, and provides some of the reasoning,
+and possible pros and cons of each decision.
 
-This document is primarily intended to be read by those interested in understanding the code within the package and for potential package contributors.
+This document is primarily intended to be read by those interested in
+understanding the code within the package and for potential package
+contributors.
 
 ## Scope
 
-{epichains} aims to provide four three functionalities:
+{epichains} aims to provide three main functionalities:
 
-* Branching process models for simulating transmission chains using the
-`simulate_tree()` and `simulate_summary()` functions,
-* Modelling of the offspring distribution using shipped mixture distributions
-like `rborel()`.
-* Estimation of the likelihood of
-observing transmission chains of given sizes or lengths. This can be achieved
-in two ways:
-  - Closed form or analytical likelihoods that take the form <distribution>_<chain_statistic_type_ll>, for example,
-`gborel_size_ll()` and `pois_length_ll()`.
-  - Simulation using `offspring_ll()`.
+* Simulation of transmission chains using branching processes methods. These
+are achieved through `simulate_chains()` and `simulate_summary()`,
+* Handling of transmission chains using objected-orientated design, and
+* Estimation of the likelihood of observing transmission chain summaries
+(sizes or lengths). This can be achieved in two ways:
+  - Analytical/closed-form likelihoods that take the form
+`<distribution>_<chain_statistic_type>_ll>`, for example, `gborel_size_ll()`
+and `pois_length_ll()`.
+  - Numerical likelihood simulation using `offspring_ll()`.
+
+Additionally, the package provides mixture probability distributions for
+generating offspring distributions, for example, `rborel()`.
 
 ## Input/Output/Interoperability
 
-`simulate_tree()` returns an `<epichains_tree>` object that stores both
-the simulated output and parameter values used to achieve the simulation.
-`print()` and `summary()` methods are implemented for the `<epichains_tree>`
-class to help return insightful output based on the simulated transmission
-chains. Future support will be provided for `<epidist>` objects from the
-{epiparameter} package to allow for interoperability. Storing
-inputs and outputs in the `<epichains_tree>` object eases the extra work
-needed to be done by the user to set up scenario analyses.
+`simulate_chains()` and `simulate_summary()` return `<epichains>` and
+`<epichains_summary>` objects respectively.
 
-`simulate_summary()` returns a vector.
+The transmission chain simulations simulated here are stochastic in nature,
+meaning that one set of inputs can produce varied results. Additionally,
+parameters are often varied in scenario analyses to explore the impact of
+different parameter values on the outcome of the simulation.
 
-## Design decisions
+In traditional modelling, the output of the simulation is often stored in a
+`<data.frame>` or a list. However, this approach can be limiting when
+performing scenario analyses, as the user has to manually store the input
+parameters and the output of the simulation in a separate object. This has
+the potential to lead to errors and loss of information. The `<epichains>`
+class surmounts this limitation by storing the input parameters and the output
+of the simulation in a single object.
 
-### `<epichains_tree>` class
+The `<epichains>` class is an extension of `<data.frame>` with columns that
+represent information about the transmission chains. It also stores the
+simulation results and parameter values used to achieve the simulation.
+`<data.frame>` was chosen because its tabular structure allows us to store
+information in rows and columns, and is a widely used data structure in R.
 
-* Objects of this class have attributes to store simulation
-  metadata (all inputs, including `statistic`,`stat_max`,
-  `offspring_dist`, `generation_time`, `pop_size`, e.t.c.,).
+The output of `simulate_chains()` contains information about the whole
+outbreak, but this is not easy to infer from a quick glance of the object.
+The `<epichains>` class, therefore, has a dedicated `format()/print()` to
+print the simulated transmission chains in a manner similar to a dataframe
+but accompanied by extra summary information about the simulation including
+the number of chains simulated, number of generations reached, and the number
+of unique infectors created. These summaries are useful for quickly assessing
+the output of the simulation.
 
-* Columns of `<epichains_tree>`: 
+Importantly, the `<epichains>` class has a `summary()` method that returns
+an `<epichains_summary>` object. This is a design decision that was taken to
+allow for easy coercion between an infection tree and summaries of the
+infection tree otherwise attainable by a separate run of `simulate_summary()`.
+
+The `<epichains_summary>` class is a subclass of `<vector>` and has a
+`print()` method that formats the output of the `summary()` method.
+
+### `<epichains>` class
+
+* Columns of `<epichains>`: 
   * `generation_time` (numeric)
   * `infector_id` (factor) 
   * `infectee_id` (factor) 
   * `generation` (integer)
 
+* Objects of this class have attributes to store simulation
+  parameters: `index_cases`, `statistic`,`stat_max`, `offspring_dist`,
+  `generation_time`, and `pop`.
+
 ### Methods
 
-* `print.epichains_tree()`: function to format and pretty 
-print `<epichains_tree>` objects.
+* `print.epichains()`: function to format and pretty 
+print `<epichains>` objects.
 
-* `summary.epichains_tree()`: function to summarise an
-`<epichains_tree>` into the eventual outcome of the chain statistic simulated,
+* `summary.epichains()`: function to summarise an
+`<epichains>` into the eventual outcome of the chain statistic simulated,
 and with the same length as the index cases. All values above `stat_max`
 are set to `Inf` with the same logic as in `simulate_summary()`.
 
-* `aggregate.epichains_tree()`: function to aggregate the simulated
+* `aggregate.epichains()`: function to aggregate the simulated
 chains into cases by "generation" or "time", if it was simulated.
 
 ## Dependencies
