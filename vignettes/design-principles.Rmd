@@ -116,7 +116,8 @@ chains into cases by "generation" or "time", if it was simulated.
 
 ## Development journey
 
-{epichains} is a successor to the [bpmodels](https://github.com/epiverse-trace/bpmodels) #nolint package, which had the same functionality but not structured in an
-object-oriented manner. The package was developed to provide a more structured
-and object-oriented approach to simulating and handling transmission
-chains in R.
+{epichains} is a successor to the
+[bpmodels](https://github.com/epiverse-trace/bpmodels) package,
+which had the same functionality but not structured in an object-oriented
+manner. {epichains} is a major refactoring of {bpmodels} to provide an
+object-oriented approach to simulating and handling transmission chains in R.
