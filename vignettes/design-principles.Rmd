@@ -19,19 +19,18 @@ knitr::opts_chunk$set(
 ```
 
 This vignette outlines the design decisions that have been taken during the
-development of the {epichains} R package, and provides some of the reasoning,
+development of the `{epichains}` R package, and provides some of the reasoning,
 and possible pros and cons of each decision.
 
-This document is primarily intended to be read by those interested in
-understanding the code within the package and for potential package
-contributors.
+The goal here is to make it easy to acquaint oneself with the code base
+in the absence of the current maintainer. This will ease future contributions
+and maintenance of the package.
 
 ## Scope
 
-{epichains} aims to provide three main functionalities:
+{epichains} aims to facilitate:
 
-* Simulation of transmission chains using branching processes methods. These
-are achieved through `simulate_chains()` and `simulate_summary()`,
+* Simulation of transmission chains using branching processes methods,
 * Handling of transmission chains using objected-orientated design, and
 * Estimation of the likelihood of observing transmission chain summaries
 (sizes or lengths). This can be achieved in two ways:
