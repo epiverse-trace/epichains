@@ -95,18 +95,37 @@ The `<epichains_summary>` class is a subclass of `<vector>` and has a
   parameters: `index_cases`, `statistic`,`stat_max`, `offspring_dist`,
   `generation_time`, and `pop`.
 
-### Methods
+### likelihood estimation
 
-* `print.epichains()`: function to format and pretty 
-print `<epichains>` objects.
+Likelihoods are estimated using the `likelihood()` function. The
+function is designed to be flexible in two inputs:
 
-* `summary.epichains()`: function to summarise an
-`<epichains>` into the eventual outcome of the chain statistic simulated,
-and with the same length as the index cases. All values above `stat_max`
-are set to `Inf` with the same logic as in `simulate_summary()`.
+* data can be supplied as a vector of chain summaries, a `<epichains>` object,
+or a `<epichains_summary>` object, and
+* the offspring distribution can be supplied as a function, allowing the
+user to use a custom offspring distributions.
 
-* `aggregate.epichains()`: function to aggregate the simulated
-chains into cases by "generation" or "time", if it was simulated.
+`likelihood()` uses either analytical or numerical methods to estimate the
+likelihood of observing the input chain summaries. The analytical methods are
+closed-form likelihoods that take the form `<offspring_dist>_<statistic>_ll`,
+for example, `gborel_size_ll()` and `pois_length_ll()` and are shipped in this
+package. If the user supplies an offspring distribution and a statistic for
+which a solution exists, internally, it is used. If not, simulations are used
+to estimate the likelihood. The numerical likelihood simulation is achieved
+using `offspring_ll()`, which is a wrapper around `simulate_summary()`.
+
+The output type of `likelihood()` depends on the combination of the
+arguments `individual`, `obs_prob`, and `nsim_obs` as summarised in the
+table below:
+
+| `individual` | `obs_prob` | Output type | Output length| Element length |
+|--------------|------------|-------------|-------|----------------|
+| `FALSE`      |  1         | `<numeric>` | 1     | NA             |
+| `FALSE`      |  `obs_prob` >= 0 and `obs_prob` <= 1       | `<numeric>`|
+`nsim_obs`     | NA              |
+| `TRUE`       |  1         | `<list>`  | 1 | input data |
+| `TRUE`       | `obs_prob` >= 0 and `obs_prob` <= 1     | `<list>` |
+`nsim_obs` | input data |
 
 ## Dependencies
 
