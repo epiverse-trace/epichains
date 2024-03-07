@@ -42,58 +42,68 @@ and `pois_length_ll()`.
 Additionally, the package provides mixture probability distributions for
 generating offspring distributions, for example, `rborel()`.
 
-## Input/Output/Interoperability
+## Design decisions
 
-`simulate_chains()` and `simulate_summary()` return `<epichains>` and
-`<epichains_summary>` objects respectively.
+### Simulation functions
 
-The transmission chain simulations simulated here are stochastic in nature,
-meaning that one set of inputs can produce varied results. Additionally,
-parameters are often varied in scenario analyses to explore the impact of
-different parameter values on the outcome of the simulation.
+Simulation of branching processes are achieved through `simulate_chains()` and
+`simulate_summary()`. For details of the underlying methods, see the
+[theory vignette](https://epiverse-trace.github.io/epichains/articles/theoretical_background.html). #nolint
 
-In traditional modelling, the output of the simulation is often stored in a
-`<data.frame>` or a list. However, this approach can be limiting when
-performing scenario analyses, as the user has to manually store the input
-parameters and the output of the simulation in a separate object. This has
-the potential to lead to errors and loss of information. The `<epichains>`
-class surmounts this limitation by storing the input parameters and the output
-of the simulation in a single object.
+The simulations are stochastic, meaning that one set of inputs can produce
+varied results. The models here can also be use to explore scenario analyses
+by varying the inputs. Often, in cases where there is need for more than one
+run of the model and/or with more than one set of parameter values, the inputs
+and outputs are stored in separate data structures. However, this approach can
+be limiting when performing scenario analyses, as the user has to manually
+manipulate the two objects with reshaping and joining operations. This has
+the potential to lead to errors and loss of information. Hence,
+`simulate_chains()` and `simulate_summary()` return the dedicated classes
+`<epichains>` and `<epichains_summary>` objects respectively that store the
+input parameters and the output of the simulation in a single object.
 
-The `<epichains>` class is an extension of `<data.frame>` with columns that
-represent information about the transmission chains. It also stores the
-simulation results and parameter values used to achieve the simulation.
-`<data.frame>` was chosen because its tabular structure allows us to store
-information in rows and columns, and is a widely used data structure in R.
+The `<epichains>` class extends the `<data.frame>`, using columns
+to store information about the simulated transmission chains and the
+parameter values as attributes. `<data.frame>` was chosen because its tabular
+structure allows us to store information in rows and columns, and is a widely
+used data structure in R. Similarly, the `<epichains_summary>` class is a
+superclass (an extension) of R's `<numeric>` class and stores the parameter
+values as attributes.
 
-The output of `simulate_chains()` contains information about the whole
-outbreak, but this is not easy to infer from a quick glance of the object.
-The `<epichains>` class, therefore, has a dedicated `format()/print()` to
-print the simulated transmission chains in a manner similar to a dataframe
-but accompanied by extra summary information about the simulation including
-the number of chains simulated, number of generations reached, and the number
-of unique infectors created. These summaries are useful for quickly assessing
-the output of the simulation.
+The `<epichains>` object contains information about the whole outbreak, but
+key summaries are not easily deduced from a quick glance of the object. Hence,
+the class has a dedicated `format()/print()` method to print the simulated
+transmission chains in a manner similar to a `<dataframe>`, but accompanied
+by extra summary information including the number of chains simulated, number
+of generations reached, and the number of unique infectors created. These
+summaries are useful for quickly assessing the output of the simulation.
 
 Importantly, the `<epichains>` class has a `summary()` method that returns
 an `<epichains_summary>` object. This is a design decision that was taken to
-allow for easy coercion between an infection tree and summaries of the
-infection tree otherwise attainable by a separate run of `simulate_summary()`.
+allow for easy coercion between an infection tree obtained from
+`simulate_chains()` and summaries of the infection tree otherwise attainable
+by a separate run of `simulate_summary()` with the same parameter values passed
+to `simulate_chains()`.
 
-The `<epichains_summary>` class is a subclass of `<vector>` and has a
-`print()` method that formats the output of the `summary()` method.
+Lastly, `<epichains>` objects have an `aggregate()` method that aggregates the
+transmission tree into cases by "generation" or "time". This is syntactic sugar
+for the `dplyr::group_by()` and `dplyr::summarise()` style of aggregation.
 
-### `<epichains>` class
+In summary, an `<epichains>` object has the following structure:
 
-* Columns of `<epichains>`: 
-  * `generation_time` (numeric)
-  * `infector_id` (factor) 
-  * `infectee_id` (factor) 
-  * `generation` (integer)
+* Columns:
+  * `infectee_id` (`<numeric>`)
+  * `infector_id` (`<numeric>`)
+  * `generation` (`<numeric>`), and optionally,
+  * `time` (`<numeric>`), if `generation_time` is specified
+  * `susc_pop` (`<numeric>`), if `pop` is finite
 
-* Objects of this class have attributes to store simulation
-  parameters: `index_cases`, `statistic`,`stat_max`, `offspring_dist`,
-  `generation_time`, and `pop`.
+* Attributes (See definitions in [simulate_chains](https://epiverse-trace.github.io/epichains/reference/simulate_chains.html)): #nolint
+  * `index_cases`,
+  * `statistic`,
+  * `stat_max`,
+  * `offspring_dist`, and
+  * `track_pop` (if `pop` is finite).
 
 ### likelihood estimation
 
