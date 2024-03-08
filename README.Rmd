@@ -124,6 +124,17 @@ network. The model is conceptually based on `{ringbp}`.
 for handling, analysing, and visualizing transmission chains and contact-tracing 
 data/linelists.
 
+* [simulist](https://epiverse-trace.github.io/simulist/): uses a branching
+process model to simulate individual-level infectious disease outbreak data,
+including line lists and contact tracing data. This package is part of the
+Epiverse-TRACE Initiative.
+
+* [superspreading](https://epiverse-trace.github.io/superspreading/): provides
+a set of functions to estimate and understand individual-level variation in
+transmission of infectious diseases from data on secondary cases. These are
+useful for understanding the role of superspreading in the spread of infectious
+diseases and for informing public health interventions.
+
 * [earlyR](https://github.com/reconhub/earlyR): estimates the reproduction 
 number (R), in the early stages of an outbreak. The model requires a 
 specified serial interval distribution, characterised by the mean and 
