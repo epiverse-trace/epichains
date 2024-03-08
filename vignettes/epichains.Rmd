@@ -17,7 +17,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo = TRUE,
   message = FALSE,
@@ -35,7 +35,7 @@ can be used, for example, to analyse the distribution of chain sizes
 or length of infectious disease outbreaks, as discussed in @farrington2003 and 
 @blumberg2013.
 
-```{r}
+```{r load_epichains}
 library("epichains")
 ```
 
@@ -60,7 +60,7 @@ likelihoods are returned.
 
 Let's look at the following example where we estimate the log-likelihood of
 observing `chain_sizes`.
-```{r}
+```{r chain_sizes_setup}
 set.seed(121)
 # example of observed chain sizes
 # randomly generate 20 chains of size between 1 to 10
@@ -68,7 +68,7 @@ chain_sizes <- sample(1:10, 20, replace = TRUE)
 chain_sizes
 ```
 
-```{r}
+```{r estimate_likelihoods}
 # estimate loglikelihood of the observed chain sizes
 likelihood_eg <- likelihood(
   chains = chain_sizes,
@@ -86,7 +86,7 @@ likelihood_eg
 `likelihood()`, by default, returns the joint log-likelihood. If instead,
 the individual log-likelihoods are required, then the `individual` argument
 must be set to `TRUE`. To return likelihoods instead, set `log = FALSE`.
-```{r}
+```{r chains_setup2}
 set.seed(121)
 # example of observed chain sizes
 # randomly generate 20 chains of size between 1 to 10
@@ -94,7 +94,7 @@ chain_sizes <- sample(1:10, 20, replace = TRUE)
 chain_sizes
 ```
 
-```{r}
+```{r estimate_likelihoods2}
 # estimate loglikelihood of the observed chain sizes
 likelihood_ind_eg <- likelihood(
   chains = chain_sizes,
@@ -128,7 +128,7 @@ used for this approximation.
 For example, let's look at an example where `chain_sizes` is observed and we
 want to calculate the likelihood of this being drawn from a binomial
 distribution with probability `prob = 0.9`.
-```{r}
+```{r likelihoods_by_simulation}
 set.seed(121)
 # example of observed chain sizes; randomly generate 20 chains of size 1 to 10
 chain_sizes <- sample(1:10, 20, replace = TRUE)
@@ -161,7 +161,7 @@ each of the simulations.
 For example, if the probability of observing each case is `obs_prob = 0.30`,
 we use
 
-```{r}
+```{r likelihoods_imperfect_obs}
 set.seed(121)
 # example of observed chain sizes; randomly generate 20 chains of size 1 to 10
 chain_sizes <- sample(1:10, 20, replace = TRUE)
@@ -200,7 +200,7 @@ function is specified.
 Let's look at an example where we simulate a transmission tree for $10$ index
 cases. We assume a poisson offspring distribution with mean,
 $\text{lambda} = 0.9$, and a generation time of $3$ days:
-```{r}
+```{r sim_chains_pois}
 set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
@@ -228,7 +228,7 @@ Here is a quick example where we simulate an outbreak in a population of
 size $1000$ with $10$ index cases and $10/%$ pre-existing immunity. We assume
 individuals have a poisson offspring distribution with mean,
 $\text{lambda} = 1$, and fixed generation time of $3$:
-```{r}
+```{r sim_chains_with_finite_pop}
 set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
@@ -260,7 +260,7 @@ especially useful for calculating numerical likelihoods in `likelihood()`.
 Here is an example to simulate the previous examples without intervention,
 returning the size of each of the $10$ chains. It assumes a poisson offspring
 distribution with mean of $0.9$.
-```{r}
+```{r sim_summary_pois}
 set.seed(123)
 
 simulate_summary_eg <- simulate_summary(
@@ -281,7 +281,7 @@ simulate_summary_eg
 
 You can run `summary()` on the object returned by `simulate_chains()` to
 obtain the chain summaries per index case.
-```{r include=TRUE,echo=TRUE}
+```{r summary_eg, include=TRUE,echo=TRUE}
 set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
@@ -323,7 +323,7 @@ tree.
 
 We can confirm if the two outputs are the same using `base::setequal()`
 
-```{r include=TRUE,echo=TRUE}
+```{r compare_sim_funcs, include=TRUE,echo=TRUE}
 setequal(
   # summary of output from simulate_chains()
   summary(sim_chains),
@@ -340,7 +340,7 @@ depending on the value of `by`.
 
 To aggregate over "time", you must have specified a generation time
 distribution (`generation_time`) in the simulation step.
-```{r include=TRUE,echo=TRUE}
+```{r aggregation_eg, include=TRUE,echo=TRUE}
 # Example with simulate_chains()
 set.seed(32)
 
@@ -368,7 +368,7 @@ Aggregated `<epichains_tree>` objects can easily be plotted using base R
 or `ggplot2` with little to no data manipulation.
 
 Here is an end-to-end example from simulation through aggregation to plotting.
-```{r}
+```{r plot_eg}
 # Run simulation with simulate_chains()
 set.seed(32)
 # Define generation time

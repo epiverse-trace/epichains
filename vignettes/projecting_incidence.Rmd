@@ -55,7 +55,7 @@ library("lubridate")
 Included in _epichains_ is a cleaned time series of the first 15 days of 
 the COVID-19 outbreak in South Africa. This can be loaded into 
 memory as follows: 
-```{r}
+```{r data}
 data("covid19_sa", package = "epichains")
 ```
 
@@ -63,7 +63,7 @@ We will use the first $5$ observations for this demonstration. We will assume
 that all the cases in that subset are imported and did not infect each other. 
 
 Let us subset and view that aspect of the data.
-```{r}
+```{r view_data}
 seed_cases <- covid19_sa[1:5, ]
 head(seed_cases)
 ```
@@ -87,7 +87,7 @@ days_since_index
 Using the vector of start times from the time series, we will then 
 create a corresponding seeding time for each individual, which we'll call
 `tf`.
-```{r}
+```{r t0_setup}
 t0 <- rep(days_since_index, seed_cases$cases)
 t0
 ```
@@ -135,7 +135,7 @@ argument `n` as is required by _epichains_ (See `?epichains::simulate_chains`),
 which is further passed to `rlnorm()` as the 
 first argument to determine the number of observations to sample
 (See `?rlnorm`).
-```{r input_prep3, message=FALSE}
+```{r generation_time_setup, message=FALSE}
 mu <- 4.7
 sgma <- 2.9
 
@@ -162,7 +162,7 @@ For this example, we will assume that the offspring distribution is
 characterised by a negative binomial with $mu = 2.5$ [@abbott2020] and 
 $size = 0.58$ [@wang2020]. 
 
-```{r nbinom_args, message=FALSE}
+```{r nbinom_args_setup, message=FALSE}
 mu <- 2.5
 size <- 0.58
 ```
@@ -177,7 +177,7 @@ heterogeneity in transmission by single individuals.
 
 For this example, we will simulate outbreaks that end $21$ days after the last
 date of observations in the `seed_cases` dataset.
-```{r input_prep2, message=FALSE}
+```{r time_args_setup, message=FALSE}
 #' Date to end simulation
 projection_window <- 21
 tf <- max(days_since_index) + projection_window
@@ -189,7 +189,7 @@ time it is run for the same set of parameters. We will, therefore, run the
 simulations $100$ times and aggregate the results.
 
 Let us specify that.
-```{r}
+```{r sim_reps_setup}
 #' Number of simulations
 sim_rep <- 100
 ```
@@ -203,7 +203,7 @@ Above `stat_max`, the simulation is cut off. If this value is
 not specified, it assumes a value of infinity. Here, we will
 assume a maximum chain size of $1000$.
 
-```{r}
+```{r stat_max_setup}
 #' Maximum chain size allowed
 stat_max <- 1000
 ```
@@ -228,7 +228,7 @@ assuming that no outbreak size exceeds `r stat_max` cases.
 
 We will use the function `lapply()` to run the simulations and bind them
 by rows with `dplyr::bind_rows()`.
-```{r simulations, message=FALSE}
+```{r run_simulations, message=FALSE}
 set.seed(1234)
 sim_chain_sizes <- lapply(
   seq_len(sim_rep),
@@ -252,7 +252,7 @@ sim_output <- bind_rows(sim_chain_sizes)
 ```
 
 Let us view the first few rows of the simulation results.
-```{r sim_output_head}
+```{r view_sim_output}
 head(sim_output)
 ```
 
@@ -265,7 +265,7 @@ the median cases per day aggregated over all simulations.
 
 First, we will create the daily time series per simulation by
 aggregating the number of cases per day of each simulation.
-```{r post_processing}
+```{r post_process_output}
 # Daily number of cases for each simulation
 incidence_ts <- sim_output %>%
   mutate(day = ceiling(time)) %>%
@@ -278,7 +278,7 @@ head(incidence_ts)
 Next, we will add a date column to the results of each simulation 
 set. We will use the date of the first case in the observed data 
 as the reference start date.
-```{r}
+```{r add_dates}
 # Get start date from the observed data
 index_date <- min(seed_cases$date)
 index_date
@@ -294,7 +294,7 @@ head(incidence_ts_by_date)
 
 Now we will aggregate the simulations by day and evaluate the median 
 daily cases across all simulations.
-```{r}
+```{r aggregate_simulations}
 # Median daily number of cases aggregated across all simulations
 median_daily_cases <- incidence_ts_by_date %>%
   group_by(date) %>%

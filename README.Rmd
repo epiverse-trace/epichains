@@ -10,12 +10,13 @@ link-citations: true
 <!-- `packagename` is extracted from the DESCRIPTION file -->
 <!-- `gh_repo` is extracted via a special environment variable in GitHub Actions -->
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = file.path("man", "figures", "README-"),
-  out.width = "100%"
+  out.width = "100%",
+  echo = TRUE
 )
 ```
 
@@ -28,10 +29,6 @@ knitr::opts_chunk$set(
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 _{{ packagename }}_ is an R package to simulate, analyse, and visualize the size 
 and length of branching processes with a given offspring distribution. These 
@@ -49,7 +46,7 @@ _{{ packagename }}_ is developed at the [Centre for the Mathematical Modelling o
 
 The latest development version of the _{{ packagename }}_ package can be installed via
 
-```{r include=TRUE,eval=FALSE}
+```{r install_pkg, include=TRUE,eval=FALSE}
 # check whether {pak} is installed
 if (!require("pak")) install.packages("pak")
 pak::pak("{{ gh_repo }}")
@@ -57,7 +54,7 @@ pak::pak("{{ gh_repo }}")
 
 To load the package, use
 
-```{r eval=TRUE}
+```{r load_pkg, eval=TRUE}
 library("epichains")
 ```
 
@@ -122,6 +119,6 @@ By contributing to this project, you agree to abide by its terms.
 
 ## Citing this package
 
-```{r message=FALSE, warning=FALSE}
+```{r citation, message=FALSE, warning=FALSE}
 citation("epichains")
 ```
