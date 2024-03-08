@@ -40,6 +40,6 @@ summary_benchmarks <- bench::mark(
 bnmark_plt <- plot(bnmarks)
 
 ggplot2::ggsave(
-    file.path("inst", "summary_benchmarks.png"),
+    file.path("summary_benchmarks.png"),
     bnmark_plt
 )
