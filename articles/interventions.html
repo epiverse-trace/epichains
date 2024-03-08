@@ -104,7 +104,15 @@
     
 <p><em>epichains</em> does not provide any direct functionality for studying reductions in transmission (e.g. from public health interventions).
 However, the flexible simulation functionality that it includes can be used to consider some specific changes to the parameters that can be interpreted as the result of changes in social behaviour or control measures.
-Here we investigate the effect on outbreak sizes, but the same approaches could be used for investigating chain lengths (using the <code>statistic</code> argument to <code>simulate_summary</code>) or the time progression of outbreaks (using the <code>simulate_tree</code> function).</p>
+Here we investigate the effect on outbreak sizes, but the same approaches could be used for investigating chain lengths (using the <code>statistic</code> argument to <code><a href="../reference/simulate_summary.html">simulate_summary()</a></code>) or the time progression of outbreaks (using the <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> function).</p>
+<div class="alert alert-info">
+<p>Some of the ideas presented here can be achieved using closed-form solutions
+of the probability of an epidemic growing out of proportion or going extinct,
+and the impact of heterogeneities in individual-level transmission. For
+examples of this, see the <a href="https://epiverse-trace.github.io/superspreading/articles/epidemic_risk.html" class="external-link">vignette on epidemic risk</a>
+in the <a href="https://epiverse-trace.github.io/superspreading/index.html" class="external-link">superspreading</a>
+package, which is part of the Epiverse-TRACE Initiative.</p>
+</div>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## main package</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/epichains" class="external-link">"epichains"</a></span><span class="op">)</span></span>
