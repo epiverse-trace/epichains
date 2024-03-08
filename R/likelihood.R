@@ -5,9 +5,9 @@
 #' @param chains Vector of chain summaries (sizes/lengths)
 #' @param nsim_obs Number of simulations if the log-likelihood/likelihood is to
 #' be approximated for imperfect observations.
+#' @param obs_prob Observation probability (assumed constant)
 #' @param log Logical; Should the log-likelihoods be transformed to
 #' likelihoods? (Defaults to TRUE).
-#' @param obs_prob Observation probability (assumed constant)
 #' @param exclude A vector of indices of the sizes/lengths to exclude from the
 #' log-likelihood calculation.
 #' @param individual If TRUE, a vector of individual log-likelihood/likelihood
@@ -42,7 +42,7 @@
 #' )
 #' @export
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
-                       nsim_obs, log = TRUE, obs_prob = 1, stat_max = Inf,
+                       nsim_obs, obs_prob = 1, log = TRUE, stat_max = Inf,
                        exclude = NULL, individual = FALSE, ...) {
   statistic <- match.arg(statistic)
 
