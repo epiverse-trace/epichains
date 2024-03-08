@@ -107,6 +107,88 @@ documentation as package
 vignettes](https://epiverse-trace.github.io/epichains/), under
 “Articles”.
 
+## Related R packages
+
+As far as we know, below are the existing R packages for simulating
+branching processes and transmission chains.
+
+- [bpmodels](https://github.com/epiverse-trace/bpmodels): provides
+  methods for analysing the size and length of transmission chains from
+  branching process models. `{epichains}` is intended to supersede
+  `{bpmodels}`.
+
+- [ringbp](https://github.com/epiforecasts/ringbp): a branching process
+  model, parameterised to the 2019-nCoV outbreak, and used to quantify
+  the potential effectiveness of contact tracing and isolation of cases.
+
+- [covidhm](https://github.com/biouea/covidhm): code for simulating
+  COVID-19 dynamics in a range of scenarios across a real-world social
+  network. The model is conceptually based on `{ringbp}`.
+
+- [epicontacts](https://github.com/reconhub/epicontacts): provides
+  methods for handling, analysing, and visualizing transmission chains
+  and contact-tracing data/linelists.
+
+- [simulist](https://epiverse-trace.github.io/simulist/): uses a
+  branching process model to simulate individual-level infectious
+  disease outbreak data, including line lists and contact tracing data.
+  This package is part of the Epiverse-TRACE Initiative.
+
+- [superspreading](https://epiverse-trace.github.io/superspreading/):
+  provides a set of functions to estimate and understand
+  individual-level variation in transmission of infectious diseases from
+  data on secondary cases. These are useful for understanding the role
+  of superspreading in the spread of infectious diseases and for
+  informing public health interventions.
+
+- [earlyR](https://github.com/reconhub/earlyR): estimates the
+  reproduction number (R), in the early stages of an outbreak. The model
+  requires a specified serial interval distribution, characterised by
+  the mean and standard deviation of the (Gamma) distribution, and data
+  on daily disease incidence, including only confirmed and probable
+  cases.
+
+- [projections](https://github.com/reconhub/projections): uses data on
+  daily incidence, the serial interval (time between onsets of infectors
+  and infectees) and the reproduction number to simulate plausible
+  epidemic trajectories and project future incidence. It relies on a
+  branching process where daily incidence follows a Poisson or a
+  Negative Binomial distribution governed by a force of infection.
+
+- [simulacr](https://github.com/reconhub/simulacr): simulates outbreaks
+  for specified values of reproduction number, incubation period,
+  duration of infectiousness, and optionally reporting delays. Outputs a
+  linelist stored as a `data.frame` with the class `outbreak`, including
+  information on transmission chains; the output can be converted to
+  `<epicontacts>` objects for visualisation.
+
+- [outbreakr](https://sites.google.com/site/therepiproject/r-pac/outbreaker):
+  implements a Bayesian approach for reconstructing outbreak data from
+  pathogen genome sequences. It also implements a tool for outbreak
+  simulation.
+
+- [outbreakr2](https://github.com/reconhub/outbreaker2): a Bayesian
+  framework for integrating epidemiological and genetic data to
+  reconstruct transmission trees of densely sampled outbreaks. It
+  re-implements, generalises and replaces the model of outbreaker, and
+  uses a modular approach which enables fine customisation of priors,
+  likelihoods and parameter movements.
+
+- [o2geosocial](https://github.com/alxsrobert/o2geosocial): integrates
+  geographical and social contact data to reconstruct transmission
+  chains. It combines the age group, location, onset date and genotype
+  of cases to infer their import status, and their likely infector.
+
+- [nosoi](https://github.com/slequime/nosoi): simulates agent-based
+  transmission chains by taking into account the influence of multiple
+  variables on the transmission process (e.g. dual-host systems (such as
+  arboviruses), within-host viral dynamics, transportation, population
+  structure), alone or taken together, to create complex but relatively
+  intuitive epidemiological simulations.
+
+- [TransPhylo](https://xavierdidelot.github.io/TransPhylo/index.html):
+  reconstructs infectious disease transmission using genomic data.
+
 ## Reporting bugs
 
 To report a bug please open an
