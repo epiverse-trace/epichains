@@ -28,7 +28,10 @@ Authors:
 
 Other contributors:
 \itemize{
+  \item Hugo Gruson \email{hugo@data.org} (\href{https://orcid.org/0000-0002-4094-1476}{ORCID}) [contributor, reviewer]
   \item Zhian N. Kamvar \email{zkamvar@gmail.com} (\href{https://orcid.org/0000-0003-1458-7108}{ORCID}) [contributor]
+  \item Karim Mané \email{karim.mane@lshtm.ac.uk} (\href{https://orcid.org/0000-0002-9892-2999}{ORCID}) [reviewer]
+  \item Pratik Gupte \email{pratik.gupte@lshtm.ac.uk} (\href{https://orcid.org/0000-0001-5294-7819}{ORCID}) [reviewer]
 }
 
 }
