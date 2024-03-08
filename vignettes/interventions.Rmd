@@ -29,7 +29,16 @@ knitr::opts_chunk$set(
 
 _epichains_ does not provide any direct functionality for studying reductions in transmission (e.g. from public health interventions).
 However, the flexible simulation functionality that it includes can be used to consider some specific changes to the parameters that can be interpreted as the result of changes in social behaviour or control measures.
-Here we investigate the effect on outbreak sizes, but the same approaches could be used for investigating chain lengths (using the `statistic` argument to `simulate_summary`) or the time progression of outbreaks (using the `simulate_tree` function).
+Here we investigate the effect on outbreak sizes, but the same approaches could be used for investigating chain lengths (using the `statistic` argument to `simulate_summary()`) or the time progression of outbreaks (using the `simulate_chains()` function).
+
+::: {.alert .alert-info}
+Some of the ideas presented here can be achieved using closed-form solutions
+of the probability of an epidemic growing out of proportion or going extinct,
+and the impact of heterogeneities in individual-level transmission. For
+examples of this, see the [vignette on epidemic risk](https://epiverse-trace.github.io/superspreading/articles/epidemic_risk.html)
+in the [superspreading](https://epiverse-trace.github.io/superspreading/index.html)
+package, which is part of the Epiverse-TRACE Initiative.
+:::
 
 ```{r load_libraries}
 ## main package
