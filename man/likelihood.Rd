@@ -9,8 +9,8 @@ likelihood(
   statistic = c("size", "length"),
   offspring_dist,
   nsim_obs,
-  log = TRUE,
   obs_prob = 1,
+  log = TRUE,
   stat_max = Inf,
   exclude = NULL,
   individual = FALSE,
@@ -42,10 +42,10 @@ binomial offspring, or custom functions.}
 \item{nsim_obs}{Number of simulations if the log-likelihood/likelihood is to
 be approximated for imperfect observations.}
 
+\item{obs_prob}{Observation probability (assumed constant)}
+
 \item{log}{Logical; Should the log-likelihoods be transformed to
 likelihoods? (Defaults to TRUE).}
-
-\item{obs_prob}{Observation probability (assumed constant)}
 
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above the specified value, are set to \code{Inf}.}
