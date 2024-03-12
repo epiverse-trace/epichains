@@ -24,17 +24,17 @@ reference:
 
   - title: epichains classes
 
-  - subtitle: epichains_tree object
+  - subtitle: epichains object
     desc: Class constructor, validator, and methods
     contents:
-    - epichains_tree
-    - is_epichains_tree
-    - validate_epichains_tree
-    - aggregate.epichains_tree
-    - summary.epichains_tree
-    - format.epichains_tree
-    - print.epichains_tree
-    - head.epichains_tree
+    - epichains
+    - is_epichains
+    - validate_epichains
+    - aggregate.epichains
+    - summary.epichains
+    - format.epichains
+    - print.epichains
+    - head.epichains
 
   - subtitle: epichains_summary object
     desc: Class constructor, validator, and methods
