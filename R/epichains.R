@@ -55,10 +55,10 @@ new_epichains <- function(tree_df,
 #' @author James M. Azam
 #' @export
 epichains <- function(tree_df,
-                           index_cases,
-                           statistic,
-                           offspring_dist,
-                           stat_max,
+                      index_cases,
+                      statistic,
+                      offspring_dist,
+                      track_pop,
                       stat_max = Inf) {
   # Check that inputs are well specified
   checkmate::assert_data_frame(tree_df)

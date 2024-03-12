@@ -39,10 +39,10 @@ on to the random number generating functions. Examples that can be provided
 here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for negative
 binomial offspring, or custom functions.}
 
+\item{track_pop}{Was the susceptible population tracked? Logical}
+
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above \code{stat_max} are set to \code{stat_max}. Defaults to \code{Inf}.}
-
-\item{track_pop}{Was the susceptible population tracked? Logical}
 }
 \value{
 An \verb{<epichains>} object
