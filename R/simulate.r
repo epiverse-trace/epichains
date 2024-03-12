@@ -43,7 +43,7 @@
 #' @param tf Cut-off for the infection times (if generation time is given).
 #' Defaults to `Inf`.
 #' @param ... Parameters of the offspring distribution as required by R.
-#' @return An `<epichains_tree>` object, which is basically a `<data.frame>`
+#' @return An `<epichains>` object, which is basically a `<data.frame>`
 #' with columns `infectee_id`, `sim_id` (a unique ID within each simulation
 #' for each infectee), `infector_id`, `generation`, and `time` (of infection)
 #' @author James M. Azam, Sebastian Funk
@@ -286,7 +286,7 @@ simulate_chains <- function(index_cases,
   #   # sort by sim_id and infector_id
   tree_df <- tree_df[order(tree_df$sim_id, tree_df$infector_id), ]
   rownames(tree_df) <- NULL
-  out <- epichains_tree(
+  out <- epichains(
     tree_df,
     index_cases = index_cases,
     statistic = statistic,

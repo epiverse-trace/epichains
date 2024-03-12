@@ -1,21 +1,21 @@
-#' Construct an `<epichains_tree>` object
+#' Construct an `<epichains>` object
 #'
 #' @description
-#' `new_epichains_tree()` constructs an `<epichains_tree>` object from a
+#' `new_epichains()` constructs an `<epichains>` object from a
 #' supplied `<data.frame>` and extra attributes passed as individual arguments.
 #' It is meant to be lazy and performant, by creating the object without
 #' checking the arguments for correctness. It is not safe to call
-#' `new_epichains_tree()` on its own as is called within `epichains_tree()`
-#' after the arguments have been checked. To create an `<epichains_tree>`
-#' object, use `epichains_tree()`.
+#' `new_epichains()` on its own as is called within `epichains()`
+#' after the arguments have been checked. To create an `<epichains>`
+#' object, use `epichains()`.
 #' @param tree_df a `<data.frame>` containing at least columns for
 #' "infectee_id", "infector_id", and "generation". Also has optional columns
 #' for "time", and "chain_id".
 #' @param track_pop Was the susceptible population tracked? Logical
-#' @inheritParams epichains_tree
+#' @inheritParams epichains
 #' @author James M. Azam
 #' @keywords internal
-new_epichains_tree <- function(tree_df,
+new_epichains <- function(tree_df,
                                index_cases,
                                statistic,
                                offspring_dist,
@@ -23,7 +23,7 @@ new_epichains_tree <- function(tree_df,
                                track_pop) {
   # Assemble the elements of the object
   obj <- tree_df
-  class(obj) <- c("epichains_tree", class(obj))
+  class(obj) <- c("epichains", class(obj))
   attr(obj, "index_cases") <- index_cases
   attr(obj, "statistic") <- statistic
   attr(obj, "offspring_dist") <- offspring_dist
@@ -32,29 +32,29 @@ new_epichains_tree <- function(tree_df,
   return(obj)
 }
 
-#' Create an `<epichains_tree>` object
+#' Create an `<epichains>` object
 #'
 #' @description
-#' `epichains_tree()` constructs an `<epichains_tree>` object, which is
+#' `epichains()` constructs an `<epichains>` object, which is
 #' inherently an `<data.frame>` object that stores some of the inputs
 #' passed to the `simulate_tree()` and `simulate_tree_from_pop()` and the
 #' simulated output. The stored attributes are useful for downstream
 #' analyses and reproducibility. This function checks the validity of the
 #' object created to ensure it has the right columns and column types.
 #'
-#' An `<epichains_tree>` object contains a `<data.frame>` of the simulated
+#' An `<epichains>` object contains a `<data.frame>` of the simulated
 #' outbreak tree with ids for each infector and infectee, generation, and
 #' optionally, time, the number of initial cases used for the simulation,
 #' the statistic that was tracked, and whether the susceptible population was
 #' tracked.
 #'
 #' @inheritParams simulate_chains
-#' @inheritParams new_epichains_tree
+#' @inheritParams new_epichains
 #'
-#' @return An `<epichains_tree>` object
+#' @return An `<epichains>` object
 #' @author James M. Azam
 #' @export
-epichains_tree <- function(tree_df,
+epichains <- function(tree_df,
                            index_cases,
                            statistic,
                            offspring_dist,
@@ -68,8 +68,8 @@ epichains_tree <- function(tree_df,
   checkmate::assert_logical(track_pop)
   checkmate::assert_number(stat_max, null.ok = TRUE)
 
-  # Create <epichains_tree> object
-  epichains_tree <- new_epichains_tree(
+  # Create <epichains> object
+  epichains <- new_epichains(
     tree_df = tree_df,
     index_cases = index_cases,
     statistic = statistic,
@@ -79,9 +79,9 @@ epichains_tree <- function(tree_df,
   )
 
   # Validate the created object
-  validate_epichains_tree(epichains_tree)
+  validate_epichains(epichains)
 
-  return(epichains_tree)
+  return(epichains)
 }
 
 #' Construct a `<epichains_summary>` object
@@ -98,7 +98,7 @@ epichains_tree <- function(tree_df,
 #' new `<epichains_summary>` object safely, use `epichains_summary()`.
 #'
 #' @param chains_summary a `<vector>` of chain sizes and lengths.
-#' @inheritParams new_epichains_tree
+#' @inheritParams new_epichains
 #' @inheritParams simulate_chains
 #' @author James M. Azam
 #' @keywords internal
@@ -159,15 +159,15 @@ epichains_summary <- function(chains_summary,
   return(epichains_summary)
 }
 
-#' Print an `<epichains_tree>` object
+#' Print an `<epichains>` object
 #'
-#' @param x An `<epichains_tree>` object.
+#' @param x An `<epichains>` object.
 #' @param ... Other parameters passed to `print()`.
-#' @return Invisibly returns an `<epichains_tree>`. Called for
+#' @return Invisibly returns an `<epichains>`. Called for
 #' side-effects.
 #' @author James M. Azam
 #' @export
-print.epichains_tree <- function(x, ...) {
+print.epichains <- function(x, ...) {
   format(x, ...)
 }
 
@@ -183,19 +183,19 @@ print.epichains_summary <- function(x, ...) {
   format(x, ...)
 }
 
-#' Format method for `<epichains_tree>` class
+#' Format method for `<epichains>` class
 #'
-#' @param x An `<epichains_tree>` object
+#' @param x An `<epichains>` object
 #' @param ... ignored
-#' @return Invisibly returns an `<epichains_tree>`.
+#' @return Invisibly returns an `<epichains>`.
 #' Called for printing side-effects.
 #' @author James M. Azam
 #' @export
-format.epichains_tree <- function(x, ...) {
-  # check that x is an <epichains_tree> object
-  validate_epichains_tree(x)
+format.epichains <- function(x, ...) {
+  # check that x is an <epichains> object
+  validate_epichains(x)
 
-  writeLines(sprintf("`<epichains_tree>` object\n"))
+  writeLines(sprintf("`<epichains>` object\n"))
 
   # print head of the object
   writeLines("< tree head (from first known infector_id) >\n")
@@ -276,13 +276,13 @@ format.epichains_summary <- function(x, ...) {
   invisible(x)
 }
 
-#' Summary method for `<epichains_tree>` class
+#' Summary method for `<epichains>` class
 #'
 #' This calculates the chain statistic (size/length) for the simulated
 #' chains and returns an object with the same information as that returned
 #' by an equivalent `simulate_summary()` call.
 #'
-#' @param object An `<epichains_tree>` object
+#' @param object An `<epichains>` object
 #' @param ... ignored
 #'
 #' @return An `<epichains_summary>` object containing the chain summary
@@ -327,9 +327,9 @@ format.epichains_summary <- function(x, ...) {
 #'
 #' # Check that the results are the same
 #' setequal(sim_chains_nbinom_summary, sim_summary_nbinom)
-summary.epichains_tree <- function(object, ...) {
-  # Check that object has <epichains_tree> class
-  validate_epichains_tree(object)
+summary.epichains <- function(object, ...) {
+  # Check that object has <epichains> class
+  validate_epichains(object)
 
   # Get relevant attributes for computing summaries
   statistic <- attr(object, "statistic")
@@ -400,16 +400,16 @@ summary.epichains_summary <- function(object, ...) {
   return(out)
 }
 
-#' Test if x is an `epichains_tree` object
+#' Test if x is an `epichains` object
 #'
 #' @param x An R object
 #'
-#' @return logical, `TRUE` if the object is an `<epichains_tree>` and `FALSE`
+#' @return logical, `TRUE` if the object is an `<epichains>` and `FALSE`
 #' otherwise
 #' @author James M. Azam
 #' @export
-is_epichains_tree <- function(x) {
-  inherits(x, "epichains_tree")
+is_epichains <- function(x) {
+  inherits(x, "epichains")
 }
 
 #' Test if x is an `epichains_summary` object
@@ -424,16 +424,16 @@ is_epichains_summary <- function(x) {
   inherits(x, "epichains_summary")
 }
 
-#' Validate an `<epichains_tree>` object
+#' Validate an `<epichains>` object
 #'
-#' @param x An `<epichains_tree>` object
+#' @param x An `<epichains>` object
 #'
 #' @return No return.
 #' @author James M. Azam
 #' @export
-validate_epichains_tree <- function(x) {
-  if (!is_epichains_tree(x)) {
-    stop("Object must have an `<epichains_tree>` class")
+validate_epichains <- function(x) {
+  if (!is_epichains(x)) {
+    stop("Object must have an `<epichains>` class")
   }
 
   # check for class invariants
@@ -467,9 +467,9 @@ validate_epichains_summary <- function(x) {
   invisible(x)
 }
 
-#' `head` and `tail` method for `<epichains_tree>` class
+#' `head` and `tail` method for `<epichains>` class
 #'
-#' @param x An `<epichains_tree>` object
+#' @param x An `<epichains>` object
 #' @param ... further arguments passed to or from other methods
 #' @importFrom utils head
 #' @importFrom utils tail
@@ -477,7 +477,7 @@ validate_epichains_summary <- function(x) {
 #' @author James M. Azam
 #' @export
 #' @details
-#' This returns the top rows of an `<epichains_tree>` object. Note that
+#' This returns the top rows of an `<epichains>` object. Note that
 #' the object is originally sorted by `sim_id` and `infector_id` and the first
 #' unknown infectors (NA) have been dropped from
 #' printing method.
@@ -494,7 +494,7 @@ validate_epichains_summary <- function(x) {
 #'   lambda = 2
 #' )
 #' head(chains_pois_offspring)
-head.epichains_tree <- function(x, ...) {
+head.epichains <- function(x, ...) {
   # print head of the simulation output from the first known infector_id
   x <- x[!is.na(x$infector_id), ]
   return(
@@ -502,7 +502,7 @@ head.epichains_tree <- function(x, ...) {
   )
 }
 
-#' @rdname head.epichains_tree
+#' @rdname head.epichains
 #' @export
 #' @examples
 #' set.seed(32)
@@ -515,21 +515,21 @@ head.epichains_tree <- function(x, ...) {
 #'   lambda = 2
 #' )
 #' tail(chains_pois_offspring)
-tail.epichains_tree <- function(x, ...) {
+tail.epichains <- function(x, ...) {
   return(
     utils::tail(as.data.frame(x), ...)
   )
 }
 
-#' Aggregate cases in `<epichains_tree>` objects by "generation" or "time", if
+#' Aggregate cases in `<epichains>` objects by "generation" or "time", if
 #' present
 #'
 #' @description
 #' This function provides a quick way to create a time series of cases over
 #' generation or time (if serials_dist was specified) from simulated
-#' `<epichains_tree>` objects.
+#' `<epichains>` objects.
 #'
-#' @param x An `<epichains_tree>` object.
+#' @param x An `<epichains>` object.
 #' @param by The variable to aggregate by. Options include
 #' "time" and "generation".
 #' @param ... ignored.
@@ -556,13 +556,13 @@ tail.epichains_tree <- function(x, ...) {
 #' # Aggregate cases per generation
 #' cases_per_gen <- aggregate(chains, by = "generation")
 #' head(cases_per_gen)
-aggregate.epichains_tree <- function(x,
+aggregate.epichains <- function(x,
                                      by = c(
                                        "time",
                                        "generation"
                                      ),
                                      ...) {
-  validate_epichains_tree(x)
+  validate_epichains(x)
 
   # Get grouping variable
   by <- match.arg(by)
