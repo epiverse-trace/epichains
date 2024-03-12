@@ -61,7 +61,7 @@ epichains <- function(tree_df,
                       track_pop,
                       stat_max = Inf) {
   # Check that inputs are well specified
-  checkmate::assert_data_frame(tree_df)
+  checkmate::assert_data_frame(tree_df, min.cols = 3, min.rows = index_cases)
   checkmate::assert_integerish(index_cases, null.ok = TRUE)
   checkmate::assert_character(statistic, null.ok = TRUE)
   .check_offspring_func_valid(offspring_dist)
