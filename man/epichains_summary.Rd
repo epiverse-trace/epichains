@@ -9,7 +9,7 @@ epichains_summary(
   index_cases,
   statistic,
   offspring_dist,
-  stat_max
+  stat_max = Inf
 )
 }
 \arguments{

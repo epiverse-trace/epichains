@@ -4,7 +4,14 @@
 \alias{epichains}
 \title{Create an \verb{<epichains>} object}
 \usage{
-epichains(tree_df, index_cases, statistic, offspring_dist, stat_max, track_pop)
+epichains(
+  tree_df,
+  index_cases,
+  statistic,
+  offspring_dist,
+  track_pop,
+  stat_max = Inf
+)
 }
 \arguments{
 \item{tree_df}{a \verb{<data.frame>} containing at least columns for
