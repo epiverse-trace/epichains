@@ -109,7 +109,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
       chains, lower = 0, upper = Inf, any.missing = FALSE
     ),
     checkmate::check_class(
-      chains, "epichains_tree"
+      chains, "epichains"
     ),
     checkmate::check_class(
       chains, "epichains_summary"
@@ -134,7 +134,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     exclude, null.ok = TRUE
   )
   # likelihood can also work with a summarised <epichains_tree> object
-  if (is_epichains_tree(chains)) {
+  if (is_epichains(chains)) {
     chains <- summary(chains)
   }
 
