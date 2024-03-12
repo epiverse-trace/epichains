@@ -1,9 +1,9 @@
-# print.epichains_tree works for simulation functions
+# print.epichains works for simulation functions
 
     Code
       susc_outbreak_raw
     Output
-      `<epichains_tree>` object
+      `<epichains>` object
       
       < tree head (from first known infector_id) >
       
@@ -26,7 +26,7 @@
     Code
       susc_outbreak_raw2
     Output
-      `<epichains_tree>` object
+      `<epichains>` object
       
       < tree head (from first known infector_id) >
       
@@ -49,7 +49,7 @@
     Code
       tree_sim_raw
     Output
-      `<epichains_tree>` object
+      `<epichains>` object
       
       < tree head (from first known infector_id) >
       
@@ -72,7 +72,7 @@
     Code
       tree_sim_raw2
     Output
-      `<epichains_tree>` object
+      `<epichains>` object
       
       < tree head (from first known infector_id) >
       
