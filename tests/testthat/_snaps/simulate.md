@@ -17,7 +17,7 @@
     Code
       sim_chains_finite_pop
     Output
-      `<epichains_tree>` object
+      `<epichains>` object
       
       < tree head (from first known infector_id) >
       
@@ -40,7 +40,7 @@
     Code
       sim_chains_inf_susc
     Output
-      `<epichains_tree>` object
+      `<epichains>` object
       
       < tree head (from first known infector_id) >
       
@@ -63,7 +63,7 @@
     Code
       sim_chains_small_pop
     Output
-      `<epichains_tree>` object
+      `<epichains>` object
       
       < tree head (from first known infector_id) >
       

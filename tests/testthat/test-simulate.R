@@ -78,7 +78,7 @@ test_that("simulate_chains has expected shape", {
         class
       )
     ),
-    rep(c("epichains_tree", "data.frame"), times = 4)
+    rep(c("epichains", "data.frame"), times = 4)
   )
   # Check column names
   expect_named(

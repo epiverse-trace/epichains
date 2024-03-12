@@ -94,19 +94,19 @@ test_that("Simulators return epichains objects", {
   #' Expectations
   expect_s3_class(
     tree_sim_raw,
-    "epichains_tree"
+    "epichains"
   )
   expect_s3_class(
     tree_sim_raw2,
-    "epichains_tree"
+    "epichains"
   )
   expect_s3_class(
     susc_outbreak_raw,
-    "epichains_tree"
+    "epichains"
   )
   expect_s3_class(
     susc_outbreak_raw2,
-    "epichains_tree"
+    "epichains"
   )
   expect_s3_class(
     chain_summary_raw,
@@ -114,7 +114,7 @@ test_that("Simulators return epichains objects", {
   )
 })
 
-test_that("print.epichains_tree works for simulation functions", {
+test_that("print.epichains works for simulation functions", {
   set.seed(32)
   #' Simulate an outbreak from a susceptible population (pois)
   susc_outbreak_raw <- simulate_chains(
@@ -170,7 +170,7 @@ test_that("print.epichains_tree works for simulation functions", {
   expect_snapshot(chain_summary_raw)
 })
 
-test_that("summary.epichains_tree works as expected", {
+test_that("summary.epichains works as expected", {
   set.seed(32)
   #' Simulate an outbreak from a susceptible population (pois), tracking
   #' the chain sizes
@@ -223,7 +223,7 @@ test_that("summary.epichains_tree works as expected", {
   )
 })
 
-test_that("validate_epichains_tree works", {
+test_that("validate_epichains works", {
   set.seed(12)
   #' Simulate an outbreak from a susceptible population (pois)
   susc_outbreak_raw <- simulate_chains(
@@ -269,16 +269,16 @@ test_that("validate_epichains_tree works", {
   )
   #' Expectations
   expect_invisible(
-    validate_epichains_tree(susc_outbreak_raw)
+    validate_epichains(susc_outbreak_raw)
   )
   expect_invisible(
-    validate_epichains_tree(susc_outbreak_raw2)
+    validate_epichains(susc_outbreak_raw2)
   )
   expect_invisible(
-    validate_epichains_tree(tree_sim_raw)
+    validate_epichains(tree_sim_raw)
   )
   expect_invisible(
-    validate_epichains_tree(tree_sim_raw2)
+    validate_epichains(tree_sim_raw2)
   )
   expect_invisible(
     validate_epichains_summary(chain_summary_raw)
@@ -331,19 +331,19 @@ test_that("is_chains_tree works", {
   )
   #' Expectations
   expect_true(
-    is_epichains_tree(susc_outbreak_raw)
+    is_epichains(susc_outbreak_raw)
   )
   expect_true(
-    is_epichains_tree(susc_outbreak_raw2)
+    is_epichains(susc_outbreak_raw2)
   )
   expect_true(
-    is_epichains_tree(tree_sim_raw)
+    is_epichains(tree_sim_raw)
   )
   expect_true(
-    is_epichains_tree(tree_sim_raw2)
+    is_epichains(tree_sim_raw2)
   )
   expect_false(
-    is_epichains_tree(chain_summary_raw)
+    is_epichains(chain_summary_raw)
   )
 })
 
@@ -409,7 +409,7 @@ test_that("is_chains_summary works", {
   )
 })
 
-test_that("aggregate.epichains_tree method returns correct objects", {
+test_that("aggregate.epichains method returns correct objects", {
   set.seed(32)
   #' Simulate transmission chains in an infinite population
   chain_sim <- simulate_chains(
@@ -429,7 +429,7 @@ test_that("aggregate.epichains_tree method returns correct objects", {
     chain_sim,
     by = "time"
   )
-  #' Expectations for aggregated <epichains_tree>
+  #' Expectations for aggregated <epichains>
   expect_named(
     aggreg_by_gen,
     c("generation", "cases")
@@ -440,7 +440,7 @@ test_that("aggregate.epichains_tree method returns correct objects", {
   )
 })
 
-test_that("aggregate.epichains_tree method throws errors", {
+test_that("aggregate.epichains method throws errors", {
   expect_error(
     aggregate(
       simulate_chains(
@@ -456,7 +456,7 @@ test_that("aggregate.epichains_tree method throws errors", {
   )
 })
 
-test_that("aggregate.epichains_tree method is numerically correct", {
+test_that("aggregate.epichains method is numerically correct", {
   set.seed(12)
   #' Simulate a tree of infections in an infinite population and without
   #' generation times
