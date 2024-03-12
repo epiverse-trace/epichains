@@ -570,7 +570,7 @@ aggregate.epichains <- function(x,
                                      ),
                                      ...) {
   validate_epichains(x)
-
+  checkmate::assert_string(by)
   # Get grouping variable
   by <- match.arg(by)
 
