@@ -66,8 +66,10 @@ epichains <- function(tree_df,
   checkmate::assert_choice(statistic, choices = c("size", "length"))
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert_logical(track_pop)
-  checkmate::assert_number(stat_max, null.ok = TRUE)
-
+  checkmate::assert(
+    is.infinite(stat_max),
+    checkmate::check_integerish(stat_max, lower = 1L)
+  )
   # Create <epichains> object
   epichains <- new_epichains(
     tree_df = tree_df,
@@ -144,7 +146,10 @@ epichains_summary <- function(chains_summary,
   checkmate::assert_count(index_cases, positive = TRUE)
   checkmate::assert_choice(statistic, choices = c("size", "length"))
   .check_offspring_func_valid(offspring_dist)
-  checkmate::assert_number(stat_max, null.ok = TRUE)
+  checkmate::assert(
+    is.infinite(stat_max),
+    checkmate::check_integerish(stat_max, lower = 1L)
+  )
 
   # Create <epichains_summary> object
   epichains_summary <- new_epichains_summary(
