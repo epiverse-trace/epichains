@@ -65,7 +65,7 @@ time 0.}
 Defaults to \code{Inf}.}
 }
 \value{
-An \verb{<epichains_tree>} object, which is basically a \verb{<data.frame>}
+An \verb{<epichains>} object, which is basically a \verb{<data.frame>}
 with columns \code{infectee_id}, \code{sim_id} (a unique ID within each simulation
 for each infectee), \code{infector_id}, \code{generation}, and \code{time} (of infection)
 }
