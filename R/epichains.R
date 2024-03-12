@@ -62,7 +62,7 @@ epichains <- function(tree_df,
                       stat_max = Inf) {
   # Check that inputs are well specified
   checkmate::assert_data_frame(tree_df, min.cols = 3, min.rows = index_cases)
-  checkmate::assert_integerish(index_cases, null.ok = TRUE)
+  checkmate::assert_count(index_cases, positive = TRUE)
   checkmate::assert_character(statistic, null.ok = TRUE)
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert_logical(track_pop)
@@ -139,8 +139,9 @@ epichains_summary <- function(chains_summary,
                               stat_max = Inf) {
   # Check that inputs are well specified
   checkmate::assert_vector(chains_summary)
-  checkmate::assert_integerish(index_cases, null.ok = TRUE)
+  # If it doesn't contain infinite values, then they are all integerish.
   checkmate::assert_character(statistic)
+  checkmate::assert_count(index_cases, positive = TRUE)
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert_number(stat_max, null.ok = TRUE)
 
