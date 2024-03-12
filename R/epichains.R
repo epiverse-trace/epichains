@@ -139,10 +139,25 @@ epichains_summary <- function(chains_summary,
                               statistic,
                               offspring_dist,
                               stat_max = Inf) {
-  # Check that inputs are well specified
-  checkmate::assert_vector(chains_summary)
+  # chain_summary can sometimes contain infinite values, so check
+  # that it's all infinite OR the non-infinite values are integerish.
   # If it doesn't contain infinite values, then they are all integerish.
   if (any(is.infinite(chains_summary))) {
+    checkmate::assert(
+      all(is.infinite(chains_summary)),
+      checkmate::check_integerish(
+        chains_summary[!is.infinite(chains_summary)],
+        lower = 0,
+        any.missing = FALSE
+      )
+    )
+  } else {
+    checkmate::assert_integerish(
+      chains_summary,
+      len = index_cases,
+      lower = 0
+    )
+  }
   checkmate::assert_count(index_cases, positive = TRUE)
   checkmate::assert_choice(statistic, choices = c("size", "length"))
   .check_offspring_func_valid(offspring_dist)
