@@ -7,8 +7,8 @@
 epichains_summary(
   chains_summary,
   index_cases,
-  statistic,
   offspring_dist,
+  statistic = c("size", "length"),
   stat_max = Inf
 )
 }
@@ -16,6 +16,15 @@ epichains_summary(
 \item{chains_summary}{a \verb{<vector>} of chain sizes and lengths.}
 
 \item{index_cases}{Number of index cases to simulate transmission chains for.}
+
+\item{offspring_dist}{Offspring distribution: a function like the ones
+provided by R to generate random numbers from given distributions (e.g.,
+\code{\link{rpois}} for Poisson). More specifically, the function needs to
+accept at least one argument, \code{n}, which is the number of random
+numbers to generate. It can accept further arguments, which will be passed
+on to the random number generating functions. Examples that can be provided
+here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for negative
+binomial offspring, or custom functions.}
 
 \item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
 criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
@@ -26,15 +35,6 @@ extinct.
 \item "length": the total number of ancestors produced by a chain before
 it goes extinct.
 }}
-
-\item{offspring_dist}{Offspring distribution: a function like the ones
-provided by R to generate random numbers from given distributions (e.g.,
-\code{\link{rpois}} for Poisson). More specifically, the function needs to
-accept at least one argument, \code{n}, which is the number of random
-numbers to generate. It can accept further arguments, which will be passed
-on to the random number generating functions. Examples that can be provided
-here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for negative
-binomial offspring, or custom functions.}
 
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above \code{stat_max} are set to \code{stat_max}. Defaults to \code{Inf}.}
