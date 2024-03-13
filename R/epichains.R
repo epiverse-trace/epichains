@@ -157,7 +157,7 @@ epichains_summary <- function(chains_summary,
     index_cases,
     any.missing = FALSE,
     lower = 1L,
-    len = 1L,
+    len = 1L
   )
   checkmate::assert_string(statistic)
   statistic <- match.arg(statistic, c("size", "length"))
