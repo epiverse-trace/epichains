@@ -68,8 +68,8 @@ epichains <- function(tree_df,
     len = 1L,
     lower = 1L
   )
-  statistic <- match.arg(statistic, choices = c("size", "length"))
   checkmate::assert_string(statistic)
+  statistic <- match.arg(statistic, choices = c("size", "length"))
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert_logical(track_pop, len = 1L)
   checkmate::assert(
@@ -158,8 +158,8 @@ epichains_summary <- function(chains_summary,
     lower = 1L,
     len = 1L,
   )
-  statistic <- match.arg(statistic, c("size", "length"))
   checkmate::assert_string(statistic)
+  statistic <- match.arg(statistic, c("size", "length"))
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert(
     is.infinite(stat_max),
