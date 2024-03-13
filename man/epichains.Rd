@@ -7,9 +7,9 @@
 epichains(
   tree_df,
   index_cases,
-  statistic,
   offspring_dist,
   track_pop,
+  statistic = c("size", "length"),
   stat_max = Inf
 )
 }
@@ -19,16 +19,6 @@ epichains(
 for "time", and "chain_id".}
 
 \item{index_cases}{Number of index cases to simulate transmission chains for.}
-
-\item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
-criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
-Can be one of:
-\itemize{
-\item "size": the total number of cases produced by a chain before it goes
-extinct.
-\item "length": the total number of ancestors produced by a chain before
-it goes extinct.
-}}
 
 \item{offspring_dist}{Offspring distribution: a function like the ones
 provided by R to generate random numbers from given distributions (e.g.,
@@ -40,6 +30,16 @@ here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for nega
 binomial offspring, or custom functions.}
 
 \item{track_pop}{Was the susceptible population tracked? Logical}
+
+\item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
+criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
+Can be one of:
+\itemize{
+\item "size": the total number of cases produced by a chain before it goes
+extinct.
+\item "length": the total number of ancestors produced by a chain before
+it goes extinct.
+}}
 
 \item{stat_max}{A cut off for the chain statistic (size/length) being
 computed. Results above \code{stat_max} are set to \code{stat_max}. Defaults to \code{Inf}.}
