@@ -66,7 +66,8 @@ epichains <- function(tree_df,
     index_cases,
     any.missing = FALSE,
     len = 1L,
-    lower = 1L
+    lower = 1L,
+    upper = max(tree_df$infectee_id, na.rm = TRUE)
   )
   checkmate::assert_string(statistic)
   statistic <- match.arg(statistic, choices = c("size", "length"))
