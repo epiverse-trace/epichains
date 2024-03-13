@@ -56,9 +56,9 @@ new_epichains <- function(tree_df,
 #' @export
 epichains <- function(tree_df,
                       index_cases,
-                      statistic,
                       offspring_dist,
                       track_pop,
+                      statistic = c("size", "length"),
                       stat_max = Inf) {
   # Check that inputs are well specified
   checkmate::assert_data_frame(tree_df, min.cols = 3, min.rows = index_cases)
@@ -136,8 +136,8 @@ new_epichains_summary <- function(chains_summary,
 #' @export
 epichains_summary <- function(chains_summary,
                               index_cases,
-                              statistic,
                               offspring_dist,
+                              statistic = c("size", "length"),
                               stat_max = Inf) {
   # chain_summary can sometimes contain infinite values, so check
   # that it's all infinite OR the non-infinite values are integerish.
