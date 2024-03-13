@@ -63,7 +63,8 @@ epichains <- function(tree_df,
   # Check that inputs are well specified
   checkmate::assert_data_frame(tree_df, min.cols = 3, min.rows = index_cases)
   checkmate::assert_count(index_cases, positive = TRUE)
-  checkmate::assert_choice(statistic, choices = c("size", "length"))
+  statistic <- match.arg(statistic, choices = c("size", "length"))
+  checkmate::assert_string(statistic)
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert_logical(track_pop, len = 1L)
   checkmate::assert(
@@ -159,7 +160,8 @@ epichains_summary <- function(chains_summary,
     )
   }
   checkmate::assert_count(index_cases, positive = TRUE)
-  checkmate::assert_choice(statistic, choices = c("size", "length"))
+  statistic <- match.arg(statistic, c("size", "length"))
+  checkmate::assert_string(statistic)
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert(
     is.infinite(stat_max),
