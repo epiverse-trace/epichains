@@ -51,7 +51,6 @@ reference:
     - dborel
     - rborel
     - rgborel
-    - rnbinom_mean_disp
 
   - title: Miscellaneous
 

@@ -46,30 +46,3 @@ rgen_length <- function(n, x, prob) {
     ceiling(log(stats::runif(n, 0, 1)) / log(1 - prob) - 1)
   return(out)
 }
-
-#' Negative binomial random numbers parametrized
-#' in terms of mean and dispersion coefficient
-#' @param n number of samples to draw
-#' @param mn mean of distribution; Must be > 0.
-#' @param disp dispersion coefficient (var/mean); Must be > 1.
-#' @return vector containing the random numbers
-#' @author Flavio Finger
-#' @export
-#' @examples
-#' set.seed(32)
-#' rnbinom_mean_disp(n = 5, mn = 4, disp = 2)
-rnbinom_mean_disp <- function(n, mn, disp) {
-  checkmate::assert_number(
-    n, lower = 1, finite = TRUE, na.ok = FALSE
-  )
-  checkmate::assert_number(
-    disp, lower = 1, finite = TRUE, na.ok = FALSE
-  )
-  checkmate::assert_number(
-    mn, lower = 1E-100, finite = TRUE, na.ok = FALSE
-  )
-
-  size <- mn / (disp - 1)
-  out <- stats::rnbinom(n, size = size, mu = mn)
-  return(out)
-}
