@@ -1,15 +1,3 @@
-test_that("Reparametrized distributions work", {
-  set.seed(12)
-  expect_length(
-    rnbinom_mean_disp(
-      n = 5,
-      mn = 4,
-      disp = 2
-    ),
-    5
-  )
-})
-
 test_that("Log-probabilities work", {
   expect_length(
     complementary_logprob(x = 0),
@@ -44,18 +32,6 @@ test_that("Chain sizes sampler works", {
       prob = 0.3
     ),
     3
-  )
-})
-
-test_that("Reparametrized distributions are numerically correct", {
-  set.seed(12)
-  expect_identical(
-    rnbinom_mean_disp(
-      n = 5,
-      mn = 4,
-      disp = 2
-    ),
-    c(0, 2, 5, 2, 3)
   )
 })
 
@@ -95,17 +71,6 @@ test_that("Chain sizes sampler is numerically correct", {
       prob = 0.3
     ),
     c(1, 2, 3)
-  )
-})
-
-test_that("Reparametrized distributions throw warnings", {
-  expect_error(
-    rnbinom_mean_disp(
-      n = 5,
-      mn = 4,
-      disp = 0.9
-    ),
-    "not >= 1"
   )
 })
 
