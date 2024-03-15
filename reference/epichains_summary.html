@@ -88,9 +88,9 @@ the intervention level.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">epichains_summary</span><span class="op">(</span></span>
 <span>  <span class="va">chains_summary</span>,</span>
 <span>  <span class="va">index_cases</span>,</span>
-<span>  <span class="va">statistic</span>,</span>
 <span>  <span class="va">offspring_dist</span>,</span>
-<span>  <span class="va">stat_max</span></span>
+<span>  statistic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"size"</span>, <span class="st">"length"</span><span class="op">)</span>,</span>
+<span>  stat_max <span class="op">=</span> <span class="cn">Inf</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -104,16 +104,6 @@ the intervention level.</p>
 <dd><p>Number of index cases to simulate transmission chains for.</p></dd>
 
 
-<dt>statistic</dt>
-<dd><p><code>&lt;String&gt;</code>; Chain statistic to track as the stopping
-criteria for each chain being simulated when <code>stat_max</code> is not <code>Inf</code>.
-Can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
-extinct.</p></li>
-<li><p>"length": the total number of ancestors produced by a chain before
-it goes extinct.</p></li>
-</ul></dd>
-
-
 <dt>offspring_dist</dt>
 <dd><p>Offspring distribution: a function like the ones
 provided by R to generate random numbers from given distributions (e.g.,
@@ -123,6 +113,16 @@ numbers to generate. It can accept further arguments, which will be passed
 on to the random number generating functions. Examples that can be provided
 here are <code>rpois</code> for Poisson distributed offspring, <code>rnbinom</code> for negative
 binomial offspring, or custom functions.</p></dd>
+
+
+<dt>statistic</dt>
+<dd><p><code>&lt;String&gt;</code>; Chain statistic to track as the stopping
+criteria for each chain being simulated when <code>stat_max</code> is not <code>Inf</code>.
+Can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
+extinct.</p></li>
+<li><p>"length": the total number of ancestors produced by a chain before
+it goes extinct.</p></li>
+</ul></dd>
 
 
 <dt>stat_max</dt>

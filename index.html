@@ -99,111 +99,12 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header">
-<img src="logo.svg" class="logo" alt=""><h1 id="epichains-methods-for-simulating-and-analysing-the-size-and-length-of-transmission-chains-from-branching-process-models-">
-<em>epichains</em>: Methods for simulating and analysing the size and length of transmission chains from branching process models <a class="anchor" aria-label="anchor" href="#epichains-methods-for-simulating-and-analysing-the-size-and-length-of-transmission-chains-from-branching-process-models-"></a>
-</h1>
-</div>
-<!-- badges: start -->
-
-<p><em>epichains</em> is an R package to simulate, analyse, and visualize the size and length of branching processes with a given offspring distribution. These models are often used in infectious disease epidemiology, where the chains represent chains of transmission, and the offspring distribution represents the distribution of secondary infections caused by an infected individual.</p>
-<p><em>epichains</em> re-implements <a href="https://github.com/epiverse-trace/bpmodels/" class="external-link">bpmodels</a> by providing bespoke functions and data structures that allow easy manipulation and interoperability with other Epiverse-TRACE packages, for example, <a href="https://github.com/epiverse-trace/superspreading/" class="external-link">superspreading</a> and <a href="https://github.com/epiverse-trace/epiparameter/" class="external-link">epiparameter</a>, and potentially some existing packages for handling transmission chains, for example, <a href="https://github.com/reconhub/epicontacts" class="external-link">epicontacts</a>.</p>
-<p><em>epichains</em> is developed at the <a href="https://www.lshtm.ac.uk/research/centres/centre-mathematical-modelling-infectious-diseases" class="external-link">Centre for the Mathematical Modelling of Infectious Diseases</a> at the London School of Hygiene and Tropical Medicine as part of the <a href="https://data.org/initiatives/epiverse/" class="external-link">Epiverse Initiative</a>.</p>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>The latest development version of the <em>epichains</em> package can be installed via</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># check whether {pak} is installed</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://pak.r-lib.org/" class="external-link">"pak"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"epiverse-trace/epichains"</span><span class="op">)</span></span></code></pre></div>
-<p>To load the package, use</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/epichains" class="external-link">"epichains"</a></span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
-</h2>
-<p><em>epichains</em> provides two main functions:</p>
-<ul>
-<li><p><code><a href="reference/simulate_chains.html">simulate_chains()</a></code>: simulates transmission chains using a simple branching process model that accepts an index number of cases that seed the outbreak, a distribution of offspring per case, and a chain statistic to track (size or length/duration). It optionally accepts other population related inputs such as the population size (defaults to Inf) and percentage of the population initially immune (defaults to 0). This function returns an object with columns that track information on who infected whom, the generation of infection and, if a generation time function is specified, the time of infection.</p></li>
-<li><p><code><a href="reference/simulate_summary.html">simulate_summary()</a></code>: provides a performant version of <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> that only tracks and return a vector of realized chain sizes or lengths/durations for each index case without details of the infection tree.</p></li>
-<li><p><code><a href="reference/likelihood.html">likelihood()</a></code>: calculates the loglikelihood (or likelihood, depending on the value of <code>log</code>) of observing a vector of transmission chain sizes or lengths.</p></li>
-</ul>
-<p>The objects returned by the <code>simulate_*()</code> functions can be summarised with <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>. Running <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the output of <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> will return the same output as <code><a href="reference/simulate_summary.html">simulate_summary()</a></code> using the same inputs.</p>
-<p>Objects returned from <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> can be aggregated into a <code>&lt;data.frame&gt;</code> of cases per time or generation with the function <code><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate()</a></code>. The aggregated results can also be passed on to <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> with its own arguments to customize the resulting plots.</p>
-<p>Each of the listed functionalities is demonstrated in detail in the <a href="https://epiverse-trace.github.io/epichains/articles/epichains.html">“Getting Started” vignette</a>.</p>
-</div>
-<div class="section level2">
-<h2 id="package-vignettes">Package vignettes<a class="anchor" aria-label="anchor" href="#package-vignettes"></a>
-</h2>
-<p>The theory behind the models provided here can be found in the <a href="https://epiverse-trace.github.io/epichains/articles/theoretical_background.html">theory vignette</a>.</p>
-<p>We have also collated a bibliography of branching process applications in epidemiology. These can be found in the <a href="https://epiverse-trace.github.io/epichains/articles/branching_process_literature.html">literature vignette</a>.</p>
-<p>Specific use cases of <em>epichains</em> can be found in the <a href="https://epiverse-trace.github.io/epichains/">online documentation as package vignettes</a>, under “Articles”.</p>
-</div>
-<div class="section level2">
-<h2 id="related-r-packages">Related R packages<a class="anchor" aria-label="anchor" href="#related-r-packages"></a>
-</h2>
-<p>As far as we know, below are the existing R packages for simulating branching processes and transmission chains.</p>
-<ul>
-<li><p><a href="https://github.com/epiverse-trace/bpmodels" class="external-link">bpmodels</a>: provides methods for analysing the size and length of transmission chains from branching process models. <a href="https://github.com/epiverse-trace/epichains" class="external-link">epichains</a> is intended to supersede <code>{bpmodels}</code>.</p></li>
-<li><p><a href="https://github.com/epiforecasts/ringbp" class="external-link">ringbp</a>: a branching process model, parameterised to the 2019-nCoV outbreak, and used to quantify the potential effectiveness of contact tracing and isolation of cases.</p></li>
-<li><p><a href="https://github.com/biouea/covidhm" class="external-link">covidhm</a>: code for simulating COVID-19 dynamics in a range of scenarios across a real-world social network. The model is conceptually based on <code>{ringbp}</code>.</p></li>
-<li><p><a href="https://github.com/reconhub/epicontacts" class="external-link">epicontacts</a>: provides methods for handling, analysing, and visualizing transmission chains and contact-tracing data/linelists.</p></li>
-<li><p><a href="https://epiverse-trace.github.io/simulist/" class="external-link">simulist</a>: uses a branching process model to simulate individual-level infectious disease outbreak data, including line lists and contact tracing data. This package is part of the Epiverse-TRACE Initiative.</p></li>
-<li><p><a href="https://epiverse-trace.github.io/superspreading/" class="external-link">superspreading</a>: provides a set of functions to estimate and understand individual-level variation in transmission of infectious diseases from data on secondary cases. These are useful for understanding the role of superspreading in the spread of infectious diseases and for informing public health interventions.</p></li>
-<li><p><a href="https://github.com/reconhub/earlyR" class="external-link">earlyR</a>: estimates the reproduction number (R), in the early stages of an outbreak. The model requires a specified serial interval distribution, characterised by the mean and standard deviation of the (Gamma) distribution, and data on daily disease incidence, including only confirmed and probable cases.</p></li>
-<li><p><a href="https://github.com/reconhub/projections" class="external-link">projections</a>: uses data on daily incidence, the serial interval (time between onsets of infectors and infectees) and the reproduction number to simulate plausible epidemic trajectories and project future incidence. It relies on a branching process where daily incidence follows a Poisson or a Negative Binomial distribution governed by a force of infection.</p></li>
-<li><p><a href="https://github.com/reconhub/simulacr" class="external-link">simulacr</a>: simulates outbreaks for specified values of reproduction number, incubation period, duration of infectiousness, and optionally reporting delays. Outputs a linelist stored as a <code>data.frame</code> with the class <code>outbreak</code>, including information on transmission chains; the output can be converted to <code>&lt;epicontacts&gt;</code> objects for visualisation.</p></li>
-<li><p><a href="https://sites.google.com/site/therepiproject/r-pac/outbreaker" class="external-link">outbreakr</a>: implements a Bayesian approach for reconstructing outbreak data from pathogen genome sequences. It also implements a tool for outbreak simulation.</p></li>
-<li><p><a href="https://github.com/reconhub/outbreaker2" class="external-link">outbreakr2</a>: a Bayesian framework for integrating epidemiological and genetic data to reconstruct transmission trees of densely sampled outbreaks. It re-implements, generalises and replaces the model of outbreaker, and uses a modular approach which enables fine customisation of priors, likelihoods and parameter movements.</p></li>
-<li><p><a href="https://github.com/alxsrobert/o2geosocial" class="external-link">o2geosocial</a>: integrates geographical and social contact data to reconstruct transmission chains. It combines the age group, location, onset date and genotype of cases to infer their import status, and their likely infector.</p></li>
-<li><p><a href="https://github.com/slequime/nosoi" class="external-link">nosoi</a>: simulates agent-based transmission chains by taking into account the influence of multiple variables on the transmission process (e.g. dual-host systems (such as arboviruses), within-host viral dynamics, transportation, population structure), alone or taken together, to create complex but relatively intuitive epidemiological simulations.</p></li>
-<li><p><a href="https://xavierdidelot.github.io/TransPhylo/index.html" class="external-link">TransPhylo</a>: reconstructs infectious disease transmission using genomic data.</p></li>
-</ul>
-</div>
-<div class="section level2">
-<h2 id="reporting-bugs">Reporting bugs<a class="anchor" aria-label="anchor" href="#reporting-bugs"></a>
-</h2>
-<p>To report a bug please open an <a href="https://github.com/epiverse-trace/epichains/issues/new/choose" class="external-link">issue</a>.</p>
-</div>
-<div class="section level2">
-<h2 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
-</h2>
-<p>We welcome contributions to enhance the package’s functionalities. If you wish to do so, please follow the <a href="https://github.com/epiverse-trace/epichains/blob/main/.github/CONTRIBUTING.md" class="external-link">package contributing guide</a>.</p>
-</div>
-<div class="section level2">
-<h2 id="code-of-conduct">Code of conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
-</h2>
-<p>Please note that the <em>epichains</em> project is released with a <a href="https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
-</div>
-<div class="section level2">
-<h2 id="citing-this-package">Citing this package<a class="anchor" aria-label="anchor" href="#citing-this-package"></a>
-</h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"epichains"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; To cite package 'epichains' in publications use:</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   Azam J, Finger F, Funk S (2024). _epichains: Simulating and Analysing</span></span>
-<span><span class="co">#&gt;   Transmission Chain Statistics Using Branching Process Models_. R</span></span>
-<span><span class="co">#&gt;   package version 0.0.0.9999,</span></span>
-<span><span class="co">#&gt;   https://epiverse-trace.github.io/epichains/,</span></span>
-<span><span class="co">#&gt;   &lt;https://github.com/epiverse-trace/epichains&gt;.</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   @Manual{,</span></span>
-<span><span class="co">#&gt;     title = {epichains: Simulating and Analysing Transmission Chain Statistics Using</span></span>
-<span><span class="co">#&gt; Branching Process Models},</span></span>
-<span><span class="co">#&gt;     author = {James M. Azam and Flavio Finger and Sebastian Funk},</span></span>
-<span><span class="co">#&gt;     year = {2024},</span></span>
-<span><span class="co">#&gt;     note = {R package version 0.0.0.9999, </span></span>
-<span><span class="co">#&gt; https://epiverse-trace.github.io/epichains/},</span></span>
-<span><span class="co">#&gt;     url = {https://github.com/epiverse-trace/epichains},</span></span>
-<span><span class="co">#&gt;   }</span></span></code></pre></div>
-</div>
-</div>
+  <main id="main" class="col-md-9">
+Provides methods to simulate and analyse the size and length
+    of branching processes with an arbitrary offspring distribution. These
+    can be used, for example, to analyse the distribution of chain sizes
+    or length of infectious disease outbreaks, as discussed in Farrington
+    et al. (2003) &lt;<a href="https://doi.org/10.1093/biostatistics/4.2.279" class="external-link">doi:10.1093/biostatistics/4.2.279</a>&gt;.
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -254,15 +155,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
-<li><a href="https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/epiverse-trace/epichains/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/github/epiverse-trace/epichains" class="external-link"><img src="https://codecov.io/github/epiverse-trace/epichains/branch/main/graphs/badge.svg" alt="codecov"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-</ul>
-</div>
+
 
   </aside>
 </div>
