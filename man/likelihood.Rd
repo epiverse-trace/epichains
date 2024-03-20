@@ -116,7 +116,6 @@ chains_tree_eg_lik <- likelihood(
   chains = chains_tree_eg,
   statistic = "size",
   offspring_dist = rnbinom,
-  nsim_obs = 100,
   mu = 2,
   size = 0.2,
   stat_max = 10
@@ -139,7 +138,6 @@ chains_summary_eg_lik <- likelihood(
   chains = chains_summary_eg,
   statistic = "size",
   offspring_dist = rnbinom,
-  nsim_obs = 100,
   mu = 2,
   size = 0.2,
   stat_max = 10
