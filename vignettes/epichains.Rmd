@@ -29,6 +29,22 @@ knitr::opts_chunk$set(
 )
 ```
 
+Epidemics spread through when infected individuals transmit the
+infection to others. If we assume that each case infects a random number of
+other individuals (the offspring) through time units called generations,
+and governed by some reproduction rate, then the epidemic can be modelled
+as a branching process. 
+
+Branching processes are a stochastic process where each individual in a
+generation gives rise to a random number of individuals in the next generation.
+The distribution of the number of offspring is called the offspring
+distribution. The size of the transmission chain is the total number of
+individuals infected by a single case, and the length of the transmission
+chain is the number of generations from the first case to the last case before
+the epidemic died out.
+
+<Figure of transmission chain showing size and length>
+
 _epichains_ provides methods to analyse and simulate the size and length
 of branching processes with an arbitrary offspring distribution. These
 can be used, for example, to analyse the distribution of chain sizes
@@ -38,6 +54,28 @@ or length of infectious disease outbreaks, as discussed in @farrington2003 and
 ```{r load_epichains}
 library("epichains")
 ```
+
+:: {.alert .alert-primary}
+## Use case {-}
+Suppose we observe a series of small outbreak clusters, each arising from a
+separate external introduction (e.g. spillover event or importation into the
+region). What are the likely transmission properties of the infection that
+generated these clusters?
+:::
+
+::: {.alert .alert-secondary}
+### What we have {-}
+
+1. Data on the sizes or lengths of the observed transmission chains,
+2. An offspring distribution with known parameters,
+
+### What we assume {-}
+
+1. The epidemic was perfectly observed.
+1. The exact time of infection is known for all the cases. Hence, there is
+no reporting delay.
+1. Population is homogeneous and well-mixed.
+:::
 
 ## Chain likelihoods
 
