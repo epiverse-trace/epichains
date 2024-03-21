@@ -103,7 +103,6 @@ test_that("Likelihoods are numerically correct", {
     ),
     -8.6072
   )
-  set.seed(12)
   expect_identical(
     round(
       likelihood(
@@ -128,7 +127,6 @@ test_that("Likelihoods are numerically correct", {
     ),
     -11.21929
   )
-  set.seed(12)
   expect_identical(
     round(
       likelihood(
@@ -140,7 +138,6 @@ test_that("Likelihoods are numerically correct", {
     ),
     -9.39945
   )
-  set.seed(12)
   expect_identical(
     round(
       likelihood(
