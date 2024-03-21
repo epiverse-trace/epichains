@@ -17,8 +17,12 @@ applications)}
 
 \item{mu}{mean parameter}
 
-\item{infinite}{Any number to treat as infinite; simulations will be
-stopped if this number is reached}
+\item{infinite}{A threshold above which the random number is set to
+\code{Inf} as a form of truncation. This is important because \code{rborel()} uses
+\code{simulate_summary()} internally with \code{offspring_dist = rpois}, so
+when \code{mu >= 1}, the simulation could grow out of proportion and chain
+summaries (the random numbers generated here) need to be truncated using
+\code{infinite}.}
 }
 \value{
 Numeric vector of random numbers
