@@ -15,7 +15,7 @@
 #' @inheritParams .epichains
 #' @author James M. Azam
 #' @keywords internal
-new_epichains <- function(tree_df,
+.new_epichains <- function(tree_df,
                                index_cases,
                                statistic,
                                offspring_dist,
@@ -54,7 +54,7 @@ new_epichains <- function(tree_df,
 #' @return An `<epichains>` object
 #' @author James M. Azam
 #' @export
-epichains <- function(tree_df,
+.epichains <- function(tree_df,
                       index_cases,
                       offspring_dist,
                       track_pop,
@@ -431,7 +431,7 @@ summary.epichains_summary <- function(object, ...) {
 #' otherwise
 #' @author James M. Azam
 #' @export
-is_epichains <- function(x) {
+.is_epichains <- function(x) {
   inherits(x, "epichains")
 }
 
@@ -454,7 +454,7 @@ is_epichains <- function(x) {
 #' @return No return.
 #' @author James M. Azam
 #' @export
-validate_epichains <- function(x) {
+.validate_epichains <- function(x) {
   if (!.is_epichains(x)) {
     stop("Object must have an `<epichains>` class")
   }
