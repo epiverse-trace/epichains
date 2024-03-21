@@ -136,6 +136,13 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     chains <- summary(chains)
   }
 
+  if (any(chains == stat_max) && is.infinite(stat_max)) {
+    # stat_max can only be infinite if the stat_max used in the simulation
+    # is finite. So, we will replace the infinite stat_max with the finite
+    # one used in the simulation.
+    stat_max_from_sim <- attr(chains, "stat_max")
+    chains[is.infinite(chains)] <- stat_max_from_sim
+  }
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
