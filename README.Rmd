@@ -60,7 +60,7 @@ library("epichains")
 
 ## Quick start
 
-_{{ packagename }}_ provides two main functions:
+_{{ packagename }}_ provides three main functions:
 
 * `simulate_chains()`: simulates transmission chains using a simple
 branching process model that accepts an index number of cases that seed
