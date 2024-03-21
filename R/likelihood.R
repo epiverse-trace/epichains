@@ -96,12 +96,6 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   statistic <- match.arg(statistic)
 
   ## Input checking
-  ## Check nsim_obs when specified
-  if (!missing(nsim_obs)) {
-    checkmate::assert_number(
-      nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
-    )
-  }
   checkmate::assert(
     checkmate::check_numeric(
       chains, lower = 0, upper = Inf, any.missing = FALSE
@@ -146,6 +140,10 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
+    } else {
+      checkmate::assert_number(
+        nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
+      )
     }
 
     statistic_func <- .get_statistic_func(statistic)
