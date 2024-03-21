@@ -153,8 +153,6 @@
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @keywords internal
-#' @seealso [simulate_summary()] for simulating a summary of the transmission
-#' chains statistic (without the tree of infections)
 .offspring_ll <- function(x, offspring_dist, statistic,
                          nsim_offspring = 100, ...) {
   # Input checking
