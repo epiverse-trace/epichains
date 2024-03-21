@@ -101,7 +101,7 @@ test_that("Likelihoods are numerically correct", {
         lambda = 0.5
       ), 5
     ),
-    -8.31116
+    -8.6072
   )
   set.seed(12)
   expect_identical(
@@ -114,21 +114,20 @@ test_that("Likelihoods are numerically correct", {
         size = 0.2
       ), 5
     ),
-    -9.03992
+    -9.13437
   )
-  # set.seed(12)
-  # expect_identical(
-  #   round(
-  #     likelihood(
-  #       chains = chains,
-  #       statistic = "size",
-  #       offspring_dist = rgborel,
-  #       prob = 0.5,
-  #       size = 0.2
-  #     ), 5
-  #   ),
-  #   -11.21929
-  # )
+  expect_identical(
+    round(
+      likelihood(
+        chains = chains,
+        statistic = "size",
+        offspring_dist = rgborel,
+        prob = 0.5,
+        size = 0.2
+      ), 5
+    ),
+    -11.21929
+  )
   set.seed(12)
   expect_identical(
     round(
@@ -139,7 +138,7 @@ test_that("Likelihoods are numerically correct", {
         lambda = 0.5
       ), 5
     ),
-    -Inf
+    -9.39945
   )
   set.seed(12)
   expect_identical(
@@ -151,7 +150,7 @@ test_that("Likelihoods are numerically correct", {
         prob = 0.5
       ), 5
     ),
-    -8.46081
+    -12.48639
   )
 })
 
