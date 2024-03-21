@@ -12,7 +12,7 @@
 #' "infectee_id", "infector_id", and "generation". Also has optional columns
 #' for "time", and "chain_id".
 #' @param track_pop Was the susceptible population tracked? Logical
-#' @inheritParams epichains
+#' @inheritParams .epichains
 #' @author James M. Azam
 #' @keywords internal
 new_epichains <- function(tree_df,
@@ -49,7 +49,7 @@ new_epichains <- function(tree_df,
 #' tracked.
 #'
 #' @inheritParams simulate_chains
-#' @inheritParams new_epichains
+#' @inheritParams .new_epichains
 #'
 #' @return An `<epichains>` object
 #' @author James M. Azam
@@ -78,7 +78,7 @@ epichains <- function(tree_df,
     checkmate::check_integerish(stat_max, lower = 1L)
   )
   # Create <epichains> object
-  epichains <- new_epichains(
+  epichains <- .new_epichains(
     tree_df = tree_df,
     index_cases = index_cases,
     statistic = statistic,
@@ -88,7 +88,7 @@ epichains <- function(tree_df,
   )
 
   # Validate the created object
-  validate_epichains(epichains)
+  .validate_epichains(epichains)
 
   return(epichains)
 }
@@ -107,8 +107,8 @@ epichains <- function(tree_df,
 #' new `<epichains_summary>` object safely, use `epichains_summary()`.
 #'
 #' @param chains_summary a `<vector>` of chain sizes and lengths.
-#' @inheritParams new_epichains
-#' @inheritParams simulate_chains
+#' @inheritParams .new_epichains
+#' @inheritParams .simulate_chains
 #' @author James M. Azam
 #' @keywords internal
 .new_epichains_summary <- function(chains_summary,
@@ -216,7 +216,7 @@ print.epichains_summary <- function(x, ...) {
 #' @export
 format.epichains <- function(x, ...) {
   # check that x is an <epichains> object
-  validate_epichains(x)
+  .validate_epichains(x)
 
   writeLines(sprintf("`<epichains>` object\n"))
 
@@ -352,7 +352,7 @@ format.epichains_summary <- function(x, ...) {
 #' setequal(sim_chains_nbinom_summary, sim_summary_nbinom)
 summary.epichains <- function(object, ...) {
   # Check that object has <epichains> class
-  validate_epichains(object)
+  .validate_epichains(object)
 
   # Get relevant attributes for computing summaries
   statistic <- attr(object, "statistic")
@@ -381,7 +381,7 @@ summary.epichains <- function(object, ...) {
   chain_summaries[chain_summaries >= stat_max] <- Inf
 
   # Return an <epichains_summary> object
-  chain_summaries <- epichains_summary(
+  chain_summaries <- .epichains_summary(
     chains_summary = chain_summaries,
     index_cases = index_cases,
     statistic = statistic,
@@ -455,7 +455,7 @@ is_epichains <- function(x) {
 #' @author James M. Azam
 #' @export
 validate_epichains <- function(x) {
-  if (!is_epichains(x)) {
+  if (!.is_epichains(x)) {
     stop("Object must have an `<epichains>` class")
   }
 
@@ -585,7 +585,7 @@ aggregate.epichains <- function(x,
                                        "generation"
                                      ),
                                      ...) {
-  validate_epichains(x)
+  .validate_epichains(x)
   checkmate::assert_string(by)
   # Get grouping variable
   by <- match.arg(by)
