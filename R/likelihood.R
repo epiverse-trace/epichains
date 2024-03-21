@@ -138,8 +138,8 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
   if (any(chains == stat_max) && is.infinite(stat_max)) {
     # stat_max can only be infinite if the stat_max used in the simulation
-    # is finite. So, we will replace the infinite stat_max with the finite
-    # one used in the simulation.
+    # is finite. So, we replace the infinite stat_max argument in this
+    # function with the finite one used in the simulation.
     stat_max_from_sim <- attr(chains, "stat_max")
     chains[is.infinite(chains)] <- stat_max_from_sim
   }
