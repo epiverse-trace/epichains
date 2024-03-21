@@ -94,10 +94,6 @@ likelihood(
   offspring_dist = rpois, nsim_obs = 100, lambda = 0.5
 )
 }
-\seealso{
-offspring_ll(), pois_size_ll(), nbinom_size_ll(), gborel_size_ll(),
-pois_length_ll(), geom_length_ll()
-}
 \author{
 Sebastian Funk
 }

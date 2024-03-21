@@ -33,8 +33,6 @@
 #' except that likelihoods, instead of log-likelihoods, are calculated in all
 #' cases. Moreover, the joint likelihoods are the product, instead of the sum,
 #' of the individual likelihoods.
-#' @seealso offspring_ll(), pois_size_ll(), nbinom_size_ll(), gborel_size_ll(),
-#' pois_length_ll(), geom_length_ll()
 #' @author Sebastian Funk
 #' @examples
 #' # example of observed chain sizes
