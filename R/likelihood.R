@@ -6,6 +6,11 @@
 #' @param nsim_obs Number of simulations to be used to approximate the
 #' log-likelihood/likelihood if `obs_prob < 1` (imperfect observation). If
 #' `obs_prob == 1`, this argument is ignored.
+#' @param obs_prob Observation probability. A number (probability) between 0
+#' and 1. A value greater than 0 but less 1 implies imperfect observation and
+#' simulations will be used to approximate the (log)likelihood. This will
+#' also require specifying `nsim_obs`. In the simulation, the observation
+#' process is assumed to be constant.
 #' @param log Logical; Should the log-likelihoods be transformed to
 #' likelihoods? (Defaults to TRUE).
 #' @param exclude A vector of indices of the sizes/lengths to exclude from the
