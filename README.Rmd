@@ -121,6 +121,27 @@ chains_agrgegated <- aggregate(sim_chains, by = "generation")
 plot(chains_agrgegated, type = "b")
 ```
 
+### Inference
+
+Let's look at the following example where we estimate the log-likelihood of
+observing a hypothetical `chain_lengths` dataset.
+```{r likelihood_example, eval=TRUE}
+set.seed(32)
+# randomly generate 20 chain lengths between 1 to 40
+chain_lengths <- sample(1:40, 20, replace = TRUE)
+chain_lengths
+
+# estimate loglikelihood of the observed chain sizes
+likelihood_eg <- likelihood(
+  chains = chain_lengths,
+  statistic = "length",
+  offspring_dist = rpois,
+  lambda = 0.99
+)
+# Print the estimate
+likelihood_eg
+```
+
 Each of the listed functionalities is demonstrated in detail
 in the ["Getting Started" vignette](https://epiverse-trace.github.io/epichains/articles/epichains.html).
 
