@@ -43,7 +43,11 @@ binomial offspring, or custom functions.}
 log-likelihood/likelihood if \code{obs_prob < 1} (imperfect observation). If
 \code{obs_prob == 1}, this argument is ignored.}
 
-\item{obs_prob}{Observation probability (assumed constant)}
+\item{obs_prob}{Observation probability. A number (probability) between 0
+and 1. A value greater than 0 but less 1 implies imperfect observation and
+simulations will be used to approximate the (log)likelihood. This will
+also require specifying \code{nsim_obs}. In the simulation, the observation
+process is assumed to be constant.}
 
 \item{log}{Logical; Should the log-likelihoods be transformed to
 likelihoods? (Defaults to TRUE).}
