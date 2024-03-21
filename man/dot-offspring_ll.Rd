@@ -42,16 +42,6 @@ log-likelihood values
 The log-likelihoods are calculated with a crude approximation using simulated
 chain summaries by linearly approximating any missing values in the empirical
 cumulative distribution function (ecdf).
-}
-\examples{
-set.seed(123)
-chain_size_ll <- offspring_ll(
-  x = c(1, 5, 6, 8, 7, 8, 10),
-  offspring_dist = rpois,
-  statistic = "size",
-  lambda = 0.82
-)
-}
 \seealso{
 \code{\link[=simulate_summary]{simulate_summary()}} for simulating a summary of the transmission
 chains statistic (without the tree of infections)

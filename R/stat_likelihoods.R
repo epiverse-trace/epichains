@@ -155,14 +155,6 @@
 #' @keywords internal
 #' @seealso [simulate_summary()] for simulating a summary of the transmission
 #' chains statistic (without the tree of infections)
-#' @examples
-#' set.seed(123)
-#' chain_size_ll <- offspring_ll(
-#'   x = c(1, 5, 6, 8, 7, 8, 10),
-#'   offspring_dist = rpois,
-#'   statistic = "size",
-#'   lambda = 0.82
-#' )
 .offspring_ll <- function(x, offspring_dist, statistic,
                          nsim_offspring = 100, ...) {
   # Input checking
