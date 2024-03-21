@@ -18,3 +18,4 @@ Validate an \verb{<epichains>} object
 \author{
 James M. Azam
 }
+\keyword{internal}

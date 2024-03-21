@@ -53,7 +53,7 @@
 #'
 #' @return An `<epichains>` object
 #' @author James M. Azam
-#' @export
+#' @keywords internal
 .epichains <- function(tree_df,
                       index_cases,
                       offspring_dist,
@@ -430,7 +430,7 @@ summary.epichains_summary <- function(object, ...) {
 #' @return logical, `TRUE` if the object is an `<epichains>` and `FALSE`
 #' otherwise
 #' @author James M. Azam
-#' @export
+#' @keywords internal
 .is_epichains <- function(x) {
   inherits(x, "epichains")
 }
@@ -442,7 +442,7 @@ summary.epichains_summary <- function(object, ...) {
 #' @return logical, `TRUE` if the object is an `epichains_summary` and `FALSE`
 #' otherwise
 #' @author James M. Azam
-#' @export
+#' @keywords internal
 .is_epichains_summary <- function(x) {
   inherits(x, "epichains_summary")
 }
@@ -453,7 +453,7 @@ summary.epichains_summary <- function(object, ...) {
 #'
 #' @return No return.
 #' @author James M. Azam
-#' @export
+#' @keywords internal
 .validate_epichains <- function(x) {
   if (!.is_epichains(x)) {
     stop("Object must have an `<epichains>` class")
@@ -481,7 +481,7 @@ summary.epichains_summary <- function(object, ...) {
 #'
 #' @return No return.
 #' @author James M. Azam
-#' @export
+#' @keywords internal
 .validate_epichains_summary <- function(x) {
   if (!.is_epichains_summary(x)) {
     stop("Object must have an `<epichains_summary>` class")
