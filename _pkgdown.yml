@@ -28,6 +28,8 @@ reference:
   - subtitle: epichains_summary methods
     contents:
     - summary.epichains_summary
+    - format.epichains_summary
+    - print.epichains_summary
 
   - title: Special distributions
     contents:
