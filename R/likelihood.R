@@ -119,8 +119,12 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   pars <- as.list(unlist(list(...))) ## converts vectors to lists
 
   ## calculate log-likelihoods
-  if (exists(ll_func, where = asNamespace("epichains"), mode = "function")) {
-    func <- get(ll_func)
+  possible_internal_func <- paste0(".", ll_func)
+  if (exists(possible_internal_func,
+             where = asNamespace("epichains"),
+             mode = "function")
+  ) {
+    func <- get(possible_internal_func)
     likelihoods[calc_sizes] <- do.call(func, c(list(x = calc_sizes), pars))
   } else {
     likelihoods[calc_sizes] <-
