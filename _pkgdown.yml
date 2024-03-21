@@ -15,9 +15,9 @@ reference:
     contents:
     - likelihood
 
-  - title: epichains classes
+  - title: Methods for internal classes
 
-  - subtitle: epichains methods
+  - subtitle: epichains class
     contents:
     - aggregate.epichains
     - summary.epichains
@@ -25,7 +25,7 @@ reference:
     - print.epichains
     - head.epichains
 
-  - subtitle: epichains_summary methods
+  - subtitle: epichains_summary
     contents:
     - summary.epichains_summary
     - format.epichains_summary
