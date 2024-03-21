@@ -2,6 +2,7 @@
 % Please edit documentation in R/epichains-package.R
 \docType{package}
 \name{epichains-package}
+\alias{epichains}
 \alias{epichains-package}
 \title{epichains: Simulating and Analysing Transmission Chain Statistics Using Branching Process Models}
 \description{
