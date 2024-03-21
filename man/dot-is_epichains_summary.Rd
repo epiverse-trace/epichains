@@ -19,3 +19,4 @@ Test if x is an \code{epichains_summary} object
 \author{
 James M. Azam
 }
+\keyword{internal}
