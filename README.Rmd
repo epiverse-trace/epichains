@@ -89,6 +89,35 @@ Objects returned from `simulate_chains()` can be aggregated into a
 with the function `aggregate()`. The aggregated results can also be passed
 on to `plot()` with its own arguments to customize the resulting plots.
 
+Let's look at a simple example where we simulate a transmission chain with $20$
+index cases, a constant generation time of $3$, and a poisson offspring
+distribution with mean $1$. We are tracking the chain "size" statistic and
+will cap all chain sizes at $25$ cases. We will then look at the summary of
+the simulation, and aggregate it into cases per generation, and plot it.
+```{r simulate_chains, eval=TRUE}
+set.seed(32)
+# Simulate chains
+sim_chains <- simulate_chains(
+  index_cases = 20,
+  statistic = "size",
+  offspring_dist = rpois,
+  stat_max = 25,
+  generation_time = function(n) {rep(3, n)}, # constant generation time of 3
+  lambda = 1 # mean of the Poisson distribution
+)
+# View the head of the simulation
+head(sim_chains)
+
+# Summarise the simulation
+summary(sim_chains)
+
+# Aggregate the simulation into cases per generation
+chains_agrgegated <- aggregate(sim_chains, by = "generation")
+
+# plot the aggregated results
+plot(chains_agrgegated, type = "b")
+```
+
 Each of the listed functionalities is demonstrated in detail
 in the ["Getting Started" vignette](https://epiverse-trace.github.io/epichains/articles/epichains.html).
 
