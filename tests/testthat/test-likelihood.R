@@ -1,8 +1,6 @@
-chains <- c(1, 1, 4, 7)
-set.seed(12)
-test_that(
-  "Likelihoods can be calculated",
-  {
+test_that("Likelihoods can be calculated", {
+  chains <- c(1, 1, 4, 7)
+  set.seed(12)
     expect_lt(
       likelihood(
         chains = chains,
@@ -92,6 +90,8 @@ test_that(
 )
 
 test_that("Likelihoods are numerically correct", {
+  chains <- c(1, 1, 4, 7)
+  set.seed(12)
   expect_identical(
     round(
       likelihood(
@@ -103,6 +103,7 @@ test_that("Likelihoods are numerically correct", {
     ),
     -8.6072
   )
+  set.seed(12)
   expect_identical(
     round(
       likelihood(
@@ -127,6 +128,7 @@ test_that("Likelihoods are numerically correct", {
     ),
     -11.21929
   )
+  set.seed(12)
   expect_identical(
     round(
       likelihood(
@@ -138,6 +140,7 @@ test_that("Likelihoods are numerically correct", {
     ),
     -9.39945
   )
+  set.seed(12)
   expect_identical(
     round(
       likelihood(
@@ -152,6 +155,8 @@ test_that("Likelihoods are numerically correct", {
 })
 
 test_that("Errors are thrown", {
+  chains <- c(1, 1, 4, 7)
+  set.seed(12)
   expect_error(
     likelihood(
       chains = chains,
