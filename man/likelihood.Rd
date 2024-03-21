@@ -39,8 +39,9 @@ on to the random number generating functions. Examples that can be provided
 here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for negative
 binomial offspring, or custom functions.}
 
-\item{nsim_obs}{Number of simulations if the log-likelihood/likelihood is to
-be approximated for imperfect observations.}
+\item{nsim_obs}{Number of simulations to be used to approximate the
+log-likelihood/likelihood if \code{obs_prob < 1} (imperfect observation). If
+\code{obs_prob == 1}, this argument is ignored.}
 
 \item{obs_prob}{Observation probability (assumed constant)}
 
