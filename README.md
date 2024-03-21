@@ -58,7 +58,7 @@ library("epichains")
 
 ## Quick start
 
-*epichains* provides two main functions:
+*epichains* provides three main functions:
 
 - `simulate_chains()`: simulates transmission chains using a simple
   branching process model that accepts an index number of cases that
@@ -88,6 +88,55 @@ Objects returned from `simulate_chains()` can be aggregated into a
 `<data.frame>` of cases per time or generation with the function
 `aggregate()`. The aggregated results can also be passed on to `plot()`
 with its own arguments to customize the resulting plots.
+
+Let’s look at a simple example where we simulate a transmission chain
+with $20$ index cases, a constant generation time of $3$, and a poisson
+offspring distribution with mean $1$. We are tracking the chain “size”
+statistic and will cap all chain sizes at $25$ cases. We will then look
+at the summary of the simulation, and aggregate it into cases per
+generation, and plot it.
+
+``` r
+set.seed(32)
+# Simulate chains
+sim_chains <- simulate_chains(
+  index_cases = 20,
+  statistic = "size",
+  offspring_dist = rpois,
+  stat_max = 25,
+  generation_time = function(n) {rep(3, n)}, # constant generation time of 3
+  lambda = 1 # mean of the Poisson distribution
+)
+# View the head of the simulation
+head(sim_chains)
+#>    infectee_id sim_id infector_id generation time
+#> 21           1      2           1          2    3
+#> 22           2      2           1          2    3
+#> 23           3      2           1          2    3
+#> 24           4      2           1          2    3
+#> 25           6      2           1          2    3
+#> 26           7      2           1          2    3
+
+# Summarise the simulation
+summary(sim_chains)
+#> `epichains_summary` object 
+#> 
+#>  [1]   5  17   4   8   1  16   9 Inf   5  18   5   1 Inf  24   1  14  19   2   4
+#> [20]  14
+#> 
+#>  Simulated tree sizes: 
+#> 
+#> Max: 24
+#> Min: 1
+
+# Aggregate the simulation into cases per generation
+chains_agrgegated <- aggregate(sim_chains, by = "generation")
+
+# plot the aggregated results
+plot(chains_agrgegated, type = "b")
+```
+
+<img src="man/figures/README-simulate_chains-1.png" width="100%" />
 
 Each of the listed functionalities is demonstrated in detail in the
 [“Getting Started”
@@ -213,8 +262,10 @@ By contributing to this project, you agree to abide by its terms.
 citation("epichains")
 #> To cite package 'epichains' in publications use:
 #> 
-#>   Azam J, Finger F, Funk S (2024). _epichains: Simulating and Analysing Transmission Chain Statistics Using
-#>   Branching Process Models_. R package version 0.0.0.9999, https://epiverse-trace.github.io/epichains/,
+#>   Azam J, Finger F, Funk S (2024). _epichains: Simulating and Analysing
+#>   Transmission Chain Statistics Using Branching Process Models_. R
+#>   package version 0.0.0.9999,
+#>   https://epiverse-trace.github.io/epichains/,
 #>   <https://github.com/epiverse-trace/epichains>.
 #> 
 #> A BibTeX entry for LaTeX users is
