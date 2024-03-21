@@ -17,20 +17,15 @@ reference:
 
   - title: epichains classes
 
-  - subtitle: epichains object
-    desc: Class constructor, validator, and methods
+  - subtitle: epichains methods
     contents:
-    - epichains
-    - is_epichains
-    - validate_epichains
     - aggregate.epichains
     - summary.epichains
     - format.epichains
     - print.epichains
     - head.epichains
 
-  - subtitle: epichains_summary object
-    desc: Class constructor, validator, and methods
+  - subtitle: epichains_summary methods
     contents:
     - summary.epichains_summary
 
