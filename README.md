@@ -89,12 +89,14 @@ Objects returned from `simulate_chains()` can be aggregated into a
 `aggregate()`. The aggregated results can also be passed on to `plot()`
 with its own arguments to customize the resulting plots.
 
-Let’s look at a simple example where we simulate a transmission chain
-with $20$ index cases, a constant generation time of $3$, and a poisson
-offspring distribution with mean $1$. We are tracking the chain “size”
-statistic and will cap all chain sizes at $25$ cases. We will then look
-at the summary of the simulation, and aggregate it into cases per
-generation, and plot it.
+### Simulation
+
+For the simulation functionality, let’s look at a simple example where
+we simulate a transmission chain with $20$ index cases, a constant
+generation time of $3$, and a poisson offspring distribution with mean
+$1$. We are tracking the chain “size” statistic and will cap all chain
+sizes at $25$ cases. We will then look at the summary of the simulation,
+and aggregate it into cases per generation, and plot it.
 
 ``` r
 set.seed(32)
@@ -137,6 +139,30 @@ plot(chains_agrgegated, type = "b")
 ```
 
 <img src="man/figures/README-simulate_chains-1.png" width="100%" />
+
+### Inference
+
+Let’s look at the following example where we estimate the log-likelihood
+of observing a hypothetical `chain_lengths` dataset.
+
+``` r
+set.seed(32)
+# randomly generate 20 chain lengths between 1 to 40
+chain_lengths <- sample(1:40, 20, replace = TRUE)
+chain_lengths
+#>  [1]  6 11 20  9 40 33 39 27  6 12 39 35  9 25  6 15 12  6 37 35
+
+# estimate loglikelihood of the observed chain sizes
+likelihood_eg <- likelihood(
+  chains = chain_lengths,
+  statistic = "length",
+  offspring_dist = rpois,
+  lambda = 0.99
+)
+# Print the estimate
+likelihood_eg
+#> [1] -104.2917
+```
 
 Each of the listed functionalities is demonstrated in detail in the
 [“Getting Started”
