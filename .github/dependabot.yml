@@ -12,4 +12,4 @@ updates:
       day: "monday"
       time: "06:00"
     labels:
-      - "package_infrastructure"
+      - "pkg_infrastructure"
