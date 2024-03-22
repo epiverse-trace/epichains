@@ -43,9 +43,6 @@
     <loc>https://epiverse-trace.github.io/epichains/reference/aggregate.epichains.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/complementary_logprob.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/covid19_sa.html</loc>
   </url>
   <url>
@@ -70,6 +67,21 @@
     <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_time_args.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-complementary_logprob.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-epichains.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-epichains_summary.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-gborel_size_ll.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-geom_length_ll.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/dot-get_statistic_func.html</loc>
   </url>
   <url>
@@ -79,19 +91,49 @@
     <loc>https://epiverse-trace.github.io/epichains/reference/dot-init_susc_pop.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-is_epichains.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-is_epichains_summary.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-nbinom_size_ll.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-new_epichains.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-new_epichains_summary.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-offspring_ll.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-pois_length_ll.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-pois_size_ll.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-rbinom_size.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-rgen_length.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/dot-sample_possible_offspring.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/dot-update_chain_stat.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-validate_epichains.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/epichains/reference/dot-validate_epichains_summary.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/epichains-package.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/epichains_summary.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/format.epichains.html</loc>
@@ -100,43 +142,13 @@
     <loc>https://epiverse-trace.github.io/epichains/reference/format.epichains_summary.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/gborel_size_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/geom_length_ll.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/head.epichains.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/is_epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/is_epichains_summary.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/likelihood.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/nbinom_size_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/new_epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/new_epichains_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/offspring_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/pois_length_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/pois_size_ll.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/print.epichains.html</loc>
@@ -145,16 +157,10 @@
     <loc>https://epiverse-trace.github.io/epichains/reference/print.epichains_summary.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/rbinom_size.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/rborel.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/rgborel.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/rgen_length.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/simulate_chains.html</loc>
@@ -167,11 +173,5 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/epichains/reference/summary.epichains_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/validate_epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/validate_epichains_summary.html</loc>
   </url>
 </urlset>
