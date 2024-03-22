@@ -126,7 +126,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     exclude, null.ok = TRUE
   )
   # likelihood can also work with a summarised <epichains_tree> object
-  if (is_epichains(chains)) {
+  if (.is_epichains(chains)) {
     chains <- summary(chains)
   }
 
