@@ -1,4 +1,4 @@
-# simulate_summary is numerically correct
+# simulate_chain_stats is numerically correct
 
     Code
       sim_summary_small_pop

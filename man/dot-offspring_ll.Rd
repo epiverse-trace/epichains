@@ -33,7 +33,7 @@ it goes extinct.
 for approximating the distribution of the chain statistic summary
 (size/length)}
 
-\item{...}{Any parameters to pass to \code{\link{simulate_summary}}}
+\item{...}{any parameters to pass to \code{\link{simulate_chain_stats}}}
 }
 \value{
 A numeric vector of log-likelihood values.

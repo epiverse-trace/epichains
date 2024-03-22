@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 
 _epichains_ does not provide any direct functionality for studying reductions in transmission (e.g. from public health interventions).
 However, the flexible simulation functionality that it includes can be used to consider some specific changes to the parameters that can be interpreted as the result of changes in social behaviour or control measures.
-Here we investigate the effect on outbreak sizes, but the same approaches could be used for investigating chain lengths (using the `statistic` argument to `simulate_summary()`) or the time progression of outbreaks (using the `simulate_chains()` function).
+Here we investigate the effect on outbreak sizes, but the same approaches could be used for investigating chain lengths (using the `statistic` argument to `simulate_chain_stats()`) or the time progression of outbreaks (using the `simulate_chains()` function).
 
 ::: {.alert .alert-info}
 Some of the ideas presented here can be achieved using closed-form solutions
@@ -53,7 +53,7 @@ As a base case we consider the spread of an infection with a negative binomial o
 We simulate 200 chains tracking up to 99 infections:
 
 ```{r simulate_chains}
-sims <- simulate_summary(
+sims <- simulate_chain_stats(
   index_cases = 200, offspring_dist = rnbinom, stat_max = 99, mu = 1.2,
   size = 0.5, statistic = "size"
 )
@@ -79,7 +79,7 @@ By population-level control we mean an intervention that reduces the mean number
 For example, to reduce R by 25% at the population level we scale the `mu` parameter from 1.2 to 0.9:
 
 ```{r simulate_chains_pop_control}
-sims <- simulate_summary(
+sims <- simulate_chain_stats(
   index_cases = 200, offspring_dist = rnbinom, stat_max = 99, mu = 0.9,
   size = 0.5, statistic = "size"
 )
@@ -117,7 +117,7 @@ rnbinom_ind <- function(n, ..., control = 0) {
 Having defined this, we can generate simulations as before:
 
 ```{r simulate_chains_ind_control}
-sims <- simulate_summary(
+sims <- simulate_chain_stats(
   index_cases = 200, offspring_dist = rnbinom_ind, stat_max = 99, mu = 1.2,
   size = 0.5, control = 0.25, statistic = "size"
 )
@@ -147,7 +147,7 @@ We use this to simulate chains in a situation where the maximum of secondary cas
 This can be likened to a disease control strategy where gatherings are limited to 10 people.
 
 ```{r simulate_chains_truncated}
-sims <- simulate_summary(
+sims <- simulate_chain_stats(
   index_cases = 200, offspring_dist = rnbinom_truncated, stat_max = 99,
   mu = 1.2, size = 0.5, max =  10, statistic = "size"
 )
