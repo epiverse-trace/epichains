@@ -2,7 +2,9 @@
 #'
 #' @inheritParams .offspring_ll
 #' @inheritParams simulate_summary
-#' @param chains Vector of chain summaries (sizes/lengths)
+#' @param chains Vector of chain summaries (sizes/lengths). Can also be an
+#' object of class `<epichains_tree>` or `<epichains_summary>`. See examples
+#' below.
 #' @param nsim_obs Number of simulations to be used to approximate the
 #' log-likelihood/likelihood if `obs_prob < 1` (imperfect observation). If
 #' `obs_prob == 1`, this argument is ignored.
@@ -43,6 +45,51 @@
 #'   chains = chain_sizes, statistic = "size",
 #'   offspring_dist = rpois, nsim_obs = 100, lambda = 0.5
 #' )
+#' # Example using an <epichains_tree> object
+#' set.seed(32)
+#' chains_tree_eg <- simulate_chains(
+#'  index_cases = 10,
+#'  pop = 100,
+#'  percent_immune = 0,
+#'  statistic = "size",
+#'  offspring_dist = rnbinom,
+#'  stat_max = 10,
+#'  generation_time = function(n) rep(3, n),
+#'  mu = 2,
+#'  size = 0.2
+#')
+#'
+#' chains_tree_eg_lik <- likelihood(
+#'   chains = chains_tree_eg,
+#'   statistic = "size",
+#'   offspring_dist = rnbinom,
+#'   mu = 2,
+#'   size = 0.2,
+#'   stat_max = 10
+#' )
+#' chains_tree_eg_lik
+#'
+#' # Example using a <epichains_summary> object
+#' set.seed(32)
+#' chains_summary_eg <- simulate_summary(
+#'  index_cases = 10,
+#'   pop = 100,
+#'   percent_immune = 0,
+#'   statistic = "size",
+#'   offspring_dist = rnbinom,
+#'   stat_max = 10,
+#'   mu = 2,
+#'   size = 0.2
+#' )
+#' chains_summary_eg_lik <- likelihood(
+#'   chains = chains_summary_eg,
+#'   statistic = "size",
+#'   offspring_dist = rnbinom,
+#'   mu = 2,
+#'   size = 0.2,
+#'   stat_max = 10
+#' )
+#' chains_summary_eg_lik
 #' @export
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
                        nsim_obs, obs_prob = 1, log = TRUE, stat_max = Inf,
@@ -50,14 +97,16 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   statistic <- match.arg(statistic)
 
   ## Input checking
-  ## Check nsim_obs when specified
-  if (!missing(nsim_obs)) {
-    checkmate::assert_number(
-      nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
+  checkmate::assert(
+    checkmate::check_numeric(
+      chains, lower = 0, upper = Inf, any.missing = FALSE
+    ),
+    checkmate::check_class(
+      chains, "epichains"
+    ),
+    checkmate::check_class(
+      chains, "epichains_summary"
     )
-  }
-  checkmate::assert_numeric(
-    chains, lower = 0, upper = Inf, any.missing = FALSE
   )
   # check that arguments related to the statistic are valid
   .check_statistic_args(
@@ -77,9 +126,25 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   checkmate::assert_numeric(
     exclude, null.ok = TRUE
   )
+  # likelihood can also work with a summarised <epichains_tree> object
+  if (.is_epichains(chains)) {
+    chains <- summary(chains)
+  }
+
+  if (any(chains == stat_max) && is.infinite(stat_max)) {
+    # stat_max can only be infinite if the stat_max used in the simulation
+    # is finite. So, we replace the infinite stat_max argument in this
+    # function with the finite one used in the simulation.
+    stat_max_from_sim <- attr(chains, "stat_max")
+    chains[is.infinite(chains)] <- stat_max_from_sim
+  }
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
+    } else {
+      checkmate::assert_number(
+        nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
+      )
     }
 
     statistic_func <- .get_statistic_func(statistic)
