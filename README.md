@@ -70,7 +70,7 @@ library("epichains")
   information on who infected whom, the generation of infection and, if
   a generation time function is specified, the time of infection.
 
-- `simulate_summary()`: provides a performant version of
+- `simulate_chain_stats()`: provides a performant version of
   `simulate_chains()` that only tracks and return a vector of realized
   chain sizes or lengths/durations for each index case without details
   of the infection tree.
@@ -81,8 +81,8 @@ library("epichains")
 
 The objects returned by the `simulate_*()` functions can be summarised
 with `summary()`. Running `summary()` on the output of
-`simulate_chains()` will return the same output as `simulate_summary()`
-using the same inputs.
+`simulate_chains()` will return the same output as
+`simulate_chain_stats()` using the same inputs.
 
 Objects returned from `simulate_chains()` can be aggregated into a
 `<data.frame>` of cases per time or generation with the function
