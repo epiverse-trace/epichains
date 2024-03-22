@@ -125,7 +125,7 @@
 <div class="section level2">
 <h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<p><em>epichains</em> provides two main functions:</p>
+<p><em>epichains</em> provides three main functions:</p>
 <ul>
 <li><p><code><a href="reference/simulate_chains.html">simulate_chains()</a></code>: simulates transmission chains using a simple branching process model that accepts an index number of cases that seed the outbreak, a distribution of offspring per case, and a chain statistic to track (size or length/duration). It optionally accepts other population related inputs such as the population size (defaults to Inf) and percentage of the population initially immune (defaults to 0). This function returns an object with columns that track information on who infected whom, the generation of infection and, if a generation time function is specified, the time of infection.</p></li>
 <li><p><code><a href="reference/simulate_summary.html">simulate_summary()</a></code>: provides a performant version of <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> that only tracks and return a vector of realized chain sizes or lengths/durations for each index case without details of the infection tree.</p></li>
@@ -133,7 +133,73 @@
 </ul>
 <p>The objects returned by the <code>simulate_*()</code> functions can be summarised with <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>. Running <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the output of <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> will return the same output as <code><a href="reference/simulate_summary.html">simulate_summary()</a></code> using the same inputs.</p>
 <p>Objects returned from <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> can be aggregated into a <code>&lt;data.frame&gt;</code> of cases per time or generation with the function <code><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate()</a></code>. The aggregated results can also be passed on to <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> with its own arguments to customize the resulting plots.</p>
+<div class="section level3">
+<h3 id="simulation">Simulation<a class="anchor" aria-label="anchor" href="#simulation"></a>
+</h3>
+<p>For the simulation functionality, let’s look at a simple example where we simulate a transmission chain with <span class="math inline">20</span> index cases, a constant generation time of <span class="math inline">3</span>, and a poisson offspring distribution with mean <span class="math inline">1</span>. We are tracking the chain “size” statistic and will cap all chain sizes at <span class="math inline">25</span> cases. We will then look at the summary of the simulation, and aggregate it into cases per generation, and plot it.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
+<span><span class="co"># Simulate chains</span></span>
+<span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
+<span>  index_cases <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
+<span>  stat_max <span class="op">=</span> <span class="fl">25</span>,</span>
+<span>  generation_time <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span><span class="op">}</span>, <span class="co"># constant generation time of 3</span></span>
+<span>  lambda <span class="op">=</span> <span class="fl">1</span> <span class="co"># mean of the Poisson distribution</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># View the head of the simulation</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    infectee_id sim_id infector_id generation time</span></span>
+<span><span class="co">#&gt; 21           1      2           1          2    3</span></span>
+<span><span class="co">#&gt; 22           2      2           1          2    3</span></span>
+<span><span class="co">#&gt; 23           3      2           1          2    3</span></span>
+<span><span class="co">#&gt; 24           4      2           1          2    3</span></span>
+<span><span class="co">#&gt; 25           6      2           1          2    3</span></span>
+<span><span class="co">#&gt; 26           7      2           1          2    3</span></span>
+<span></span>
+<span><span class="co"># Summarise the simulation</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `epichains_summary` object </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  [1]   5  17   4   8   1  16   9 Inf   5  18   5   1 Inf  24   1  14  19   2   4</span></span>
+<span><span class="co">#&gt; [20]  14</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Simulated tree sizes: </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Max: 24</span></span>
+<span><span class="co">#&gt; Min: 1</span></span>
+<span></span>
+<span><span class="co"># Aggregate the simulation into cases per generation</span></span>
+<span><span class="va">chains_agrgegated</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_chains</span>, by <span class="op">=</span> <span class="st">"generation"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># plot the aggregated results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">chains_agrgegated</span>, type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-simulate_chains-1.png" width="100%"></p>
+</div>
+<div class="section level3">
+<h3 id="inference">Inference<a class="anchor" aria-label="anchor" href="#inference"></a>
+</h3>
+<p>Let’s look at the following example where we estimate the log-likelihood of observing a hypothetical <code>chain_lengths</code> dataset.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
+<span><span class="co"># randomly generate 20 chain lengths between 1 to 40</span></span>
+<span><span class="va">chain_lengths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">chain_lengths</span></span>
+<span><span class="co">#&gt;  [1]  6 11 20  9 40 33 39 27  6 12 39 35  9 25  6 15 12  6 37 35</span></span>
+<span></span>
+<span><span class="co"># estimate loglikelihood of the observed chain sizes</span></span>
+<span><span class="va">likelihood_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
+<span>  chains <span class="op">=</span> <span class="va">chain_lengths</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"length"</span>,</span>
+<span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fl">0.99</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Print the estimate</span></span>
+<span><span class="va">likelihood_eg</span></span>
+<span><span class="co">#&gt; [1] -104.2917</span></span></code></pre></div>
 <p>Each of the listed functionalities is demonstrated in detail in the <a href="https://epiverse-trace.github.io/epichains/articles/epichains.html">“Getting Started” vignette</a>.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="package-vignettes">Package vignettes<a class="anchor" aria-label="anchor" href="#package-vignettes"></a>
@@ -181,12 +247,14 @@
 <div class="section level2">
 <h2 id="citing-this-package">Citing this package<a class="anchor" aria-label="anchor" href="#citing-this-package"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"epichains"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; To cite package 'epichains' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   Azam J, Finger F, Funk S (2024). _epichains: Simulating and Analysing Transmission Chain Statistics Using</span></span>
-<span><span class="co">#&gt;   Branching Process Models_. R package version 0.0.0.9999, https://epiverse-trace.github.io/epichains/,</span></span>
+<span><span class="co">#&gt;   Azam J, Finger F, Funk S (2024). _epichains: Simulating and Analysing</span></span>
+<span><span class="co">#&gt;   Transmission Chain Statistics Using Branching Process Models_. R</span></span>
+<span><span class="co">#&gt;   package version 0.0.0.9999,</span></span>
+<span><span class="co">#&gt;   https://epiverse-trace.github.io/epichains/,</span></span>
 <span><span class="co">#&gt;   &lt;https://github.com/epiverse-trace/epichains&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
