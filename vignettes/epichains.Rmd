@@ -223,8 +223,8 @@ and gamma-borel mixture.
 
 ::: {.alert .alert-info}
 To provide the gamma-borel size likelihood, the [borel distribution](https://en.wikipedia.org/wiki/Borel_distribution) is needed.
-However, base R does not provide this distribution natively like poisson,
-gamma, etc., so _epichains_ provides its [density and random generator](https://epiverse-trace.github.io/epichains/reference/index.html#special-distributions).
+However, base R does not provide this distribution natively like poisson and
+gamma, so _epichains_ provides its [density and random generator](https://epiverse-trace.github.io/epichains/reference/index.html#special-distributions).
 :::
 
 For the length distribution, there's the poisson and
