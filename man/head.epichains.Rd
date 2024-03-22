@@ -10,12 +10,12 @@
 \method{tail}{epichains}(x, ...)
 }
 \arguments{
-\item{x}{An \verb{<epichains>} object}
+\item{x}{An \verb{<epichains>} object.}
 
-\item{...}{further arguments passed to or from other methods}
+\item{...}{Further arguments passed to or from other methods.}
 }
 \value{
-Object of class \code{data.frame}
+An object of class \verb{<data.frame>}.
 }
 \description{
 \code{head} and \code{tail} method for \verb{<epichains>} class

@@ -8,7 +8,7 @@
 #' such as the population size (defaults to Inf) and percentage of the
 #' population initially immune (defaults to 0).
 #' @param index_cases Number of index cases to simulate transmission chains for.
-#' @param offspring_dist Offspring distribution: a function like the ones
+#' @param offspring_dist Offspring distribution: a `<function>` like the ones
 #' provided by R to generate random numbers from given distributions (e.g.,
 #' \code{\link{rpois}} for Poisson). More specifically, the function needs to
 #' accept at least one argument, \code{n}, which is the number of random
@@ -16,23 +16,24 @@
 #' on to the random number generating functions. Examples that can be provided
 #' here are `rpois` for Poisson distributed offspring, `rnbinom` for negative
 #' binomial offspring, or custom functions.
-#' @param statistic `<String>`; Chain statistic to track as the stopping
-#' criteria for each chain being simulated when `stat_max` is not `Inf`.
-#' Can be one of:
+#' @param statistic The chain statistic to track as the
+#' stopping criteria for each chain being simulated when `stat_max` is not
+#' `Inf`; A `<string>`. It can be one of:
 #' \itemize{
 #'   \item "size": the total number of cases produced by a chain before it goes
 #'   extinct.
 #'   \item "length": the total number of ancestors produced by a chain before
 #'   it goes extinct.
 #' }
-#' @param stat_max A cut off for the chain statistic (size/length) being
-#' computed. Results above `stat_max` are set to `stat_max`. Defaults to `Inf`.
-#' @param pop `<Integer>`; Population size. Used alongside `percent_immune`. to
-#' define the susceptible population. Defaults to `Inf`.
-#' @param percent_immune `<numeric>`; Percent of the population immune to
-#' infection at the start of the simulation. Used alongside `pop` to initialise
-#' the susceptible population. Accepted values lie between 0 and 1.
-#' Defaults to 0.
+#' @param stat_max The cut off for the chain statistic (size/length) being
+#' computed; A number coercible to integer. Results above `stat_max` are set to
+#' `stat_max`; An `<integer>`. Defaults to `Inf`.
+#' @param pop Population size; An `<Integer>`. Used alongside `percent_immune`
+#' to define the susceptible population. Defaults to `Inf`.
+#' @param percent_immune Percent of the population immune to
+#' infection at the start of the simulation; A `<numeric>` between 0 and 1.
+#' Used alongside `pop` to initialise the susceptible population. Defaults to
+#' 0.
 #' @param generation_time The generation time function; the name
 #' of a user-defined named or anonymous function with only one argument `n`,
 #' representing the number of generation times to sample.
@@ -40,8 +41,8 @@
 #' or a vector of same length as `index_cases` (number of initial cases) with
 #' corresponding initial times. Defaults to 0, meaning all cases started at
 #' time 0.
-#' @param tf Cut-off for the infection times (if generation time is given).
-#' Defaults to `Inf`.
+#' @param tf A number for the cut-off for the infection times (if generation
+#' time is given); Defaults to `Inf`.
 #' @param ... Parameters of the offspring distribution as required by R.
 #' @return An `<epichains>` object, which is basically a `<data.frame>`
 #' with columns `infectee_id`, `sim_id` (a unique ID within each simulation
@@ -309,9 +310,11 @@ simulate_chains <- function(index_cases,
 #' population initially immune (defaults to 0).
 #' @inheritParams simulate_chains
 #' @param stat_max A cut off for the chain statistic (size/length) being
-#' computed. Results above the specified value, are set to `Inf`.
-#' @return a vector of chain sizes or lengths (of class `<epichains_summary>`)
-#' with a value for each index case.
+#' computed. A number coercible to integer. Results above the specified value,
+#' are set to `Inf`.
+#' @return An object of class `<epichains_summary>`, which is a numeric
+#' vector of chain sizes or lengths with extra attributes for storing the
+#' simulation parameters.
 #' @inheritSection simulate_chains Calculating chain sizes and lengths
 #' @inherit simulate_chains references
 #' @details

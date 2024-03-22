@@ -7,14 +7,17 @@
 .update_chain_stat(stat_type, stat_latest, n_offspring)
 }
 \arguments{
-\item{stat_type}{Chain statistic (size/length) to update.}
+\item{stat_type}{Chain statistic (size/length) to update; A character string.
+Must be one of 'size' or 'length'.}
 
-\item{stat_latest}{The latest chain statistic vector to be updated.}
+\item{stat_latest}{The latest chain statistic numeric vector to be updated.}
 
-\item{n_offspring}{A vector of offspring per chain.}
+\item{n_offspring}{A vector of offspring per chain. A numeric vector
+(coercible to integer).}
 }
 \value{
-A vector of chain statistics (size/length).
+A vector of chain statistics (size/length). A numeric vector
+coercible to integer.
 }
 \description{
 Determine and update the chain statistic being tracked

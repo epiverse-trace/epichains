@@ -7,17 +7,19 @@
 \method{summary}{epichains}(object, ...)
 }
 \arguments{
-\item{object}{An \verb{<epichains>} object}
+\item{object}{An \verb{<epichains>} object.}
 
-\item{...}{ignored}
+\item{...}{Not used.}
 }
 \value{
 An \verb{<epichains_summary>} object containing the chain summary
 statistics as follows:
-"size": the total number of cases produced by a chain before it
+\itemize{
+\item "size": the total number of offspring produced by a chain before it
 goes extinct.
-"length": the total number of infectors produced by a chain before
+\item "length": the number of generations achieved by a chain before
 it goes extinct.
+}
 }
 \description{
 This calculates the chain statistic (size/length) for the simulated

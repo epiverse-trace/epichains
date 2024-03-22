@@ -11,7 +11,7 @@
 #' @param tree_df a `<data.frame>` containing at least columns for
 #' "infectee_id", "infector_id", and "generation". Also has optional columns
 #' for "time", and "chain_id".
-#' @param track_pop Was the susceptible population tracked? Logical
+#' @param track_pop Was the susceptible population tracked? Logical.
 #' @inheritParams .epichains
 #' @author James M. Azam
 #' @keywords internal
@@ -51,7 +51,7 @@
 #' @inheritParams simulate_chains
 #' @inheritParams .new_epichains
 #'
-#' @return An `<epichains>` object
+#' @return An `<epichains>` object.
 #' @author James M. Azam
 #' @keywords internal
 .epichains <- function(tree_df,
@@ -106,7 +106,7 @@
 #' `epichains_summary()` after the arguments have been checked. To create a
 #' new `<epichains_summary>` object safely, use `epichains_summary()`.
 #'
-#' @param chains_summary a `<vector>` of chain sizes and lengths.
+#' @param chains_summary A numeric `<vector>` of chain sizes and lengths.
 #' @inheritParams .new_epichains
 #' @inheritParams .simulate_chains
 #' @author James M. Azam
@@ -138,7 +138,7 @@
 #'
 #' @inheritParams .new_epichains_summary
 #'
-#' @return An `<epichains_summary>` object
+#' @return An `<epichains_summary>` object.
 #' @author James M. Azam
 #' @keywords internal
 .epichains_summary <- function(chains_summary,
@@ -197,7 +197,7 @@ print.epichains <- function(x, ...) {
 #' Print an `<epichains_summary>` object
 #'
 #' @param x An `<epichains_summary>` object.
-#' @param ... ignored.
+#' @param ... Not used.
 #' @return Invisibly returns an `<epichains_summary>`. Called for
 #' side-effects.
 #' @author James M. Azam
@@ -208,8 +208,8 @@ print.epichains_summary <- function(x, ...) {
 
 #' Format method for `<epichains>` class
 #'
-#' @param x An `<epichains>` object
-#' @param ... ignored
+#' @param x An `<epichains>` object.
+#' @param ... Not used.
 #' @return Invisibly returns an `<epichains>`.
 #' Called for printing side-effects.
 #' @author James M. Azam
@@ -258,8 +258,8 @@ format.epichains <- function(x, ...) {
 
 #' Format method for `<epichains_summary>` class
 #'
-#' @param x An `<epichains_summary>` object
-#' @param ... ignored
+#' @param x An `<epichains_summary>` object.
+#' @param ... Not used.
 #' @return Invisibly returns an `<epichains_summary>`. Called for printing
 #' side-effects.
 #' @author James M. Azam
@@ -305,14 +305,14 @@ format.epichains_summary <- function(x, ...) {
 #' chains and returns an object with the same information as that returned
 #' by an equivalent `simulate_summary()` call.
 #'
-#' @param object An `<epichains>` object
-#' @param ... ignored
+#' @param object An `<epichains>` object.
+#' @param ... Not used.
 #'
 #' @return An `<epichains_summary>` object containing the chain summary
 #' statistics as follows:
-#' "size": the total number of cases produced by a chain before it
+#' * "size": the total number of offspring produced by a chain before it
 #' goes extinct.
-#' "length": the total number of infectors produced by a chain before
+#' * "length": the number of generations achieved by a chain before
 #' it goes extinct.
 #' @author James M. Azam
 #' @export
@@ -393,10 +393,16 @@ summary.epichains <- function(object, ...) {
 
 #' Summary method for `<epichains_summary>` class
 #'
-#' @param object An `<epichains_summary>` object
-#' @param ... ignored
+#' @param object An `<epichains_summary>` object.
+#' @param ... Not used.
 #'
-#' @return List of summaries
+#' @return A list of chain summaries. The list contains the following
+#' elements:
+#' * `index_cases`: the number of index cases used to simulate the chains.
+#' * `max_stat`: the maximum chain statistic (size/length) achieved by the
+#' chains.
+#' * `min_stat`: the minimum chain statistic (size/length) achieved by the
+#' chains.
 #' @author James M. Azam
 #' @export
 summary.epichains_summary <- function(object, ...) {
@@ -425,10 +431,10 @@ summary.epichains_summary <- function(object, ...) {
 
 #' Test if x is an `epichains` object
 #'
-#' @param x An R object
+#' @param x An R object.
 #'
-#' @return logical, `TRUE` if the object is an `<epichains>` and `FALSE`
-#' otherwise
+#' @return Logical; `TRUE` if the object is an `<epichains>` and `FALSE`
+#' otherwise.
 #' @author James M. Azam
 #' @keywords internal
 .is_epichains <- function(x) {
@@ -437,10 +443,10 @@ summary.epichains_summary <- function(object, ...) {
 
 #' Test if x is an `epichains_summary` object
 #'
-#' @param x An R object
+#' @param x An R object.
 #'
-#' @return logical, `TRUE` if the object is an `epichains_summary` and `FALSE`
-#' otherwise
+#' @return Logical; `TRUE` if the object is an `<epichains_summary>` and
+#' `FALSE` otherwise.
 #' @author James M. Azam
 #' @keywords internal
 .is_epichains_summary <- function(x) {
@@ -449,9 +455,9 @@ summary.epichains_summary <- function(object, ...) {
 
 #' Validate an `<epichains>` object
 #'
-#' @param x An `<epichains>` object
+#' @param x An `<epichains>` object.
 #'
-#' @return No return.
+#' @return Invisibly returns the object if it is valid.
 #' @author James M. Azam
 #' @keywords internal
 .validate_epichains <- function(x) {
@@ -477,9 +483,9 @@ summary.epichains_summary <- function(object, ...) {
 
 #' Validate an `<epichains_summary>` object
 #'
-#' @param x An `<epichains_summary>` object
+#' @param x An `<epichains_summary>` object.
 #'
-#' @return No return.
+#' @return Invisibly returns the object if it is valid.
 #' @author James M. Azam
 #' @keywords internal
 .validate_epichains_summary <- function(x) {
@@ -492,11 +498,11 @@ summary.epichains_summary <- function(object, ...) {
 
 #' `head` and `tail` method for `<epichains>` class
 #'
-#' @param x An `<epichains>` object
-#' @param ... further arguments passed to or from other methods
+#' @param x An `<epichains>` object.
+#' @param ... Further arguments passed to or from other methods.
 #' @importFrom utils head
 #' @importFrom utils tail
-#' @return Object of class `data.frame`
+#' @return An object of class `<data.frame>`.
 #' @author James M. Azam
 #' @export
 #' @details
@@ -553,9 +559,9 @@ tail.epichains <- function(x, ...) {
 #' `<epichains>` objects.
 #'
 #' @param x An `<epichains>` object.
-#' @param by The variable to aggregate by. Options include
+#' @param by The variable to aggregate by; A character string with options
 #' "time" and "generation".
-#' @param ... ignored.
+#' @param ... Not used.
 #' @importFrom stats aggregate
 #' @return A `<data.frame>` object of cases by `by`.
 #' @author James M. Azam

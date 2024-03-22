@@ -11,8 +11,8 @@
 makes sense in the context where this function is called, i.e., in
 \code{\link[=simulate_chains]{simulate_chains()}}. If \code{tf} is specified, generation_time must be specified.}
 
-\item{tf}{Cut-off for the infection times (if generation time is given).
-Defaults to \code{Inf}.}
+\item{tf}{A number for the cut-off for the infection times (if generation
+time is given); Defaults to \code{Inf}.}
 
 \item{generation_time}{The generation time function; the name
 of a user-defined named or anonymous function with only one argument \code{n},

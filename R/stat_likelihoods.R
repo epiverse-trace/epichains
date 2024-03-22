@@ -1,8 +1,8 @@
 #' Log-likelihood of the size of chains with Poisson offspring distribution
 #'
-#' @param x vector of sizes
-#' @param lambda rate of the Poisson distribution
-#' @return log-likelihood values
+#' @param x A numeric vector of sizes
+#' @param lambda The rate of the Poisson distribution; A single numeric value.
+#' @return A numeric vector of log-likelihood values.
 #' @author Sebastian Funk
 #' @keywords internal
 .pois_size_ll <- function(x, lambda) {
@@ -20,9 +20,9 @@
 #' Log-likelihood of the size of chains with Negative-Binomial offspring
 #' distribution
 #'
-#' @param x vector of sizes
+#' @param x A numeric vector of chain sizes.
 #' @inheritParams rgborel
-#' @return log-likelihood values
+#' @return A numeric vector of log-likelihood values.
 #' @author Sebastian Funk
 #' @keywords internal
 .nbinom_size_ll <- function(x, size, prob, mu) {
@@ -54,9 +54,9 @@
 
 #' Log-likelihood of the size of chains with gamma-Borel offspring distribution
 #'
-#' @param x vector of sizes
+#' @param x A numeric vector of chain sizes.
 #' @inheritParams rgborel
-#' @return log-likelihood values
+#' @return A numeric vector of log-likelihood values.
 #' @author Sebastian Funk
 #' @keywords internal
 .gborel_size_ll <- function(x, size, prob, mu) {
@@ -89,9 +89,10 @@
 
 #' Log-likelihood of the length of chains with Poisson offspring distribution
 #'
-#' @param x vector of lengths
-#' @param lambda rate of the Poisson distribution
-#' @return log-likelihood values
+#' @param x A numeric vector of chain lengths.
+#' @param lambda The rate of the Poisson distribution. A single numeric value.
+#' Must be positive.
+#' @return A numeric vector of log-likelihood values.
 #' @author Sebastian Funk
 #' @keywords internal
 .pois_length_ll <- function(x, lambda) {
@@ -115,10 +116,10 @@
 
 #' Log-likelihood of the length of chains with geometric offspring distribution
 #'
-#' @param x vector of lengths
-#' @param prob probability of the geometric distribution with mean
-#' \code{1/prob}
-#' @return log-likelihood values
+#' @param x A numeric vector of chain lengths.
+#' @param prob The probability of the geometric distribution with mean
+#' \code{1/prob}. A single numeric value between 0 and 1.
+#' @return A numeric vector of log-likelihood values.
 #' @author Sebastian Funk
 #' @keywords internal
 .geom_length_ll <- function(x, prob) {
@@ -145,12 +146,12 @@
 #' cumulative distribution function (ecdf).
 #' @inheritParams likelihood
 #' @inheritParams simulate_summary
-#' @param x Vector of chain summaries (sizes/lengths)
+#' @param x A numeric vector of chain summaries (sizes/lengths).
 #' @param nsim_offspring Number of simulations of the offspring distribution
 #' for approximating the distribution of the chain statistic summary
 #' (size/length)
-#' @param ... any parameters to pass to \code{\link{simulate_summary}}
-#' @return log-likelihood values
+#' @param ... Any parameters to pass to \code{\link{simulate_summary}}
+#' @return A numeric vector of log-likelihood values.
 #' @author Sebastian Funk
 #' @keywords internal
 .offspring_ll <- function(x, offspring_dist, statistic,

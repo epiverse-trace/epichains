@@ -7,13 +7,13 @@
 .geom_length_ll(x, prob)
 }
 \arguments{
-\item{x}{vector of lengths}
+\item{x}{A numeric vector of chain lengths.}
 
-\item{prob}{probability of the geometric distribution with mean
-\code{1/prob}}
+\item{prob}{The probability of the geometric distribution with mean
+\code{1/prob}. A single numeric value between 0 and 1.}
 }
 \value{
-log-likelihood values
+A numeric vector of log-likelihood values.
 }
 \description{
 Log-likelihood of the length of chains with geometric offspring distribution

@@ -1,8 +1,8 @@
 #' Calculates the complementary log-probability
 #'
 #' Given x and norm, this calculates log(1-sum(exp(x)))
-#' @param x log-probabilities
-#' @return value
+#' @param x A numeric vector of log-probabilities. Must be negative.
+#' @return A numeric value of the complementary log-probability.
 #' @author Sebastian Funk
 #' @keywords internal
 .complementary_logprob <- function(x) {
@@ -18,10 +18,10 @@
 #'
 #' Samples the size parameter from the binomial distribution with fixed x
 #' (number of successes) and p (success probability)
-#' @param n number of samples to generate
-#' @param x number of successes
-#' @param prob probability of success
-#' @return sampled sizes
+#' @param n The number of samples to generate. Must be a positive integer.
+#' @param x The number of successes. Must be a positive integer.
+#' @param prob The probability of success. A numeric between 0 and 1.
+#' @return A numeric vector of the sampled sizes.
 #' @author Sebastian Funk
 #' @keywords internal
 .rbinom_size <- function(n, x, prob) {
@@ -34,10 +34,10 @@
 #' Samples the length of a transmission chain where each individual element is
 #' observed with binomial probability with parameters n (number of successes)
 #' and p (success probability)
-#' @param n number of samples to generate
-#' @param x observed chain lengths
-#' @param prob probability of observation
-#' @return sampled lengths
+#' @param n The number of samples to generate. Must be a positive integer.
+#' @param x A numeric vector of the observed chain lengths.
+#' @param prob The probability of observation. A numeric between 0 and 1.
+#' @return A numeric vector of the sampled chain lengths.
 #' @author Sebastian Funk
 #' @keywords internal
 .rgen_length <- function(n, x, prob) {

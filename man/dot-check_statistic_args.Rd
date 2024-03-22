@@ -7,9 +7,9 @@
 .check_statistic_args(statistic, stat_max)
 }
 \arguments{
-\item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
-criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
-Can be one of:
+\item{statistic}{The chain statistic to track as the
+stopping criteria for each chain being simulated when \code{stat_max} is not
+\code{Inf}; A \verb{<string>}. It can be one of:
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes
 extinct.
@@ -17,8 +17,9 @@ extinct.
 it goes extinct.
 }}
 
-\item{stat_max}{A cut off for the chain statistic (size/length) being
-computed. Results above \code{stat_max} are set to \code{stat_max}. Defaults to \code{Inf}.}
+\item{stat_max}{The cut off for the chain statistic (size/length) being
+computed; A number coercible to integer. Results above \code{stat_max} are set to
+\code{stat_max}; An \verb{<integer>}. Defaults to \code{Inf}.}
 }
 \value{
 NULL; called for side effects

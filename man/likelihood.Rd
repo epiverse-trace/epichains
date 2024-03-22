@@ -18,11 +18,11 @@ likelihood(
 )
 }
 \arguments{
-\item{chains}{Vector of chain summaries (sizes/lengths)}
+\item{chains}{A numeric vector of chain summaries (sizes/lengths).}
 
-\item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
-criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
-Can be one of:
+\item{statistic}{The chain statistic to track as the
+stopping criteria for each chain being simulated when \code{stat_max} is not
+\code{Inf}; A \verb{<string>}. It can be one of:
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes
 extinct.
@@ -30,7 +30,7 @@ extinct.
 it goes extinct.
 }}
 
-\item{offspring_dist}{Offspring distribution: a function like the ones
+\item{offspring_dist}{Offspring distribution: a \verb{<function>} like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 \code{\link{rpois}} for Poisson). More specifically, the function needs to
 accept at least one argument, \code{n}, which is the number of random
@@ -49,19 +49,21 @@ simulations will be used to approximate the (log)likelihood. This will
 also require specifying \code{nsim_obs}. In the simulation, the observation
 process is assumed to be constant.}
 
-\item{log}{Logical; Should the log-likelihoods be transformed to
-likelihoods? (Defaults to TRUE).}
+\item{log}{Should the log-likelihoods be transformed to
+likelihoods? Logical. Defaults to \code{TRUE}.}
 
 \item{stat_max}{A cut off for the chain statistic (size/length) being
-computed. Results above the specified value, are set to \code{Inf}.}
+computed. A number coercible to integer. Results above the specified value,
+are set to \code{Inf}.}
 
 \item{exclude}{A vector of indices of the sizes/lengths to exclude from the
 log-likelihood calculation.}
 
-\item{individual}{If TRUE, a vector of individual log-likelihood/likelihood
-contributions will be returned rather than the sum/product.}
+\item{individual}{Logical; If TRUE, a vector of individual
+log-likelihood/likelihood contributions will be returned rather than the
+sum/product.}
 
-\item{...}{any parameters to pass to \code{\link{simulate_summary}}}
+\item{...}{Any parameters to pass to \code{\link{simulate_summary}}}
 }
 \value{
 If \code{log = TRUE}

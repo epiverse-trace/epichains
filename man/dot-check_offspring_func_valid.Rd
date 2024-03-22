@@ -8,7 +8,7 @@ and has an \code{n} argument.}
 .check_offspring_func_valid(offspring_dist)
 }
 \arguments{
-\item{offspring_dist}{Offspring distribution: a function like the ones
+\item{offspring_dist}{Offspring distribution: a \verb{<function>} like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 \code{\link{rpois}} for Poisson). More specifically, the function needs to
 accept at least one argument, \code{n}, which is the number of random

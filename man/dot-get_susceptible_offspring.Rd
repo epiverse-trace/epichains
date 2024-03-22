@@ -7,15 +7,15 @@
 .get_susceptible_offspring(new_offspring, susc_pop, pop)
 }
 \arguments{
-\item{new_offspring}{A vector of the possible new offspring per chain
-produced by \code{\link[=.sample_possible_offspring]{.sample_possible_offspring()}}}
+\item{new_offspring}{A numeric vector of the possible new offspring per
+chain produced by \code{\link[=.sample_possible_offspring]{.sample_possible_offspring()}}.}
 
-\item{pop}{\verb{<Integer>}; Population size. Used alongside \code{percent_immune}. to
-define the susceptible population. Defaults to \code{Inf}.}
+\item{pop}{Population size; An \verb{<Integer>}. Used alongside \code{percent_immune}
+to define the susceptible population. Defaults to \code{Inf}.}
 }
 \value{
-A vector of the number of offspring that can be infected given the
-current susceptible population size
+A numeric vector of the number of offspring that can be infected
+given the current susceptible population size.
 }
 \description{
 Sample susceptible offspring to be infected from all possible offspring.

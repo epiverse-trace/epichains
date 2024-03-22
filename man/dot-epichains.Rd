@@ -20,7 +20,7 @@ for "time", and "chain_id".}
 
 \item{index_cases}{Number of index cases to simulate transmission chains for.}
 
-\item{offspring_dist}{Offspring distribution: a function like the ones
+\item{offspring_dist}{Offspring distribution: a \verb{<function>} like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 \code{\link{rpois}} for Poisson). More specifically, the function needs to
 accept at least one argument, \code{n}, which is the number of random
@@ -29,11 +29,11 @@ on to the random number generating functions. Examples that can be provided
 here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for negative
 binomial offspring, or custom functions.}
 
-\item{track_pop}{Was the susceptible population tracked? Logical}
+\item{track_pop}{Was the susceptible population tracked? Logical.}
 
-\item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
-criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
-Can be one of:
+\item{statistic}{The chain statistic to track as the
+stopping criteria for each chain being simulated when \code{stat_max} is not
+\code{Inf}; A \verb{<string>}. It can be one of:
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes
 extinct.
@@ -41,11 +41,12 @@ extinct.
 it goes extinct.
 }}
 
-\item{stat_max}{A cut off for the chain statistic (size/length) being
-computed. Results above \code{stat_max} are set to \code{stat_max}. Defaults to \code{Inf}.}
+\item{stat_max}{The cut off for the chain statistic (size/length) being
+computed; A number coercible to integer. Results above \code{stat_max} are set to
+\code{stat_max}; An \verb{<integer>}. Defaults to \code{Inf}.}
 }
 \value{
-An \verb{<epichains>} object
+An \verb{<epichains>} object.
 }
 \description{
 \code{epichains()} constructs an \verb{<epichains>} object, which is

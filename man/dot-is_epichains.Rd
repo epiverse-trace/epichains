@@ -7,11 +7,11 @@
 .is_epichains(x)
 }
 \arguments{
-\item{x}{An R object}
+\item{x}{An R object.}
 }
 \value{
-logical, \code{TRUE} if the object is an \verb{<epichains>} and \code{FALSE}
-otherwise
+Logical; \code{TRUE} if the object is an \verb{<epichains>} and \code{FALSE}
+otherwise.
 }
 \description{
 Test if x is an \code{epichains} object

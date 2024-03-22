@@ -7,18 +7,18 @@
 .init_susc_pop(pop, percent_immune, index_cases)
 }
 \arguments{
-\item{pop}{\verb{<Integer>}; Population size. Used alongside \code{percent_immune}. to
-define the susceptible population. Defaults to \code{Inf}.}
+\item{pop}{Population size; An \verb{<Integer>}. Used alongside \code{percent_immune}
+to define the susceptible population. Defaults to \code{Inf}.}
 
-\item{percent_immune}{\verb{<numeric>}; Percent of the population immune to
-infection at the start of the simulation. Used alongside \code{pop} to initialise
-the susceptible population. Accepted values lie between 0 and 1.
-Defaults to 0.}
+\item{percent_immune}{Percent of the population immune to
+infection at the start of the simulation; A \verb{<numeric>} between 0 and 1.
+Used alongside \code{pop} to initialise the susceptible population. Defaults to
+0.}
 
 \item{index_cases}{Number of index cases to simulate transmission chains for.}
 }
 \value{
-numeric; initial susceptible population size
+Initial susceptible population size; A numeric coercible to integer.
 }
 \description{
 Calculates the initial susceptible population size given

@@ -8,18 +8,19 @@ distribution}
 .nbinom_size_ll(x, size, prob, mu)
 }
 \arguments{
-\item{x}{vector of sizes}
+\item{x}{A numeric vector of chain sizes.}
 
-\item{size}{the dispersion parameter (often called \code{k} in ecological
-applications)}
+\item{size}{The dispersion parameter (often called \code{k} in ecological
+applications); A positive number.}
 
-\item{prob}{probability of success (in the parameterisation with
-\code{prob}, see also \code{\link[stats]{NegBinomial}})}
+\item{prob}{Probability of success (in the parameterisation with
+\code{prob}, see also \code{\link[stats]{NegBinomial}}); A number between
+0 and 1.}
 
-\item{mu}{mean parameter}
+\item{mu}{Mean; A positive number.}
 }
 \value{
-log-likelihood values
+A numeric vector of log-likelihood values.
 }
 \description{
 Log-likelihood of the size of chains with Negative-Binomial offspring
