@@ -115,12 +115,17 @@ binomial offspring, or custom functions.</p></dd>
 
 
 <dt>nsim_obs</dt>
-<dd><p>Number of simulations if the log-likelihood/likelihood is to
-be approximated for imperfect observations.</p></dd>
+<dd><p>Number of simulations to be used to approximate the
+log-likelihood/likelihood if <code>obs_prob &lt; 1</code> (imperfect observation). If
+<code>obs_prob == 1</code>, this argument is ignored.</p></dd>
 
 
 <dt>obs_prob</dt>
-<dd><p>Observation probability (assumed constant)</p></dd>
+<dd><p>Observation probability. A number (probability) between 0
+and 1. A value greater than 0 but less 1 implies imperfect observation and
+simulations will be used to approximate the (log)likelihood. This will
+also require specifying <code>nsim_obs</code>. In the simulation, the observation
+process is assumed to be constant.</p></dd>
 
 
 <dt>log</dt>
