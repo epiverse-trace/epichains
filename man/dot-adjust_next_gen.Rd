@@ -7,12 +7,13 @@
 .adjust_next_gen(next_gen, susc_pop)
 }
 \arguments{
-\item{next_gen}{numeric; vector of next generation offspring}
+\item{next_gen}{A numeric vector of next generation offspring.}
 
-\item{susc_pop}{numeric; susceptible population size}
+\item{susc_pop}{The susceptible population size; A number coercible to
+integer.}
 }
 \value{
-numeric; adjusted next generation offspring vector
+A numeric vector of the adjusted next generation offspring.
 }
 \description{
 This function is used internally, and input checking is not

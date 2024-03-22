@@ -2,7 +2,7 @@
 #'
 #' @inheritParams .offspring_ll
 #' @inheritParams simulate_summary
-#' @param chains Vector of chain summaries (sizes/lengths)
+#' @param chains A numeric vector of chain summaries (sizes/lengths).
 #' @param nsim_obs Number of simulations to be used to approximate the
 #' log-likelihood/likelihood if `obs_prob < 1` (imperfect observation). If
 #' `obs_prob == 1`, this argument is ignored.
@@ -11,12 +11,13 @@
 #' simulations will be used to approximate the (log)likelihood. This will
 #' also require specifying `nsim_obs`. In the simulation, the observation
 #' process is assumed to be constant.
-#' @param log Logical; Should the log-likelihoods be transformed to
-#' likelihoods? (Defaults to TRUE).
+#' @param log Should the log-likelihoods be transformed to
+#' likelihoods? Logical. Defaults to `TRUE`.
 #' @param exclude A vector of indices of the sizes/lengths to exclude from the
 #' log-likelihood calculation.
-#' @param individual If TRUE, a vector of individual log-likelihood/likelihood
-#' contributions will be returned rather than the sum/product.
+#' @param individual Logical; If TRUE, a vector of individual
+#' log-likelihood/likelihood contributions will be returned rather than the
+#' sum/product.
 #' @return
 #' If \code{log = TRUE}
 #'

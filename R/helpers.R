@@ -1,9 +1,12 @@
 #' Determine and update the chain statistic being tracked
 #'
-#' @param stat_type Chain statistic (size/length) to update.
-#' @param stat_latest The latest chain statistic vector to be updated.
-#' @param n_offspring A vector of offspring per chain.
-#' @return A vector of chain statistics (size/length).
+#' @param stat_type Chain statistic (size/length) to update; A character string.
+#' Must be one of 'size' or 'length'.
+#' @param stat_latest The latest chain statistic numeric vector to be updated.
+#' @param n_offspring A vector of offspring per chain. A numeric vector
+#' (coercible to integer).
+#' @return A vector of chain statistics (size/length). A numeric vector
+#' coercible to integer.
 #' @keywords internal
 .update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
   return(
@@ -20,7 +23,7 @@
 #'
 #' @inheritParams simulate_chains
 #'
-#' @return a function for calculating chain statistics
+#' @return A function for calculating chain statistics.
 #' @keywords internal
 .get_statistic_func <- function(chain_statistic) {
   return(
@@ -43,7 +46,7 @@
 #'
 #' @inheritParams simulate_chains
 #'
-#' @return numeric; initial susceptible population size
+#' @return Initial susceptible population size; A numeric coercible to integer.
 #' @keywords internal
 .init_susc_pop <- function(pop,
                            percent_immune,
@@ -59,12 +62,12 @@
 #' associated parameters. This function is used internally, and input
 #' checking is not performed here, only in the context where it is used.
 #' Using it directly is not recommended.
-#' @param offspring_func A function to sample offspring
-#' @param offspring_func_pars A list of parameters for the offspring function
-#' @param n_offspring A vector of the number of offspring per chain
-#' @param chains Indices of chains/infectors being simulated
+#' @param offspring_func A function to sample offspring.
+#' @param offspring_func_pars A list of parameters for the offspring function.
+#' @param n_offspring A numeric vector of the number of offspring per chain.
+#' @param chains Numeric indices of chains/infectors being simulated
 #'
-#' @return A vector of the number of offspring per chain
+#' @return A numeric vector of the number of offspring per chain.
 #' @keywords internal
 .sample_possible_offspring <- function(offspring_func,
                                        offspring_func_pars,
@@ -95,10 +98,10 @@
 #' performed here, only in the context where it is used. Using it directly
 #' is not recommended.
 #' @inheritParams simulate_chains
-#' @param new_offspring A vector of the possible new offspring per chain
-#' produced by [.sample_possible_offspring()]
-#' @return A vector of the number of offspring that can be infected given the
-#' current susceptible population size
+#' @param new_offspring A numeric vector of the possible new offspring per
+#' chain produced by [.sample_possible_offspring()].
+#' @return A numeric vector of the number of offspring that can be infected
+#' given the current susceptible population size.
 #' @keywords internal
 .get_susceptible_offspring <- function(new_offspring,
                                       susc_pop,
@@ -120,10 +123,11 @@
 #' This function is used internally, and input checking is not
 #' performed here, only in the context where it is used. Using it directly
 #' is not recommended.
-#' @param next_gen numeric; vector of next generation offspring
-#' @param susc_pop numeric; susceptible population size
+#' @param next_gen A numeric vector of next generation offspring.
+#' @param susc_pop The susceptible population size; A number coercible to
+#' integer.
 #'
-#' @return numeric; adjusted next generation offspring vector
+#' @return A numeric vector of the adjusted next generation offspring.
 #' @keywords internal
 .adjust_next_gen <- function(next_gen, susc_pop) {
   ## create hypothetical next generation individuals to sample from

@@ -1,9 +1,9 @@
 ##' Density of the Borel distribution
 ##'
-##' @param x Vector of quantiles; integer.
-##' @param mu mu parameter (the poisson mean); non-negative.
+##' @param x A numeric vector of quantiles.
+##' @param mu A non-negative number for the poisson mean.
 ##' @param log Logical; if TRUE, probabilities p are given as log(p).
-##' @return Probability mass.
+##' @return A numeric vector of the borel probability density.
 ##' @author Sebastian Funk
 ##' @export
 ##' @examples
@@ -28,12 +28,13 @@ dborel <- function(x, mu, log = FALSE) {
 ##' @param n Number of random variates to generate.
 ##' @inheritParams dborel
 ##' @param infinite A threshold above which the random number is set to
-##'  `Inf` as a form of truncation. This is important because `rborel()` uses
-##'  `simulate_summary()` internally with `offspring_dist = rpois`, so
-##'  when `mu >= 1`, the simulation could grow out of proportion and chain
-##'  summaries (the random numbers generated here) need to be truncated using
+##'  `Inf` as a form of truncation; A number coercible to integer. This
+##'  argument is important because `rborel()` uses `simulate_summary()`
+##'  internally with `offspring_dist = rpois`, so when `mu >= 1`, the
+##'  simulation could grow out of proportion and chain summaries (the random
+##'  numbers generated here) need to be truncated using
 ##'  `infinite`.
-##' @return Vector of random numbers
+##' @return A numeric vector of random numbers.
 ##' @author Sebastian Funk
 ##' @export
 ##' @examples
@@ -62,11 +63,12 @@ rborel <- function(n, mu, infinite = Inf) {
 ##'
 ##' @inheritParams rborel
 ##' @importFrom stats rgamma rpois
-##' @param size the dispersion parameter (often called \code{k} in ecological
-##'   applications)
-##' @param prob probability of success (in the parameterisation with
-##'   \code{prob}, see also \code{\link[stats]{NegBinomial}})
-##' @param mu mean parameter
+##' @param size The dispersion parameter (often called \code{k} in ecological
+##'   applications); A positive number.
+##' @param prob Probability of success (in the parameterisation with
+##'   \code{prob}, see also \code{\link[stats]{NegBinomial}}); A number between
+##'   0 and 1.
+##' @param mu Mean; A positive number.
 ##' @return Numeric vector of random numbers
 ##' @author Sebastian Funk
 ##' @export

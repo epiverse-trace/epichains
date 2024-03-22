@@ -9,19 +9,21 @@ rgborel(n, size, prob, mu, infinite = Inf)
 \arguments{
 \item{n}{Number of random variates to generate.}
 
-\item{size}{the dispersion parameter (often called \code{k} in ecological
-applications)}
+\item{size}{The dispersion parameter (often called \code{k} in ecological
+applications); A positive number.}
 
-\item{prob}{probability of success (in the parameterisation with
-\code{prob}, see also \code{\link[stats]{NegBinomial}})}
+\item{prob}{Probability of success (in the parameterisation with
+\code{prob}, see also \code{\link[stats]{NegBinomial}}); A number between
+0 and 1.}
 
-\item{mu}{mean parameter}
+\item{mu}{Mean; A positive number.}
 
 \item{infinite}{A threshold above which the random number is set to
-\code{Inf} as a form of truncation. This is important because \code{rborel()} uses
-\code{simulate_summary()} internally with \code{offspring_dist = rpois}, so
-when \code{mu >= 1}, the simulation could grow out of proportion and chain
-summaries (the random numbers generated here) need to be truncated using
+\code{Inf} as a form of truncation; A number coercible to integer. This
+argument is important because \code{rborel()} uses \code{simulate_summary()}
+internally with \code{offspring_dist = rpois}, so when \code{mu >= 1}, the
+simulation could grow out of proportion and chain summaries (the random
+numbers generated here) need to be truncated using
 \code{infinite}.}
 }
 \value{

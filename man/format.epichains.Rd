@@ -7,9 +7,9 @@
 \method{format}{epichains}(x, ...)
 }
 \arguments{
-\item{x}{An \verb{<epichains>} object}
+\item{x}{An \verb{<epichains>} object.}
 
-\item{...}{ignored}
+\item{...}{Not used.}
 }
 \value{
 Invisibly returns an \verb{<epichains>}.

@@ -7,14 +7,14 @@
 .rgen_length(n, x, prob)
 }
 \arguments{
-\item{n}{number of samples to generate}
+\item{n}{The number of samples to generate. Must be a positive integer.}
 
-\item{x}{observed chain lengths}
+\item{x}{A numeric vector of the observed chain lengths.}
 
-\item{prob}{probability of observation}
+\item{prob}{The probability of observation. A numeric between 0 and 1.}
 }
 \value{
-sampled lengths
+A numeric vector of the sampled chain lengths.
 }
 \description{
 Samples the length of a transmission chain where each individual element is

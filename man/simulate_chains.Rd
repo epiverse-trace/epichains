@@ -20,9 +20,9 @@ simulate_chains(
 \arguments{
 \item{index_cases}{Number of index cases to simulate transmission chains for.}
 
-\item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
-criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
-Can be one of:
+\item{statistic}{The chain statistic to track as the
+stopping criteria for each chain being simulated when \code{stat_max} is not
+\code{Inf}; A \verb{<string>}. It can be one of:
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes
 extinct.
@@ -30,7 +30,7 @@ extinct.
 it goes extinct.
 }}
 
-\item{offspring_dist}{Offspring distribution: a function like the ones
+\item{offspring_dist}{Offspring distribution: a \verb{<function>} like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 \code{\link{rpois}} for Poisson). More specifically, the function needs to
 accept at least one argument, \code{n}, which is the number of random
@@ -41,16 +41,17 @@ binomial offspring, or custom functions.}
 
 \item{...}{Parameters of the offspring distribution as required by R.}
 
-\item{stat_max}{A cut off for the chain statistic (size/length) being
-computed. Results above \code{stat_max} are set to \code{stat_max}. Defaults to \code{Inf}.}
+\item{stat_max}{The cut off for the chain statistic (size/length) being
+computed; A number coercible to integer. Results above \code{stat_max} are set to
+\code{stat_max}; An \verb{<integer>}. Defaults to \code{Inf}.}
 
-\item{pop}{\verb{<Integer>}; Population size. Used alongside \code{percent_immune}. to
-define the susceptible population. Defaults to \code{Inf}.}
+\item{pop}{Population size; An \verb{<Integer>}. Used alongside \code{percent_immune}
+to define the susceptible population. Defaults to \code{Inf}.}
 
-\item{percent_immune}{\verb{<numeric>}; Percent of the population immune to
-infection at the start of the simulation. Used alongside \code{pop} to initialise
-the susceptible population. Accepted values lie between 0 and 1.
-Defaults to 0.}
+\item{percent_immune}{Percent of the population immune to
+infection at the start of the simulation; A \verb{<numeric>} between 0 and 1.
+Used alongside \code{pop} to initialise the susceptible population. Defaults to
+0.}
 
 \item{generation_time}{The generation time function; the name
 of a user-defined named or anonymous function with only one argument \code{n},
@@ -61,8 +62,8 @@ or a vector of same length as \code{index_cases} (number of initial cases) with
 corresponding initial times. Defaults to 0, meaning all cases started at
 time 0.}
 
-\item{tf}{Cut-off for the infection times (if generation time is given).
-Defaults to \code{Inf}.}
+\item{tf}{A number for the cut-off for the infection times (if generation
+time is given); Defaults to \code{Inf}.}
 }
 \value{
 An \verb{<epichains>} object, which is basically a \verb{<data.frame>}

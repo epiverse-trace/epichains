@@ -12,16 +12,16 @@
 )
 }
 \arguments{
-\item{offspring_func}{A function to sample offspring}
+\item{offspring_func}{A function to sample offspring.}
 
-\item{offspring_func_pars}{A list of parameters for the offspring function}
+\item{offspring_func_pars}{A list of parameters for the offspring function.}
 
-\item{n_offspring}{A vector of the number of offspring per chain}
+\item{n_offspring}{A numeric vector of the number of offspring per chain.}
 
-\item{chains}{Indices of chains/infectors being simulated}
+\item{chains}{Numeric indices of chains/infectors being simulated}
 }
 \value{
-A vector of the number of offspring per chain
+A numeric vector of the number of offspring per chain.
 }
 \description{
 Sample next generation of offspring using offspring distribution and

@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{An \verb{<epichains_summary>} object.}
 
-\item{...}{ignored.}
+\item{...}{Not used.}
 }
 \value{
 Invisibly returns an \verb{<epichains_summary>}. Called for

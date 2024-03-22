@@ -7,14 +7,14 @@
 dborel(x, mu, log = FALSE)
 }
 \arguments{
-\item{x}{Vector of quantiles; integer.}
+\item{x}{A numeric vector of quantiles.}
 
-\item{mu}{mu parameter (the poisson mean); non-negative.}
+\item{mu}{A non-negative number for the poisson mean.}
 
 \item{log}{Logical; if TRUE, probabilities p are given as log(p).}
 }
 \value{
-Probability mass.
+A numeric vector of the borel probability density.
 }
 \description{
 Density of the Borel distribution

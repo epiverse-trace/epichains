@@ -7,12 +7,12 @@
 .pois_size_ll(x, lambda)
 }
 \arguments{
-\item{x}{vector of sizes}
+\item{x}{A numeric vector of sizes}
 
-\item{lambda}{rate of the Poisson distribution}
+\item{lambda}{The rate of the Poisson distribution; A single numeric value.}
 }
 \value{
-log-likelihood values
+A numeric vector of log-likelihood values.
 }
 \description{
 Log-likelihood of the size of chains with Poisson offspring distribution

@@ -7,7 +7,7 @@
 .get_statistic_func(chain_statistic)
 }
 \value{
-a function for calculating chain statistics
+A function for calculating chain statistics.
 }
 \description{
 Return a function for calculating chain statistics

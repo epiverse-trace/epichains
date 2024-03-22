@@ -7,10 +7,10 @@
 .complementary_logprob(x)
 }
 \arguments{
-\item{x}{log-probabilities}
+\item{x}{A numeric vector of log-probabilities. Must be negative.}
 }
 \value{
-value
+A numeric value of the complementary log-probability.
 }
 \description{
 Given x and norm, this calculates log(1-sum(exp(x)))

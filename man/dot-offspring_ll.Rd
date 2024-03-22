@@ -8,9 +8,9 @@ distribution}
 .offspring_ll(x, offspring_dist, statistic, nsim_offspring = 100, ...)
 }
 \arguments{
-\item{x}{Vector of chain summaries (sizes/lengths)}
+\item{x}{A numeric vector of chain summaries (sizes/lengths).}
 
-\item{offspring_dist}{Offspring distribution: a function like the ones
+\item{offspring_dist}{Offspring distribution: a \verb{<function>} like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 \code{\link{rpois}} for Poisson). More specifically, the function needs to
 accept at least one argument, \code{n}, which is the number of random
@@ -19,9 +19,9 @@ on to the random number generating functions. Examples that can be provided
 here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for negative
 binomial offspring, or custom functions.}
 
-\item{statistic}{\verb{<String>}; Chain statistic to track as the stopping
-criteria for each chain being simulated when \code{stat_max} is not \code{Inf}.
-Can be one of:
+\item{statistic}{The chain statistic to track as the
+stopping criteria for each chain being simulated when \code{stat_max} is not
+\code{Inf}; A \verb{<string>}. It can be one of:
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes
 extinct.
@@ -33,10 +33,10 @@ it goes extinct.
 for approximating the distribution of the chain statistic summary
 (size/length)}
 
-\item{...}{any parameters to pass to \code{\link{simulate_summary}}}
+\item{...}{Any parameters to pass to \code{\link{simulate_summary}}}
 }
 \value{
-log-likelihood values
+A numeric vector of log-likelihood values.
 }
 \description{
 The log-likelihoods are calculated with a crude approximation using simulated

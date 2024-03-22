@@ -10,10 +10,10 @@ present}
 \arguments{
 \item{x}{An \verb{<epichains>} object.}
 
-\item{by}{The variable to aggregate by. Options include
+\item{by}{The variable to aggregate by; A character string with options
 "time" and "generation".}
 
-\item{...}{ignored.}
+\item{...}{Not used.}
 }
 \value{
 A \verb{<data.frame>} object of cases by \code{by}.

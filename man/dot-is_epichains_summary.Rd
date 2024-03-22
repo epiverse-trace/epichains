@@ -7,11 +7,11 @@
 .is_epichains_summary(x)
 }
 \arguments{
-\item{x}{An R object}
+\item{x}{An R object.}
 }
 \value{
-logical, \code{TRUE} if the object is an \code{epichains_summary} and \code{FALSE}
-otherwise
+Logical; \code{TRUE} if the object is an \verb{<epichains_summary>} and
+\code{FALSE} otherwise.
 }
 \description{
 Test if x is an \code{epichains_summary} object

@@ -7,10 +7,10 @@
 .validate_epichains_summary(x)
 }
 \arguments{
-\item{x}{An \verb{<epichains_summary>} object}
+\item{x}{An \verb{<epichains_summary>} object.}
 }
 \value{
-No return.
+Invisibly returns the object if it is valid.
 }
 \description{
 Validate an \verb{<epichains_summary>} object

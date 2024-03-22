@@ -7,14 +7,14 @@
 .rbinom_size(n, x, prob)
 }
 \arguments{
-\item{n}{number of samples to generate}
+\item{n}{The number of samples to generate. Must be a positive integer.}
 
-\item{x}{number of successes}
+\item{x}{The number of successes. Must be a positive integer.}
 
-\item{prob}{probability of success}
+\item{prob}{The probability of success. A numeric between 0 and 1.}
 }
 \value{
-sampled sizes
+A numeric vector of the sampled sizes.
 }
 \description{
 Samples the size parameter from the binomial distribution with fixed x
