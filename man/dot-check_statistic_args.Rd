@@ -17,9 +17,11 @@ extinct.
 it goes extinct.
 }}
 
-\item{stat_max}{The cut off for the chain statistic (size/length) being
-computed; A number coercible to integer. Results above \code{stat_max} are set to
-\code{stat_max}; An \verb{<integer>}. Defaults to \code{Inf}.}
+\item{stat_max}{A stopping criterion for individual chain simulations; a
+positive number coercible to integer. When any chain's cumulative statistic
+reaches \code{stat_max}, that chain ends. Defaults to \code{Inf}. For example, if
+\code{statistic = "size"} and \code{stat_max = 10}, then any chain that produces 10
+or more cases will stop.}
 }
 \value{
 NULL; called for side effects

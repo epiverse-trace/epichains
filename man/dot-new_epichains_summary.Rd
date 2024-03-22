@@ -36,9 +36,11 @@ on to the random number generating functions. Examples that can be provided
 here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for negative
 binomial offspring, or custom functions.}
 
-\item{stat_max}{The cut off for the chain statistic (size/length) being
-computed; A number coercible to integer. Results above \code{stat_max} are set to
-\code{stat_max}; An \verb{<integer>}. Defaults to \code{Inf}.}
+\item{stat_max}{A stopping criterion for individual chain simulations; a
+positive number coercible to integer. When any chain's cumulative statistic
+reaches \code{stat_max}, that chain ends. Defaults to \code{Inf}. For example, if
+\code{statistic = "size"} and \code{stat_max = 10}, then any chain that produces 10
+or more cases will stop.}
 }
 \description{
 \code{new_epichains_summary()} constructs an \verb{<epichains_summary>} object from a

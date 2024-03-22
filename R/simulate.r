@@ -30,15 +30,17 @@
 #'   \item "length": the total number of generations reached by a chain before
 #'   it goes extinct.
 #' }
-#' @param stat_max The cut off for the chain statistic (size/length) being
-#' computed; A number coercible to integer. Results above `stat_max` are set to
-#' `stat_max`; An `<integer>`. Defaults to `Inf`.
-#' @param pop Population size; An `<Integer>`. Used alongside `percent_immune`
-#' to define the susceptible population. Defaults to `Inf`.
-#' @param percent_immune Percent of the population immune to
-#' infection at the start of the simulation; A `<numeric>` between 0 and 1.
-#' Used alongside `pop` to initialise the susceptible population. Defaults to
-#' 0.
+#' @param stat_max A stopping criterion for individual chain simulations; a
+#' positive number coercible to integer. When any chain's cumulative statistic
+#' reaches `stat_max`, that chain ends. Defaults to `Inf`. For example, if
+#' `statistic = "size"` and `stat_max = 10`, then any chain that produces 10
+#' or more cases will stop.
+#' @param pop `<Integer>`; Population size. Used alongside `percent_immune`. to
+#' define the susceptible population. Defaults to `Inf`.
+#' @param percent_immune `<numeric>`; Percent of the population immune to
+#' infection at the start of the simulation. Used alongside `pop` to initialise
+#' the susceptible population. Accepted values lie between 0 and 1.
+#' Defaults to 0.
 #' @param generation_time The generation time function; the name
 #' of a user-defined named or anonymous function with only one argument `n`,
 #' representing the number of generation times to sample.
@@ -336,9 +338,11 @@ simulate_chains <- function(n_chains,
 #' accepts population related inputs such as the population size (defaults
 #' to Inf) and percentage of the population initially immune (defaults to 0).
 #' @inheritParams simulate_chains
-#' @param stat_max A cut off for the chain statistic (size/length) being
-#' computed. A number coercible to integer. Results above the specified value,
-#' are set to `Inf`.
+#' @param stat_max A stopping criterion for individual chain simulations; a
+#' positive number coercible to integer. When any chain's cumulative statistic
+#' reaches `stat_max`, that chain ends. It also serves as a censoring limit
+#' so that results above the specified value, are set to `Inf`. Defaults to
+#' `Inf`.
 #' @return An object of class `<epichains_summary>`, which is a numeric
 #' vector of chain sizes or lengths with extra attributes for storing the
 #' simulation parameters.
