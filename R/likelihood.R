@@ -2,7 +2,9 @@
 #'
 #' @inheritParams .offspring_ll
 #' @inheritParams simulate_chain_stats
-#' @param chains A numeric vector of chain summaries (sizes/lengths).
+#' @param chains Vector of chain summaries (sizes/lengths). Can also be an
+#' object of class `<epichains_tree>` or `<epichains_summary>`. See examples
+#' below.
 #' @param nsim_obs Number of simulations to be used to approximate the
 #' log-likelihood/likelihood if `obs_prob < 1` (imperfect observation). If
 #' `obs_prob == 1`, this argument is ignored.
