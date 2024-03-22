@@ -144,17 +144,17 @@ geom_length_ll <- function(x, prob) {
 #' chain summaries by linearly approximating any missing values in the empirical
 #' cumulative distribution function (ecdf).
 #' @inheritParams likelihood
-#' @inheritParams simulate_summary
+#' @inheritParams simulate_chain_stats
 #' @param x Vector of chain summaries (sizes/lengths)
 #' @param nsim_offspring Number of simulations of the offspring distribution
 #' for approximating the distribution of the chain statistic summary
 #' (size/length)
-#' @param ... any parameters to pass to \code{\link{simulate_summary}}
+#' @param ... any parameters to pass to \code{\link{simulate_chain_stats}}
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @export
-#' @seealso [simulate_summary()] for simulating a summary of the transmission
-#' chains statistic (without the tree of infections)
+#' @seealso [simulate_chain_stats()] for simulating a summary of the
+#' transmission chains statistic (without the tree of infections)
 #' @examples
 #' set.seed(123)
 #' chain_size_ll <- offspring_ll(
@@ -169,9 +169,9 @@ offspring_ll <- function(x, offspring_dist, statistic,
   checkmate::assert_numeric(
     x, lower = 0, any.missing = FALSE
   )
-  # Remaining checks are done in simulate_summary()
+  # Remaining checks are done in simulate_chain_stats()
   # Simulate the chains
-  dist <- simulate_summary(
+  dist <- simulate_chain_stats(
     index_cases = nsim_offspring,
     offspring_dist = offspring_dist,
     statistic = statistic,

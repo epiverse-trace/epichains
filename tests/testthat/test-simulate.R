@@ -3,10 +3,10 @@ generation_time_fn <- function(n) {
   rlnorm(n, meanlog = 0.58, sdlog = 1.58)
 }
 
-test_that("simulate_summary has expected shape", {
+test_that("simulate_chain_stats has expected shape", {
   set.seed(12)
   #' Simulate chain statistics
-  chain_summary_raw <- simulate_summary(
+  chain_summary_raw <- simulate_chain_stats(
     index_cases = 2,
     offspring_dist = rpois,
     statistic = "length",
@@ -215,9 +215,9 @@ test_that("simulate_chains throws errors", {
   )
 })
 
-test_that("simulate_summary throws errors", {
+test_that("simulate_chain_stats throws errors", {
   expect_error(
-    simulate_summary(
+    simulate_chain_stats(
       index_cases = 2,
       offspring_dist = s,
       statistic = "length",
@@ -226,7 +226,7 @@ test_that("simulate_summary throws errors", {
     "object 's' not found"
   )
   expect_error(
-    simulate_summary(
+    simulate_chain_stats(
       index_cases = 2,
       offspring_dist = rlnorm,
       statistic = "length",
@@ -236,7 +236,7 @@ test_that("simulate_summary throws errors", {
     "must return integers"
   )
   expect_error(
-    simulate_summary(
+    simulate_chain_stats(
       index_cases = 2,
       offspring_dist = c(1, 2),
       statistic = "length",
@@ -246,12 +246,12 @@ test_that("simulate_summary throws errors", {
   )
 })
 
-test_that("simulate_summary is numerically correct",{
+test_that("simulate_chain_stats is numerically correct",{
   # Run a simulation in a small population so that
   # we encounter the case where we have more potential offspring than
   # susceptible individuals
   set.seed(32) # this seed gives a sizeable outcome
-  sim_summary_small_pop <- simulate_summary(
+  sim_summary_small_pop <- simulate_chain_stats(
     pop = 11,
     percent_immune = 0,
     index_cases = 10,
@@ -356,10 +356,10 @@ test_that("simulate_chains produces expected snapshots", {
   expect_snapshot(sim_chains_small_pop)
 })
 
-test_that("simulate_summary is numerically correct", {
+test_that("simulate_chain_stats is numerically correct", {
   set.seed(12)
   #' Simulate chain statistics
-  chain_summary_raw <- simulate_summary(
+  chain_summary_raw <- simulate_chain_stats(
     index_cases = 2,
     offspring_dist = rpois,
     statistic = "length",

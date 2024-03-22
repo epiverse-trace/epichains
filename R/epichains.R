@@ -303,7 +303,7 @@ format.epichains_summary <- function(x, ...) {
 #'
 #' This calculates the chain statistic (size/length) for the simulated
 #' chains and returns an object with the same information as that returned
-#' by an equivalent `simulate_summary()` call.
+#' by an equivalent `simulate_chain_stats()` call.
 #'
 #' @param object An `<epichains>` object
 #' @param ... ignored
@@ -334,9 +334,9 @@ format.epichains_summary <- function(x, ...) {
 #' sim_chains_nbinom_summary <- summary(sim_chains_nbinom)
 #' sim_chains_nbinom_summary
 #'
-#' # Same results can be obtained using `simulate_summary()`
+#' # Same results can be obtained using `simulate_chain_stats()`
 #' set.seed(32)
-#' sim_summary_nbinom <- simulate_summary(
+#' sim_summary_nbinom <- simulate_chain_stats(
 #'   index_cases = 10,
 #'   pop = 100,
 #'   percent_immune = 0,
