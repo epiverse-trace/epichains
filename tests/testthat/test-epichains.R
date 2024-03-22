@@ -29,7 +29,7 @@ simulate_chains_default <- function(...){
 }
 
 # Default simulate chains functions for testing with varying inputs
-simulate_summary_default <- function(...) {
+simulate_chain_stats_default <- function(...) {
   # Get new args
   new_args <- list(...)
 
@@ -39,7 +39,7 @@ simulate_summary_default <- function(...) {
   )
 
   out <- do.call(
-    simulate_summary,
+    simulate_chain_stats,
     modified_args
   )
   return(out)
@@ -85,7 +85,7 @@ test_that("Simulators return epichains objects", {
     lambda = 2
   )
   #' Simulate chain statistics
-  chain_summary_raw <- simulate_summary(
+  chain_summary_raw <- simulate_chain_stats(
     index_cases = 2,
     offspring_dist = rpois,
     statistic = "length",
@@ -156,7 +156,7 @@ test_that("print.epichains works for simulation functions", {
   )
   #' Simulate chain statistics
   set.seed(32)
-  chain_summary_raw <- simulate_summary(
+  chain_summary_raw <- simulate_chain_stats(
     index_cases = 2,
     offspring_dist = rpois,
     statistic = "length",
@@ -199,7 +199,7 @@ test_that("summary.epichains works as expected", {
   chain_size_tree_sim_summary <- summary(chain_size_tree_sim)
   #' Simulate the size statistic for the same outbreak
   set.seed(32)
-  chain_size_summary_sim <- simulate_summary_default()
+  chain_size_summary_sim <- simulate_chain_stats_default()
   #' Simulate an outbreak from a susceptible population (pois), tracking
   #' the chain lengths
   set.seed(32)
@@ -211,7 +211,7 @@ test_that("summary.epichains works as expected", {
   chain_length_tree_sim_summary <- summary(chain_length_tree_sim)
   #' Simulate the length statistic for the same outbreak
   set.seed(32)
-  chain_length_summary_sim <- simulate_summary_default(statistic = "length")
+  chain_length_summary_sim <- simulate_chain_stats_default(statistic = "length")
   #' Expect the results from the tree and the summary to be the same
   expect_true(
     identical(
@@ -281,7 +281,7 @@ test_that("validate_epichains works", {
     lambda = 2
   )
   #' Simulate chain statistics
-  chain_summary_raw <- simulate_summary(
+  chain_summary_raw <- simulate_chain_stats(
     index_cases = 2,
     offspring_dist = rpois,
     statistic = "length",
@@ -343,7 +343,7 @@ test_that("is_chains_tree works", {
     lambda = 2
   )
   #' Simulate chain statistics
-  chain_summary_raw <- simulate_summary(
+  chain_summary_raw <- simulate_chain_stats(
     index_cases = 2,
     offspring_dist = rpois,
     statistic = "length",
@@ -405,7 +405,7 @@ test_that("is_chains_summary works", {
     lambda = 2
   )
   #' Simulate chain statistics
-  chain_summary_raw <- simulate_summary(
+  chain_summary_raw <- simulate_chain_stats(
     index_cases = 2,
     offspring_dist = rpois,
     statistic = "length",

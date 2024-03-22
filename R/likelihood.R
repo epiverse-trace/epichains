@@ -1,7 +1,7 @@
 #' Estimate the log-likelihood/likelihood for observed branching processes
 #'
 #' @inheritParams .offspring_ll
-#' @inheritParams simulate_summary
+#' @inheritParams simulate_chain_stats
 #' @param chains A numeric vector of chain summaries (sizes/lengths).
 #' @param nsim_obs Number of simulations to be used to approximate the
 #' log-likelihood/likelihood if `obs_prob < 1` (imperfect observation). If

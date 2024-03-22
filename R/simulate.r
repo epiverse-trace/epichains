@@ -318,10 +318,10 @@ simulate_chains <- function(index_cases,
 #' @inheritSection simulate_chains Calculating chain sizes and lengths
 #' @inherit simulate_chains references
 #' @details
-#' # `simulate_summary()` vs `simulate_chains()`
-#' `simulate_summary()` is a time-invariant version of `simulate_chains()`. In
-#' particular, it does not track the details of individual transmission events
-#' but deals with eventual chain statistics, that is, the statistic
+#' # `simulate_chain_stats()` vs `simulate_chains()`
+#' `simulate_chain_stats()` is a time-invariant version of `simulate_chains()`.
+#' In particular, it does not track the details of individual transmission
+#' events but deals with eventual chain statistics, that is, the statistic
 #' realised by a chain after dying out.
 #'
 #' It is useful for generating a vector of chain sizes or lengths for a given
@@ -341,7 +341,7 @@ simulate_chains <- function(index_cases,
 #' # Simulate chain sizes with a poisson offspring distribution, assuming an
 #' # infinite population and no immunity.
 #' set.seed(32)
-#' simulate_summary(
+#' simulate_chain_stats(
 #'   index_cases = 20,
 #'   statistic = "size",
 #'   offspring_dist = rpois,
@@ -351,7 +351,7 @@ simulate_chains <- function(index_cases,
 #' # Simulate chain sizes with a negative binomial distribution and assuming
 #' # a finite population and 10% immunity.
 #' set.seed(32)
-#' simulate_summary(
+#' simulate_chain_stats(
 #'   pop = 1000,
 #'   percent_immune = 0.1,
 #'   index_cases = 20,
@@ -362,7 +362,7 @@ simulate_chains <- function(index_cases,
 #'   size = 0.36
 #' )
 #' @export
-simulate_summary <- function(index_cases,
+simulate_chain_stats <- function(index_cases,
                              statistic = c("size", "length"),
                              offspring_dist,
                              ...,

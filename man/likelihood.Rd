@@ -63,7 +63,7 @@ log-likelihood calculation.}
 log-likelihood/likelihood contributions will be returned rather than the
 sum/product.}
 
-\item{...}{Any parameters to pass to \code{\link{simulate_summary}}}
+\item{...}{any parameters to pass to \code{\link{simulate_chain_stats}}}
 }
 \value{
 If \code{log = TRUE}

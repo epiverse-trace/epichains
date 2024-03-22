@@ -343,10 +343,10 @@ head(sim_chains_with_pop)
 ```
 
 
-### [`simulate_summary()`](https://epiverse-trace.github.io/epichains/reference/simulate_summary.html)
+### [`simulate_chain_stats()`](https://epiverse-trace.github.io/epichains/reference/simulate_chain_stats.html)
 
 ::: {.alert .alert-primary}
-`simulate_summary()` is a performant version of `simulate_chains()` that
+`simulate_chain_stats()` is a performant version of `simulate_chains()` that
 does not track information on each infector and infectee. It returns the
 eventual size or length/duration of each transmission chain. This function is
 especially useful for calculating numerical likelihoods in `likelihood()`.
@@ -358,7 +358,7 @@ distribution with mean of $0.9$.
 ```{r sim_summary_pois}
 set.seed(123)
 
-simulate_summary_eg <- simulate_summary(
+simulate_chain_stats_eg <- simulate_chain_stats(
   index_cases = 10,
   statistic = "size",
   offspring_dist = rpois,
@@ -367,7 +367,7 @@ simulate_summary_eg <- simulate_summary(
 )
 
 # Print the results
-simulate_summary_eg
+simulate_chain_stats_eg
 ```
 
 ## S3 Methods
@@ -395,10 +395,10 @@ sim_chains <- simulate_chains(
 
 summary(sim_chains)
 
-# Example with simulate_summary()
+# Example with simulate_chain_stats()
 set.seed(32)
 
-simulate_summary_eg <- simulate_summary(
+simulate_chain_stats_eg <- simulate_chain_stats(
   index_cases = 10,
   statistic = "size",
   offspring_dist = rpois,
@@ -407,12 +407,11 @@ simulate_summary_eg <- simulate_summary(
 )
 
 # Get summaries
-summary(simulate_summary_eg)
+summary(simulate_chain_stats_eg)
 ```
 
-::: {.alert .alert-danger}
-This summary is the same as the output of `simulate_summary()` if the same
-inputs are used. `simulate_summary()` is a more performant version of
+This summary is the same as the output of `simulate_chain_stats()` if the same
+inputs are used. `simulate_chain_stats()` is a more performant version of
 `simulate_chains()`, hence, you can use it instead, if you are only interested
 in the summary of the simulated chains without details about the infection
 tree.
@@ -425,8 +424,8 @@ checks if two objects are equal and returns `TRUE/FALSE`.
 setequal(
   # summary of output from simulate_chains()
   summary(sim_chains),
-  # results from simulate_summary()
-  simulate_summary_eg
+  # results from simulate_chain_stats()
+  simulate_chain_stats_eg
 )
 ```
 
