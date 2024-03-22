@@ -4,20 +4,18 @@
 \alias{rborel}
 \title{Generate random numbers from the Borel distribution}
 \usage{
-rborel(n, mu, infinite = Inf)
+rborel(n, mu, stat_max = Inf)
 }
 \arguments{
 \item{n}{Number of random variates to generate.}
 
 \item{mu}{A non-negative number for the poisson mean.}
 
-\item{infinite}{A threshold above which the random number is set to
-\code{Inf} as a form of truncation; A number coercible to integer. This
-argument is important because \code{rborel()} uses \code{simulate_summary()}
-internally with \code{offspring_dist = rpois}, so when \code{mu >= 1}, the
-simulation could grow out of proportion and chain summaries (the random
-numbers generated here) need to be truncated using
-\code{infinite}.}
+\item{stat_max}{A stopping criterion for individual chain simulations; a
+positive number coercible to integer. When any chain's cumulative statistic
+reaches \code{stat_max}, that chain ends. It also serves as a censoring limit
+so that results above the specified value, are set to \code{Inf}. Defaults to
+\code{Inf}.}
 }
 \value{
 A numeric vector of random numbers.
