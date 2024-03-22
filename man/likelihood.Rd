@@ -52,9 +52,11 @@ process is assumed to be constant.}
 \item{log}{Should the log-likelihoods be transformed to
 likelihoods? Logical. Defaults to \code{TRUE}.}
 
-\item{stat_max}{A cut off for the chain statistic (size/length) being
-computed. A number coercible to integer. Results above the specified value,
-are set to \code{Inf}.}
+\item{stat_max}{A stopping criterion for individual chain simulations; a
+positive number coercible to integer. When any chain's cumulative statistic
+reaches \code{stat_max}, that chain ends. It also serves as a censoring limit
+so that results above the specified value, are set to \code{Inf}. Defaults to
+\code{Inf}.}
 
 \item{exclude}{A vector of indices of the sizes/lengths to exclude from the
 log-likelihood calculation.}
