@@ -73,7 +73,7 @@ library("epichains")
 
 ## Transmission chains likelihoods
 
-:: {.alert .alert-primary}
+::: {.alert .alert-primary}
 ### Use case {-}
 Suppose we have observed a number of outbreak clusters, each arising from a
 separate external case. What are the likely transmission properties
@@ -252,7 +252,7 @@ liks
 
 ## Transmission chains simulation
 
-:: {.alert .alert-primary}
+::: {.alert .alert-primary}
 ### Use case {-}
 We want to simulate a scenario where a number of outbreak clusters are each
 produced by a separate external case. We want to simulate the chains of
