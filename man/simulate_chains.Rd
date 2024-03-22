@@ -41,8 +41,11 @@ binomial offspring, or custom functions.}
 
 \item{...}{Parameters of the offspring distribution as required by R.}
 
-\item{stat_max}{A cut off for the chain statistic (size/length) being
-computed. Results above \code{stat_max} are set to \code{stat_max}. Defaults to \code{Inf}.}
+\item{stat_max}{A stopping criterion for individual chain simulations; a
+positive number coercible to integer. When any chain's cumulative statistic
+reaches \code{stat_max}, that chain ends. Defaults to \code{Inf}. For example, if
+\code{statistic = "size"} and \code{stat_max = 10}, then any chain that produces 10
+or more cases will stop.}
 
 \item{pop}{\verb{<Integer>}; Population size. Used alongside \code{percent_immune}. to
 define the susceptible population. Defaults to \code{Inf}.}

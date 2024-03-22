@@ -25,8 +25,11 @@
 #'   \item "length": the total number of ancestors produced by a chain before
 #'   it goes extinct.
 #' }
-#' @param stat_max A cut off for the chain statistic (size/length) being
-#' computed. Results above `stat_max` are set to `stat_max`. Defaults to `Inf`.
+#' @param stat_max A stopping criterion for individual chain simulations; a
+#' positive number coercible to integer. When any chain's cumulative statistic
+#' reaches `stat_max`, that chain ends. Defaults to `Inf`. For example, if
+#' `statistic = "size"` and `stat_max = 10`, then any chain that produces 10
+#' or more cases will stop.
 #' @param pop `<Integer>`; Population size. Used alongside `percent_immune`. to
 #' define the susceptible population. Defaults to `Inf`.
 #' @param percent_immune `<numeric>`; Percent of the population immune to
@@ -308,8 +311,11 @@ simulate_chains <- function(index_cases,
 #' such as the population size (defaults to Inf) and percentage of the
 #' population initially immune (defaults to 0).
 #' @inheritParams simulate_chains
-#' @param stat_max A cut off for the chain statistic (size/length) being
-#' computed. Results above the specified value, are set to `Inf`.
+#' @param stat_max A stopping criterion for individual chain simulations; a
+#' positive number coercible to integer. When any chain's cumulative statistic
+#' reaches `stat_max`, that chain ends. It also serves as a censoring limit
+#' so that results above the specified value, are set to `Inf`. Defaults to
+#' `Inf`.
 #' @return a vector of chain sizes or lengths (of class `<epichains_summary>`)
 #' with a value for each index case.
 #' @inheritSection simulate_chains Calculating chain sizes and lengths
