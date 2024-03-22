@@ -53,8 +53,8 @@ chain_size_ll <- offspring_ll(
 )
 }
 \seealso{
-\code{\link[=simulate_chain_stats]{simulate_chain_stats()}} for simulating a summary of the transmission
-chains statistic (without the tree of infections)
+\code{\link[=simulate_chain_stats]{simulate_chain_stats()}} for simulating a summary of the
+transmission chains statistic (without the tree of infections)
 }
 \author{
 Sebastian Funk

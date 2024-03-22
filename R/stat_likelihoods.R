@@ -153,8 +153,8 @@ geom_length_ll <- function(x, prob) {
 #' @return log-likelihood values
 #' @author Sebastian Funk
 #' @export
-#' @seealso [simulate_chain_stats()] for simulating a summary of the transmission
-#' chains statistic (without the tree of infections)
+#' @seealso [simulate_chain_stats()] for simulating a summary of the
+#' transmission chains statistic (without the tree of infections)
 #' @examples
 #' set.seed(123)
 #' chain_size_ll <- offspring_ll(
