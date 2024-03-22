@@ -29,21 +29,37 @@ knitr::opts_chunk$set(
 )
 ```
 
+This vignette demonstrates how get started with using the _epichains_ package
+for simulating transmission chains or estimating the likelihood of observing
+a transmission chain.
+
+::: {.alert .alert-info}
+* To understand the theoretical background of the branching processes methods
+used here, refer to the [theory vignette](https://epiverse-trace.github.io/epichains/articles/theoretical_background.html)
+* To understand the software development design decisions and implementation details of the package,
+refer to the [design vignette](https://epiverse-trace.github.io/epichains/articles/design-principles.html)
+:::
+
 Epidemics spread through when infected individuals transmit the
 infection to others. If we assume that each case infects a random number of
 other individuals (the offspring) through time units called generations,
-and governed by some reproduction rate, then the epidemic can be modelled
-as a branching process. 
+and that this transmission process is governed by a reproduction number and
+a probability distribution describing how the offspring are produced through
+the time unit, then the epidemic can be modelled as a branching process.
 
 Branching processes are a stochastic process where each individual in a
 generation gives rise to a random number of individuals in the next generation.
 The distribution of the number of offspring is called the offspring
-distribution. The size of the transmission chain is the total number of
-individuals infected by a single case, and the length of the transmission
-chain is the number of generations from the first case to the last case before
-the epidemic died out.
+distribution.
 
-<Figure of transmission chain showing size and length>
+The size of the transmission chain is the total number of
+individuals infected by a single case, and the length of the transmission
+chain is the number of generations from the first case to the last case they
+produced before the chain ended (See figure below).
+
+```{r transmission_chain_fig, out.width = "75%", echo = FALSE, fig.cap = "An example of a transmission chain starting is a single case C1. Cases are represented by blue circles and arrows indicate who infected whom. The chain grows through generations G1, G2, and G3, producing cases C2, C3, C4, C5, C6, and C7. The chain ends at generation G3 with case C7. The size of C1's chain is 7 (sum of all blue circles) and the length is 3 (maximum number of generations reached by C1's chain).", fig.alt = "The figure shows an example of a transmission chain starting with a single case C1. The figure is depicted as blue circles linked by orange directed arrows showing the cases they produced. Each generation is marked by a brown rectangle and labelled Gen 1, Gen 2, and Gen 2. The chain grows through generations G1, G2, and G3. Case C1 is Gen 1 and produces cases C2, and C3 in generation 2. In Gen 3, C2 produces C4 and C5, and C3 produces C7. The chain ends in Gen 3. The chain size of C1 is 7 (that is the sum of all the blue circles, representing cases) and the length is 3 (maximum number of generations reached by C1's chain)."}
+knitr::include_graphics(file.path("img", "transmission_chain_example.png"))
+```
 
 _epichains_ provides methods to analyse and simulate the size and length
 of branching processes with an arbitrary offspring distribution. These
@@ -55,58 +71,70 @@ or length of infectious disease outbreaks, as discussed in @farrington2003 and
 library("epichains")
 ```
 
+## Transmission chains likelihoods
+
 :: {.alert .alert-primary}
-## Use case {-}
-Suppose we observe a series of small outbreak clusters, each arising from a
-separate external introduction (e.g. spillover event or importation into the
-region). What are the likely transmission properties of the infection that
+### Use case {-}
+Suppose we have observed a number of outbreak clusters, each arising from a
+separate external case. What are the likely transmission properties
+(reproduction number and/or superspreading coefficient) of the infection that
 generated these clusters?
+
+The first step in answering this question is to calculate the likelihood of
+observing the observed chain summaries given the transmission properties. This
+is where the `likelihood()` function comes in. The returned estimate can then
+be used to infer the transmission properties using estimation frameworks such
+as maximum likelihood or Bayesian inference. _epichains_ does not provide
+these estimation frameworks.
 :::
 
 ::: {.alert .alert-secondary}
-### What we have {-}
+#### What we have {-}
 
-1. Data on the sizes or lengths of the observed transmission chains,
-2. An offspring distribution with known parameters,
+1. Data on observed transmission chains summaries (sizes or lengths).
 
-### What we assume {-}
+#### What we assume {-}
 
-1. The epidemic was perfectly observed.
-1. The exact time of infection is known for all the cases. Hence, there is
-no reporting delay.
-1. Population is homogeneous and well-mixed.
+1. An offspring distribution that governs the number of secondary cases
+produced by each case.
+2. A reproduction number that governs the average number of secondary cases
+produced by each case.
+3. An observation process/probability that generates the observed chain
+summaries.
+4. A threshold of chain summaries that are considered too large for the given
+transmission properties. For example, we do not expect each case to produce
+more than $N$ cases or last more than $T$ generations.
 :::
-
-## Chain likelihoods
 
 ### [`likelihood()`](https://epiverse-trace.github.io/epichains/reference/likelihood.html)
 
-This function calculates the likelihood/loglikelihood of observing a vector of outbreak summaries obtained from transmission chains. "Outbreak summaries" here refer to transmission chain sizes or lengths/durations.
+This function calculates the likelihood/loglikelihood of observing a vector of
+outbreak summaries obtained from transmission chains. "Outbreak summaries" here
+refer to transmission chain sizes or lengths/durations.
 
 `likelihood()` requires a vector of chain summaries (sizes or lengths),
 `chains`, the corresponding statistic to calculate, `statistic`, the offspring
-distribution, `offspring_dist` and its associated parameters. `offspring_dist`
-is specified as the function that is used to generate random numbers, i.e.
-`rpois` for Poisson, `rnbinom` for negative binomial, or a custom function. If no
-the closed-form solution is available then simulated replicates are used to
-estimate the likelihoods. In that case `likelihood()` also requires
-`nsim_offspring`, which is the number of simulations to run . This argument will
-be explained further in the next section.
+distribution, `offspring_dist` and its associated parameters.
+
+`offspring_dist` is specified as the function that is used to generate random
+numbers, i.e. `rpois` for Poisson, `rnbinom` for negative binomial, or a custom
+function.
 
 By default, the result is a log-likelihood but if `log = FALSE`, then
-likelihoods are returned. 
+likelihoods are returned (See `?likelihood` for more details).
+
+::: {.alert .alert-info}
+To understand how `likelihood()` works see the section on [How `likelihood()` works](#how-likelihood-works).
+:::
 
 Let's look at the following example where we estimate the log-likelihood of
 observing `chain_sizes`.
-```{r chain_sizes_setup}
+```{r estimate_likelihoods}
 set.seed(121)
 # example of observed chain sizes
 # randomly generate 20 chains of size between 1 to 10
 chain_sizes <- sample(1:10, 20, replace = TRUE)
 chain_sizes
-```
-
-```{r estimate_likelihoods}
 # estimate loglikelihood of the observed chain sizes
 likelihood_eg <- likelihood(
   chains = chain_sizes,
@@ -124,15 +152,13 @@ likelihood_eg
 `likelihood()`, by default, returns the joint log-likelihood. If instead,
 the individual log-likelihoods are required, then the `individual` argument
 must be set to `TRUE`. To return likelihoods instead, set `log = FALSE`.
-```{r chains_setup2}
+```{r estimate_likelihoods2}
 set.seed(121)
 # example of observed chain sizes
 # randomly generate 20 chains of size between 1 to 10
 chain_sizes <- sample(1:10, 20, replace = TRUE)
 chain_sizes
-```
 
-```{r estimate_likelihoods2}
 # estimate loglikelihood of the observed chain sizes
 likelihood_ind_eg <- likelihood(
   chains = chain_sizes,
@@ -144,42 +170,6 @@ likelihood_ind_eg <- likelihood(
 )
 # Print the estimate
 likelihood_ind_eg
-```
-
-### How `likelihood()` works
-
-*epichains* ships with functions for the analytical solutions of some
-transmission chain "size" and "length" distributions. For the size
-distributions, we provide the poisson, negative binomial, and gamma-borel
-mixture. For the length distribution, we provide the poisson and geometric
-distributions. These can be used with `likelihood()` based on what is specified
-for `offspring_dist` and `statistic`.
-
-If an analytical solution does not exist, we provide `offspring_ll()`, which
-uses simulations to approximate the probability distributions
-([using a linear approximation to the cumulative 
-distribution](https://en.wikipedia.org/wiki/Empirical_distribution_function) 
-for unobserved sizes/lengths). In this case, an extra argument `nsim_offspring` 
-must be passed to `likelihood()` to specify the number of simulations to be 
-used for this approximation.
-
-For example, let's look at an example where `chain_sizes` is observed and we
-want to calculate the likelihood of this being drawn from a binomial
-distribution with probability `prob = 0.9`.
-```{r likelihoods_by_simulation}
-set.seed(121)
-# example of observed chain sizes; randomly generate 20 chains of size 1 to 10
-chain_sizes <- sample(1:10, 20, replace = TRUE)
-# get their likelihood
-liks <- likelihood(
-  chains = chain_sizes,
-  offspring_dist = rbinom,
-  statistic = "size",
-  size = 1,
-  prob = 0.9,
-  nsim_offspring = 250
-)
-liks
 ```
 
 ### Observation probability
@@ -218,12 +208,80 @@ liks
 This returns `10` likelihood values (because `nsim_obs = 10`), which can be
 averaged to come up with an overall likelihood estimate.
 
-To find out about the usage of the `likelihood()` function, you can run
-`?likelihood` to access its `R` help file.
+### How `likelihood()` works {#how-likelihood-works}
+
+`likelihood()` first checks if an analytical solution of the likelihood exists
+for the given offspring distribution and chain statistic specified. If there's
+none, simulations are used to estimate the likelihoods.
+
+The _epichains_ package includes closed-form (analytical) solutions for
+calculating the likelihoods associated with certain summaries of transmission
+chains ("size" or "length") for specific offspring distributions.
+
+For the size distributions, the package provides the poisson, negative binomial,
+and gamma-borel mixture. For the length distribution, there's the poisson and
+geometric distributions. These can be used with `likelihood()` based on what is
+specified for `offspring_dist` and `statistic`.
+
+If an analytical solution does not exist, an internal simulation function,
+`.offspring_ll()` is employed. It uses simulations to approximate the probability
+distributions ([using a linear approximation to the cumulative 
+distribution](https://en.wikipedia.org/wiki/Empirical_distribution_function) 
+for unobserved sizes/lengths). If simulation is to be used, an extra argument
+`nsim_offspring`  must be passed to `likelihood()` to specify the number of
+simulations to be used for this approximation.
+
+For example, let's look at an example where `chain_sizes` is observed and we
+want to calculate the likelihood of this being drawn from a binomial
+distribution with probability `prob = 0.9`.
+```{r likelihoods_by_simulation}
+set.seed(121)
+# example of observed chain sizes; randomly generate 20 chains of size 1 to 10
+chain_sizes <- sample(1:10, 20, replace = TRUE)
+# get their likelihood
+liks <- likelihood(
+  chains = chain_sizes,
+  offspring_dist = rbinom,
+  statistic = "size",
+  size = 1,
+  prob = 0.9,
+  nsim_offspring = 250
+)
+liks
+```
 
 ## Transmission chains simulation
 
-There are two simulation functions, herein referred to collectively as the `simulate_*()` functions.
+:: {.alert .alert-primary}
+### Use case {-}
+We want to simulate a scenario where a number of outbreak clusters are each
+produced by a separate external case. We want to simulate the chains of
+transmission that result from these cases, given a specific offspring
+distribution and a reproduction number.
+:::
+
+::: {.alert .alert-secondary}
+#### What we have {-}
+
+1. An initial number of cases that seed the outbreak.
+
+#### What we assume {-}
+
+1. An offspring distribution that governs the number of secondary cases
+produced by each case.
+2. A reproduction number that governs the average number of secondary cases
+produced by each case.
+3. An observation process/probability that generates the observed chain
+summaries.
+4. A threshold of chain summaries that are considered too large for the given
+transmission properties. For example, we do not expect each case to produce
+more than $N$ cases or last more than $T$ generations.
+5. A generation time distribution that governs the time between successive
+infections.
+:::
+
+There are two simulation functions, herein referred to collectively as the
+`simulate_*()` functions that can help us achieve this.
 
 ### [`simulate_chains()`](https://epiverse-trace.github.io/epichains/reference/simulate_chains.html) 
 
@@ -258,10 +316,12 @@ sim_chains <- simulate_chains(
 head(sim_chains)
 ```
 
+::: {.alert .alert-info}
 Beyond the defaults, `simulate_chains()` can also simulate outbreaks based on
 a specified population size and pre-existing immunity until the susceptible
 pool runs out.
-  
+:::
+
 Here is a quick example where we simulate an outbreak in a population of
 size $1000$ with $10$ index cases and $10/%$ pre-existing immunity. We assume
 individuals have a poisson offspring distribution with mean,
@@ -290,10 +350,12 @@ head(sim_chains_with_pop)
 
 ### [`simulate_summary()`](https://epiverse-trace.github.io/epichains/reference/simulate_summary.html)
 
+::: {.alert .alert-primary}
 `simulate_summary()` is a performant version of `simulate_chains()` that
 does not track information on each infector and infectee. It returns the
 eventual size or length/duration of each transmission chain. This function is
 especially useful for calculating numerical likelihoods in `likelihood()`.
+:::
 
 Here is an example to simulate the previous examples without intervention,
 returning the size of each of the $10$ chains. It assumes a poisson offspring
@@ -313,7 +375,7 @@ simulate_summary_eg <- simulate_summary(
 simulate_summary_eg
 ```
 
-## Other functionalities
+## S3 Methods
 
 ### Summarising
 
@@ -353,13 +415,16 @@ simulate_summary_eg <- simulate_summary(
 summary(simulate_summary_eg)
 ```
 
+::: {.alert .alert-danger}
 This summary is the same as the output of `simulate_summary()` if the same
 inputs are used. `simulate_summary()` is a more performant version of
 `simulate_chains()`, hence, you can use it instead, if you are only interested
 in the summary of the simulated chains without details about the infection
 tree.
+:::
 
-We can confirm if the two outputs are the same using `base::setequal()`
+We can confirm if the two outputs are the same using `base::setequal()`, which
+checks if two objects are equal and returns `TRUE/FALSE`.
 
 ```{r compare_sim_funcs, include=TRUE,echo=TRUE}
 setequal(
