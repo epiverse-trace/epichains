@@ -61,7 +61,7 @@ log-likelihood calculation.}
 \item{individual}{If TRUE, a vector of individual log-likelihood/likelihood
 contributions will be returned rather than the sum/product.}
 
-\item{...}{any parameters to pass to \code{\link{simulate_summary}}}
+\item{...}{any parameters to pass to \code{\link{simulate_chain_stats}}}
 }
 \value{
 If \code{log = TRUE}

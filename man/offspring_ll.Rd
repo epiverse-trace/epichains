@@ -33,7 +33,7 @@ it goes extinct.
 for approximating the distribution of the chain statistic summary
 (size/length)}
 
-\item{...}{any parameters to pass to \code{\link{simulate_summary}}}
+\item{...}{any parameters to pass to \code{\link{simulate_chain_stats}}}
 }
 \value{
 log-likelihood values
@@ -53,7 +53,7 @@ chain_size_ll <- offspring_ll(
 )
 }
 \seealso{
-\code{\link[=simulate_summary]{simulate_summary()}} for simulating a summary of the transmission
+\code{\link[=simulate_chain_stats]{simulate_chain_stats()}} for simulating a summary of the transmission
 chains statistic (without the tree of infections)
 }
 \author{
