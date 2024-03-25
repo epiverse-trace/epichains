@@ -92,9 +92,9 @@ for the `dplyr::group_by()` and `dplyr::summarise()` style of aggregation.
 In summary, an `<epichains>` object has the following structure:
 
 * Columns:
-  * `infectee_id` (`<numeric>`)
-  * `infector_id` (`<numeric>`)
-  * `generation` (`<numeric>`), and optionally,
+  * `infectee_id` (`<integer>`)
+  * `infector_id` (`<integer>`)
+  * `generation` (`<integer>`), and optionally,
   * `time` (`<numeric>`), if `generation_time` is specified
   * `susc_pop` (`<numeric>`), if `pop` is finite
 
