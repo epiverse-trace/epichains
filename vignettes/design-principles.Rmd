@@ -31,7 +31,7 @@ and maintenance of the package.
 {epichains} aims to facilitate:
 
 * Simulation of transmission chains using branching processes methods,
-* Handling of transmission chains using objected-orientated design, and
+* Handling of transmission chains with an easily accessible user interface, and
 * Estimation of the likelihood of observing transmission chain summaries
 (sizes or lengths). This can be achieved in two ways:
   - Analytical/closed-form likelihoods that take the form
@@ -70,7 +70,7 @@ used data structure in R. Similarly, the `<epichains_summary>` class is a
 superclass (an extension) of R's `<numeric>` class and stores the parameter
 values as attributes.
 
-The `<epichains>` object contains information about the whole outbreak, but
+The `<epichains>` object contains information about the whole simulated outbreak (potentially with multiple simulations), but
 key summaries are not easily deduced from a quick glance of the object. Hence,
 the class has a dedicated `format()/print()` method to print the simulated
 transmission chains in a manner similar to a `<dataframe>`, but accompanied
@@ -78,7 +78,7 @@ by extra summary information including the number of chains simulated, number
 of generations reached, and the number of unique infectors created. These
 summaries are useful for quickly assessing the output of the simulation.
 
-Importantly, the `<epichains>` class has a `summary()` method that returns
+The `<epichains>` class has a `summary()` method that returns
 an `<epichains_summary>` object. This is a design decision that was taken to
 allow for easy coercion between an infection tree obtained from
 `simulate_chains()` and summaries of the infection tree otherwise attainable
