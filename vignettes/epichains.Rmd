@@ -268,17 +268,10 @@ distribution and a reproduction number.
 
 #### What we assume {-}
 
-1. An offspring distribution that governs the number of secondary cases
-produced by each case.
-2. A reproduction number that governs the average number of secondary cases
-produced by each case.
-3. An observation process/probability that generates the observed chain
-summaries.
-4. A threshold of chain summaries that are considered too large for the given
-transmission properties. For example, we do not expect each case to produce
-more than $N$ cases or last more than $T$ generations.
-5. A generation time distribution that governs the time between successive
-infections.
+1. An offspring distribution that governs the number of secondary cases produced by each case.
+2. Parameters of the offspring distribution (for example, mean and overdispersion if using a negative binomial; which can then be interpreted as reproduction number and superspreading coefficient, respectively)
+3. (optional) A threshold of chain summaries that are considered too large to be consistent with a reproduction number of $R<1$ (e.g., $N$ or $T$ generations in total).
+4. (optional) A generation time distribution that governs the time between successive cases.
 :::
 
 There are two simulation functions, herein referred to collectively as the
