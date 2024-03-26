@@ -14,6 +14,7 @@ R's
 README's
 TransPhylo
 Vukosi
+WAIC
 Zhian
 borel
 bpmodels
@@ -28,7 +29,6 @@ epicontacts
 epiparameter
 fn
 frac
-gborel
 geosocial
 geq
 infectee
@@ -43,13 +43,11 @@ ln
 mathbf
 mathrm
 nCoV
-nbinom
 nosoi
 outbreaker
 outbreakr
 packagename
 parameterised
-pois
 poisson
 rborel
 ringbp
@@ -59,4 +57,3 @@ superspreading
 th
 truncdist
 unnormalised
-var
