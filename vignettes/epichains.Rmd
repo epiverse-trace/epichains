@@ -35,20 +35,16 @@ a transmission chain.
 
 ::: {.alert .alert-info}
 * To understand the theoretical background of the branching processes methods
-used here, refer to the [theory vignette](https://epiverse-trace.github.io/epichains/articles/theoretical_background.html)
+used here, refer to the theory vignette `vignette("theoretical_background")`.
 * To understand the software development design decisions and implementation details of the package,
-refer to the [design vignette](https://epiverse-trace.github.io/epichains/articles/design-principles.html)
+refer to the design vignette `vignette("design-principles")`.
 :::
 
-Epidemics spread through when infected individuals transmit the
-infection to others. If we assume that each case infects a random number of
-other individuals (the offspring) through time units called generations,
-and that this transmission process is governed by a reproduction number and
-a probability distribution describing how the offspring are produced through
-the time unit, then the epidemic can be modelled as a branching process.
-
-Branching processes are a stochastic process where each individual in a
-generation gives rise to a random number of individuals in the next generation.
+Epidemics spread through populations when infected individuals transmit the
+infection to others.
+[Branching processes](https://en.wikipedia.org/wiki/Branching_process) can be used to model this process.
+A branching process is a stochastic process where each infectious individual in a
+generation gives rise to a random number of individuals in the next generation, starting with the index case in generation 1.
 The distribution of the number of offspring is called the offspring
 distribution.
 
@@ -76,9 +72,9 @@ library("epichains")
 ::: {.alert .alert-primary}
 ### Use case {-}
 Suppose we have observed a number of outbreak clusters, each arising from a
-separate external case. What are the likely transmission properties
-(reproduction number and/or superspreading coefficient) of the infection that
-generated these clusters?
+separate index case. What are the likely transmission properties
+(reproduction number and/or superspreading coefficient) that
+generated these clusters (assuming these parameters are the same across all the clusters)?
 
 The first step in answering this question is to calculate the likelihood of
 observing the observed chain summaries given the transmission properties. This
@@ -97,13 +93,10 @@ these estimation frameworks.
 
 1. An offspring distribution that governs the number of secondary cases
 produced by each case.
-2. A reproduction number that governs the average number of secondary cases
-produced by each case.
-3. An observation process/probability that generates the observed chain
+2. Parameters of the offspring distribution (for example, mean and overdispersion if using a negative binomial; which can then be interpreted as reproduction number and superspreading coefficient, respectively)
+3. (optional) An observation process/probability that generates the observed chain
 summaries.
-4. A threshold of chain summaries that are considered too large for the given
-transmission properties. For example, we do not expect each case to produce
-more than $N$ cases or last more than $T$ generations.
+4. A threshold of chain summaries that are considered too large to be consistent with a reproduction number of $R<1$ (e.g., $N$ or $T$ generations in total).
 :::
 
 ### [`likelihood()`](https://epiverse-trace.github.io/epichains/reference/likelihood.html)
@@ -218,16 +211,16 @@ The _epichains_ package includes closed-form (analytical) solutions for
 calculating the likelihoods associated with certain summaries of transmission
 chains ("size" or "length") for specific offspring distributions.
 
-For the size distributions, the package provides the poisson, negative binomial,
+For the size distributions, the package provides the Poisson, negative binomial,
 and gamma-borel mixture.
 
 ::: {.alert .alert-info}
-To provide the gamma-borel size likelihood, the [borel distribution](https://en.wikipedia.org/wiki/Borel_distribution) is needed.
+To provide the gamma-Borel size likelihood, the [Borel distribution](https://en.wikipedia.org/wiki/Borel_distribution) is needed.
 However, base R does not provide this distribution natively like poisson and
 gamma, so _epichains_ provides its [density and random generator](https://epiverse-trace.github.io/epichains/reference/index.html#special-distributions).
 :::
 
-For the length distribution, there's the poisson and
+For the length distribution, there's the Poisson and
 geometric distributions. These can be used with `likelihood()` based on what is
 specified for `offspring_dist` and `statistic`.
 
@@ -238,6 +231,7 @@ distribution](https://en.wikipedia.org/wiki/Empirical_distribution_function)
 for unobserved sizes/lengths). If simulation is to be used, an extra argument
 `nsim_offspring`  must be passed to `likelihood()` to specify the number of
 simulations to be used for this approximation.
+Approximate values of the likelihood will vary with every call to the simulation (because the simulations used for estimation vary), and it may be worth calling `likelihood()` multiple times in this case to see the error this may introduce.
 
 For example, let's look at an example where `chain_sizes` is observed and we
 want to calculate the likelihood of this being drawn from a binomial
@@ -263,7 +257,7 @@ liks
 ::: {.alert .alert-primary}
 ### Use case {-}
 We want to simulate a scenario where a number of outbreak clusters are each
-produced by a separate external case. We want to simulate the chains of
+produced by a separate index case. We want to simulate the chains of
 transmission that result from these cases, given a specific offspring
 distribution and a reproduction number.
 :::
