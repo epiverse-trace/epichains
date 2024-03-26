@@ -90,13 +90,13 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>chains</dt>
-<dd><p>Vector of chain summaries (sizes/lengths)</p></dd>
+<dd><p>A numeric vector of chain summaries (sizes/lengths).</p></dd>
 
 
 <dt>statistic</dt>
-<dd><p><code>&lt;String&gt;</code>; Chain statistic to track as the stopping
-criteria for each chain being simulated when <code>stat_max</code> is not <code>Inf</code>.
-Can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
+<dd><p>The chain statistic to track as the
+stopping criteria for each chain being simulated when <code>stat_max</code> is not
+<code>Inf</code>; A <code>&lt;string&gt;</code>. It can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
 extinct.</p></li>
 <li><p>"length": the total number of ancestors produced by a chain before
 it goes extinct.</p></li>
@@ -104,7 +104,7 @@ it goes extinct.</p></li>
 
 
 <dt>offspring_dist</dt>
-<dd><p>Offspring distribution: a function like the ones
+<dd><p>Offspring distribution: a <code>&lt;function&gt;</code> like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> for Poisson). More specifically, the function needs to
 accept at least one argument, <code>n</code>, which is the number of random
@@ -129,13 +129,14 @@ process is assumed to be constant.</p></dd>
 
 
 <dt>log</dt>
-<dd><p>Logical; Should the log-likelihoods be transformed to
-likelihoods? (Defaults to TRUE).</p></dd>
+<dd><p>Should the log-likelihoods be transformed to
+likelihoods? Logical. Defaults to <code>TRUE</code>.</p></dd>
 
 
 <dt>stat_max</dt>
 <dd><p>A cut off for the chain statistic (size/length) being
-computed. Results above the specified value, are set to <code>Inf</code>.</p></dd>
+computed. A number coercible to integer. Results above the specified value,
+are set to <code>Inf</code>.</p></dd>
 
 
 <dt>exclude</dt>
@@ -144,12 +145,13 @@ log-likelihood calculation.</p></dd>
 
 
 <dt>individual</dt>
-<dd><p>If TRUE, a vector of individual log-likelihood/likelihood
-contributions will be returned rather than the sum/product.</p></dd>
+<dd><p>Logical; If TRUE, a vector of individual
+log-likelihood/likelihood contributions will be returned rather than the
+sum/product.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>any parameters to pass to <code><a href="simulate_summary.html">simulate_summary</a></code></p></dd>
+<dd><p>Any parameters to pass to <code><a href="simulate_summary.html">simulate_summary</a></code></p></dd>
 
 </dl></div>
     <div class="section level2">

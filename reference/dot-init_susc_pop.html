@@ -91,15 +91,15 @@ is not recommended.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>pop</dt>
-<dd><p><code>&lt;Integer&gt;</code>; Population size. Used alongside <code>percent_immune</code>. to
-define the susceptible population. Defaults to <code>Inf</code>.</p></dd>
+<dd><p>Population size; An <code>&lt;Integer&gt;</code>. Used alongside <code>percent_immune</code>
+to define the susceptible population. Defaults to <code>Inf</code>.</p></dd>
 
 
 <dt>percent_immune</dt>
-<dd><p><code>&lt;numeric&gt;</code>; Percent of the population immune to
-infection at the start of the simulation. Used alongside <code>pop</code> to initialise
-the susceptible population. Accepted values lie between 0 and 1.
-Defaults to 0.</p></dd>
+<dd><p>Percent of the population immune to
+infection at the start of the simulation; A <code>&lt;numeric&gt;</code> between 0 and 1.
+Used alongside <code>pop</code> to initialise the susceptible population. Defaults to
+0.</p></dd>
 
 
 <dt>index_cases</dt>
@@ -110,7 +110,7 @@ Defaults to 0.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>numeric; initial susceptible population size</p>
+<p>Initial susceptible population size; A numeric coercible to integer.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

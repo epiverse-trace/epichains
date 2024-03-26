@@ -126,7 +126,7 @@ for "time", and "chain_id".</p></dd>
 
 
 <dt>offspring_dist</dt>
-<dd><p>Offspring distribution: a function like the ones
+<dd><p>Offspring distribution: a <code>&lt;function&gt;</code> like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> for Poisson). More specifically, the function needs to
 accept at least one argument, <code>n</code>, which is the number of random
@@ -137,13 +137,13 @@ binomial offspring, or custom functions.</p></dd>
 
 
 <dt>track_pop</dt>
-<dd><p>Was the susceptible population tracked? Logical</p></dd>
+<dd><p>Was the susceptible population tracked? Logical.</p></dd>
 
 
 <dt>statistic</dt>
-<dd><p><code>&lt;String&gt;</code>; Chain statistic to track as the stopping
-criteria for each chain being simulated when <code>stat_max</code> is not <code>Inf</code>.
-Can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
+<dd><p>The chain statistic to track as the
+stopping criteria for each chain being simulated when <code>stat_max</code> is not
+<code>Inf</code>; A <code>&lt;string&gt;</code>. It can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
 extinct.</p></li>
 <li><p>"length": the total number of ancestors produced by a chain before
 it goes extinct.</p></li>
@@ -151,15 +151,16 @@ it goes extinct.</p></li>
 
 
 <dt>stat_max</dt>
-<dd><p>A cut off for the chain statistic (size/length) being
-computed. Results above <code>stat_max</code> are set to <code>stat_max</code>. Defaults to <code>Inf</code>.</p></dd>
+<dd><p>The cut off for the chain statistic (size/length) being
+computed; A number coercible to integer. Results above <code>stat_max</code> are set to
+<code>stat_max</code>; An <code>&lt;integer&gt;</code>. Defaults to <code>Inf</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>An <code>&lt;epichains&gt;</code> object</p>
+<p>An <code>&lt;epichains&gt;</code> object.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>

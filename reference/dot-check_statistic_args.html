@@ -85,9 +85,9 @@ package.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>statistic</dt>
-<dd><p><code>&lt;String&gt;</code>; Chain statistic to track as the stopping
-criteria for each chain being simulated when <code>stat_max</code> is not <code>Inf</code>.
-Can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
+<dd><p>The chain statistic to track as the
+stopping criteria for each chain being simulated when <code>stat_max</code> is not
+<code>Inf</code>; A <code>&lt;string&gt;</code>. It can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
 extinct.</p></li>
 <li><p>"length": the total number of ancestors produced by a chain before
 it goes extinct.</p></li>
@@ -95,8 +95,9 @@ it goes extinct.</p></li>
 
 
 <dt>stat_max</dt>
-<dd><p>A cut off for the chain statistic (size/length) being
-computed. Results above <code>stat_max</code> are set to <code>stat_max</code>. Defaults to <code>Inf</code>.</p></dd>
+<dd><p>The cut off for the chain statistic (size/length) being
+computed; A number coercible to integer. Results above <code>stat_max</code> are set to
+<code>stat_max</code>; An <code>&lt;integer&gt;</code>. Defaults to <code>Inf</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

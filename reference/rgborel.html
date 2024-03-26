@@ -83,25 +83,27 @@
 
 
 <dt>size</dt>
-<dd><p>the dispersion parameter (often called <code>k</code> in ecological
-applications)</p></dd>
+<dd><p>The dispersion parameter (often called <code>k</code> in ecological
+applications); A positive number.</p></dd>
 
 
 <dt>prob</dt>
-<dd><p>probability of success (in the parameterisation with
-<code>prob</code>, see also <code><a href="https://rdrr.io/r/stats/NegBinomial.html" class="external-link">NegBinomial</a></code>)</p></dd>
+<dd><p>Probability of success (in the parameterisation with
+<code>prob</code>, see also <code><a href="https://rdrr.io/r/stats/NegBinomial.html" class="external-link">NegBinomial</a></code>); A number between
+0 and 1.</p></dd>
 
 
 <dt>mu</dt>
-<dd><p>mean parameter</p></dd>
+<dd><p>Mean; A positive number.</p></dd>
 
 
 <dt>infinite</dt>
 <dd><p>A threshold above which the random number is set to
-<code>Inf</code> as a form of truncation. This is important because <code><a href="rborel.html">rborel()</a></code> uses
-<code><a href="simulate_summary.html">simulate_summary()</a></code> internally with <code>offspring_dist = rpois</code>, so
-when <code>mu &gt;= 1</code>, the simulation could grow out of proportion and chain
-summaries (the random numbers generated here) need to be truncated using
+<code>Inf</code> as a form of truncation; A number coercible to integer. This
+argument is important because <code><a href="rborel.html">rborel()</a></code> uses <code><a href="simulate_summary.html">simulate_summary()</a></code>
+internally with <code>offspring_dist = rpois</code>, so when <code>mu &gt;= 1</code>, the
+simulation could grow out of proportion and chain summaries (the random
+numbers generated here) need to be truncated using
 <code>infinite</code>.</p></dd>
 
 </dl></div>

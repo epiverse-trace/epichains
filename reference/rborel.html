@@ -83,15 +83,16 @@
 
 
 <dt>mu</dt>
-<dd><p>mu parameter (the poisson mean); non-negative.</p></dd>
+<dd><p>A non-negative number for the poisson mean.</p></dd>
 
 
 <dt>infinite</dt>
 <dd><p>A threshold above which the random number is set to
-<code>Inf</code> as a form of truncation. This is important because <code>rborel()</code> uses
-<code><a href="simulate_summary.html">simulate_summary()</a></code> internally with <code>offspring_dist = rpois</code>, so
-when <code>mu &gt;= 1</code>, the simulation could grow out of proportion and chain
-summaries (the random numbers generated here) need to be truncated using
+<code>Inf</code> as a form of truncation; A number coercible to integer. This
+argument is important because <code>rborel()</code> uses <code><a href="simulate_summary.html">simulate_summary()</a></code>
+internally with <code>offspring_dist = rpois</code>, so when <code>mu &gt;= 1</code>, the
+simulation could grow out of proportion and chain summaries (the random
+numbers generated here) need to be truncated using
 <code>infinite</code>.</p></dd>
 
 </dl></div>
@@ -99,7 +100,7 @@ summaries (the random numbers generated here) need to be truncated using
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>Vector of random numbers</p>
+<p>A numeric vector of random numbers.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>

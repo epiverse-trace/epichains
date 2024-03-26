@@ -109,9 +109,9 @@ population initially immune (defaults to 0).</p>
 
 
 <dt>statistic</dt>
-<dd><p><code>&lt;String&gt;</code>; Chain statistic to track as the stopping
-criteria for each chain being simulated when <code>stat_max</code> is not <code>Inf</code>.
-Can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
+<dd><p>The chain statistic to track as the
+stopping criteria for each chain being simulated when <code>stat_max</code> is not
+<code>Inf</code>; A <code>&lt;string&gt;</code>. It can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
 extinct.</p></li>
 <li><p>"length": the total number of ancestors produced by a chain before
 it goes extinct.</p></li>
@@ -119,7 +119,7 @@ it goes extinct.</p></li>
 
 
 <dt>offspring_dist</dt>
-<dd><p>Offspring distribution: a function like the ones
+<dd><p>Offspring distribution: a <code>&lt;function&gt;</code> like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> for Poisson). More specifically, the function needs to
 accept at least one argument, <code>n</code>, which is the number of random
@@ -134,20 +134,21 @@ binomial offspring, or custom functions.</p></dd>
 
 
 <dt>stat_max</dt>
-<dd><p>A cut off for the chain statistic (size/length) being
-computed. Results above <code>stat_max</code> are set to <code>stat_max</code>. Defaults to <code>Inf</code>.</p></dd>
+<dd><p>The cut off for the chain statistic (size/length) being
+computed; A number coercible to integer. Results above <code>stat_max</code> are set to
+<code>stat_max</code>; An <code>&lt;integer&gt;</code>. Defaults to <code>Inf</code>.</p></dd>
 
 
 <dt>pop</dt>
-<dd><p><code>&lt;Integer&gt;</code>; Population size. Used alongside <code>percent_immune</code>. to
-define the susceptible population. Defaults to <code>Inf</code>.</p></dd>
+<dd><p>Population size; An <code>&lt;Integer&gt;</code>. Used alongside <code>percent_immune</code>
+to define the susceptible population. Defaults to <code>Inf</code>.</p></dd>
 
 
 <dt>percent_immune</dt>
-<dd><p><code>&lt;numeric&gt;</code>; Percent of the population immune to
-infection at the start of the simulation. Used alongside <code>pop</code> to initialise
-the susceptible population. Accepted values lie between 0 and 1.
-Defaults to 0.</p></dd>
+<dd><p>Percent of the population immune to
+infection at the start of the simulation; A <code>&lt;numeric&gt;</code> between 0 and 1.
+Used alongside <code>pop</code> to initialise the susceptible population. Defaults to
+0.</p></dd>
 
 
 <dt>generation_time</dt>
@@ -164,8 +165,8 @@ time 0.</p></dd>
 
 
 <dt>tf</dt>
-<dd><p>Cut-off for the infection times (if generation time is given).
-Defaults to <code>Inf</code>.</p></dd>
+<dd><p>A number for the cut-off for the infection times (if generation
+time is given); Defaults to <code>Inf</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

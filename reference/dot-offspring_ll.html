@@ -88,11 +88,11 @@ cumulative distribution function (ecdf).</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
-<dd><p>Vector of chain summaries (sizes/lengths)</p></dd>
+<dd><p>A numeric vector of chain summaries (sizes/lengths).</p></dd>
 
 
 <dt>offspring_dist</dt>
-<dd><p>Offspring distribution: a function like the ones
+<dd><p>Offspring distribution: a <code>&lt;function&gt;</code> like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> for Poisson). More specifically, the function needs to
 accept at least one argument, <code>n</code>, which is the number of random
@@ -103,9 +103,9 @@ binomial offspring, or custom functions.</p></dd>
 
 
 <dt>statistic</dt>
-<dd><p><code>&lt;String&gt;</code>; Chain statistic to track as the stopping
-criteria for each chain being simulated when <code>stat_max</code> is not <code>Inf</code>.
-Can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
+<dd><p>The chain statistic to track as the
+stopping criteria for each chain being simulated when <code>stat_max</code> is not
+<code>Inf</code>; A <code>&lt;string&gt;</code>. It can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
 extinct.</p></li>
 <li><p>"length": the total number of ancestors produced by a chain before
 it goes extinct.</p></li>
@@ -119,14 +119,14 @@ for approximating the distribution of the chain statistic summary
 
 
 <dt>...</dt>
-<dd><p>any parameters to pass to <code><a href="simulate_summary.html">simulate_summary</a></code></p></dd>
+<dd><p>Any parameters to pass to <code><a href="simulate_summary.html">simulate_summary</a></code></p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>log-likelihood values</p>
+<p>A numeric vector of log-likelihood values.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
