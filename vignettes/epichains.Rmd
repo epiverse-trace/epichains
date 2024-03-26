@@ -40,7 +40,7 @@ used here, refer to the theory vignette `vignette("theoretical_background")`.
 refer to the design vignette `vignette("design-principles")`.
 :::
 
-Epidemics spread through populations when infected individuals transmit the
+Infectious disease epidemics can spread through populations when a chain of infected individuals transmit the
 infection to others.
 [Branching processes](https://en.wikipedia.org/wiki/Branching_process) can be used to model this process.
 A branching process is a stochastic process where each infectious individual in a
@@ -108,7 +108,7 @@ refer to transmission chain sizes or lengths/durations.
 `chains`, the corresponding statistic to use, `statistic`, the offspring
 distribution, `offspring_dist` and its associated parameters.
 
-`offspring_dist` is specified as the function that is used to generate random
+`offspring_dist` is specified by the R function that is used to generate random
 numbers, i.e. `rpois` for Poisson, `rnbinom` for negative binomial, or a custom
 function.
 
@@ -127,7 +127,7 @@ set.seed(121)
 # randomly generate 20 chains of size between 1 to 10
 chain_sizes <- sample(1:10, 20, replace = TRUE)
 chain_sizes
-# estimate loglikelihood of the observed chain sizes
+# estimate loglikelihood of the observed chain sizes for given lambda
 likelihood_eg <- likelihood(
   chains = chain_sizes,
   statistic = "size",
