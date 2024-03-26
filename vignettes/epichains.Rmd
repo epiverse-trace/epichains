@@ -106,7 +106,7 @@ outbreak summaries obtained from transmission chains. "Outbreak summaries" here
 refer to transmission chain sizes or lengths/durations.
 
 `likelihood()` requires a vector of chain summaries (sizes or lengths),
-`chains`, the corresponding statistic to calculate, `statistic`, the offspring
+`chains`, the corresponding statistic to use, `statistic`, the offspring
 distribution, `offspring_dist` and its associated parameters.
 
 `offspring_dist` is specified as the function that is used to generate random
@@ -142,8 +142,8 @@ likelihood_eg
 
 ### Joint and individual log-likelihoods
 
-`likelihood()`, by default, returns the joint log-likelihood. If instead,
-the individual log-likelihoods are required, then the `individual` argument
+`likelihood()`, by default, returns the joint log-likelihood, given by the sum of log-likelihoods of each observed chain. If instead
+the individual log-likelihoods are desired (for example for calculating [WAIC](https://en.wikipedia.org/wiki/Watanabe%E2%80%93Akaike_information_criterion) values, then the `individual` argument
 must be set to `TRUE`. To return likelihoods instead, set `log = FALSE`.
 ```{r estimate_likelihoods2}
 set.seed(121)
@@ -252,7 +252,7 @@ liks <- likelihood(
 liks
 ```
 
-## Transmission chains simulation
+## Transmission chain simulation
 
 ::: {.alert .alert-primary}
 ### Use case {-}
@@ -360,7 +360,7 @@ especially useful for calculating numerical likelihoods in `likelihood()`.
 :::
 
 Here is an example to simulate the previous examples without intervention,
-returning the size of each of the $10$ chains. It assumes a poisson offspring
+returning the size of each of the $10$ chains. It assumes a Poisson offspring distribution
 distribution with mean of $0.9$.
 ```{r sim_summary_pois}
 set.seed(123)
