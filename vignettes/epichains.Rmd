@@ -95,7 +95,7 @@ produced by each case.
 2. Parameters of the offspring distribution (for example, mean and overdispersion if using a negative binomial; which can then be interpreted as reproduction number and superspreading coefficient, respectively)
 3. (optional) An observation process/probability that generates the observed chain
 summaries.
-4. A threshold of chain summaries that are considered too large to be consistent with a reproduction number of $R<1$ (e.g., $N$ or $T$ generations in total).
+4. (optional) A threshold of chain summaries that are considered too large to be consistent with a reproduction number of $R<1$ (e.g., $N$ or $T$ generations in total).
 :::
 
 ### [`likelihood()`](https://epiverse-trace.github.io/epichains/reference/likelihood.html)
