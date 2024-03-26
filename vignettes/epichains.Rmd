@@ -71,10 +71,9 @@ library("epichains")
 
 ::: {.alert .alert-primary}
 ### Use case {-}
-Suppose we have observed a number of outbreak clusters, each arising from a
-separate index case. What are the likely transmission properties
+Suppose we have observed a number of transmission chains, each arising from a separate index case. What are the likely transmission properties
 (reproduction number and/or superspreading coefficient) that
-generated these clusters (assuming these parameters are the same across all the clusters)?
+generated these chains (assuming these parameters are the same across all the chains)?
 
 The first step in answering this question is to calculate the likelihood of
 observing the observed chain summaries given the transmission properties. This
@@ -256,7 +255,7 @@ liks
 
 ::: {.alert .alert-primary}
 ### Use case {-}
-We want to simulate a scenario where a number of outbreak clusters are each
+We want to simulate a scenario where a number of chains are each
 produced by a separate index case. We want to simulate the chains of
 transmission that result from these cases, given a specific offspring
 distribution and a reproduction number.
