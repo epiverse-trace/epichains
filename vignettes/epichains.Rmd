@@ -40,7 +40,7 @@ used here, refer to the theory vignette `vignette("theoretical_background")`.
 refer to the design vignette `vignette("design-principles")`.
 :::
 
-Infectious disease epidemics can spread through populations when a chain of infected individuals transmit the
+Infectious disease epidemics spread through populations when a chain of infected individuals transmit the
 infection to others.
 [Branching processes](https://en.wikipedia.org/wiki/Branching_process) can be used to model this process.
 A branching process is a stochastic process where each infectious individual in a
