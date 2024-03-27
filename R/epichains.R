@@ -416,8 +416,8 @@ summary.epichains_summary <- function(object, ...) {
   if (all(is.infinite(object))) {
     max_stat <- min_stat <- Inf
   } else {
-    max_stat <- max(object[!is.infinite(object)])
-    min_stat <- min(object[!is.infinite(object)])
+    max_stat <- max(object)
+    min_stat <- min(object)
   }
 
   out <- list(
