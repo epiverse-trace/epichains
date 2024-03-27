@@ -312,9 +312,9 @@ head(sim_chains)
 ```
 
 ::: {.alert .alert-info}
-Beyond the defaults, `simulate_chains()` can also simulate outbreaks based on
-a specified population size and pre-existing immunity until the susceptible
-pool runs out.
+By default, `simulate_chains()` assumes an infinite population but can account for susceptible depletion when a finite `pop` is specified. 
+
+Pre-existing immunity levels can also be specified, which will be applied to `pop` before the simulation is initialised.
 :::
 
 Here is a quick example where we simulate an outbreak in a population of
