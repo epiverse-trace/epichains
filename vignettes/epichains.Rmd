@@ -143,7 +143,7 @@ likelihood_eg
 ### Joint and individual log-likelihoods
 
 `likelihood()`, by default, returns the joint log-likelihood, given by the sum of log-likelihoods of each observed chain. If instead
-the individual log-likelihoods are desired (for example for calculating [WAIC](https://en.wikipedia.org/wiki/Watanabe%E2%80%93Akaike_information_criterion) values, then the `individual` argument
+the individual log-likelihoods are desired (for example for calculating [Watanabe–Akaike information criterion](https://en.wikipedia.org/wiki/Watanabe%E2%80%93Akaike_information_criterion) values, then the `individual` argument
 must be set to `TRUE`. To return likelihoods instead, set `log = FALSE`.
 ```{r estimate_likelihoods2}
 set.seed(121)
