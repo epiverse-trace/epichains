@@ -79,8 +79,9 @@ The first step in answering this question is to calculate the likelihood of
 observing the observed chain summaries given the transmission properties. This
 is where the `likelihood()` function comes in. The returned estimate can then
 be used to infer the transmission properties using estimation frameworks such
-as maximum likelihood or Bayesian inference. _epichains_ does not provide
-these estimation frameworks.
+as maximum likelihood or Bayesian inference.
+
+_epichains_ does not provide these estimation frameworks.
 :::
 
 ::: {.alert .alert-secondary}
