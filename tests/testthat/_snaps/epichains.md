@@ -104,6 +104,20 @@
       Max: 15
       Min: 5
 
+---
+
+    Code
+      chain_lengths_with_Infs
+    Output
+      `epichains_summary` object 
+      
+       [1]   8   2 Inf   8   1 Inf   8 Inf   2   3
+      
+       Simulated tree lengths: 
+      
+      Max: >=10
+      Min: 1
+
 # head and tail print output as expected
 
     Code

@@ -162,12 +162,22 @@ test_that("print.epichains works for simulation functions", {
     statistic = "length",
     lambda = 0.9
   )
+  #' Simulate the case where Infs are produced and printed as ">= stat_max"
+  set.seed(32)
+  chain_lengths_with_Infs <- simulate_summary(
+    index_cases = 10,
+    offspring_dist = rpois,
+    statistic = "length",
+    lambda = 1.1,
+    stat_max = 10
+  )
   #' Expectations
   expect_snapshot(susc_outbreak_raw)
   expect_snapshot(susc_outbreak_raw2)
   expect_snapshot(tree_sim_raw)
   expect_snapshot(tree_sim_raw2)
   expect_snapshot(chain_summary_raw)
+  expect_snapshot(chain_lengths_with_Infs)
 })
 
 test_that("summary.epichains works as expected", {
