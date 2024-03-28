@@ -197,6 +197,13 @@ print.epichains <- function(x, ...) {
 #' Print an `<epichains_summary>` object
 #'
 #' @param x An `<epichains_summary>` object.
+#' @description
+#' Prints a summary of the `<epichains_summary>` object. In particular, it
+#' prints the number of index cases used for the simulation, and range of
+#' the statistic, represented as the maximum and minimum. If the maximum
+#' is infinite, it is represented as `>= stat_max` where `stat_max` is the
+#' value of the censoring limit. See `?epichains_summary()` for the definition
+#' of `stat_max`.
 #' @param ... Not used.
 #' @return Invisibly returns an `<epichains_summary>`. Called for
 #' side-effects.
