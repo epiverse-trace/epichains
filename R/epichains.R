@@ -297,7 +297,8 @@ format.epichains_summary <- function(x, ...) {
         ifelse(
           is.infinite(
             statistics[["max_stat"]]),
-          paste0(">=", attr(x, "stat_max")),
+            paste0(">=", attr(x, "stat_max")
+          ),
           statistics[["max_stat"]]
         )
       ),
