@@ -304,7 +304,13 @@ format.epichains_summary <- function(x, ...) {
       ),
       sprintf(
         "Min: %s",
-        statistics[["min_stat"]]
+        ifelse(
+          is.infinite(
+            statistics[["min_stat"]]),
+          paste0(">=", attr(x, "stat_max")
+          ),
+          statistics[["min_stat"]]
+        )
       )
     )
   )
