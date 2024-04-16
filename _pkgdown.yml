@@ -45,14 +45,16 @@ reference:
     - covid19_sa
 
 articles:
-- title: Package vignettes
-  navbar: Package vignettes
+- title: Package Theory
+  navbar: Package Theory
   contents:
-  - projecting_incidence
+  - theoretical_background
+- title: Package Applications
+  navbar: Package Applications
+  contents:
   - interventions
-- title: Modelling guides and background
-  navbar: Modelling guides and background
+  - projecting_incidence
+- title: Literature
+  navbar: Literature
   contents:
   - branching_process_literature
-  - theoretical_background
-
