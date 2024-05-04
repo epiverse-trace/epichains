@@ -96,11 +96,6 @@ test_that("simulate_chains has expected shape", {
     c("index_case_active", "infector", "infectee", "generation", "time"),
     ignore.order = TRUE
   )
-  # If simulated from a finite population, expect "susc_pop" as a column name
-  expect_named(
-    sim_chains_small_susc,
-    c("infectee_id", "sim_id", "infector_id", "generation", "time", "susc_pop")
-  )
   expect_identical(
     nrow(sim_chains_raw),
     11824L
@@ -125,7 +120,6 @@ test_that("simulate_chains has expected shape", {
       infectee = "numeric",
       generation = "numeric",
       time = "numeric"
-      susc_pop = "numeric"
     )
   )
   # tf = 5, so all generation times should be less than 5
