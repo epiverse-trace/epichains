@@ -620,7 +620,7 @@ aggregate.epichains <- function(x,
       stop(
         "Object must have a time column. ",
         "To simulate time, specify `serials_dist` ",
-        "in the `simulate_tree()` setup."
+        "in the `simulate_chains()` function call."
       )
     }
     # Count the number of cases per generation
