@@ -67,8 +67,16 @@ time is given); Defaults to \code{Inf}.}
 }
 \value{
 An \verb{<epichains>} object, which is basically a \verb{<data.frame>}
-with columns \code{infectee_id}, \code{sim_id} (a unique ID within each simulation
-for each infectee), \code{infector_id}, \code{generation}, and \code{time} (of infection)
+with columns:
+\itemize{
+\item \code{index_case_active} - an ID for the index cases still active (links
+each infector and infectee to the index case that seeded the chain),
+\item \code{infectee} - a unique ID for each infectee.
+\item \code{infector} - an ID for the infector of each infectee.
+\item \code{generation} - a discrete time point during which infection occurs, and
+optionally,
+\item \code{time} - the time of infection.
+}
 }
 \description{
 Generates transmission chains using a simple branching process model that
