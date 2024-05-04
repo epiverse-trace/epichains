@@ -45,8 +45,14 @@
 #' time is given); Defaults to `Inf`.
 #' @param ... Parameters of the offspring distribution as required by R.
 #' @return An `<epichains>` object, which is basically a `<data.frame>`
-#' with columns `infectee_id`, `sim_id` (a unique ID within each simulation
-#' for each infectee), `infector_id`, `generation`, and `time` (of infection)
+#' with columns:
+#' * `index_case_active` - an ID for the index cases still active (links
+#' each infector and infectee to the index case that seeded the chain),
+#' * `infectee` - a unique ID for each infectee.
+#' * `infector` - an ID for the infector of each infectee.
+#' * `generation` - a discrete time point during which infection occurs, and
+#' optionally,
+#' * `time` - the time of infection.
 #' @author James M. Azam, Sebastian Funk
 #' @export
 #nolint start
