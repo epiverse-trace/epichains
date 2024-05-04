@@ -83,7 +83,7 @@ test_that("simulate_chains has expected shape", {
   # Check column names
   expect_named(
     sim_chains_raw,
-    c("infectee_id", "sim_id", "infector_id", "generation"),
+    c("index_case_active", "infector", "infectee", "generation"),
     ignore.order = TRUE
   )
   # Don't expect "time" as a column name
@@ -93,7 +93,7 @@ test_that("simulate_chains has expected shape", {
   #' Cols of sim_chains_raw_gt have an extra column "time"
   expect_named(
     sim_chains_raw_gt,
-    c("infectee_id", "sim_id", "infector_id", "generation", "time"),
+    c("index_case_active", "infector", "infectee", "generation", "time"),
     ignore.order = TRUE
   )
   # If simulated from a finite population, expect "susc_pop" as a column name
@@ -107,7 +107,7 @@ test_that("simulate_chains has expected shape", {
   )
   # check that the infectors are the same as what was input
   expect_identical(
-    unique(sim_chains_raw$infectee_id),
+    unique(sim_chains_raw$index_case_active),
     as.integer(1:10)
   )
   # check column types of sim_chains_small_susc as it has the complete set of
@@ -120,11 +120,11 @@ test_that("simulate_chains has expected shape", {
       simplify = FALSE
     ),
     list(
-      infectee_id = "numeric",
-      sim_id = "numeric",
-      infector_id = "numeric",
+      index_case_active = "numeric",
+      infector = "numeric",
+      infectee = "numeric",
       generation = "numeric",
-      time = "numeric",
+      time = "numeric"
       susc_pop = "numeric"
     )
   )
