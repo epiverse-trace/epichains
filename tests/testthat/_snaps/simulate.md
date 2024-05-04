@@ -19,18 +19,18 @@
     Output
       `<epichains>` object
       
-      < tree head (from first known infector_id) >
+      < tree head (from first known infector) >
       
-         infectee_id sim_id infector_id generation       time susc_pop
-      11           1      2           1          2 1.12793938       25
-      12           2      2           1          2 0.32178175       25
-      13           3      2           1          2 5.75296347       25
-      14           4      2           1          2 4.11764375       25
-      15           5      2           1          2 0.06998357       25
-      16           6      2           1          2 8.43022733       25
+         index_case_active infector infectee generation      time
+      11                 1        1       11          2 1.1279394
+      12                 2        1       12          2 0.3217817
+      13                 2        1       13          2 7.8785290
+      14                 2        1       14          2 3.1584048
+      15                 3        1       15          2 5.7529635
+      16                 3        1       16          2 7.1951323
       
       
-      Trees simulated: 10
+      Index cases simulated: 10
       Number of infectors (known): 6
       Number of generations: 5
       Use `as.data.frame(<object_name>)` to view the full output in the console.
@@ -42,18 +42,18 @@
     Output
       `<epichains>` object
       
-      < tree head (from first known infector_id) >
+      < tree head (from first known infector) >
       
-         infectee_id sim_id infector_id generation       time
-      11           1      2           1          2 1.16906106
-      12           2      2           1          2 1.93214311
-      13           3      2           1          2 7.87852902
-      14           4      2           1          2 5.75296347
-      15           5      2           1          2 7.19513227
-      16           6      2           1          2 0.06998357
+         index_case_active infector infectee generation      time
+      11                 1        1       11          2  1.169061
+      12                 1        1       12          2 14.980844
+      13                 1        1       13          2  1.417131
+      14                 2        1       14          2  1.932143
+      15                 2        1       15          2  6.667853
+      16                 2        1       16          2  1.127939
       
       
-      Trees simulated: 10
+      Index cases simulated: 10
       Number of infectors (known): 98
       Number of generations: 12
       Use `as.data.frame(<object_name>)` to view the full output in the console.
@@ -65,13 +65,13 @@
     Output
       `<epichains>` object
       
-      < tree head (from first known infector_id) >
+      < tree head (from first known infector) >
       
-         infectee_id sim_id infector_id generation susc_pop
-      11           6      2           1          2        0
+         index_case_active infector infectee generation
+      11                 6        1       11          2
       
       
-      Trees simulated: 10
+      Index cases simulated: 10
       Number of infectors (known): 2
       Number of generations: 2
       Use `as.data.frame(<object_name>)` to view the full output in the console.
