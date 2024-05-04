@@ -67,7 +67,7 @@
     any.missing = FALSE,
     len = 1L,
     lower = 1L,
-    upper = max(tree_df$infectee_id, na.rm = TRUE)
+    upper = max(tree_df$index_case_active, na.rm = TRUE)
   )
   checkmate::assert_string(statistic)
   statistic <- match.arg(statistic, choices = c("size", "length"))
@@ -228,7 +228,7 @@ format.epichains <- function(x, ...) {
   writeLines(sprintf("`<epichains>` object\n"))
 
   # print head of the object
-  writeLines("< tree head (from first known infector_id) >\n")
+  writeLines("< tree head (from first known infector) >\n")
   print(head(x))
 
   # print summary information
@@ -239,12 +239,12 @@ format.epichains <- function(x, ...) {
         "\n"
       ),
       sprintf(
-        "Trees simulated: %s",
+        "Index cases simulated: %s",
         attr(x, "index_cases")
       ),
       sprintf(
         "Number of infectors (known): %s",
-        length(unique(x$infector_id))
+        length(unique(x$infector))
       ),
       sprintf(
         "Number of generations: %s",
@@ -381,14 +381,14 @@ summary.epichains <- function(object, ...) {
   chain_summaries <- vector(length = index_cases, mode = "integer")
   # Calculate the summary statistic based on the specified statistic type
   if (statistic == "size") {
-    # size is the number of infectees produced by a chain before it goes
+    # size is the number of infectees produced by an index case before it goes
     # extinct.
-    chain_summaries <- as.numeric(table(object$infectee_id))
+    chain_summaries <- as.numeric(table(object$index_case_active))
   } else {
-    # length is the number of infectors generations a chain produces before
+    # length is the number of generations an index case produces before
     # it goes extinct.
     for (i in seq_len(index_cases)) {
-      chain_generations <- object[object$infectee_id == i, "generation"]
+      chain_generations <- object[object$index_case_active == i, "generation"]
       chain_summaries[i] <- max(chain_generations)
     }
   }
@@ -487,12 +487,14 @@ summary.epichains_summary <- function(object, ...) {
   # check for class invariants
   stopifnot(
     "object does not contain the correct columns" =
-      c("sim_id", "infector_id", "generation") %in%
+      c("index_case_active", "infector", "infectee", "generation") %in%
       colnames(x),
-    "column `sim_id` must be a numeric" =
-      is.numeric(x$sim_id),
-    "column `infector_id` must be a numeric" =
-      is.numeric(x$infector_id),
+    "column `index_case_active` must be a numeric" =
+      is.numeric(x$index_case_active),
+    "column `infector` must be a numeric" =
+      is.numeric(x$infector),
+    "column `infectee` must be a numeric" =
+      is.numeric(x$infectee),
     "column `generation` must be a numeric" =
       is.numeric(x$generation)
   )
@@ -543,8 +545,8 @@ summary.epichains_summary <- function(object, ...) {
 #' )
 #' head(chains_pois_offspring)
 head.epichains <- function(x, ...) {
-  # print head of the simulation output from the first known infector_id
-  x <- x[!is.na(x$infector_id), ]
+  # print head of the simulation output from the first known infector
+  x <- x[!is.na(x$infector), ]
   return(
     utils::head(as.data.frame(x), ...)
   )
@@ -625,14 +627,14 @@ aggregate.epichains <- function(x,
     }
     # Count the number of cases per generation
     stats::aggregate(
-      list(cases = x$sim_id),
+      list(cases = x$infector),
       list(time = x$time),
       FUN = NROW
     )
   } else if (by == "generation") {
     # Count the number of cases per time
     stats::aggregate(
-      list(cases = x$sim_id),
+      list(cases = x$infector),
       list(generation = x$generation),
       FUN = NROW
     )
