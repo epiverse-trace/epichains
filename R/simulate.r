@@ -192,9 +192,8 @@ simulate_chains <- function(index_cases,
     tree_df[[generation]]$time <- t0
     times <- tree_df[[generation]]$time
   }
-  if (!missing(pop)) {
+  # Simulate chains until stopping conditions are met
     tree_df[[generation]]$susc_pop <- susc_pop
-  }
   # next, simulate n trees
   while (length(sim) > 0 && susc_pop > 0) {
     # simulate the next possible offspring
@@ -262,9 +261,6 @@ simulate_chains <- function(index_cases,
         times <- rep(times, next_gen) + generation_time(sum(n_offspring))
         current_min_time <- unname(tapply(times, parent_ids, min))
         tree_df[[generation]]$time <- times
-      }
-      if (!missing(pop)) {
-        tree_df[[generation]]$susc_pop <- susc_pop
       }
     }
 
