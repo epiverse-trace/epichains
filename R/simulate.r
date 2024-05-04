@@ -288,6 +288,14 @@ simulate_chains <- function(index_cases,
   # Post processing
   #   # sort by sim_id and infector_id
   rownames(tree_df) <- NULL
+  # We want to reorder the columns but that depends on whether "time" is
+  # present or not, so we need to determine that first
+  column_order <- if (missing(generation_time)) {
+    c("index_case_active", "infector", "infectee", "generation")
+  } else {
+    c("index_case_active", "infector", "infectee", "generation", "time")
+  }
+  tree_df <- tree_df[, c(column_order)]
   out <- .epichains(
     tree_df,
     index_cases = index_cases,
