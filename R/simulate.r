@@ -289,6 +289,8 @@ simulate_chains <- function(index_cases,
   #   # sort by sim_id and infector_id
   rownames(tree_df) <- NULL
   tree_df$infectee <- seq_len(nrow(tree_df))
+  # remove sin_id and reorder the columns
+  tree_df$sim_id <- NULL
   # We want to reorder the columns but that depends on whether "time" is
   # present or not, so we need to determine that first
   column_order <- if (missing(generation_time)) {
