@@ -38,9 +38,9 @@ binomial offspring, or custom functions.}
 
 \item{stat_max}{A stopping criterion for individual chain simulations; a
 positive number coercible to integer. When any chain's cumulative statistic
-reaches or surpasses \code{stat_max}, that chain ends. Defaults to \code{Inf}.
-For example, if \code{statistic = "size"} and \code{stat_max = 10}, then any chain
-that produces 10 or more cases will stop.}
+reaches or surpasses \code{stat_max}, that chain ends. It also serves as a
+censoring limit so that results above the specified value, are set to \code{Inf}.
+Defaults to \code{Inf}.}
 }
 \description{
 \code{new_epichains_summary()} constructs an \verb{<epichains_summary>} object from a
