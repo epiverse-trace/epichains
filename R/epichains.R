@@ -108,7 +108,7 @@
 #'
 #' @param chains_summary A numeric `<vector>` of chain sizes and lengths.
 #' @inheritParams .new_epichains
-#' @inheritParams simulate_chains
+#' @inheritParams simulate_summary
 #' @author James M. Azam
 #' @keywords internal
 .new_epichains_summary <- function(chains_summary,
