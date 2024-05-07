@@ -4,7 +4,7 @@
 \alias{rgborel}
 \title{Generate random numbers from a Gamma-Borel mixture distribution}
 \usage{
-rgborel(n, size, prob, mu, stat_max = Inf)
+rgborel(n, size, prob, mu, censor_at = Inf)
 }
 \arguments{
 \item{n}{Number of random variates to generate.}
@@ -18,11 +18,11 @@ applications); A positive number.}
 
 \item{mu}{Mean; A positive number.}
 
-\item{stat_max}{A stopping criterion for individual chain simulations; a
-positive number coercible to integer. When any chain's cumulative statistic
-reaches \code{stat_max}, that chain ends. It also serves as a censoring limit
-so that results above the specified value, are set to \code{Inf}. Defaults to
-\code{Inf}.}
+\item{censor_at}{A stopping criterion; \verb{<numeric>}. Defaults to \code{Inf}. A
+value above which the simulation ends and the random number is set to
+\code{Inf} (as a form of censoring). \code{rborel()} uses \code{\link[=simulate_summary]{simulate_summary()}}
+internally with a poisson offspring distribution, so if \code{mu >= 1}, the
+simulation could proceed unendingly. This parameter is used to prevent this.}
 }
 \value{
 Numeric vector of random numbers
