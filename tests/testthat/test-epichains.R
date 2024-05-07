@@ -164,7 +164,7 @@ test_that("print.epichains works for simulation functions", {
   )
   #' Simulate the case where Infs are produced and printed as ">= stat_max"
   set.seed(32)
-  chain_lengths_with_Infs <- simulate_summary(
+  chain_lengths_with_Infs <- simulate_chain_stats(
     index_cases = 10,
     offspring_dist = rpois,
     statistic = "length",
@@ -173,7 +173,7 @@ test_that("print.epichains works for simulation functions", {
   )
   #' Simulate the case where all are Infs printed as ">= stat_max"
   set.seed(32)
-  chain_lengths_all_Infs <- simulate_summary(
+  chain_lengths_all_Infs <- simulate_chain_stats(
     index_cases = 2,
     offspring_dist = rpois,
     statistic = "length",
