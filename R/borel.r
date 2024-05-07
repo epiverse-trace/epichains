@@ -29,8 +29,8 @@ dborel <- function(x, mu, log = FALSE) {
 ##' @inheritParams dborel
 ##' @param censor_at A stopping criterion; `<numeric>`. Defaults to `Inf`. A
 ##' value above which the simulation ends and the random number is set to
-##' `Inf` (as a form of censoring). `rborel()` uses [simulate_summary()]
-##' internally with a poisson offspring distribution, so if `mu >= 1`, the
+##' `Inf` (as a form of censoring). `rborel()` simulates chain sizes using [simulate_summary()]
+##'  with a Poisson offspring distribution, so if `mu >= 1`, the
 ##' simulation could proceed unendingly. This parameter is used to prevent this.
 ##' @return A numeric vector of random numbers.
 ##' @author Sebastian Funk
