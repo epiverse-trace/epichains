@@ -13,9 +13,10 @@ rborel(n, mu, censor_at = Inf)
 
 \item{censor_at}{A stopping criterion; \verb{<numeric>}. Defaults to \code{Inf}. A
 value above which the simulation ends and the random number is set to
-\code{Inf} (as a form of censoring). \code{rborel()} uses \code{\link[=simulate_summary]{simulate_summary()}}
-internally with a poisson offspring distribution, so if \code{mu >= 1}, the
-simulation could proceed unendingly. This parameter is used to prevent this.}
+\code{Inf} (as a form of censoring). \code{rborel()} simulates chain sizes using
+\code{\link[=simulate_summary]{simulate_summary()}} with a Poisson offspring distribution, so if
+\code{mu >= 1}, the simulation could proceed unendingly. This parameter is used
+to prevent this.}
 }
 \value{
 A numeric vector of random numbers.
