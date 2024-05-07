@@ -46,8 +46,6 @@ to define the susceptible population. Defaults to \code{Inf}.}
 infection at the start of the simulation; A \verb{<numeric>} between 0 and 1.
 Used alongside \code{pop} to initialise the susceptible population. Defaults to
 0.}
-
-\item{sim_func}{\if{html}{\out{<character>}}; The simulation function to check}
 }
 \value{
 NULL; called for side effects
