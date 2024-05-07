@@ -32,7 +32,7 @@
 #' }
 #' @param stat_max A stopping criterion for individual chain simulations; a
 #' positive number coercible to integer. When any chain's cumulative statistic
-#' reaches `stat_max`, that chain ends. Defaults to `Inf`. For example, if
+#' reaches or surpasses `stat_max`, that chain ends. Defaults to `Inf`. For example, if
 #' `statistic = "size"` and `stat_max = 10`, then any chain that produces 10
 #' or more cases will stop.
 #' @param pop Population size; An `<Integer>`. Used alongside `percent_immune`
