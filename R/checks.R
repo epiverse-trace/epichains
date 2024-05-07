@@ -21,8 +21,6 @@
 
 #' Check inputs to `simulate_chains()` and `simulate_summary()`
 #'
-#' @param sim_func <character>; The simulation function to check
-#'
 #' @inheritParams simulate_chains
 #' @return NULL; called for side effects
 #' @keywords internal
