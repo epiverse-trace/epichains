@@ -32,9 +32,9 @@
 #' }
 #' @param stat_max A stopping criterion for individual chain simulations; a
 #' positive number coercible to integer. When any chain's cumulative statistic
-#' reaches or surpasses `stat_max`, that chain ends. Defaults to `Inf`. For example, if
-#' `statistic = "size"` and `stat_max = 10`, then any chain that produces 10
-#' or more cases will stop.
+#' reaches or surpasses `stat_max`, that chain ends. Defaults to `Inf`.
+#' For example, if `statistic = "size"` and `stat_max = 10`, then any chain
+#' that produces 10 or more cases will stop.
 #' @param pop Population size; An `<Integer>`. Used alongside `percent_immune`
 #' to define the susceptible population. Defaults to `Inf`.
 #' @param percent_immune Percent of the population immune to
@@ -340,9 +340,9 @@ simulate_chains <- function(n_chains,
 #' @inheritParams simulate_chains
 #' @param stat_max A stopping criterion for individual chain simulations; a
 #' positive number coercible to integer. When any chain's cumulative statistic
-#' reaches `stat_max`, that chain ends. It also serves as a censoring limit
-#' so that results above the specified value, are set to `Inf`. Defaults to
-#' `Inf`.
+#' reaches or surpasses `stat_max`, that chain ends. It also serves as a
+#' censoring limit so that results above the specified value, are set to `Inf`.
+#' Defaults to `Inf`.
 #' @return An object of class `<epichains_summary>`, which is a numeric
 #' vector of chain sizes or lengths with extra attributes for storing the
 #' simulation parameters.

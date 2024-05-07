@@ -54,9 +54,9 @@ likelihoods? Logical. Defaults to \code{TRUE}.}
 
 \item{stat_max}{A stopping criterion for individual chain simulations; a
 positive number coercible to integer. When any chain's cumulative statistic
-reaches \code{stat_max}, that chain ends. It also serves as a censoring limit
-so that results above the specified value, are set to \code{Inf}. Defaults to
-\code{Inf}.}
+reaches or surpasses \code{stat_max}, that chain ends. It also serves as a
+censoring limit so that results above the specified value, are set to \code{Inf}.
+Defaults to \code{Inf}.}
 
 \item{exclude}{A vector of indices of the sizes/lengths to exclude from the
 log-likelihood calculation.}
