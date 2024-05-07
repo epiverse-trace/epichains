@@ -128,7 +128,7 @@ summary(sim_chains)
 #> 
 #>  Simulated tree sizes: 
 #> 
-#> Max: 24
+#> Max: >=25
 #> Min: 1
 
 # Aggregate the simulation into cases per generation
