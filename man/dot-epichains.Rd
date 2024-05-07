@@ -45,7 +45,8 @@ it goes extinct.
 positive number coercible to integer. When any chain's cumulative statistic
 reaches or surpasses \code{stat_max}, that chain ends. Defaults to \code{Inf}.
 For example, if \code{statistic = "size"} and \code{stat_max = 10}, then any chain
-that produces 10 or more cases will stop.}
+that produces 10 or more cases will stop. Note that setting \code{stat_max} does
+not guarantee that all chains will stop at the same value.}
 }
 \value{
 An \verb{<epichains>} object.

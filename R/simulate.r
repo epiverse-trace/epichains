@@ -34,7 +34,8 @@
 #' positive number coercible to integer. When any chain's cumulative statistic
 #' reaches or surpasses `stat_max`, that chain ends. Defaults to `Inf`.
 #' For example, if `statistic = "size"` and `stat_max = 10`, then any chain
-#' that produces 10 or more cases will stop.
+#' that produces 10 or more cases will stop. Note that setting `stat_max` does
+#' not guarantee that all chains will stop at the same value.
 #' @param pop Population size; An `<Integer>`. Used alongside `percent_immune`
 #' to define the susceptible population. Defaults to `Inf`.
 #' @param percent_immune Percent of the population immune to
