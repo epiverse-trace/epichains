@@ -32,7 +32,7 @@ dborel <- function(x, mu, log = FALSE) {
 ##' `Inf` (as a form of censoring). `rborel()` uses [simulate_summary()]
 ##' internally with a poisson offspring distribution, so if `mu >= 1`, the
 ##' simulation could proceed unendingly. This parameter is used to prevent this.
-##' @return Vector of random numbers
+##' @return A numeric vector of random numbers.
 ##' @author Sebastian Funk
 ##' @export
 ##' @examples
