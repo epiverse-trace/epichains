@@ -35,12 +35,12 @@
 #' reaches `stat_max`, that chain ends. Defaults to `Inf`. For example, if
 #' `statistic = "size"` and `stat_max = 10`, then any chain that produces 10
 #' or more cases will stop.
-#' @param pop `<Integer>`; Population size. Used alongside `percent_immune`. to
-#' define the susceptible population. Defaults to `Inf`.
-#' @param percent_immune `<numeric>`; Percent of the population immune to
-#' infection at the start of the simulation. Used alongside `pop` to initialise
-#' the susceptible population. Accepted values lie between 0 and 1.
-#' Defaults to 0.
+#' @param pop Population size; An `<Integer>`. Used alongside `percent_immune`
+#' to define the susceptible population. Defaults to `Inf`.
+#' @param percent_immune Percent of the population immune to
+#' infection at the start of the simulation; A `<numeric>` between 0 and 1.
+#' Used alongside `pop` to initialise the susceptible population. Defaults to
+#' 0.
 #' @param generation_time The generation time function; the name
 #' of a user-defined named or anonymous function with only one argument `n`,
 #' representing the number of generation times to sample.
