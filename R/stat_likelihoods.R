@@ -151,7 +151,7 @@
 #' for approximating the distribution of the chain statistic summary
 #' (size/length)
 #' @param ... any parameters to pass to \code{\link{simulate_chain_stats}}
-#' @return log-likelihood values
+#' @return A numeric vector of log-likelihood values.
 #' @author Sebastian Funk
 #' @keywords internal
 .offspring_ll <- function(x, offspring_dist, statistic,
