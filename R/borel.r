@@ -96,5 +96,7 @@ rgborel <- function(n, size, prob, mu, censor_at = Inf) {
   ## first, sample from gamma
   x <- rgamma(n, shape = size, rate = size / mu)
   ## then, sample from borel
-  return(vapply(x, rborel, n = 1, stat_max = censor_at, FUN.VALUE = numeric(1)))
+  return(vapply(
+    x, rborel, n = 1, censor_at = censor_at, FUN.VALUE = numeric(1)
+  ))
 }
