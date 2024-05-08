@@ -111,13 +111,13 @@ sim_chains <- simulate_chains(
 )
 # View the head of the simulation
 head(sim_chains)
-#>    infectee_id sim_id infector_id generation time
-#> 21           1      2           1          2    3
-#> 22           2      2           1          2    3
-#> 23           3      2           1          2    3
-#> 24           4      2           1          2    3
-#> 25           6      2           1          2    3
-#> 26           7      2           1          2    3
+#>    index_case_active infector infectee generation time
+#> 21                 1        1       21          2    3
+#> 22                 2        1       22          2    3
+#> 23                 3        1       23          2    3
+#> 24                 3        1       24          2    3
+#> 25                 4        1       25          2    3
+#> 26                 6        1       26          2    3
 
 # Summarise the simulation
 summary(sim_chains)
