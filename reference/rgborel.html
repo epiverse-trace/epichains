@@ -77,29 +77,29 @@
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>n</dt>
+    <dl><dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
 <dd><p>Number of random variates to generate.</p></dd>
 
 
-<dt>size</dt>
+<dt id="arg-size">size<a class="anchor" aria-label="anchor" href="#arg-size"></a></dt>
 <dd><p>The dispersion parameter (often called <code>k</code> in ecological
 applications); A positive number.</p></dd>
 
 
-<dt>prob</dt>
+<dt id="arg-prob">prob<a class="anchor" aria-label="anchor" href="#arg-prob"></a></dt>
 <dd><p>Probability of success (in the parameterisation with
 <code>prob</code>, see also <code><a href="https://rdrr.io/r/stats/NegBinomial.html" class="external-link">NegBinomial</a></code>); A number between
 0 and 1.</p></dd>
 
 
-<dt>mu</dt>
+<dt id="arg-mu">mu<a class="anchor" aria-label="anchor" href="#arg-mu"></a></dt>
 <dd><p>Mean; A positive number.</p></dd>
 
 
-<dt>infinite</dt>
+<dt id="arg-infinite">infinite<a class="anchor" aria-label="anchor" href="#arg-infinite"></a></dt>
 <dd><p>A threshold above which the random number is set to
 <code>Inf</code> as a form of truncation; A number coercible to integer. This
-argument is important because <code><a href="rborel.html">rborel()</a></code> uses <code><a href="simulate_summary.html">simulate_summary()</a></code>
+argument is important because <code><a href="rborel.html">rborel()</a></code> uses <code>simulate_summary()</code>
 internally with <code>offspring_dist = rpois</code>, so when <code>mu &gt;= 1</code>, the
 simulation could grow out of proportion and chain summaries (the random
 numbers generated here) need to be truncated using

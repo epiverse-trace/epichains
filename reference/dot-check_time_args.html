@@ -86,24 +86,24 @@ specified if <code>tf</code> is specified as these go hand-in-hand.</p>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>tf_specified</dt>
+    <dl><dt id="arg-tf-specified">tf_specified<a class="anchor" aria-label="anchor" href="#arg-tf-specified"></a></dt>
 <dd><p><logical>; Whether the <code>tf</code> argument is specified. Only
 makes sense in the context where this function is called, i.e., in
 <code><a href="simulate_chains.html">simulate_chains()</a></code>. If <code>tf</code> is specified, generation_time must be specified.</logical></p></dd>
 
 
-<dt>tf</dt>
+<dt id="arg-tf">tf<a class="anchor" aria-label="anchor" href="#arg-tf"></a></dt>
 <dd><p>A number for the cut-off for the infection times (if generation
 time is given); Defaults to <code>Inf</code>.</p></dd>
 
 
-<dt>generation_time</dt>
+<dt id="arg-generation-time">generation_time<a class="anchor" aria-label="anchor" href="#arg-generation-time"></a></dt>
 <dd><p>The generation time function; the name
 of a user-defined named or anonymous function with only one argument <code>n</code>,
 representing the number of generation times to sample.</p></dd>
 
 
-<dt>t0</dt>
+<dt id="arg-t-">t0<a class="anchor" aria-label="anchor" href="#arg-t-"></a></dt>
 <dd><p>Start time (if generation time is given); either a single value
 or a vector of same length as <code>index_cases</code> (number of initial cases) with
 corresponding initial times. Defaults to 0, meaning all cases started at

@@ -103,11 +103,11 @@ population initially immune (defaults to 0).</p>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>index_cases</dt>
+    <dl><dt id="arg-index-cases">index_cases<a class="anchor" aria-label="anchor" href="#arg-index-cases"></a></dt>
 <dd><p>Number of index cases to simulate transmission chains for.</p></dd>
 
 
-<dt>statistic</dt>
+<dt id="arg-statistic">statistic<a class="anchor" aria-label="anchor" href="#arg-statistic"></a></dt>
 <dd><p>The chain statistic to track as the
 stopping criteria for each chain being simulated when <code>stat_max</code> is not
 <code>Inf</code>; A <code>&lt;string&gt;</code>. It can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
@@ -117,7 +117,7 @@ it goes extinct.</p></li>
 </ul></dd>
 
 
-<dt>offspring_dist</dt>
+<dt id="arg-offspring-dist">offspring_dist<a class="anchor" aria-label="anchor" href="#arg-offspring-dist"></a></dt>
 <dd><p>Offspring distribution: a <code>&lt;function&gt;</code> like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> for Poisson). More specifically, the function needs to
@@ -128,42 +128,42 @@ here are <code>rpois</code> for Poisson distributed offspring, <code>rnbinom</co
 binomial offspring, or custom functions.</p></dd>
 
 
-<dt>...</dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Parameters of the offspring distribution as required by R.</p></dd>
 
 
-<dt>stat_max</dt>
+<dt id="arg-stat-max">stat_max<a class="anchor" aria-label="anchor" href="#arg-stat-max"></a></dt>
 <dd><p>The cut off for the chain statistic (size/length) being
 computed; A number coercible to integer. Results above <code>stat_max</code> are set to
 <code>stat_max</code>; An <code>&lt;integer&gt;</code>. Defaults to <code>Inf</code>.</p></dd>
 
 
-<dt>pop</dt>
+<dt id="arg-pop">pop<a class="anchor" aria-label="anchor" href="#arg-pop"></a></dt>
 <dd><p>Population size; An <code>&lt;Integer&gt;</code>. Used alongside <code>percent_immune</code>
 to define the susceptible population. Defaults to <code>Inf</code>.</p></dd>
 
 
-<dt>percent_immune</dt>
+<dt id="arg-percent-immune">percent_immune<a class="anchor" aria-label="anchor" href="#arg-percent-immune"></a></dt>
 <dd><p>Percent of the population immune to
 infection at the start of the simulation; A <code>&lt;numeric&gt;</code> between 0 and 1.
 Used alongside <code>pop</code> to initialise the susceptible population. Defaults to
 0.</p></dd>
 
 
-<dt>generation_time</dt>
+<dt id="arg-generation-time">generation_time<a class="anchor" aria-label="anchor" href="#arg-generation-time"></a></dt>
 <dd><p>The generation time function; the name
 of a user-defined named or anonymous function with only one argument <code>n</code>,
 representing the number of generation times to sample.</p></dd>
 
 
-<dt>t0</dt>
+<dt id="arg-t-">t0<a class="anchor" aria-label="anchor" href="#arg-t-"></a></dt>
 <dd><p>Start time (if generation time is given); either a single value
 or a vector of same length as <code>index_cases</code> (number of initial cases) with
 corresponding initial times. Defaults to 0, meaning all cases started at
 time 0.</p></dd>
 
 
-<dt>tf</dt>
+<dt id="arg-tf">tf<a class="anchor" aria-label="anchor" href="#arg-tf"></a></dt>
 <dd><p>A number for the cut-off for the infection times (if generation
 time is given); Defaults to <code>Inf</code>.</p></dd>
 

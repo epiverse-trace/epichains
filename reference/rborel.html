@@ -77,18 +77,18 @@
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>n</dt>
+    <dl><dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
 <dd><p>Number of random variates to generate.</p></dd>
 
 
-<dt>mu</dt>
+<dt id="arg-mu">mu<a class="anchor" aria-label="anchor" href="#arg-mu"></a></dt>
 <dd><p>A non-negative number for the poisson mean.</p></dd>
 
 
-<dt>infinite</dt>
+<dt id="arg-infinite">infinite<a class="anchor" aria-label="anchor" href="#arg-infinite"></a></dt>
 <dd><p>A threshold above which the random number is set to
 <code>Inf</code> as a form of truncation; A number coercible to integer. This
-argument is important because <code>rborel()</code> uses <code><a href="simulate_summary.html">simulate_summary()</a></code>
+argument is important because <code>rborel()</code> uses <code>simulate_summary()</code>
 internally with <code>offspring_dist = rpois</code>, so when <code>mu &gt;= 1</code>, the
 simulation could grow out of proportion and chain summaries (the random
 numbers generated here) need to be truncated using

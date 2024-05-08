@@ -103,7 +103,7 @@
     
 <p><em>epichains</em> does not provide any direct functionality for studying reductions in transmission (e.g. from public health interventions).
 However, the flexible simulation functionality that it includes can be used to consider some specific changes to the parameters that can be interpreted as the result of changes in social behaviour or control measures.
-Here we investigate the effect on outbreak sizes, but the same approaches could be used for investigating chain lengths (using the <code>statistic</code> argument to <code><a href="../reference/simulate_summary.html">simulate_summary()</a></code>) or the time progression of outbreaks (using the <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> function).</p>
+Here we investigate the effect on outbreak sizes, but the same approaches could be used for investigating chain lengths (using the <code>statistic</code> argument to <code><a href="../reference/simulate_chain_stats.html">simulate_chain_stats()</a></code>) or the time progression of outbreaks (using the <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> function).</p>
 <div class="alert alert-info">
 <p>Some of the ideas presented here can be achieved using closed-form solutions
 of the probability of an epidemic growing out of proportion or going extinct,
@@ -122,7 +122,7 @@ package, which is part of the Epiverse-TRACE Initiative.</p>
 </details><p>As a base case we consider the spread of an infection with a negative binomial offspring distribution with mean 1.2 and overdispersion parameter 0.5.
 We simulate 200 chains tracking up to 99 infections:</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chain_stats.html">simulate_chain_stats</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">200</span>, offspring_dist <span class="op">=</span> <span class="va">rnbinom</span>, stat_max <span class="op">=</span> <span class="fl">99</span>, mu <span class="op">=</span> <span class="fl">1.2</span>,</span>
 <span>  size <span class="op">=</span> <span class="fl">0.5</span>, statistic <span class="op">=</span> <span class="st">"size"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -145,7 +145,7 @@ We simulate 200 chains tracking up to 99 infections:</p>
 <p>By population-level control we mean an intervention that reduces the mean number of offspring (i.e. the reproduction number) by a fixed proportion.
 For example, to reduce R by 25% at the population level we scale the <code>mu</code> parameter from 1.2 to 0.9:</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chain_stats.html">simulate_chain_stats</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">200</span>, offspring_dist <span class="op">=</span> <span class="va">rnbinom</span>, stat_max <span class="op">=</span> <span class="fl">99</span>, mu <span class="op">=</span> <span class="fl">0.9</span>,</span>
 <span>  size <span class="op">=</span> <span class="fl">0.5</span>, statistic <span class="op">=</span> <span class="st">"size"</span></span>
 <span><span class="op">)</span></span>
@@ -179,7 +179,7 @@ Instead, we define a random generator from a modified negative binomial distribu
 <span><span class="op">}</span></span></code></pre></div>
 </details><p>Having defined this, we can generate simulations as before:</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chain_stats.html">simulate_chain_stats</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">200</span>, offspring_dist <span class="op">=</span> <span class="va">rnbinom_ind</span>, stat_max <span class="op">=</span> <span class="fl">99</span>, mu <span class="op">=</span> <span class="fl">1.2</span>,</span>
 <span>  size <span class="op">=</span> <span class="fl">0.5</span>, control <span class="op">=</span> <span class="fl">0.25</span>, statistic <span class="op">=</span> <span class="st">"size"</span></span>
 <span><span class="op">)</span></span>
@@ -206,7 +206,7 @@ We use this to define a truncated negative binomial offspring distribution:</p>
 </details><p>We use this to simulate chains in a situation where the maximum of secondary cases that each infected person can generate is 10.
 This can be likened to a disease control strategy where gatherings are limited to 10 people.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chain_stats.html">simulate_chain_stats</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">200</span>, offspring_dist <span class="op">=</span> <span class="va">rnbinom_truncated</span>, stat_max <span class="op">=</span> <span class="fl">99</span>,</span>
 <span>  mu <span class="op">=</span> <span class="fl">1.2</span>, size <span class="op">=</span> <span class="fl">0.5</span>, max <span class="op">=</span>  <span class="fl">10</span>, statistic <span class="op">=</span> <span class="st">"size"</span></span>
 <span><span class="op">)</span></span>

@@ -117,10 +117,10 @@
 <p><em>epichains</em> provides three main functions:</p>
 <ul>
 <li><p><code><a href="reference/simulate_chains.html">simulate_chains()</a></code>: simulates transmission chains using a simple branching process model that accepts an index number of cases that seed the outbreak, a distribution of offspring per case, and a chain statistic to track (size or length/duration). It optionally accepts other population related inputs such as the population size (defaults to Inf) and percentage of the population initially immune (defaults to 0). This function returns an object with columns that track information on who infected whom, the generation of infection and, if a generation time function is specified, the time of infection.</p></li>
-<li><p><code><a href="reference/simulate_summary.html">simulate_summary()</a></code>: provides a performant version of <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> that only tracks and return a vector of realized chain sizes or lengths/durations for each index case without details of the infection tree.</p></li>
+<li><p><code><a href="reference/simulate_chain_stats.html">simulate_chain_stats()</a></code>: provides a performant version of <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> that only tracks and return a vector of realized chain sizes or lengths/durations for each index case without details of the infection tree.</p></li>
 <li><p><code><a href="reference/likelihood.html">likelihood()</a></code>: calculates the loglikelihood (or likelihood, depending on the value of <code>log</code>) of observing a vector of transmission chain sizes or lengths.</p></li>
 </ul>
-<p>The objects returned by the <code>simulate_*()</code> functions can be summarised with <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>. Running <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the output of <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> will return the same output as <code><a href="reference/simulate_summary.html">simulate_summary()</a></code> using the same inputs.</p>
+<p>The objects returned by the <code>simulate_*()</code> functions can be summarised with <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>. Running <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the output of <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> will return the same output as <code><a href="reference/simulate_chain_stats.html">simulate_chain_stats()</a></code> using the same inputs.</p>
 <p>Objects returned from <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> can be aggregated into a <code>&lt;data.frame&gt;</code> of cases per time or generation with the function <code><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate()</a></code>. The aggregated results can also be passed on to <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> with its own arguments to customize the resulting plots.</p>
 <div class="section level3">
 <h3 id="simulation">Simulation<a class="anchor" aria-label="anchor" href="#simulation"></a>
@@ -156,7 +156,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Simulated tree sizes: </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Max: 24</span></span>
+<span><span class="co">#&gt; Max: &gt;=25</span></span>
 <span><span class="co">#&gt; Min: 1</span></span>
 <span></span>
 <span><span class="co"># Aggregate the simulation into cases per generation</span></span>

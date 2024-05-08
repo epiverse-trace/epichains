@@ -83,11 +83,11 @@ cumulative distribution function (ecdf).</p>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>x</dt>
+    <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>A numeric vector of chain summaries (sizes/lengths).</p></dd>
 
 
-<dt>offspring_dist</dt>
+<dt id="arg-offspring-dist">offspring_dist<a class="anchor" aria-label="anchor" href="#arg-offspring-dist"></a></dt>
 <dd><p>Offspring distribution: a <code>&lt;function&gt;</code> like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> for Poisson). More specifically, the function needs to
@@ -98,7 +98,7 @@ here are <code>rpois</code> for Poisson distributed offspring, <code>rnbinom</co
 binomial offspring, or custom functions.</p></dd>
 
 
-<dt>statistic</dt>
+<dt id="arg-statistic">statistic<a class="anchor" aria-label="anchor" href="#arg-statistic"></a></dt>
 <dd><p>The chain statistic to track as the
 stopping criteria for each chain being simulated when <code>stat_max</code> is not
 <code>Inf</code>; A <code>&lt;string&gt;</code>. It can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
@@ -108,14 +108,14 @@ it goes extinct.</p></li>
 </ul></dd>
 
 
-<dt>nsim_offspring</dt>
+<dt id="arg-nsim-offspring">nsim_offspring<a class="anchor" aria-label="anchor" href="#arg-nsim-offspring"></a></dt>
 <dd><p>Number of simulations of the offspring distribution
 for approximating the distribution of the chain statistic summary
 (size/length)</p></dd>
 
 
-<dt>...</dt>
-<dd><p>Any parameters to pass to <code><a href="simulate_summary.html">simulate_summary</a></code></p></dd>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>any parameters to pass to <code><a href="simulate_chain_stats.html">simulate_chain_stats</a></code></p></dd>
 
 </dl></div>
     <div class="section level2">

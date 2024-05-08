@@ -67,7 +67,7 @@
     </div>
 
     <div class="ref-description section level2">
-    <p>Check inputs to <code><a href="simulate_chains.html">simulate_chains()</a></code> and <code><a href="simulate_summary.html">simulate_summary()</a></code></p>
+    <p>Check inputs to <code><a href="simulate_chains.html">simulate_chains()</a></code> and <code>simulate_summary()</code></p>
     </div>
 
     <div class="section level2">
@@ -84,11 +84,11 @@
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>index_cases</dt>
+    <dl><dt id="arg-index-cases">index_cases<a class="anchor" aria-label="anchor" href="#arg-index-cases"></a></dt>
 <dd><p>Number of index cases to simulate transmission chains for.</p></dd>
 
 
-<dt>statistic</dt>
+<dt id="arg-statistic">statistic<a class="anchor" aria-label="anchor" href="#arg-statistic"></a></dt>
 <dd><p>The chain statistic to track as the
 stopping criteria for each chain being simulated when <code>stat_max</code> is not
 <code>Inf</code>; A <code>&lt;string&gt;</code>. It can be one of:</p><ul><li><p>"size": the total number of cases produced by a chain before it goes
@@ -98,7 +98,7 @@ it goes extinct.</p></li>
 </ul></dd>
 
 
-<dt>offspring_dist</dt>
+<dt id="arg-offspring-dist">offspring_dist<a class="anchor" aria-label="anchor" href="#arg-offspring-dist"></a></dt>
 <dd><p>Offspring distribution: a <code>&lt;function&gt;</code> like the ones
 provided by R to generate random numbers from given distributions (e.g.,
 <code><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></code> for Poisson). More specifically, the function needs to
@@ -109,26 +109,22 @@ here are <code>rpois</code> for Poisson distributed offspring, <code>rnbinom</co
 binomial offspring, or custom functions.</p></dd>
 
 
-<dt>stat_max</dt>
+<dt id="arg-stat-max">stat_max<a class="anchor" aria-label="anchor" href="#arg-stat-max"></a></dt>
 <dd><p>The cut off for the chain statistic (size/length) being
 computed; A number coercible to integer. Results above <code>stat_max</code> are set to
 <code>stat_max</code>; An <code>&lt;integer&gt;</code>. Defaults to <code>Inf</code>.</p></dd>
 
 
-<dt>pop</dt>
+<dt id="arg-pop">pop<a class="anchor" aria-label="anchor" href="#arg-pop"></a></dt>
 <dd><p>Population size; An <code>&lt;Integer&gt;</code>. Used alongside <code>percent_immune</code>
 to define the susceptible population. Defaults to <code>Inf</code>.</p></dd>
 
 
-<dt>percent_immune</dt>
+<dt id="arg-percent-immune">percent_immune<a class="anchor" aria-label="anchor" href="#arg-percent-immune"></a></dt>
 <dd><p>Percent of the population immune to
 infection at the start of the simulation; A <code>&lt;numeric&gt;</code> between 0 and 1.
 Used alongside <code>pop</code> to initialise the susceptible population. Defaults to
 0.</p></dd>
-
-
-<dt>sim_func</dt>
-<dd><p><character>; The simulation function to check</character></p></dd>
 
 </dl></div>
     <div class="section level2">

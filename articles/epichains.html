@@ -432,11 +432,11 @@ individuals have a poisson offspring distribution with mean,
 </details>
 </div>
 <div class="section level3">
-<h3 id="simulate_summary">
-<a href="https://epiverse-trace.github.io/epichains/reference/simulate_summary.html"><code>simulate_summary()</code></a><a class="anchor" aria-label="anchor" href="#simulate_summary"></a>
+<h3 id="simulate_chain_stats">
+<a href="https://epiverse-trace.github.io/epichains/reference/simulate_chain_stats.html"><code>simulate_chain_stats()</code></a><a class="anchor" aria-label="anchor" href="#simulate_chain_stats"></a>
 </h3>
 <div class="alert alert-primary">
-<p><code><a href="../reference/simulate_summary.html">simulate_summary()</a></code> is a performant version of <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> that
+<p><code><a href="../reference/simulate_chain_stats.html">simulate_chain_stats()</a></code> is a performant version of <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> that
 does not track information on each infector and infectee. It returns the
 eventual size or length/duration of each transmission chain. This function is
 especially useful for calculating numerical likelihoods in <code><a href="../reference/likelihood.html">likelihood()</a></code>.</p>
@@ -447,7 +447,7 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">simulate_summary_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
+<span><span class="va">simulate_chain_stats_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chain_stats.html">simulate_chain_stats</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
@@ -456,7 +456,7 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Print the results</span></span>
-<span><span class="va">simulate_summary_eg</span></span>
+<span><span class="va">simulate_chain_stats_eg</span></span>
 <span><span class="co">#&gt; `epichains_summary` object </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  [1]   1 Inf   4   4 Inf   1   2 Inf   5   3</span></span>
@@ -503,10 +503,10 @@ obtain the chain summaries per index case.</p>
 <span><span class="co">#&gt; Max: &gt;=10</span></span>
 <span><span class="co">#&gt; Min: 1</span></span>
 <span></span>
-<span><span class="co"># Example with simulate_summary()</span></span>
+<span><span class="co"># Example with simulate_chain_stats()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">simulate_summary_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_summary.html">simulate_summary</a></span><span class="op">(</span></span>
+<span><span class="va">simulate_chain_stats_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chain_stats.html">simulate_chain_stats</a></span><span class="op">(</span></span>
 <span>  index_cases <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
@@ -515,7 +515,7 @@ obtain the chain summaries per index case.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Get summaries</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">simulate_summary_eg</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">simulate_chain_stats_eg</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $index_cases</span></span>
 <span><span class="co">#&gt; [1] 10</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -524,21 +524,20 @@ obtain the chain summaries per index case.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $min_stat</span></span>
 <span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
-</details><div class="alert alert-danger">
-<p>This summary is the same as the output of <code><a href="../reference/simulate_summary.html">simulate_summary()</a></code> if the same
-inputs are used. <code><a href="../reference/simulate_summary.html">simulate_summary()</a></code> is a more performant version of
+</details><p>This summary is the same as the output of <code><a href="../reference/simulate_chain_stats.html">simulate_chain_stats()</a></code> if the same
+inputs are used. <code><a href="../reference/simulate_chain_stats.html">simulate_chain_stats()</a></code> is a more performant version of
 <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code>, hence, you can use it instead, if you are only interested
 in the summary of the simulated chains without details about the infection
-tree.</p>
-</div>
+tree.
+:::</p>
 <p>We can confirm if the two outputs are the same using <code><a href="https://rdrr.io/r/base/sets.html" class="external-link">base::setequal()</a></code>, which
 checks if two objects are equal and returns <code>TRUE/FALSE</code>.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setequal</a></span><span class="op">(</span></span>
 <span>  <span class="co"># summary of output from simulate_chains()</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">)</span>,</span>
-<span>  <span class="co"># results from simulate_summary()</span></span>
-<span>  <span class="va">simulate_summary_eg</span></span>
+<span>  <span class="co"># results from simulate_chain_stats()</span></span>
+<span>  <span class="va">simulate_chain_stats_eg</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </details>
