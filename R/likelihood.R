@@ -132,7 +132,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     chains <- summary(chains)
   }
 
-  if (any(chains == stat_max) && is.infinite(stat_max)) {
+  if (.is_epichains_summary(chains) && missing(stat_max)) {
     # stat_max can only be infinite if the stat_max used in the simulation
     # is finite. So, we replace the infinite stat_max argument in this
     # function with the finite one used in the simulation.
