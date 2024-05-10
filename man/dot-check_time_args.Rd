@@ -19,7 +19,7 @@ of a user-defined named or anonymous function with only one argument \code{n},
 representing the number of generation times to sample.}
 
 \item{t0}{Start time (if generation time is given); either a single value
-or a vector of same length as \code{index_cases} (number of initial cases) with
+or a vector of same length as \code{nsims} (number of initial cases) with
 corresponding initial times. Defaults to 0, meaning all cases started at
 time 0.}
 }

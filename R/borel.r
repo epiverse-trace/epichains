@@ -49,7 +49,7 @@ rborel <- function(n, mu, infinite = Inf) {
   )
   # Run simulations
   out <- simulate_chain_stats(
-    index_cases = n,
+    nsims = n,
     offspring_dist = rpois,
     statistic = "size",
     stat_max = infinite,
