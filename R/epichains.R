@@ -282,14 +282,14 @@ format.epichains_summary <- function(x, ...) {
   print(as.vector(x))
   writeLines(
     sprintf(
-      "\n Number of trees simulated: %s",
+      "\n Number of simulations: %s",
       statistics[["unique_trees"]]
     )
   )
   writeLines(
     c(
       sprintf(
-        "\n Simulated tree %ss: \n",
+        "\n Simulated %ss: \n",
         attr(x, "statistic", exact = TRUE)
       ),
       sprintf(
