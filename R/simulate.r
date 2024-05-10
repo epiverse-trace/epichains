@@ -2,12 +2,15 @@
 #'
 #' @description
 #' Generates transmission chains using a simple branching process model that
-#' accepts an index number of cases that seed the outbreak, a distribution
-#' of offspring per case, and a chain size or length/duration (statistic)
-#' to track. It optionally accepts other population related inputs
-#' such as the population size (defaults to Inf) and percentage of the
-#' population initially immune (defaults to 0).
-#' @param index_cases Number of index cases to simulate transmission chains for.
+#' that simulates the supplied number of independent simulations, using an
+#' offspring distribution for each simulation, and an optional generation time
+#' distribution function.
+#'
+#' The simulations are controlled by customisable stopping criteria, including
+#' a threshold chain size or length, and a generation time cut off. The
+#' function also optionally accepts population related inputs such as the
+#' population size (defaults to Inf) and percentage of the population
+#' initially immune (defaults to 0).
 #' @param offspring_dist Offspring distribution: a `<function>` like the ones
 #' provided by R to generate random numbers from given distributions (e.g.,
 #' \code{\link{rpois}} for Poisson). More specifically, the function needs to
