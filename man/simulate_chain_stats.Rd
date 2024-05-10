@@ -57,12 +57,14 @@ simulation parameters.
 }
 \description{
 Generates a vector of transmission chain sizes and lengths with a
-value for each index case. It uses a simple branching process model that
-accepts an index number of cases that seed the outbreak, a distribution
-of offspring per case, and a chain size or length/duration (statistic)
-to track. It optionally accepts other population related inputs
-such as the population size (defaults to Inf) and percentage of the
-population initially immune (defaults to 0).
+value for each simulation.
+
+It uses a simple branching process model that simulates the supplied
+number of independent simulations, using an offspring distribution for each
+simulation. Simulations use a threshold chain size or length as the
+stopping criterion in cases where R0 > 1. The function also optionally
+accepts population related inputs such as the population size (defaults
+to Inf) and percentage of the population initially immune (defaults to 0).
 }
 \section{\code{simulate_chain_stats()} vs \code{simulate_chains()}}{
 \code{simulate_chain_stats()} is a time-invariant version of \code{simulate_chains()}.
