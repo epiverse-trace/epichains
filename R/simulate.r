@@ -11,6 +11,7 @@
 #' function also optionally accepts population related inputs such as the
 #' population size (defaults to Inf) and percentage of the population
 #' initially immune (defaults to 0).
+#' @param nsims Number of cases to simulate transmission chains for.
 #' @param offspring_dist Offspring distribution: a `<function>` like the ones
 #' provided by R to generate random numbers from given distributions (e.g.,
 #' \code{\link{rpois}} for Poisson). More specifically, the function needs to
