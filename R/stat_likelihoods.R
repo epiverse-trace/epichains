@@ -163,7 +163,7 @@
   # Remaining checks are done in simulate_chain_stats()
   # Simulate the chains
   dist <- simulate_chain_stats(
-    index_cases = nsim_offspring,
+    nsims = nsim_offspring,
     offspring_dist = offspring_dist,
     statistic = statistic,
     ...

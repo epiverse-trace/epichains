@@ -2,7 +2,7 @@
 # message if the supplied arguments are invalid
 .check_sim_args_default <- function(...) {
     default_args <- list(
-        index_cases = 10,
+        nsims = 10,
         statistic = "size",
         offspring_dist = rpois,
         stat_max = 10,
@@ -88,10 +88,10 @@ test_that(".check_sim_args() returns errors", {
     expect_no_error(
         .check_sim_args_default()
     )
-    # index_cases must be >= 1
+    # nsims must be >= 1
     expect_error(
         .check_sim_args_default(
-            index_cases = 0
+            nsims = 0
         ),
         "Must be >= 1."
     )

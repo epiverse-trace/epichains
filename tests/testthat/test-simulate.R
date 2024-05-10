@@ -7,7 +7,7 @@ test_that("simulate_chain_stats has expected shape", {
   set.seed(12)
   #' Simulate chain statistics
   chain_summary_raw <- simulate_chain_stats(
-    index_cases = 2,
+    nsims = 2,
     offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
@@ -24,7 +24,7 @@ test_that("simulate_chains has expected shape", {
   # no generation time
   set.seed(32) # this seed gives a sizeable outcome
   sim_chains_raw <- simulate_chains(
-    index_cases = 10,
+    nsims = 10,
     offspring_dist = rpois,
     statistic = "length",
     stat_max = 10,
@@ -34,7 +34,7 @@ test_that("simulate_chains has expected shape", {
   # generation time
   set.seed(32) # this seed gives a sizeable outcome
   sim_chains_raw_gt <- simulate_chains(
-    index_cases = 10,
+    nsims = 10,
     offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9,
@@ -46,7 +46,7 @@ test_that("simulate_chains has expected shape", {
   sim_chains_small_susc <- simulate_chains(
     pop = 100,
     percent_immune = 0.50,
-    index_cases = 10,
+    nsims = 10,
     offspring_dist = rpois,
     statistic = "length",
     lambda = 2,
@@ -56,7 +56,7 @@ test_that("simulate_chains has expected shape", {
   # a generation time terminated at time 5 (i.e., tf = 5)
   set.seed(32)
   sim_chains_max_tf <- simulate_chains(
-    index_cases = 10,
+    nsims = 10,
     statistic = "size",
     offspring_dist = rpois,
     lambda = 2,
@@ -83,7 +83,7 @@ test_that("simulate_chains has expected shape", {
   # Check column names
   expect_named(
     sim_chains_raw,
-    c("index_case_active", "infector", "infectee", "generation"),
+    c("sim_id", "infector", "infectee", "generation"),
     ignore.order = TRUE
   )
   # Don't expect "time" as a column name
@@ -93,7 +93,7 @@ test_that("simulate_chains has expected shape", {
   #' Cols of sim_chains_raw_gt have an extra column "time"
   expect_named(
     sim_chains_raw_gt,
-    c("index_case_active", "infector", "infectee", "generation", "time"),
+    c("sim_id", "infector", "infectee", "generation", "time"),
     ignore.order = TRUE
   )
   expect_identical(
@@ -102,7 +102,7 @@ test_that("simulate_chains has expected shape", {
   )
   # check that the infectors are the same as what was input
   expect_identical(
-    unique(sim_chains_raw$index_case_active),
+    unique(sim_chains_raw$sim_id),
     as.integer(1:10)
   )
   # check column types of sim_chains_small_susc as it has the complete set of
@@ -115,7 +115,7 @@ test_that("simulate_chains has expected shape", {
       simplify = FALSE
     ),
     list(
-      index_case_active = "numeric",
+      sim_id = "numeric",
       infector = "numeric",
       infectee = "numeric",
       generation = "numeric",
@@ -133,16 +133,16 @@ test_that("simulate_chains has expected shape", {
 test_that("simulate_chains throws errors", {
   expect_error(
     simulate_chains(
-      index_cases = 0,
+      nsims = 0,
       offspring_dist = rpois,
       statistic = "length",
       lambda = 0.9
     ),
-    "Assertion on 'index_cases' failed: Must be >= 1"
+    "Assertion on 'nsims' failed: Must be >= 1"
   )
   expect_error(
     simulate_chains(
-      index_cases = 0.1,
+      nsims = 0.1,
       offspring_dist = rpois,
       statistic = "length",
       lambda = 0.9
@@ -151,7 +151,7 @@ test_that("simulate_chains throws errors", {
   )
   expect_error(
     simulate_chains(
-      index_cases = 1,
+      nsims = 1,
       offspring_dist = rpois,
       statistic = "length",
       lambda = 0.9,
@@ -161,7 +161,7 @@ test_that("simulate_chains throws errors", {
   )
   expect_error(
     simulate_chains(
-      index_cases = 2,
+      nsims = 2,
       statistic = "length",
       offspring_dist = s,
       lambda = 0.9
@@ -170,7 +170,7 @@ test_that("simulate_chains throws errors", {
   )
   expect_error(
     simulate_chains(
-      index_cases = 2,
+      nsims = 2,
       statistic = "length",
       offspring_dist = rlnorm,
       meanlog = 0.9,
@@ -180,7 +180,7 @@ test_that("simulate_chains throws errors", {
   )
   expect_error(
     simulate_chains(
-      index_cases = 2,
+      nsims = 2,
       statistic = "size",
       offspring_dist = rpois,
       lambda = 0.9,
@@ -190,7 +190,7 @@ test_that("simulate_chains throws errors", {
   )
   expect_error(
     simulate_chains(
-      index_cases = 2,
+      nsims = 2,
       statistic = "length",
       offspring_dist = c(1, 2),
       lambda = 0.9
@@ -199,7 +199,7 @@ test_that("simulate_chains throws errors", {
   )
   expect_error(
     simulate_chains(
-      index_cases = 2,
+      nsims = 2,
       statistic = "size",
       offspring_dist = rpois,
       lambda = 0.9,
@@ -212,7 +212,7 @@ test_that("simulate_chains throws errors", {
 test_that("simulate_chain_stats throws errors", {
   expect_error(
     simulate_chain_stats(
-      index_cases = 2,
+      nsims = 2,
       offspring_dist = s,
       statistic = "length",
       lambda = 0.9
@@ -221,7 +221,7 @@ test_that("simulate_chain_stats throws errors", {
   )
   expect_error(
     simulate_chain_stats(
-      index_cases = 2,
+      nsims = 2,
       offspring_dist = rlnorm,
       statistic = "length",
       meanlog = 0.9,
@@ -231,7 +231,7 @@ test_that("simulate_chain_stats throws errors", {
   )
   expect_error(
     simulate_chain_stats(
-      index_cases = 2,
+      nsims = 2,
       offspring_dist = c(1, 2),
       statistic = "length",
       lambda = 0.9
@@ -248,7 +248,7 @@ test_that("simulate_chain_stats is numerically correct",{
   sim_summary_small_pop <- simulate_chain_stats(
     pop = 11,
     percent_immune = 0,
-    index_cases = 10,
+    nsims = 10,
     offspring_dist = rpois,
     statistic = "length",
     lambda = 2
@@ -261,7 +261,7 @@ test_that("simulate_chain_stats is numerically correct",{
   )
   expect_identical(
     length(sim_summary_small_pop),
-    as.integer(sim_summary_summarised$index_cases)
+    as.integer(sim_summary_summarised$nsims)
   )
   expect_identical(
     sim_summary_summarised$max_stat,
@@ -279,7 +279,7 @@ test_that("simulate_chains is numerically correct", {
   sim_chains_small_susc <- simulate_chains(
     pop = 100,
     percent_immune = 0.50,
-    index_cases = 10,
+    nsims = 10,
     offspring_dist = rpois,
     statistic = "length",
     lambda = 2,
@@ -304,7 +304,7 @@ test_that("simulate_chains is numerically correct", {
   # summary vector to be equal to the number of index cases.
   expect_identical(
     length(sim_chains_summary),
-    as.integer(attr(sim_chains_summary, "index_cases"))
+    as.integer(attr(sim_chains_summary, "nsims"))
   )
   expect_s3_class(
     sim_chains_summary,
@@ -317,7 +317,7 @@ test_that("simulate_chains produces expected snapshots", {
   sim_chains_finite_pop <- simulate_chains(
     pop = 100,
     percent_immune = 0.50,
-    index_cases = 10,
+    nsims = 10,
     offspring_dist = rpois,
     statistic = "length",
     lambda = 2,
@@ -325,7 +325,7 @@ test_that("simulate_chains produces expected snapshots", {
   )
   set.seed(32)
   sim_chains_inf_susc <- simulate_chains(
-    index_cases = 10,
+    nsims = 10,
     offspring_dist = rpois,
     statistic = "size",
     stat_max = 100,
@@ -339,7 +339,7 @@ test_that("simulate_chains produces expected snapshots", {
   sim_chains_small_pop <- simulate_chains(
     pop = 11,
     percent_immune = 0,
-    index_cases = 10,
+    nsims = 10,
     offspring_dist = rpois,
     statistic = "length",
     lambda = 2
@@ -354,7 +354,7 @@ test_that("simulate_chain_stats is numerically correct", {
   set.seed(12)
   #' Simulate chain statistics
   chain_summary_raw <- simulate_chain_stats(
-    index_cases = 2,
+    nsims = 2,
     offspring_dist = rpois,
     statistic = "length",
     lambda = 0.9
@@ -363,7 +363,7 @@ test_that("simulate_chain_stats is numerically correct", {
   chain_summary_summaries <- summary(chain_summary_raw)
   #' Expectations
   expect_identical(
-    chain_summary_summaries$index_cases,
+    chain_summary_summaries$nsims,
     2.00
   )
   expect_identical(

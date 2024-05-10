@@ -6,7 +6,7 @@
 \usage{
 .epichains_summary(
   chains_summary,
-  index_cases,
+  nsims,
   offspring_dist,
   statistic = c("size", "length"),
   stat_max = Inf
@@ -15,7 +15,7 @@
 \arguments{
 \item{chains_summary}{A numeric \verb{<vector>} of chain sizes and lengths.}
 
-\item{index_cases}{Number of index cases to simulate transmission chains for.}
+\item{nsims}{Number of cases to simulate transmission chains for.}
 
 \item{offspring_dist}{Offspring distribution: a \verb{<function>} like the ones
 provided by R to generate random numbers from given distributions (e.g.,

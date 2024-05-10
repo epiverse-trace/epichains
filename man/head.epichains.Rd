@@ -31,7 +31,7 @@ To view the full output, use \verb{as.data.frame(<object_name>)}.
 \examples{
 set.seed(32)
 chains_pois_offspring <- simulate_chains(
-  index_cases = 10,
+  nsims = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,
@@ -41,7 +41,7 @@ chains_pois_offspring <- simulate_chains(
 head(chains_pois_offspring)
 set.seed(32)
 chains_pois_offspring <- simulate_chains(
-  index_cases = 10,
+  nsims = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,

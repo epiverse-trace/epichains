@@ -5,7 +5,7 @@
 \title{Simulate a vector of transmission chains sizes/lengths}
 \usage{
 simulate_chain_stats(
-  index_cases,
+  nsims,
   statistic = c("size", "length"),
   offspring_dist,
   ...,
@@ -15,7 +15,7 @@ simulate_chain_stats(
 )
 }
 \arguments{
-\item{index_cases}{Number of index cases to simulate transmission chains for.}
+\item{nsims}{Number of cases to simulate transmission chains for.}
 
 \item{statistic}{The chain statistic to track as the
 stopping criteria for each chain being simulated when \code{stat_max} is not
@@ -101,7 +101,7 @@ offspring distribution (\code{offspring_dist}).
 # infinite population and no immunity.
 set.seed(32)
 simulate_chain_stats(
-  index_cases = 20,
+  nsims = 20,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,
@@ -113,7 +113,7 @@ set.seed(32)
 simulate_chain_stats(
   pop = 1000,
   percent_immune = 0.1,
-  index_cases = 20,
+  nsims = 20,
   statistic = "size",
   offspring_dist = rnbinom,
   stat_max = 10,

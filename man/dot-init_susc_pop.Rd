@@ -14,8 +14,6 @@ to define the susceptible population. Defaults to \code{Inf}.}
 infection at the start of the simulation; A \verb{<numeric>} between 0 and 1.
 Used alongside \code{pop} to initialise the susceptible population. Defaults to
 0.}
-
-\item{index_cases}{Number of index cases to simulate transmission chains for.}
 }
 \value{
 Initial susceptible population size; A numeric coercible to integer.

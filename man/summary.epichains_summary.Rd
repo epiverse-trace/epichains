@@ -15,7 +15,7 @@
 A list of chain summaries. The list contains the following
 elements:
 \itemize{
-\item \code{index_cases}: the number of index cases used to simulate the chains.
+\item \code{nsims}: the number of index cases used to simulate the chains.
 \item \code{max_stat}: the maximum chain statistic (size/length) achieved by the
 chains.
 \item \code{min_stat}: the minimum chain statistic (size/length) achieved by the
