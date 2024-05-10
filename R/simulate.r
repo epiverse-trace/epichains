@@ -42,7 +42,7 @@
 #' of a user-defined named or anonymous function with only one argument `n`,
 #' representing the number of generation times to sample.
 #' @param t0 Start time (if generation time is given); either a single value
-#' or a vector of same length as `index_cases` (number of initial cases) with
+#' or a vector of same length as `nsims` (number of initial cases) with
 #' corresponding initial times. Defaults to 0, meaning all cases started at
 #' time 0.
 #' @param tf A number for the cut-off for the infection times (if generation
@@ -100,7 +100,7 @@
 #' # population up to chain size 10.
 #' set.seed(32)
 #' chains_pois_offspring <- simulate_chains(
-#'   index_cases = 10,
+#'   nsims = 10,
 #'   statistic = "size",
 #'   offspring_dist = rpois,
 #'   stat_max = 10,
@@ -113,7 +113,7 @@
 #' # finite population up to chain size 10.
 #' set.seed(32)
 #' chains_nbinom_offspring <- simulate_chains(
-#'   index_cases = 10,
+#'   nsims = 10,
 #'   pop = 100,
 #'   percent_immune = 0,
 #'   statistic = "size",
@@ -138,7 +138,7 @@
 #' "Branching Process Models for Surveillance of Infectious Diseases
 #' Controlled by Mass Vaccination.” Biostatistics (Oxford, England)
 #' 4 (2): 279–95. \doi{https://doi.org/10.1093/biostatistics/4.2.279}.
-simulate_chains <- function(index_cases,
+simulate_chains <- function(nsims,
                             statistic = c("size", "length"),
                             offspring_dist,
                             ...,
@@ -150,7 +150,7 @@ simulate_chains <- function(index_cases,
                             tf = Inf) {
   # Check offspring and population-related arguments
   .check_sim_args(
-    index_cases = index_cases,
+    nsims = nsims,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max,
@@ -172,10 +172,10 @@ simulate_chains <- function(index_cases,
   pars <- list(...)
 
   # Initialisations
-  stat_track <- rep(1, index_cases) # track statistic (length or size)
-  n_offspring <- rep(1, index_cases) # current number of offspring
-  index_cases_active <- seq_len(index_cases) # track active index cases
-  new_infectors_ids <- rep(1, index_cases) # track infectors
+  stat_track <- rep(1, nsims) # track statistic (length or size)
+  n_offspring <- rep(1, nsims) # current number of offspring
+  sims_active <- seq_len(nsims) # track ongoing simulations
+  new_infectors_ids <- rep(1, nsims) # track infectors
 
   # initialise list of data frame to hold the transmission trees
   generation <- 1L
@@ -188,7 +188,7 @@ simulate_chains <- function(index_cases,
     )
   )
   # Initialise susceptible population
-  susc_pop <- .init_susc_pop(pop, percent_immune, index_cases)
+  susc_pop <- .init_susc_pop(pop, percent_immune, nsims)
 
   # Add optional columns
   if (!missing(generation_time)) {
@@ -306,7 +306,7 @@ simulate_chains <- function(index_cases,
   tree_df <- tree_df[, c(column_order)]
   out <- .epichains(
     tree_df,
-    index_cases = index_cases,
+    nsims = nsims,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max,
@@ -361,7 +361,7 @@ simulate_chains <- function(index_cases,
 #' # infinite population and no immunity.
 #' set.seed(32)
 #' simulate_chain_stats(
-#'   index_cases = 20,
+#'   nsims = 20,
 #'   statistic = "size",
 #'   offspring_dist = rpois,
 #'   stat_max = 10,
@@ -373,7 +373,7 @@ simulate_chains <- function(index_cases,
 #' simulate_chain_stats(
 #'   pop = 1000,
 #'   percent_immune = 0.1,
-#'   index_cases = 20,
+#'   nsims = 20,
 #'   statistic = "size",
 #'   offspring_dist = rnbinom,
 #'   stat_max = 10,
@@ -381,7 +381,7 @@ simulate_chains <- function(index_cases,
 #'   size = 0.36
 #' )
 #' @export
-simulate_chain_stats <- function(index_cases,
+simulate_chain_stats <- function(nsims,
                              statistic = c("size", "length"),
                              offspring_dist,
                              ...,
@@ -390,7 +390,7 @@ simulate_chain_stats <- function(index_cases,
                              percent_immune = 0) {
   # Check offspring and population-related arguments
   .check_sim_args(
-    index_cases = index_cases,
+    nsims = nsims,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max,
@@ -401,12 +401,12 @@ simulate_chain_stats <- function(index_cases,
   pars <- list(...)
 
   # Initialisations
-  stat_track <- rep(1, index_cases) ## track statistic
-  n_offspring <- rep(1, index_cases) ## current number of offspring
-  index_cases_active <- seq_len(index_cases) # track trees being simulated
+  stat_track <- rep(1, nsims) ## track statistic
+  n_offspring <- rep(1, nsims) ## current number of offspring
+  sims_active <- seq_len(nsims) # track trees being simulated
 
   # Initialise susceptible population
-  susc_pop <- .init_susc_pop(pop, percent_immune, index_cases)
+  susc_pop <- .init_susc_pop(pop, percent_immune, nsims)
 
   ## next, simulate transmission chains from index cases
   while (length(index_cases_active) > 0 && susc_pop > 0) {
@@ -456,7 +456,7 @@ simulate_chain_stats <- function(index_cases,
 
   out <- .epichains_summary(
     chains_summary = stat_track,
-    index_cases = index_cases,
+    nsims = nsims,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max
