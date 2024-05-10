@@ -67,7 +67,7 @@
     any.missing = FALSE,
     len = 1L,
     lower = 1L,
-    upper = max(tree_df$index_case_active, na.rm = TRUE)
+    upper = max(tree_df$sim_id, na.rm = TRUE)
   )
   checkmate::assert_string(statistic)
   statistic <- match.arg(statistic, choices = c("size", "length"))
@@ -383,12 +383,12 @@ summary.epichains <- function(object, ...) {
   if (statistic == "size") {
     # size is the number of infectees produced by an index case before it goes
     # extinct.
-    chain_summaries <- as.numeric(table(object$index_case_active))
+    chain_summaries <- as.numeric(table(object$sim_id))
   } else {
     # length is the number of generations an index case produces before
     # it goes extinct.
     for (i in seq_len(nsims)) {
-      chain_generations <- object[object$index_case_active == i, "generation"]
+      chain_generations <- object[object$sim_id == i, "generation"]
       chain_summaries[i] <- max(chain_generations)
     }
   }
@@ -487,10 +487,10 @@ summary.epichains_summary <- function(object, ...) {
   # check for class invariants
   stopifnot(
     "object does not contain the correct columns" =
-      c("index_case_active", "infector", "infectee", "generation") %in%
+      c("sim_id", "infector", "infectee", "generation") %in%
       colnames(x),
-    "column `index_case_active` must be a numeric" =
-      is.numeric(x$index_case_active),
+    "column `sim_id` must be a numeric" =
+      is.numeric(x$sim_id),
     "column `infector` must be a numeric" =
       is.numeric(x$infector),
     "column `infectee` must be a numeric" =

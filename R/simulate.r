@@ -49,8 +49,7 @@
 #' @param ... Parameters of the offspring distribution as required by R.
 #' @return An `<epichains>` object, which is basically a `<data.frame>`
 #' with columns:
-#' * `index_case_active` - an ID for the index cases still active (links
-#' each infector and infectee to the index case that seeded the chain),
+#' * `sim_id` - an ID for ongoing simulations,
 #' * `infectee` - a unique ID for each infectee.
 #' * `infector` - an ID for the infector of each infectee.
 #' * `generation` - a discrete time point during which infection occurs, and
@@ -250,7 +249,7 @@ simulate_chains <- function(index_cases,
       # store new simulation results
       tree_df[[generation]] <-
         data.frame(
-          index_case_active = index_case_ids,
+          sim_id = active_sim_ids,
           sim_id = infectee_ids,
           infector = infector_ids,
           generation = generation

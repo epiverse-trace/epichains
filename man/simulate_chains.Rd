@@ -69,8 +69,7 @@ time is given); Defaults to \code{Inf}.}
 An \verb{<epichains>} object, which is basically a \verb{<data.frame>}
 with columns:
 \itemize{
-\item \code{index_case_active} - an ID for the index cases still active (links
-each infector and infectee to the index case that seeded the chain),
+\item \code{sim_id} - an ID for ongoing simulations,
 \item \code{infectee} - a unique ID for each infectee.
 \item \code{infector} - an ID for the infector of each infectee.
 \item \code{generation} - a discrete time point during which infection occurs, and
