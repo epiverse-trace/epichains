@@ -181,9 +181,9 @@ simulate_chains <- function(nsims,
   generation <- 1L
   tree_df <- list(
     data.frame(
-      index_case_active = seq_len(index_cases),
-      sim_id = 1L,
-      infector = NA_integer_, # infectors are unknown for index cases
+      sim_id = seq_len(nsims),
+      infectee = 1L,
+      infector = NA_integer_, # infectors are unknown in the first generation
       generation = generation
     )
   )
@@ -196,13 +196,13 @@ simulate_chains <- function(nsims,
     times <- tree_df[[generation]]$time
   }
   # Simulate chains until stopping conditions are met
-  while (length(index_cases_active) > 0 && susc_pop > 0) {
+  while (length(sims_active) > 0 && susc_pop > 0) {
     # simulate the next possible offspring
     next_gen <- .sample_possible_offspring(
       offspring_func = offspring_dist,
       offspring_func_pars = pars,
       n_offspring = n_offspring,
-      chains = index_cases_active
+      chains = sims_active
     )
     # from all possible offspring, get those that could be infected
     next_gen <- .get_susceptible_offspring(
@@ -217,13 +217,13 @@ simulate_chains <- function(nsims,
         susc_pop = susc_pop
       )
     }
-    # create index case ids for the new offspring
-    index_case_ids <- rep(index_cases_active, n_offspring[index_cases_active])
+    # create ids linking active simulations to their offspring
+    active_sim_ids <- rep(sims_active, n_offspring[sims_active])
 
-    # initialise placeholder for the number of offspring
-    n_offspring <- rep(0, index_cases)
-    # find the number of new offspring for each active index case
-    n_offspring[index_cases_active] <- tapply(next_gen, index_case_ids, sum)
+    # initialise place holder for the number of offspring
+    n_offspring <- rep(0, nsims)
+    # find the number of new offspring for each active simulation
+    n_offspring[sims_active] <- tapply(next_gen, active_sim_ids, sum)
     # update the size/length statistic
     stat_track <- .update_chain_stat(
       stat_type = statistic,
@@ -235,12 +235,12 @@ simulate_chains <- function(nsims,
     # Also add the time of infection if generation_time was specified
     if (sum(n_offspring) > 0) {
       infector_ids <- rep(new_infectors_ids, next_gen)
-      current_max_id <- unname(tapply(new_infectors_ids, index_case_ids, max))
-      index_case_ids <- rep(index_cases_active, n_offspring[index_cases_active])
+      current_max_id <- unname(tapply(new_infectors_ids, active_sim_ids, max))
+      active_sim_ids <- rep(sims_active, n_offspring[sims_active])
 
-      # new unique ids that link new infectees to their original index case
-      infectee_ids <- rep(current_max_id, n_offspring[index_cases_active]) +
-        sequence(n_offspring[index_cases_active])
+      # ids linking each new offspring to their original simulation
+      sim_offspring_ids <- rep(current_max_id, n_offspring[sims_active]) +
+        sequence(n_offspring[sims_active])
 
       # increment the generation
       generation <- generation + 1L
@@ -251,7 +251,7 @@ simulate_chains <- function(nsims,
       tree_df[[generation]] <-
         data.frame(
           sim_id = active_sim_ids,
-          sim_id = infectee_ids,
+          infectee = sim_offspring_ids,
           infector = infector_ids,
           generation = generation
         )
@@ -260,26 +260,26 @@ simulate_chains <- function(nsims,
       # to generate generation times for the cases
       if (!missing(generation_time)) {
         times <- rep(times, next_gen) + generation_time(sum(n_offspring))
-        current_min_time <- unname(tapply(times, index_case_ids, min))
+        current_min_time <- unname(tapply(times, active_sim_ids, min))
         tree_df[[generation]]$time <- times
       }
     }
 
-    # Find active index cases (those still infecting): those that have still
-    # offspring and aren't of the specified stat_max
-    index_cases_active <- which(n_offspring > 0 & stat_track < stat_max)
-    if (length(index_cases_active) > 0) {
+    # Find ongoing simulations (those still infecting): those that have still
+    # offspring and haven't reached the threshold statistic yet
+    sims_active <- which(n_offspring > 0 & stat_track < stat_max)
+    if (length(sims_active) > 0) {
       if (!missing(generation_time)) {
         ## only continue to simulate trees that don't go beyond tf
-        unique_index_cases <- unique(index_case_ids)
-        index_cases_active <- intersect(
-          index_cases_active,
+        unique_index_cases <- unique(active_sim_ids)
+        sims_active <- intersect(
+          sims_active,
           unique_index_cases[current_min_time < tf]
         )
-        times <- times[index_case_ids %in% index_cases_active]
+        times <- times[active_sim_ids %in% sims_active]
       }
       # infectees of active index cases become infectors in the next generation
-      new_infectors_ids <- infectee_ids[index_case_ids %in% index_cases_active]
+      new_infectors_ids <- sim_offspring_ids[active_sim_ids %in% sims_active]
     }
   }
 
@@ -291,17 +291,14 @@ simulate_chains <- function(nsims,
     tree_df <- tree_df[tree_df$time < tf, ]
   }
 
-  # Post processing: remove rownames and add unique infectee ids
+  # Post processing
   rownames(tree_df) <- NULL
-  tree_df$infectee <- seq_len(nrow(tree_df))
-  # remove sin_id and reorder the columns
-  tree_df$sim_id <- NULL
   # We want to reorder the columns but that depends on whether "time" is
   # present or not, so we need to determine that first
   column_order <- if (missing(generation_time)) {
-    c("index_case_active", "infector", "infectee", "generation")
+    c("sim_id", "infector", "infectee", "generation")
   } else {
-    c("index_case_active", "infector", "infectee", "generation", "time")
+    c("sim_id", "infector", "infectee", "generation", "time")
   }
   tree_df <- tree_df[, c(column_order)]
   out <- .epichains(
@@ -409,13 +406,13 @@ simulate_chain_stats <- function(nsims,
   susc_pop <- .init_susc_pop(pop, percent_immune, nsims)
 
   ## next, simulate transmission chains from index cases
-  while (length(index_cases_active) > 0 && susc_pop > 0) {
+  while (length(sims_active) > 0 && susc_pop > 0) {
     # simulate the possible next generation of offspring
     next_gen <- .sample_possible_offspring(
       offspring_func = offspring_dist,
       offspring_func_pars = pars,
       n_offspring = n_offspring,
-      chains = index_cases_active
+      chains = sims_active
     )
     # from all possible offspring, get those that are infectible
     next_gen <- .get_susceptible_offspring(
@@ -431,13 +428,13 @@ simulate_chain_stats <- function(nsims,
         susc_pop = susc_pop
       )
     }
-    ## record index_case_ids corresponding to the number of offspring
-    index_case_ids <- rep(index_cases_active, n_offspring[index_cases_active])
+    # create ids linking active simulations to their offspring
+    active_sim_ids <- rep(sims_active, n_offspring[sims_active])
 
     ## initialise number of offspring
-    n_offspring <- rep(0, index_cases)
-    ## assign offspring sum to parents still being simulated
-    n_offspring[index_cases_active] <- tapply(next_gen, index_case_ids, sum)
+    n_offspring <- rep(0, nsims)
+    ## assign offspring sum to their corresponding simulations
+    n_offspring[sims_active] <- tapply(next_gen, active_sim_ids, sum)
 
     # track size/length
     stat_track <- .update_chain_stat(
@@ -447,9 +444,8 @@ simulate_chain_stats <- function(nsims,
     )
     # Update susceptible population
     susc_pop <- susc_pop - sum(n_offspring)
-    ## only continue to simulate trees that have offspring and aren't of
-    ## stat_max size/length
-    index_cases_active <- which(n_offspring > 0 & stat_track < stat_max)
+    # only continue simulations that have offspring and haven't reached stat_max
+    sims_active <- which(n_offspring > 0 & stat_track < stat_max)
   }
 
   stat_track[stat_track >= stat_max] <- Inf
