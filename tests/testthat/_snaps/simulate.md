@@ -7,7 +7,7 @@
       
        [1] 1 1 1 1 1 2 1 1 1 1
       
-       Simulated tree lengths: 
+       Simulated lengths: 
       
       Max: 2
       Min: 1
@@ -21,16 +21,16 @@
       
       < tree head (from first known infector) >
       
-         index_case_active infector infectee generation      time
-      11                 1        1       11          2 1.1279394
-      12                 2        1       12          2 0.3217817
-      13                 2        1       13          2 7.8785290
-      14                 2        1       14          2 3.1584048
-      15                 3        1       15          2 5.7529635
-      16                 3        1       16          2 7.1951323
+         sim_id infector infectee generation      time
+      11      1        1        2          2 1.1279394
+      12      2        1        2          2 0.3217817
+      13      2        1        3          2 7.8785290
+      14      2        1        4          2 3.1584048
+      15      3        1        2          2 5.7529635
+      16      3        1        3          2 7.1951323
       
       
-      Index cases simulated: 10
+      Number of simulations: 10
       Number of infectors (known): 6
       Number of generations: 5
       Use `as.data.frame(<object_name>)` to view the full output in the console.
@@ -44,16 +44,16 @@
       
       < tree head (from first known infector) >
       
-         index_case_active infector infectee generation      time
-      11                 1        1       11          2  1.169061
-      12                 1        1       12          2 14.980844
-      13                 1        1       13          2  1.417131
-      14                 2        1       14          2  1.932143
-      15                 2        1       15          2  6.667853
-      16                 2        1       16          2  1.127939
+         sim_id infector infectee generation      time
+      11      1        1        2          2  1.169061
+      12      1        1        3          2 14.980844
+      13      1        1        4          2  1.417131
+      14      2        1        2          2  1.932143
+      15      2        1        3          2  6.667853
+      16      2        1        4          2  1.127939
       
       
-      Index cases simulated: 10
+      Number of simulations: 10
       Number of infectors (known): 98
       Number of generations: 12
       Use `as.data.frame(<object_name>)` to view the full output in the console.
@@ -67,11 +67,11 @@
       
       < tree head (from first known infector) >
       
-         index_case_active infector infectee generation
-      11                 6        1       11          2
+         sim_id infector infectee generation
+      11      6        1        2          2
       
       
-      Index cases simulated: 10
+      Number of simulations: 10
       Number of infectors (known): 2
       Number of generations: 2
       Use `as.data.frame(<object_name>)` to view the full output in the console.
