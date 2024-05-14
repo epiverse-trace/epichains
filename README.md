@@ -102,7 +102,7 @@ and aggregate it into cases per generation, and plot it.
 set.seed(32)
 # Simulate chains
 sim_chains <- simulate_chains(
-  index_cases = 20,
+  n_chains = 20,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 25,
@@ -111,13 +111,13 @@ sim_chains <- simulate_chains(
 )
 # View the head of the simulation
 head(sim_chains)
-#>    index_case_active infector infectee generation time
-#> 21                 1        1       21          2    3
-#> 22                 2        1       22          2    3
-#> 23                 3        1       23          2    3
-#> 24                 3        1       24          2    3
-#> 25                 4        1       25          2    3
-#> 26                 6        1       26          2    3
+#>    chain infector infectee generation time
+#> 21     1        1        2          2    3
+#> 22     2        1        2          2    3
+#> 23     3        1        2          2    3
+#> 24     3        1        3          2    3
+#> 25     4        1        2          2    3
+#> 26     6        1        2          2    3
 
 # Summarise the simulation
 summary(sim_chains)
@@ -126,7 +126,7 @@ summary(sim_chains)
 #>  [1]   5  17   4   8   1  16   9 Inf   5  18   5   1 Inf  24   1  14  19   2   4
 #> [20]  14
 #> 
-#>  Simulated tree sizes: 
+#>  Simulated sizes: 
 #> 
 #> Max: >=25
 #> Min: 1
