@@ -134,13 +134,20 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     chains <- summary(chains)
   }
 
-  if (.is_epichains_summary(chains) && missing(stat_max)) {
-    # stat_max can only be infinite if the stat_max used in the simulation
-    # is finite. So, we replace the infinite stat_max argument in this
-    # function with the finite one used in the simulation.
-    stat_max_from_sim <- attr(chains, "stat_max")
-    chains[is.infinite(chains)] <- stat_max_from_sim
+  # If stat_max is not specified, try to get it from the chains object
+  # or set it to Inf if chains is numeric
+  if (missing(stat_max)) {
+    if (.is_epichains_summary(chains)) {
+      stat_max <- attr(chains, "stat_max")
+    } else if (is.numeric(chains)) {
+      stat_max <- Inf
+    }
   }
+ # If stat_max is specified, it cannot be NULL
+  if (is.null(stat_max)) {
+    stop("`stat_max` must be an integer.")
+  }
+ # Replace infinite chain sizes with stat_max
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
