@@ -128,7 +128,8 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   checkmate::assert_numeric(
     exclude, null.ok = TRUE
   )
-  # likelihood can also work with a summarised <epichains_tree> object
+  # likelihood cannot work with an <epichains> object so convert to
+  # <epichains_summary>
   if (.is_epichains(chains)) {
     chains <- summary(chains)
   }
