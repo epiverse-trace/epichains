@@ -273,7 +273,7 @@ simulate_chains <- function(nchains,
       }
     }
 
-    # Find ongoing simulations (those still infecting): those that have still
+    # Find ongoing chains (those still infecting): those that have still
     # offspring and haven't reached the threshold statistic yet
     chains_active <- which(n_offspring > 0 & stat_track < stat_max)
     if (length(chains_active) > 0) {
@@ -286,7 +286,7 @@ simulate_chains <- function(nchains,
         )
         times <- times[active_chain_ids %in% chains_active]
       }
-      # infectees of active index cases become infectors in the next generation
+      # infectees of active chains become infectors in the next generation
       new_infectors_ids <- sim_offspring_ids[active_chain_ids %in% chains_active]
     }
   }
@@ -352,7 +352,7 @@ simulate_chains <- function(nchains,
 #' realised by a chain after dying out.
 #'
 #' It is useful for generating a vector of chain sizes or lengths for a given
-#' number of index cases, if details of who infected whom and the timing of
+#' number of chains, if details of who infected whom and the timing of
 #' infection are not of interest.
 #'
 #' This function is used in `{epichains}` for calculating likelihoods in
@@ -416,7 +416,7 @@ simulate_chain_stats <- function(nchains,
   # Initialise susceptible population
   susc_pop <- .init_susc_pop(pop, percent_immune, nchains)
 
-  ## next, simulate transmission chains from index cases
+  ## next, simulate outbreaks from the initial chains
   while (length(chains_active) > 0 && susc_pop > 0) {
     # simulate the possible next generation of offspring
     next_gen <- .sample_possible_offspring(
@@ -439,12 +439,12 @@ simulate_chain_stats <- function(nchains,
         susc_pop = susc_pop
       )
     }
-    # create ids linking active simulations to their offspring
+    # create ids linking active chains to their offspring
     active_chain_ids <- rep(chains_active, n_offspring[chains_active])
 
     ## initialise number of offspring
     n_offspring <- rep(0, nchains)
-    ## assign offspring sum to their corresponding simulations
+    ## assign offspring sum to their corresponding chains
     n_offspring[chains_active] <- tapply(next_gen, active_chain_ids, sum)
 
     # track size/length
@@ -455,7 +455,7 @@ simulate_chain_stats <- function(nchains,
     )
     # Update susceptible population
     susc_pop <- susc_pop - sum(n_offspring)
-    # only continue simulations that have offspring and haven't reached stat_max
+    # only continue chains that have offspring and haven't reached stat_max
     chains_active <- which(n_offspring > 0 & stat_track < stat_max)
   }
 
