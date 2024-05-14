@@ -181,8 +181,18 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
   ## determine for which sizes to calculate the log-likelihood
   ## (for true chain size)
-  if (any(stat_rep_vect == stat_threshold)) {
-    calc_sizes <- seq_len(stat_threshold - 1)
+  if (any(stat_rep_vect == stat_max)) {
+    # For chains of class numeric, we assume that the chains cannot be unending
+    # and hence, cannot be infinite, so should be changed to a finite censoring
+    # value.
+    if (is.numeric(chains) && is.infinite(stat_max)) {
+      stop(
+        "`chains` must only contain finite values. ",
+        "Replace the `Inf` values with finite values.",
+        call. = FALSE
+      )
+    }
+    calc_sizes <- seq_len(stat_max - 1)
   } else {
     calc_sizes <- unique(c(stat_rep_vect, exclude))
   }
