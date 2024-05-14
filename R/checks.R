@@ -25,7 +25,7 @@
 #' @return NULL; called for side effects
 #' @keywords internal
 .check_sim_args <- function(
-    nsims,
+    nchains,
     statistic,
     offspring_dist,
     stat_max,
@@ -33,7 +33,7 @@
     percent_immune) {
   # Input checking
   checkmate::assert_count(
-    nsims,
+    nchains,
     positive = TRUE
   )
   # check that offspring is a function with argument "n"

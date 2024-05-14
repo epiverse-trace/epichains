@@ -22,7 +22,7 @@ An object of class \verb{<data.frame>}.
 }
 \details{
 This returns the top rows of an \verb{<epichains>} object. Note that
-the object is originally sorted by \code{sim_id} and \code{infector_id} and the first
+the object is originally sorted by \code{chain} and \code{infector_id} and the first
 unknown infectors (NA) have been dropped from
 printing method.
 
@@ -31,7 +31,7 @@ To view the full output, use \verb{as.data.frame(<object_name>)}.
 \examples{
 set.seed(32)
 chains_pois_offspring <- simulate_chains(
-  nsims = 10,
+  nchains = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,
@@ -41,7 +41,7 @@ chains_pois_offspring <- simulate_chains(
 head(chains_pois_offspring)
 set.seed(32)
 chains_pois_offspring <- simulate_chains(
-  nsims = 10,
+  nchains = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,

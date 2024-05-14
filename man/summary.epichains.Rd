@@ -31,7 +31,7 @@ by an equivalent \code{simulate_chain_stats()} call.
 # finite population up to chain size 10.
 set.seed(32)
 sim_chains_nbinom <- simulate_chains(
-  nsims = 10,
+  nchains = 10,
   pop = 100,
   percent_immune = 0,
   statistic = "size",
@@ -47,7 +47,7 @@ sim_chains_nbinom_summary
 # Same results can be obtained using `simulate_chain_stats()`
 set.seed(32)
 sim_summary_nbinom <- simulate_chain_stats(
-  nsims = 10,
+  nchains = 10,
   pop = 100,
   percent_immune = 0,
   statistic = "size",

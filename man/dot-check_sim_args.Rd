@@ -5,7 +5,7 @@
 \title{Check inputs to \code{simulate_chains()} and \code{simulate_summary()}}
 \usage{
 .check_sim_args(
-  nsims,
+  nchains,
   statistic,
   offspring_dist,
   stat_max,
@@ -14,7 +14,7 @@
 )
 }
 \arguments{
-\item{nsims}{Number of cases to simulate transmission chains for.}
+\item{nchains}{Number of cases to simulate transmission chains for.}
 
 \item{statistic}{The chain statistic to track as the
 stopping criteria for each chain being simulated when \code{stat_max} is not

@@ -4,14 +4,21 @@
 \alias{.new_epichains}
 \title{Construct an \verb{<epichains>} object}
 \usage{
-.new_epichains(tree_df, nsims, statistic, offspring_dist, stat_max, track_pop)
+.new_epichains(
+  tree_df,
+  nchains,
+  statistic,
+  offspring_dist,
+  stat_max,
+  track_pop
+)
 }
 \arguments{
 \item{tree_df}{a \verb{<data.frame>} containing at least columns for
 "infectee_id", "infector_id", and "generation". Also has optional columns
 for "time", and "chain_id".}
 
-\item{nsims}{Number of cases to simulate transmission chains for.}
+\item{nchains}{Number of cases to simulate transmission chains for.}
 
 \item{statistic}{The chain statistic to track as the
 stopping criteria for each chain being simulated when \code{stat_max} is not
