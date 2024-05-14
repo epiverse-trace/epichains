@@ -287,7 +287,8 @@ simulate_chains <- function(nchains,
         times <- times[active_chain_ids %in% chains_active]
       }
       # infectees of active chains become infectors in the next generation
-      new_infectors_ids <- sim_offspring_ids[active_chain_ids %in% chains_active]
+      new_infectors_ids <-
+        sim_offspring_ids[active_chain_ids %in% chains_active]
     }
   }
 
