@@ -135,6 +135,26 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
       ),
       -23.538997
     )
+    # Use default stat_max = NULL
+    expect_equal(
+      likelihood(
+        chains = chains_summary_eg,
+        statistic = "size",
+        offspring_dist = rpois,
+        lambda = 0.9
+      ),
+      -23.538997
+    )
+    # Use default stat_max = NULL
+    expect_equal(
+      likelihood(
+        chains = chains_tree_eg,
+        statistic = "size",
+        offspring_dist = rpois,
+        lambda = 0.9
+      ),
+      -23.538997
+    )
 })
 
 test_that("Likelihoods are numerically correct", {
@@ -250,5 +270,25 @@ test_that("Errors are thrown", {
       lambda = 0.5
     ),
     "Must be of type"
+  )
+  expect_error(
+    likelihood(
+      chains = chains, # Inf in data is not allowed
+      statistic = "size",
+      offspring_dist = rpois,
+      lambda = 0.5,
+      stat_max = NULL
+    ),
+    "must be an integer"
+  )
+  expect_error(
+    likelihood(
+      chains = c(1:2, Inf), # Inf in data is not allowed
+      statistic = "size",
+      offspring_dist = rpois,
+      lambda = 0.5,
+      stat_max = Inf
+    ),
+    "must only contain finite values"
   )
 })
