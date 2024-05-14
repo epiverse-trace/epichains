@@ -269,7 +269,7 @@ simulate_chains <- function(nchains,
       if (!missing(generation_time)) {
         times <- rep(times, next_gen) + generation_time(sum(n_offspring))
         current_min_time <- unname(tapply(times, active_sim_ids, min))
-        tree_df[[generation]]$time <- times
+        sim_df[[generation]]$time <- times
       }
     }
 
@@ -292,15 +292,15 @@ simulate_chains <- function(nchains,
   }
 
   # Combine the results
-  tree_df <- do.call(rbind, tree_df)
+  sim_df <- do.call(rbind, sim_df)
 
   # time column only exists if tf was specified
   if (!missing(tf)) {
-    tree_df <- tree_df[tree_df$time < tf, ]
+    sim_df <- sim_df[sim_df$time < tf, ]
   }
 
   # Post processing
-  rownames(tree_df) <- NULL
+  rownames(sim_df) <- NULL
   # We want to reorder the columns but that depends on whether "time" is
   # present or not, so we need to determine that first
   column_order <- if (missing(generation_time)) {
@@ -308,9 +308,9 @@ simulate_chains <- function(nchains,
   } else {
     c("chain", "infector", "infectee", "generation", "time")
   }
-  tree_df <- tree_df[, c(column_order)]
+  sim_df <- sim_df[, c(column_order)]
   out <- .epichains(
-    tree_df,
+    sim_df,
     nchains = nchains,
     statistic = statistic,
     offspring_dist = offspring_dist,
