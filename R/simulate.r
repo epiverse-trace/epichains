@@ -51,7 +51,7 @@
 #' @param ... Parameters of the offspring distribution as required by R.
 #' @return An `<epichains>` object, which is basically a `<data.frame>`
 #' with columns:
-#' * `sim_id` - an ID for ongoing simulations,
+#' * `chain` - an ID for each chain in the simulation,
 #' * `infectee` - a unique ID for each infectee.
 #' * `infector` - an ID for the infector of each infectee.
 #' * `generation` - a discrete time point during which infection occurs, and
