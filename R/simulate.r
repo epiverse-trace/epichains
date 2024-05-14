@@ -1,10 +1,11 @@
 #' Simulate transmission chains
 #'
 #' @description
-#' Generates transmission chains using a simple branching process model that
-#' that simulates the supplied number of independent simulations, using an
-#' offspring distribution for each simulation, and an optional generation time
-#' distribution function.
+#' It generates independent transmission chains starting with a single case
+#' per chain, using a simple branching process model (See details for
+#' definition of "chains" and assumptions). Offspring for each
+#' chain are generated with an offspring distribution, and an optional
+#' generation time distribution function.
 #'
 #' The simulations are controlled by customisable stopping criteria, including
 #' a threshold chain size or length, and a generation time cut off. The
@@ -322,13 +323,15 @@ simulate_chains <- function(nchains,
 #' Simulate a vector of transmission chains statistics (sizes/lengths)
 #'
 #' @description
-#' Generates a vector of transmission chain sizes and lengths with a
-#' value for each simulation.
+#' It generates a vector of transmission chain sizes or lengths using the
+#' same model as [simulate_chains()] but without tracking details of the
+#' individual chains. This function is useful when only the chain sizes or
+#' lengths are of interest.
 #'
-#' It uses a simple branching process model that simulates the supplied
-#' number of independent simulations, using an offspring distribution for each
-#' simulation. Simulations use a threshold chain size or length as the
-#' stopping criterion in cases where R0 > 1. The function also optionally
+#' It uses a simple branching process model that simulates independent
+#' chains, using an offspring distribution for each chain. Each chain
+#' uses a threshold chain size or length as the
+#' stopping criterion especially where R0 > 1. The function also optionally
 #' accepts population related inputs such as the population size (defaults
 #' to Inf) and percentage of the population initially immune (defaults to 0).
 #' @inheritParams simulate_chains
