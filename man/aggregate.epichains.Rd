@@ -26,7 +26,7 @@ generation or time (if serials_dist was specified) from simulated
 \examples{
 set.seed(32)
 chains <- simulate_chains(
-  nchains = 10,
+  n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,

@@ -5,7 +5,7 @@
 \title{Simulate transmission chains}
 \usage{
 simulate_chains(
-  nchains,
+  n_chains,
   statistic = c("size", "length"),
   offspring_dist,
   ...,
@@ -18,7 +18,7 @@ simulate_chains(
 )
 }
 \arguments{
-\item{nchains}{Number of chains to simulate.}
+\item{n_chains}{Number of chains to simulate.}
 
 \item{statistic}{The chain statistic to track as the
 stopping criteria for each chain being simulated when \code{stat_max} is not
@@ -58,7 +58,7 @@ of a user-defined named or anonymous function with only one argument \code{n},
 representing the number of generation times to sample.}
 
 \item{t0}{Start time (if generation time is given); either a single value
-or a vector of same length as \code{nchains} (number of initial cases) with
+or a vector of same length as \code{n_chains} (number of initial cases) with
 corresponding initial times. Defaults to 0, meaning all cases started at
 time 0.}
 
@@ -139,7 +139,7 @@ where \code{...} are the other arguments to \verb{simulate_*()}.
 # population up to chain size 10.
 set.seed(32)
 chains_pois_offspring <- simulate_chains(
-  nchains = 10,
+  n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,
@@ -152,7 +152,7 @@ chains_pois_offspring
 # finite population up to chain size 10.
 set.seed(32)
 chains_nbinom_offspring <- simulate_chains(
-  nchains = 10,
+  n_chains = 10,
   pop = 100,
   percent_immune = 0,
   statistic = "size",
