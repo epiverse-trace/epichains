@@ -148,6 +148,9 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     stop("`stat_max` must be an integer.")
   }
  # Replace infinite chain sizes with stat_max
+  chains[is.infinite(chains)] <- stat_max
+
+  # Apply the observation process
   if (obs_prob < 1) {
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
