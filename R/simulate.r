@@ -341,6 +341,7 @@ simulate_chains <- function(nchains,
 #' @return An object of class `<epichains_summary>`, which is a numeric
 #' vector of chain sizes or lengths with extra attributes for storing the
 #' simulation parameters.
+#' @inheritSection simulate_chains Definition of a transmission chain
 #' @inheritSection simulate_chains Calculating chain sizes and lengths
 #' @inherit simulate_chains references
 #' @details
