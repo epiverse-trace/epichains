@@ -2,7 +2,7 @@
 % Please edit documentation in R/simulate.r
 \name{simulate_chain_stats}
 \alias{simulate_chain_stats}
-\title{Simulate transmission chains statistics (sizes/lengths)}
+\title{Simulate a vector of transmission chains statistics (sizes/lengths)}
 \usage{
 simulate_chain_stats(
   nchains,
