@@ -84,11 +84,11 @@ definition of "chains" and assumptions). Offspring for each
 chain are generated with an offspring distribution, and an optional
 generation time distribution function.
 
-The simulations are controlled by customisable stopping criteria, including
-a threshold chain size or length, and a generation time cut off. The
-function also optionally accepts population related inputs such as the
-population size (defaults to Inf) and percentage of the population
-initially immune (defaults to 0).
+The individual chain simulations are controlled by customisable stopping
+criteria, including a threshold chain size or length, and a generation time
+cut off. The function also optionally accepts population related inputs
+such as the population size (defaults to Inf) and percentage of the
+population initially immune (defaults to 0).
 }
 \section{Definition of a transmission chain}{
 A transmission chain as used here is an independent case and all

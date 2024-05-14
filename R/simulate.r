@@ -7,12 +7,12 @@
 #' chain are generated with an offspring distribution, and an optional
 #' generation time distribution function.
 #'
-#' The simulations are controlled by customisable stopping criteria, including
-#' a threshold chain size or length, and a generation time cut off. The
-#' function also optionally accepts population related inputs such as the
-#' population size (defaults to Inf) and percentage of the population
-#' initially immune (defaults to 0).
-#' @param nchains Number of cases to simulate transmission chains for.
+#' The individual chain simulations are controlled by customisable stopping
+#' criteria, including a threshold chain size or length, and a generation time
+#' cut off. The function also optionally accepts population related inputs
+#' such as the population size (defaults to Inf) and percentage of the
+#' population initially immune (defaults to 0).
+#' @param nchains Number of chains to simulate.
 #' @param offspring_dist Offspring distribution: a `<function>` like the ones
 #' provided by R to generate random numbers from given distributions (e.g.,
 #' \code{\link{rpois}} for Poisson). More specifically, the function needs to
