@@ -27,7 +27,7 @@
 #' \itemize{
 #'   \item "size": the total number of cases produced by a chain before it goes
 #'   extinct.
-#'   \item "length": the total number of ancestors produced by a chain before
+#'   \item "length": the total number of generations reached by a chain before
 #'   it goes extinct.
 #' }
 #' @param stat_max The cut off for the chain statistic (size/length) being
