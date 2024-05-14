@@ -300,7 +300,7 @@ generation_time_fn <- function(n) {
 }
 
 sim_chains <- simulate_chains(
-  nchains = 10,
+  n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,
@@ -331,7 +331,7 @@ generation_time_fn <- function(n) {
 
 sim_chains_with_pop <- simulate_chains(
   pop = 1000,
-  nchains = 10,
+  n_chains = 10,
   percent_immune = 0.1,
   offspring_dist = rpois,
   statistic = "size",
@@ -359,7 +359,7 @@ distribution with mean of $0.9$.
 set.seed(123)
 
 simulate_chain_stats_eg <- simulate_chain_stats(
-  nchains = 10,
+  n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,
@@ -385,7 +385,7 @@ generation_time_fn <- function(n) {
 }
 
 sim_chains <- simulate_chains(
-  nchains = 10,
+  n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,
@@ -399,7 +399,7 @@ summary(sim_chains)
 set.seed(32)
 
 simulate_chain_stats_eg <- simulate_chain_stats(
-  nchains = 10,
+  n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,
@@ -448,7 +448,7 @@ generation_time_fn <- function(n) {
 }
 
 sim_chains <- simulate_chains(
-  nchains = 10,
+  n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 10,
@@ -475,7 +475,7 @@ generation_time_fn <- function(n) {
 }
 
 sim_chains <- simulate_chains(
-  nchains = 10,
+  n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 1000,

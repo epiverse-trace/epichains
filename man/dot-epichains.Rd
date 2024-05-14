@@ -6,7 +6,7 @@
 \usage{
 .epichains(
   tree_df,
-  nchains,
+  n_chains,
   offspring_dist,
   track_pop,
   statistic = c("size", "length"),
@@ -18,7 +18,7 @@
 "infectee_id", "infector_id", and "generation". Also has optional columns
 for "time", and "chain_id".}
 
-\item{nchains}{Number of chains to simulate.}
+\item{n_chains}{Number of chains to simulate.}
 
 \item{offspring_dist}{Offspring distribution: a \verb{<function>} like the ones
 provided by R to generate random numbers from given distributions (e.g.,

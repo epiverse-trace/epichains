@@ -6,7 +6,7 @@
 \usage{
 .new_epichains(
   tree_df,
-  nchains,
+  n_chains,
   statistic,
   offspring_dist,
   stat_max,
@@ -18,7 +18,7 @@
 "infectee_id", "infector_id", and "generation". Also has optional columns
 for "time", and "chain_id".}
 
-\item{nchains}{Number of chains to simulate.}
+\item{n_chains}{Number of chains to simulate.}
 
 \item{statistic}{The chain statistic to track as the
 stopping criteria for each chain being simulated when \code{stat_max} is not

@@ -6,7 +6,7 @@
 \usage{
 .epichains_summary(
   chains_summary,
-  nchains,
+  n_chains,
   offspring_dist,
   statistic = c("size", "length"),
   stat_max = Inf
@@ -15,7 +15,7 @@
 \arguments{
 \item{chains_summary}{A numeric \verb{<vector>} of chain sizes and lengths.}
 
-\item{nchains}{Number of chains to simulate.}
+\item{n_chains}{Number of chains to simulate.}
 
 \item{offspring_dist}{Offspring distribution: a \verb{<function>} like the ones
 provided by R to generate random numbers from given distributions (e.g.,

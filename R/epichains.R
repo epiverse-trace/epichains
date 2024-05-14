@@ -16,7 +16,7 @@
 #' @author James M. Azam
 #' @keywords internal
 .new_epichains <- function(tree_df,
-                               nchains,
+                               n_chains,
                                statistic,
                                offspring_dist,
                                stat_max,
@@ -24,7 +24,7 @@
   # Assemble the elements of the object
   obj <- tree_df
   class(obj) <- c("epichains", class(obj))
-  attr(obj, "nchains") <- nchains
+  attr(obj, "n_chains") <- n_chains
   attr(obj, "statistic") <- statistic
   attr(obj, "offspring_dist") <- offspring_dist
   attr(obj, "stat_max") <- stat_max
@@ -55,15 +55,15 @@
 #' @author James M. Azam
 #' @keywords internal
 .epichains <- function(tree_df,
-                      nchains,
+                      n_chains,
                       offspring_dist,
                       track_pop,
                       statistic = c("size", "length"),
                       stat_max = Inf) {
   # Check that inputs are well specified
-  checkmate::assert_data_frame(tree_df, min.cols = 3, min.rows = nchains)
+  checkmate::assert_data_frame(tree_df, min.cols = 3, min.rows = n_chains)
   checkmate::assert_integerish(
-    nchains,
+    n_chains,
     any.missing = FALSE,
     len = 1L,
     lower = 1L,
@@ -80,7 +80,7 @@
   # Create <epichains> object
   epichains <- .new_epichains(
     tree_df = tree_df,
-    nchains = nchains,
+    n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max,
@@ -108,18 +108,18 @@
 #'
 #' @param chains_summary A numeric `<vector>` of chain sizes and lengths.
 #' @inheritParams .new_epichains
-#' @inheritParams .simulate_chains
+#' @inheritParams simulate_chains
 #' @author James M. Azam
 #' @keywords internal
 .new_epichains_summary <- function(chains_summary,
-                                  nchains,
+                                  n_chains,
                                   statistic,
                                   offspring_dist,
                                   stat_max) {
   # Assemble the elements of the object
   obj <- chains_summary
   class(obj) <- c("epichains_summary", class(chains_summary))
-  attr(obj, "nchains") <- nchains
+  attr(obj, "n_chains") <- n_chains
   attr(obj, "statistic") <- statistic
   attr(obj, "offspring_dist") <- offspring_dist
   attr(obj, "stat_max") <- stat_max
@@ -142,7 +142,7 @@
 #' @author James M. Azam
 #' @keywords internal
 .epichains_summary <- function(chains_summary,
-                              nchains,
+                              n_chains,
                               offspring_dist,
                               statistic = c("size", "length"),
                               stat_max = Inf) {
@@ -154,7 +154,7 @@
     any.missing = FALSE
   )
   checkmate::assert_integerish(
-    nchains,
+    n_chains,
     any.missing = FALSE,
     lower = 1L,
     len = 1L
@@ -170,7 +170,7 @@
   # Create <epichains_summary> object
   epichains_summary <- .new_epichains_summary(
     chains_summary,
-    nchains = nchains,
+    n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max
@@ -240,7 +240,7 @@ format.epichains <- function(x, ...) {
       ),
       sprintf(
         "Number of chains: %s",
-        attr(x, "nchains")
+        attr(x, "n_chains")
       ),
       sprintf(
         "Number of infectors (known): %s",
@@ -340,7 +340,7 @@ format.epichains_summary <- function(x, ...) {
 #' # finite population up to chain size 10.
 #' set.seed(32)
 #' sim_chains_nbinom <- simulate_chains(
-#'   nchains = 10,
+#'   n_chains = 10,
 #'   pop = 100,
 #'   percent_immune = 0,
 #'   statistic = "size",
@@ -356,7 +356,7 @@ format.epichains_summary <- function(x, ...) {
 #' # Same results can be obtained using `simulate_chain_stats()`
 #' set.seed(32)
 #' sim_summary_nbinom <- simulate_chain_stats(
-#'   nchains = 10,
+#'   n_chains = 10,
 #'   pop = 100,
 #'   percent_immune = 0,
 #'   statistic = "size",
@@ -375,10 +375,10 @@ summary.epichains <- function(object, ...) {
 
   # Get relevant attributes for computing summaries
   statistic <- attr(object, "statistic")
-  nchains <- attr(object, "nchains")
+  n_chains <- attr(object, "n_chains")
 
   # Initialize summary statistics
-  chain_summaries <- vector(length = nchains, mode = "integer")
+  chain_summaries <- vector(length = n_chains, mode = "integer")
   # Calculate the summary statistic based on the specified statistic type
   if (statistic == "size") {
     # size is the number of infectees produced by an index case before it goes
@@ -387,7 +387,7 @@ summary.epichains <- function(object, ...) {
   } else {
     # length is the number of generations an index case produces before
     # it goes extinct.
-    for (i in seq_len(nchains)) {
+    for (i in seq_len(n_chains)) {
       chain_generations <- object[object$chain == i, "generation"]
       chain_summaries[i] <- max(chain_generations)
     }
@@ -402,7 +402,7 @@ summary.epichains <- function(object, ...) {
   # Return an <epichains_summary> object
   chain_summaries <- .epichains_summary(
     chains_summary = chain_summaries,
-    nchains = nchains,
+    n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
     stat_max = stat_max
@@ -417,7 +417,7 @@ summary.epichains <- function(object, ...) {
 #'
 #' @return A list of chain summaries. The list contains the following
 #' elements:
-#' * `nchains`: the number of index cases used to simulate the chains.
+#' * `n_chains`: the number of index cases used to simulate the chains.
 #' * `max_stat`: the maximum chain statistic (size/length) achieved by the
 #' chains.
 #' * `min_stat`: the minimum chain statistic (size/length) achieved by the
@@ -429,7 +429,7 @@ summary.epichains_summary <- function(object, ...) {
   .validate_epichains_summary(object)
 
   # Get the summaries
-  nchains <- attr(object, "nchains", exact = TRUE)
+  n_chains <- attr(object, "n_chains", exact = TRUE)
 
 
   if (all(is.infinite(object))) {
@@ -440,7 +440,7 @@ summary.epichains_summary <- function(object, ...) {
   }
 
   out <- list(
-    nchains = nchains,
+    n_chains = n_chains,
     max_stat = max_stat,
     min_stat = min_stat
   )
@@ -536,7 +536,7 @@ summary.epichains_summary <- function(object, ...) {
 #' @examples
 #' set.seed(32)
 #' chains_pois_offspring <- simulate_chains(
-#'   nchains = 10,
+#'   n_chains = 10,
 #'   statistic = "size",
 #'   offspring_dist = rpois,
 #'   stat_max = 10,
@@ -557,7 +557,7 @@ head.epichains <- function(x, ...) {
 #' @examples
 #' set.seed(32)
 #' chains_pois_offspring <- simulate_chains(
-#'   nchains = 10,
+#'   n_chains = 10,
 #'   statistic = "size",
 #'   offspring_dist = rpois,
 #'   stat_max = 10,
@@ -590,7 +590,7 @@ tail.epichains <- function(x, ...) {
 #' @examples
 #' set.seed(32)
 #' chains <- simulate_chains(
-#'   nchains = 10,
+#'   n_chains = 10,
 #'   statistic = "size",
 #'   offspring_dist = rpois,
 #'   stat_max = 10,
