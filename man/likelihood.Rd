@@ -125,7 +125,7 @@ chains_tree_eg_lik
 
 # Example using a <epichains_summary> object
 set.seed(32)
-chains_summary_eg <- simulate_summary(
+chains_summary_eg <- simulate_chain_stats(
  index_cases = 10,
   pop = 100,
   percent_immune = 0,
