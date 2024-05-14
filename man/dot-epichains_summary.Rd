@@ -32,7 +32,7 @@ stopping criteria for each chain being simulated when \code{stat_max} is not
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes
 extinct.
-\item "length": the total number of ancestors produced by a chain before
+\item "length": the total number of generations reached by a chain before
 it goes extinct.
 }}
 
