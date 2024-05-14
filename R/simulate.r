@@ -312,7 +312,7 @@ simulate_chains <- function(nchains,
   return(out)
 }
 
-#' Simulate transmission chains statistics (sizes/lengths)
+#' Simulate a vector of transmission chains statistics (sizes/lengths)
 #'
 #' @description
 #' Generates a vector of transmission chain sizes and lengths with a
