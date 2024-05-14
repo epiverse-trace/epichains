@@ -92,6 +92,7 @@
 #' )
 #' chains_summary_eg_lik
 #' @export
+#nolint start: cyclocomp_linter
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
                        nsim_obs, obs_prob = 1, log = TRUE, stat_max = NULL,
                        exclude = NULL, individual = FALSE, ...) {
@@ -245,3 +246,4 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
   return(chains_likelihood)
 }
+#nolint end
