@@ -75,7 +75,7 @@ events but deals with eventual chain statistics, that is, the statistic
 realised by a chain after dying out.
 
 It is useful for generating a vector of chain sizes or lengths for a given
-number of index cases, if details of who infected whom and the timing of
+number of chains, if details of who infected whom and the timing of
 infection are not of interest.
 
 This function is used in \code{{epichains}} for calculating likelihoods in
