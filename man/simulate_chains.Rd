@@ -78,10 +78,11 @@ optionally,
 }
 }
 \description{
-Generates transmission chains using a simple branching process model that
-that simulates the supplied number of independent simulations, using an
-offspring distribution for each simulation, and an optional generation time
-distribution function.
+It generates independent transmission chains starting with a single case
+per chain, using a simple branching process model (See details for
+definition of "chains" and assumptions). Offspring for each
+chain are generated with an offspring distribution, and an optional
+generation time distribution function.
 
 The simulations are controlled by customisable stopping criteria, including
 a threshold chain size or length, and a generation time cut off. The
