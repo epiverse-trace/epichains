@@ -11,7 +11,7 @@ likelihood(
   nsim_obs,
   obs_prob = 1,
   log = TRUE,
-  stat_threshold = Inf,
+  stat_max = NULL,
   exclude = NULL,
   individual = FALSE,
   ...
