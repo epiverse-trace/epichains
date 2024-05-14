@@ -69,7 +69,7 @@ time is given); Defaults to \code{Inf}.}
 An \verb{<epichains>} object, which is basically a \verb{<data.frame>}
 with columns:
 \itemize{
-\item \code{chain} - an ID for each chain in the simulation,
+\item \code{chain} - an ID for active/ongoing chains,
 \item \code{infectee} - a unique ID for each infectee.
 \item \code{infector} - an ID for the infector of each infectee.
 \item \code{generation} - a discrete time point during which infection occurs, and
