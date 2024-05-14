@@ -101,7 +101,7 @@ generation, and plot it.
 set.seed(32)
 # Simulate chains
 sim_chains <- simulate_chains(
-  index_cases = 20,
+  n_chains = 20,
   statistic = "size",
   offspring_dist = rpois,
   stat_max = 25,
