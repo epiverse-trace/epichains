@@ -60,6 +60,13 @@
 #' @export
 #nolint start
 #' @details
+#' # Definition of a transmission chain
+#' A transmission chain as used here is an independent case and all
+#' the secondary cases linked to it through transmission. The chain starts with
+#' a single case, and each case in the chain generates secondary cases
+#' according to the offspring distribution. The chain ends when no more
+#' secondary cases are generated.
+#'
 #' # Calculating chain sizes and lengths
 #' The function simulates the chain size for individual \eqn{i} at time
 #' \eqn{t}, \eqn{I_{t, i}}, as:
