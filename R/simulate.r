@@ -268,7 +268,7 @@ simulate_chains <- function(nchains,
       # to generate generation times for the cases
       if (!missing(generation_time)) {
         times <- rep(times, next_gen) + generation_time(sum(n_offspring))
-        current_min_time <- unname(tapply(times, active_sim_ids, min))
+        current_min_time <- unname(tapply(times, active_chain_ids, min))
         sim_df[[generation]]$time <- times
       }
     }
