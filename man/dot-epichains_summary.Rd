@@ -15,7 +15,7 @@
 \arguments{
 \item{chains_summary}{A numeric \verb{<vector>} of chain sizes and lengths.}
 
-\item{nchains}{Number of cases to simulate transmission chains for.}
+\item{nchains}{Number of chains to simulate.}
 
 \item{offspring_dist}{Offspring distribution: a \verb{<function>} like the ones
 provided by R to generate random numbers from given distributions (e.g.,

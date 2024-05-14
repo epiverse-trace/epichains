@@ -18,7 +18,7 @@
 "infectee_id", "infector_id", and "generation". Also has optional columns
 for "time", and "chain_id".}
 
-\item{nchains}{Number of cases to simulate transmission chains for.}
+\item{nchains}{Number of chains to simulate.}
 
 \item{statistic}{The chain statistic to track as the
 stopping criteria for each chain being simulated when \code{stat_max} is not
