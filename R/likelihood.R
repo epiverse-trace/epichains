@@ -93,7 +93,7 @@
 #' chains_summary_eg_lik
 #' @export
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
-                       nsim_obs, obs_prob = 1, log = TRUE, stat_threshold = Inf,
+                       nsim_obs, obs_prob = 1, log = TRUE, stat_max = NULL,
                        exclude = NULL, individual = FALSE, ...) {
   statistic <- match.arg(statistic)
 
