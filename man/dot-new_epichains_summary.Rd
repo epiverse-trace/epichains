@@ -6,7 +6,7 @@
 \usage{
 .new_epichains_summary(
   chains_summary,
-  nsims,
+  nchains,
   statistic,
   offspring_dist,
   stat_max
@@ -15,7 +15,7 @@
 \arguments{
 \item{chains_summary}{A numeric \verb{<vector>} of chain sizes and lengths.}
 
-\item{nsims}{Number of cases to simulate transmission chains for.}
+\item{nchains}{Number of cases to simulate transmission chains for.}
 
 \item{statistic}{The chain statistic to track as the
 stopping criteria for each chain being simulated when \code{stat_max} is not
