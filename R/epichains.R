@@ -44,9 +44,9 @@
 #'
 #' An `<epichains>` object contains a `<data.frame>` of the simulated
 #' outbreak tree with ids for each infector and infectee, generation, and
-#' optionally, time, the number of initial cases used for the simulation,
-#' the statistic that was tracked, and whether the susceptible population was
-#' tracked.
+#' optionally, time, the number of chains simulated,
+#' the chain statistic that was tracked, and whether the susceptible
+#' population was tracked.
 #'
 #' @inheritParams simulate_chains
 #' @inheritParams .new_epichains
@@ -132,9 +132,8 @@
 #' `epichains_summary()` constructs an `<epichains_summary>` object.
 #'
 #' An `<epichains_summary>` object is a `<vector>` of the simulated
-#' tree sizes or lengths. It also stores information on the number of initial
-#' cases used for the simulation, and the statistic that was tracked,
-#' the intervention level.
+#' tree sizes or lengths. It also stores information on the number of chains
+#' simulated, and the statistic that was tracked.
 #'
 #' @inheritParams .new_epichains_summary
 #'
@@ -199,7 +198,7 @@ print.epichains <- function(x, ...) {
 #' @param x An `<epichains_summary>` object.
 #' @description
 #' Prints a summary of the `<epichains_summary>` object. In particular, it
-#' prints the number of index cases used for the simulation, and the range of
+#' prints the number of chains simulated, and the range of
 #' the statistic, represented as the maximum (`max_stat`) and minimum
 #' (`min_stat`). If the minimum or maximum is infinite, it is represented as
 #' `>= stat_max` where `stat_max` is the value of the censoring limit. See
@@ -385,8 +384,8 @@ summary.epichains <- function(object, ...) {
     # extinct.
     chain_summaries <- as.numeric(table(object$chain))
   } else {
-    # length is the number of generations an index case produces before
-    # it goes extinct.
+    # length is the number of generations reached by a chain before
+    # it goes extinct or is terminated.
     for (i in seq_len(n_chains)) {
       chain_generations <- object[object$chain == i, "generation"]
       chain_summaries[i] <- max(chain_generations)
@@ -417,7 +416,7 @@ summary.epichains <- function(object, ...) {
 #'
 #' @return A list of chain summaries. The list contains the following
 #' elements:
-#' * `n_chains`: the number of index cases used to simulate the chains.
+#' * `n_chains`: the number of chains simulated.
 #' * `max_stat`: the maximum chain statistic (size/length) achieved by the
 #' chains.
 #' * `min_stat`: the minimum chain statistic (size/length) achieved by the
