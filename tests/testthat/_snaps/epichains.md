@@ -5,7 +5,7 @@
     Output
       `<epichains>` object
       
-      < tree head (from first known infector) >
+      < epichains head (from first known infector) >
       
          chain infector infectee generation       time
       11     1        1        2          2 58.2546995
@@ -28,7 +28,7 @@
     Output
       `<epichains>` object
       
-      < tree head (from first known infector) >
+      < epichains head (from first known infector) >
       
          chain infector infectee generation       time
       11     1        1        2          2  6.5291176
@@ -51,7 +51,7 @@
     Output
       `<epichains>` object
       
-      < tree head (from first known infector) >
+      < epichains head (from first known infector) >
       
         chain infector infectee generation
       3     1        1        2          2
@@ -74,7 +74,7 @@
     Output
       `<epichains>` object
       
-      < tree head (from first known infector) >
+      < epichains head (from first known infector) >
       
          chain infector infectee generation      time
       11     1        1        2          2  1.169061
