@@ -20,7 +20,7 @@ A \verb{<data.frame>} object of cases by \code{by}.
 }
 \description{
 This function provides a quick way to create a time series of cases over
-generation or time (if serials_dist was specified) from simulated
+generation or time (if \code{generation_time} was specified) from simulated
 \verb{<epichains>} objects.
 }
 \examples{
