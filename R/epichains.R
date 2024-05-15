@@ -622,14 +622,14 @@ aggregate.epichains <- function(x,
         "in the `simulate_chains()` function call."
       )
     }
-    # Count the number of cases per generation
+    # Count the number of cases per time
     stats::aggregate(
       list(cases = x$chain),
       list(time = x$time),
       FUN = NROW
     )
   } else if (by == "generation") {
-    # Count the number of cases per time
+    # Count the number of cases per generation
     stats::aggregate(
       list(cases = x$chain),
       list(generation = x$generation),
