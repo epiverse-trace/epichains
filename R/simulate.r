@@ -22,7 +22,7 @@
 #' here are `rpois` for Poisson distributed offspring, `rnbinom` for negative
 #' binomial offspring, or custom functions.
 #' @param statistic The chain statistic to track as the
-#' stopping criteria for each chain being simulated when `stat_max` is not
+#' stopping criteria for each chain being simulated when `stat_threshold` is not
 #' `Inf`; A `<string>`. It can be one of:
 #' \itemize{
 #'   \item "size": the total number of cases produced by a chain before it goes
@@ -30,12 +30,13 @@
 #'   \item "length": the total number of generations reached by a chain before
 #'   it goes extinct.
 #' }
-#' @param stat_max A stopping criterion for individual chain simulations; a
-#' positive number coercible to integer. When any chain's cumulative statistic
-#' reaches or surpasses `stat_max`, that chain ends. Defaults to `Inf`.
-#' For example, if `statistic = "size"` and `stat_max = 10`, then any chain
-#' that produces 10 or more cases will stop. Note that setting `stat_max` does
-#' not guarantee that all chains will stop at the same value.
+#' @param stat_threshold A stopping criterion for individual chain simulations;
+#' a positive number coercible to integer. When any chain's cumulative statistic
+#' reaches or surpasses `stat_threshold`, that chain ends. Defaults to `Inf`.
+#' For example, if `statistic = "size"` and `stat_threshold = 10`, then any
+#' chain that produces 10 or more cases will stop. Note that setting
+#' `stat_threshold` does not guarantee that all chains will stop at the same
+#' value.
 #' @param pop Population size; An `<Integer>`. Used alongside `percent_immune`
 #' to define the susceptible population. Defaults to `Inf`.
 #' @param percent_immune Percent of the population immune to
@@ -114,7 +115,7 @@
 #'   n_chains = 10,
 #'   statistic = "size",
 #'   offspring_dist = rpois,
-#'   stat_max = 10,
+#'   stat_threshold = 10,
 #'   generation_time = function(n) rep(3, n),
 #'   lambda = 2
 #' )
@@ -129,7 +130,7 @@
 #'   percent_immune = 0,
 #'   statistic = "size",
 #'   offspring_dist = rnbinom,
-#'   stat_max = 10,
+#'   stat_threshold = 10,
 #'   generation_time = function(n) rep(3, n),
 #'   mu = 2,
 #'   size = 0.2
@@ -153,7 +154,7 @@ simulate_chains <- function(n_chains,
                             statistic = c("size", "length"),
                             offspring_dist,
                             ...,
-                            stat_max = Inf,
+                            stat_threshold = Inf,
                             pop = Inf,
                             percent_immune = 0,
                             generation_time = NULL,
@@ -164,7 +165,7 @@ simulate_chains <- function(n_chains,
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
-    stat_max = stat_max,
+    stat_threshold = stat_threshold,
     pop = pop,
     percent_immune = percent_immune
   )
@@ -278,7 +279,7 @@ simulate_chains <- function(n_chains,
 
     # Find ongoing chains (those still infecting): those that have still
     # offspring and haven't reached the threshold statistic yet
-    chains_active <- which(n_offspring > 0 & stat_track < stat_max)
+    chains_active <- which(n_offspring > 0 & stat_track < stat_threshold)
     if (length(chains_active) > 0) {
       if (!missing(generation_time)) {
         ## only continue to simulate trees that don't go beyond tf
@@ -318,7 +319,7 @@ simulate_chains <- function(n_chains,
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
-    stat_max = stat_max,
+    stat_threshold = stat_threshold,
     track_pop = !missing(pop)
   )
   return(out)
@@ -339,9 +340,9 @@ simulate_chains <- function(n_chains,
 #' accepts population related inputs such as the population size (defaults
 #' to Inf) and percentage of the population initially immune (defaults to 0).
 #' @inheritParams simulate_chains
-#' @param stat_max A stopping criterion for individual chain simulations; a
-#' positive number coercible to integer. When any chain's cumulative statistic
-#' reaches or surpasses `stat_max`, that chain ends. It also serves as a
+#' @param stat_threshold A stopping criterion for individual chain simulations;
+#' a positive number coercible to integer. When any chain's cumulative statistic
+#' reaches or surpasses `stat_threshold`, that chain ends. It also serves as a
 #' censoring limit so that results above the specified value, are set to `Inf`.
 #' Defaults to `Inf`.
 #' @return An object of class `<epichains_summary>`, which is a numeric
@@ -378,7 +379,7 @@ simulate_chains <- function(n_chains,
 #'   n_chains = 20,
 #'   statistic = "size",
 #'   offspring_dist = rpois,
-#'   stat_max = 10,
+#'   stat_threshold = 10,
 #'   lambda = 0.9
 #' )
 #' # Simulate chain sizes with a negative binomial distribution and assuming
@@ -390,7 +391,7 @@ simulate_chains <- function(n_chains,
 #'   n_chains = 20,
 #'   statistic = "size",
 #'   offspring_dist = rnbinom,
-#'   stat_max = 10,
+#'   stat_threshold = 10,
 #'   mu = 0.9,
 #'   size = 0.36
 #' )
@@ -399,7 +400,7 @@ simulate_chain_stats <- function(n_chains,
                              statistic = c("size", "length"),
                              offspring_dist,
                              ...,
-                             stat_max = Inf,
+                             stat_threshold = Inf,
                              pop = Inf,
                              percent_immune = 0) {
   # Check offspring and population-related arguments
@@ -407,7 +408,7 @@ simulate_chain_stats <- function(n_chains,
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
-    stat_max = stat_max,
+    stat_threshold = stat_threshold,
     pop = pop,
     percent_immune = percent_immune
   )
@@ -461,18 +462,19 @@ simulate_chain_stats <- function(n_chains,
     )
     # Update susceptible population
     susc_pop <- susc_pop - sum(n_offspring)
-    # only continue chains that have offspring and haven't reached stat_max
-    chains_active <- which(n_offspring > 0 & stat_track < stat_max)
+    # only continue chains that have offspring and haven't reached
+    # stat_threshold
+    chains_active <- which(n_offspring > 0 & stat_track < stat_threshold)
   }
 
-  stat_track[stat_track >= stat_max] <- Inf
+  stat_track[stat_track >= stat_threshold] <- Inf
 
   out <- .epichains_summary(
     chains_summary = stat_track,
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
-    stat_max = stat_max
+    stat_threshold = stat_threshold
   )
 
   return(out)

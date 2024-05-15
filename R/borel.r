@@ -51,7 +51,7 @@ rborel <- function(n, mu, censor_at = Inf) {
     n_chains = n,
     offspring_dist = rpois,
     statistic = "size",
-    stat_max = censor_at,
+    stat_threshold = censor_at,
     lambda = mu
   )
   out <- as.numeric(out)

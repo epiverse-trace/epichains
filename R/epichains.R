@@ -19,7 +19,7 @@
                                n_chains,
                                statistic,
                                offspring_dist,
-                               stat_max,
+                               stat_threshold,
                                track_pop) {
   # Assemble the elements of the object
   obj <- sim_df
@@ -27,7 +27,7 @@
   attr(obj, "n_chains") <- n_chains
   attr(obj, "statistic") <- statistic
   attr(obj, "offspring_dist") <- offspring_dist
-  attr(obj, "stat_max") <- stat_max
+  attr(obj, "stat_threshold") <- stat_threshold
   attr(obj, "track_pop") <- track_pop
   return(obj)
 }
@@ -59,7 +59,7 @@
                       offspring_dist,
                       track_pop,
                       statistic = c("size", "length"),
-                      stat_max = Inf) {
+                      stat_threshold = Inf) {
   # Check that inputs are well specified
   checkmate::assert_data_frame(sim_df, min.cols = 3, min.rows = n_chains)
   checkmate::assert_integerish(
@@ -74,8 +74,8 @@
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert_logical(track_pop, len = 1L)
   checkmate::assert(
-    is.infinite(stat_max),
-    checkmate::check_integerish(stat_max, lower = 1L)
+    is.infinite(stat_threshold),
+    checkmate::check_integerish(stat_threshold, lower = 1L)
   )
   # Create <epichains> object
   epichains <- .new_epichains(
@@ -83,7 +83,7 @@
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
-    stat_max = stat_max,
+    stat_threshold = stat_threshold,
     track_pop = track_pop
   )
 
@@ -115,14 +115,14 @@
                                   n_chains,
                                   statistic,
                                   offspring_dist,
-                                  stat_max) {
+                                  stat_threshold) {
   # Assemble the elements of the object
   obj <- chains_summary
   class(obj) <- c("epichains_summary", class(chains_summary))
   attr(obj, "n_chains") <- n_chains
   attr(obj, "statistic") <- statistic
   attr(obj, "offspring_dist") <- offspring_dist
-  attr(obj, "stat_max") <- stat_max
+  attr(obj, "stat_threshold") <- stat_threshold
   return(obj)
 }
 
@@ -144,7 +144,7 @@
                               n_chains,
                               offspring_dist,
                               statistic = c("size", "length"),
-                              stat_max = Inf) {
+                              stat_threshold = Inf) {
   # chain_summary can sometimes contain infinite values, so check
   # that finite elements are integerish.
   checkmate::check_integerish(
@@ -162,8 +162,8 @@
   statistic <- match.arg(statistic, c("size", "length"))
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert(
-    is.infinite(stat_max),
-    checkmate::check_integerish(stat_max, lower = 1L)
+    is.infinite(stat_threshold),
+    checkmate::check_integerish(stat_threshold, lower = 1L)
   )
 
   # Create <epichains_summary> object
@@ -172,7 +172,7 @@
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
-    stat_max = stat_max
+    stat_threshold = stat_threshold
   )
 
   # Validate the created object
@@ -201,8 +201,8 @@ print.epichains <- function(x, ...) {
 #' prints the number of chains simulated, and the range of
 #' the statistic, represented as the maximum (`max_stat`) and minimum
 #' (`min_stat`). If the minimum or maximum is infinite, it is represented as
-#' `>= stat_max` where `stat_max` is the value of the censoring limit. See
-#' `?epichains_summary()` for the definition of `stat_max`.
+#' `>= stat_threshold` where `stat_threshold` is the value of the censoring
+#' limit. See `?epichains_summary()` for the definition of `stat_threshold`.
 #' @param ... Not used.
 #' @return Invisibly returns an `<epichains_summary>`. Called for
 #' side-effects.
@@ -296,7 +296,7 @@ format.epichains_summary <- function(x, ...) {
         ifelse(
           is.infinite(
             statistics[["max_stat"]]),
-            paste0(">=", attr(x, "stat_max")
+            paste0(">=", attr(x, "stat_threshold")
           ),
           statistics[["max_stat"]]
         )
@@ -306,7 +306,7 @@ format.epichains_summary <- function(x, ...) {
         ifelse(
           is.infinite(
             statistics[["min_stat"]]),
-          paste0(">=", attr(x, "stat_max")
+          paste0(">=", attr(x, "stat_threshold")
           ),
           statistics[["min_stat"]]
         )
@@ -344,7 +344,7 @@ format.epichains_summary <- function(x, ...) {
 #'   percent_immune = 0,
 #'   statistic = "size",
 #'   offspring_dist = rnbinom,
-#'   stat_max = 10,
+#'   stat_threshold = 10,
 #'   mu = 2,
 #'   size = 0.2
 #' )
@@ -360,7 +360,7 @@ format.epichains_summary <- function(x, ...) {
 #'   percent_immune = 0,
 #'   statistic = "size",
 #'   offspring_dist = rnbinom,
-#'   stat_max = 10,
+#'   stat_threshold = 10,
 #'   mu = 2,
 #'   size = 0.2
 #' )
@@ -392,11 +392,11 @@ summary.epichains <- function(object, ...) {
     }
   }
   # Get other required attributes from passed object
-  stat_max <- attr(object, "stat_max")
+  stat_threshold <- attr(object, "stat_threshold")
   offspring_dist <- attr(object, "offspring_dist")
 
   # Apply truncation
-  chain_summaries[chain_summaries >= stat_max] <- Inf
+  chain_summaries[chain_summaries >= stat_threshold] <- Inf
 
   # Return an <epichains_summary> object
   chain_summaries <- .epichains_summary(
@@ -404,7 +404,7 @@ summary.epichains <- function(object, ...) {
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
-    stat_max = stat_max
+    stat_threshold = stat_threshold
   )
   return(chain_summaries)
 }
@@ -536,7 +536,7 @@ summary.epichains_summary <- function(object, ...) {
 #'   n_chains = 10,
 #'   statistic = "size",
 #'   offspring_dist = rpois,
-#'   stat_max = 10,
+#'   stat_threshold = 10,
 #'   generation_time = function(n) rep(3, n),
 #'   lambda = 2
 #' )
@@ -557,7 +557,7 @@ head.epichains <- function(x, ...) {
 #'   n_chains = 10,
 #'   statistic = "size",
 #'   offspring_dist = rpois,
-#'   stat_max = 10,
+#'   stat_threshold = 10,
 #'   generation_time = function(n) rep(3, n),
 #'   lambda = 2
 #' )
@@ -590,7 +590,7 @@ tail.epichains <- function(x, ...) {
 #'   n_chains = 10,
 #'   statistic = "size",
 #'   offspring_dist = rpois,
-#'   stat_max = 10,
+#'   stat_threshold = 10,
 #'   generation_time = function(n) rep(3, n),
 #'   lambda = 2
 #' )

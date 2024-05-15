@@ -26,7 +26,7 @@ test_that("Likelihoods can be calculated", {
         statistic = "size",
         offspring_dist = rpois,
         lambda = 0.5,
-        stat_max = 5
+        stat_threshold = 5
       ),
       0
     )
@@ -47,7 +47,7 @@ test_that("Likelihoods can be calculated", {
         statistic = "size",
         offspring_dist = rpois,
         lambda = 0.5,
-        stat_max = 5,
+        stat_threshold = 5,
         obs_prob = 0.5,
         nsim_obs = 1
       ),

@@ -46,7 +46,7 @@
 #' )
 #' @export
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
-                       nsim_obs, obs_prob = 1, log = TRUE, stat_max = Inf,
+                       nsim_obs, obs_prob = 1, log = TRUE, stat_threshold = Inf,
                        exclude = NULL, individual = FALSE, ...) {
   statistic <- match.arg(statistic)
 
@@ -63,7 +63,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   # check that arguments related to the statistic are valid
   .check_statistic_args(
     statistic,
-    stat_max
+    stat_threshold
   )
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert_number(
@@ -90,22 +90,22 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
         length(chains),
         chains, obs_prob
       ),
-      stat_max
+      stat_threshold
     ), simplify = FALSE)
     stat_rep_vect <- unlist(stat_rep_list)
-    if (!is.finite(stat_max)) {
-      stat_max <- max(stat_rep_vect) + 1
+    if (!is.finite(stat_threshold)) {
+      stat_threshold <- max(stat_rep_vect) + 1
     }
   } else {
-    chains[chains >= stat_max] <- stat_max
+    chains[chains >= stat_threshold] <- stat_threshold
     stat_rep_vect <- chains
     stat_rep_list <- list(chains)
   }
 
   ## determine for which sizes to calculate the log-likelihood
   ## (for true chain size)
-  if (any(stat_rep_vect == stat_max)) {
-    calc_sizes <- seq_len(stat_max - 1)
+  if (any(stat_rep_vect == stat_threshold)) {
+    calc_sizes <- seq_len(stat_threshold - 1)
   } else {
     calc_sizes <- unique(c(stat_rep_vect, exclude))
   }
@@ -136,16 +136,16 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
             x = calc_sizes,
             offspring_dist = offspring_dist,
             statistic = statistic,
-            stat_max = stat_max
+            stat_threshold = stat_threshold
           ),
           pars
         )
       )
   }
 
-  ## assign probabilities to stat_max outbreak sizes
-  if (any(stat_rep_vect == stat_max)) {
-    likelihoods[stat_max] <- .complementary_logprob(likelihoods)
+  ## assign probabilities to stat_threshold outbreak sizes
+  if (any(stat_rep_vect == stat_threshold)) {
+    likelihoods[stat_threshold] <- .complementary_logprob(likelihoods)
   }
 
   if (!missing(exclude)) {

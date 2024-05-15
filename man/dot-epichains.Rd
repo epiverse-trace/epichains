@@ -10,7 +10,7 @@
   offspring_dist,
   track_pop,
   statistic = c("size", "length"),
-  stat_max = Inf
+  stat_threshold = Inf
 )
 }
 \arguments{
@@ -32,7 +32,7 @@ binomial offspring, or custom functions.}
 \item{track_pop}{Was the susceptible population tracked? Logical.}
 
 \item{statistic}{The chain statistic to track as the
-stopping criteria for each chain being simulated when \code{stat_max} is not
+stopping criteria for each chain being simulated when \code{stat_threshold} is not
 \code{Inf}; A \verb{<string>}. It can be one of:
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes
@@ -41,12 +41,13 @@ extinct.
 it goes extinct.
 }}
 
-\item{stat_max}{A stopping criterion for individual chain simulations; a
-positive number coercible to integer. When any chain's cumulative statistic
-reaches or surpasses \code{stat_max}, that chain ends. Defaults to \code{Inf}.
-For example, if \code{statistic = "size"} and \code{stat_max = 10}, then any chain
-that produces 10 or more cases will stop. Note that setting \code{stat_max} does
-not guarantee that all chains will stop at the same value.}
+\item{stat_threshold}{A stopping criterion for individual chain simulations;
+a positive number coercible to integer. When any chain's cumulative statistic
+reaches or surpasses \code{stat_threshold}, that chain ends. Defaults to \code{Inf}.
+For example, if \code{statistic = "size"} and \code{stat_threshold = 10}, then any
+chain that produces 10 or more cases will stop. Note that setting
+\code{stat_threshold} does not guarantee that all chains will stop at the same
+value.}
 }
 \value{
 An \verb{<epichains>} object.

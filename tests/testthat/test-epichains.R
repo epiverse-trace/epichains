@@ -80,7 +80,7 @@ test_that("Simulators return epichains objects", {
     n_chains = 10,
     statistic = "size",
     offspring_dist = rpois,
-    stat_max = 10,
+    stat_threshold = 10,
     generation_time = generation_time_fn,
     lambda = 2
   )
@@ -150,7 +150,7 @@ test_that("print.epichains works for simulation functions", {
     n_chains = 10,
     statistic = "size",
     offspring_dist = rpois,
-    stat_max = 10,
+    stat_threshold = 10,
     generation_time = generation_time_fn,
     lambda = 2
   )
@@ -162,23 +162,23 @@ test_that("print.epichains works for simulation functions", {
     statistic = "length",
     lambda = 0.9
   )
-  #' Simulate the case where Infs are produced and printed as ">= stat_max"
+  #' Simulate the case where Infs are produced and printed as ">= stat_threshold"
   set.seed(32)
   chain_lengths_with_Infs <- simulate_chain_stats(
     n_chains = 10,
     offspring_dist = rpois,
     statistic = "length",
     lambda = 1.1,
-    stat_max = 10
+    stat_threshold = 10
   )
-  #' Simulate the case where all are Infs printed as ">= stat_max"
+  #' Simulate the case where all are Infs printed as ">= stat_threshold"
   set.seed(32)
   chain_lengths_all_Infs <- simulate_chain_stats(
     n_chains = 2,
     offspring_dist = rpois,
     statistic = "length",
     lambda = 1.1,
-    stat_max = 10
+    stat_threshold = 10
   )
   #' Expectations
   expect_snapshot(susc_outbreak_raw)
@@ -276,7 +276,7 @@ test_that("validate_epichains works", {
     n_chains = 10,
     statistic = "size",
     offspring_dist = rpois,
-    stat_max = 10,
+    stat_threshold = 10,
     generation_time = generation_time_fn,
     lambda = 2
   )
@@ -338,7 +338,7 @@ test_that("is_chains_tree works", {
     n_chains = 10,
     statistic = "size",
     offspring_dist = rpois,
-    stat_max = 10,
+    stat_threshold = 10,
     generation_time = generation_time_fn,
     lambda = 2
   )
@@ -400,7 +400,7 @@ test_that("is_chains_summary works", {
     n_chains = 10,
     statistic = "size",
     offspring_dist = rpois,
-    stat_max = 10,
+    stat_threshold = 10,
     generation_time = generation_time_fn,
     lambda = 2
   )
@@ -436,7 +436,7 @@ test_that("aggregate.epichains method returns correct objects", {
     n_chains = 10,
     statistic = "size",
     offspring_dist = rpois,
-    stat_max = 10,
+    stat_threshold = 10,
     generation_time = generation_time_fn,
     lambda = 2
   )
@@ -467,7 +467,7 @@ test_that("aggregate.epichains method throws errors", {
         n_chains = 10,
         statistic = "size",
         offspring_dist = rpois,
-        stat_max = 10,
+        stat_threshold = 10,
         lambda = 2
       ),
       by = "time"
@@ -484,7 +484,7 @@ test_that("aggregate.epichains method is numerically correct", {
     n_chains = 10,
     statistic = "size",
     offspring_dist = rpois,
-    stat_max = 10,
+    stat_threshold = 10,
     lambda = 2
   )
   #' Simulate a tree of infections in an infinite population and with
@@ -493,7 +493,7 @@ test_that("aggregate.epichains method is numerically correct", {
     n_chains = 10,
     statistic = "size",
     offspring_dist = rpois,
-    stat_max = 10,
+    stat_threshold = 10,
     generation_time = generation_time_fn,
     lambda = 2
   )
@@ -532,7 +532,7 @@ test_that("head and tail print output as expected", {
     n_chains = 10,
     statistic = "size",
     offspring_dist = rpois,
-    stat_max = 10,
+    stat_threshold = 10,
     generation_time = generation_time_fn,
     lambda = 2
   )

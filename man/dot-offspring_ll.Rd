@@ -20,7 +20,7 @@ here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for nega
 binomial offspring, or custom functions.}
 
 \item{statistic}{The chain statistic to track as the
-stopping criteria for each chain being simulated when \code{stat_max} is not
+stopping criteria for each chain being simulated when \code{stat_threshold} is not
 \code{Inf}; A \verb{<string>}. It can be one of:
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes

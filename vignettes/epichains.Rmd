@@ -303,7 +303,7 @@ sim_chains <- simulate_chains(
   n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
-  stat_max = 10,
+  stat_threshold = 10,
   generation_time = generation_time_fn,
   lambda = 0.9
 )
@@ -362,7 +362,7 @@ simulate_chain_stats_eg <- simulate_chain_stats(
   n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
-  stat_max = 10,
+  stat_threshold = 10,
   lambda = 0.9
 )
 
@@ -388,7 +388,7 @@ sim_chains <- simulate_chains(
   n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
-  stat_max = 10,
+  stat_threshold = 10,
   generation_time = generation_time_fn,
   lambda = 0.9
 )
@@ -402,7 +402,7 @@ simulate_chain_stats_eg <- simulate_chain_stats(
   n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
-  stat_max = 10,
+  stat_threshold = 10,
   lambda = 0.9
 )
 
@@ -451,7 +451,7 @@ sim_chains <- simulate_chains(
   n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
-  stat_max = 10,
+  stat_threshold = 10,
   generation_time = generation_time_fn,
   lambda = 0.9
 )
@@ -478,7 +478,7 @@ sim_chains <- simulate_chains(
   n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
-  stat_max = 1000,
+  stat_threshold = 1000,
   generation_time = generation_time_fn,
   lambda = 2
 )
