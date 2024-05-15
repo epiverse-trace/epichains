@@ -20,8 +20,8 @@ Prints a summary of the \verb{<epichains_summary>} object. In particular, it
 prints the number of chains simulated, and the range of
 the statistic, represented as the maximum (\code{max_stat}) and minimum
 (\code{min_stat}). If the minimum or maximum is infinite, it is represented as
-\verb{>= stat_max} where \code{stat_max} is the value of the censoring limit. See
-\code{?epichains_summary()} for the definition of \code{stat_max}.
+\verb{>= stat_threshold} where \code{stat_threshold} is the value of the censoring
+limit. See \code{?epichains_summary()} for the definition of \code{stat_threshold}.
 }
 \author{
 James M. Azam

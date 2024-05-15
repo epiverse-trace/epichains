@@ -198,14 +198,14 @@ Lastly, since, we have specified that $R0 > 1$, it means the epidemic could
 potentially grow without end. Hence, we must specify an end point for the
 simulations. 
 
-`simulate_chains()` provides the `stat_max` argument for this purpose.
-Above `stat_max`, the simulation is cut off. If this value is 
+`simulate_chains()` provides the `stat_threshold` argument for this purpose.
+Above `stat_threshold`, the simulation is cut off. If this value is 
 not specified, it assumes a value of infinity. Here, we will
 assume a maximum chain size of $1000$.
 
-```{r stat_max_setup}
+```{r stat_threshold_setup}
 #' Maximum chain size allowed
-stat_max <- 1000
+stat_threshold <- 1000
 ```
 
 ## Modelling assumptions
@@ -222,7 +222,7 @@ This exercise makes the following simplifying assumptions:
 To summarise the whole set up so far, we are going to simulate 
 each chain `r sim_rep` times, projecting cases over
 `r projection_window` days after the first `r max(t0)` days, and 
-assuming that no outbreak size exceeds `r stat_max` cases.
+assuming that no outbreak size exceeds `r stat_threshold` cases.
 
 ## Running the simulations
 
@@ -239,7 +239,7 @@ sim_chain_sizes <- lapply(
       mu = mu,
       size = size,
       statistic = "size",
-      stat_max = stat_max,
+      stat_threshold = stat_threshold,
       generation_time = generation_time,
       t0 = t0,
       tf = tf

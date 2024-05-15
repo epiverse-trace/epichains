@@ -9,7 +9,7 @@
   n_chains,
   offspring_dist,
   statistic = c("size", "length"),
-  stat_max = Inf
+  stat_threshold = Inf
 )
 }
 \arguments{
@@ -27,7 +27,7 @@ here are \code{rpois} for Poisson distributed offspring, \code{rnbinom} for nega
 binomial offspring, or custom functions.}
 
 \item{statistic}{The chain statistic to track as the
-stopping criteria for each chain being simulated when \code{stat_max} is not
+stopping criteria for each chain being simulated when \code{stat_threshold} is not
 \code{Inf}; A \verb{<string>}. It can be one of:
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes
@@ -36,9 +36,9 @@ extinct.
 it goes extinct.
 }}
 
-\item{stat_max}{A stopping criterion for individual chain simulations; a
-positive number coercible to integer. When any chain's cumulative statistic
-reaches or surpasses \code{stat_max}, that chain ends. It also serves as a
+\item{stat_threshold}{A stopping criterion for individual chain simulations;
+a positive number coercible to integer. When any chain's cumulative statistic
+reaches or surpasses \code{stat_threshold}, that chain ends. It also serves as a
 censoring limit so that results above the specified value, are set to \code{Inf}.
 Defaults to \code{Inf}.}
 }

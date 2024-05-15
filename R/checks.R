@@ -28,7 +28,7 @@
     n_chains,
     statistic,
     offspring_dist,
-    stat_max,
+    stat_threshold,
     pop,
     percent_immune) {
   # Input checking
@@ -41,7 +41,7 @@
   # check that arguments related to the statistic are valid
   .check_statistic_args(
     statistic,
-    stat_max
+    stat_threshold
   )
   checkmate::assert(
     is.infinite(pop) ||
@@ -54,7 +54,7 @@
   invisible(NULL)
 }
 
-#' Check that the `statistic` and `stat_max` arguments are valid
+#' Check that the `statistic` and `stat_threshold` arguments are valid
 #'
 #' @inheritParams simulate_chains
 #' @description
@@ -64,15 +64,15 @@
 #' @return NULL; called for side effects
 #' @keywords internal
 .check_statistic_args <- function(statistic,
-                                  stat_max) {
+                                  stat_threshold) {
   checkmate::assert_choice(
     statistic,
     choices = c("size", "length")
   )
   checkmate::assert(
-    is.infinite(stat_max),
+    is.infinite(stat_threshold),
       checkmate::check_integerish(
-        stat_max,
+        stat_threshold,
         lower = 1,
         null.ok = FALSE
     ),

@@ -27,7 +27,7 @@ test_that("simulate_chains has expected shape", {
     n_chains = 10,
     offspring_dist = rpois,
     statistic = "length",
-    stat_max = 10,
+    stat_threshold = 10,
     lambda = 2
   )
   # Simulate a tree of infections in an infinite population and with
@@ -60,7 +60,7 @@ test_that("simulate_chains has expected shape", {
     statistic = "size",
     offspring_dist = rpois,
     lambda = 2,
-    stat_max = 10,
+    stat_threshold = 10,
     generation_time = generation_time_fn,
     tf = 5
   )
@@ -328,7 +328,7 @@ test_that("simulate_chains produces expected snapshots", {
     n_chains = 10,
     offspring_dist = rpois,
     statistic = "size",
-    stat_max = 100,
+    stat_threshold = 100,
     lambda = 2,
     generation_time = generation_time_fn
   )

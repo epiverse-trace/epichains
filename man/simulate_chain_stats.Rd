@@ -9,7 +9,7 @@ simulate_chain_stats(
   statistic = c("size", "length"),
   offspring_dist,
   ...,
-  stat_max = Inf,
+  stat_threshold = Inf,
   pop = Inf,
   percent_immune = 0
 )
@@ -18,7 +18,7 @@ simulate_chain_stats(
 \item{n_chains}{Number of chains to simulate.}
 
 \item{statistic}{The chain statistic to track as the
-stopping criteria for each chain being simulated when \code{stat_max} is not
+stopping criteria for each chain being simulated when \code{stat_threshold} is not
 \code{Inf}; A \verb{<string>}. It can be one of:
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes
@@ -38,9 +38,9 @@ binomial offspring, or custom functions.}
 
 \item{...}{Parameters of the offspring distribution as required by R.}
 
-\item{stat_max}{A stopping criterion for individual chain simulations; a
-positive number coercible to integer. When any chain's cumulative statistic
-reaches or surpasses \code{stat_max}, that chain ends. It also serves as a
+\item{stat_threshold}{A stopping criterion for individual chain simulations;
+a positive number coercible to integer. When any chain's cumulative statistic
+reaches or surpasses \code{stat_threshold}, that chain ends. It also serves as a
 censoring limit so that results above the specified value, are set to \code{Inf}.
 Defaults to \code{Inf}.}
 
@@ -118,7 +118,7 @@ simulate_chain_stats(
   n_chains = 20,
   statistic = "size",
   offspring_dist = rpois,
-  stat_max = 10,
+  stat_threshold = 10,
   lambda = 0.9
 )
 # Simulate chain sizes with a negative binomial distribution and assuming
@@ -130,7 +130,7 @@ simulate_chain_stats(
   n_chains = 20,
   statistic = "size",
   offspring_dist = rnbinom,
-  stat_max = 10,
+  stat_threshold = 10,
   mu = 0.9,
   size = 0.36
 )

@@ -11,7 +11,7 @@ likelihood(
   nsim_obs,
   obs_prob = 1,
   log = TRUE,
-  stat_max = Inf,
+  stat_threshold = Inf,
   exclude = NULL,
   individual = FALSE,
   ...
@@ -21,7 +21,7 @@ likelihood(
 \item{chains}{A numeric vector of chain summaries (sizes/lengths).}
 
 \item{statistic}{The chain statistic to track as the
-stopping criteria for each chain being simulated when \code{stat_max} is not
+stopping criteria for each chain being simulated when \code{stat_threshold} is not
 \code{Inf}; A \verb{<string>}. It can be one of:
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes
@@ -52,9 +52,9 @@ process is assumed to be constant.}
 \item{log}{Should the log-likelihoods be transformed to
 likelihoods? Logical. Defaults to \code{TRUE}.}
 
-\item{stat_max}{A stopping criterion for individual chain simulations; a
-positive number coercible to integer. When any chain's cumulative statistic
-reaches or surpasses \code{stat_max}, that chain ends. It also serves as a
+\item{stat_threshold}{A stopping criterion for individual chain simulations;
+a positive number coercible to integer. When any chain's cumulative statistic
+reaches or surpasses \code{stat_threshold}, that chain ends. It also serves as a
 censoring limit so that results above the specified value, are set to \code{Inf}.
 Defaults to \code{Inf}.}
 

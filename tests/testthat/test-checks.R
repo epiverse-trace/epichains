@@ -5,7 +5,7 @@
         n_chains = 10,
         statistic = "size",
         offspring_dist = rpois,
-        stat_max = 10,
+        stat_threshold = 10,
         pop = 10,
         percent_immune = 0.1
     )
@@ -78,7 +78,7 @@ test_that("Smaller checker functions work", {
     expect_no_error(
         .check_statistic_args(
             statistic = "size",
-            stat_max = 10
+            stat_threshold = 10
         )
     )
 })
@@ -116,10 +116,10 @@ test_that(".check_sim_args() returns errors", {
         ),
         "object 'r' not found"
     )
-    # stat_max must be >= 1
+    # stat_threshold must be >= 1
     expect_error(
         .check_sim_args_default(
-            stat_max = 0
+            stat_threshold = 0
         ),
         "Assertion failed."
     )

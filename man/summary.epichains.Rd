@@ -36,7 +36,7 @@ sim_chains_nbinom <- simulate_chains(
   percent_immune = 0,
   statistic = "size",
   offspring_dist = rnbinom,
-  stat_max = 10,
+  stat_threshold = 10,
   mu = 2,
   size = 0.2
 )
@@ -52,7 +52,7 @@ sim_summary_nbinom <- simulate_chain_stats(
   percent_immune = 0,
   statistic = "size",
   offspring_dist = rnbinom,
-  stat_max = 10,
+  stat_threshold = 10,
   mu = 2,
   size = 0.2
 )

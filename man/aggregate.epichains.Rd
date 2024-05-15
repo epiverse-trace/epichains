@@ -29,7 +29,7 @@ chains <- simulate_chains(
   n_chains = 10,
   statistic = "size",
   offspring_dist = rpois,
-  stat_max = 10,
+  stat_threshold = 10,
   generation_time = function(n) rep(3, n),
   lambda = 2
 )
