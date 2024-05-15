@@ -380,8 +380,8 @@ summary.epichains <- function(object, ...) {
   chain_summaries <- vector(length = n_chains, mode = "integer")
   # Calculate the summary statistic based on the specified statistic type
   if (statistic == "size") {
-    # size is the number of infectees produced by an index case before it goes
-    # extinct.
+    # size is the number of offspring produced by a chain before it goes
+    # extinct or is terminated.
     chain_summaries <- as.numeric(table(object$chain))
   } else {
     # length is the number of generations reached by a chain before
