@@ -47,7 +47,7 @@ An \verb{<epichains_summary>} object.
 \code{epichains_summary()} constructs an \verb{<epichains_summary>} object.
 
 An \verb{<epichains_summary>} object is a \verb{<vector>} of the simulated
-tree sizes or lengths. It also stores information on the number of chains
+chain sizes or lengths. It also stores information on the number of chains
 simulated, and the statistic that was tracked.
 }
 \author{

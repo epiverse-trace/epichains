@@ -43,7 +43,7 @@
 #' object created to ensure it has the right columns and column types.
 #'
 #' An `<epichains>` object contains a `<data.frame>` of the simulated
-#' outbreak tree with ids for each infector and infectee, generation, and
+#' outbreak with ids for each infector and infectee, generation, and
 #' optionally, time, the number of chains simulated,
 #' the chain statistic that was tracked, and whether the susceptible
 #' population was tracked.
@@ -132,7 +132,7 @@
 #' `epichains_summary()` constructs an `<epichains_summary>` object.
 #'
 #' An `<epichains_summary>` object is a `<vector>` of the simulated
-#' tree sizes or lengths. It also stores information on the number of chains
+#' chain sizes or lengths. It also stores information on the number of chains
 #' simulated, and the statistic that was tracked.
 #'
 #' @inheritParams .new_epichains_summary
@@ -227,7 +227,7 @@ format.epichains <- function(x, ...) {
   writeLines(sprintf("`<epichains>` object\n"))
 
   # print head of the object
-  writeLines("< tree head (from first known infector) >\n")
+  writeLines("< epichains head (from first known infector) >\n")
   print(head(x))
 
   # print summary information

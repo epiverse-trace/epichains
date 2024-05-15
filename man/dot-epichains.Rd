@@ -57,7 +57,7 @@ analyses and reproducibility. This function checks the validity of the
 object created to ensure it has the right columns and column types.
 
 An \verb{<epichains>} object contains a \verb{<data.frame>} of the simulated
-outbreak tree with ids for each infector and infectee, generation, and
+outbreak with ids for each infector and infectee, generation, and
 optionally, time, the number of chains simulated,
 the chain statistic that was tracked, and whether the susceptible
 population was tracked.
