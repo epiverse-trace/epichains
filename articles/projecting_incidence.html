@@ -141,7 +141,7 @@ reference and find the difference between the other observed dates and the refer
 <span><span class="co">#&gt; [1] 0 2 3 4 6</span></span></code></pre></div>
 </details><p>Using the vector of start times from the time series, we will then
 create a corresponding seeding time for each individual, which we’ll call
-<code>tf</code>.</p>
+<code>t0</code>.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">t0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">days_since_index</span>, <span class="va">seed_cases</span><span class="op">$</span><span class="va">cases</span><span class="op">)</span></span>
 <span><span class="va">t0</span></span>
