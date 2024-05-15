@@ -37,7 +37,7 @@
 #' @description
 #' `epichains()` constructs an `<epichains>` object, which is
 #' inherently an `<data.frame>` object that stores some of the inputs
-#' passed to the `simulate_tree()` and `simulate_tree_from_pop()` and the
+#' passed to the [simulate_chains()] and the
 #' simulated output. The stored attributes are useful for downstream
 #' analyses and reproducibility. This function checks the validity of the
 #' object created to ensure it has the right columns and column types.
