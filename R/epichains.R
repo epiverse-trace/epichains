@@ -107,8 +107,8 @@
 #' new `<epichains_summary>` object safely, use `epichains_summary()`.
 #'
 #' @param chains_summary A numeric `<vector>` of chain sizes and lengths.
+#' @inheritParams simulate_chain_stats
 #' @inheritParams .new_epichains
-#' @inheritParams simulate_summary
 #' @author James M. Azam
 #' @keywords internal
 .new_epichains_summary <- function(chains_summary,
