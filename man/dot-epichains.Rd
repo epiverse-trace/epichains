@@ -51,7 +51,7 @@ An \verb{<epichains>} object.
 \description{
 \code{epichains()} constructs an \verb{<epichains>} object, which is
 inherently an \verb{<data.frame>} object that stores some of the inputs
-passed to the \code{simulate_tree()} and \code{simulate_tree_from_pop()} and the
+passed to the \code{\link[=simulate_chains]{simulate_chains()}} and the
 simulated output. The stored attributes are useful for downstream
 analyses and reproducibility. This function checks the validity of the
 object created to ensure it has the right columns and column types.
