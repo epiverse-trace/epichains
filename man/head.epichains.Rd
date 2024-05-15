@@ -21,10 +21,8 @@ An object of class \verb{<data.frame>}.
 \code{head} and \code{tail} method for \verb{<epichains>} class
 }
 \details{
-This returns the top rows of an \verb{<epichains>} object. Note that
-the object is originally sorted by \code{chain} and \code{infector_id} and the first
-unknown infectors (NA) have been dropped from
-printing method.
+This returns the top rows of an \verb{<epichains>} object, starting from the
+first known infectors.
 
 To view the full output, use \verb{as.data.frame(<object_name>)}.
 }

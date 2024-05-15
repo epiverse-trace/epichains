@@ -526,10 +526,8 @@ summary.epichains_summary <- function(object, ...) {
 #' @author James M. Azam
 #' @export
 #' @details
-#' This returns the top rows of an `<epichains>` object. Note that
-#' the object is originally sorted by `chain` and `infector_id` and the first
-#' unknown infectors (NA) have been dropped from
-#' printing method.
+#' This returns the top rows of an `<epichains>` object, starting from the
+#' first known infectors.
 #'
 #' To view the full output, use `as.data.frame(<object_name>)`.
 #' @examples
