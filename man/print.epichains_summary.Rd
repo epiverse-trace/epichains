@@ -17,7 +17,7 @@ side-effects.
 }
 \description{
 Prints a summary of the \verb{<epichains_summary>} object. In particular, it
-prints the number of index cases used for the simulation, and the range of
+prints the number of chains simulated, and the range of
 the statistic, represented as the maximum (\code{max_stat}) and minimum
 (\code{min_stat}). If the minimum or maximum is infinite, it is represented as
 \verb{>= stat_max} where \code{stat_max} is the value of the censoring limit. See

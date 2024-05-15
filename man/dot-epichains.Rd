@@ -58,9 +58,9 @@ object created to ensure it has the right columns and column types.
 
 An \verb{<epichains>} object contains a \verb{<data.frame>} of the simulated
 outbreak tree with ids for each infector and infectee, generation, and
-optionally, time, the number of initial cases used for the simulation,
-the statistic that was tracked, and whether the susceptible population was
-tracked.
+optionally, time, the number of chains simulated,
+the chain statistic that was tracked, and whether the susceptible
+population was tracked.
 }
 \author{
 James M. Azam
