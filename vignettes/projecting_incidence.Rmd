@@ -86,7 +86,7 @@ days_since_index
 
 Using the vector of start times from the time series, we will then 
 create a corresponding seeding time for each individual, which we'll call
-`tf`.
+`t0`.
 ```{r t0_setup}
 t0 <- rep(days_since_index, seed_cases$cases)
 t0
