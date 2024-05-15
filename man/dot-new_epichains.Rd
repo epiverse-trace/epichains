@@ -5,7 +5,7 @@
 \title{Construct an \verb{<epichains>} object}
 \usage{
 .new_epichains(
-  tree_df,
+  sim_df,
   n_chains,
   statistic,
   offspring_dist,
@@ -14,7 +14,7 @@
 )
 }
 \arguments{
-\item{tree_df}{a \verb{<data.frame>} containing at least columns for
+\item{sim_df}{a \verb{<data.frame>} containing at least columns for
 "infectee_id", "infector_id", and "generation". Also has optional columns
 for "time", and "chain_id".}
 

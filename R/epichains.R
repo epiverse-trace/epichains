@@ -8,21 +8,21 @@
 #' `new_epichains()` on its own as is called within `epichains()`
 #' after the arguments have been checked. To create an `<epichains>`
 #' object, use `epichains()`.
-#' @param tree_df a `<data.frame>` containing at least columns for
+#' @param sim_df a `<data.frame>` containing at least columns for
 #' "infectee_id", "infector_id", and "generation". Also has optional columns
 #' for "time", and "chain_id".
 #' @param track_pop Was the susceptible population tracked? Logical.
 #' @inheritParams .epichains
 #' @author James M. Azam
 #' @keywords internal
-.new_epichains <- function(tree_df,
+.new_epichains <- function(sim_df,
                                n_chains,
                                statistic,
                                offspring_dist,
                                stat_max,
                                track_pop) {
   # Assemble the elements of the object
-  obj <- tree_df
+  obj <- sim_df
   class(obj) <- c("epichains", class(obj))
   attr(obj, "n_chains") <- n_chains
   attr(obj, "statistic") <- statistic
@@ -54,20 +54,20 @@
 #' @return An `<epichains>` object.
 #' @author James M. Azam
 #' @keywords internal
-.epichains <- function(tree_df,
+.epichains <- function(sim_df,
                       n_chains,
                       offspring_dist,
                       track_pop,
                       statistic = c("size", "length"),
                       stat_max = Inf) {
   # Check that inputs are well specified
-  checkmate::assert_data_frame(tree_df, min.cols = 3, min.rows = n_chains)
+  checkmate::assert_data_frame(sim_df, min.cols = 3, min.rows = n_chains)
   checkmate::assert_integerish(
     n_chains,
     any.missing = FALSE,
     len = 1L,
     lower = 1L,
-    upper = max(tree_df$chain, na.rm = TRUE)
+    upper = max(sim_df$chain, na.rm = TRUE)
   )
   checkmate::assert_string(statistic)
   statistic <- match.arg(statistic, choices = c("size", "length"))
@@ -79,7 +79,7 @@
   )
   # Create <epichains> object
   epichains <- .new_epichains(
-    tree_df = tree_df,
+    sim_df = sim_df,
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
