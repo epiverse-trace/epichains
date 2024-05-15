@@ -49,7 +49,7 @@
 #' # Example using an <epichains_tree> object
 #' set.seed(32)
 #' chains_tree_eg <- simulate_chains(
-#'  index_cases = 10,
+#'  n_chains = 10,
 #'  pop = 100,
 #'  percent_immune = 0,
 #'  statistic = "size",
@@ -73,7 +73,7 @@
 #' # Example using a <epichains_summary> object
 #' set.seed(32)
 #' chains_summary_eg <- simulate_chain_stats(
-#'  index_cases = 10,
+#'  n_chains = 10,
 #'   pop = 100,
 #'   percent_immune = 0,
 #'   statistic = "size",
