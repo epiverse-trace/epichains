@@ -618,7 +618,7 @@ aggregate.epichains <- function(x,
     if (is.null(x$time)) {
       stop(
         "Object must have a time column. ",
-        "To simulate time, specify `serials_dist` ",
+        "To simulate time, specify `generation_time` ",
         "in the `simulate_chains()` function call."
       )
     }
