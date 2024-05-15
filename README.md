@@ -105,7 +105,7 @@ sim_chains <- simulate_chains(
   n_chains = 20,
   statistic = "size",
   offspring_dist = rpois,
-  stat_max = 25,
+  stat_threshold = 25,
   generation_time = function(n) {rep(3, n)}, # constant generation time of 3
   lambda = 1 # mean of the Poisson distribution
 )
