@@ -98,7 +98,7 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
       percent_immune = 0,
       statistic = "size",
       offspring_dist = rpois,
-      stat_max = 10,
+      stat_threshold = 10,
       generation_time = function(n) rep(3, n),
       lambda = 0.9
     )
@@ -110,7 +110,7 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
       percent_immune = 0,
       statistic = "size",
       offspring_dist = rpois,
-      stat_max = 10,
+      stat_threshold = 10,
       lambda = 0.9
     )
     # Use the simulated <epichains_tree> object to calculate likelihood
@@ -120,7 +120,7 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
         statistic = "size",
         offspring_dist = rpois,
         lambda = 0.9,
-        stat_max = 10
+        stat_threshold = 10
       ),
       -23.538996774
     )
@@ -131,11 +131,11 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
         statistic = "size",
         offspring_dist = rpois,
         lambda = 0.9,
-        stat_max = 10
+        stat_threshold = 10
       ),
       -23.538997
     )
-    # Use default stat_max = NULL
+    # Use default stat_threshold = NULL
     expect_equal(
       likelihood(
         chains = chains_summary_eg,
@@ -145,7 +145,7 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
       ),
       -23.538997
     )
-    # Use default stat_max = NULL
+    # Use default stat_threshold = NULL
     expect_equal(
       likelihood(
         chains = chains_tree_eg,
@@ -277,7 +277,7 @@ test_that("Errors are thrown", {
       statistic = "size",
       offspring_dist = rpois,
       lambda = 0.5,
-      stat_max = NULL
+      stat_threshold = NULL
     ),
     "must be an integer"
   )
@@ -287,7 +287,7 @@ test_that("Errors are thrown", {
       statistic = "size",
       offspring_dist = rpois,
       lambda = 0.5,
-      stat_max = Inf
+      stat_threshold = Inf
     ),
     "must only contain finite values"
   )

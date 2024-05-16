@@ -54,7 +54,7 @@
 #'  percent_immune = 0,
 #'  statistic = "size",
 #'  offspring_dist = rnbinom,
-#'  stat_max = 10,
+#'  stat_threshold = 10,
 #'  generation_time = function(n) rep(3, n),
 #'  mu = 2,
 #'  size = 0.2
@@ -66,7 +66,7 @@
 #'   offspring_dist = rnbinom,
 #'   mu = 2,
 #'   size = 0.2,
-#'   stat_max = 10
+#'   stat_threshold = 10
 #' )
 #' chains_tree_eg_lik
 #'
@@ -78,7 +78,7 @@
 #'   percent_immune = 0,
 #'   statistic = "size",
 #'   offspring_dist = rnbinom,
-#'   stat_max = 10,
+#'   stat_threshold = 10,
 #'   mu = 2,
 #'   size = 0.2
 #' )
@@ -88,13 +88,13 @@
 #'   offspring_dist = rnbinom,
 #'   mu = 2,
 #'   size = 0.2,
-#'   stat_max = 10
+#'   stat_threshold = 10
 #' )
 #' chains_summary_eg_lik
 #' @export
 #nolint start: cyclocomp_linter
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
-                       nsim_obs, obs_prob = 1, log = TRUE, stat_max = NULL,
+                       nsim_obs, obs_prob = 1, log = TRUE, stat_threshold = NULL,
                        exclude = NULL, individual = FALSE, ...) {
   statistic <- match.arg(statistic)
 
@@ -134,21 +134,21 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     chains <- summary(chains)
   }
 
-  # If stat_max is not specified, try to get it from the chains object
+  # If stat_threshold is not specified, try to get it from the chains object
   # or set it to Inf if chains is numeric
-  if (missing(stat_max)) {
+  if (missing(stat_threshold)) {
     if (.is_epichains_summary(chains)) {
-      stat_max <- attr(chains, "stat_max")
+      stat_threshold <- attr(chains, "stat_threshold")
     } else if (is.numeric(chains)) {
-      stat_max <- Inf
+      stat_threshold <- Inf
     }
   }
- # If stat_max is specified, it cannot be NULL
-  if (is.null(stat_max)) {
-    stop("`stat_max` must be an integer.")
+ # If stat_threshold is specified, it cannot be NULL
+  if (is.null(stat_threshold)) {
+    stop("`stat_threshold` must be an integer.")
   }
- # Replace infinite chain sizes with stat_max
-  chains[is.infinite(chains)] <- stat_max
+ # Replace infinite chain sizes with stat_threshold
+  chains[is.infinite(chains)] <- stat_threshold
 
   # Apply the observation process
   if (obs_prob < 1) {
@@ -181,18 +181,18 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
   ## determine for which sizes to calculate the log-likelihood
   ## (for true chain size)
-  if (any(stat_rep_vect == stat_max)) {
+  if (any(stat_rep_vect == stat_threshold)) {
     # For chains of class numeric, we assume that the chains cannot be unending
     # and hence, cannot be infinite, so should be changed to a finite censoring
     # value.
-    if (is.numeric(chains) && is.infinite(stat_max)) {
+    if (is.numeric(chains) && is.infinite(stat_threshold)) {
       stop(
         "`chains` must only contain finite values. ",
         "Replace the `Inf` values with finite values.",
         call. = FALSE
       )
     }
-    calc_sizes <- seq_len(stat_max - 1)
+    calc_sizes <- seq_len(stat_threshold - 1)
   } else {
     calc_sizes <- unique(c(stat_rep_vect, exclude))
   }

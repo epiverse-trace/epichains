@@ -11,7 +11,7 @@ likelihood(
   nsim_obs,
   obs_prob = 1,
   log = TRUE,
-  stat_max = NULL,
+  stat_threshold = NULL,
   exclude = NULL,
   individual = FALSE,
   ...
@@ -107,7 +107,7 @@ chains_tree_eg <- simulate_chains(
  percent_immune = 0,
  statistic = "size",
  offspring_dist = rnbinom,
- stat_max = 10,
+ stat_threshold = 10,
  generation_time = function(n) rep(3, n),
  mu = 2,
  size = 0.2
@@ -119,7 +119,7 @@ chains_tree_eg_lik <- likelihood(
   offspring_dist = rnbinom,
   mu = 2,
   size = 0.2,
-  stat_max = 10
+  stat_threshold = 10
 )
 chains_tree_eg_lik
 
@@ -131,7 +131,7 @@ chains_summary_eg <- simulate_chain_stats(
   percent_immune = 0,
   statistic = "size",
   offspring_dist = rnbinom,
-  stat_max = 10,
+  stat_threshold = 10,
   mu = 2,
   size = 0.2
 )
@@ -141,7 +141,7 @@ chains_summary_eg_lik <- likelihood(
   offspring_dist = rnbinom,
   mu = 2,
   size = 0.2,
-  stat_max = 10
+  stat_threshold = 10
 )
 chains_summary_eg_lik
 }
