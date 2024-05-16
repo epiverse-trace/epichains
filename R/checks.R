@@ -70,8 +70,8 @@
     choices = c("size", "length")
   )
   checkmate::assert(
-    is.null(stat_max),
-    is.infinite(stat_max),
+    is.null(stat_threshold),
+    is.infinite(stat_threshold),
       checkmate::check_integerish(
         stat_threshold,
         lower = 1,
