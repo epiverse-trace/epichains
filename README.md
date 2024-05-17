@@ -280,9 +280,9 @@ To report a bug please open an
 
 ## Contribute
 
-We welcome contributions to enhance the package’s functionalities. If
-you wish to do so, please follow the [package contributing
-guide](https://github.com/epiverse-trace/epichains/blob/main/.github/CONTRIBUTING.md).
+Contributions to {epichains} are welcomed. Please follow the [package
+contributing
+guide](https://github.com/epiverse-trace/.github/blob/main/CONTRIBUTING.md).
 
 ## Code of conduct
 
