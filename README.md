@@ -118,6 +118,9 @@ head(sim_chains)
 #> 24     3        1        3          2    3
 #> 25     4        1        2          2    3
 #> 26     6        1        2          2    3
+```
+
+``` r
 
 # Summarise the simulation
 summary(sim_chains)
@@ -130,6 +133,9 @@ summary(sim_chains)
 #> 
 #> Max: >=25
 #> Min: 1
+```
+
+``` r
 
 # Aggregate the simulation into cases per generation
 chains_agrgegated <- aggregate(sim_chains, by = "generation")
@@ -151,6 +157,9 @@ set.seed(32)
 chain_lengths <- sample(1:40, 20, replace = TRUE)
 chain_lengths
 #>  [1]  6 11 20  9 40 33 39 27  6 12 39 35  9 25  6 15 12  6 37 35
+```
+
+``` r
 
 # estimate loglikelihood of the observed chain sizes
 likelihood_eg <- likelihood(
@@ -271,9 +280,9 @@ To report a bug please open an
 
 ## Contribute
 
-We welcome contributions to enhance the package’s functionalities. If
-you wish to do so, please follow the [package contributing
-guide](https://github.com/epiverse-trace/epichains/blob/main/.github/CONTRIBUTING.md).
+Contributions to {epichains} are welcomed. Please follow the [package
+contributing
+guide](https://github.com/epiverse-trace/.github/blob/main/CONTRIBUTING.md).
 
 ## Code of conduct
 
