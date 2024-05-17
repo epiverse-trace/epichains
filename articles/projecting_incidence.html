@@ -38,40 +38,31 @@
     </button>
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../articles/epichains.html">Get started</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../articles/epichains.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <button href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" type="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</button>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <h6 class="dropdown-header" data-toc-skip>Package vignettes</h6>
-    <a class="dropdown-item" href="../articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a>
-    <a class="dropdown-item" href="../articles/interventions.html">Modelling disease control interventions</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6>
-    <a class="dropdown-item" href="../articles/branching_process_literature.html">Literature on branching process applications</a>
-    <a class="dropdown-item" href="../articles/theoretical_background.html">Theoretical background for epichains</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Developer Documentation</h6>
-    <a class="dropdown-item" href="../articles/design-principles.html">Design Principles for {epichains}</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Package vignettes</h6></li>
+    <li><a class="dropdown-item" href="../articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a></li>
+    <li><a class="dropdown-item" href="../articles/interventions.html">Modelling disease control interventions</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6></li>
+    <li><a class="dropdown-item" href="../articles/branching_process_literature.html">Literature on branching process applications</a></li>
+    <li><a class="dropdown-item" href="../articles/theoretical_background.html">Theoretical background for epichains</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Developer Documentation</h6></li>
+    <li><a class="dropdown-item" href="../articles/design-principles.html">Design Principles for {epichains}</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
-<li><form class="form-inline" role="search">
-<input type="search" class="form-control" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/epiverse-trace/epichains/" aria-label="github">
-    <span class="fa fab fa-github fa-lg"></span>
-  </a>
-</li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/epiverse-trace/epichains/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
   </div>
@@ -245,13 +236,13 @@ simulations <span class="math inline">\(100\)</span> times and aggregate the res
 </details><p>Lastly, since, we have specified that <span class="math inline">\(R0 &gt; 1\)</span>, it means the epidemic could
 potentially grow without end. Hence, we must specify an end point for the
 simulations.</p>
-<p><code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> provides the <code>stat_max</code> argument for this purpose.
-Above <code>stat_max</code>, the simulation is cut off. If this value is
+<p><code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> provides the <code>stat_threshold</code> argument for this purpose.
+Above <code>stat_threshold</code>, the simulation is cut off. If this value is
 not specified, it assumes a value of infinity. Here, we will
 assume a maximum chain size of <span class="math inline">\(1000\)</span>.</p>
 <details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#' Maximum chain size allowed</span></span>
-<span><span class="va">stat_max</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span></code></pre></div>
+<span><span class="va">stat_threshold</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span></code></pre></div>
 </details>
 </div>
 </div>
@@ -288,7 +279,7 @@ by rows with <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html
 <span>      mu <span class="op">=</span> <span class="va">mu</span>,</span>
 <span>      size <span class="op">=</span> <span class="va">size</span>,</span>
 <span>      statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
-<span>      stat_max <span class="op">=</span> <span class="va">stat_max</span>,</span>
+<span>      stat_threshold <span class="op">=</span> <span class="va">stat_threshold</span>,</span>
 <span>      generation_time <span class="op">=</span> <span class="va">generation_time</span>,</span>
 <span>      t0 <span class="op">=</span> <span class="va">t0</span>,</span>
 <span>      tf <span class="op">=</span> <span class="va">tf</span></span>
@@ -342,8 +333,9 @@ as the reference start date.</p>
 <code class="sourceCode R"><span><span class="co"># Get start date from the observed data</span></span>
 <span><span class="va">index_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">seed_cases</span><span class="op">$</span><span class="va">date</span><span class="op">)</span></span>
 <span><span class="va">index_date</span></span>
-<span><span class="co">#&gt; [1] "2020-03-05"</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] "2020-03-05"</span></span></code></pre></div>
+</details><details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># Add a dates column to each simulation result</span></span>
 <span><span class="va">incidence_ts_by_date</span> <span class="op">&lt;-</span> <span class="va">incidence_ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -362,7 +354,7 @@ as the reference start date.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     1     7     1 2020-03-10</span></span></code></pre></div>
 </details><p>Now we will aggregate the simulations by day and evaluate the median
 daily cases across all simulations.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Median daily number of cases aggregated across all simulations</span></span>
 <span><span class="va">median_daily_cases</span> <span class="op">&lt;-</span> <span class="va">incidence_ts_by_date</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -387,7 +379,7 @@ daily cases across all simulations.</p>
 </h2>
 <p>We will now plot the individual simulation results alongside the median
 of the aggregated results.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># since all simulations may end at a different date, we will find the minimum</span></span>
 <span><span class="co"># final date for all simulations for the purposes of visualisation.</span></span>

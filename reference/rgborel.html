@@ -14,37 +14,26 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item">
-  <a class="nav-link" href="../articles/epichains.html">Get started</a>
-</li>
-<li class="active nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/epichains.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <button href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" type="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</button>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <h6 class="dropdown-header" data-toc-skip>Package vignettes</h6>
-    <a class="dropdown-item" href="../articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a>
-    <a class="dropdown-item" href="../articles/interventions.html">Modelling disease control interventions</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6>
-    <a class="dropdown-item" href="../articles/branching_process_literature.html">Literature on branching process applications</a>
-    <a class="dropdown-item" href="../articles/theoretical_background.html">Theoretical background for epichains</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Developer Documentation</h6>
-    <a class="dropdown-item" href="../articles/design-principles.html">Design Principles for {epichains}</a>
-  </div>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
-      </ul><ul class="navbar-nav"><li><form class="form-inline" role="search">
-<input type="search" class="form-control" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json"></form></li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/epiverse-trace/epichains/" aria-label="github">
-    <span class="fa fab fa-github fa-lg"></span>
-  </a>
-</li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Package vignettes</h6></li>
+    <li><a class="dropdown-item" href="../articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a></li>
+    <li><a class="dropdown-item" href="../articles/interventions.html">Modelling disease control interventions</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6></li>
+    <li><a class="dropdown-item" href="../articles/branching_process_literature.html">Literature on branching process applications</a></li>
+    <li><a class="dropdown-item" href="../articles/theoretical_background.html">Theoretical background for epichains</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Developer Documentation</h6></li>
+    <li><a class="dropdown-item" href="../articles/design-principles.html">Design Principles for {epichains}</a></li>
+  </ul></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
+      </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/epiverse-trace/epichains/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
   </div>
 </nav><div class="container template-reference-topic">
@@ -59,7 +48,7 @@
     </div>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rgborel</span><span class="op">(</span><span class="va">n</span>, <span class="va">size</span>, <span class="va">prob</span>, <span class="va">mu</span>, infinite <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rgborel</span><span class="op">(</span><span class="va">n</span>, <span class="va">size</span>, <span class="va">prob</span>, <span class="va">mu</span>, censor_at <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
     </div>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
@@ -74,14 +63,13 @@ applications); A positive number.</p></dd>
 0 and 1.</p></dd>
 <dt id="arg-mu">mu<a class="anchor" aria-label="anchor" href="#arg-mu"></a></dt>
 <dd><p>Mean; A positive number.</p></dd>
-<dt id="arg-infinite">infinite<a class="anchor" aria-label="anchor" href="#arg-infinite"></a></dt>
-<dd><p>A threshold above which the random number is set to
-<code>Inf</code> as a form of truncation; A number coercible to integer. This
-argument is important because <code><a href="rborel.html">rborel()</a></code> uses <code>simulate_summary()</code>
-internally with <code>offspring_dist = rpois</code>, so when <code>mu &gt;= 1</code>, the
-simulation could grow out of proportion and chain summaries (the random
-numbers generated here) need to be truncated using
-<code>infinite</code>.</p></dd>
+<dt id="arg-censor-at">censor_at<a class="anchor" aria-label="anchor" href="#arg-censor-at"></a></dt>
+<dd><p>A stopping criterion; <code>&lt;numeric&gt;</code>. Defaults to <code>Inf</code>. A
+value above which the simulation ends and the random number is set to
+<code>Inf</code> (as a form of censoring). <code><a href="rborel.html">rborel()</a></code> simulates chain sizes using
+<code><a href="simulate_chain_stats.html">simulate_chain_stats()</a></code> with a Poisson offspring distribution, so if
+<code>mu &gt;= 1</code>, the simulation could proceed unendingly. This parameter is used
+to prevent this.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>

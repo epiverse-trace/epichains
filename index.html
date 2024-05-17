@@ -38,40 +38,31 @@
     </button>
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="articles/epichains.html">Get started</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="articles/epichains.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <button href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" type="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</button>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <h6 class="dropdown-header" data-toc-skip>Package vignettes</h6>
-    <a class="dropdown-item" href="articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a>
-    <a class="dropdown-item" href="articles/interventions.html">Modelling disease control interventions</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6>
-    <a class="dropdown-item" href="articles/branching_process_literature.html">Literature on branching process applications</a>
-    <a class="dropdown-item" href="articles/theoretical_background.html">Theoretical background for epichains</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Developer Documentation</h6>
-    <a class="dropdown-item" href="articles/design-principles.html">Design Principles for {epichains}</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Package vignettes</h6></li>
+    <li><a class="dropdown-item" href="articles/projecting_incidence.html">Projecting infectious disease incidence: a COVID-19 example</a></li>
+    <li><a class="dropdown-item" href="articles/interventions.html">Modelling disease control interventions</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Modelling guides and background</h6></li>
+    <li><a class="dropdown-item" href="articles/branching_process_literature.html">Literature on branching process applications</a></li>
+    <li><a class="dropdown-item" href="articles/theoretical_background.html">Theoretical background for epichains</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Developer Documentation</h6></li>
+    <li><a class="dropdown-item" href="articles/design-principles.html">Design Principles for {epichains}</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
-<li><form class="form-inline" role="search">
-<input type="search" class="form-control" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/epiverse-trace/epichains/" aria-label="github">
-    <span class="fa fab fa-github fa-lg"></span>
-  </a>
-</li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/epiverse-trace/epichains/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
   </div>
@@ -122,7 +113,7 @@
 <span>  n_chains <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
 <span>  offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span>
-<span>  stat_max <span class="op">=</span> <span class="fl">25</span>,</span>
+<span>  stat_threshold <span class="op">=</span> <span class="fl">25</span>,</span>
 <span>  generation_time <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span><span class="op">}</span>, <span class="co"># constant generation time of 3</span></span>
 <span>  lambda <span class="op">=</span> <span class="fl">1</span> <span class="co"># mean of the Poisson distribution</span></span>
 <span><span class="op">)</span></span>
@@ -134,8 +125,9 @@
 <span><span class="co">#&gt; 23     3        1        2          2    3</span></span>
 <span><span class="co">#&gt; 24     3        1        3          2    3</span></span>
 <span><span class="co">#&gt; 25     4        1        2          2    3</span></span>
-<span><span class="co">#&gt; 26     6        1        2          2    3</span></span>
-<span></span>
+<span><span class="co">#&gt; 26     6        1        2          2    3</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># Summarise the simulation</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">)</span></span>
 <span><span class="co">#&gt; `epichains_summary` object </span></span>
@@ -146,8 +138,9 @@
 <span><span class="co">#&gt;  Simulated sizes: </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Max: &gt;=25</span></span>
-<span><span class="co">#&gt; Min: 1</span></span>
-<span></span>
+<span><span class="co">#&gt; Min: 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># Aggregate the simulation into cases per generation</span></span>
 <span><span class="va">chains_agrgegated</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_chains</span>, by <span class="op">=</span> <span class="st">"generation"</span><span class="op">)</span></span>
 <span></span>
@@ -159,13 +152,14 @@
 <h3 id="inference">Inference<a class="anchor" aria-label="anchor" href="#inference"></a>
 </h3>
 <p>Let’s look at the following example where we estimate the log-likelihood of observing a hypothetical <code>chain_lengths</code> dataset.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># randomly generate 20 chain lengths between 1 to 40</span></span>
 <span><span class="va">chain_lengths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">chain_lengths</span></span>
-<span><span class="co">#&gt;  [1]  6 11 20  9 40 33 39 27  6 12 39 35  9 25  6 15 12  6 37 35</span></span>
-<span></span>
+<span><span class="co">#&gt;  [1]  6 11 20  9 40 33 39 27  6 12 39 35  9 25  6 15 12  6 37 35</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># estimate loglikelihood of the observed chain sizes</span></span>
 <span><span class="va">likelihood_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
 <span>  chains <span class="op">=</span> <span class="va">chain_lengths</span>,</span>
@@ -215,7 +209,7 @@
 <div class="section level2">
 <h2 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
 </h2>
-<p>We welcome contributions to enhance the package’s functionalities. If you wish to do so, please follow the <a href="https://github.com/epiverse-trace/epichains/blob/main/.github/CONTRIBUTING.md" class="external-link">package contributing guide</a>.</p>
+<p>Contributions to {epichains} are welcomed. Please follow the <a href="https://github.com/epiverse-trace/.github/blob/main/CONTRIBUTING.md" class="external-link">package contributing guide</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
@@ -225,7 +219,7 @@
 <div class="section level2">
 <h2 id="citing-this-package">Citing this package<a class="anchor" aria-label="anchor" href="#citing-this-package"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"epichains"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; To cite package 'epichains' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -269,12 +263,6 @@
 <p><a href="https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT_es.md" class="external-link">Código de Conducta</a></p>
 <p><a href="https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT_en.md" class="external-link">Code of Conduct</a></p>
 </li>
-</ul>
-</div>
-<div class="community">
-<h2 data-toc-skip>Community</h2>
-<ul class="list-unstyled">
-<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 </ul>
 </div>
 <div class="citation">
