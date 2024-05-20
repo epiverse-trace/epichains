@@ -41,7 +41,7 @@ Additionally, the package provides mixture probability distributions for generat
 
 ### Simulation functions
 
-Simulation of branching processes are achieved through `simulate_chains()` and `simulate_chain_stats()`. For details of the underlying methods, see the [theory vignette](https://epiverse-trace.github.io/epichains/articles/theoretical_background.html). #nolint
+Simulation of branching processes are achieved through `simulate_chains()` and `simulate_chain_stats()`. For details of the underlying methods, see the [theory vignette](https://epiverse-trace.github.io/epichains/articles/theoretical_background.html).
 
 The simulations are stochastic, meaning that one set of inputs can produce varied results. The models here can also be use to explore scenario analyses by varying the inputs. Often, in cases where there is need for more than one run of the model and/or with more than one set of parameter values, the inputs and outputs are stored in separate data structures. However, this approach can be limiting when performing scenario analyses, as the user has to manually manipulate the two objects with reshaping and joining operations. This has the potential to lead to errors and loss of information. Hence, `simulate_chains()` and `simulate_chain_stats()` return objects of the dedicated classes `<epichains>` and `<epichains_summary>` respectively that store the input parameters and the output of the simulation in a single object.
 
@@ -62,7 +62,7 @@ In summary, an `<epichains>` object has the following structure:
   * `generation` (`<integer>`), and optionally,
   * `time` (`<numeric>`), if `generation_time` is specified
 
-* Attributes (See definitions in [simulate_chains](https://epiverse-trace.github.io/epichains/reference/simulate_chains.html)): #nolint
+* Attributes (See definitions in [simulate_chains](https://epiverse-trace.github.io/epichains/reference/simulate_chains.html)):
   * `n_chains`,
   * `statistic`,
   * `stat_threshold`,
