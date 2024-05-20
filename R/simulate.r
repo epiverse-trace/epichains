@@ -63,7 +63,6 @@
 #' * `time` - the time of infection.
 #' @author James M. Azam, Sebastian Funk
 #' @export
-#nolint start
 #' @details
 #' # Definition of a transmission chain
 #' A transmission chain as used here is an independent case and all
@@ -106,7 +105,6 @@
 #' \code{simulate_*(..., generation_time = function(n){rlnorm(n, 0.58, 1.38)})}
 #' OR \code{simulate_*(..., generation_time = \(n){rlnorm(n, 0.58, 1.38)})},
 #' where `...` are the other arguments to `simulate_*()`.
-#nolint end
 #' @examples
 #' # Using a Poisson offspring distribution and simulating from an infinite
 #' # population up to chain size 10.
