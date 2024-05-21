@@ -36,6 +36,7 @@ Imports:
 Suggests:
     bookdown,
     dplyr,
+    epicontacts,
     ggplot2,
     knitr,
     lubridate,
