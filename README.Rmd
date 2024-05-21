@@ -86,8 +86,11 @@ return the same output as `simulate_chain_stats()` using the same inputs.
 
 Objects returned from `simulate_chains()` can be aggregated into a
 `<data.frame>` of cases per time or generation
-with the function `aggregate()`. The aggregated results can also be passed
-on to `plot()` with its own arguments to customize the resulting plots.
+with the function `aggregate()`.
+
+The simulated `<epichains>` object can be plotted in various ways using
+`plot()`. See the plotting section in `vignette("epichains")` for two
+use cases.
 
 ### Simulation
 
@@ -96,7 +99,7 @@ simulate a transmission chain with $20$ index cases, a constant generation time
 of $3$, and a poisson offspring distribution with mean $1$. We are tracking the
 chain "size" statistic and will cap all chain sizes at $25$ cases. We will then
 look at the summary of the simulation, and aggregate it into cases per
-generation, and plot it.
+generation.
 ```{r simulate_chains, eval=TRUE}
 set.seed(32)
 # Simulate chains
@@ -115,10 +118,10 @@ head(sim_chains)
 summary(sim_chains)
 
 # Aggregate the simulation into cases per generation
-chains_agrgegated <- aggregate(sim_chains, by = "generation")
+chains_agregegated <- aggregate(sim_chains, by = "generation")
 
-# plot the aggregated results
-plot(chains_agrgegated, type = "b")
+# view the time series of cases per generation
+chains_agregegated
 ```
 
 ### Inference
