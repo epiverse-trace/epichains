@@ -461,7 +461,59 @@ aggregate(sim_chains, by = "time")
 
 ### Plotting
 
-Aggregated `<epichains_tree>` objects can easily be plotted using base R
+We can plot individual chains in an `<epichains>` object using the
+[{epicontacts} package](https://www.repidemicsconsortium.org/epicontacts/).
+
+To do this, we first need to create an `<epicontacts>` object using the
+`epicontacts::make_epicontacts()` function, which requires a linelist and a
+contacts data.frame (See `?epicontacts::make_epicontacts()`).
+
+::: {.alert .alert-info}
+
+### Some notes about interoperability between `<epicontacts>` and `<epichains>` objects
+
+- For the `epicontacts::make_epicontacts()` function to work:
+  - the `linelist` and `contacts` data.frames must have a column named "id" that
+  uniquely identifies each case.
+  - The `linelist` and `contacts` objects can be the same.
+
+- An `<epichains>` object contains multiple independent chains with their own
+unique infectee ids, so this does not work out of the box with
+`make_epicontacts()` unless you use a subset chain.
+
+- For now, we will have to select and visualise individual chains from the
+`<epichains>` object.
+
+- In future versions of this package, we will make this interaction seamless
+by providing user-friendly functionality to convert an `<epichains>` object to
+an `<epicontacts>` in a way that allows us to plot all chains at once.
+
+:::
+
+Let's plot one of the chains with the biggest size from the `sim_chains` object
+created above.
+
+```{r plot_epc}
+library(epicontacts)
+# Get the biggest chain
+longest_chain <- sim_chains[sim_chains$chain == which.max(
+  unname(table(sim_chains$chain))
+), ]
+
+# Create an `<epicontacts>` object
+epc <- make_epicontacts(
+  linelist = longest_chain,
+  contacts = longest_chain,
+  id = "infectee",
+  from = "infectee",
+  to = "infector"
+)
+
+# Plot the chain
+plot(epc)
+```
+
+Aggregated `<epichains_tree>` objects can also be plotted using base R
 or `ggplot2` with little to no data manipulation.
 
 Here is an end-to-end example from simulation through aggregation to plotting.
