@@ -2,11 +2,9 @@
 title: "Getting started with epichains"
 author: "James M. Azam and Sebastian Funk"
 output:
-  bookdown::html_vignette2:
-    fig_caption: yes
-    code_folding: show
-pkgdown:
-  as_is: true
+  rmarkdown::html_document:
+    code_folding: "show"
+    fig_caption: TRUE
 bibliography: references.json
 link-citations: true
 vignette: >
