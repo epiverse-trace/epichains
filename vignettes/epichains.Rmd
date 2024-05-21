@@ -63,8 +63,9 @@ can be used, for example, to analyse the distribution of chain sizes
 or length of infectious disease outbreaks, as discussed in @farrington2003 and 
 @blumberg2013.
 
-```{r load_epichains}
+```{r load_packages}
 library("epichains")
+library("epicontacts")
 ```
 
 ## Transmission chains likelihoods
