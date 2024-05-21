@@ -506,8 +506,9 @@ epc <- make_epicontacts(
   linelist = longest_chain,
   contacts = longest_chain,
   id = "infectee",
-  from = "infectee",
-  to = "infector"
+  from = "infector",
+  to = "infectee",
+  directed = TRUE
 )
 
 # Plot the chain
