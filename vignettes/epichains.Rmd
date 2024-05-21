@@ -491,16 +491,22 @@ an `<epicontacts>` in a way that allows us to plot all chains at once.
 
 :::
 
-Let's plot one of the chains with the biggest size from the `sim_chains` object
+Let's subset one of the chains with the biggest size from the `sim_chains` object
 created above.
 
-```{r plot_epc}
-library(epicontacts)
+```{r longest-chain}
 # Get the biggest chain
 longest_chain <- sim_chains[sim_chains$chain == which.max(
   unname(table(sim_chains$chain))
 ), ]
 
+# Convert to data.frame to view the whole data
+as.data.frame(longest_chain)
+```
+
+Now, we can plot the chain using the `{epicontacts}` package.
+
+```{r plot_chain}
 # Create an `<epicontacts>` object
 epc <- make_epicontacts(
   linelist = longest_chain,
