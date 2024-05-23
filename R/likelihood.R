@@ -155,7 +155,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     if (missing(nsim_obs)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
     } else {
-      checkmate::assert_number(
+      checkmate::assert_integerish(
         nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
       )
     }
