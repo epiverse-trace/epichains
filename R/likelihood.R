@@ -158,7 +158,7 @@ if (is.finite(stat_threshold)) {
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
     } else {
       checkmate::assert_integerish(
-        nsim_obs, lower = 1, finite = TRUE, na.ok = FALSE
+        nsim_obs, lower = 1
       )
     }
 
