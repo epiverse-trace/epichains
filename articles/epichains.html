@@ -67,82 +67,106 @@
 </div>
   </div>
 </nav><div class="container template-article">
+
+
+
+<script src="epichains_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="epichains_files/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+<script src="epichains_files/vis-9.1.0/vis-network.min.js"></script><script src="epichains_files/visNetwork-binding-2.1.2/visNetwork.js"></script><link href="epichains_files/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Getting started with epichains</h1>
-                        <h4 data-toc-skip class="author">James M. Azam and Sebastian Funk</h4>
+                        <h4 data-toc-skip class="author">James M. Azam
+and Sebastian Funk</h4>
                         <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/HEAD/vignettes/epichains.Rmd" class="external-link"><code>vignettes/epichains.Rmd</code></a></small>
       <div class="d-none name"><code>epichains.Rmd</code></div>
     </div>
-        <p>This vignette demonstrates how get started with using the <em>epichains</em> package
-for simulating transmission chains or estimating the likelihood of observing
-a transmission chain.</p>
+        <p>This vignette demonstrates how get started with using the
+<em>epichains</em> package for simulating transmission chains or
+estimating the likelihood of observing a transmission chain.</p>
 <div class="alert alert-info">
 <ul>
-<li>To understand the theoretical background of the branching processes methods
-used here, refer to the theory vignette <code><a href="../articles/theoretical_background.html">vignette("theoretical_background")</a></code>.</li>
-<li>To understand the software development design decisions and implementation details of the package,
-refer to the design vignette <code><a href="../articles/design-principles.html">vignette("design-principles")</a></code>.</li>
+<li>To understand the theoretical background of the branching processes
+methods used here, refer to the theory vignette
+<code><a href="../articles/theoretical_background.html">vignette("theoretical_background")</a></code>.</li>
+<li>To understand the software development design decisions and
+implementation details of the package, refer to the design vignette
+<code><a href="../articles/design-principles.html">vignette("design-principles")</a></code>.</li>
 </ul>
 </div>
-<p>Infectious disease epidemics spread through populations when a chain of infected individuals transmit the
-infection to others.
-<a href="https://en.wikipedia.org/wiki/Branching_process" class="external-link">Branching processes</a> can be used to model this process.
-A branching process is a stochastic process where each infectious individual in a
-generation gives rise to a random number of individuals in the next generation, starting with the index case in generation 1.
-The distribution of the number of offspring is called the offspring
-distribution.</p>
-<p>The size of the transmission chain is the total number of
-individuals infected by a single case, and the length of the transmission
-chain is the number of generations from the first case to the last case they
-produced before the chain ended. The size calculation includes the first case and the length calculation includes the first generation when the first case starts the chain (See figure below).</p>
+<p>Infectious disease epidemics spread through populations when a chain
+of infected individuals transmit the infection to others. <a href="https://en.wikipedia.org/wiki/Branching_process" class="external-link">Branching
+processes</a> can be used to model this process. A branching process is
+a stochastic process where each infectious individual in a generation
+gives rise to a random number of individuals in the next generation,
+starting with the index case in generation 1. The distribution of the
+number of offspring is called the offspring distribution.</p>
+<p>The size of the transmission chain is the total number of individuals
+infected by a single case, and the length of the transmission chain is
+the number of generations from the first case to the last case they
+produced before the chain ended. The size calculation includes the first
+case and the length calculation includes the first generation when the
+first case starts the chain (See figure below).</p>
 <div class="figure">
-<span style="display:block;" id="fig:unnamed-chunk-1"></span>
 <img src="img/transmission_chain_example.png" alt="The figure shows an example of a transmission chain starting with a single case C1. The complete chain is depicted as blue circles linked by orange directed arrows showing the cases produced in each generation. Each generation is marked by a brown rectangle and labelled Gen 1, Gen 2, and Gen 3. The chain grows through generations Gen 1, Gen 2, and Gen 3. Case C1 starts in Gen 1 and produces cases C2, and C3 in Gen 2. In Gen 3, C2 produces C4 and C5, and C3 produces C6. The chain ends in Gen 3. The chain size of C1 is 6, which includes C1 (that is the sum of all the blue circles, representing cases) and the length is 3, which includes Gen 1 (maximum number of generations reached by C1's chain)." width="75%"><p class="caption">
-Figure 1: An example of a transmission chain starting with a single case C1. Cases are represented by blue circles and arrows indicate who infected whom. The chain grows through generations Gen 1, Gen 2, and Gen 3, producing cases C2, C3, C4, C5, and C6. The chain ends at generation Gen 3 with cases C4, C5, and C6. The size of C1’s chain is 6, including C1 (that is, the sum of all blue circles) and the length is 3, which includes Gen 1 (maximum number of generations reached by C1’s chain).
+An example of a transmission chain starting with a single case C1. Cases
+are represented by blue circles and arrows indicate who infected whom.
+The chain grows through generations Gen 1, Gen 2, and Gen 3, producing
+cases C2, C3, C4, C5, and C6. The chain ends at generation Gen 3 with
+cases C4, C5, and C6. The size of C1’s chain is 6, including C1 (that
+is, the sum of all blue circles) and the length is 3, which includes Gen
+1 (maximum number of generations reached by C1’s chain).
 </p>
 </div>
-<p><em>epichains</em> provides methods to analyse and simulate the size and length
-of branching processes with an arbitrary offspring distribution. These
-can be used, for example, to analyse the distribution of chain sizes
-or length of infectious disease outbreaks, as discussed in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003">2003</a>)</span> and
-<span class="citation">Blumberg and Lloyd-Smith (<a href="#ref-blumberg2013">2013</a>)</span>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/epichains" class="external-link">"epichains"</a></span><span class="op">)</span></span></code></pre></div>
-</details><div class="section level2">
+<p><em>epichains</em> provides methods to analyse and simulate the size
+and length of branching processes with an arbitrary offspring
+distribution. These can be used, for example, to analyse the
+distribution of chain sizes or length of infectious disease outbreaks,
+as discussed in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003">2003</a>)</span> and <span class="citation">Blumberg and Lloyd-Smith (<a href="#ref-blumberg2013">2013</a>)</span>.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/epiverse-trace/epichains" class="external-link">"epichains"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://www.repidemicsconsortium.org/epicontacts/" class="external-link">"epicontacts"</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
 <h2 id="transmission-chains-likelihoods">Transmission chains likelihoods<a class="anchor" aria-label="anchor" href="#transmission-chains-likelihoods"></a>
 </h2>
 <div class="section level3 unnumbered alert alert-primary">
-<h3 id="use-case">Use case<a class="anchor" aria-label="anchor" href="#use-case"></a>
+<h3 class="unnumbered" id="use-case">Use case<a class="anchor" aria-label="anchor" href="#use-case"></a>
 </h3>
-<p>Suppose we have observed a number of transmission chains, each arising from a separate index case. What are the likely transmission properties
-(reproduction number and/or superspreading coefficient) that
-generated these chains (assuming these parameters are the same across all the chains)?</p>
-<p>The first step in answering this question is to calculate the likelihood of
-observing the observed chain summaries given the transmission properties. This
-is where the <code><a href="../reference/likelihood.html">likelihood()</a></code> function comes in. The returned estimate can then
-be used to infer the transmission properties using estimation frameworks such
-as maximum likelihood or Bayesian inference.</p>
+<p>Suppose we have observed a number of transmission chains, each
+arising from a separate index case. What are the likely transmission
+properties (reproduction number and/or superspreading coefficient) that
+generated these chains (assuming these parameters are the same across
+all the chains)?</p>
+<p>The first step in answering this question is to calculate the
+likelihood of observing the observed chain summaries given the
+transmission properties. This is where the <code><a href="../reference/likelihood.html">likelihood()</a></code>
+function comes in. The returned estimate can then be used to infer the
+transmission properties using estimation frameworks such as maximum
+likelihood or Bayesian inference.</p>
 <p><em>epichains</em> does not provide these estimation frameworks.</p>
 </div>
 <div class="alert alert-secondary">
 <div class="section level4 unnumbered">
-<h4 id="what-we-have">What we have<a class="anchor" aria-label="anchor" href="#what-we-have"></a>
+<h4 class="unnumbered" id="what-we-have">What we have<a class="anchor" aria-label="anchor" href="#what-we-have"></a>
 </h4>
 <ol style="list-style-type: decimal">
-<li>Data on observed transmission chains summaries (sizes or lengths).</li>
+<li>Data on observed transmission chains summaries (sizes or
+lengths).</li>
 </ol>
 </div>
 <div class="section level4 unnumbered">
-<h4 id="what-we-assume">What we assume<a class="anchor" aria-label="anchor" href="#what-we-assume"></a>
+<h4 class="unnumbered" id="what-we-assume">What we assume<a class="anchor" aria-label="anchor" href="#what-we-assume"></a>
 </h4>
 <ol style="list-style-type: decimal">
 <li>An offspring distribution that governs the number of secondary cases
 produced by each case.</li>
-<li>Parameters of the offspring distribution (for example, mean and overdispersion if using a negative binomial; which can then be interpreted as reproduction number and superspreading coefficient, respectively)</li>
-<li>(optional) An observation process/probability that generates the observed chain
-summaries.</li>
-<li>(optional) A threshold of chain summaries that are considered too large to be consistent with a reproduction number of <span class="math inline">\(R&lt;1\)</span> (e.g., <span class="math inline">\(N\)</span> cases or <span class="math inline">\(T\)</span> generations in total).</li>
+<li>Parameters of the offspring distribution (for example, mean and
+overdispersion if using a negative binomial; which can then be
+interpreted as reproduction number and superspreading coefficient,
+respectively)</li>
+<li>(optional) An observation process/probability that generates the
+observed chain summaries.</li>
+<li>(optional) A threshold of chain summaries that are considered too
+large to be consistent with a reproduction number of <span class="math inline">\(R&lt;1\)</span> (e.g., <span class="math inline">\(N\)</span> cases or <span class="math inline">\(T\)</span> generations in total).</li>
 </ol>
 </div>
 </div>
@@ -150,30 +174,35 @@ summaries.</li>
 <h3 id="likelihood">
 <a href="https://epiverse-trace.github.io/epichains/reference/likelihood.html"><code>likelihood()</code></a><a class="anchor" aria-label="anchor" href="#likelihood"></a>
 </h3>
-<p>This function calculates the likelihood/loglikelihood of observing a vector of
-outbreak summaries obtained from transmission chains. “Outbreak summaries” here
-refer to transmission chain sizes or lengths/durations.</p>
-<p><code><a href="../reference/likelihood.html">likelihood()</a></code> requires a vector of chain summaries (sizes or lengths),
-<code>chains</code>, the corresponding statistic to use, <code>statistic</code>, the offspring
-distribution, <code>offspring_dist</code> and its associated parameters.</p>
-<p><code>offspring_dist</code> is specified by the R function that is used to generate random
-numbers, i.e. <code>rpois</code> for Poisson, <code>rnbinom</code> for negative binomial, or a custom
-function.</p>
-<p>By default, the result is a log-likelihood but if <code>log = FALSE</code>, then
-likelihoods are returned (See <code><a href="../reference/likelihood.html">?likelihood</a></code> for more details).</p>
+<p>This function calculates the likelihood/loglikelihood of observing a
+vector of outbreak summaries obtained from transmission chains.
+“Outbreak summaries” here refer to transmission chain sizes or
+lengths/durations.</p>
+<p><code><a href="../reference/likelihood.html">likelihood()</a></code> requires a vector of chain summaries (sizes
+or lengths), <code>chains</code>, the corresponding statistic to use,
+<code>statistic</code>, the offspring distribution,
+<code>offspring_dist</code> and its associated parameters.</p>
+<p><code>offspring_dist</code> is specified by the R function that is
+used to generate random numbers, i.e. <code>rpois</code> for Poisson,
+<code>rnbinom</code> for negative binomial, or a custom function.</p>
+<p>By default, the result is a log-likelihood but if
+<code>log = FALSE</code>, then likelihoods are returned (See
+<code><a href="../reference/likelihood.html">?likelihood</a></code> for more details).</p>
 <div class="alert alert-info">
-<p>To understand how <code><a href="../reference/likelihood.html">likelihood()</a></code> works see the section on <a href="#how-likelihood-works">How <code>likelihood()</code> works</a>.</p>
+<p>To understand how <code><a href="../reference/likelihood.html">likelihood()</a></code> works see the section on
+<a href="#how-likelihood-works">How <code>likelihood()</code>
+works</a>.</p>
 </div>
-<p>Let’s look at the following example where we estimate the log-likelihood of
-observing <code>chain_sizes</code>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p>Let’s look at the following example where we estimate the
+log-likelihood of observing <code>chain_sizes</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span><span class="co"># example of observed chain sizes</span></span>
 <span><span class="co"># randomly generate 20 chains of size between 1 to 10</span></span>
 <span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">chain_sizes</span></span>
 <span><span class="co">#&gt;  [1]  4  7  4  9  1  3  7  5  1  8 10  2  1  2  4  5 10  6  8  7</span></span></code></pre></div>
-</details><details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># estimate loglikelihood of the observed chain sizes for given lambda</span></span>
 <span><span class="va">likelihood_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
 <span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
@@ -185,22 +214,25 @@ observing <code>chain_sizes</code>.</p>
 <span><span class="co"># Print the estimate</span></span>
 <span><span class="va">likelihood_eg</span></span>
 <span><span class="co">#&gt; [1] -67.82879</span></span></code></pre></div>
-</details>
 </div>
 <div class="section level3">
 <h3 id="joint-and-individual-log-likelihoods">Joint and individual log-likelihoods<a class="anchor" aria-label="anchor" href="#joint-and-individual-log-likelihoods"></a>
 </h3>
-<p><code><a href="../reference/likelihood.html">likelihood()</a></code>, by default, returns the joint log-likelihood, given by the sum of log-likelihoods of each observed chain. If instead
-the individual log-likelihoods are desired (for example for calculating <a href="https://en.wikipedia.org/wiki/Watanabe%E2%80%93Akaike_information_criterion" class="external-link">Watanabe–Akaike information criterion</a> values, then the <code>individual</code> argument
-must be set to <code>TRUE</code>. To return likelihoods instead, set <code>log = FALSE</code>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p><code><a href="../reference/likelihood.html">likelihood()</a></code>, by default, returns the joint
+log-likelihood, given by the sum of log-likelihoods of each observed
+chain. If instead the individual log-likelihoods are desired (for
+example for calculating <a href="https://en.wikipedia.org/wiki/Watanabe%E2%80%93Akaike_information_criterion" class="external-link">Watanabe–Akaike
+information criterion</a> values, then the <code>individual</code>
+argument must be set to <code>TRUE</code>. To return likelihoods
+instead, set <code>log = FALSE</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span><span class="co"># example of observed chain sizes</span></span>
 <span><span class="co"># randomly generate 20 chains of size between 1 to 10</span></span>
 <span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">chain_sizes</span></span>
 <span><span class="co">#&gt;  [1]  4  7  4  9  1  3  7  5  1  8 10  2  1  2  4  5 10  6  8  7</span></span></code></pre></div>
-</details><details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># estimate loglikelihood of the observed chain sizes</span></span>
 <span><span class="va">likelihood_ind_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
@@ -217,23 +249,22 @@ must be set to <code>TRUE</code>. To return likelihoods instead, set <code>log =
 <span><span class="co">#&gt;  [1] -3.098612 -4.508584 -3.098612 -5.269208 -0.500000 -2.480829 -4.508584</span></span>
 <span><span class="co">#&gt;  [8] -3.622329 -0.500000 -4.900542 -5.619471 -1.693147 -0.500000 -1.693147</span></span>
 <span><span class="co">#&gt; [15] -3.098612 -3.622329 -5.619471 -4.086190 -4.900542 -4.508584</span></span></code></pre></div>
-</details>
 </div>
 <div class="section level3">
 <h3 id="observation-probability">Observation probability<a class="anchor" aria-label="anchor" href="#observation-probability"></a>
 </h3>
-<p><code><a href="../reference/likelihood.html">likelihood()</a></code> uses the argument <code>obs_prob</code> to model the observation
-probability.</p>
-<p>By default, it assumes perfect observation, where <code>obs_prob = 1</code>
-(See <code><a href="../reference/likelihood.html">?likelihood</a></code>), meaning that all transmission events are observed and
-recorded in the data.</p>
-<p>If observations are imperfect, the <code>obs_prob</code> must be
-less than 1. In the case of imperfect observation, “true” chain sizes
-or lengths are simulated <code>nsim_obs</code> times, and the likelihood calculated for
-each of the simulations.</p>
-<p>For example, if the probability of observing each case is <code>obs_prob = 0.30</code>,
-we use</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<p><code><a href="../reference/likelihood.html">likelihood()</a></code> uses the argument <code>obs_prob</code> to
+model the observation probability.</p>
+<p>By default, it assumes perfect observation, where
+<code>obs_prob = 1</code> (See <code><a href="../reference/likelihood.html">?likelihood</a></code>), meaning that
+all transmission events are observed and recorded in the data.</p>
+<p>If observations are imperfect, the <code>obs_prob</code> must be less
+than 1. In the case of imperfect observation, “true” chain sizes or
+lengths are simulated <code>nsim_obs</code> times, and the likelihood
+calculated for each of the simulations.</p>
+<p>For example, if the probability of observing each case is
+<code>obs_prob = 0.30</code>, we use</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span><span class="co"># example of observed chain sizes; randomly generate 20 chains of size 1 to 10</span></span>
 <span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -249,40 +280,50 @@ we use</p>
 <span><span class="va">liks</span></span>
 <span><span class="co">#&gt;  [1] -183.8670 -162.1382 -166.6720 -170.1077 -152.9557 -157.9814 -166.0587</span></span>
 <span><span class="co">#&gt;  [8] -174.8488 -156.4197 -160.0229</span></span></code></pre></div>
-</details><p>This returns <code>10</code> likelihood values (because <code>nsim_obs = 10</code>), which can be
-averaged to come up with an overall likelihood estimate.</p>
+<p>This returns <code>10</code> likelihood values (because
+<code>nsim_obs = 10</code>), which can be averaged to come up with an
+overall likelihood estimate.</p>
 </div>
 <div class="section level3">
 <h3 id="how-likelihood-works">How <code>likelihood()</code> works<a class="anchor" aria-label="anchor" href="#how-likelihood-works"></a>
 </h3>
-<p><code><a href="../reference/likelihood.html">likelihood()</a></code> first checks if an analytical solution of the likelihood exists
-for the given offspring distribution and chain statistic specified. If there’s
-none, simulations are used to estimate the likelihoods.</p>
-<p>The <em>epichains</em> package includes closed-form (analytical) solutions for
-calculating the likelihoods associated with certain summaries of transmission
-chains (“size” or “length”) for specific offspring distributions.</p>
-<p>For the size distributions, the package provides the Poisson, negative binomial,
-and gamma-borel mixture.</p>
+<p><code><a href="../reference/likelihood.html">likelihood()</a></code> first checks if an analytical solution of
+the likelihood exists for the given offspring distribution and chain
+statistic specified. If there’s none, simulations are used to estimate
+the likelihoods.</p>
+<p>The <em>epichains</em> package includes closed-form (analytical)
+solutions for calculating the likelihoods associated with certain
+summaries of transmission chains (“size” or “length”) for specific
+offspring distributions.</p>
+<p>For the size distributions, the package provides the Poisson,
+negative binomial, and gamma-borel mixture.</p>
 <div class="alert alert-info">
-<p>To provide the gamma-Borel size likelihood, the <a href="https://en.wikipedia.org/wiki/Borel_distribution" class="external-link">Borel distribution</a> is needed.
-However, base R does not provide this distribution natively like poisson and
-gamma, so <em>epichains</em> provides its <a href="https://epiverse-trace.github.io/epichains/reference/index.html#special-distributions">density and random generator</a>.</p>
+<p>To provide the gamma-Borel size likelihood, the <a href="https://en.wikipedia.org/wiki/Borel_distribution" class="external-link">Borel
+distribution</a> is needed. However, base R does not provide this
+distribution natively like poisson and gamma, so <em>epichains</em>
+provides its <a href="https://epiverse-trace.github.io/epichains/reference/index.html#special-distributions">density
+and random generator</a>.</p>
 </div>
-<p>For the length distribution, there’s the Poisson and
-geometric distributions. These can be used with <code><a href="../reference/likelihood.html">likelihood()</a></code> based on what is
-specified for <code>offspring_dist</code> and <code>statistic</code>.</p>
-<p>If an analytical solution does not exist, an internal simulation function,
-<code><a href="../reference/dot-offspring_ll.html">.offspring_ll()</a></code> is employed. It uses simulations to approximate the probability
-distributions (<a href="https://en.wikipedia.org/wiki/Empirical_distribution_function" class="external-link">using a linear approximation to the cumulative
-distribution</a>
-for unobserved sizes/lengths). If simulation is to be used, an extra argument
-<code>nsim_offspring</code> must be passed to <code><a href="../reference/likelihood.html">likelihood()</a></code> to specify the number of
-simulations to be used for this approximation.
-Approximate values of the likelihood will vary with every call to the simulation (because the simulations used for estimation vary), and it may be worth calling <code><a href="../reference/likelihood.html">likelihood()</a></code> multiple times in this case to see the error this may introduce.</p>
-<p>For example, let’s look at an example where <code>chain_sizes</code> is observed and we
-want to calculate the likelihood of this being drawn from a binomial
-distribution with probability <code>prob = 0.9</code>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>For the length distribution, there’s the Poisson and geometric
+distributions. These can be used with <code><a href="../reference/likelihood.html">likelihood()</a></code> based on
+what is specified for <code>offspring_dist</code> and
+<code>statistic</code>.</p>
+<p>If an analytical solution does not exist, an internal simulation
+function, <code><a href="../reference/dot-offspring_ll.html">.offspring_ll()</a></code> is employed. It uses simulations
+to approximate the probability distributions (<a href="https://en.wikipedia.org/wiki/Empirical_distribution_function" class="external-link">using
+a linear approximation to the cumulative distribution</a> for unobserved
+sizes/lengths). If simulation is to be used, an extra argument
+<code>nsim_offspring</code> must be passed to <code><a href="../reference/likelihood.html">likelihood()</a></code>
+to specify the number of simulations to be used for this approximation.
+Approximate values of the likelihood will vary with every call to the
+simulation (because the simulations used for estimation vary), and it
+may be worth calling <code><a href="../reference/likelihood.html">likelihood()</a></code> multiple times in this
+case to see the error this may introduce.</p>
+<p>For example, let’s look at an example where <code>chain_sizes</code>
+is observed and we want to calculate the likelihood of this being drawn
+from a binomial distribution with probability
+<code>prob = 0.9</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span><span class="co"># example of observed chain sizes; randomly generate 20 chains of size 1 to 10</span></span>
 <span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -297,14 +338,13 @@ distribution with probability <code>prob = 0.9</code>.</p>
 <span><span class="op">)</span></span>
 <span><span class="va">liks</span></span>
 <span><span class="co">#&gt; [1] -56.76805</span></span></code></pre></div>
-</details>
 </div>
 </div>
 <div class="section level2">
 <h2 id="transmission-chain-simulation">Transmission chain simulation<a class="anchor" aria-label="anchor" href="#transmission-chain-simulation"></a>
 </h2>
 <div class="section level3 unnumbered alert alert-primary">
-<h3 id="use-case-1">Use case<a class="anchor" aria-label="anchor" href="#use-case-1"></a>
+<h3 class="unnumbered" id="use-case-1">Use case<a class="anchor" aria-label="anchor" href="#use-case-1"></a>
 </h3>
 <p>We want to simulate a scenario where a number of chains are each
 produced by a separate index case. We want to simulate the chains of
@@ -313,39 +353,47 @@ distribution and a reproduction number.</p>
 </div>
 <div class="alert alert-secondary">
 <div class="section level4 unnumbered">
-<h4 id="what-we-have-1">What we have<a class="anchor" aria-label="anchor" href="#what-we-have-1"></a>
+<h4 class="unnumbered" id="what-we-have-1">What we have<a class="anchor" aria-label="anchor" href="#what-we-have-1"></a>
 </h4>
 <ol style="list-style-type: decimal">
 <li>An initial number of cases that seed the outbreak.</li>
 </ol>
 </div>
 <div class="section level4 unnumbered">
-<h4 id="what-we-assume-1">What we assume<a class="anchor" aria-label="anchor" href="#what-we-assume-1"></a>
+<h4 class="unnumbered" id="what-we-assume-1">What we assume<a class="anchor" aria-label="anchor" href="#what-we-assume-1"></a>
 </h4>
 <ol style="list-style-type: decimal">
-<li>An offspring distribution that governs the number of secondary cases produced by each case.</li>
-<li>Parameters of the offspring distribution (for example, mean and overdispersion if using a negative binomial; which can then be interpreted as reproduction number and superspreading coefficient, respectively)</li>
-<li>(optional) A threshold of chain summaries that are considered too large to be consistent with a reproduction number of <span class="math inline">\(R&lt;1\)</span> (e.g., <span class="math inline">\(N\)</span> cases or <span class="math inline">\(T\)</span> generations in total).</li>
-<li>(optional) A generation time distribution that governs the time between successive cases.</li>
+<li>An offspring distribution that governs the number of secondary cases
+produced by each case.</li>
+<li>Parameters of the offspring distribution (for example, mean and
+overdispersion if using a negative binomial; which can then be
+interpreted as reproduction number and superspreading coefficient,
+respectively)</li>
+<li>(optional) A threshold of chain summaries that are considered too
+large to be consistent with a reproduction number of <span class="math inline">\(R&lt;1\)</span> (e.g., <span class="math inline">\(N\)</span> cases or <span class="math inline">\(T\)</span> generations in total).</li>
+<li>(optional) A generation time distribution that governs the time
+between successive cases.</li>
 </ol>
 </div>
 </div>
-<p>There are two simulation functions, herein referred to collectively as the
-<code>simulate_*()</code> functions that can help us achieve this.</p>
+<p>There are two simulation functions, herein referred to collectively
+as the <code>simulate_*()</code> functions that can help us achieve
+this.</p>
 <div class="section level3">
 <h3 id="simulate_chains">
 <a href="https://epiverse-trace.github.io/epichains/reference/simulate_chains.html"><code>simulate_chains()</code></a><a class="anchor" aria-label="anchor" href="#simulate_chains"></a>
 </h3>
-<p><code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> simulates an outbreak from a given number of infections and
-an offspring distribution. By default, it assumes the population is infinite
-with no pre-existing immunity.</p>
+<p><code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> simulates an outbreak from a given
+number of infections and an offspring distribution. By default, it
+assumes the population is infinite with no pre-existing immunity.</p>
 <p>The function tracks and returns information on infectors (ancestors),
-infectees, the generation of infection, and the time, if a generation time
-function is specified.</p>
-<p>Let’s look at an example where we simulate a transmission tree for <span class="math inline">\(10\)</span> index
-cases. We assume a poisson offspring distribution with mean,
-<span class="math inline">\(\text{lambda} = 0.9\)</span>, and a generation time of <span class="math inline">\(3\)</span> days:</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+infectees, the generation of infection, and the time, if a generation
+time function is specified.</p>
+<p>Let’s look at an example where we simulate a transmission tree for
+<span class="math inline">\(10\)</span> index cases. We assume a poisson
+offspring distribution with mean, <span class="math inline">\(\text{lambda} = 0.9\)</span>, and a generation
+time of <span class="math inline">\(3\)</span> days:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
@@ -370,15 +418,18 @@ cases. We assume a poisson offspring distribution with mean,
 <span><span class="co">#&gt; 14     3        1        3          2    3</span></span>
 <span><span class="co">#&gt; 15     4        1        2          2    3</span></span>
 <span><span class="co">#&gt; 16     6        1        2          2    3</span></span></code></pre></div>
-</details><div class="alert alert-info">
-<p>By default, <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> assumes an infinite population but can account for susceptible depletion when a finite <code>pop</code> is specified.</p>
-<p>Pre-existing immunity levels can also be specified, which will be applied to <code>pop</code> before the simulation is initialised.</p>
+<div class="alert alert-info">
+<p>By default, <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> assumes an infinite
+population but can account for susceptible depletion when a finite
+<code>pop</code> is specified.</p>
+<p>Pre-existing immunity levels can also be specified, which will be
+applied to <code>pop</code> before the simulation is initialised.</p>
 </div>
-<p>Here is a quick example where we simulate an outbreak in a population of
-size <span class="math inline">\(1000\)</span> with <span class="math inline">\(10\)</span> index cases and <span class="math inline">\(10/%\)</span> pre-existing immunity. We assume
-individuals have a poisson offspring distribution with mean,
-<span class="math inline">\(\text{lambda} = 1\)</span>, and fixed generation time of <span class="math inline">\(3\)</span>:</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<p>Here is a quick example where we simulate an outbreak in a population
+of size <span class="math inline">\(1000\)</span> with <span class="math inline">\(10\)</span> index cases and <span class="math inline">\(10/%\)</span> pre-existing immunity. We assume
+individuals have a poisson offspring distribution with mean, <span class="math inline">\(\text{lambda} = 1\)</span>, and fixed generation
+time of <span class="math inline">\(3\)</span>:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
@@ -404,22 +455,22 @@ individuals have a poisson offspring distribution with mean,
 <span><span class="co">#&gt; 14     3        1        3          2    3</span></span>
 <span><span class="co">#&gt; 15     4        1        2          2    3</span></span>
 <span><span class="co">#&gt; 16     6        1        2          2    3</span></span></code></pre></div>
-</details>
 </div>
 <div class="section level3">
 <h3 id="simulate_chain_stats">
 <a href="https://epiverse-trace.github.io/epichains/reference/simulate_chain_stats.html"><code>simulate_chain_stats()</code></a><a class="anchor" aria-label="anchor" href="#simulate_chain_stats"></a>
 </h3>
 <div class="alert alert-primary">
-<p><code><a href="../reference/simulate_chain_stats.html">simulate_chain_stats()</a></code> is a performant version of <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> that
-does not track information on each infector and infectee. It returns the
-eventual size or length/duration of each transmission chain. This function is
-especially useful for calculating numerical likelihoods in <code><a href="../reference/likelihood.html">likelihood()</a></code>.</p>
+<p><code><a href="../reference/simulate_chain_stats.html">simulate_chain_stats()</a></code> is a performant version of
+<code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> that does not track information on each
+infector and infectee. It returns the eventual size or length/duration
+of each transmission chain. This function is especially useful for
+calculating numerical likelihoods in <code><a href="../reference/likelihood.html">likelihood()</a></code>.</p>
 </div>
-<p>Here is an example to simulate the previous examples without intervention,
-returning the size of each of the <span class="math inline">\(10\)</span> chains. It assumes a Poisson offspring distribution
-distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p>Here is an example to simulate the previous examples without
+intervention, returning the size of each of the <span class="math inline">\(10\)</span> chains. It assumes a Poisson offspring
+distribution distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">simulate_chain_stats_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chain_stats.html">simulate_chain_stats</a></span><span class="op">(</span></span>
@@ -440,7 +491,6 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Max: &gt;=10</span></span>
 <span><span class="co">#&gt; Min: 1</span></span></code></pre></div>
-</details>
 </div>
 </div>
 <div class="section level2">
@@ -449,9 +499,10 @@ distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
 <div class="section level3">
 <h3 id="summarising">Summarising<a class="anchor" aria-label="anchor" href="#summarising"></a>
 </h3>
-<p>You can run <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the object returned by <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> to
-obtain the chain summaries per index case.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<p>You can run <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the object returned by
+<code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> to obtain the chain summaries per index
+case.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
@@ -477,7 +528,7 @@ obtain the chain summaries per index case.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Max: &gt;=10</span></span>
 <span><span class="co">#&gt; Min: 1</span></span></code></pre></div>
-</details><details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Example with simulate_chain_stats()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
@@ -500,15 +551,16 @@ obtain the chain summaries per index case.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $min_stat</span></span>
 <span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
-</details><p>This summary is the same as the output of <code><a href="../reference/simulate_chain_stats.html">simulate_chain_stats()</a></code> if the same
-inputs are used. <code><a href="../reference/simulate_chain_stats.html">simulate_chain_stats()</a></code> is a more performant version of
-<code><a href="../reference/simulate_chains.html">simulate_chains()</a></code>, hence, you can use it instead, if you are only interested
-in the summary of the simulated chains without details about the infection
-tree.
-:::</p>
-<p>We can confirm if the two outputs are the same using <code><a href="https://rdrr.io/r/base/sets.html" class="external-link">base::setequal()</a></code>, which
-checks if two objects are equal and returns <code>TRUE/FALSE</code>.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<p>This summary is the same as the output of
+<code><a href="../reference/simulate_chain_stats.html">simulate_chain_stats()</a></code> if the same inputs are used.
+<code><a href="../reference/simulate_chain_stats.html">simulate_chain_stats()</a></code> is a more performant version of
+<code><a href="../reference/simulate_chains.html">simulate_chains()</a></code>, hence, you can use it instead, if you
+are only interested in the summary of the simulated chains without
+details about the infection tree. :::</p>
+<p>We can confirm if the two outputs are the same using
+<code><a href="https://rdrr.io/r/base/sets.html" class="external-link">base::setequal()</a></code>, which checks if two objects are equal and
+returns <code>TRUE/FALSE</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setequal</a></span><span class="op">(</span></span>
 <span>  <span class="co"># summary of output from simulate_chains()</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">)</span>,</span>
@@ -516,17 +568,17 @@ checks if two objects are equal and returns <code>TRUE/FALSE</code>.</p>
 <span>  <span class="va">simulate_chain_stats_eg</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-</details>
 </div>
 <div class="section level3">
 <h3 id="aggregating">Aggregating<a class="anchor" aria-label="anchor" href="#aggregating"></a>
 </h3>
-<p>You can aggregate <code>&lt;epichains_tree&gt;</code> objects returned by <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code>
-a <code>&lt;data.frame&gt;</code> with columns “cases” and either “generation” or “time”,
-depending on the value of <code>by</code>.</p>
+<p>You can aggregate <code>&lt;epichains_tree&gt;</code> objects
+returned by <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> a
+<code>&lt;data.frame&gt;</code> with columns “cases” and either
+“generation” or “time”, depending on the value of <code>by</code>.</p>
 <p>To aggregate over “time”, you must have specified a generation time
 distribution (<code>generation_time</code>) in the simulation step.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example with simulate_chains()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span></span>
@@ -554,15 +606,93 @@ distribution (<code>generation_time</code>) in the simulation step.</p>
 <span><span class="co">#&gt; 5   12     3</span></span>
 <span><span class="co">#&gt; 6   15     4</span></span>
 <span><span class="co">#&gt; 7   18     3</span></span></code></pre></div>
-</details>
 </div>
 <div class="section level3">
 <h3 id="plotting">Plotting<a class="anchor" aria-label="anchor" href="#plotting"></a>
 </h3>
-<p>Aggregated <code>&lt;epichains_tree&gt;</code> objects can easily be plotted using base R
-or <code>ggplot2</code> with little to no data manipulation.</p>
-<p>Here is an end-to-end example from simulation through aggregation to plotting.</p>
-<details class="chunk-details" open><summary class="chunk-summary"><span class="chunk-summary-text">Code</span></summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<p>We can plot individual chains in an <code>&lt;epichains&gt;</code>
+object using the <a href="https://www.repidemicsconsortium.org/epicontacts/" class="external-link">{epicontacts}
+package</a>.</p>
+<p>To do this, we first need to create an
+<code>&lt;epicontacts&gt;</code> object using the
+<code><a href="https://www.repidemicsconsortium.org/epicontacts/reference/make_epicontacts.html" class="external-link">epicontacts::make_epicontacts()</a></code> function, which requires a
+linelist and a contacts data.frame (See
+<code>?epicontacts::make_epicontacts()</code>).</p>
+</div>
+<div class="section level3 alert alert-info">
+<h3 id="some-notes-about-interoperability-between-epicontacts-and-epichains-objects">Some notes about interoperability between
+<code>&lt;epicontacts&gt;</code> and <code>&lt;epichains&gt;</code>
+objects<a class="anchor" aria-label="anchor" href="#some-notes-about-interoperability-between-epicontacts-and-epichains-objects"></a>
+</h3>
+<ul>
+<li>
+<p>For the <code><a href="https://www.repidemicsconsortium.org/epicontacts/reference/make_epicontacts.html" class="external-link">epicontacts::make_epicontacts()</a></code> function to
+work:</p>
+<ul>
+<li>the <code>linelist</code> and <code>contacts</code> data.frames must
+have a column named “id” that uniquely identifies each case.</li>
+<li>The <code>linelist</code> and <code>contacts</code> objects can be
+the same.</li>
+</ul>
+</li>
+<li><p>An <code>&lt;epichains&gt;</code> object contains multiple
+independent chains with their own unique infectee ids, so this does not
+work out of the box with <code><a href="https://www.repidemicsconsortium.org/epicontacts/reference/make_epicontacts.html" class="external-link">make_epicontacts()</a></code> unless you use
+a subset chain.</p></li>
+<li><p>For now, we will have to select and visualise individual chains
+from the <code>&lt;epichains&gt;</code> object.</p></li>
+<li><p>In future versions of this package, we will make this interaction
+seamless by providing user-friendly functionality to convert an
+<code>&lt;epichains&gt;</code> object to an
+<code>&lt;epicontacts&gt;</code> in a way that allows us to plot all
+chains at once.</p></li>
+</ul>
+</div>
+<p>Let’s subset one of the chains with the biggest size from the
+<code>sim_chains</code> object created above.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Get the biggest chain</span></span>
+<span><span class="va">longest_chain</span> <span class="op">&lt;-</span> <span class="va">sim_chains</span><span class="op">[</span><span class="va">sim_chains</span><span class="op">$</span><span class="va">chain</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">$</span><span class="va">chain</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Convert to data.frame to view the whole data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">longest_chain</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    chain infector infectee generation time</span></span>
+<span><span class="co">#&gt; 6      6       NA        1          1    0</span></span>
+<span><span class="co">#&gt; 16     6        1        2          2    3</span></span>
+<span><span class="co">#&gt; 17     6        1        3          2    3</span></span>
+<span><span class="co">#&gt; 18     6        1        4          2    3</span></span>
+<span><span class="co">#&gt; 27     6        2        5          3    6</span></span>
+<span><span class="co">#&gt; 28     6        3        6          3    6</span></span>
+<span><span class="co">#&gt; 29     6        3        7          3    6</span></span>
+<span><span class="co">#&gt; 30     6        4        8          3    6</span></span>
+<span><span class="co">#&gt; 42     6        5        9          4    9</span></span>
+<span><span class="co">#&gt; 43     6        6       10          4    9</span></span>
+<span><span class="co">#&gt; 44     6        7       11          4    9</span></span>
+<span><span class="co">#&gt; 45     6        8       12          4    9</span></span></code></pre></div>
+<p>Now, we can plot the chain using the <a href="https://www.repidemicsconsortium.org/epicontacts/" class="external-link">epicontacts</a>
+package.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create an `&lt;epicontacts&gt;` object</span></span>
+<span><span class="va">epc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.repidemicsconsortium.org/epicontacts/reference/make_epicontacts.html" class="external-link">make_epicontacts</a></span><span class="op">(</span></span>
+<span>  linelist <span class="op">=</span> <span class="va">longest_chain</span>,</span>
+<span>  contacts <span class="op">=</span> <span class="va">longest_chain</span>,</span>
+<span>  id <span class="op">=</span> <span class="st">"infectee"</span>,</span>
+<span>  from <span class="op">=</span> <span class="st">"infector"</span>,</span>
+<span>  to <span class="op">=</span> <span class="st">"infectee"</span>,</span>
+<span>  directed <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot the chain</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">epc</span><span class="op">)</span></span></code></pre></div>
+<div id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:90%;height:700px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12],"chain":[6,6,6,6,6,6,6,6,6,6,6,6],"infector":[null,1,1,1,2,3,3,4,5,6,7,8],"generation":[1,2,2,2,3,3,3,3,4,4,4,4],"time":[0,3,3,3,6,6,6,6,9,9,9,9],"label":["1","2","3","4","5","6","7","8","9","10","11","12"],"title":["<p> id: 1<br>chain: 6<br>infector: NA<br>generation: 1<br>time: 0 <\/p>","<p> id: 2<br>chain: 6<br>infector: 1<br>generation: 2<br>time: 3 <\/p>","<p> id: 3<br>chain: 6<br>infector: 1<br>generation: 2<br>time: 3 <\/p>","<p> id: 4<br>chain: 6<br>infector: 1<br>generation: 2<br>time: 3 <\/p>","<p> id: 5<br>chain: 6<br>infector: 2<br>generation: 3<br>time: 6 <\/p>","<p> id: 6<br>chain: 6<br>infector: 3<br>generation: 3<br>time: 6 <\/p>","<p> id: 7<br>chain: 6<br>infector: 3<br>generation: 3<br>time: 6 <\/p>","<p> id: 8<br>chain: 6<br>infector: 4<br>generation: 3<br>time: 6 <\/p>","<p> id: 9<br>chain: 6<br>infector: 5<br>generation: 4<br>time: 9 <\/p>","<p> id: 10<br>chain: 6<br>infector: 6<br>generation: 4<br>time: 9 <\/p>","<p> id: 11<br>chain: 6<br>infector: 7<br>generation: 4<br>time: 9 <\/p>","<p> id: 12<br>chain: 6<br>infector: 8<br>generation: 4<br>time: 9 <\/p>"],"color":["#CCDDFF","#88D3B6","#CEBEAE","#D5ACB9","#BCAE8C","#FFC70B","#FFA374","#D9E492","#D6CAAD","#EAAFB1","#F5CCA2","#CDCDCD"],"borderWidth":[2,2,2,2,2,2,2,2,2,2,2,2]},"edges":{"from":[1,1,1,2,3,3,4,5,6,7,8],"to":[2,3,4,5,6,7,8,9,10,11,12],"chain":[6,6,6,6,6,6,6,6,6,6,6],"generation":[2,2,2,3,3,3,3,4,4,4,4],"time":[3,3,3,6,6,6,6,9,9,9,9],"width":[3,3,3,3,3,3,3,3,3,3,3],"arrows":["to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"physics":{"stabilization":false}},"groups":null,"width":"90%","height":"700px","idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":true,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false,"variable":"id","main":"Select by id","values":[1,2,3,4,5,6,7,8,9,10,11,12]},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true},"highlight":{"enabled":true,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"opts_manipulation":{"datacss":"table.legend_table {\n  font-size: 11px;\n  border-width:1px;\n  border-color:#d3d3d3;\n  border-style:solid;\n}\ntable.legend_table td {\n  border-width:1px;\n  border-color:#d3d3d3;\n  border-style:solid;\n  padding: 2px;\n}\ndiv.table_content {\n  width:80px;\n  text-align:center;\n}\ndiv.table_description {\n  width:100px;\n}\n\n.operation {\n  font-size:20px;\n}\n\n.network-popUp {\n  display:none;\n  z-index:299;\n  width:250px;\n  /*height:150px;*/\n  background-color: #f9f9f9;\n  border-style:solid;\n  border-width:1px;\n  border-color: #0d0d0d;\n  padding:10px;\n  text-align: center;\n  position:fixed;\n  top:50%;  \n  left:50%;  \n  margin:-100px 0 0 -100px;  \n\n}","addNodeCols":["id","label"],"editNodeCols":["id","label"],"tab_add_node":"<span id=\"addnode-operation\" class = \"operation\">node<\/span> <br><table style=\"margin:auto;\"><tr><td>id<\/td><td><input id=\"addnode-id\"  type= \"text\" value=\"new value\"><\/td><\/tr><tr><td>label<\/td><td><input id=\"addnode-label\"  type= \"text\" value=\"new value\"><\/td><\/tr><\/table><input type=\"button\" value=\"save\" id=\"addnode-saveButton\"><\/button><input type=\"button\" value=\"cancel\" id=\"addnode-cancelButton\"><\/button>","tab_edit_node":"<span id=\"editnode-operation\" class = \"operation\">node<\/span> <br><table style=\"margin:auto;\"><tr><td>id<\/td><td><input id=\"editnode-id\"  type= \"text\" value=\"new value\"><\/td><\/tr><tr><td>label<\/td><td><input id=\"editnode-label\"  type= \"text\" value=\"new value\"><\/td><\/tr><\/table><input type=\"button\" value=\"save\" id=\"editnode-saveButton\"><\/button><input type=\"button\" value=\"cancel\" id=\"editnode-cancelButton\"><\/button>"},"iconsRedraw":true},"evals":[],"jsHooks":[]}</script><p>Aggregated <code>&lt;epichains_tree&gt;</code> objects can also be
+plotted using base R or <code>ggplot2</code> with little to no data
+manipulation.</p>
+<p>Here is an end-to-end example from simulation through aggregation to
+plotting.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Run simulation with simulate_chains()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
@@ -592,18 +722,22 @@ or <code>ggplot2</code> with little to no data manipulation.</p>
 <span>  xlab <span class="op">=</span> <span class="st">"Time"</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">"Cases"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-</details><p><img src="epichains_files/figure-html/plot_eg-1.png"><!-- --></p>
-</div>
+<p><img src="epichains_files/figure-html/plot_eg-1.png" width="576"></p>
 </div>
 <div class="section level2 unnumbered">
-<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-blumberg2013" class="csl-entry">
-Blumberg, S., and J. O. Lloyd-Smith. 2013. <span>“Comparing Methods for Estimating R0 from the Size Distribution of Subcritical Transmission Chains.”</span> <em>Epidemics</em> 5 (3): 131–45. <a href="https://doi.org/10.1016/j.epidem.2013.05.002" class="external-link">https://doi.org/10.1016/j.epidem.2013.05.002</a>.
+Blumberg, S., and J. O. Lloyd-Smith. 2013. <span>“Comparing Methods for
+Estimating R0 from the Size Distribution of Subcritical Transmission
+Chains.”</span> <em>Epidemics</em> 5 (3): 131–45. <a href="https://doi.org/10.1016/j.epidem.2013.05.002" class="external-link">https://doi.org/10.1016/j.epidem.2013.05.002</a>.
 </div>
 <div id="ref-farrington2003" class="csl-entry">
-Farrington, C. P., M. N. Kanaan, and N. J. Gay. 2003. <span>“Branching Process Models for Surveillance of Infectious Diseases Controlled by Mass Vaccination.”</span> <em>Biostatistics (Oxford, England)</em> 4 (2): 279–95. <a href="https://doi.org/10.1093/biostatistics/4.2.279" class="external-link">https://doi.org/10.1093/biostatistics/4.2.279</a>.
+Farrington, C. P., M. N. Kanaan, and N. J. Gay. 2003. <span>“Branching
+Process Models for Surveillance of Infectious Diseases Controlled by
+Mass Vaccination.”</span> <em>Biostatistics (Oxford, England)</em> 4
+(2): 279–95. <a href="https://doi.org/10.1093/biostatistics/4.2.279" class="external-link">https://doi.org/10.1093/biostatistics/4.2.279</a>.
 </div>
 </div>
 </div>

@@ -101,11 +101,12 @@
 <li><p><code><a href="reference/likelihood.html">likelihood()</a></code>: calculates the loglikelihood (or likelihood, depending on the value of <code>log</code>) of observing a vector of transmission chain sizes or lengths.</p></li>
 </ul>
 <p>The objects returned by the <code>simulate_*()</code> functions can be summarised with <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>. Running <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the output of <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> will return the same output as <code><a href="reference/simulate_chain_stats.html">simulate_chain_stats()</a></code> using the same inputs.</p>
-<p>Objects returned from <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> can be aggregated into a <code>&lt;data.frame&gt;</code> of cases per time or generation with the function <code><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate()</a></code>. The aggregated results can also be passed on to <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> with its own arguments to customize the resulting plots.</p>
+<p>Objects returned from <code><a href="reference/simulate_chains.html">simulate_chains()</a></code> can be aggregated into a <code>&lt;data.frame&gt;</code> of cases per time or generation with the function <code><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate()</a></code>.</p>
+<p>The simulated <code>&lt;epichains&gt;</code> object can be plotted in various ways using <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>. See the plotting section in <code><a href="articles/epichains.html">vignette("epichains")</a></code> for two use cases.</p>
 <div class="section level3">
 <h3 id="simulation">Simulation<a class="anchor" aria-label="anchor" href="#simulation"></a>
 </h3>
-<p>For the simulation functionality, let’s look at a simple example where we simulate a transmission chain with <span class="math inline">\(20\)</span> index cases, a constant generation time of <span class="math inline">\(3\)</span>, and a poisson offspring distribution with mean <span class="math inline">\(1\)</span>. We are tracking the chain “size” statistic and will cap all chain sizes at <span class="math inline">\(25\)</span> cases. We will then look at the summary of the simulation, and aggregate it into cases per generation, and plot it.</p>
+<p>For the simulation functionality, let’s look at a simple example where we simulate a transmission chain with <span class="math inline">\(20\)</span> index cases, a constant generation time of <span class="math inline">\(3\)</span>, and a poisson offspring distribution with mean <span class="math inline">\(1\)</span>. We are tracking the chain “size” statistic and will cap all chain sizes at <span class="math inline">\(25\)</span> cases. We will then look at the summary of the simulation, and aggregate it into cases per generation.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Simulate chains</span></span>
@@ -142,11 +143,24 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Aggregate the simulation into cases per generation</span></span>
-<span><span class="va">chains_agrgegated</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_chains</span>, by <span class="op">=</span> <span class="st">"generation"</span><span class="op">)</span></span>
+<span><span class="va">chains_agregegated</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">sim_chains</span>, by <span class="op">=</span> <span class="st">"generation"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># plot the aggregated results</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">chains_agrgegated</span>, type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-simulate_chains-1.png" width="100%"></p>
+<span><span class="co"># view the time series of cases per generation</span></span>
+<span><span class="va">chains_agregegated</span></span>
+<span><span class="co">#&gt;    generation cases</span></span>
+<span><span class="co">#&gt; 1           1    20</span></span>
+<span><span class="co">#&gt; 2           2    26</span></span>
+<span><span class="co">#&gt; 3           3    36</span></span>
+<span><span class="co">#&gt; 4           4    43</span></span>
+<span><span class="co">#&gt; 5           5    31</span></span>
+<span><span class="co">#&gt; 6           6    25</span></span>
+<span><span class="co">#&gt; 7           7    20</span></span>
+<span><span class="co">#&gt; 8           8     9</span></span>
+<span><span class="co">#&gt; 9           9     3</span></span>
+<span><span class="co">#&gt; 10         10     1</span></span>
+<span><span class="co">#&gt; 11         11     1</span></span>
+<span><span class="co">#&gt; 12         12     1</span></span>
+<span><span class="co">#&gt; 13         13     1</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="inference">Inference<a class="anchor" aria-label="anchor" href="#inference"></a>
