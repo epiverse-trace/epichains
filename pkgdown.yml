@@ -1,6 +1,6 @@
 pandoc: 3.1.11
 pkgdown: 2.0.9.9000
-pkgdown_sha: 5761658b7582743d0962136cd0c1e6e8d42b56d5
+pkgdown_sha: 98d30d834b33ce896310ee7a9ae89de11809d8e2
 articles:
   branching_process_literature: branching_process_literature.html
   design-principles: design-principles.html
@@ -8,7 +8,7 @@ articles:
   interventions: interventions.html
   projecting_incidence: projecting_incidence.html
   theoretical_background: theoretical_background.html
-last_built: 2024-05-20T11:34Z
+last_built: 2024-05-23T15:25Z
 urls:
   reference: https://epiverse-trace.github.io/epichains/reference
   article: https://epiverse-trace.github.io/epichains/articles
