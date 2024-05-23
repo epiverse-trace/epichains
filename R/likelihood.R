@@ -94,7 +94,7 @@
 #' @export
 #nolint start: cyclocomp_linter
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
-                       nsim_obs, obs_prob = 1, log = TRUE, stat_threshold = NULL,
+                       stat_threshold, nsim_obs, obs_prob = 1, log = TRUE,
                        exclude = NULL, individual = FALSE, ...) {
   statistic <- match.arg(statistic)
 
