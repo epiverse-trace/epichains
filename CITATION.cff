@@ -127,6 +127,36 @@ references:
     orcid: https://orcid.org/0000-0003-4777-038X
   year: '2024'
 - type: software
+  title: epicontacts
+  abstract: 'epicontacts: Handling, Visualisation and Analysis of Epidemiological
+    Contacts'
+  notes: Suggests
+  url: https://www.repidemicsconsortium.org/epicontacts/
+  repository: https://CRAN.R-project.org/package=epicontacts
+  authors:
+  - family-names: Campbell
+    given-names: Finlay
+    email: finlaycampbell93@gmail.com
+  - family-names: Jombart
+    given-names: Thibaut
+    email: thibautjombart@gmail.com
+  - family-names: Randhawa
+    given-names: Nistara
+    email: nrandhawa@ucdavis.edu
+  - family-names: Sudre
+    given-names: Bertrand
+    email: Bertrand.Sudre@ecdc.europa.eu
+  - family-names: Nagraj
+    given-names: VP
+    email: nagraj@nagraj.net
+  - family-names: Crellen
+    given-names: Thomas
+    email: tc13@sanger.ac.uk
+  - family-names: Kamvar
+    given-names: Zhian N.
+    email: zkamvar@gmail.com
+  year: '2024'
+- type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
   notes: Suggests
