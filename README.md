@@ -211,6 +211,11 @@ vignettes](https://epiverse-trace.github.io/epichains/), under
 As far as we know, below are the existing R packages for simulating
 branching processes and transmission chains.
 
+<details>
+<summary>
+Click to expand
+</summary>
+
 - [bpmodels](https://github.com/epiverse-trace/bpmodels): provides
   methods for analysing the size and length of transmission chains from
   branching process models. `{epichains}` is intended to supersede
@@ -287,6 +292,8 @@ branching processes and transmission chains.
 
 - [TransPhylo](https://xavierdidelot.github.io/TransPhylo/index.html):
   reconstructs infectious disease transmission using genomic data.
+
+</details>
 
 ## Reporting bugs
 
