@@ -44,12 +44,15 @@
 #' # randomly generate 20 chains of size 1 to 10
 #' chain_sizes <- sample(1:10, 20, replace = TRUE)
 #' likelihood(
-#'   chains = chain_sizes, statistic = "size",
-#'   offspring_dist = rpois, nsim_obs = 100, lambda = 0.5
+#'   chains = chain_sizes,
+#'   statistic = "size",
+#'   offspring_dist = rpois,
+#'   nsim_obs = 100,
+#'   lambda = 0.5
 #' )
-#' # Example using an <epichains_tree> object
+#' # Example using an <epichains> object
 #' set.seed(32)
-#' chains_tree_eg <- simulate_chains(
+#' epichains_obj_eg <- simulate_chains(
 #'  n_chains = 10,
 #'  pop = 100,
 #'  percent_immune = 0,
@@ -61,20 +64,20 @@
 #'  size = 0.2
 #')
 #'
-#' chains_tree_eg_lik <- likelihood(
-#'   chains = chains_tree_eg,
+#' epichains_obj_eg_lik <- likelihood(
+#'   chains = epichains_obj_eg,
 #'   statistic = "size",
 #'   offspring_dist = rnbinom,
 #'   mu = 2,
 #'   size = 0.2,
 #'   stat_threshold = 10
 #' )
-#' chains_tree_eg_lik
+#' epichains_obj_eg_lik
 #'
 #' # Example using a <epichains_summary> object
 #' set.seed(32)
-#' chains_summary_eg <- simulate_chain_stats(
-#'  n_chains = 10,
+#' epichains_summary_eg <- simulate_chain_stats(
+#'   n_chains = 10,
 #'   pop = 100,
 #'   percent_immune = 0,
 #'   statistic = "size",
@@ -83,15 +86,15 @@
 #'   mu = 2,
 #'   size = 0.2
 #' )
-#' chains_summary_eg_lik <- likelihood(
-#'   chains = chains_summary_eg,
+#' epichains_summary_eg_lik <- likelihood(
+#'   chains = epichains_summary_eg,
 #'   statistic = "size",
 #'   offspring_dist = rnbinom,
 #'   mu = 2,
 #'   size = 0.2,
 #'   stat_threshold = 10
 #' )
-#' chains_summary_eg_lik
+#' epichains_summary_eg_lik
 #' @export
 #nolint start: cyclocomp_linter
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
