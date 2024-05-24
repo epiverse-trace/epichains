@@ -78,8 +78,7 @@
     is.infinite(stat_threshold),
       checkmate::check_integerish(
         stat_threshold,
-        lower = 1,
-        null.ok = FALSE
+        lower = 1
     ),
     combine = "or"
   )
