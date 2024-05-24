@@ -9,9 +9,9 @@ likelihood(
   statistic = c("size", "length"),
   offspring_dist,
   nsim_obs,
+  stat_threshold = Inf,
   obs_prob = 1,
   log = TRUE,
-  stat_threshold = NULL,
   exclude = NULL,
   individual = FALSE,
   ...
@@ -45,6 +45,12 @@ binomial offspring, or custom functions.}
 log-likelihood/likelihood if \code{obs_prob < 1} (imperfect observation). If
 \code{obs_prob == 1}, this argument is ignored.}
 
+\item{stat_threshold}{A stopping criterion for individual chain simulations;
+a positive number coercible to integer. When any chain's cumulative statistic
+reaches or surpasses \code{stat_threshold}, that chain ends. It also serves as a
+censoring limit so that results above the specified value, are set to \code{Inf}.
+Defaults to \code{Inf}.}
+
 \item{obs_prob}{Observation probability. A number (probability) between 0
 and 1. A value greater than 0 but less 1 implies imperfect observation and
 simulations will be used to approximate the (log)likelihood. This will
@@ -53,12 +59,6 @@ process is assumed to be constant.}
 
 \item{log}{Should the log-likelihoods be transformed to
 likelihoods? Logical. Defaults to \code{TRUE}.}
-
-\item{stat_threshold}{A stopping criterion for individual chain simulations;
-a positive number coercible to integer. When any chain's cumulative statistic
-reaches or surpasses \code{stat_threshold}, that chain ends. It also serves as a
-censoring limit so that results above the specified value, are set to \code{Inf}.
-Defaults to \code{Inf}.}
 
 \item{exclude}{A vector of indices of the sizes/lengths to exclude from the
 log-likelihood calculation.}
