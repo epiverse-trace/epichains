@@ -141,10 +141,10 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
       stat_threshold <- attr(chains, "stat_threshold")
     }
   }
- # Replace infinite chain sizes with stat_threshold
-if (is.finite(stat_threshold)) {
-  chains <- pmin(chains, stat_threshold)
-}
+ # chains must be at most stat_threshold
+  if (is.finite(stat_threshold)) {
+    chains <- pmin(chains, stat_threshold)
+  }
 
   # Apply the observation process
   if (obs_prob < 1) {
