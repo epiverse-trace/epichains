@@ -1,83 +1,34 @@
-# epichains 0.0.9999
+# epichains 0.1.0
 
-* `epichains` is a re-implementation of `bpmodels` with a focus on providing
-a dedicated class of data structures for easy manipulation and interoperability
-with other new tools in the Epiverse and existing ecosystem.
+We are excited to announce the first minor release of `{epichains}`.
 
-* The `offspring_dist` argument has been changed to no longer accept a character
-  string, but instead now accepts a function (#25, #167, #188).
-  This expands the number of possible functions a user can use and is no longer 
-  restricted to distributions with a corresponding random number generator function
-  starting with `r...()`. For example:
-  
-  ```r
-  # This was not possible in earlier versions of this package.
-  my_poisson_wrapper <- function(n) {
-    rpois(n, lambda = 0.9)
-  }
-  chain_summary_raw <- simulate_summary(
-    index_cases = 2,
-    offspring_dist = my_poisson_wrapper,
-    statistic = "length"
-  )
+`{epichains}` re-implements [{bpmodels}](https://github.com/epiverse-trace/bpmodels), focusing on a unified simulation framework using branching processes to simulate transmission chains data. The framework incorporates susceptible depletion and pre-existing immunity and provides dedicated data structures for handling and analysing transmission chains in both tabular and vector formats. The goal is to provide seamless interoperability with other packages within the Epiverse-TRACE Initiative and the broader epidemiological tool ecosystem.
 
-  In adding this functionality an `rgborel` function was also added; this is because of a difference from previous behaviour, where the ll function name could be informed from the string passed and now it needs a function with that name; the function itself is not actually called when estimating the likelihood if the corresponding ll function exists so this could, in principle, be an empty dummy function; however, the function is included for documentation/clarity purposes, as well as for simulations.
+## New Features
 
-## Documentation
+### Documentation
 
-* A vignette outlining how to simulate interventions has been added.
+- **Dedicated Website:** Explore all features and documentation on the [epichains website](https://epiverse-trace.github.io/epichains/).
+- **Help:** Each function comes with extensive documentation. We welcome your feedback and suggestions for improvements.
+- **Vignettes:** This release comes with five detailed vignettes:
+  - **Getting Started:** A quick guide to the key functions.
+  - **Modelling Disease Control Interventions:** Learn how to model various intervention strategies.
+  - **Projecting Infectious Disease Incidence:** A case study on projecting COVID-19 incidence.
+  - **Literature:** A curation of literature on branching process applications in epidemiology.
+  - **Theoretical Background:** A deep dive into the theoretical background of the functions in the package (Contributor documentation).
+  - **Design principles**: The design principles of `{epichains}` (Contributor documentation).
 
-## Functions
+### Simulation
 
-* `simulate_tree()`: simulate transmission trees from a given number of initial
-cases.
-* `simulate_tree_from_pop()`: simulate transmission trees from a given 
-population size and initial immunity.
-* `simulate_summary()`: simulate a vector of observed transmission chains 
-sizes/lengths from a given number of chains.
-* `likelihood()`: estimate the likelihood/loglikelihood of observing
-chains of given sizes/lengths.
+- **`simulate_chains()`**: Simulate independent transmission chains from a specified number of initial cases, incorporating susceptible depletion and pre-existing immunity.
+- **`simulate_chain_stats()`**: Generate a vector of chain sizes or lengths from a specified number of initial cases, incorporating susceptible depletion and pre-existing immunity.
 
-## Methods
+### Inference
 
-* Use `print()` and `summary()` to obtain more insightful results compared to
-previously in {bpmodels}.
-* Use `aggregate()` to aggregate results from `simulate_tree()` and
-`simulate_tree_from_pop()` into cases by "generation" and "time" (if time is
-simulated)
+- **`likelihood()`**: Estimate the (log)likelihood of transmission chain sizes or lengths, with support for numeric vectors or `<epichains>` and `<epichains_summary>` objects.
 
-# bpmodels 0.2.1
+### Transmission Chain Data Manipulation
 
-## Minor functionality change
-
-* `chain_sim()` now throws a warning, instead of an error, when `tree` is set 
-to `FALSE` with `serial` also specified. We assume that providing a serial 
-interval means you want the tree of transmissions to be simulated, 
-so `chain_sim()` internally sets `tree = TRUE` and throws a warning explaining 
-what happened. This behaviour should not break any simulations with previous 
-versions with `bpmodels`, but if it does, please submit an issue. 
-To remove the warning, the user should explicitly set `tree = TRUE` when 
-they specify `serial`. 
-
-# bpmodels 0.2.0
-
-## Documentation
-
-* `chain_sim()`'s help file has been updated with more details. In particular,
-we describe in detail how to specify the `serial` argument as a function. We 
-have also added more examples.
-
-* A new vignette describing how to project COVID-19 incidence with `chain_sim()`
-has been added and can be accessed on the 
-[bpmodels website](https://epiverse-trace.github.io/bpmodels/) under "Articles".
-
-* The README's "quick start" section has been updated with what was 
-previously the introduction vignette.
-
-# bpmodels 0.1.9999
-
-* faster, vectorised chain simulations
-
-# bpmodels 0.1.0
-
-* initial release
+- **`summary()`**: Extract vectors of chain sizes or lengths from `<epichains>` objects.
+- **`aggregate()`**: Generate case time series by aggregrating by generation or time of infection.
+- **`plot()`**: Visualize individual transmission chains filtered by their id.
