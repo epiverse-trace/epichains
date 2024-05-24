@@ -142,8 +142,6 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     } else if (is.numeric(chains)) {
       stat_threshold <- Inf
     }
-  } else if (!is.integer(stat_threshold) || !is.infinite(stat_threshold)) {
-    stop("`stat_threshold` must be an integer.")
   }
  # Replace infinite chain sizes with stat_threshold
 if (is.finite(stat_threshold)) {
