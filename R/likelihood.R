@@ -139,8 +139,6 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   if (missing(stat_threshold)) {
     if (.is_epichains_summary(chains)) {
       stat_threshold <- attr(chains, "stat_threshold")
-    } else if (is.numeric(chains)) {
-      stat_threshold <- Inf
     }
   }
  # Replace infinite chain sizes with stat_threshold
