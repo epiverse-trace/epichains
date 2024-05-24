@@ -37,7 +37,7 @@
 #' except that likelihoods, instead of log-likelihoods, are calculated in all
 #' cases. Moreover, the joint likelihoods are the product, instead of the sum,
 #' of the individual likelihoods.
-#' @author Sebastian Funk
+#' @author Sebastian Funk, James M. Azam
 #' @examples
 #' # example of observed chain sizes
 #' set.seed(121)
