@@ -147,5 +147,5 @@ chains_summary_eg_lik <- likelihood(
 chains_summary_eg_lik
 }
 \author{
-Sebastian Funk
+Sebastian Funk, James M. Azam
 }
