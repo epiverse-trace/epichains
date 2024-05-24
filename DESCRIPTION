@@ -17,6 +17,8 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-9892-2999")),
     person("Pratik", "Gupte", , "pratik.gupte@lshtm.ac.uk", role = "rev",
            comment = c(ORCID = "0000-0001-5294-7819"))
+    person("Joshua W.", "Lambert", , "joshua.lambert@lshtm.ac.uk", role = "rev",
+           comment = c(ORCID = "0000-0001-5218-3046"))
   )
 Description: Provides methods to simulate and analyse the size and length
     of branching processes with an arbitrary offspring distribution. These
