@@ -75,7 +75,6 @@
     stop("stat_threshold must be an integer or `Inf`.")
   }
   checkmate::assert(
-    is.null(stat_threshold),
     is.infinite(stat_threshold),
       checkmate::check_integerish(
         stat_threshold,
