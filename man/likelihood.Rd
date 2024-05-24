@@ -150,5 +150,5 @@ epichains_summary_eg_lik <- likelihood(
 epichains_summary_eg_lik
 }
 \author{
-Sebastian Funk
+Sebastian Funk, James M. Azam
 }
