@@ -18,9 +18,10 @@ likelihood(
 )
 }
 \arguments{
-\item{chains}{Vector of chain summaries (sizes/lengths). Can also be an
-object of class \verb{<epichains_tree>} or \verb{<epichains_summary>}. See examples
-below.}
+\item{chains}{Vector of chain summaries (sizes/lengths). Can be a
+\verb{<numeric>} vector or an object of class \verb{<epichains>} or
+\verb{<epichains_summary>} (obtained from \code{\link[=simulate_chains]{simulate_chains()}} or
+\code{\link[=simulate_chain_stats]{simulate_chain_stats()}}). See examples below.}
 
 \item{statistic}{The chain statistic to track as the
 stopping criteria for each chain being simulated when \code{stat_threshold} is not
