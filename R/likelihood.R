@@ -144,10 +144,8 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   # * If the object is numeric, we'll use the default of Inf.
   #
   # 2. If stat_threshold is specified, we'll give that precedence.
-  if (missing(stat_threshold)) {
-    if (.is_epichains_summary(chains)) {
+  if (missing(stat_threshold) && .is_epichains_summary(chains)) {
       stat_threshold <- attr(chains, "stat_threshold")
-    }
   }
  # chains must be at most stat_threshold
   if (is.finite(stat_threshold)) {
