@@ -30,5 +30,5 @@ We are excited to announce the first minor release of `{epichains}`.
 ### Transmission Chain Data Manipulation
 
 - **`summary()`**: Extract vectors of chain sizes or lengths from `<epichains>` objects.
-- **`aggregate()`**: Generate case time series by aggregrating by generation or time of infection.
+- **`aggregate()`**: Generate case time series by aggregating by generation or time of infection.
 - **`plot()`**: Visualize individual transmission chains filtered by their id.
