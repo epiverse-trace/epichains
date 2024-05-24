@@ -69,6 +69,11 @@
     statistic,
     choices = c("size", "length")
   )
+  # check that stat_threshold is an integer or Inf. NULL values can be an
+  # edge case.
+  if (is.null(stat_threshold)) {
+    stop("stat_threshold must be an integer or `Inf`.")
+  }
   checkmate::assert(
     is.null(stat_threshold),
     is.infinite(stat_threshold),
