@@ -149,11 +149,42 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   #
   # 2. If stat_threshold is specified, we'll give that precedence.
   if (missing(stat_threshold) && .is_epichains_summary(chains)) {
-      stat_threshold <- attr(chains, "stat_threshold")
+    warning(
+      "`stat_threshold` not specified. ",
+      "Using `stat_threshold` = ",
+      .get_stat_threshold(chains),
+      " as used in the simulation.",
+      call. = FALSE
+    )
+    stat_threshold <- .get_stat_threshold(chains)
   }
-  # chains must be at most stat_threshold
+
   if (is.finite(stat_threshold)) {
+    # censor the chains to be at most stat_threshold
     chains <- pmin(chains, stat_threshold)
+  } else if (any(is.infinite(chains))) {
+    if (.is_epichains_summary(chains)) {
+      # <epichains_summary> objects can only contain Inf values if
+      # stat_threshold is finite in the simulation, so we'll use that
+      # value to censor the chains.
+      warning(
+        "`chains` must be censored with a finite value. ",
+        "Censoring with `stat_threshold` = ",
+        .get_stat_threshold(chains),
+        " as used in the simulation.",
+        call. = FALSE
+      )
+      stat_threshold <- .get_stat_threshold(chains)
+      chains <- pmin(chains, stat_threshold)
+    } else {
+      # Numeric chains can only contain Inf values based on human error/decision
+      # to censor it with infinite values, so we ask the user to fix that.
+      stop(
+        "`chains` must be censored with a finite value. ",
+        "Replace the `Inf` values with a finite value.",
+        call. = FALSE
+      )
+    }
   }
 
   # Apply the observation process
