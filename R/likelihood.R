@@ -14,6 +14,14 @@
 #' simulations will be used to approximate the (log)likelihood. This will
 #' also require specifying `nsim_obs`. In the simulation, the observation
 #' process is assumed to be constant.
+#' @param stat_threshold A stopping criterion for individual chain simulations;
+#' a positive number coercible to integer. When any chain's cumulative statistic
+#' reaches or surpasses `stat_threshold`, that chain ends. It also serves as a
+#' censoring limit so that results above the specified value, are set to `Inf`.
+#' Defaults to `Inf`. NOTE: For objects of class `<epichains>` or
+#' `<epichains_summary>`, the `stat_threshold` used in the simulation is
+#' extracted and used here so if this argument is specified, it is ignored and
+#' a warning is thrown.
 #' @param log Should the log-likelihoods be transformed to
 #' likelihoods? Logical. Defaults to `TRUE`.
 #' @param exclude A vector of indices of the sizes/lengths to exclude from the

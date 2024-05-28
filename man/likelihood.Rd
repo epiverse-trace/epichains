@@ -56,7 +56,10 @@ process is assumed to be constant.}
 a positive number coercible to integer. When any chain's cumulative statistic
 reaches or surpasses \code{stat_threshold}, that chain ends. It also serves as a
 censoring limit so that results above the specified value, are set to \code{Inf}.
-Defaults to \code{Inf}.}
+Defaults to \code{Inf}. NOTE: For objects of class \verb{<epichains>} or
+\verb{<epichains_summary>}, the \code{stat_threshold} used in the simulation is
+extracted and used here so if this argument is specified, it is ignored and
+a warning is thrown.}
 
 \item{log}{Should the log-likelihoods be transformed to
 likelihoods? Logical. Defaults to \code{TRUE}.}
