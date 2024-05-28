@@ -151,7 +151,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   if (missing(stat_threshold) && .is_epichains_summary(chains)) {
       stat_threshold <- attr(chains, "stat_threshold")
   }
- # chains must be at most stat_threshold
+  # chains must be at most stat_threshold
   if (is.finite(stat_threshold)) {
     chains <- pmin(chains, stat_threshold)
   }
