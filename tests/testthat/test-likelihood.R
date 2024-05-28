@@ -113,7 +113,7 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
       stat_threshold = 10,
       lambda = 0.9
     )
-    # Use the simulated <epichains_tree> object to calculate likelihood
+    # Use the simulated <epichains> object to calculate likelihood
     expect_equal(
       likelihood(
         chains = chains_tree_eg,
@@ -237,7 +237,7 @@ test_that("Errors are thrown", {
       offspring_dist = rpois,
       statistic = "size",
       lambda = 0.5,
-      obs_prob = 3
+      obs_prob = 3 # obs_prob > 1
     ),
     "is not <= 1"
   )
@@ -258,13 +258,13 @@ test_that("Errors are thrown", {
       offspring_dist = rpois,
       nsim_obs = 100,
       lambda = 0.5,
-      log = "s"
+      log = "s" # log must be a logical
     ),
     "Must be of type"
   )
   expect_error(
     likelihood(
-      chains = as.factor(chains),
+      chains = as.factor(chains), # chains cannot be a factor
       statistic = "size",
       offspring_dist = rpois,
       lambda = 0.5
@@ -273,17 +273,17 @@ test_that("Errors are thrown", {
   )
   expect_error(
     likelihood(
-      chains = chains, # Inf in data is not allowed
+      chains = chains,
       statistic = "size",
       offspring_dist = rpois,
       lambda = 0.5,
-      stat_threshold = NULL
+      stat_threshold = NULL # stat_threshold must be an integer or Inf
     ),
     "Assertion failed"
   )
   expect_error(
     likelihood(
-      chains = c(1:2, Inf), # Inf in data is not allowed
+      chains = c(1:2, Inf), # Inf in data is not allowed if stat_threshold = Inf
       statistic = "size",
       offspring_dist = rpois,
       lambda = 0.5,
