@@ -289,6 +289,8 @@ test_that("Errors are thrown", {
       lambda = 0.5,
       stat_threshold = Inf
     ),
-    "must only contain finite values"
+    "must be censored with a finite value"
+  )
+})
   )
 })
