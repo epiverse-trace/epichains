@@ -69,7 +69,7 @@
     statistic,
     choices = c("size", "length")
   )
-  # check that stat_threshold is an integer or Inf. 
+  # check that stat_threshold is an integer or Inf.
   checkmate::assert(
     checkmate::anyInfinite(stat_threshold),
       checkmate::check_integerish(
