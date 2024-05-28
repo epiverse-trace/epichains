@@ -141,9 +141,9 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   # Logic:
   # 1. If stat_threshold is not specified:
   #
-  # * If the object is an epichains_summary, we'll give preference to the
+  # * If the object is an <epichains_summary>, we'll give preference to the
   # stat_threshold used in the simulation and stored as an attribute in the
-  # object.
+  # object but we'll warn the user.
   #
   # * If the object is numeric, we'll use the default of Inf.
   #
