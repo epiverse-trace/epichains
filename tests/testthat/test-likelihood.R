@@ -292,5 +292,41 @@ test_that("Errors are thrown", {
     "must be censored with a finite value"
   )
 })
+
+test_that("Warnings are thrown", {
+  # Simulate an <epichains> object
+  set.seed(32)
+  chains_tree_eg <- simulate_chains(
+    n_chains = 10,
+    pop = 100,
+    percent_immune = 0,
+    statistic = "size",
+    offspring_dist = rpois,
+    stat_threshold = 10,
+    generation_time = function(n) rep(3, n),
+    lambda = 0.9
+  )
+  # We expect a warning when using the <epichains> object with the default
+  # stat_threshold
+  expect_warning(
+    likelihood(
+      chains = chains_tree_eg,
+      statistic = "size",
+      offspring_dist = rpois,
+      lambda = 0.9
+    ),
+    "Using `stat_threshold` = 10 as used in the simulation."
+  )
+  # We expect a warning when using the <epichains> object that contains Infs
+  # and stat_threshold is Inf
+  expect_warning(
+    likelihood(
+      chains = chains_tree_eg,
+      statistic = "size",
+      offspring_dist = rpois,
+      lambda = 0.9,
+      stat_threshold = Inf
+    ),
+    "Censoring with `stat_threshold` = 10 as used in the simulation."
   )
 })
