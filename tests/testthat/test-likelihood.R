@@ -135,7 +135,6 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
       ),
       -23.538997
     )
-    # Use default stat_threshold = NULL
     expect_equal(
       likelihood(
         chains = chains_summary_eg,
@@ -145,7 +144,6 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
       ),
       -23.538997
     )
-    # Use default stat_threshold = NULL
     expect_equal(
       likelihood(
         chains = chains_tree_eg,
