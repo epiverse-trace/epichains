@@ -279,7 +279,7 @@ test_that("Errors are thrown", {
       lambda = 0.5,
       stat_threshold = NULL
     ),
-    "must be an integer"
+    "Assertion failed"
   )
   expect_error(
     likelihood(
