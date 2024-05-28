@@ -129,28 +129,7 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
         chains = chains_summary_eg,
         statistic = "size",
         offspring_dist = rpois,
-        lambda = 0.9,
-        stat_threshold = 10
-      ),
-      -23.538997
-    )
-    expect_equal(
-      likelihood(
-        chains = chains_summary_eg,
-        statistic = "size",
-        offspring_dist = rpois,
-        lambda = 0.9,
-        stat_threshold = 10
-      ),
-      -23.538997
-    )
-    expect_equal(
-      likelihood(
-        chains = chains_tree_eg,
-        statistic = "size",
-        offspring_dist = rpois,
-        lambda = 0.9,
-        stat_threshold = 10
+        lambda = 0.9
       ),
       -23.538997
     )
@@ -304,17 +283,6 @@ test_that("Warnings are thrown", {
     stat_threshold = 10,
     generation_time = function(n) rep(3, n),
     lambda = 0.9
-  )
-  # We expect a warning when using the <epichains> object with the default
-  # stat_threshold
-  expect_warning(
-    likelihood(
-      chains = chains_tree_eg,
-      statistic = "size",
-      offspring_dist = rpois,
-      lambda = 0.9
-    ),
-    "Using `stat_threshold` = 10 as used in the simulation."
   )
   # We expect a warning when using the <epichains> object that contains Infs
   # and stat_threshold is Inf
