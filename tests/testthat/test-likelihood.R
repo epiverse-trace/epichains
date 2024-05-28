@@ -327,6 +327,6 @@ test_that("Warnings are thrown", {
       lambda = 0.9,
       stat_threshold = Inf
     ),
-    "Censoring with `stat_threshold` = 10 as used in the simulation."
+    "`stat_threshold` specified but will be ignored."
   )
 })
