@@ -90,7 +90,7 @@ test_that("Likelihoods can be calculated", {
 )
 
 test_that("likelihood() works with epichains and epichains_summary objects", {
-    # Simulate an <epichains_tree> object
+    # Simulate an <epichains> object
     set.seed(32)
     chains_tree_eg <- simulate_chains(
       n_chains = 10,
