@@ -140,7 +140,8 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
         chains = chains_summary_eg,
         statistic = "size",
         offspring_dist = rpois,
-        lambda = 0.9
+        lambda = 0.9,
+        stat_threshold = 10
       ),
       -23.538997
     )
@@ -149,7 +150,8 @@ test_that("likelihood() works with epichains and epichains_summary objects", {
         chains = chains_tree_eg,
         statistic = "size",
         offspring_dist = rpois,
-        lambda = 0.9
+        lambda = 0.9,
+        stat_threshold = 10
       ),
       -23.538997
     )
