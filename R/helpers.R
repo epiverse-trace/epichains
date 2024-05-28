@@ -150,3 +150,11 @@
   next_gen[as.integer(names(next_gen_count))] <- unname(next_gen_count)
   return(next_gen)
 }
+
+#' Extract the `stat_threshold` attribute from an `<epichains>` object.
+#'
+#' @param obj An <epichains> or <epichains_summary> object.
+#' @keywords internal
+.get_stat_threshold <- function(obj) {
+  attr(obj, "stat_threshold")
+}
