@@ -23,6 +23,19 @@ the statistic, represented as the maximum (\code{max_stat}) and minimum
 \verb{>= stat_threshold} where \code{stat_threshold} is the value of the censoring
 limit. See \code{?epichains_summary()} for the definition of \code{stat_threshold}.
 }
+\examples{
+# Using a Poisson offspring distribution and simulating from an infinite
+# population up to chain size 10.
+set.seed(32)
+chain_summary_print_eg <- simulate_chain_stats(
+ n_chains = 10,
+ statistic = "size",
+ offspring_dist = rpois,
+ stat_threshold = 10,
+ lambda = 2
+)
+chain_summary_print_eg # Print the object
+}
 \author{
 James M. Azam
 }
