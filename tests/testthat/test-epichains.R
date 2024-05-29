@@ -303,6 +303,16 @@ test_that("validate_epichains works", {
   expect_invisible(
     .validate_epichains_summary(chain_summary_raw)
   )
+  # For the sake of coverage, run the function with an object that does not
+  # have the class
+  expect_error(
+    .validate_epichains(1:10),
+    "Object must have an `<epichains>` class"
+  )
+  expect_error(
+    .validate_epichains_summary(1:10),
+    "Object must have an `<epichains_summary>` class"
+  )
 })
 
 test_that("is_chains_tree works", {
