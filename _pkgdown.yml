@@ -21,14 +21,12 @@ reference:
     contents:
     - aggregate.epichains
     - summary.epichains
-    - format.epichains
     - print.epichains
     - head.epichains
 
   - subtitle: epichains_summary
     contents:
     - summary.epichains_summary
-    - format.epichains_summary
     - print.epichains_summary
 
   - title: Special distributions
