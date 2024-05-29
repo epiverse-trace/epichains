@@ -149,16 +149,17 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   # * If the object is an <epichains>/<epichains_summary>, we'll give
   # preference to the stat_threshold used in the simulation.
   if (.is_epichains_summary(chains)) {
+    stat_threshold_from_sim <- attr(chains, "stat_threshold")
     if (!missing(stat_threshold)) {
-    warning(
-      "`stat_threshold` specified but will be ignored. ",
-      "Using `stat_threshold` = ",
-      .get_stat_threshold(chains),
-      " as used in the simulation.",
-      call. = FALSE
+      warning(
+        "`stat_threshold` specified but will be ignored. ",
+        "Using `stat_threshold` = ",
+        stat_threshold_from_sim,
+        " as used in the simulation.",
+        call. = FALSE
       )
     }
-    stat_threshold <- .get_stat_threshold(chains)
+    stat_threshold <- stat_threshold_from_sim
   }
 
   if (is.finite(stat_threshold)) {
