@@ -3,7 +3,7 @@ Title: Simulating and Analysing Transmission Chain Statistics Using
     Branching Process Models
 Version: 0.1.0
 Authors@R: c(
-    person("James M.", "Azam", , "james.azam@lshtm.ac.uk", role = c("aut", "cre"),
+    person("James M.", "Azam", , "james.azam@lshtm.ac.uk", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-5782-7330")),
     person("Sebastian", "Funk", , "sebastian.funk@lshtm.ac.uk", role = "aut",
            comment = c(ORCID = "0000-0002-2842-3406")),
