@@ -23,6 +23,7 @@ reference:
     - summary.epichains
     - print.epichains
     - head.epichains
+    - tail.epichains
 
   - subtitle: epichains_summary
     contents:
