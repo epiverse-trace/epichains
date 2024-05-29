@@ -219,7 +219,8 @@ print.epichains_summary <- function(x, ...) {
 #' @return Invisibly returns an `<epichains>`.
 #' Called for printing side-effects.
 #' @author James M. Azam
-#' @export
+#' @keywords internal
+#' @noRd
 format.epichains <- function(x, ...) {
   # check that x is an <epichains> object
   .validate_epichains(x)
@@ -269,7 +270,8 @@ format.epichains <- function(x, ...) {
 #' @return Invisibly returns an `<epichains_summary>`. Called for printing
 #' side-effects.
 #' @author James M. Azam
-#' @export
+#' @keywords internal
+#' @noRd
 format.epichains_summary <- function(x, ...) {
   # check that x is an <epichains_summary> object
   .validate_epichains_summary(x)
