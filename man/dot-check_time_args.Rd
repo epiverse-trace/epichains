@@ -7,7 +7,7 @@
 .check_time_args(tf_specified, tf, generation_time, t0)
 }
 \arguments{
-\item{tf_specified}{\if{html}{\out{<logical>}}; Whether the \code{tf} argument is specified. Only
+\item{tf_specified}{\verb{<logical>}; Whether the \code{tf} argument is specified. Only
 makes sense in the context where this function is called, i.e., in
 \code{\link[=simulate_chains]{simulate_chains()}}. If \code{tf} is specified, generation_time must be specified.}
 
@@ -24,7 +24,7 @@ corresponding initial times. Defaults to 0, meaning all cases started at
 time 0.}
 }
 \value{
-NULL; called for side effects
+\code{NULL}; called for side effects
 }
 \description{
 This function checks the time-related inputs, i.e., start time of each chain,
