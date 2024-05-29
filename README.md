@@ -319,10 +319,9 @@ By contributing to this project, you agree to abide by its terms.
 citation("epichains")
 #> To cite package 'epichains' in publications use:
 #> 
-#>   Azam J, Finger F, Funk S (2024). _epichains: Simulating and Analysing
+#>   Azam J, Funk S, Finger F (2024). _epichains: Simulating and Analysing
 #>   Transmission Chain Statistics Using Branching Process Models_. R
-#>   package version 0.0.0.9999,
-#>   https://epiverse-trace.github.io/epichains/,
+#>   package version 0.1.0, https://epiverse-trace.github.io/epichains/,
 #>   <https://github.com/epiverse-trace/epichains>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -330,9 +329,9 @@ citation("epichains")
 #>   @Manual{,
 #>     title = {epichains: Simulating and Analysing Transmission Chain Statistics Using
 #> Branching Process Models},
-#>     author = {James M. Azam and Flavio Finger and Sebastian Funk},
+#>     author = {James M. Azam and Sebastian Funk and Flavio Finger},
 #>     year = {2024},
-#>     note = {R package version 0.0.0.9999, 
+#>     note = {R package version 0.1.0, 
 #> https://epiverse-trace.github.io/epichains/},
 #>     url = {https://github.com/epiverse-trace/epichains},
 #>   }
