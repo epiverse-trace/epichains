@@ -13,6 +13,14 @@ test_that("We can calculate probabilities and sample", {
   expect_true(
     class(dborel(1, 0.5)) == "numeric"
   )
+  expect_identical(
+    rgborel(n = 5, size = 0.3, mu = 1, censor_at = 5),
+    c(1, 1, Inf, 1, 1)
+  )
+  expect_error(
+    rgborel(n = 5, size = 0.3, mu = 1, prob = 1, censor_at = 5),
+    "'prob' and 'mu' both specified"
+  )
 })
 
 test_that("Errors are thrown", {
