@@ -25,6 +25,19 @@ chains.
 \description{
 Summary method for \verb{<epichains_summary>} class
 }
+\examples{
+# Using a Poisson offspring distribution and simulating from an infinite
+# population up to chain size 10.
+set.seed(32)
+chain_stats <- simulate_chain_stats(
+ n_chains = 10,
+ statistic = "size",
+ offspring_dist = rpois,
+ stat_threshold = 10,
+ lambda = 2
+)
+summary(chain_stats)
+}
 \author{
 James M. Azam
 }

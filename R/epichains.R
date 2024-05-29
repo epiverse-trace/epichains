@@ -189,6 +189,19 @@
 #' side-effects.
 #' @author James M. Azam
 #' @export
+#' @examples
+#' # Using a Poisson offspring distribution and simulating from an infinite
+#' # population up to chain size 10.
+#' set.seed(32)
+#' chains_pois_offspring <- simulate_chains(
+#'  n_chains = 10,
+#'  statistic = "size",
+#'  offspring_dist = rpois,
+#'  stat_threshold = 10,
+#'  generation_time = function(n) rep(3, n),
+#'  lambda = 2
+#' )
+#' chains_pois_offspring # Print the object
 print.epichains <- function(x, ...) {
   format(x, ...)
 }
@@ -208,6 +221,18 @@ print.epichains <- function(x, ...) {
 #' side-effects.
 #' @author James M. Azam
 #' @export
+#' @examples
+#' # Using a Poisson offspring distribution and simulating from an infinite
+#' # population up to chain size 10.
+#' set.seed(32)
+#' chain_summary_print_eg <- simulate_chain_stats(
+#'  n_chains = 10,
+#'  statistic = "size",
+#'  offspring_dist = rpois,
+#'  stat_threshold = 10,
+#'  lambda = 2
+#' )
+#' chain_summary_print_eg # Print the object
 print.epichains_summary <- function(x, ...) {
   format(x, ...)
 }
@@ -425,6 +450,18 @@ summary.epichains <- function(object, ...) {
 #' chains.
 #' @author James M. Azam
 #' @export
+#' @examples
+#' # Using a Poisson offspring distribution and simulating from an infinite
+#' # population up to chain size 10.
+#' set.seed(32)
+#' chain_stats <- simulate_chain_stats(
+#'  n_chains = 10,
+#'  statistic = "size",
+#'  offspring_dist = rpois,
+#'  stat_threshold = 10,
+#'  lambda = 2
+#' )
+#' summary(chain_stats)
 summary.epichains_summary <- function(object, ...) {
   # Check that object has <epichains_summary> class
   .validate_epichains_summary(object)
