@@ -88,11 +88,11 @@
 #' generation_time. It also checks that the generation_time argument is
 #' specified if `tf` is specified as these go hand-in-hand.
 #'
-#' @param tf_specified <logical>; Whether the `tf` argument is specified. Only
+#' @param tf_specified `<logical>`; Whether the `tf` argument is specified. Only
 #' makes sense in the context where this function is called, i.e., in
 #' [simulate_chains()]. If `tf` is specified, generation_time must be specified.
 #' @inheritParams simulate_chains
-#' @return NULL; called for side effects
+#' @return `NULL`; called for side effects
 #' @keywords internal
 .check_time_args <- function(tf_specified,
                              tf,
