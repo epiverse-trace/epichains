@@ -99,8 +99,7 @@
 #'   statistic = "size",
 #'   offspring_dist = rnbinom,
 #'   mu = 2,
-#'   size = 0.2,
-#'   stat_threshold = 10
+#'   size = 0.2
 #' )
 #' epichains_summary_eg_lik
 #' @export
