@@ -212,6 +212,12 @@ test_that("summary.epichains works as expected", {
   #' Simulate the length statistic for the same outbreak
   set.seed(32)
   chain_length_summary_sim <- simulate_chain_stats_default(statistic = "length")
+  # Simulate chain summaries that are all Inf
+  set.seed(32)
+  chain_size_stats_all_Infs <- simulate_chain_stats_default(
+    stat_threshold = 1
+  )
+  chain_size_stats_all_Infs_summary <- summary(chain_size_stats_all_Infs)
   #' Expect the results from the tree and the summary to be the same
   expect_true(
     identical(
@@ -240,6 +246,14 @@ test_that("summary.epichains works as expected", {
       chain_length_tree_sim_summary,
       chain_length_summary_sim
     )
+  )
+  expect_identical(
+    chain_size_stats_all_Infs_summary$max_stat,
+    Inf
+  )
+  expect_identical(
+    chain_size_stats_all_Infs_summary$min_stat,
+    Inf
   )
 })
 
