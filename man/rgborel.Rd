@@ -31,6 +31,10 @@ Numeric vector of random numbers
 \description{
 Generate random numbers from a Gamma-Borel mixture distribution
 }
+\examples{
+set.seed(32)
+rgborel(n = 5, size = 0.3, mu = 1, censor_at = 5)
+}
 \author{
 Sebastian Funk
 }

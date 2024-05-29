@@ -71,6 +71,9 @@ rborel <- function(n, mu, censor_at = Inf) {
 ##' @return Numeric vector of random numbers
 ##' @author Sebastian Funk
 ##' @export
+#' @examples
+#' set.seed(32)
+#' rgborel(n = 5, size = 0.3, mu = 1, censor_at = 5)
 rgborel <- function(n, size, prob, mu, censor_at = Inf) {
   ## This function was introduced to support estimating likelihoods using a
   ## Gamma-Borel mixture distribution. It is not actually called (it only needs)
