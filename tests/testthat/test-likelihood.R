@@ -195,6 +195,22 @@ test_that("Likelihoods are numerically correct", {
     ),
     -12.48639
   )
+  expect_identical(
+    round(
+      unlist(
+        likelihood(
+          chains = chains,
+          statistic = "size",
+          offspring_dist = rpois,
+          lambda = 0.5,
+          log = FALSE,
+          individual = TRUE
+        )
+      ),
+      2
+    ),
+    c(0.61, 0.61, 0.05, 0.01)
+  )
 })
 
 test_that("Errors are thrown", {
