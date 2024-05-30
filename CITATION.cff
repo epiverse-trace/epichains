@@ -9,7 +9,7 @@ type: software
 license: MIT
 title: 'epichains: Simulating and Analysing Transmission Chain Statistics Using Branching
   Process Models'
-version: 0.0.0.9999
+version: 0.1.0
 abstract: Provides methods to simulate and analyse the size and length of branching
   processes with an arbitrary offspring distribution. These can be used, for example,
   to analyse the distribution of chain sizes or length of infectious disease outbreaks,
@@ -19,14 +19,14 @@ authors:
   given-names: James M.
   email: james.azam@lshtm.ac.uk
   orcid: https://orcid.org/0000-0001-5782-7330
-- family-names: Finger
-  given-names: Flavio
-  email: flavio.finger@epicentre.msf.org
-  orcid: https://orcid.org/0000-0002-8613-5170
 - family-names: Funk
   given-names: Sebastian
   email: sebastian.funk@lshtm.ac.uk
   orcid: https://orcid.org/0000-0002-2842-3406
+- family-names: Finger
+  given-names: Flavio
+  email: flavio.finger@epicentre.msf.org
+  orcid: https://orcid.org/0000-0002-8613-5170
 repository-code: https://github.com/epiverse-trace/epichains
 url: https://epiverse-trace.github.io/epichains/
 contact:
