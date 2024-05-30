@@ -9,7 +9,7 @@
     <nav class="navbar navbar-expand-lg fixed-top bg-dark" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="https://epiverse-trace.github.io/blueprints/logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">epichains</a>
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9999</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -67,10 +67,43 @@ side-effects.</p>
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
     <p>James M. Azam</p>
     </div>
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Using a Poisson offspring distribution and simulating from an infinite</span></span></span>
+<span class="r-in"><span><span class="co"># population up to chain size 10.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">chains_pois_offspring</span> <span class="op">&lt;-</span> <span class="fu"><a href="simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> n_chains <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span> statistic <span class="op">=</span> <span class="st">"size"</span>,</span></span>
+<span class="r-in"><span> offspring_dist <span class="op">=</span> <span class="va">rpois</span>,</span></span>
+<span class="r-in"><span> stat_threshold <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span> generation_time <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> lambda <span class="op">=</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">chains_pois_offspring</span> <span class="co"># Print the object</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> `&lt;epichains&gt;` object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt; epichains head (from first known infector) &gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    chain infector infectee generation time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11     1        1        2          2    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12     1        1        3          2    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13     2        1        2          2    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14     2        1        3          2    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15     3        1        2          2    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16     3        1        3          2    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of chains: 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of infectors (known): 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of generations: 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Use `as.data.frame(&lt;object_name&gt;)` to view the full output in the console.</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by James M. Azam, Flavio Finger, Sebastian Funk.</p>
+  <p>Developed by James M. Azam, Sebastian Funk, Flavio Finger.</p>
 </div>
 <div class="pkgdown-footer-right">
   <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>

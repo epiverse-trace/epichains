@@ -1,177 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/404.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/articles/branching_process_literature.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/articles/design-principles.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/articles/epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/articles/interventions.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/articles/projecting_incidence.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/articles/theoretical_background.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/index.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/aggregate.epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/covid19_sa.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dborel.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-adjust_next_gen.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_generation_time_valid.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_offspring_func_valid.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_sim_args.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_statistic_args.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-check_time_args.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-complementary_logprob.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-epichains_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-gborel_size_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-geom_length_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-get_statistic_func.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-get_susceptible_offspring.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-init_susc_pop.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-is_epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-is_epichains_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-nbinom_size_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-new_epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-new_epichains_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-offspring_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-pois_length_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-pois_size_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-rbinom_size.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-rgen_length.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-sample_possible_offspring.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-update_chain_stat.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-validate_epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/dot-validate_epichains_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/epichains-package.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/format.epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/format.epichains_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/head.epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/likelihood.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/print.epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/print.epichains_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/rborel.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/rgborel.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/simulate_chain_stats.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/simulate_chains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/summary.epichains.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/epichains/reference/summary.epichains_summary.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://epiverse-trace.github.io/epichains/404.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/LICENSE-text.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/LICENSE.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/articles/branching_process_literature.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/articles/design-principles.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/articles/epichains.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/articles/index.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/articles/interventions.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/articles/projecting_incidence.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/articles/theoretical_background.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/authors.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/index.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/news/index.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/aggregate.epichains.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/covid19_sa.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dborel.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-adjust_next_gen.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-check_generation_time_valid.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-check_offspring_func_valid.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-check_sim_args.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-check_statistic_args.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-check_time_args.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-complementary_logprob.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-epichains.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-epichains_summary.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-gborel_size_ll.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-geom_length_ll.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-get_statistic_func.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-get_susceptible_offspring.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-init_susc_pop.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-is_epichains.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-is_epichains_summary.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-nbinom_size_ll.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-new_epichains.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-new_epichains_summary.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-offspring_ll.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-pois_length_ll.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-pois_size_ll.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-rbinom_size.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-rgen_length.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-sample_possible_offspring.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-update_chain_stat.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-validate_epichains.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/dot-validate_epichains_summary.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/epichains-package.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/head.epichains.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/index.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/likelihood.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/print.epichains.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/print.epichains_summary.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/rborel.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/rgborel.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/simulate_chain_stats.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/simulate_chains.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/summary.epichains.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/reference/summary.epichains_summary.html</loc></url>
 </urlset>
+
