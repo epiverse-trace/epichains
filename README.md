@@ -45,10 +45,25 @@ The latest development version of the *epichains* package can be
 installed via
 
 ``` r
+# check whether {remotes} is installed
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("epiverse-trace/epichains")
+```
+
+If this fails, try using the `pak` R package via
+
+``` r
 # check whether {pak} is installed
 if (!require("pak")) install.packages("pak")
 pak::pak("epiverse-trace/epichains")
 ```
+
+If both of these options fail, please [file an
+issue](https://github.com/epiverse-trace/epichains/issues) with a full
+log of the error messages. Here is an [example of an issue reporting an
+installation
+failure](https://github.com/epiverse-trace/epichains/issues/262). This
+will help us to improve the installation process.
 
 To load the package, use
 
