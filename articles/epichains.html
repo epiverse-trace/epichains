@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="epichains">
 <title>Getting started with epichains • epichains</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -17,7 +16,8 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="../deps/MathJax-2.7.5/MathJax.js"></script><script src="../deps/MathJax-2.7.5/TeX-AMS-MML_HTMLorMML.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting started with epichains">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting started with epichains">
+<meta name="description" content="epichains">
 <meta property="og:description" content="epichains">
 <meta property="og:image" content="https://epiverse-trace.github.io/epichains/logo.svg">
 <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ471458FQ"></script><script>
@@ -166,7 +166,13 @@ respectively)</li>
 <li>(optional) An observation process/probability that generates the
 observed chain summaries.</li>
 <li>(optional) A threshold of chain summaries that are considered too
-large to be consistent with a reproduction number of <span class="math inline">\(R&lt;1\)</span> (e.g., <span class="math inline">\(N\)</span> cases or <span class="math inline">\(T\)</span> generations in total).</li>
+large to be consistent with a reproduction number of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">R&lt;1</annotation></semantics></math>
+(e.g.,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+cases or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>
+generations in total).</li>
 </ol>
 </div>
 </div>
@@ -370,7 +376,13 @@ overdispersion if using a negative binomial; which can then be
 interpreted as reproduction number and superspreading coefficient,
 respectively)</li>
 <li>(optional) A threshold of chain summaries that are considered too
-large to be consistent with a reproduction number of <span class="math inline">\(R&lt;1\)</span> (e.g., <span class="math inline">\(N\)</span> cases or <span class="math inline">\(T\)</span> generations in total).</li>
+large to be consistent with a reproduction number of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">R&lt;1</annotation></semantics></math>
+(e.g.,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+cases or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>
+generations in total).</li>
 <li>(optional) A generation time distribution that governs the time
 between successive cases.</li>
 </ol>
@@ -390,9 +402,12 @@ assumes the population is infinite with no pre-existing immunity.</p>
 infectees, the generation of infection, and the time, if a generation
 time function is specified.</p>
 <p>Let’s look at an example where we simulate a transmission tree for
-<span class="math inline">\(10\)</span> index cases. We assume a poisson
-offspring distribution with mean, <span class="math inline">\(\text{lambda} = 0.9\)</span>, and a generation
-time of <span class="math inline">\(3\)</span> days:</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>10</mn><annotation encoding="application/x-tex">10</annotation></semantics></math>
+index cases. We assume a poisson offspring distribution with mean,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">lambda</mtext><mo>=</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">\text{lambda} = 0.9</annotation></semantics></math>,
+and a generation time of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>
+days:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
@@ -426,9 +441,17 @@ population but can account for susceptible depletion when a finite
 applied to <code>pop</code> before the simulation is initialised.</p>
 </div>
 <p>Here is a quick example where we simulate an outbreak in a population
-of size <span class="math inline">\(1000\)</span> with <span class="math inline">\(10\)</span> index cases and <span class="math inline">\(10/%\)</span> pre-existing immunity. We assume
-individuals have a poisson offspring distribution with mean, <span class="math inline">\(\text{lambda} = 1\)</span>, and fixed generation
-time of <span class="math inline">\(3\)</span>:</p>
+of size
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1000</mn><annotation encoding="application/x-tex">1000</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>10</mn><annotation encoding="application/x-tex">10</annotation></semantics></math>
+index cases and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mi>/</mi></mrow><annotation encoding="application/x-tex">10/%</annotation></semantics></math>
+pre-existing immunity. We assume individuals have a poisson offspring
+distribution with mean,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">lambda</mtext><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\text{lambda} = 1</annotation></semantics></math>,
+and fixed generation time of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
@@ -468,8 +491,11 @@ of each transmission chain. This function is especially useful for
 calculating numerical likelihoods in <code><a href="../reference/likelihood.html">likelihood()</a></code>.</p>
 </div>
 <p>Here is an example to simulate the previous examples without
-intervention, returning the size of each of the <span class="math inline">\(10\)</span> chains. It assumes a Poisson offspring
-distribution distribution with mean of <span class="math inline">\(0.9\)</span>.</p>
+intervention, returning the size of each of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>10</mn><annotation encoding="application/x-tex">10</annotation></semantics></math>
+chains. It assumes a Poisson offspring distribution distribution with
+mean of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.9</mn><annotation encoding="application/x-tex">0.9</annotation></semantics></math>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
