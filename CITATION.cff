@@ -9,7 +9,7 @@ type: software
 license: MIT
 title: 'epichains: Simulating and Analysing Transmission Chain Statistics Using Branching
   Process Models'
-version: 0.1.0
+version: 0.1.0.9000
 abstract: Provides methods to simulate and analyse the size and length of branching
   processes with an arbitrary offspring distribution. These can be used, for example,
   to analyse the distribution of chain sizes or length of infectious disease outbreaks,
