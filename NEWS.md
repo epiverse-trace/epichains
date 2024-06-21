@@ -1,5 +1,9 @@
 # epichains (development version)
 
+## Package
+
+- Removed the `as_is = TRUE` setting in vignette YAML headers to avoid partial incompatibility with incoming pkgdown versions.
+
 # epichains 0.1.0
 
 We are excited to announce the first minor release of `{epichains}`.
