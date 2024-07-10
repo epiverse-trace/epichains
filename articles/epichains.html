@@ -12,30 +12,34 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting started with epichains">
-<meta name="description" content="epichains">
-<meta property="og:description" content="epichains">
-<meta property="og:image" content="https://epiverse-trace.github.io/epichains/logo.svg">
 <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ471458FQ"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+
   gtag('config', 'G-XZ471458FQ');
 </script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    <nav class="navbar navbar-expand-lg fixed-top bg-dark" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
+
+
+    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="https://epiverse-trace.github.io/blueprints/logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">epichains</a>
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.1.0.9000</small>
+
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="active nav-item"><a class="nav-link" href="../articles/epichains.html">Get started</a></li>
@@ -63,8 +67,18 @@
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/epiverse-trace/epichains/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
+<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
+  </ul>
+</li>
       </ul>
 </div>
+
+
   </div>
 </nav><div class="container template-article">
 
@@ -77,10 +91,15 @@
       <img src="../logo.svg" class="logo" alt=""><h1>Getting started with epichains</h1>
                         <h4 data-toc-skip class="author">James M. Azam
 and Sebastian Funk</h4>
-                        <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/v0.1.0/vignettes/epichains.Rmd" class="external-link"><code>vignettes/epichains.Rmd</code></a></small>
+            
+      
+      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/epichains/blob/main/vignettes/epichains.Rmd" class="external-link"><code>vignettes/epichains.Rmd</code></a></small>
       <div class="d-none name"><code>epichains.Rmd</code></div>
     </div>
-        <p>This vignette demonstrates how get started with using the
+
+    
+    
+<p>This vignette demonstrates how get started with using the
 <em>epichains</em> package for simulating transmission chains or
 estimating the likelihood of observing a transmission chain.</p>
 <div class="alert alert-info">
@@ -207,9 +226,8 @@ log-likelihood of observing <code>chain_sizes</code>.</p>
 <span><span class="co"># randomly generate 20 chains of size between 1 to 10</span></span>
 <span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">chain_sizes</span></span>
-<span><span class="co">#&gt;  [1]  4  7  4  9  1  3  7  5  1  8 10  2  1  2  4  5 10  6  8  7</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># estimate loglikelihood of the observed chain sizes for given lambda</span></span>
+<span><span class="co">#&gt;  [1]  4  7  4  9  1  3  7  5  1  8 10  2  1  2  4  5 10  6  8  7</span></span>
+<span><span class="co"># estimate loglikelihood of the observed chain sizes for given lambda</span></span>
 <span><span class="va">likelihood_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
 <span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="st">"size"</span>,</span>
@@ -231,15 +249,14 @@ example for calculating <a href="https://en.wikipedia.org/wiki/Watanabe%E2%80%93
 information criterion</a> values, then the <code>individual</code>
 argument must be set to <code>TRUE</code>. To return likelihoods
 instead, set <code>log = FALSE</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span><span class="co"># example of observed chain sizes</span></span>
 <span><span class="co"># randomly generate 20 chains of size between 1 to 10</span></span>
 <span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">chain_sizes</span></span>
-<span><span class="co">#&gt;  [1]  4  7  4  9  1  3  7  5  1  8 10  2  1  2  4  5 10  6  8  7</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt;  [1]  4  7  4  9  1  3  7  5  1  8 10  2  1  2  4  5 10  6  8  7</span></span>
+<span></span>
 <span><span class="co"># estimate loglikelihood of the observed chain sizes</span></span>
 <span><span class="va">likelihood_ind_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
 <span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
@@ -270,7 +287,7 @@ lengths are simulated <code>nsim_obs</code> times, and the likelihood
 calculated for each of the simulations.</p>
 <p>For example, if the probability of observing each case is
 <code>obs_prob = 0.30</code>, we use</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span><span class="co"># example of observed chain sizes; randomly generate 20 chains of size 1 to 10</span></span>
 <span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -329,7 +346,7 @@ case to see the error this may introduce.</p>
 is observed and we want to calculate the likelihood of this being drawn
 from a binomial distribution with probability
 <code>prob = 0.9</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span><span class="co"># example of observed chain sizes; randomly generate 20 chains of size 1 to 10</span></span>
 <span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -408,7 +425,7 @@ index cases. We assume a poisson offspring distribution with mean,
 and a generation time of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>
 days:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
@@ -452,7 +469,7 @@ distribution with mean,
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">lambda</mtext><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\text{lambda} = 1</annotation></semantics></math>,
 and fixed generation time of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
@@ -496,7 +513,7 @@ intervention, returning the size of each of the
 chains. It assumes a Poisson offspring distribution distribution with
 mean of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.9</mn><annotation encoding="application/x-tex">0.9</annotation></semantics></math>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">simulate_chain_stats_eg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chain_stats.html">simulate_chain_stats</a></span><span class="op">(</span></span>
@@ -528,7 +545,7 @@ mean of
 <p>You can run <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the object returned by
 <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> to obtain the chain summaries per index
 case.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
@@ -553,9 +570,8 @@ case.</p>
 <span><span class="co">#&gt;  Simulated sizes: </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Max: &gt;=10</span></span>
-<span><span class="co">#&gt; Min: 1</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; Min: 1</span></span>
+<span></span>
 <span><span class="co"># Example with simulate_chain_stats()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span></span>
@@ -586,7 +602,7 @@ details about the infection tree. :::</p>
 <p>We can confirm if the two outputs are the same using
 <code><a href="https://rdrr.io/r/base/sets.html" class="external-link">base::setequal()</a></code>, which checks if two objects are equal and
 returns <code>TRUE/FALSE</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setequal</a></span><span class="op">(</span></span>
 <span>  <span class="co"># summary of output from simulate_chains()</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">)</span>,</span>
@@ -604,7 +620,7 @@ returned by <code><a href="../reference/simulate_chains.html">simulate_chains()<
 “generation” or “time”, depending on the value of <code>by</code>.</p>
 <p>To aggregate over “time”, you must have specified a generation time
 distribution (<code>generation_time</code>) in the simulation step.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example with simulate_chains()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span></span>
@@ -676,7 +692,7 @@ chains at once.</p></li>
 </div>
 <p>Let’s subset one of the chains with the biggest size from the
 <code>sim_chains</code> object created above.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get the biggest chain</span></span>
 <span><span class="va">longest_chain</span> <span class="op">&lt;-</span> <span class="va">sim_chains</span><span class="op">[</span><span class="va">sim_chains</span><span class="op">$</span><span class="va">chain</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">sim_chains</span><span class="op">$</span><span class="va">chain</span><span class="op">)</span><span class="op">)</span></span>
@@ -699,7 +715,7 @@ chains at once.</p></li>
 <span><span class="co">#&gt; 45     6        8       12          4    9</span></span></code></pre></div>
 <p>Now, we can plot the chain using the <a href="https://www.repidemicsconsortium.org/epicontacts/" class="external-link">epicontacts</a>
 package.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create an `&lt;epicontacts&gt;` object</span></span>
 <span><span class="va">epc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.repidemicsconsortium.org/epicontacts/reference/make_epicontacts.html" class="external-link">make_epicontacts</a></span><span class="op">(</span></span>
 <span>  linelist <span class="op">=</span> <span class="va">longest_chain</span>,</span>
@@ -718,7 +734,7 @@ plotted using base R or <code>ggplot2</code> with little to no data
 manipulation.</p>
 <p>Here is an end-to-end example from simulation through aggregation to
 plotting.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Run simulation with simulate_chains()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Define generation time</span></span>
@@ -770,13 +786,23 @@ Mass Vaccination.”</span> <em>Biostatistics (Oxford, England)</em> 4
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
+
+
+
     <footer><div class="pkgdown-footer-left">
   <p>Developed by James M. Azam, Sebastian Funk, Flavio Finger.</p>
 </div>
+
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
+
     </footer>
 </div>
+
+
+
+
+
   </body>
 </html>
