@@ -477,3 +477,107 @@ simulate_chain_stats <- function(n_chains,
 
   return(out)
 }
+
+#' Calculate transmission chain statistics across a range of scenarios and
+#' divide into intervals
+#'
+#' @details
+#' The `offspring_dist` argument is not equivalent to the `offspring_dist`
+#' argument in [simulate_chains()] and [simulate_chain_stats()], in those
+#' functions `offspring_dist` should be a `<function>`, whereas in
+#' `simulate_scenarios()` `offspring_dist` should be a vector of `character`
+#' strings which match function names.
+#'
+#' @inheritParams simulate_chains
+#' @param offspring_dist Offspring distribution: a `character` string  with the
+#' name of the random number generator function. For example those
+#' provided by R to generate random numbers from given distributions (e.g.,
+#' [rpois()] for Poisson). If the `character` string does not match
+#' a function then the function will error (see [match.fun()] for details).
+#' Examples that can be provided here are `"rpois"` for Poisson distributed
+#' offspring, `"rnbinom"` for negative binomial offspring.
+#' @param R_seq A `numeric` vector of reproduction number values to simulate
+#' the branching process for.
+#' @param k_seq A `numeric` vector of dispersion values to simulate the
+#' branching process for. Only applicable for `offspring_dist = "rnbinom"`.
+#' @inheritParams base::cut
+#' @param ... [dots] Extra arguments to be passed to [simulate_chain_stats()].
+#' If argument does not match one from [simulate_chain_stats()] the function
+#' will error.
+#'
+#' @return A `<data.frame>`.
+#' @export
+#'
+#' @examples
+#' simulate_scenarios(
+#'   statistic = c("size", "length"),
+#'   offspring_dist = c("rpois", "rnbinom"),
+#'   R_seq = seq(0.1, 0.5, 0.1),
+#'   k_seq = seq(0.1, 0.5, 0.1),
+#'   breaks = c(0, 2, 5, 10, 20, 50, 100, Inf)
+#' )
+#'
+#' # when R > 1 pass a stopping criteria to simulate_chain_stats()
+#' simulate_scenarios(
+#'   statistic = c("size", "length"),
+#'   offspring_dist = c("rpois", "rnbinom"),
+#'   R_seq = seq(0.5, 2.0, 0.5),
+#'   k_seq = seq(0.1, 0.5, 0.1),
+#'   breaks = c(0, 2, 5, 10, 20, 50, 100, Inf),
+#'   stat_threshold = 10
+#' )
+simulate_scenarios <- function(statistic,
+                               offspring_dist,
+                               R_seq,
+                               k_seq,
+                               breaks,
+                               ...) {
+  scenarios <- expand.grid(
+    offspring_dist = offspring_dist,
+    statistic = statistic,
+    R = R_seq,
+    k = k_seq,
+    stringsAsFactors = FALSE
+  )
+
+  # remove any variation in k for rpois as parameter not used
+  if ("rpois" %in% offspring_dist && length(unique(scenarios$k)) > 1) {
+    drop_rows <- c(
+      scenarios$offspring_dist == "rpois" &
+        scenarios$k != unique(scenarios$k)[1]
+    )
+    scenarios <- scenarios[!drop_rows, ]
+    # convert rpois k to NA to make clear it isn't used
+    scenarios$k[scenarios$offspring_dist == "rpois"] <- NA_real_
+  }
+
+  df_list <- vector(mode = "list", length = nrow(scenarios))
+  for (i in seq_len(nrow(scenarios))) {
+    args <- list(
+      n_chains = 1000,
+      offspring_dist = match.fun(scenarios[i, "offspring_dist"]),
+      statistic = scenarios[i, "statistic"]
+    )
+    if (scenarios[i, "offspring_dist"] == "rpois") {
+      args$lambda <- scenarios[i, "R"]
+    } else {
+      # TODO: work out how to handle cases of functions that can be matched from
+      # base or in the users global environment but are parameterised
+      # differently
+      args_ <- list(mu = scenarios[i, "R"], size = scenarios[i, "k"])
+      args <- c(args, args_)
+    }
+    args <- utils::modifyList(x = args, val = list(...))
+    x <- do.call(epichains::simulate_chain_stats, args = args)
+    interval <- cut(x, breaks = breaks)
+    prop <- table(interval) / sum(table(interval))
+    df_ <- as.data.frame(prop)
+    df_$R <- scenarios[i, "R"]
+    df_$k <- scenarios[i, "k"]
+    df_$offspring_dist <- scenarios[i, "offspring_dist"]
+    df_$statistic <- scenarios[i, "statistic"]
+    df_list[[i]] <- df_
+  }
+  df <- do.call(rbind, df_list)
+  return(df)
+}
