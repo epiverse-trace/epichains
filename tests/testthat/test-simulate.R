@@ -379,3 +379,42 @@ test_that("simulate_chain_stats is numerically correct", {
     c(1.00, 3.00)
   )
 })
+
+test_that("simulate_scenarios work as expected", {
+  df <- simulate_scenarios(
+    offspring_dist = c("rpois", "rnbinom"),
+    statistic = c("size", "length"),
+    R_seq = seq(0.1, 0.5, 0.1),
+    k_seq = seq(0.1, 0.5, 0.1),
+    breaks = c(0, 5, 10, 20, Inf)
+  )
+  expect_s3_class(df, class = "data.frame")
+  expect_identical(dim(df), c(240L, 6L))
+  expect_identical(
+    colnames(df),
+    c("interval", "Freq", "R", "k", "offspring_dist", "statistic")
+  )
+  expect_identical(unique(df$statistic), c("size", "length"))
+  expect_identical(unique(df$offspring_dist), c("rpois", "rnbinom"))
+  expect_s3_class(df$interval, class = "factor")
+})
+
+test_that("simulate_scenarios work as expected using `...`", {
+  df <- simulate_scenarios(
+    offspring_dist = c("rpois", "rnbinom"),
+    statistic = c("size", "length"),
+    R_seq = seq(0.1, 0.5, 0.1),
+    k_seq = seq(0.1, 0.5, 0.1),
+    breaks = c(0, 5, 10, 20, Inf),
+    stat_threshold = 15
+  )
+  expect_s3_class(df, class = "data.frame")
+  expect_identical(dim(df), c(240L, 6L))
+  expect_identical(
+    colnames(df),
+    c("interval", "Freq", "R", "k", "offspring_dist", "statistic")
+  )
+  expect_identical(unique(df$statistic), c("size", "length"))
+  expect_identical(unique(df$offspring_dist), c("rpois", "rnbinom"))
+  expect_s3_class(df$interval, class = "factor")
+})
