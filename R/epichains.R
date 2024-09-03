@@ -203,6 +203,9 @@
 #' )
 #' chains_pois_offspring # Print the object
 print.epichains <- function(x, ...) {
+  if (!.is_epichains(x)) {
+    NextMethod()
+  }
   format(x, ...)
 }
 
@@ -234,6 +237,9 @@ print.epichains <- function(x, ...) {
 #' )
 #' chain_summary_print_eg # Print the object
 print.epichains_summary <- function(x, ...) {
+  if (!.is_epichains_summary(x)) {
+    NextMethod()
+  }
   format(x, ...)
 }
 
