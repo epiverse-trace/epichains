@@ -535,7 +535,6 @@ simulate_scenarios <- function(statistic,
                                breaks,
                                ...,
                                include_index_case = TRUE) {
-  browser()
   checkmate::assert_logical(include_index_case, any.missing = FALSE, len = 1)
   scenarios <- expand.grid(
     offspring_dist = offspring_dist,
