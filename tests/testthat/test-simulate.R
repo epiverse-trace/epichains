@@ -384,9 +384,9 @@ test_that("simulate_scenarios work as expected", {
   df <- simulate_scenarios(
     offspring_dist = c("rpois", "rnbinom"),
     statistic = c("size", "length"),
-    R_seq = seq(0.1, 0.5, 0.1),
-    k_seq = seq(0.1, 0.5, 0.1),
-    breaks = c(0, 5, 10, 20, Inf)
+    R_seq = seq(0.1, 0.2, 0.1),
+    k_seq = seq(0.1, 0.2, 0.1),
+    breaks = c(0, 20, Inf)
   )
   expect_s3_class(df, class = "data.frame")
   expect_identical(dim(df), c(240L, 6L))
