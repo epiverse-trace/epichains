@@ -5,7 +5,15 @@
 \title{Calculate transmission chain statistics across a range of scenarios and
 divide into intervals}
 \usage{
-simulate_scenarios(statistic, offspring_dist, R_seq, k_seq, breaks, ...)
+simulate_scenarios(
+  statistic,
+  offspring_dist,
+  R_seq,
+  k_seq,
+  breaks,
+  ...,
+  include_index_case = TRUE
+)
 }
 \arguments{
 \item{statistic}{The chain statistic to track as the
@@ -39,6 +47,9 @@ branching process for. Only applicable for \code{offspring_dist = "rnbinom"}.}
 \item{...}{\link{dots} Extra arguments to be passed to \code{\link[=simulate_chain_stats]{simulate_chain_stats()}}.
 If argument does not match one from \code{\link[=simulate_chain_stats]{simulate_chain_stats()}} the function
 will error.}
+
+\item{include_index_case}{A \code{logical} determining whether the index case
+that seeds the outbreak is counted in the transmission chain statistic.}
 }
 \value{
 A \verb{<data.frame>}.

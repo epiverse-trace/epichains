@@ -504,6 +504,8 @@ simulate_chain_stats <- function(n_chains,
 #' @param ... [dots] Extra arguments to be passed to [simulate_chain_stats()].
 #' If argument does not match one from [simulate_chain_stats()] the function
 #' will error.
+#' @param include_index_case A `logical` determining whether the index case
+#' that seeds the outbreak is counted in the transmission chain statistic.
 #'
 #' @return A `<data.frame>`.
 #' @export
@@ -531,7 +533,10 @@ simulate_scenarios <- function(statistic,
                                R_seq,
                                k_seq,
                                breaks,
-                               ...) {
+                               ...,
+                               include_index_case = TRUE) {
+  browser()
+  checkmate::assert_logical(include_index_case, any.missing = FALSE, len = 1)
   scenarios <- expand.grid(
     offspring_dist = offspring_dist,
     statistic = statistic,
@@ -569,6 +574,9 @@ simulate_scenarios <- function(statistic,
     }
     args <- utils::modifyList(x = args, val = list(...))
     x <- do.call(epichains::simulate_chain_stats, args = args)
+    if (!include_index_case) {
+      x <- x - 1
+    }
     interval <- cut(x, breaks = breaks)
     prop <- table(interval) / sum(table(interval))
     df_ <- as.data.frame(prop)
