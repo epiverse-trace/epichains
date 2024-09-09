@@ -571,12 +571,23 @@ simulate_scenarios <- function(statistic,
       args_ <- list(mu = scenarios[i, "R"], size = scenarios[i, "k"])
       args <- c(args, args_)
     }
-    args <- utils::modifyList(x = args, val = list(...))
+    epichain_arg_names <- names(formals(epichains::simulate_chain_stats))
+    dots <- list(...)
+    epichain_args <- dots[names(dots) %in% epichain_arg_names]
+    args <- utils::modifyList(x = args, val = epichain_args)
     x <- do.call(epichains::simulate_chain_stats, args = args)
     if (!include_index_case) {
       x <- x - 1
     }
-    interval <- cut(x, breaks = breaks)
+    args <- list(
+      x = x,
+      breaks = breaks
+    )
+    # the line below assumes the default method is called which is not reliable
+    cut_arg_names <- names(formals(cut.default))
+    cut_args <- dots[names(dots) %in% cut_arg_names]
+    args <- utils::modifyList(x = args, val = cut_args)
+    interval <- do.call(cut, args = args)
     prop <- table(interval) / sum(table(interval))
     df_ <- as.data.frame(prop)
     df_$R <- scenarios[i, "R"]
