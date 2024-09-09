@@ -535,6 +535,12 @@ simulate_scenarios <- function(statistic,
                                breaks,
                                ...,
                                include_index_case = TRUE) {
+  # this is to ensure the trick to set the stat_threshold works
+  stopifnot(
+    "The last element in `breaks` needs to be at least 1 greater than
+      the second to last element" =
+      (breaks[length(breaks) - 1] + 1) < breaks[length(breaks)]
+  )
   checkmate::assert_logical(include_index_case, any.missing = FALSE, len = 1)
   scenarios <- expand.grid(
     offspring_dist = offspring_dist,
@@ -555,12 +561,15 @@ simulate_scenarios <- function(statistic,
     scenarios$k[scenarios$offspring_dist == "rpois"] <- NA_real_
   }
 
+  pb <- utils::txtProgressBar(max = nrow(scenarios), style = 3)
   df_list <- vector(mode = "list", length = nrow(scenarios))
   for (i in seq_len(nrow(scenarios))) {
+    utils::setTxtProgressBar(pb, i)
     args <- list(
-      n_chains = 1000,
+      n_chains = 10, # 1000
       offspring_dist = match.fun(scenarios[i, "offspring_dist"]),
-      statistic = scenarios[i, "statistic"]
+      statistic = scenarios[i, "statistic"],
+      stat_threshold = breaks[length(breaks) - 1] + 1
     )
     if (scenarios[i, "offspring_dist"] == "rpois") {
       args$lambda <- scenarios[i, "R"]
@@ -596,6 +605,7 @@ simulate_scenarios <- function(statistic,
     df_$statistic <- scenarios[i, "statistic"]
     df_list[[i]] <- df_
   }
+  close(pb)
   df <- do.call(rbind, df_list)
   return(df)
 }
