@@ -389,7 +389,7 @@ test_that("simulate_scenarios work as expected", {
     breaks = c(0, 20, Inf)
   )
   expect_s3_class(df, class = "data.frame")
-  expect_identical(dim(df), c(240L, 6L))
+  expect_identical(dim(df), c(24L, 6L))
   expect_identical(
     colnames(df),
     c("interval", "Freq", "R", "k", "offspring_dist", "statistic")
