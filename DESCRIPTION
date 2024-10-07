@@ -5,7 +5,7 @@ Version: 0.1.0.9000
 Authors@R: c(
     person("James M.", "Azam", , "james.azam@lshtm.ac.uk", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-5782-7330")),
-    person("Sebastian", "Funk", , "sebastian.funk@lshtm.ac.uk", role = "aut",
+    person("Sebastian", "Funk", , "sebastian.funk@lshtm.ac.uk", role = c("aut", "cph"),
            comment = c(ORCID = "0000-0002-2842-3406")),
     person("Flavio", "Finger", , "flavio.finger@epicentre.msf.org", role = "aut",
            comment = c(ORCID = "0000-0002-8613-5170")),
