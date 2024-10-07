@@ -44,6 +44,6 @@ chain summaries by linearly approximating any missing values in the empirical
 cumulative distribution function (ecdf).
 }
 \author{
-Sebastian Funk
+Sebastian Funk James M. Azam
 }
 \keyword{internal}

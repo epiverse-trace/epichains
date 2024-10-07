@@ -22,7 +22,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Sebastian Funk \email{sebastian.funk@lshtm.ac.uk} (\href{https://orcid.org/0000-0002-2842-3406}{ORCID})
+  \item Sebastian Funk \email{sebastian.funk@lshtm.ac.uk} (\href{https://orcid.org/0000-0002-2842-3406}{ORCID}) [copyright holder]
   \item Flavio Finger \email{flavio.finger@epicentre.msf.org} (\href{https://orcid.org/0000-0002-8613-5170}{ORCID})
 }
 

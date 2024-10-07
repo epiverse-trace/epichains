@@ -3,7 +3,7 @@
 #' @param x A numeric vector of sizes
 #' @param lambda The rate of the Poisson distribution; A single numeric value.
 #' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @keywords internal
 .pois_size_ll <- function(x, lambda) {
   checkmate::assert_numeric(
@@ -23,7 +23,7 @@
 #' @param x A numeric vector of chain sizes.
 #' @inheritParams rgborel
 #' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @keywords internal
 .nbinom_size_ll <- function(x, size, prob, mu) {
   checkmate::assert_numeric(
@@ -57,7 +57,7 @@
 #' @param x A numeric vector of chain sizes.
 #' @inheritParams rgborel
 #' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @keywords internal
 .gborel_size_ll <- function(x, size, prob, mu) {
   checkmate::assert_numeric(
@@ -93,7 +93,7 @@
 #' @param lambda The rate of the Poisson distribution. A single numeric value.
 #' Must be positive.
 #' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @keywords internal
 .pois_length_ll <- function(x, lambda) {
   checkmate::assert_numeric(
@@ -120,7 +120,7 @@
 #' @param prob The probability of the geometric distribution with mean
 #' \code{1/prob}. A single numeric value between 0 and 1.
 #' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @keywords internal
 .geom_length_ll <- function(x, prob) {
   checkmate::assert_numeric(
@@ -152,7 +152,7 @@
 #' (size/length)
 #' @param ... any parameters to pass to \code{\link{simulate_chain_stats}}
 #' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @keywords internal
 .offspring_ll <- function(x, offspring_dist, statistic,
                          nsim_offspring = 100, ...) {

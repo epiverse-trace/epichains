@@ -4,7 +4,7 @@
 #' @param mu A non-negative number for the poisson mean.
 #' @param log Logical; if TRUE, probabilities p are given as log(p).
 #' @return A numeric vector of the borel probability density.
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @export
 #' @examples
 #' set.seed(32)
@@ -34,7 +34,7 @@ dborel <- function(x, mu, log = FALSE) {
 #' `mu >= 1`, the simulation could proceed unendingly. This parameter is used
 #' to prevent this.
 #' @return A numeric vector of random numbers.
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @export
 #' @examples
 #' set.seed(32)
@@ -69,7 +69,7 @@ rborel <- function(n, mu, censor_at = Inf) {
 #'   0 and 1.
 #' @param mu Mean; A positive number.
 #' @return Numeric vector of random numbers
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @export
 #' @examples
 #' set.seed(32)

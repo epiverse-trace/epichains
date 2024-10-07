@@ -24,5 +24,5 @@ set.seed(32)
 dborel(1:5, 1)
 }
 \author{
-Sebastian Funk
+Sebastian Funk James M. Azam
 }
