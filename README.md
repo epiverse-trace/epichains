@@ -42,6 +42,12 @@ at the London School of Hygiene and Tropical Medicine as part of the
 
 ## Installation
 
+Install the released version of the package:
+
+``` r
+install.packages("epiverse-trace/epichains")
+```
+
 The latest development version of the *epichains* package can be
 installed via
 
@@ -137,9 +143,6 @@ head(sim_chains)
 #> 24     3        1        3          2    3
 #> 25     4        1        2          2    3
 #> 26     6        1        2          2    3
-```
-
-``` r
 
 # Summarise the simulation
 summary(sim_chains)
@@ -152,9 +155,6 @@ summary(sim_chains)
 #> 
 #> Max: >=25
 #> Min: 1
-```
-
-``` r
 
 # Aggregate the simulation into cases per generation
 chains_agregegated <- aggregate(sim_chains, by = "generation")
@@ -188,9 +188,6 @@ set.seed(32)
 chain_lengths <- sample(1:40, 20, replace = TRUE)
 chain_lengths
 #>  [1]  6 11 20  9 40 33 39 27  6 12 39 35  9 25  6 15 12  6 37 35
-```
-
-``` r
 
 # estimate loglikelihood of the observed chain sizes
 likelihood_eg <- likelihood(
@@ -232,9 +229,10 @@ branching processes and transmission chains.
 Click to expand
 </summary>
 
-- [bpmodels](https://github.com/epiforecasts/bpmodels/): provides methods 
-for analysing the size and length of transmission chains from branching 
-process models. `{epichains}` supersedes `{bpmodels}`, which has been retired.
+- [bpmodels](https://github.com/epiforecasts/bpmodels/): provides
+  methods for analysing the size and length of transmission chains from
+  branching process models. `{epichains}` supersedes `{bpmodels}`, which
+  has been retired.
 
 - [ringbp](https://github.com/epiforecasts/ringbp): a branching process
   model, parameterised to the 2019-nCoV outbreak, and used to quantify
@@ -331,7 +329,7 @@ citation("epichains")
 #> 
 #>   Azam J, Funk S, Finger F (2024). _epichains: Simulating and Analysing
 #>   Transmission Chain Statistics Using Branching Process Models_. R
-#>   package version 0.1.0, https://epiverse-trace.github.io/epichains/,
+#>   package version 0.1.1, https://epiverse-trace.github.io/epichains/,
 #>   <https://github.com/epiverse-trace/epichains>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -341,7 +339,7 @@ citation("epichains")
 #> Branching Process Models},
 #>     author = {James M. Azam and Sebastian Funk and Flavio Finger},
 #>     year = {2024},
-#>     note = {R package version 0.1.0, 
+#>     note = {R package version 0.1.1, 
 #> https://epiverse-trace.github.io/epichains/},
 #>     url = {https://github.com/epiverse-trace/epichains},
 #>   }
