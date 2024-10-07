@@ -1,4 +1,4 @@
-# epichains (development version)
+# epichains 0.1.1
 
 ## Package
 
