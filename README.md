@@ -26,7 +26,7 @@ distribution represents the distribution of secondary infections caused
 by an infected individual.
 
 *epichains* re-implements
-[bpmodels](https://github.com/epiverse-trace/bpmodels/) by providing
+[bpmodels](https://github.com/epiforecasts/bpmodels/) by providing
 bespoke functions and data structures that allow easy manipulation and
 interoperability with other Epiverse-TRACE packages, for example,
 [superspreading](https://github.com/epiverse-trace/superspreading/) and
@@ -232,10 +232,9 @@ branching processes and transmission chains.
 Click to expand
 </summary>
 
-- [bpmodels](https://github.com/epiverse-trace/bpmodels): provides
-  methods for analysing the size and length of transmission chains from
-  branching process models. `{epichains}` is intended to supersede
-  `{bpmodels}`.
+- [bpmodels](https://github.com/epiforecasts/bpmodels/): provides methods 
+for analysing the size and length of transmission chains from branching 
+process models. `{epichains}` supersedes `{bpmodels}`, which has been retired.
 
 - [ringbp](https://github.com/epiforecasts/ringbp): a branching process
   model, parameterised to the 2019-nCoV outbreak, and used to quantify

@@ -36,7 +36,7 @@ models are often used in infectious disease epidemiology, where the chains repre
 transmission, and the offspring distribution represents the distribution of 
 secondary infections caused by an infected individual. 
 
-_{{ packagename }}_ re-implements [bpmodels](https://github.com/epiverse-trace/bpmodels/)
+_{{ packagename }}_ re-implements [bpmodels](https://github.com/epiforecasts/bpmodels/)
 by providing bespoke functions and data structures that allow easy
 manipulation and interoperability with other Epiverse-TRACE packages, for example, [superspreading](https://github.com/epiverse-trace/superspreading/) and [epiparameter](https://github.com/epiverse-trace/epiparameter/), and potentially some existing packages for handling transmission chains, for example, [epicontacts](https://github.com/reconhub/epicontacts).
 
@@ -184,9 +184,9 @@ processes and transmission chains.
 
 <summary>Click to expand</summary>
 
-* [bpmodels](https://github.com/epiverse-trace/bpmodels): provides methods 
+* [bpmodels](https://github.com/epiforecasts/bpmodels/): provides methods 
 for analysing the size and length of transmission chains from branching 
-process models. `{epichains}` is intended to supersede `{bpmodels}`.
+process models. `{epichains}` supersedes `{bpmodels}`, which has been retired.
 
 * [ringbp](https://github.com/epiforecasts/ringbp): a branching process 
 model, parameterised to the 2019-nCoV outbreak, and used to quantify 
