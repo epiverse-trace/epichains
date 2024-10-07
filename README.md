@@ -282,11 +282,6 @@ Click to expand
   information on transmission chains; the output can be converted to
   `<epicontacts>` objects for visualisation.
 
-- [outbreakr](https://sites.google.com/site/therepiproject/r-pac/outbreaker):
-  implements a Bayesian approach for reconstructing outbreak data from
-  pathogen genome sequences. It also implements a tool for outbreak
-  simulation.
-
 - [outbreakr2](https://github.com/reconhub/outbreaker2): a Bayesian
   framework for integrating epidemiological and genetic data to
   reconstruct transmission trees of densely sampled outbreaks. It
