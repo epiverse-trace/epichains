@@ -29,5 +29,5 @@ set.seed(32)
 rborel(5, 1)
 }
 \author{
-Sebastian Funk
+Sebastian Funk James M. Azam
 }
