@@ -44,6 +44,12 @@ _{{ packagename }}_ is developed at the [Centre for the Mathematical Modelling o
 
 ## Installation
 
+Install the released version of the package:
+
+```{r install_cran, include=TRUE,eval=FALSE}
+install.packages("{{ gh_repo }}")
+```
+
 The latest development version of the _{{ packagename }}_ package can be installed via
 
 ```{r install_with_remotes, include=TRUE,eval=FALSE}
