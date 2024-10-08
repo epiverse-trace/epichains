@@ -1,5 +1,7 @@
 # epichains 0.1.1
 
+This is the first CRAN release of `{epichains}`.
+
 ## Package
 
 - Removed the `as_is = TRUE` setting in vignette YAML headers to avoid partial incompatibility with incoming pkgdown versions.
