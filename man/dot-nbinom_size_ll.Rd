@@ -27,6 +27,6 @@ Log-likelihood of the size of chains with Negative-Binomial offspring
 distribution
 }
 \author{
-Sebastian Funk
+Sebastian Funk James M. Azam
 }
 \keyword{internal}

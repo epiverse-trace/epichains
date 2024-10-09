@@ -7,7 +7,9 @@
 #' @keywords internal
 .complementary_logprob <- function(x) {
   checkmate::assert_numeric(
-    x, lower = -Inf, upper = 0
+    x,
+    lower = -Inf,
+    upper = 0
   )
 
   out <- tryCatch(log1p(-sum(exp(x))), error = function(e) -Inf)

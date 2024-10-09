@@ -26,7 +26,7 @@ distribution represents the distribution of secondary infections caused
 by an infected individual.
 
 *epichains* re-implements
-[bpmodels](https://github.com/epiverse-trace/bpmodels/) by providing
+[bpmodels](https://github.com/epiforecasts/bpmodels/) by providing
 bespoke functions and data structures that allow easy manipulation and
 interoperability with other Epiverse-TRACE packages, for example,
 [superspreading](https://github.com/epiverse-trace/superspreading/) and
@@ -41,6 +41,12 @@ at the London School of Hygiene and Tropical Medicine as part of the
 [Epiverse Initiative](https://data.org/initiatives/epiverse/).
 
 ## Installation
+
+Install the released version of the package:
+
+``` r
+install.packages("epichains")
+```
 
 The latest development version of the *epichains* package can be
 installed via
@@ -125,7 +131,9 @@ sim_chains <- simulate_chains(
   statistic = "size",
   offspring_dist = rpois,
   stat_threshold = 25,
-  generation_time = function(n) {rep(3, n)}, # constant generation time of 3
+  generation_time = function(n) {
+    rep(3, n)
+  }, # constant generation time of 3
   lambda = 1 # mean of the Poisson distribution
 )
 # View the head of the simulation
@@ -137,9 +145,6 @@ head(sim_chains)
 #> 24     3        1        3          2    3
 #> 25     4        1        2          2    3
 #> 26     6        1        2          2    3
-```
-
-``` r
 
 # Summarise the simulation
 summary(sim_chains)
@@ -152,9 +157,6 @@ summary(sim_chains)
 #> 
 #> Max: >=25
 #> Min: 1
-```
-
-``` r
 
 # Aggregate the simulation into cases per generation
 chains_agregegated <- aggregate(sim_chains, by = "generation")
@@ -188,9 +190,6 @@ set.seed(32)
 chain_lengths <- sample(1:40, 20, replace = TRUE)
 chain_lengths
 #>  [1]  6 11 20  9 40 33 39 27  6 12 39 35  9 25  6 15 12  6 37 35
-```
-
-``` r
 
 # estimate loglikelihood of the observed chain sizes
 likelihood_eg <- likelihood(
@@ -232,10 +231,10 @@ branching processes and transmission chains.
 Click to expand
 </summary>
 
-- [bpmodels](https://github.com/epiverse-trace/bpmodels): provides
+- [bpmodels](https://github.com/epiforecasts/bpmodels/): provides
   methods for analysing the size and length of transmission chains from
-  branching process models. `{epichains}` is intended to supersede
-  `{bpmodels}`.
+  branching process models. `{epichains}` supersedes `{bpmodels}`, which
+  has been retired.
 
 - [ringbp](https://github.com/epiforecasts/ringbp): a branching process
   model, parameterised to the 2019-nCoV outbreak, and used to quantify
@@ -281,11 +280,6 @@ Click to expand
   linelist stored as a `data.frame` with the class `outbreak`, including
   information on transmission chains; the output can be converted to
   `<epicontacts>` objects for visualisation.
-
-- [outbreakr](https://sites.google.com/site/therepiproject/r-pac/outbreaker):
-  implements a Bayesian approach for reconstructing outbreak data from
-  pathogen genome sequences. It also implements a tool for outbreak
-  simulation.
 
 - [outbreakr2](https://github.com/reconhub/outbreaker2): a Bayesian
   framework for integrating epidemiological and genetic data to
@@ -337,7 +331,7 @@ citation("epichains")
 #> 
 #>   Azam J, Funk S, Finger F (2024). _epichains: Simulating and Analysing
 #>   Transmission Chain Statistics Using Branching Process Models_. R
-#>   package version 0.1.0, https://epiverse-trace.github.io/epichains/,
+#>   package version 0.1.1, https://epiverse-trace.github.io/epichains/,
 #>   <https://github.com/epiverse-trace/epichains>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -347,7 +341,7 @@ citation("epichains")
 #> Branching Process Models},
 #>     author = {James M. Azam and Sebastian Funk and Flavio Finger},
 #>     year = {2024},
-#>     note = {R package version 0.1.0, 
+#>     note = {R package version 0.1.1, 
 #> https://epiverse-trace.github.io/epichains/},
 #>     url = {https://github.com/epiverse-trace/epichains},
 #>   }

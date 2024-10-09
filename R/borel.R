@@ -4,17 +4,22 @@
 #' @param mu A non-negative number for the poisson mean.
 #' @param log Logical; if TRUE, probabilities p are given as log(p).
 #' @return A numeric vector of the borel probability density.
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @export
 #' @examples
 #' set.seed(32)
 #' dborel(1:5, 1)
 dborel <- function(x, mu, log = FALSE) {
   checkmate::assert_numeric(
-    x, lower = 1, upper = Inf
+    x,
+    lower = 1,
+    upper = Inf
   )
   checkmate::assert_number(
-    mu, lower = 0, finite = TRUE, na.ok = FALSE
+    mu,
+    lower = 0,
+    finite = TRUE,
+    na.ok = FALSE
   )
 
   ld <- -mu * x + (x - 1) * log(mu * x) - lgamma(x + 1)
@@ -34,17 +39,23 @@ dborel <- function(x, mu, log = FALSE) {
 #' `mu >= 1`, the simulation could proceed unendingly. This parameter is used
 #' to prevent this.
 #' @return A numeric vector of random numbers.
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @export
 #' @examples
 #' set.seed(32)
 #' rborel(5, 1)
 rborel <- function(n, mu, censor_at = Inf) {
   checkmate::assert_number(
-    n, lower = 1, finite = TRUE, na.ok = FALSE
+    n,
+    lower = 1,
+    finite = TRUE,
+    na.ok = FALSE
   )
   checkmate::assert_number(
-    mu, lower = 0, finite = TRUE, na.ok = FALSE
+    mu,
+    lower = 0,
+    finite = TRUE,
+    na.ok = FALSE
   )
   # Run simulations
   out <- simulate_chain_stats(
@@ -69,7 +80,7 @@ rborel <- function(n, mu, censor_at = Inf) {
 #'   0 and 1.
 #' @param mu Mean; A positive number.
 #' @return Numeric vector of random numbers
-#' @author Sebastian Funk
+#' @author Sebastian Funk James M. Azam
 #' @export
 #' @examples
 #' set.seed(32)
@@ -81,16 +92,22 @@ rgborel <- function(n, size, prob, mu, censor_at = Inf) {
   # its "correct implementation" for documentation/clarity purposes, as well as
   # for simulations.
   checkmate::assert_number(
-    size, finite = TRUE, lower = 0
+    size,
+    finite = TRUE,
+    lower = 0
   )
   if (!missing(prob)) {
     checkmate::assert_number(
-      prob, lower = 0, upper = 1
+      prob,
+      lower = 0,
+      upper = 1
     )
   }
   if (!missing(mu)) {
     checkmate::assert_number(
-      mu, finite = TRUE, lower = 0
+      mu,
+      finite = TRUE,
+      lower = 0
     )
   }
   if (!missing(prob)) {
@@ -101,6 +118,7 @@ rgborel <- function(n, size, prob, mu, censor_at = Inf) {
   x <- rgamma(n, shape = size, rate = size / mu)
   # then, sample from borel
   return(vapply(
-    x, rborel, n = 1, censor_at = censor_at, FUN.VALUE = numeric(1)
+    x, rborel,
+    n = 1, censor_at = censor_at, FUN.VALUE = numeric(1)
   ))
 }

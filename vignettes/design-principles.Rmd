@@ -108,8 +108,8 @@ The package uses the following naming conventions:
 
 ## Development journey
 
-{epichains} is a successor to the [bpmodels](https://github.com/epiverse-trace/bpmodels) package, which will be retired when {epichains} is released.
+{epichains} is a successor to the [bpmodels](https://github.com/epiforecasts/bpmodels/) package, which was retired after the release of {epichains} v0.1.0.
 
 {epichains} was born out of a need to refactor {bpmodels}, which led to a name change and subsequent changes in design that would have required significant disruptive changes to {bpmodels}. {epichains} is a major refactoring of {bpmodels} to provide a simulation function that accounts for susceptible depletion and population immunity without restrictions on the offspring distributions, better function and long form documentation, and an object-oriented approach to simulating and handling transmission chains in R.
 
-Future plans include simulation of contacts of infectees, the incorporation of network effects, an object-oriented approach to estimating chain size and length likelihoods, and interoperability with the [{epiparameter}](https://epiverse-trace.github.io/epiparameter/) package for ease of setting up various epidemiological delays.
+Future plans include simulation of contacts of infectors, the incorporation of network effects, an object-oriented approach to estimating chain size and length likelihoods, and interoperability with the [{epiparameter}](https://epiverse-trace.github.io/epiparameter/) package for ease of setting up various epidemiological delays.

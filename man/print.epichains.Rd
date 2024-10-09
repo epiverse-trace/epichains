@@ -23,12 +23,12 @@ Print an \verb{<epichains>} object
 # population up to chain size 10.
 set.seed(32)
 chains_pois_offspring <- simulate_chains(
- n_chains = 10,
- statistic = "size",
- offspring_dist = rpois,
- stat_threshold = 10,
- generation_time = function(n) rep(3, n),
- lambda = 2
+  n_chains = 10,
+  statistic = "size",
+  offspring_dist = rpois,
+  stat_threshold = 10,
+  generation_time = function(n) rep(3, n),
+  lambda = 2
 )
 chains_pois_offspring # Print the object
 }

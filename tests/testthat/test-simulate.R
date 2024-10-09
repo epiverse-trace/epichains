@@ -240,7 +240,7 @@ test_that("simulate_chain_stats throws errors", {
   )
 })
 
-test_that("simulate_chain_stats is numerically correct",{
+test_that("simulate_chain_stats is numerically correct", {
   # Run a simulation in a small population so that
   # we encounter the case where we have more potential offspring than
   # susceptible individuals

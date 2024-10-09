@@ -16,11 +16,11 @@
 #' @author James M. Azam
 #' @keywords internal
 .new_epichains <- function(sim_df,
-                               n_chains,
-                               statistic,
-                               offspring_dist,
-                               stat_threshold,
-                               track_pop) {
+                           n_chains,
+                           statistic,
+                           offspring_dist,
+                           stat_threshold,
+                           track_pop) {
   # Assemble the elements of the object
   obj <- sim_df
   class(obj) <- c("epichains", class(obj))
@@ -55,11 +55,11 @@
 #' @author James M. Azam
 #' @keywords internal
 .epichains <- function(sim_df,
-                      n_chains,
-                      offspring_dist,
-                      track_pop,
-                      statistic = c("size", "length"),
-                      stat_threshold = Inf) {
+                       n_chains,
+                       offspring_dist,
+                       track_pop,
+                       statistic = c("size", "length"),
+                       stat_threshold = Inf) {
   # Check that inputs are well specified
   checkmate::assert_data_frame(sim_df, min.cols = 3, min.rows = n_chains)
   checkmate::assert_integerish(
@@ -112,10 +112,10 @@
 #' @author James M. Azam
 #' @keywords internal
 .new_epichains_summary <- function(chains_summary,
-                                  n_chains,
-                                  statistic,
-                                  offspring_dist,
-                                  stat_threshold) {
+                                   n_chains,
+                                   statistic,
+                                   offspring_dist,
+                                   stat_threshold) {
   # Assemble the elements of the object
   obj <- chains_summary
   class(obj) <- c("epichains_summary", class(chains_summary))
@@ -141,10 +141,10 @@
 #' @author James M. Azam
 #' @keywords internal
 .epichains_summary <- function(chains_summary,
-                              n_chains,
-                              offspring_dist,
-                              statistic = c("size", "length"),
-                              stat_threshold = Inf) {
+                               n_chains,
+                               offspring_dist,
+                               statistic = c("size", "length"),
+                               stat_threshold = Inf) {
   # chain_summary can sometimes contain infinite values, so check
   # that finite elements are integerish.
   checkmate::check_integerish(
@@ -194,12 +194,12 @@
 #' # population up to chain size 10.
 #' set.seed(32)
 #' chains_pois_offspring <- simulate_chains(
-#'  n_chains = 10,
-#'  statistic = "size",
-#'  offspring_dist = rpois,
-#'  stat_threshold = 10,
-#'  generation_time = function(n) rep(3, n),
-#'  lambda = 2
+#'   n_chains = 10,
+#'   statistic = "size",
+#'   offspring_dist = rpois,
+#'   stat_threshold = 10,
+#'   generation_time = function(n) rep(3, n),
+#'   lambda = 2
 #' )
 #' chains_pois_offspring # Print the object
 print.epichains <- function(x, ...) {
@@ -226,11 +226,11 @@ print.epichains <- function(x, ...) {
 #' # population up to chain size 10.
 #' set.seed(32)
 #' chain_summary_print_eg <- simulate_chain_stats(
-#'  n_chains = 10,
-#'  statistic = "size",
-#'  offspring_dist = rpois,
-#'  stat_threshold = 10,
-#'  lambda = 2
+#'   n_chains = 10,
+#'   statistic = "size",
+#'   offspring_dist = rpois,
+#'   stat_threshold = 10,
+#'   lambda = 2
 #' )
 #' chain_summary_print_eg # Print the object
 print.epichains_summary <- function(x, ...) {
@@ -322,9 +322,9 @@ format.epichains_summary <- function(x, ...) {
         "Max: %s",
         ifelse(
           is.infinite(
-            statistics[["max_stat"]]),
-            paste0(">=", attr(x, "stat_threshold")
+            statistics[["max_stat"]]
           ),
+          paste0(">=", attr(x, "stat_threshold")),
           statistics[["max_stat"]]
         )
       ),
@@ -332,9 +332,9 @@ format.epichains_summary <- function(x, ...) {
         "Min: %s",
         ifelse(
           is.infinite(
-            statistics[["min_stat"]]),
-          paste0(">=", attr(x, "stat_threshold")
+            statistics[["min_stat"]]
           ),
+          paste0(">=", attr(x, "stat_threshold")),
           statistics[["min_stat"]]
         )
       )
@@ -455,11 +455,11 @@ summary.epichains <- function(object, ...) {
 #' # population up to chain size 10.
 #' set.seed(32)
 #' chain_stats <- simulate_chain_stats(
-#'  n_chains = 10,
-#'  statistic = "size",
-#'  offspring_dist = rpois,
-#'  stat_threshold = 10,
-#'  lambda = 2
+#'   n_chains = 10,
+#'   statistic = "size",
+#'   offspring_dist = rpois,
+#'   stat_threshold = 10,
+#'   lambda = 2
 #' )
 #' summary(chain_stats)
 summary.epichains_summary <- function(object, ...) {
@@ -526,7 +526,7 @@ summary.epichains_summary <- function(object, ...) {
   stopifnot(
     "object does not contain the correct columns" =
       c("chain", "infector", "infectee", "generation") %in%
-      colnames(x),
+        colnames(x),
     "column `chain` must be a numeric" =
       is.numeric(x$chain),
     "column `infector` must be a numeric" =
@@ -643,11 +643,11 @@ tail.epichains <- function(x, ...) {
 #' cases_per_gen <- aggregate(chains, by = "generation")
 #' head(cases_per_gen)
 aggregate.epichains <- function(x,
-                                     by = c(
-                                       "time",
-                                       "generation"
-                                     ),
-                                     ...) {
+                                by = c(
+                                  "time",
+                                  "generation"
+                                ),
+                                ...) {
   .validate_epichains(x)
   checkmate::assert_string(by)
   # Get grouping variable

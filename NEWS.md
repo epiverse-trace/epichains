@@ -1,4 +1,6 @@
-# epichains (development version)
+# epichains 0.1.1
+
+This is the first CRAN release of `{epichains}`.
 
 ## Package
 
@@ -8,7 +10,7 @@
 
 We are excited to announce the first minor release of `{epichains}`.
 
-`{epichains}` re-implements [{bpmodels}](https://github.com/epiverse-trace/bpmodels), focusing on a unified simulation framework using branching processes to simulate transmission chains data. The framework incorporates susceptible depletion and pre-existing immunity and provides dedicated data structures for handling and analysing transmission chains in both tabular and vector formats. The goal is to provide seamless interoperability with other packages within the Epiverse-TRACE Initiative and the broader epidemiological tool ecosystem.
+`{epichains}` re-implements [{bpmodels}](https://github.com/epiforecasts/bpmodels/), focusing on a unified simulation framework using branching processes to simulate transmission chains data. The framework incorporates susceptible depletion and pre-existing immunity and provides dedicated data structures for handling and analysing transmission chains in both tabular and vector formats. The goal is to provide seamless interoperability with other packages within the Epiverse-TRACE Initiative and the broader epidemiological tool ecosystem.
 
 ## New Features
 

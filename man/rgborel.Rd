@@ -36,5 +36,5 @@ set.seed(32)
 rgborel(n = 5, size = 0.3, mu = 1, censor_at = 5)
 }
 \author{
-Sebastian Funk
+Sebastian Funk James M. Azam
 }

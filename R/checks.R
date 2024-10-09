@@ -72,9 +72,9 @@
   # check that stat_threshold is an integer or Inf.
   checkmate::assert(
     checkmate::anyInfinite(stat_threshold),
-      checkmate::check_integerish(
-        stat_threshold,
-        lower = 1
+    checkmate::check_integerish(
+      stat_threshold,
+      lower = 1
     ),
     combine = "or"
   )
@@ -102,7 +102,7 @@
   if (!is.null(generation_time)) {
     .check_generation_time_valid(generation_time)
   } else if (tf_specified) {
-      stop("If `tf` is specified, `generation_time` must be specified too.")
+    stop("If `tf` is specified, `generation_time` must be specified too.")
   }
   checkmate::assert_number(
     tf,

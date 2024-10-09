@@ -28,11 +28,11 @@ limit. See \code{?epichains_summary()} for the definition of \code{stat_threshol
 # population up to chain size 10.
 set.seed(32)
 chain_summary_print_eg <- simulate_chain_stats(
- n_chains = 10,
- statistic = "size",
- offspring_dist = rpois,
- stat_threshold = 10,
- lambda = 2
+  n_chains = 10,
+  statistic = "size",
+  offspring_dist = rpois,
+  stat_threshold = 10,
+  lambda = 2
 )
 chain_summary_print_eg # Print the object
 }

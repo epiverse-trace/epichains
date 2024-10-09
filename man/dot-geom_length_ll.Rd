@@ -19,6 +19,6 @@ A numeric vector of log-likelihood values.
 Log-likelihood of the length of chains with geometric offspring distribution
 }
 \author{
-Sebastian Funk
+Sebastian Funk James M. Azam
 }
 \keyword{internal}

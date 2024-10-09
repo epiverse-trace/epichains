@@ -18,6 +18,6 @@ A numeric vector of log-likelihood values.
 Log-likelihood of the size of chains with Poisson offspring distribution
 }
 \author{
-Sebastian Funk
+Sebastian Funk James M. Azam
 }
 \keyword{internal}
