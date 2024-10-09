@@ -45,7 +45,7 @@ at the London School of Hygiene and Tropical Medicine as part of the
 Install the released version of the package:
 
 ``` r
-install.packages("epiverse-trace/epichains")
+install.packages("epichains")
 ```
 
 The latest development version of the *epichains* package can be
