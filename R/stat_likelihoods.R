@@ -7,10 +7,14 @@
 #' @keywords internal
 .pois_size_ll <- function(x, lambda) {
   checkmate::assert_numeric(
-    x, lower = 0, any.missing = FALSE
+    x,
+    lower = 0,
+    any.missing = FALSE
   )
   checkmate::assert_number(
-    lambda, finite = TRUE, lower = 0
+    lambda,
+    finite = TRUE,
+    lower = 0
   )
 
   out <- (x - 1) * log(lambda) - lambda * x + (x - 2) * log(x) - lgamma(x)
@@ -27,19 +31,27 @@
 #' @keywords internal
 .nbinom_size_ll <- function(x, size, prob, mu) {
   checkmate::assert_numeric(
-    x, lower = 0, any.missing = FALSE
+    x,
+    lower = 0,
+    any.missing = FALSE
   )
   checkmate::assert_number(
-    size, finite = TRUE, lower = 0
+    size,
+    finite = TRUE,
+    lower = 0
   )
   if (!missing(prob)) {
     checkmate::assert_number(
-      prob, lower = 0, upper = 1
+      prob,
+      lower = 0,
+      upper = 1
     )
   }
   if (!missing(mu)) {
     checkmate::assert_number(
-      mu, finite = TRUE, lower = 0
+      mu,
+      finite = TRUE,
+      lower = 0
     )
   }
   if (!missing(prob)) {
@@ -61,19 +73,27 @@
 #' @keywords internal
 .gborel_size_ll <- function(x, size, prob, mu) {
   checkmate::assert_numeric(
-    x, lower = 0, any.missing = FALSE
+    x,
+    lower = 0,
+    any.missing = FALSE
   )
   checkmate::assert_number(
-    size, finite = TRUE, lower = 0
+    size,
+    finite = TRUE,
+    lower = 0
   )
   if (!missing(prob)) {
     checkmate::assert_number(
-      prob, lower = 0, upper = 1
+      prob,
+      lower = 0,
+      upper = 1
     )
   }
   if (!missing(mu)) {
     checkmate::assert_number(
-      mu, finite = TRUE, lower = 0
+      mu,
+      finite = TRUE,
+      lower = 0
     )
   }
 
@@ -97,10 +117,14 @@
 #' @keywords internal
 .pois_length_ll <- function(x, lambda) {
   checkmate::assert_numeric(
-    x, lower = 0, any.missing = FALSE
+    x,
+    lower = 0,
+    any.missing = FALSE
   )
   checkmate::assert_number(
-    lambda, finite = TRUE, lower = 0
+    lambda,
+    finite = TRUE,
+    lower = 0
   )
 
   ## iterated exponential function
@@ -124,10 +148,13 @@
 #' @keywords internal
 .geom_length_ll <- function(x, prob) {
   checkmate::assert_numeric(
-    x, lower = 0, any.missing = FALSE
+    x,
+    lower = 0, any.missing = FALSE
   )
   checkmate::assert_number(
-    prob, lower = 0, upper = 1
+    prob,
+    lower = 0,
+    upper = 1
   )
 
   lambda <- 1 / prob
@@ -155,10 +182,12 @@
 #' @author Sebastian Funk James M. Azam
 #' @keywords internal
 .offspring_ll <- function(x, offspring_dist, statistic,
-                         nsim_offspring = 100, ...) {
+                          nsim_offspring = 100, ...) {
   # Input checking
   checkmate::assert_numeric(
-    x, lower = 0, any.missing = FALSE
+    x,
+    lower = 0,
+    any.missing = FALSE
   )
   # Remaining checks are done in simulate_chain_stats()
   # Simulate the chains

@@ -61,16 +61,16 @@
 #' # Example using an <epichains> object
 #' set.seed(32)
 #' epichains_obj_eg <- simulate_chains(
-#'  n_chains = 10,
-#'  pop = 100,
-#'  percent_immune = 0,
-#'  statistic = "size",
-#'  offspring_dist = rnbinom,
-#'  stat_threshold = 10,
-#'  generation_time = function(n) rep(3, n),
-#'  mu = 2,
-#'  size = 0.2
-#')
+#'   n_chains = 10,
+#'   pop = 100,
+#'   percent_immune = 0,
+#'   statistic = "size",
+#'   offspring_dist = rnbinom,
+#'   stat_threshold = 10,
+#'   generation_time = function(n) rep(3, n),
+#'   mu = 2,
+#'   size = 0.2
+#' )
 #'
 #' epichains_obj_eg_lik <- likelihood(
 #'   chains = epichains_obj_eg,
@@ -103,7 +103,7 @@
 #' )
 #' epichains_summary_eg_lik
 #' @export
-#nolint start: cyclocomp_linter
+# nolint start: cyclocomp_linter
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
                        nsim_obs, obs_prob = 1, stat_threshold = Inf, log = TRUE,
                        exclude = NULL, individual = FALSE, ...) {
@@ -112,7 +112,8 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   ## Input checking
   checkmate::assert(
     checkmate::check_numeric(
-      chains, lower = 0, upper = Inf, any.missing = FALSE
+      chains,
+      lower = 0, upper = Inf, any.missing = FALSE
     ),
     checkmate::check_class(
       chains, "epichains"
@@ -128,16 +129,20 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   )
   .check_offspring_func_valid(offspring_dist)
   checkmate::assert_number(
-    obs_prob, lower = 0, upper = 1, finite = TRUE, na.ok = FALSE
+    obs_prob,
+    lower = 0, upper = 1, finite = TRUE, na.ok = FALSE
   )
   checkmate::assert_logical(
-    log, any.missing = FALSE, all.missing = FALSE, len = 1
+    log,
+    any.missing = FALSE, all.missing = FALSE, len = 1
   )
   checkmate::assert_logical(
-    individual, any.missing = FALSE, all.missing = FALSE, len = 1
+    individual,
+    any.missing = FALSE, all.missing = FALSE, len = 1
   )
   checkmate::assert_numeric(
-    exclude, null.ok = TRUE
+    exclude,
+    null.ok = TRUE
   )
   # likelihood is designed to work with numeric objects to <epichains> objects
   # need to be coerced to <epichains_summary> objects (numeric vector under
@@ -167,16 +172,16 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     # censor the chains to be at most stat_threshold
     chains <- pmin(chains, stat_threshold)
   } else if (any(is.infinite(chains)) && !.is_epichains_summary(chains)) {
-      # Developer note: <epichains_summary> objects also pass the`is.numeric()`
-      # check, so we need to check if the object is not an <epichains_summary>
-      # object.
-      # Numeric chains can only contain Inf values based on human error/decision
-      # to censor it with infinite values, so we ask the user to fix that.
-      stop(
-        "`chains` must be censored with a finite value. ",
-        "Replace the `Inf` values with a finite value.",
-        call. = FALSE
-      )
+    # Developer note: <epichains_summary> objects also pass the`is.numeric()`
+    # check, so we need to check if the object is not an <epichains_summary>
+    # object.
+    # Numeric chains can only contain Inf values based on human error/decision
+    # to censor it with infinite values, so we ask the user to fix that.
+    stop(
+      "`chains` must be censored with a finite value. ",
+      "Replace the `Inf` values with a finite value.",
+      call. = FALSE
+    )
   }
 
   # Apply the observation process
@@ -185,7 +190,8 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
       stop("'nsim_obs' must be specified if 'obs_prob' is < 1")
     } else {
       checkmate::assert_integerish(
-        nsim_obs, lower = 1
+        nsim_obs,
+        lower = 1
       )
     }
 
@@ -228,8 +234,9 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   ## calculate log-likelihoods
   possible_internal_func <- paste0(".", ll_func)
   if (exists(possible_internal_func,
-             where = asNamespace("epichains"),
-             mode = "function")
+    where = asNamespace("epichains"),
+    mode = "function"
+  )
   ) {
     func <- get(possible_internal_func)
     likelihoods[calc_sizes] <- do.call(func, c(list(x = calc_sizes), pars))
@@ -259,8 +266,7 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     likelihoods[exclude] <- -Inf
     stat_rep_list <- lapply(stat_rep_list, function(y) {
       y[!(y %in% exclude)]
-    }
-    )
+    })
   }
 
   ## assign likelihoods
@@ -285,4 +291,4 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
 
   return(chains_likelihood)
 }
-#nolint end
+# nolint end

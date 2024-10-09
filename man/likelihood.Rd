@@ -109,15 +109,15 @@ likelihood(
 # Example using an <epichains> object
 set.seed(32)
 epichains_obj_eg <- simulate_chains(
- n_chains = 10,
- pop = 100,
- percent_immune = 0,
- statistic = "size",
- offspring_dist = rnbinom,
- stat_threshold = 10,
- generation_time = function(n) rep(3, n),
- mu = 2,
- size = 0.2
+  n_chains = 10,
+  pop = 100,
+  percent_immune = 0,
+  statistic = "size",
+  offspring_dist = rnbinom,
+  stat_threshold = 10,
+  generation_time = function(n) rep(3, n),
+  mu = 2,
+  size = 0.2
 )
 
 epichains_obj_eg_lik <- likelihood(
