@@ -11,7 +11,7 @@ shared_args <- list(
   lambda = 0.9
 )
 
-simulate_chains_default <- function(...){
+simulate_chains_default <- function(...) {
   default_args <- c(
     shared_args,
     generation_time = generation_time_fn

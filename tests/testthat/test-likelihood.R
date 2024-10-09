@@ -1,138 +1,137 @@
 test_that("Likelihoods can be calculated", {
   chains <- c(1, 1, 4, 7)
   set.seed(12)
-    expect_lt(
-      likelihood(
-        chains = chains,
-        statistic = "size",
-        offspring_dist = rpois,
-        lambda = 0.5
-      ),
-      0
-    )
-    expect_lt(
-      likelihood(
-        chains = chains,
-        statistic = "size",
-        offspring_dist = rpois,
-        lambda = 0.5,
-        exclude = 1
-      ),
-      0
-    )
-    expect_lt(
-      likelihood(
-        chains = chains,
-        statistic = "size",
-        offspring_dist = rpois,
-        lambda = 0.5,
-        stat_threshold = 5
-      ),
-      0
-    )
-    expect_lt(
-      likelihood(
-        chains = chains,
-        statistic = "size",
-        offspring_dist = rpois,
-        lambda = 0.5,
-        obs_prob = 0.5,
-        nsim_obs = 1
-      ),
-      0
-    )
-    expect_lt(
-      likelihood(
-        chains = chains,
-        statistic = "size",
-        offspring_dist = rpois,
-        lambda = 0.5,
-        stat_threshold = 5,
-        obs_prob = 0.5,
-        nsim_obs = 1
-      ),
-      0
-    )
-    expect_lt(
-      likelihood(
-        chains = chains,
-        statistic = "length",
-        offspring_dist = rbinom,
-        size = 1,
-        prob = 0.5
-      ),
-      0
-    )
-    expect_gte(
-      likelihood(
-        chains = chains,
-        statistic = "length",
-        offspring_dist = rbinom,
-        size = 1,
-        prob = 0.5,
-        log = FALSE
-      ),
-      0
-    )
-    expect_gte(
-      likelihood(
-        chains = chains,
-        statistic = "length",
-        offspring_dist = rbinom,
-        size = 1,
-        prob = 0.5,
-        individual = FALSE,
-        log = FALSE
-      ),
-      0
-    )
-  }
-)
+  expect_lt(
+    likelihood(
+      chains = chains,
+      statistic = "size",
+      offspring_dist = rpois,
+      lambda = 0.5
+    ),
+    0
+  )
+  expect_lt(
+    likelihood(
+      chains = chains,
+      statistic = "size",
+      offspring_dist = rpois,
+      lambda = 0.5,
+      exclude = 1
+    ),
+    0
+  )
+  expect_lt(
+    likelihood(
+      chains = chains,
+      statistic = "size",
+      offspring_dist = rpois,
+      lambda = 0.5,
+      stat_threshold = 5
+    ),
+    0
+  )
+  expect_lt(
+    likelihood(
+      chains = chains,
+      statistic = "size",
+      offspring_dist = rpois,
+      lambda = 0.5,
+      obs_prob = 0.5,
+      nsim_obs = 1
+    ),
+    0
+  )
+  expect_lt(
+    likelihood(
+      chains = chains,
+      statistic = "size",
+      offspring_dist = rpois,
+      lambda = 0.5,
+      stat_threshold = 5,
+      obs_prob = 0.5,
+      nsim_obs = 1
+    ),
+    0
+  )
+  expect_lt(
+    likelihood(
+      chains = chains,
+      statistic = "length",
+      offspring_dist = rbinom,
+      size = 1,
+      prob = 0.5
+    ),
+    0
+  )
+  expect_gte(
+    likelihood(
+      chains = chains,
+      statistic = "length",
+      offspring_dist = rbinom,
+      size = 1,
+      prob = 0.5,
+      log = FALSE
+    ),
+    0
+  )
+  expect_gte(
+    likelihood(
+      chains = chains,
+      statistic = "length",
+      offspring_dist = rbinom,
+      size = 1,
+      prob = 0.5,
+      individual = FALSE,
+      log = FALSE
+    ),
+    0
+  )
+})
 
 test_that("likelihood() works with epichains and epichains_summary objects", {
-    # Simulate an <epichains> object
-    set.seed(32)
-    chains_tree_eg <- simulate_chains(
-      n_chains = 10,
-      pop = 100,
-      percent_immune = 0,
+  # Simulate an <epichains> object
+  set.seed(32)
+  chains_tree_eg <- simulate_chains(
+    n_chains = 10,
+    pop = 100,
+    percent_immune = 0,
+    statistic = "size",
+    offspring_dist = rpois,
+    stat_threshold = 10,
+    generation_time = function(n) rep(3, n),
+    lambda = 0.9
+  )
+  # Simulate an <epichains_summary> object
+  set.seed(32)
+  chains_summary_eg <- simulate_chain_stats(
+    n_chains = 10,
+    pop = 100,
+    percent_immune = 0,
+    statistic = "size",
+    offspring_dist = rpois,
+    stat_threshold = 10,
+    lambda = 0.9
+  )
+  # Use the simulated <epichains> object to calculate likelihood
+  expect_equal(
+    likelihood(
+      chains = chains_tree_eg,
       statistic = "size",
       offspring_dist = rpois,
-      stat_threshold = 10,
-      generation_time = function(n) rep(3, n),
       lambda = 0.9
-    )
-    # Simulate an <epichains_summary> object
-    set.seed(32)
-    chains_summary_eg <- simulate_chain_stats(
-      n_chains = 10,
-      pop = 100,
-      percent_immune = 0,
+    ),
+    -23.538996774
+  )
+  # Use the simulated <epichains_summary> object to calculate likelihood
+  expect_equal(
+    likelihood(
+      chains = chains_summary_eg,
       statistic = "size",
       offspring_dist = rpois,
-      stat_threshold = 10,
       lambda = 0.9
-    )
-    # Use the simulated <epichains> object to calculate likelihood
-    expect_equal(
-      likelihood(
-        chains = chains_tree_eg,
-        statistic = "size",
-        offspring_dist = rpois,
-        lambda = 0.9
-      ),
-      -23.538996774
-    )
-    # Use the simulated <epichains_summary> object to calculate likelihood
-    expect_equal(
-      likelihood(
-        chains = chains_summary_eg,
-        statistic = "size",
-        offspring_dist = rpois,
-        lambda = 0.9
-      ),
-      -23.538997
-    )
+    ),
+    -23.538997
+  )
 })
 
 test_that("Likelihoods are numerically correct", {

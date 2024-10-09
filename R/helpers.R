@@ -10,8 +10,7 @@
 #' @keywords internal
 .update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
   return(
-    switch(
-      stat_type,
+    switch(stat_type,
       size = stat_latest + n_offspring,
       length = stat_latest + pmin(1, n_offspring),
       stop("stat_type must be 'size' or 'length'")
@@ -27,8 +26,7 @@
 #' @keywords internal
 .get_statistic_func <- function(chain_statistic) {
   return(
-    switch(
-      chain_statistic,
+    switch(chain_statistic,
       size = .rbinom_size,
       length = .rgen_length,
       stop("chain_statistic must be 'size' or 'length'")
@@ -73,7 +71,6 @@
                                        offspring_func_pars,
                                        n_offspring,
                                        chains) {
-
   possible_new_offspring <- do.call(
     offspring_func,
     c(
@@ -104,8 +101,8 @@
 #' given the current susceptible population size.
 #' @keywords internal
 .get_susceptible_offspring <- function(new_offspring,
-                                      susc_pop,
-                                      pop) {
+                                       susc_pop,
+                                       pop) {
   # We first adjust for the case where susceptible can be Inf but prob can only
   # be maximum 1.
   binom_prob <- min(1, susc_pop / pop, na.rm = TRUE)

@@ -23,7 +23,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-
 ```
 
 ## Overview
@@ -137,7 +136,7 @@ first argument to determine the number of observations to sample
 mu <- 4.7
 sgma <- 2.9
 
-log_mean <- log((mu^2) / (sqrt(sgma^2 + mu^2)))  # log mean
+log_mean <- log((mu^2) / (sqrt(sgma^2 + mu^2))) # log mean
 log_sd <- sqrt(log(1 + (sgma / mu)^2)) # log sd
 
 #' serial interval function
@@ -308,7 +307,6 @@ head(median_daily_cases)
 We will now plot the individual simulation results alongside the median
 of the aggregated results.
 ```{r viz, fig.cap ="COVID-19 incidence in South Africa projected over a two week window in 2020. The light gray lines represent the individual simulations, the red line represents the median daily cases across all simulations, the black connected dots represent the observed data, and the dashed vertical line marks the beginning of the projection.", fig.width=6.0, fig.height=6}
-
 # since all simulations may end at a different date, we will find the minimum
 # final date for all simulations for the purposes of visualisation.
 final_date <- incidence_ts_by_date %>%

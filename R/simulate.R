@@ -364,9 +364,9 @@ simulate_chains <- function(n_chains,
 #' the `likelihood()` function and for sampling from the borel
 #' distribution (See ?epichains::rborel). It is used extensively in the
 #' vignette on
-#nolint start
+# nolint start
 #' [modelling disease control](https://epiverse-trace.github.io/epichains/articles/interventions.html),
-#nolint end
+# nolint end
 #' where only data on observed chain sizes and lengths are available.
 #' @author James M. Azam, Sebastian Funk
 #' @examples
@@ -395,12 +395,12 @@ simulate_chains <- function(n_chains,
 #' )
 #' @export
 simulate_chain_stats <- function(n_chains,
-                             statistic = c("size", "length"),
-                             offspring_dist,
-                             ...,
-                             stat_threshold = Inf,
-                             pop = Inf,
-                             percent_immune = 0) {
+                                 statistic = c("size", "length"),
+                                 offspring_dist,
+                                 ...,
+                                 stat_threshold = Inf,
+                                 pop = Inf,
+                                 percent_immune = 0) {
   # Check offspring and population-related arguments
   .check_sim_args(
     n_chains = n_chains,
