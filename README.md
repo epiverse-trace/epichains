@@ -45,7 +45,7 @@ at the London School of Hygiene and Tropical Medicine as part of the
 Install the released version of the package:
 
 ``` r
-install.packages("epichains")
+install.packages("epiverse-trace/epichains")
 ```
 
 The latest development version of the *epichains* package can be
@@ -131,7 +131,9 @@ sim_chains <- simulate_chains(
   statistic = "size",
   offspring_dist = rpois,
   stat_threshold = 25,
-  generation_time = function(n) {rep(3, n)}, # constant generation time of 3
+  generation_time = function(n) {
+    rep(3, n)
+  }, # constant generation time of 3
   lambda = 1 # mean of the Poisson distribution
 )
 # View the head of the simulation
