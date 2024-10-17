@@ -9,7 +9,8 @@ type: software
 license: MIT
 title: 'epichains: Simulating and Analysing Transmission Chain Statistics Using Branching
   Process Models'
-version: 0.1.0.9000
+version: 0.1.1
+doi: 10.32614/CRAN.package.epichains
 abstract: Provides methods to simulate and analyse the size and length of branching
   processes with an arbitrary offspring distribution. These can be used, for example,
   to analyse the distribution of chain sizes or length of infectious disease outbreaks,
@@ -27,6 +28,7 @@ authors:
   given-names: Flavio
   email: flavio.finger@epicentre.msf.org
   orcid: https://orcid.org/0000-0002-8613-5170
+repository: https://CRAN.R-project.org/package=epichains
 repository-code: https://github.com/epiverse-trace/epichains
 url: https://epiverse-trace.github.io/epichains/
 contact:
@@ -70,6 +72,7 @@ references:
     email: michellang@gmail.com
     orcid: https://orcid.org/0000-0001-9754-0393
   year: '2024'
+  doi: 10.32614/CRAN.package.checkmate
 - type: software
   title: stats
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -102,6 +105,7 @@ references:
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
   year: '2024'
+  doi: 10.32614/CRAN.package.bookdown
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -126,6 +130,7 @@ references:
     email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
   year: '2024'
+  doi: 10.32614/CRAN.package.dplyr
 - type: software
   title: epicontacts
   abstract: 'epicontacts: Handling, Visualisation and Analysis of Epidemiological
@@ -156,6 +161,7 @@ references:
     given-names: Zhian N.
     email: zkamvar@gmail.com
   year: '2024'
+  doi: 10.32614/CRAN.package.epicontacts
 - type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
@@ -195,6 +201,7 @@ references:
     name-particle: van den
     orcid: https://orcid.org/0000-0002-9335-7468
   year: '2024'
+  doi: 10.32614/CRAN.package.ggplot2
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -207,6 +214,7 @@ references:
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
   year: '2024'
+  doi: 10.32614/CRAN.package.knitr
 - type: software
   title: lubridate
   abstract: 'lubridate: Make Dealing with Dates a Little Easier'
@@ -222,6 +230,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
   year: '2024'
+  doi: 10.32614/CRAN.package.lubridate
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
@@ -265,6 +274,7 @@ references:
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
   year: '2024'
+  doi: 10.32614/CRAN.package.rmarkdown
 - type: software
   title: spelling
   abstract: 'spelling: Tools for Spell Checking in R'
@@ -274,12 +284,13 @@ references:
   authors:
   - family-names: Ooms
     given-names: Jeroen
-    email: jeroen@berkeley.edu
+    email: jeroenooms@gmail.com
     orcid: https://orcid.org/0000-0002-4035-0289
   - family-names: Hester
     given-names: Jim
     email: james.hester@rstudio.com
   year: '2024'
+  doi: 10.32614/CRAN.package.spelling
 - type: software
   title: testthat
   abstract: 'testthat: Unit Testing for R'
@@ -291,6 +302,7 @@ references:
     given-names: Hadley
     email: hadley@posit.co
   year: '2024'
+  doi: 10.32614/CRAN.package.testthat
 - type: software
   title: truncdist
   abstract: 'truncdist: Truncated Random Variables'
@@ -304,4 +316,5 @@ references:
     given-names: Saralees
     email: saralees.nadarajah@manchester.ac.uk
   year: '2024'
+  doi: 10.32614/CRAN.package.truncdist
 
