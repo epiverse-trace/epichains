@@ -1,5 +1,11 @@
 # epichains (development version)
 
+# epichains 0.1.1.9000
+
+## Package
+
+- The package now has websites for the [development version on GitHub](https://epiverse-trace.github.io/epichains/dev/) and [CRAN version](https://epiverse-trace.github.io/epichains/). By @jamesmbaazam in #293 and self-reviewed.
+
 # epichains 0.1.1
 
 This is the first CRAN release of `{epichains}`.
