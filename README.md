@@ -212,8 +212,9 @@ vignette](https://epiverse-trace.github.io/epichains/articles/epichains.html).
 ## Package websites
 
 The package has two websites: one for [the stable release version on
-CRAN](https://epiverse-trace/epichains), and another for [the version in
-development](https://epiverse-trace/epichains/dev/).
+CRAN](https://epiverse-trace.github.io/epichains/), and another for [the
+version in
+development](https://epiverse-trace.github.io/epichains/dev/).
 
 ## Package vignettes
 
