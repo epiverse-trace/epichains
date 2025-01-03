@@ -566,7 +566,7 @@ simulate_scenarios <- function(statistic,
   for (i in seq_len(nrow(scenarios))) {
     utils::setTxtProgressBar(pb, i)
     args <- list(
-      n_chains = 10, # 1000
+      n_chains = 1000,
       offspring_dist = match.fun(scenarios[i, "offspring_dist"]),
       statistic = scenarios[i, "statistic"],
       stat_threshold = breaks[length(breaks) - 1] + 1
