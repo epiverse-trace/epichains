@@ -6,6 +6,10 @@
 
 - The package now has websites for the [development version on GitHub](https://epiverse-trace.github.io/epichains/dev/) and [CRAN version](https://epiverse-trace.github.io/epichains/). By @jamesmbaazam in #293 and self-reviewed.
 
+## Documentation
+
+- The README now has badges for CRAN monthly and total downloads as well as the package's Zenodo DOI.
+
 # epichains 0.1.1
 
 This is the first CRAN release of `{epichains}`.
