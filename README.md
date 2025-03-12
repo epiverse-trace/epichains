@@ -18,6 +18,9 @@ coverage](https://codecov.io/gh/epiverse-trace/epichains/branch/main/graph/badge
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/epichains)](https://CRAN.R-project.org/package=epichains)
+[![month-download](https://cranlogs.r-pkg.org/badges/epichains)](https://cran.r-project.org/package=epichains)
+[![total-download](https://cranlogs.r-pkg.org/badges/grand-total/epichains)](https://cran.r-project.org/package=epichains)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13945039.svg)](https://doi.org/10.5281/zenodo.13945039)
 <!-- badges: end -->
 
 *epichains* is an R package to simulate, analyse, and visualize the size
@@ -338,7 +341,7 @@ By contributing to this project, you agree to abide by its terms.
 citation("epichains")
 #> To cite package 'epichains' in publications use:
 #> 
-#>   Azam J, Funk S, Finger F (2024). _epichains: Simulating and Analysing
+#>   Azam J, Funk S, Finger F (2025). _epichains: Simulating and Analysing
 #>   Transmission Chain Statistics Using Branching Process Models_. R
 #>   package version 0.1.1.9000,
 #>   https://epiverse-trace.github.io/epichains/,
@@ -350,7 +353,7 @@ citation("epichains")
 #>     title = {epichains: Simulating and Analysing Transmission Chain Statistics Using
 #> Branching Process Models},
 #>     author = {James M. Azam and Sebastian Funk and Flavio Finger},
-#>     year = {2024},
+#>     year = {2025},
 #>     note = {R package version 0.1.1.9000, 
 #> https://epiverse-trace.github.io/epichains/},
 #>     url = {https://github.com/epiverse-trace/epichains},
