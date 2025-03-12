@@ -29,6 +29,9 @@ knitr::opts_chunk$set(
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/epichains)](https://CRAN.R-project.org/package=epichains)
+[![month-download](https://cranlogs.r-pkg.org/badges/epichains)](https://cran.r-project.org/package=epichains)
+[![total-download](https://cranlogs.r-pkg.org/badges/grand-total/epichains)](https://cran.r-project.org/package=epichains)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13945039.svg)](https://doi.org/10.5281/zenodo.13945039)
 <!-- badges: end -->
 
 _{{ packagename }}_ is an R package to simulate, analyse, and visualize the size 
