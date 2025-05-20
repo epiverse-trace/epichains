@@ -5,6 +5,7 @@
 ## Package
 
 - The package now has websites for the [development version on GitHub](https://epiverse-trace.github.io/epichains/dev/) and [CRAN version](https://epiverse-trace.github.io/epichains/). By @jamesmbaazam in #293 and self-reviewed.
+- Fixed an issue where equations in the pkgdown function reference were not being rendered.
 
 ## Documentation
 
