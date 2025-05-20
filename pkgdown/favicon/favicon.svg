@@ -1,0 +1,835 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="336.9" height="389.2"><svg xml:space="preserve" id="SvgjsSvg3319" width="336.9" height="389.2" x="0" y="0" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <style id="SvgjsStyle3318" type="text/css">
+    .epichains_svg__st0{fill:#18bed2}
+  </style>
+  <path id="SvgjsPath3317" d="M97.177 342.914c-39.88-23.202-76.929-44.734-82.33-47.847l-9.82-5.66-.01-96.073-.008-96.071 81.694-47.46c44.932-26.104 82.18-47.646 82.774-47.872.725-.276 27.999 15.245 83.305 47.408l82.227 47.819V289.42l-81.726 47.495c-44.95 26.122-82.147 47.65-82.661 47.84-.526.195-32.66-18.112-73.445-41.84z" style="display:inline;opacity:.75;fill:#fff;fill-opacity:1;stroke:none;stroke-width:4.8885"></path>
+  <path id="SvgjsPath3316" d="M261.1 203.8c0-.8.5-1.4 1.3-1.4s1.4.5 1.4 1.3-.5 1.4-1.3 1.4h-.1c-.6 0-1.2-.6-1.3-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3315" d="M265.1 179.5c-.1.7-.7 1.1-1.3 1.1h-.2c-.7-.1-1.3-.8-1.1-1.6.1-.7.8-1.3 1.6-1.1.6.2 1.1.9 1 1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3314" d="M265.1 215.7c.1.7-.4 1.4-1.1 1.6h-.2c-.7 0-1.2-.5-1.3-1.1-.1-.7.4-1.4 1.1-1.6.7-.1 1.4.4 1.5 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3313" d="M262.4 255.6c.6-.3 1.4-.1 1.7.5.3.6.1 1.4-.5 1.7-.2.1-.4.1-.6.1-.5 0-.9-.2-1.1-.7-.3-.6-.1-1.3.5-1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3312" d="M263.6 323.6c-.2.2-.4.3-.7.3-.2 0-.4-.1-.6-.2-.4-.3-.4-.9-.1-1.3.3-.4.9-.4 1.3-.1.5.4.5.9.1 1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3311" d="M264.4 284.3c-.2.2-.4.2-.7.2-.3 0-.7-.2-.9-.5-.4-.5-.3-1.2.2-1.6.5-.4 1.2-.3 1.6.2.4.6.3 1.3-.2 1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3310" d="M265.1 228.3c-.2-.7.2-1.5 1-1.7.7-.2 1.5.2 1.7 1 .2.7-.2 1.5-1 1.7h-.4c-.6 0-1.2-.4-1.3-1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3309" d="M267.8 308.8c-.2.2-.5.3-.7.3-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4.4-.4 1-.4 1.4 0 .4.3.4 1 0 1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3308" d="M269.8 268.3c-.2.1-.4.2-.7.2-.4 0-.8-.2-1.1-.6-.4-.6-.2-1.4.4-1.7.6-.4 1.4-.2 1.7.4.5.6.3 1.4-.3 1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3307" d="M269.7 238.3c.7-.3 1.5.1 1.8.8.3.7-.1 1.5-.8 1.8-.2.1-.3.1-.5.1-.5 0-1.1-.3-1.3-.9-.2-.7.1-1.5.8-1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3306" d="M271.5 156.1c-.2.5-.7.9-1.3.9-.2 0-.3 0-.5-.1-.7-.3-1.1-1.1-.8-1.8.3-.7 1.1-1.1 1.8-.8.7.3 1 1.1.8 1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3305" d="M274.1 251.4c-.3-.7-.1-1.5.6-1.8.7-.3 1.5-.1 1.8.6.3.7.1 1.5-.6 1.8-.2.1-.4.2-.6.2-.5-.1-1-.4-1.2-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3304" d="M278.2 185.5c-.1.7-.7 1.3-1.5 1.3h-.2c-.8-.1-1.4-.8-1.3-1.6.1-.8.8-1.4 1.6-1.3.9.1 1.5.8 1.4 1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3303" d="M278.2 209.7c.1.8-.5 1.5-1.3 1.6h-.2c-.7 0-1.4-.6-1.5-1.3-.1-.8.5-1.5 1.3-1.6.9-.1 1.6.5 1.7 1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3302" d="M276 196.1c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3301" d="M276.9 317c-.2.2-.5.4-.8.4-.2 0-.5-.1-.7-.2-.4-.4-.5-1-.1-1.4.4-.4 1-.5 1.4-.1.5.3.5.9.2 1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3300" d="M277 278.3c-.2.2-.5.3-.8.3-.4 0-.7-.2-1-.5-.4-.5-.3-1.3.2-1.8.5-.4 1.3-.3 1.8.2s.4 1.3-.2 1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3299" d="M277.5 222.3c-.2-.8.3-1.6 1.1-1.8.8-.2 1.6.3 1.8 1.1.2.8-.3 1.6-1.1 1.8h-.4c-.6 0-1.2-.5-1.4-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3298" d="M280.9 302.4c-.2.2-.5.4-.8.4-.3 0-.6-.1-.8-.3-.5-.4-.5-1.2-.1-1.6.4-.4 1.1-.5 1.6-.1s.5 1.1.1 1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3297" d="M282.3 262.4c-.2.2-.5.2-.8.2-.4 0-.9-.2-1.1-.6-.4-.6-.2-1.5.4-1.9.6-.4 1.5-.2 1.9.4.4.7.2 1.5-.4 1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3296" d="M283.9 162.1c-.2.6-.8 1-1.4 1-.2 0-.4 0-.5-.1-.8-.3-1.1-1.1-.9-1.9.3-.8 1.1-1.1 1.9-.9.8.3 1.2 1.1.9 1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3295" d="M283.1 235c-.2.1-.4.1-.5.1-.6 0-1.2-.4-1.4-1-.3-.8.1-1.6.9-1.9.8-.3 1.6.1 1.9.9.3.8-.1 1.6-.9 1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3294" d="M286.3 245.5c-.4-.7-.1-1.6.6-2 .7-.4 1.6-.1 2 .6.4.7.1 1.6-.6 2-.2.1-.5.2-.7.2-.5 0-1-.3-1.3-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3293" d="M289.9 193.1h-.1c-.9-.1-1.5-.8-1.5-1.7.1-.9.8-1.5 1.7-1.5.9.1 1.5.8 1.5 1.7-.1.8-.8 1.5-1.6 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3292" d="M291.5 203.6c.1.9-.6 1.6-1.5 1.7h-.1c-.8 0-1.5-.6-1.6-1.5-.1-.9.6-1.6 1.5-1.7.8 0 1.6.6 1.7 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3291" d="M288 270.1c.6-.5 1.4-.4 1.9.2.5.6.4 1.4-.2 1.9-.3.2-.6.3-.9.3-.4 0-.8-.2-1-.5-.5-.6-.4-1.4.2-1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3290" d="M290.3 310.3c-.2.3-.6.4-.9.4-.2 0-.5-.1-.7-.2-.5-.4-.6-1.1-.2-1.6.4-.5 1.1-.6 1.6-.2.5.4.6 1.1.2 1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3289" d="M291.6 217.5c-.7 0-1.4-.5-1.6-1.3-.2-.9.4-1.7 1.2-1.9.9-.2 1.7.4 1.9 1.2.2.9-.4 1.7-1.2 1.9-.1.1-.2.1-.3.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3288" d="M294.1 295.8c-.2.3-.6.4-.9.4-.3 0-.6-.1-.8-.3-.5-.5-.6-1.2-.1-1.8.5-.6 1.2-.6 1.8-.1.4.5.5 1.3 0 1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3287" d="M294.8 256.5c-.3.2-.6.3-.8.3-.5 0-.9-.2-1.2-.6-.5-.7-.3-1.6.4-2.1s1.6-.3 2.1.4c.4.6.2 1.5-.5 2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3286" d="M295 229.3c-.6 0-1.3-.4-1.5-1-.3-.8.1-1.7 1-2 .8-.3 1.7.1 2 1 .3.8-.1 1.7-1 2-.2-.1-.4 0-.5 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3285" d="M298.2 281.1c-.3.3-.6.4-1 .4-.3 0-.7-.1-1-.4-.5-.5-.6-1.4 0-1.9.5-.5 1.4-.6 1.9 0 .6.5.6 1.3.1 1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3284" d="M298.5 239.6c-.4-.8-.1-1.7.7-2.2.8-.4 1.7-.1 2.2.7.4.8.1 1.7-.7 2.2-.2.1-.5.2-.7.2-.6 0-1.2-.4-1.5-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3283" d="M300.4 265.9c-.5-.6-.5-1.5.1-2.1.6-.5 1.5-.5 2.1.1.5.6.5 1.5-.1 2.1-.3.2-.6.4-1 .4s-.8-.2-1.1-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3282" d="M301.6 197.6c0-.9.8-1.7 1.7-1.7.9 0 1.7.8 1.7 1.7 0 .9-.8 1.7-1.7 1.7-.9 0-1.7-.7-1.7-1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3281" d="M303.8 303.3c-.2.3-.6.5-1 .5-.3 0-.5-.1-.7-.2-.6-.4-.7-1.2-.3-1.7.4-.6 1.2-.7 1.7-.3.6.4.7 1.1.3 1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3280" d="M304.3 211.5c-.8 0-1.5-.6-1.7-1.4-.2-.9.5-1.8 1.4-2 .9-.2 1.8.5 2 1.4.2.9-.5 1.8-1.4 2h-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3279" d="M307.5 289.1c-.3.3-.7.5-1.1.5-.3 0-.6-.1-.8-.3-.6-.5-.7-1.3-.2-1.9.5-.6 1.3-.7 1.9-.2.6.4.7 1.3.2 1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3278" d="M307.4 250.5c-.3.2-.6.3-.9.3-.5 0-1-.2-1.3-.7-.5-.7-.4-1.7.3-2.2.7-.5 1.7-.4 2.2.4.6.7.4 1.7-.3 2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3277" d="M307.9 223.3c-.2.1-.4.1-.6.1-.7 0-1.4-.4-1.6-1.2-.3-.9.2-1.9 1.1-2.2.9-.3 1.9.2 2.2 1.1.3 1-.2 1.9-1.1 2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3276" d="M311.3 274.6c-.3.3-.7.5-1.1.5-.3 0-.7-.1-1-.4-.6-.5-.7-1.5-.1-2.1.5-.6 1.5-.7 2.1-.1.6.5.7 1.5.1 2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3275" d="M310.8 233.7c-.4-.8-.1-1.9.7-2.3.8-.5 1.9-.1 2.3.7.5.8.1 1.9-.7 2.3-.3.1-.5.2-.8.2-.6 0-1.2-.3-1.5-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3274" d="M313.2 259.7c-.6-.6-.6-1.6 0-2.3.6-.6 1.6-.6 2.2 0 .6.6.6 1.6 0 2.3-.3.3-.7.4-1.1.4-.4.1-.8 0-1.1-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3273" d="M317.3 193.3h-.2c-1-.1-1.7-1-1.6-2 .1-1 1-1.7 2-1.6 1 .1 1.7 1 1.6 2-.1.9-.9 1.6-1.8 1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3272" d="M319.1 203.6c.1 1-.6 1.9-1.6 2h-.2c-.9 0-1.7-.7-1.8-1.6-.1-1 .6-1.9 1.6-2 1-.2 1.9.6 2 1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3271" d="M317.6 296c-.3.4-.7.6-1.2.6-.2 0-.5-.1-.7-.2-.6-.4-.8-1.2-.4-1.9.4-.6 1.2-.8 1.9-.4.6.4.8 1.3.4 1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3270" d="M317.7 244.2c-.6-.7-.4-1.8.3-2.4.7-.6 1.8-.4 2.4.3.6.7.4 1.8-.3 2.4-.3.2-.7.4-1 .4-.6 0-1.1-.2-1.4-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3269" d="M321.1 282c-.3.4-.7.6-1.2.6-.3 0-.6-.1-.8-.3-.7-.5-.8-1.4-.4-2.1.5-.7 1.4-.8 2.1-.4.6.6.8 1.5.3 2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3268" d="M324.7 267.8c-.3.4-.8.6-1.3.6-.3 0-.7-.1-1-.3-.7-.5-.8-1.5-.3-2.2.5-.7 1.5-.8 2.2-.3.8.5 1 1.5.4 2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3267" d="M324.6 228.8c-.6 0-1.3-.3-1.6-.9-.5-.9-.2-2 .7-2.5.9-.5 2-.2 2.5.7.5.9.2 2-.7 2.5-.3.1-.6.2-.9.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3266" d="M328.6 253.3c-.3.4-.8.6-1.3.6-.4 0-.8-.1-1.2-.4-.7-.6-.7-1.7-.1-2.4s1.7-.7 2.4-.1c.8.6.8 1.6.2 2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3265" d="M326.1 141.7c.7-.6 1.8-.6 2.4.1.6.7.6 1.8-.1 2.4-.3.3-.7.5-1.2.5s-.9-.2-1.3-.6c-.6-.6-.5-1.7.2-2.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3264" d="M326.1 169.1c-.3.6-1 .9-1.6.9-.3 0-.6-.1-.9-.2-.9-.5-1.2-1.6-.7-2.5.5-.9 1.6-1.2 2.5-.7.9.5 1.2 1.6.7 2.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3263" d="M322.4 127.1c.7-.5 1.7-.4 2.2.3.5.7.4 1.7-.3 2.2-.3.2-.6.3-1 .3-.5 0-.9-.2-1.3-.6-.4-.7-.3-1.7.4-2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3262" d="M320.3 217.5c-.2.1-.4.1-.5.1-.8 0-1.5-.5-1.7-1.3-.3-1 .2-2 1.2-2.3 1-.3 2 .2 2.3 1.2.2 1-.3 2-1.3 2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3261" d="M321.5 180c-.2.8-1 1.3-1.7 1.3-.2 0-.4 0-.5-.1-1-.3-1.5-1.3-1.2-2.3.3-1 1.3-1.5 2.3-1.2.8.4 1.4 1.4 1.1 2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3260" d="M319 112.8c.7-.5 1.6-.3 2.1.4s.3 1.6-.4 2.1c-.3.2-.6.3-.8.3-.5 0-.9-.2-1.2-.6-.6-.8-.4-1.8.3-2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3259" d="M320 150.7c.7.6.9 1.7.3 2.4-.3.4-.8.7-1.3.7-.4 0-.7-.1-1-.4-.7-.6-.9-1.7-.3-2.4.5-.8 1.5-.9 2.3-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3258" d="M315.6 98.7c.6-.4 1.5-.2 1.9.4.4.6.2 1.5-.4 1.9-.2.1-.5.2-.7.2-.5 0-.9-.2-1.2-.6-.4-.6-.2-1.5.4-1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3257" d="M313.1 135.4c.6-.6 1.6-.7 2.3 0 .6.6.7 1.6 0 2.3-.3.3-.7.5-1.1.5-.4 0-.8-.1-1.1-.4-.7-.7-.7-1.7-.1-2.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3256" d="M313 160.8c.8.4 1.1 1.5.7 2.3-.3.6-.9.9-1.5.9-.3 0-.6-.1-.8-.2-.8-.4-1.1-1.5-.7-2.3.5-.8 1.5-1.2 2.3-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3255" d="M309.2 120.5c.6-.5 1.5-.5 2.1.1.5.6.5 1.5-.1 2.1-.3.3-.6.4-1 .4s-.8-.2-1.1-.5c-.6-.7-.5-1.6.1-2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3254" d="M308.9 174.1c-.2.7-.9 1.2-1.6 1.2-.2 0-.4 0-.6-.1-.9-.3-1.4-1.3-1.1-2.2.3-.9 1.3-1.4 2.2-1.1.9.3 1.4 1.3 1.1 2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3253" d="M305.5 105.9c.6-.5 1.5-.4 1.9.2.5.6.4 1.4-.2 1.9-.3.2-.6.3-.8.3-.4 0-.8-.2-1.1-.5-.5-.6-.4-1.4.2-1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3252" d="M305.1 145c.5-.7 1.5-.9 2.2-.4.7.5.9 1.5.4 2.2-.3.4-.8.7-1.3.7-.3 0-.7-.1-.9-.3-.7-.5-.9-1.5-.4-2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3251" d="M304.6 183.7c.9.2 1.6 1 1.4 2-.1.8-.9 1.4-1.7 1.4h-.3c-.9-.1-1.6-1-1.4-2 .2-.9 1.1-1.5 2-1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3250" d="M302 91.6c.6-.4 1.3-.3 1.7.3.4.6.3 1.3-.3 1.7-.2.2-.5.2-.7.2-.4 0-.8-.2-1-.5-.4-.5-.3-1.3.3-1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3249" d="M300.4 129.3c.5-.6 1.5-.7 2.1-.1.6.5.7 1.5.1 2.1-.3.3-.7.5-1.1.5-.3 0-.7-.1-1-.4-.6-.6-.7-1.5-.1-2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3248" d="M300.7 154.9c.8.4 1.1 1.4.7 2.2-.3.5-.8.8-1.4.8-.3 0-.5-.1-.7-.2-.8-.4-1.1-1.4-.7-2.2.3-.7 1.3-1 2.1-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3247" d="M296.2 114.1c.5-.5 1.4-.5 1.9 0s.5 1.4 0 1.9c-.3.3-.6.4-1 .4s-.7-.1-1-.4c-.5-.5-.5-1.4.1-1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3246" d="M296.4 168.1c-.2.6-.8 1-1.5 1-.2 0-.4 0-.5-.1-.8-.3-1.3-1.2-1-2 .3-.8 1.2-1.3 2-1 .9.3 1.3 1.3 1 2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3245" d="M295.1 140.7c-.3.4-.7.6-1.2.6-.3 0-.6-.1-.8-.3-.7-.5-.8-1.4-.4-2.1.5-.7 1.4-.8 2.1-.4.6.6.8 1.6.3 2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3244" d="M292.3 99.3c.5-.5 1.3-.4 1.8.1s.4 1.3-.1 1.8c-.2.2-.5.3-.8.3-.4 0-.7-.1-.9-.4-.6-.6-.6-1.4 0-1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3243" d="M291.9 177.8c.9.2 1.4 1 1.2 1.9-.2.8-.8 1.3-1.6 1.3h-.3c-.9-.2-1.4-1-1.2-1.9.2-1 1-1.5 1.9-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3242" d="M288.6 84.7c.5-.4 1.2-.3 1.6.2.4.5.3 1.2-.2 1.6-.2.2-.5.2-.7.2-.3 0-.7-.1-.9-.4-.4-.5-.3-1.2.2-1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3241" d="M287.7 123.2c.5-.6 1.3-.7 1.9-.2.6.5.7 1.3.2 1.9-.3.3-.7.5-1.1.5-.3 0-.6-.1-.9-.3-.5-.5-.5-1.3-.1-1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3240" d="M286.3 149.7c.4-.7 1.3-1 2-.6s1 1.3.6 2c-.3.5-.8.8-1.3.8-.2 0-.5-.1-.7-.2-.7-.4-1-1.3-.6-2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3239" d="M285.2 287.4c-.2.2-.6.3-.9.3-.3 0-.7-.1-.9-.4-.5-.5-.5-1.3 0-1.8s1.3-.5 1.8 0c.5.7.5 1.5 0 1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3238" d="M283.3 107.8c.5-.5 1.3-.5 1.8 0s.5 1.3 0 1.8c-.2.3-.6.4-.9.4-.3 0-.6-.1-.9-.3-.5-.6-.5-1.4 0-1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3237" d="M282.2 132.8c.6.4.8 1.3.4 1.9-.3.4-.7.6-1.1.6-.3 0-.5-.1-.8-.2-.6-.4-.8-1.3-.4-1.9.5-.7 1.3-.8 1.9-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3236" d="M279.2 92.8c.5-.4 1.2-.4 1.6 0 .4.5.4 1.2 0 1.6-.2.2-.5.3-.8.3-.3 0-.6-.1-.8-.4-.5-.4-.4-1.1 0-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3235" d="M277.5 173c.2-.8 1-1.3 1.8-1.1.8.2 1.3 1 1.1 1.8-.2.7-.8 1.1-1.4 1.1h-.4c-.8-.3-1.3-1.1-1.1-1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3234" d="M275.4 78c.4-.4 1.1-.3 1.4.1.4.4.3 1.1-.1 1.4-.2.2-.4.2-.7.2-.3 0-.6-.1-.8-.4-.3-.3-.3-.9.2-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3233" d="M275.2 117.2c.4-.5 1.2-.6 1.8-.2.5.4.6 1.2.2 1.8-.2.3-.6.5-1 .5-.3 0-.5-.1-.8-.3-.5-.5-.6-1.3-.2-1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3232" d="M274 143.8c.3-.7 1.2-.9 1.8-.6.7.3.9 1.2.6 1.8-.2.5-.7.7-1.2.7-.2 0-.4 0-.6-.2-.6-.2-.9-1-.6-1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3231" d="M272.3 293.7c-.2.2-.5.3-.8.3-.3 0-.6-.1-.8-.4-.4-.5-.4-1.2.1-1.6.5-.4 1.2-.4 1.6.1.4.4.3 1.1-.1 1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3230" d="M270.6 101.6c.4-.5 1.1-.5 1.6-.1s.5 1.1.1 1.6c-.2.2-.5.4-.8.4-.3 0-.5-.1-.8-.3-.5-.4-.5-1.1-.1-1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3229" d="M269.7 126.9c.6.4.8 1.1.4 1.7-.2.4-.6.6-1.1.6-.2 0-.5-.1-.7-.2-.6-.4-.8-1.1-.4-1.7.5-.6 1.3-.8 1.8-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3228" d="M266.3 86.4c.4-.4 1-.4 1.4 0 .4.4.4 1.1 0 1.4-.2.2-.5.3-.7.3-.2 0-.5-.1-.7-.3-.4-.3-.4-1 0-1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3227" d="M265 166.9c.2-.7 1-1.2 1.7-1 .7.2 1.2.9 1 1.7-.2.6-.7 1-1.3 1h-.4c-.7-.2-1.2-.9-1-1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3226" d="M264.5 112.5c-.2.3-.6.5-.9.5-.2 0-.5-.1-.7-.2-.5-.4-.6-1.1-.2-1.6.4-.5 1.1-.6 1.6-.2.5.3.6 1 .2 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3225" d="M262.3 71.5c.4-.3.9-.3 1.3.1.3.4.3.9-.1 1.3-.2.2-.4.2-.6.2-.2 0-.5-.1-.7-.3-.3-.4-.3-1 .1-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3224" d="M261.8 138c.3-.6 1.1-.9 1.7-.5.6.3.9 1.1.5 1.7-.2.4-.7.7-1.1.7-.2 0-.4 0-.6-.1-.6-.4-.8-1.2-.5-1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3223" d="M262.6 190.1c.8 0 1.3.7 1.3 1.4s-.6 1.3-1.4 1.3h-.1c-.8 0-1.3-.7-1.3-1.4.1-.7.7-1.3 1.5-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3222" d="M257.9 95.5c.4-.4 1-.5 1.4-.1.4.4.5 1 .1 1.4-.2.2-.5.4-.8.4-.2 0-.5-.1-.7-.2-.3-.5-.3-1.1 0-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3221" d="M257.4 244.4c.6-.3 1.4.1 1.6.7.3.6-.1 1.4-.7 1.6-.2.1-.3.1-.5.1-.5 0-1-.3-1.2-.8-.1-.7.2-1.4.8-1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3220" d="M256.7 149.2c.3-.6 1-1 1.6-.7.6.3 1 1 .7 1.6-.2.5-.7.8-1.2.8-.2 0-.3 0-.5-.1-.6-.2-.9-.9-.6-1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3219" d="M253.5 80.1c.3-.4.9-.4 1.3 0 .4.3.4.9 0 1.3-.2.2-.4.3-.7.3-.2 0-.4-.1-.6-.2-.3-.4-.4-1 0-1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3218" d="M251.1 131.6c.6.3.8 1 .5 1.5-.2.4-.6.6-1 .6-.2 0-.4 0-.5-.1-.6-.3-.8-1-.5-1.5.3-.6 1-.8 1.5-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3217" d="M251.2 172c.7.1 1.1.8 1 1.5-.1.6-.6 1-1.2 1h-.2c-.7-.1-1.1-.8-1-1.5 0-.7.7-1.1 1.4-1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3216" d="M251.7 104.9c.5.3.6 1 .2 1.4-.2.3-.5.4-.8.4-.2 0-.4-.1-.6-.2-.5-.3-.6-1-.2-1.4.3-.4.9-.5 1.4-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3215" d="M249.3 65.1c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1-.2.1-.4.2-.6.2-.2 0-.4-.1-.6-.2-.2-.3-.2-.8.1-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3214" d="M249.3 184.1c.7.1 1.2.7 1.1 1.4-.1.6-.6 1.1-1.2 1.1h-.1c-.7-.1-1.2-.7-1.1-1.4 0-.6.7-1.1 1.3-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3213" d="M245.3 89.4c.3-.4.9-.4 1.3-.1.4.3.4.9.1 1.3-.2.2-.4.3-.7.3-.2 0-.4-.1-.6-.2-.3-.3-.4-.9-.1-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3212" d="M245.1 250.4c.6-.2 1.2 0 1.5.6.2.6 0 1.2-.6 1.5-.1.1-.3.1-.4.1-.4 0-.9-.3-1.1-.7-.3-.6 0-1.2.6-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3211" d="M244.4 143.3c.2-.6.9-.9 1.5-.6.6.2.9.9.6 1.5-.2.4-.6.7-1.1.7-.1 0-.3 0-.4-.1-.5-.2-.8-.9-.6-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3210" d="M240.8 73.9c.3-.3.8-.4 1.1-.1.3.3.4.8.1 1.1-.2.2-.4.3-.6.3-.2 0-.4-.1-.5-.2-.4-.3-.4-.8-.1-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3209" d="M237.9 99.2c.3-.4.9-.5 1.3-.2s.5.9.2 1.3c-.2.3-.5.4-.7.4-.2 0-.4-.1-.5-.2-.5-.3-.6-.9-.3-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3208" d="M238.5 229.2h-.2c-.5 0-1-.4-1.1-.9-.1-.6.3-1.2.9-1.4.6-.1 1.2.3 1.4.9 0 .6-.4 1.2-1 1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3207" d="M238.8 269.4c-.1.1-.3.1-.5.1-.4 0-.7-.2-.9-.6-.3-.5-.1-1.1.4-1.4.5-.3 1.1-.1 1.4.4.3.7.1 1.3-.4 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3206" d="M238.5 166.1c.6.1 1 .7.9 1.4-.1.5-.6.9-1.1.9h-.2c-.6-.1-1-.7-.9-1.4 0-.7.7-1.1 1.3-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3205" d="M237.4 126.2c.3-.5.9-.7 1.4-.4.5.3.7.9.4 1.4-.2.4-.5.6-.9.6-.2 0-.3 0-.5-.1-.5-.4-.7-1-.4-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3204" d="M236.5 58.7c.3-.3.7-.3 1 0 .3.3.3.7 0 1-.1.1-.3.2-.5.2s-.3-.1-.5-.2c-.3-.3-.3-.7 0-1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3203" d="M236.3 178.1c.6.1 1.1.7 1 1.3-.1.6-.6 1-1.1 1h-.1c-.6-.1-1.1-.7-1-1.3 0-.6.6-1 1.2-1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3202" d="M235.2 190.4c.6 0 1.1.6 1.1 1.2s-.5 1.1-1.1 1.1c-.6 0-1.1-.6-1.1-1.2-.1-.7.4-1.2 1.1-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3201" d="M232.8 256.5c.5-.2 1.1 0 1.3.6.2.5 0 1.1-.6 1.3-.1.1-.3.1-.4.1-.4 0-.8-.2-.9-.6-.2-.6.1-1.2.6-1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3200" d="M232.2 137.4c.2-.5.8-.8 1.3-.6.5.2.8.8.6 1.3-.2.4-.5.6-.9.6-.1 0-.3 0-.4-.1-.6 0-.8-.6-.6-1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3199" d="M232.8 83.3c.3-.3.8-.4 1.1-.1.3.3.4.8.1 1.1-.2.2-.4.3-.6.3-.2 0-.3-.1-.5-.2-.3-.2-.3-.7-.1-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3198" d="M228.1 67.7c.2-.3.7-.3 1-.1.3.2.3.7.1 1-.1.2-.3.2-.5.2s-.3-.1-.4-.2c-.4-.1-.4-.6-.2-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3197" d="M225.5 93.2c.3-.4.7-.5 1.1-.2.4.2.5.7.2 1.1-.2.2-.4.3-.7.3-.2 0-.3 0-.4-.1-.4-.2-.4-.7-.2-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3196" d="M225.1 120.3c.2-.4.8-.6 1.2-.4.4.2.6.8.4 1.2-.2.3-.5.5-.8.5-.1 0-.3 0-.4-.1-.4-.2-.6-.7-.4-1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3195" d="M225.8 160.2c.6.1.9.7.8 1.2-.1.5-.5.8-1 .8h-.2c-.6-.1-.9-.7-.8-1.2.1-.6.7-1 1.2-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3194" d="M223.7 52.5c.2-.2.6-.2.8 0 .2.2.2.6 0 .8-.1.1-.3.2-.4.2-.1 0-.3-.1-.4-.2-.2-.2-.2-.6 0-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3193" d="M223.4 172.2c.6.1.9.6.9 1.2-.1.5-.5.9-1 .9h-.2c-.6-.1-.9-.6-.9-1.2.1-.6.6-1 1.2-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3192" d="M222.8 185.4c0 .5-.5.9-1 .9h-.1c-.6 0-1-.5-.9-1.1 0-.6.5-1 1.1-.9.5.1 1 .6.9 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3191" d="M222.3 197.6c0 .6-.5 1-1 1s-1-.5-1-1c0-.6.5-1 1-1s1 .5 1 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3190" d="M221.6 132.2c-.1.3-.5.6-.8.6-.1 0-.2 0-.4-.1-.5-.2-.7-.7-.5-1.2.2-.5.7-.7 1.2-.5.5.3.7.8.5 1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3189" d="M221.3 77.2c.3.2.4.7.1 1-.1.2-.3.3-.5.3-.1 0-.3 0-.4-.1-.3-.2-.4-.7-.1-1 .2-.4.6-.5.9-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3188" d="M219.5 37.4c.2-.2.5-.2.6 0 .2.2.2.5 0 .6-.1.1-.2.1-.3.1-.1 0-.2 0-.3-.1-.2-.2-.2-.5 0-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3187" d="M217.3 143.7c-.1.4-.5.6-.9.6h-.3c-.5-.2-.7-.7-.6-1.2.2-.5.7-.7 1.2-.6.5.2.8.7.6 1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3186" d="M213.2 87.3c.2-.3.6-.4.9-.2.3.2.4.6.2.9-.1.2-.3.3-.6.3-.1 0-.3 0-.4-.1-.3-.2-.3-.6-.1-.9Z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3185" d="M212.9 114.4c.2-.4.7-.6 1.1-.3.4.2.5.7.3 1.1-.1.3-.4.4-.7.4-.1 0-.2 0-.4-.1-.3-.2-.5-.7-.3-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3184" d="M210.5 166.2c.5.1.8.6.7 1.1-.1.4-.5.7-.9.7h-.2c-.5-.1-.8-.6-.7-1.1.2-.4.6-.8 1.1-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3183" d="M209.5 179.4c0 .5-.4.8-.9.8h-.1c-.5-.1-.9-.5-.8-1 .1-.5.5-.9 1-.8.5 0 .9.5.8 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3182" d="M207.7 202.9c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3181" d="M206.8 191.5c0-.5.4-.9.9-.9s.9.4.9.9-.4.9-.9.9-.9-.4-.9-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3180" d="M209.2 126.3c-.1.3-.4.5-.7.5-.1 0-.2 0-.3-.1-.4-.2-.6-.6-.4-1 .2-.4.6-.6 1-.4.4.1.6.6.4 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3179" d="M207.9 71.3c.2-.3.5-.3.8-.1.3.2.3.5.1.8-.1.1-.3.2-.5.2-.1 0-.2 0-.3-.1-.3-.2-.3-.5-.1-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3178" d="M206.7 31c.1-.1.3-.1.5 0 .1.1.1.3 0 .5-.1.1-.2.1-.2.1-.1 0-.2 0-.2-.1-.2-.1-.2-.4-.1-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3177" d="M204.3 136.7c.4.1.6.6.5 1-.1.3-.4.5-.8.5h-.3c-.4-.1-.6-.6-.5-1 .3-.5.7-.7 1.1-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3176" d="M203 55.5c.2-.2.4-.2.6-.1.2.2.2.4.1.6-.1.1-.2.2-.4.2-.1 0-.2 0-.3-.1-.1-.1-.2-.4 0-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3175" d="M200.8 81.4c.2-.3.5-.3.8-.2.3.2.3.5.2.8-.1.2-.3.3-.5.3-.1 0-.2 0-.3-.1-.3-.2-.4-.5-.2-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3174" d="M200.7 108.5c.2-.3.6-.5.9-.3.3.2.5.6.3.9-.1.2-.4.4-.6.4-.1 0-.2 0-.3-.1-.3-.1-.4-.5-.3-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3173" d="M197.8 160.3c.4.1.7.5.6.9-.1.4-.4.6-.8.6h-.2c-.4-.1-.7-.5-.6-.9.1-.4.5-.7 1-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3172" d="M196.8 120.3c-.1.3-.4.4-.6.4-.1 0-.2 0-.3-.1-.3-.1-.5-.6-.4-.9.1-.3.6-.5.9-.4.4.2.5.6.4 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3171" d="M195.5 221.3c.4-.1.8.2.9.7.1.4-.3.8-.7.9h-.1c-.4 0-.7-.3-.8-.7 0-.4.3-.8.7-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3170" d="M195.5 174c-.4-.1-.7-.5-.7-.9.1-.4.5-.7.9-.7.4.1.7.5.7.9-.1.4-.4.7-.8.7h-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3169" d="M195.5 65.3c.1-.2.4-.3.6-.1.2.1.2.4.1.6-.1.1-.2.2-.4.2-.1 0-.2 0-.3-.1-.1-.1-.2-.4 0-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3168" d="M195.1 91.7c.3.2.4.5.2.8-.1.2-.3.3-.5.3-.1 0-.2 0-.3-.1-.3-.2-.4-.5-.2-.8.2-.3.5-.4.8-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3167" d="M193.9 24.7c.1-.1.2-.1.3 0 .1.1.1.2 0 .3 0 0-.1.1-.2.1s-.1 0-.2-.1c.1 0 .1-.2.1-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3166" d="M194.4 184.6c.4 0 .8.4.7.8 0 .4-.4.7-.8.7h-.1c-.4 0-.8-.4-.7-.8.1-.4.5-.8.9-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3165" d="M191.9 130.8c.4.1.5.5.4.9-.1.3-.4.5-.6.5h-.2c-.4-.1-.5-.5-.4-.9.1-.5.4-.6.8-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3164" d="M190.5 49.5c.1-.1.3-.2.5-.1.1.1.2.3.1.5-.1.1-.2.1-.3.1-.1 0-.1 0-.2-.1-.2-.1-.2-.3-.1-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3163" d="M188.5 75.4c.1-.2.4-.3.6-.1.2.1.3.4.1.6-.1.1-.2.2-.4.2-.1 0-.2 0-.2-.1-.2-.1-.2-.4-.1-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3162" d="M188.5 102.7c.1-.3.5-.4.8-.3.3.1.4.5.3.8-.1.2-.3.3-.5.3-.1 0-.2 0-.3-.1-.3-.1-.5-.4-.3-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3161" d="M185.1 154.3c.4.1.6.4.5.8-.1.3-.4.5-.7.5h-.1c-.4-.1-.6-.4-.5-.8.1-.4.4-.5.8-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3160" d="M184 113.6c.3.1.4.5.3.7-.1.2-.3.3-.5.3h-.2c-.3-.1-.4-.5-.3-.7.1-.3.4-.5.7-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3159" d="M183.1 59.3c.1-.2.3-.2.5-.1s.2.3.1.5c-.1.1-.2.1-.3.1-.1 0-.1 0-.2-.1-.2 0-.2-.3-.1-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3158" d="M182.1 85.9c.1-.2.4-.3.6-.2.2.1.3.4.2.6-.1.1-.2.2-.4.2-.1 0-.2 0-.2-.1-.2 0-.3-.2-.2-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3157" d="M181.2 18.5h.2v.2h-.2v-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3156" d="M181.2 178.6c.4 0 .7.4.6.7 0 .4-.3.6-.7.6h-.1c-.4 0-.7-.4-.6-.7.1-.4.4-.7.8-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3155" d="M180.4 190.8c.4 0 .7.3.7.7 0 .4-.3.7-.7.7-.4 0-.7-.3-.7-.7 0-.4.4-.7.7-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3154" d="M177.1 97.2c-.1.2-.2.3-.4.3h-.2c-.2-.1-.3-.4-.2-.6.1-.2.4-.3.6-.2.2 0 .3.3.2.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3153" d="M176.2 69.5c.1-.2.3-.2.5-.1s.2.3.1.5c-.1.1-.2.2-.3.2-.1 0-.1 0-.2-.1-.1-.2-.2-.4-.1-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3152" d="M172.4 148.5c.3.1.5.4.4.7-.1.3-.3.4-.6.4h-.1c-.3-.1-.5-.4-.4-.7.1-.3.4-.5.7-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3151" d="M171.7 107.7c.2.1.3.4.2.6-.1.2-.2.3-.4.3h-.2c-.2-.1-.3-.4-.2-.6.1-.3.3-.4.6-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3150" d="M170.7 53.3c.1-.1.2-.1.3-.1.1.1.1.2.1.3 0 .1-.1.1-.2.1h-.1c-.1 0-.2-.2-.1-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3149" d="M167.5 173.1c0-.3.3-.5.6-.5s.5.3.5.6-.3.5-.6.5h-.1c-.2 0-.5-.3-.4-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3148" d="M166.5 119.4c.1-.2.3-.4.6-.3.2.1.4.4.3.6-.1.2-.2.3-.4.3h-.2c-.3-.1-.4-.4-.3-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3147" d="M167 184.8c.3 0 .6.3.5.6 0 .3-.3.5-.6.5s-.6-.3-.5-.6c0-.2.3-.5.6-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3146" d="M164.5 90.7c.2.1.2.3.2.5-.1.1-.2.2-.3.2h-.1c-.2-.1-.2-.3-.2-.5.1-.2.3-.3.4-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3145" d="M163.9 63.6c.1-.1.2-.1.3-.1.1.1.1.2.1.3 0 .1-.1.1-.2.1h-.1c-.1-.1-.1-.2-.1-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3144" d="M159.8 142.5c.2.1.4.3.3.6-.1.2-.2.3-.4.3h-.1c-.2-.1-.4-.3-.3-.6 0-.2.2-.3.5-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3143" d="M158.9 102c.1-.2.3-.3.4-.2.2.1.3.3.2.4-.1.1-.2.2-.3.2h-.1c-.2 0-.3-.2-.2-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3142" d="M155.5 167.1c0 .2-.2.4-.4.4h-.1c-.2 0-.4-.3-.4-.5s.3-.4.5-.4.4.3.4.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3141" d="M153.7 178.8c.3 0 .4.2.4.5 0 .2-.2.4-.5.4s-.4-.2-.4-.5c.1-.2.3-.4.5-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3140" d="M147.4 137c0 .2-.2.3-.3.3h-.1c-.2 0-.3-.2-.2-.4 0-.2.2-.3.4-.2.2 0 .3.1.2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3139" d="M142.3 107.4c.1 0 .2.2.1.3 0 .1-.1.1-.2.1h-.1c-.1 0-.2-.2-.1-.3 0-.1.1-.2.3-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3138" d="M139.7 79.1c0-.1.1-.1.2-.1s.1.1.1.2l-.1.1c-.3-.1-.3-.1-.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3137" d="M139.6 185c.2 0 .3.2.3.4s-.2.3-.3.3c-.2 0-.3-.2-.3-.4s.1-.3.3-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3136" d="M134.4 90.2c0-.1.1-.1.2-.1s.1.1.1.1l-.1.1c-.2.1-.2 0-.2-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3135" d="M125.7 113.1c.1 0 .1.1.1.1l-.1.1c-.1 0-.1-.1-.1-.1 0-.1 0-.1.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3134" d="M112 197.7c-.1 0-.1-.1-.1-.1 0-.1 0-.1.1-.1s.1 0 .1.1-.1.1-.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3133" d="M112.3 185.2c.1 0 .1.1.1.1 0 .1-.1.1-.1.1-.1 0-.1-.1-.1-.1-.1 0 0-.1.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3132" d="M112.3 210c-.1 0-.1 0-.1-.1s0-.1.1-.1.1 0 .1.1l-.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3131" d="M113.1 173c.1 0 .1.1.1.1 0 .1-.1.1-.1.1-.1 0-.1-.1-.1-.1 0-.1 0-.1.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3130" d="M113.2 222.1c0 .1 0 .1-.1.1s-.1 0-.1-.1 0-.1.1-.1l.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3129" d="M114.5 160.8c.1 0 .1.1.1.1 0 .1-.1.1-.1.1-.1 0-.1-.1-.1-.1 0-.1 0-.1.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3128" d="M114.5 234.4c-.1 0-.1 0-.1-.1s0-.1.1-.1.1 0 .1.1 0 .1-.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3127" d="M116.3 148.8c0-.1.1-.1.1-.1.1 0 .1.1.1.1 0 .1-.1.1-.1.1-.1 0-.1 0-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3126" d="M116.5 246.5c-.1 0-.1 0-.1-.1s0-.1.1-.1.1 0 .1.1-.1.1-.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3125" d="M118.8 136.8c0-.1.1-.1.1-.1.1 0 .1.1.1.1 0 .1-.1.1-.1.1l-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3124" d="M119 258.5c-.1 0-.1 0-.1-.1s0-.1.1-.1.1 0 .1.1 0 .1-.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3123" d="M121.9 124.9c0-.1.1-.1.1-.1.1 0 .1.1.1.1 0 .1-.1.1-.1.1-.1 0-.1 0-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3122" d="M122.1 270.4c-.1 0-.1 0-.1-.1s0-.1.1-.1.1 0 .1.1c0 0 0 .1-.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3121" d="M125.7 282.1c-.1 0-.1 0-.1-.1s0-.1.1-.1.1 0 .1.1c0 0 0 .1-.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3120" d="M125.7 204c-.1 0-.2-.1-.2-.2s.1-.2.2-.2.2.1.2.2-.1.2-.2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3119" d="M125.7 191.7c-.1 0-.2-.1-.2-.2s.1-.2.2-.2.2.1.2.2-.1.2-.2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3118" d="M126.3 179c.1 0 .2.1.2.2s-.1.2-.2.2-.2-.1-.2-.2.1-.2.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3117" d="M126.3 216.2c-.1 0-.2-.1-.2-.2s.1-.2.2-.2.2.1.2.2-.1.2-.2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3116" d="M127.5 166.8c.1 0 .2.1.2.3 0 .1-.1.2-.2.2s-.2-.1-.2-.3c0-.1.1-.2.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3115" d="M127.5 228.4c-.1 0-.2-.1-.3-.2 0-.1.1-.2.2-.3.1 0 .2.1.3.2 0 .2-.1.3-.2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3114" d="M129.3 154.7c.1 0 .2.1.2.3 0 .1-.1.2-.2.2s-.2-.1-.2-.3c-.1-.2.1-.3.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3113" d="M129.3 240.6c-.1 0-.2-.1-.3-.2 0-.1.1-.2.2-.3.1 0 .2.1.3.2 0 .1-.1.3-.2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3112" d="M129.7 101.6c0-.1.1-.1.1-.1.1 0 .1.1.1.1l-.1.1c-.1 0-.1 0-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3111" d="M130 293.5c0 .1 0 .1-.1.1 0 0-.1 0-.1-.1s0-.1.1-.1c0 0 0 .1.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3110" d="M131.6 142.6c.1 0 .2.1.2.3 0 .1-.1.2-.2.2s-.2-.1-.2-.3c0-.1.1-.2.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3109" d="M131.7 252.6s-.1 0 0 0c-.2 0-.2-.1-.3-.2 0-.1.1-.2.2-.3.1 0 .2 0 .3.2 0 .2-.1.3-.2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3108" d="M134.3 130.9c0-.1.2-.2.3-.2.1 0 .2.2.2.3 0 .1-.1.2-.2.2h-.1c-.1-.1-.2-.2-.2-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3107" d="M134.6 305c-.1 0-.1 0-.1-.1s0-.1.1-.1.1 0 .1.1c0 0-.1 0-.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3106" d="M134.6 264.5c-.2 0-.3-.1-.3-.2s0-.2.2-.3c.1 0 .2 0 .3.2 0 .2 0 .3-.2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3105" d="M137.9 119.1c0-.1.2-.2.3-.1.1 0 .2.2.1.3 0 .1-.1.2-.2.2h-.1c-.1-.1-.2-.3-.1-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3104" d="M138.3 276c0 .1 0 .2-.1.3h-.1c-.1 0-.2-.1-.2-.2s0-.2.1-.3c.2 0 .3.1.3.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3103" d="M139 197.6c0-.2.2-.3.3-.3.2 0 .3.1.3.3 0 .2-.2.3-.3.3-.2.1-.3-.1-.3-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3102" d="M139.8 316c0 .1 0 .1 0 0-.1 0-.1 0-.2-.1 0-.1 0-.1.1-.2.1 0 .1 0 .2.1 0 .2 0 .2-.1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3101" d="M139.6 210.2c-.2 0-.3-.1-.4-.3 0-.2.1-.4.3-.4.2 0 .3.1.4.3.1.3-.1.4-.3.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3100" d="M140.2 173.1c0-.2.2-.3.4-.3s.3.2.3.4-.2.3-.3.3c-.3-.1-.4-.2-.4-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3099" d="M140.6 222.5c-.2 0-.4-.1-.4-.3 0-.2.1-.4.3-.4.2 0 .4.1.4.3 0 .2-.1.3-.3.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3098" d="M142.2 160.6c.2 0 .3.2.3.4s-.2.3-.3.3h-.1c-.2 0-.3-.2-.3-.4s.2-.3.4-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3097" d="M142.3 287.8s-.1 0 0 0c-.2 0-.3 0-.3-.1s0-.2.1-.3c.1 0 .2 0 .3.1.1.1 0 .3-.1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3096" d="M142.2 234.6s-.1 0 0 0c-.2 0-.4-.1-.4-.3 0-.2.1-.4.3-.4.2 0 .4.1.4.3 0 .2-.1.4-.3.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3095" d="M144 148.8c0-.2.2-.3.4-.3s.3.2.3.4-.2.3-.3.3h-.1c-.3 0-.4-.2-.3-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3094" d="M144.4 246.7s-.1 0 0 0c-.2 0-.4-.1-.4-.3 0-.2.1-.4.3-.4.2 0 .4.1.4.3 0 .2-.1.3-.3.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3093" d="M145.5 326.9h-.2v-.2h.2c.1.1.1.1 0 .2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3092" d="M145.6 68.3c0 .1-.1.1 0 0-.1.1-.1.1-.2 0-.1 0-.1-.1 0-.2 0-.1.1-.1.2 0v.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3091" d="M146.6 96.1c.1-.1.2-.2.3-.1.1.1.2.2.1.3 0 .1-.1.1-.2.1h-.1c-.1 0-.1-.2-.1-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3090" d="M147 299.1c-.1 0-.1.1 0 0-.2 0-.3 0-.3-.1s0-.3.1-.3.2 0 .3.1c0 .2 0 .3-.1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3089" d="M147.2 258.6s-.1 0 0 0c-.2 0-.4-.1-.4-.2 0-.2.1-.4.2-.4.2 0 .4.1.4.2.1.2 0 .4-.2.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3088" d="M150.2 125c.1-.2.2-.3.4-.2.2.1.3.2.2.4 0 .1-.2.2-.3.2h-.1c-.2 0-.3-.2-.2-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3087" d="M150.7 270.4h-.1c-.1 0-.3-.1-.3-.2-.1-.2 0-.4.2-.4.2-.1.4 0 .4.2 0 .1-.1.3-.2.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3086" d="M151.8 337.4c-.1 0-.1.1 0 0h-.2v-.2h.2v.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3085" d="M151.8 57.8c-.1.1-.1 0-.2 0s-.1-.1 0-.2c0-.1.1-.1.2 0 0 0 .1.1 0 .2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3084" d="M151.9 85c.1-.1.2-.2.3-.1.1.1.2.2.1.3 0 .1-.1.1-.2.1h-.1c-.1-.1-.2-.2-.1-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3083" d="M152.2 310.2h-.1c-.1 0-.2 0-.2-.1-.1-.1 0-.3.1-.3.1-.1.2 0 .3.1 0 .1 0 .3-.1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3082" d="M152.6 191.5c0-.3.2-.4.5-.4s.4.2.4.5c0 .2-.2.4-.5.4-.2 0-.4-.3-.4-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3081" d="M153.1 204.2c-.2 0-.5-.2-.5-.4 0-.3.2-.5.4-.5.3 0 .5.2.5.4 0 .3-.2.5-.4.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3080" d="M153.8 216.5c-.1 0-.1 0 0 0-.3 0-.5-.2-.5-.4 0-.3.2-.5.4-.5.3 0 .5.2.5.4s-.2.5-.4.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3079" d="M154.2 113.4c.1-.2.3-.3.4-.2.2.1.3.3.2.4-.1.1-.2.2-.3.2h-.1c-.2 0-.2-.2-.2-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3078" d="M154.7 282h-.1c-.1 0-.3-.1-.3-.2-.1-.2 0-.4.2-.4.2-.1.4 0 .4.2.1.1 0 .3-.2.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3077" d="M155.1 228.7c-.3 0-.5-.2-.5-.4 0-.3.1-.5.4-.5.3 0 .5.1.5.4 0 .2-.1.4-.4.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3076" d="M157.1 154.5c.2 0 .4.3.4.5s-.2.4-.4.4h-.1c-.2 0-.4-.3-.4-.5 0-.3.2-.4.5-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3075" d="M157.5 240.2c0 .2-.1.5-.4.5h-.1c-.2 0-.4-.1-.4-.4 0-.2.1-.5.4-.5.2 0 .4.2.5.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3074" d="M157.9 321h-.1c-.1 0-.2 0-.2-.1-.1-.1 0-.2.1-.3.1-.1.3 0 .3.1.1.1 0 .3-.1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3073" d="M158 74.3c0 .1-.1.1-.2.1h-.1c-.1-.1-.1-.2-.1-.3.1-.1.2-.1.3-.1.2.1.2.2.1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3072" d="M158.5 347.7c-.1 0-.1 0 0 0h-.2v-.2h.2v.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3071" d="M158.5 47.5c-.1.1-.1 0-.2 0s-.1-.1 0-.2c0-.1.1-.1.2 0s.1.1 0 .2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3070" d="M159.3 293.3h-.1c-.1 0-.3-.1-.3-.2-.1-.2 0-.4.2-.4.2-.1.4 0 .4.2.1.1 0 .3-.2.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3069" d="M159.8 252.7h-.1c-.2 0-.4-.1-.4-.3-.1-.2.1-.5.3-.6.2-.1.5.1.6.3 0 .3-.1.6-.4.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3068" d="M162.5 131c.1-.2.3-.4.6-.3.2.1.4.3.3.6-.1.2-.2.3-.4.3h-.1c-.3-.1-.5-.3-.4-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3067" d="M163.1 264.5h-.1c-.2 0-.4-.1-.4-.3-.1-.2.1-.5.3-.6.2-.1.5.1.6.3 0 .3-.1.6-.4.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3066" d="M164.2 331.6h-.1c-.1 0-.1 0-.2-.1s0-.2.1-.3c.1-.1.2 0 .3.1 0 .1 0 .2-.1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3065" d="M164.5 304.4h-.2c-.1 0-.2-.1-.3-.2-.1-.2 0-.4.1-.5.2-.1.4 0 .5.1.2.3.1.5-.1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3064" d="M165.6 357.6c0 .1 0 .1 0 0h-.2v-.2h.2c.1.1.1.2 0 .2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3063" d="M165.7 37.5c0 .1 0 .1 0 0h-.2s-.1-.1 0-.2c0 0 .1-.1.2 0 0 .1.1.2 0 .2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3062" d="M166.1 197.7c0-.3.3-.6.6-.6s.6.3.6.6-.3.6-.6.6c-.4-.1-.6-.3-.6-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3061" d="M167.1 276.2h-.2c-.2 0-.4-.1-.4-.3-.1-.2 0-.5.3-.6.2-.1.5 0 .6.3.1.2 0 .5-.3.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3060" d="M167 210.5c-.3 0-.6-.2-.6-.5s.2-.6.5-.6.6.2.6.5c.1.3-.2.6-.5.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3059" d="M168.6 222.1c0 .3-.2.6-.5.6h-.1c-.3 0-.5-.2-.6-.5 0-.3.2-.6.5-.6.4-.1.7.2.7.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3058" d="M169.9 160.5c.3.1.5.3.5.7 0 .3-.3.5-.6.5h-.1c-.3-.1-.5-.3-.5-.7.1-.4.4-.6.7-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3057" d="M169.3 234.4c-.1-.3.2-.6.5-.7.3-.1.6.2.7.5.1.3-.1.6-.5.7h-.1c-.3 0-.6-.2-.6-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3056" d="M170.3 315.2h-.2c-.1 0-.2-.1-.3-.2-.1-.2 0-.4.1-.5.2-.1.4 0 .5.1.2.3.1.5-.1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3055" d="M170.5 80.4c-.1.1-.2.2-.3.2h-.2c-.2-.1-.2-.3-.1-.5s.3-.2.5-.1c.1 0 .2.2.1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3054" d="M171 341.8h-.1c-.1 0-.1 0-.2-.1s0-.2.1-.3c.1-.1.2 0 .3.1 0 .1 0 .2-.1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3053" d="M171.7 287.5h-.2c-.2 0-.3-.1-.4-.3-.1-.2 0-.5.2-.6.2-.1.5 0 .6.2.2.3 0 .6-.2.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3052" d="M172.4 246.9h-.1c-.3 0-.5-.2-.6-.4-.1-.3.1-.6.4-.7.3-.1.6.1.7.4.1.3-.1.6-.4.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3051" d="M173.2 367.2c0 .1 0 .1 0 0h-.2v-.2h.2c.1.1.1.2 0 .2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3050" d="M173.3 27.9s0 .1 0 0h-.2s-.1-.1 0-.2c0 0 .1-.1.2 0s.1.2 0 .2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3049" d="M174.9 137c.1-.3.4-.5.7-.4.3.1.5.4.4.7-.1.2-.3.4-.5.4h-.2c-.3-.1-.5-.4-.4-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3048" d="M175.6 258.7h-.2c-.2 0-.5-.2-.5-.4-.1-.3.1-.6.4-.7.3-.1.6.1.7.4.1.3-.1.6-.4.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3047" d="M176.7 325.7c-.1 0-.1.1-.2.1s-.2-.1-.3-.2c-.1-.2-.1-.4.1-.5.2-.1.4-.1.5.1.1.2 0 .4-.1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3046" d="M176.9 298.6h-.2c-.2 0-.3-.1-.4-.3-.1-.2 0-.5.2-.6.2-.1.5 0 .6.2.1.3.1.6-.2.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3045" d="M178.2 351.6h-.1c-.1 0-.1 0-.2-.1s-.1-.2 0-.3c.1-.1.2-.1.3 0 .2.2.2.4 0 .4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3044" d="M178.4 43.7c0 .1-.1.1-.2.1h-.1c-.1-.1-.1-.2 0-.3.1-.1.2-.1.3 0v.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3043" d="M178.7 125.3c.1-.3.4-.4.7-.3.3.1.4.4.3.7-.1.2-.3.4-.5.4h-.2c-.2-.2-.4-.5-.3-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3042" d="M179.5 270.3h-.2c-.2 0-.4-.1-.5-.4-.1-.3 0-.6.3-.7.3-.1.6 0 .7.3.2.4 0 .7-.3.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3041" d="M180.4 204.4c-.4 0-.7-.3-.7-.7 0-.4.3-.7.7-.7.4 0 .7.3.7.7 0 .4-.3.7-.7.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3040" d="M181.3 376.5h-.2v-.2h.2c.1.1 0 .1 0 .2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3039" d="M181.2 216.7c-.4 0-.7-.3-.7-.6 0-.4.2-.7.6-.7.4 0 .7.2.7.6.1.3-.2.6-.6.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3038" d="M182.8 166.4c.4.1.6.4.6.8-.1.3-.3.6-.7.6h-.1c-.4-.1-.6-.4-.6-.8s.4-.7.8-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3037" d="M182.6 227.5c.4-.1.7.2.8.6.1.4-.2.7-.6.8h-.1c-.3 0-.6-.2-.7-.6-.1-.4.2-.8.6-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3036" d="M182.7 309.4c-.1 0-.1.1-.2.1-.2 0-.3-.1-.4-.2-.1-.2 0-.5.2-.6.2-.1.5 0 .6.2.1.1.1.3-.2.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3035" d="M183.5 335.8c-.1 0-.1.1-.2.1s-.2-.1-.3-.1c-.1-.2-.1-.4.1-.5.2-.1.4-.1.5.1.1.1.1.3-.1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3034" d="M184.1 281.7h-.2c-.2 0-.4-.1-.5-.3-.1-.3 0-.6.3-.7.3-.1.6 0 .7.3.1.3 0 .6-.3.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3033" d="M185.1 240.9h-.1c-.3 0-.6-.2-.7-.5-.1-.4.1-.7.5-.8.4-.1.7.1.8.5.1.3-.1.7-.5.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3032" d="m186 361.2-.1.1c-.1 0-.1 0-.2-.1s-.1-.2 0-.3c.1-.1.2-.1.3 0 .1 0 .1.2 0 .3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3031" d="M186.1 34.2c0 .1-.1.1-.2.1s-.1 0-.1-.1c-.1-.1-.1-.2 0-.3.1-.1.2-.1.3 0 .1 0 .1.2 0 .3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3030" d="M187.3 142.9c.1-.4.5-.6.8-.5.4.1.6.5.5.8-.1.3-.4.5-.7.5h-.2c-.3 0-.5-.4-.4-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3029" d="M188.1 252.8h-.2c-.3 0-.6-.2-.7-.5-.1-.4.1-.7.5-.8.4-.1.7.1.8.5.2.3 0 .7-.4.8z" class="epichains_svg__st0" style="display:inline"></path>
+  <path id="SvgjsPath3028" d="M189.1 319.8c-.1 0-.2.1-.2.1-.1 0-.3-.1-.4-.2-.1-.2-.1-.5.1-.6.2-.1.5-.1.6.1.2.2.2.5-.1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3027" d="M189.3 292.8c-.1 0-.2.1-.3.1-.2 0-.4-.1-.5-.3-.1-.3 0-.6.3-.8.3-.1.6 0 .8.3.1.2 0 .5-.3.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3026" d="M190.9 345.6c-.1.1-.1.1-.2.1s-.2 0-.3-.1c-.1-.1-.1-.4.1-.5.1-.1.4-.1.5.1.1.1.1.3-.1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3025" d="M191.9 264.4h-.2c-.3 0-.5-.2-.6-.5-.1-.4.1-.7.4-.9.4-.1.7.1.9.4.1.5-.1.9-.5 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3024" d="M193.2 197.6c0-.4.4-.8.8-.8s.8.4.8.8-.4.8-.8.8c-.5 0-.8-.3-.8-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3023" d="M194.3 209.1c.4 0 .8.3.8.7 0 .4-.3.8-.7.8h-.1c-.4 0-.8-.3-.8-.7.1-.4.4-.8.8-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3022" d="M194.2 370.3s-.1.1-.2.1-.1 0-.2-.1-.1-.2 0-.3c.1-.1.2-.1.3 0 .2.1.2.2.1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3021" d="M195.2 303.5c-.1.1-.2.1-.3.1-.2 0-.4-.1-.5-.3-.2-.3-.1-.6.2-.8.3-.2.6-.1.8.2.1.3 0 .7-.2.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3020" d="M196.1 329.9c-.1.1-.2.1-.3.1-.1 0-.3-.1-.4-.2-.1-.2-.1-.5.1-.6.2-.1.5-.1.6.1.3.2.2.5 0 .6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3019" d="M196.5 275.8c-.1 0-.2.1-.3.1-.3 0-.5-.2-.6-.4-.1-.3 0-.7.4-.9.3-.1.7 0 .9.4.1.3-.1.7-.4.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3018" d="M197.8 235h-.2c-.4 0-.7-.3-.8-.6-.1-.4.2-.8.6-.9.4-.1.8.2.9.6.2.4-.1.8-.5.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3017" d="M198.8 355c-.1.1-.1.1-.2.1s-.2 0-.3-.1c-.1-.1-.1-.4 0-.5.1-.1.4-.1.5 0 .1.2.1.4 0 .5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3016" d="M198.9 40.5c-.1.1-.2.1-.3.1-.1 0-.2 0-.2-.1-.1-.1-.2-.3 0-.5.1-.1.3-.2.5 0 .1.1.1.3 0 .5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3015" d="M199.7 148.9c.1-.4.6-.7 1-.6.4.1.7.6.6 1-.1.4-.4.6-.8.6h-.2c-.5-.1-.7-.6-.6-1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3014" d="M199.7 246.3c-.1-.4.1-.9.6-1 .4-.1.9.1 1 .6.1.5-.1.9-.6 1h-.2c-.4 0-.7-.2-.8-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3013" d="M201.6 313.9c-.1.1-.2.1-.3.1-.2 0-.4-.1-.5-.3-.2-.3-.1-.6.2-.8.3-.2.6-.1.8.2.2.3.1.7-.2.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3012" d="M201.7 286.9c-.1 0-.2.1-.3.1-.3 0-.5-.1-.6-.4-.2-.3 0-.7.3-.9.3-.2.7 0 .9.3.1.3 0 .7-.3.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3011" d="M203.6 339.6c-.1.1-.2.1-.3.1-.1 0-.3-.1-.4-.2-.2-.2-.1-.5.1-.6.2-.2.5-.1.6.1.2.2.2.5 0 .6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3010" d="M204.4 258.6h-.3c-.3 0-.6-.2-.8-.5-.1-.4.1-.9.5-1 .4-.1.9.1 1 .5.2.4 0 .9-.4 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3009" d="M206.6 97.7c.2-.3.6-.4.9-.2.3.2.4.6.2.9-.1.2-.4.3-.6.3-.1 0-.2 0-.3-.1-.3-.1-.4-.6-.2-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3008" d="M207.1 364c-.1.1-.1.1-.2.1s-.2 0-.2-.1c-.1-.1-.1-.4 0-.5.1-.1.3-.1.5 0 .1.2.1.4-.1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3007" d="M207.6 297.6c-.1.1-.2.1-.3.1-.2 0-.5-.1-.6-.3-.2-.3-.1-.7.2-.9.3-.2.7-.1.9.2.2.3.1.8-.2.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3006" d="M208.7 324c-.1.1-.2.1-.3.1-.2 0-.3-.1-.5-.2-.2-.3-.1-.6.1-.8.3-.2.6-.1.8.1.2.2.2.6-.1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3005" d="M208.8 270c-.1 0-.2.1-.3.1-.3 0-.6-.2-.7-.5-.2-.4 0-.9.4-1 .4-.2.9 0 1 .4.2.4 0 .8-.4 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3004" d="M208.7 216.9h-.1c-.5 0-.9-.3-.9-.8-.1-.5.3-.9.8-1 .5-.1 1 .3 1 .8.1.5-.3 1-.8 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3003" d="M210.4 229.1c-.4 0-.8-.3-.9-.7-.1-.5.2-1 .7-1.1.5-.1 1 .2 1.1.7.1.5-.2 1-.7 1.1h-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3002" d="M211.6 348.9c-.1.1-.2.1-.3.1-.1 0-.2-.1-.3-.1-.2-.2-.2-.5 0-.6.2-.2.5-.2.6 0 .2.1.2.4 0 .6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3001" d="M211.7 46.8c-.1.1-.2.1-.3.1-.1 0-.2 0-.3-.1-.2-.2-.2-.5 0-.6.2-.2.5-.2.6 0 .1.2.1.4 0 .6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath3000" d="M212.1 154.9c.1-.5.6-.8 1.1-.7.5.1.8.6.7 1.1-.1.4-.5.7-.9.7h-.2c-.5-.1-.8-.6-.7-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2999" d="M212.1 240.4c-.1-.5.2-1 .7-1.1.5-.1 1 .2 1.1.7.1.5-.2 1-.7 1.1h-.2c-.4-.1-.7-.3-.9-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2998" d="M214.1 308c-.1.1-.3.1-.4.1-.2 0-.4-.1-.6-.3-.2-.3-.1-.7.2-1 .3-.2.7-.1 1 .2.2.4.1.8-.2 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2997" d="M214 281.1c-.1.1-.2.1-.4.1-.3 0-.6-.2-.7-.4-.2-.4 0-.9.4-1.1.4-.2.9 0 1.1.3.2.4 0 .9-.4 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2996" d="M215.5 61.7c.2-.2.6-.3.8-.1.2.2.3.6.1.8-.1.1-.3.2-.4.2-.1 0-.3 0-.4-.1-.3-.2-.3-.6-.1-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2995" d="M216.4 333.6c-.1.1-.2.1-.4.1s-.3-.1-.4-.2c-.2-.2-.2-.6.1-.8.2-.2.6-.2.8.1.1.2.1.6-.1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2994" d="M216.8 252.8h-.3c-.4 0-.7-.2-.9-.6-.2-.5.1-1 .6-1.2.5-.2 1 .1 1.2.6.1.5-.1 1-.6 1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2993" d="M218.9 103.6c.2-.4.7-.5 1.1-.3.4.2.5.7.3 1.1-.1.3-.4.4-.7.4-.1 0-.3 0-.4-.1-.4-.2-.6-.7-.3-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2992" d="M219.2 290.4c.4-.2.9-.1 1.1.3.2.4.1.9-.3 1.1-.1.1-.3.1-.4.1-.3 0-.5-.1-.7-.4-.2-.3-.1-.8.3-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2991" d="M220.1 357.7c-.1.1-.2.1-.3.1-.1 0-.2 0-.3-.1-.2-.2-.2-.5 0-.6.2-.2.5-.2.6 0 .2.2.2.4 0 .6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2990" d="M221.3 317.9c-.1.1-.3.1-.4.1-.2 0-.4-.1-.5-.3-.2-.3-.2-.7.1-1 .3-.2.7-.2 1 .1.2.5.1.9-.2 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2989" d="M221.2 264.2c-.1 0-.2.1-.4.1-.4 0-.7-.2-.8-.6-.2-.5 0-1 .5-1.2.5-.2 1 0 1.2.5.2.5 0 1-.5 1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2988" d="M221.8 210.9c-.5 0-1-.4-1-.9 0-.6.4-1.1.9-1.1.6 0 1.1.4 1.1.9.1.6-.4 1.1-1 1.1.1 0 0 0 0 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2987" d="M223.2 223.1c-.5 0-.9-.4-1-.9-.1-.6.3-1.1.8-1.2.6-.1 1.1.3 1.2.8.1.6-.3 1.1-.9 1.2 0 .1 0 .1-.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2986" d="M224.5 342.7c-.1.1-.3.2-.4.2-.2 0-.3-.1-.4-.2-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0 .3.2.3.6 0 .8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2985" d="M224.6 234.3c-.1-.6.2-1.1.8-1.2.6-.1 1.1.2 1.2.8.1.6-.2 1.1-.8 1.2h-.2c-.4 0-.9-.3-1-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2984" d="M225.2 274.9c-.2-.4 0-1 .4-1.2.4-.2 1-.1 1.2.4.2.4 0 1-.4 1.2-.1.1-.3.1-.4.1-.3 0-.6-.2-.8-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2983" d="M226.6 302.1c-.1.1-.3.1-.4.1-.3 0-.5-.1-.7-.3-.3-.4-.2-.9.2-1.1.4-.3.9-.2 1.1.2.3.4.2.9-.2 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2982" d="M227.9 149c.2-.5.8-.8 1.3-.7.5.2.8.8.7 1.3-.1.4-.5.7-1 .7h-.3c-.6-.2-.9-.7-.7-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2981" d="M229.1 327.4c-.1.1-.3.2-.4.2-.2 0-.4-.1-.5-.2-.2-.3-.2-.7.1-1 .3-.2.7-.2 1 .1.1.2.1.7-.2.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2980" d="M229.3 246.9h-.3c-.4 0-.8-.3-1-.7-.2-.5.1-1.1.7-1.3.5-.2 1.1.1 1.3.7.1.5-.2 1.1-.7 1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2979" d="M231.1 109.5c.3-.4.8-.6 1.3-.3.4.3.6.8.3 1.2-.2.3-.5.4-.8.4-.2 0-.3 0-.5-.1-.4-.2-.5-.7-.3-1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2978" d="M231.2 285.7c-.3-.4-.1-1 .3-1.3.4-.3 1-.1 1.3.3.3.4.1 1-.3 1.3-.1.1-.3.1-.5.1-.3 0-.6-.2-.8-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2977" d="M233.2 351.4c-.1.1-.3.2-.4.2-.1 0-.3-.1-.4-.2-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0 .2.2.2.5 0 .8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2976" d="M234 311.9c-.1.1-.3.2-.5.2s-.5-.1-.6-.3c-.3-.3-.2-.8.1-1.1.3-.3.8-.2 1.1.1.3.4.2.9-.1 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2975" d="M234 203.8c0-.6.5-1.2 1.1-1.2.6 0 1.2.5 1.2 1.1 0 .6-.5 1.2-1.1 1.2-.7 0-1.2-.5-1.2-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2974" d="M235 216.1c-.1-.6.4-1.2 1-1.3.6-.1 1.2.4 1.3 1 .1.6-.4 1.2-1 1.3h-.1c-.6 0-1.1-.4-1.2-1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2973" d="M237.5 336.4c-.1.1-.3.2-.5.2s-.4-.1-.5-.2c-.3-.3-.3-.7 0-1 .3-.3.7-.3 1 0 .2.3.2.7 0 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2972" d="M239.2 296.2c-.2.1-.3.2-.5.2-.3 0-.6-.1-.7-.4-.3-.4-.2-1 .2-1.3.4-.3 1-.2 1.3.2.2.4.1 1-.3 1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2971" d="M240.3 155c.2-.6.8-.9 1.4-.7.6.2.9.8.7 1.4-.2.5-.6.8-1.1.8-.1 0-.2 0-.3-.1-.6-.2-.9-.8-.7-1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2970" d="M241.9 321.3c-.2.1-.3.2-.5.2s-.4-.1-.6-.3c-.3-.3-.3-.8.1-1.1.3-.3.8-.3 1.1.1.3.3.3.8-.1 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2969" d="M241.7 241c-.1 0-.2.1-.3.1-.5 0-.9-.3-1.1-.8-.2-.6.1-1.2.7-1.4.6-.2 1.2.1 1.4.7.3.6-.1 1.2-.7 1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2968" d="M243.4 115.4c.3-.5.9-.6 1.4-.3.5.3.6.9.3 1.4-.2.3-.5.5-.9.5-.2 0-.4 0-.5-.1-.4-.4-.6-1-.3-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2967" d="M244.3 280.2c-.3 0-.7-.2-.9-.5-.3-.5-.1-1.1.3-1.4.5-.3 1.1-.1 1.4.3.3.5.1 1.1-.3 1.4-.1.2-.3.2-.5.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2966" d="M246.4 344.8c-.1.2-.3.2-.5.2s-.3-.1-.5-.2c-.3-.3-.3-.7-.1-1 .3-.3.7-.3 1-.1.3.4.3.9.1 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2965" d="M246.7 305.9c-.2.1-.4.2-.6.2-.3 0-.5-.1-.7-.3-.3-.4-.3-1 .1-1.3.4-.3 1-.3 1.3.1.3.4.3 1-.1 1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2964" d="M247.4 197.6c0-.7.6-1.3 1.3-1.3.7 0 1.3.6 1.3 1.3 0 .7-.6 1.3-1.3 1.3-.7 0-1.3-.6-1.3-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2963" d="M248 210c-.1-.7.4-1.3 1.1-1.4.7-.1 1.3.4 1.4 1.1.1.7-.4 1.3-1.1 1.4h-.1c-.7 0-1.2-.5-1.3-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2962" d="M250.5 330.1c-.2.2-.4.2-.6.2-.2 0-.4-.1-.6-.2-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0 .4.2.4.7.1 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2961" d="M250.1 261.6c.6-.3 1.2-.1 1.5.5.3.6.1 1.2-.5 1.5-.2.1-.3.1-.5.1-.4 0-.8-.2-1-.6-.2-.5 0-1.2.5-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2960" d="M251.8 290.2c-.2.1-.4.2-.6.2-.3 0-.6-.1-.8-.4-.3-.5-.2-1.1.2-1.4.5-.3 1.1-.2 1.4.2.3.5.2 1.1-.2 1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2959" d="M251.2 223.2h-.2c-.6 0-1.1-.4-1.2-1-.1-.7.3-1.3 1-1.5.7-.1 1.3.3 1.5 1 0 .8-.4 1.4-1.1 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2958" d="M252.6 161c.2-.7.9-1 1.6-.8.7.2 1 .9.8 1.5-.2.6-.7.9-1.2.9h-.3c-.7-.3-1.1-1-.9-1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2957" d="M252.7 234.3c-.2-.7.2-1.4.8-1.6.7-.2 1.4.2 1.6.8.2.7-.2 1.4-.8 1.6-.1 0-.2.1-.4.1-.6 0-1.1-.4-1.2-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2956" d="M254.8 315.1c-.2.2-.4.2-.6.2-.2 0-.5-.1-.7-.3-.3-.4-.3-.9 0-1.3.4-.3.9-.3 1.3 0 .4.4.4 1 0 1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2955" d="M255.7 121.3c.3-.5 1-.7 1.6-.4.5.3.7 1 .4 1.6-.2.3-.6.5-1 .5-.2 0-.4-.1-.6-.2-.6-.2-.7-.9-.4-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2954" d="M257.3 274.2c-.2.1-.4.2-.6.2-.4 0-.7-.2-1-.5-.3-.5-.2-1.2.4-1.6.5-.3 1.2-.2 1.6.4.3.5.2 1.2-.4 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2953" d="M258.1 298.3c.4-.4 1.1-.3 1.4.1.4.4.3 1.1-.1 1.4-.2.2-.4.2-.7.2-.3 0-.6-.1-.8-.4-.3-.3-.2-1 .2-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2952" d="M320.3 177.8c-1-.3-2 .2-2.3 1.2-.3 1 .2 2 1.2 2.3.2.1.4.1.5.1.8 0 1.5-.5 1.7-1.3.4-1-.2-2-1.1-2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2951" d="M326.2 226.1c-.5-.9-1.6-1.2-2.5-.7-.9.5-1.2 1.6-.7 2.5.3.6 1 .9 1.6.9.3 0 .6-.1.9-.2.9-.5 1.2-1.6.7-2.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2950" d="M330.2 157c-.7.8-.6 1.9.2 2.6.3.3.7.4 1.1.4v-3.6c-.5 0-1 .2-1.3.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2949" d="M323 167.3c-.5.9-.2 2 .7 2.5.3.2.6.2.9.2.6 0 1.3-.3 1.6-.9.5-.9.2-2-.7-2.5-.9-.5-2-.1-2.5.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2948" d="M317.1 201.9c-1 .1-1.7 1-1.6 2 .1.9.9 1.6 1.8 1.6h.2c1-.1 1.7-1 1.6-2-.1-.9-1-1.7-2-1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2947" d="M317.5 189.7c-1-.1-1.9.6-2 1.6-.1 1 .6 1.9 1.6 2h.2c.9 0 1.7-.7 1.8-1.6.1-1-.6-1.9-1.6-2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2946" d="M330.3 238.2c.3.4.8.6 1.2.6v-3.6c-.4 0-.7.2-1.1.4-.7.7-.8 1.9-.1 2.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2945" d="M319.2 214c-1 .3-1.5 1.3-1.2 2.3.2.8 1 1.3 1.7 1.3.2 0 .4 0 .5-.1 1-.3 1.5-1.3 1.2-2.3-.2-1-1.2-1.5-2.2-1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2944" d="M303.3 199.3c.9 0 1.7-.8 1.7-1.7 0-.9-.8-1.7-1.7-1.7-.9 0-1.7.8-1.7 1.7 0 .9.8 1.7 1.7 1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2943" d="M313.8 232.1c-.4-.8-1.5-1.1-2.3-.7-.8.4-1.1 1.5-.7 2.3.3.6.9.9 1.5.9.3 0 .6-.1.8-.2.8-.4 1.1-1.5.7-2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2942" d="M305.7 173c-.3.9.2 1.9 1.1 2.2.2.1.4.1.6.1.7 0 1.4-.4 1.6-1.2.3-.9-.2-1.9-1.1-2.2-.9-.3-1.9.2-2.2 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2941" d="M306 209.6c-.2-.9-1-1.6-2-1.4-.9.2-1.6 1-1.4 2 .1.8.9 1.4 1.7 1.4h.3c1-.2 1.6-1.1 1.4-2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2940" d="M309 221.2c-.3-.9-1.3-1.4-2.2-1.1-.9.3-1.4 1.3-1.1 2.2.2.7.9 1.2 1.6 1.2.2 0 .4 0 .6-.1.9-.4 1.4-1.3 1.1-2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2939" d="M317.9 153.4c.3.2.7.4 1 .4.5 0 1-.2 1.3-.7.6-.7.4-1.8-.3-2.4-.7-.6-1.8-.4-2.4.3-.5.7-.4 1.8.4 2.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2938" d="M302.6 185.1c-.2.9.5 1.8 1.4 2h.3c.8 0 1.5-.6 1.7-1.4.2-.9-.5-1.8-1.4-2-.9-.1-1.8.5-2 1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2937" d="M327.2 144.7c.4 0 .8-.1 1.2-.5.7-.6.7-1.7.1-2.4s-1.7-.7-2.4-.1-.7 1.7-.1 2.4c.3.4.8.6 1.2.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2936" d="M310.7 161.5c-.4.8-.1 1.9.7 2.3.3.1.5.2.8.2.6 0 1.2-.3 1.5-.9.4-.8.1-1.9-.7-2.3-.8-.5-1.8-.1-2.3.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2935" d="M326.1 251c-.6.7-.6 1.8.1 2.4.3.3.7.4 1.2.4s.9-.2 1.3-.6c.6-.7.6-1.8-.1-2.4-.8-.5-1.9-.5-2.5.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2934" d="M320.1 244.5c.7-.6.9-1.7.3-2.4-.6-.7-1.7-.9-2.4-.3-.7.6-.9 1.7-.3 2.4.3.4.8.7 1.3.7.4 0 .7-.1 1.1-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2933" d="M314.3 138.1c.4 0 .8-.2 1.1-.5.6-.6.6-1.6 0-2.3-.6-.6-1.6-.6-2.3 0-.6.6-.6 1.6 0 2.3.4.4.8.5 1.2.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2932" d="M293.1 215.5c-.2-.9-1-1.4-1.9-1.2-.9.2-1.4 1-1.2 1.9.2.8.8 1.3 1.6 1.3h.3c.9-.2 1.4-1.1 1.2-2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2931" d="M323.4 129.9c.3 0 .7-.1 1-.3.7-.5.8-1.5.3-2.2-.5-.7-1.5-.8-2.2-.3-.7.5-.8 1.5-.3 2.2.3.4.7.6 1.2.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2930" d="M289.8 202.2c-.9.1-1.5.8-1.5 1.7.1.8.8 1.5 1.6 1.5h.1c.9-.1 1.5-.8 1.5-1.7 0-.9-.9-1.6-1.7-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2929" d="M290 189.9c-.9-.1-1.6.6-1.7 1.5-.1.9.6 1.6 1.5 1.7h.1c.8 0 1.5-.6 1.6-1.5 0-.9-.6-1.7-1.5-1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2928" d="M305.5 248c-.7.5-.9 1.5-.3 2.2.3.4.8.7 1.3.7.3 0 .7-.1.9-.3.7-.5.9-1.5.3-2.2-.5-.8-1.5-1-2.2-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2927" d="M293.4 167c-.3.8.1 1.7 1 2 .2.1.4.1.5.1.7 0 1.3-.4 1.5-1 .3-.8-.1-1.7-1-2-.8-.4-1.7.1-2 .9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2926" d="M301.4 238.1c-.4-.8-1.4-1.1-2.2-.7-.8.4-1.1 1.4-.7 2.2.3.5.8.8 1.4.8.3 0 .5-.1.7-.2.9-.3 1.2-1.3.8-2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2925" d="M291.2 180.9h.3c.7 0 1.4-.5 1.6-1.3.2-.9-.4-1.7-1.2-1.9-.9-.2-1.7.4-1.9 1.2-.2 1 .4 1.8 1.2 2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2924" d="M315.5 257.5c-.6-.6-1.6-.7-2.2 0-.6.6-.7 1.6 0 2.3.3.3.7.5 1.1.5.4 0 .8-.1 1.1-.4.6-.7.6-1.7 0-2.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2923" d="M299.2 157.7c.2.1.5.2.7.2.6 0 1.1-.3 1.4-.8.4-.8.1-1.7-.7-2.2-.8-.4-1.7-.1-2.2.7-.3.8 0 1.7.8 2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2922" d="M296.4 227.1c-.3-.8-1.2-1.3-2-1-.8.3-1.3 1.2-1 2 .2.6.8 1 1.5 1 .2 0 .4 0 .5-.1.9-.1 1.4-1.1 1-1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2921" d="M324.4 265.6c-.7-.5-1.7-.4-2.2.3-.5.7-.4 1.7.3 2.2.3.2.6.3 1 .3.5 0 .9-.2 1.3-.6.5-.7.3-1.7-.4-2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2920" d="M305.5 147.2c.3.2.6.3.9.3.5 0 1-.2 1.3-.7.5-.7.4-1.7-.4-2.2-.7-.5-1.7-.4-2.2.4-.5.7-.3 1.7.4 2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2919" d="M292.7 139.1c-.5.7-.3 1.6.4 2.1.3.2.5.3.8.3.5 0 .9-.2 1.2-.6.5-.7.3-1.6-.4-2.1-.6-.6-1.5-.4-2 .3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2918" d="M310.2 123c.3 0 .7-.1 1-.4.6-.5.7-1.5.1-2.1-.5-.6-1.5-.7-2.1-.1-.6.5-.7 1.5-.1 2.1.2.4.7.5 1.1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2917" d="M319.8 115.5c.3 0 .6-.1.8-.3.7-.5.8-1.4.4-2.1-.5-.7-1.4-.8-2.1-.4-.7.5-.8 1.4-.4 2.1.4.5.8.7 1.3.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2916" d="M302.7 263.9c-.5-.6-1.5-.7-2.1-.1-.6.5-.7 1.5-.1 2.1.3.3.7.5 1.1.5.3 0 .7-.1 1-.4.5-.5.6-1.5.1-2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2915" d="M276.6 208.4c-.8.1-1.4.8-1.3 1.6.1.8.7 1.3 1.5 1.3h.2c.8-.1 1.4-.8 1.3-1.6-.2-.8-.9-1.4-1.7-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2914" d="M283.1 160.2c-.8-.3-1.6.1-1.9.9-.3.8.1 1.6.9 1.9.2.1.4.1.5.1.6 0 1.2-.4 1.4-1 .2-.8-.2-1.6-.9-1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2913" d="M276.9 183.9c-.8-.1-1.5.5-1.6 1.3-.1.8.5 1.5 1.3 1.6h.2c.7 0 1.4-.6 1.5-1.3 0-.8-.6-1.5-1.4-1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2912" d="M282.1 232.2c-.8.3-1.1 1.1-.9 1.9.2.6.8 1 1.4 1 .2 0 .4 0 .5-.1.8-.3 1.1-1.1.9-1.9-.3-.8-1.2-1.2-1.9-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2911" d="M278.6 174.7h.4c.7 0 1.3-.5 1.4-1.1.2-.8-.3-1.6-1.1-1.8-.8-.2-1.6.3-1.8 1.1-.2.8.3 1.6 1.1 1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2910" d="M293.1 254.1c-.7.5-.8 1.4-.4 2.1.3.4.7.6 1.2.6.3 0 .6-.1.8-.3.7-.5.8-1.4.4-2.1-.4-.6-1.3-.8-2-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2909" d="M329.6 106.3c-.7.4-1 1.3-.6 2 .3.5.8.8 1.3.8.2 0 .5-.1.7-.2.2-.1.4-.3.5-.5v-1.7c-.4-.5-1.2-.7-1.9-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2908" d="M286.9 151.7c.2.1.5.2.7.2.5 0 1-.3 1.3-.8.4-.7.1-1.6-.6-2-.7-.4-1.6-.1-2 .6-.4.7-.1 1.6.6 2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2907" d="M329.1 286.8c-.4.7-.1 1.6.6 2 .2.1.5.2.7.2.4 0 .8-.2 1.1-.5v-1.9l-.4-.4c-.8-.4-1.7-.1-2 .6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2906" d="M288.3 246.1c.7-.4 1-1.3.6-2s-1.3-1-2-.6-1 1.3-.6 2c.3.5.8.8 1.3.8.3 0 .5-.1.7-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2905" d="M280.4 221.6c-.2-.8-1-1.3-1.8-1.1-.8.2-1.3 1-1.1 1.8.2.7.8 1.1 1.4 1.1h.4c.8-.3 1.3-1.1 1.1-1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2904" d="M320.7 279.9c-.7-.5-1.6-.3-2.1.4s-.3 1.6.4 2.1c.3.2.6.3.8.3.5 0 .9-.2 1.2-.6.6-.8.4-1.7-.3-2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2903" d="M309.1 272.6c-.5.6-.5 1.5.1 2.1.3.3.6.4 1 .4s.8-.2 1.1-.5c.5-.6.5-1.5-.1-2.1-.6-.6-1.5-.5-2.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2902" d="M301.5 131.7c.4 0 .8-.2 1.1-.5.5-.6.5-1.5-.1-2.1-.6-.5-1.5-.5-2.1.1-.5.6-.5 1.5.1 2.1.3.3.6.4 1 .4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2901" d="M274.5 197.6c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5-.7-1.5-1.5-1.5-1.5.7-1.5 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2900" d="M262.4 192.8s.1 0 0 0c.8 0 1.4-.6 1.4-1.3 0-.8-.5-1.4-1.3-1.4s-1.4.5-1.4 1.3.6 1.4 1.3 1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2899" d="M266 168.6h.4c.6 0 1.2-.4 1.3-1 .2-.7-.2-1.5-1-1.7-.7-.2-1.5.2-1.7 1-.2.8.3 1.5 1 1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2898" d="M280.8 260.2c-.6.4-.8 1.3-.4 1.9.3.4.7.6 1.1.6.3 0 .5-.1.8-.2.6-.4.8-1.3.4-1.9-.4-.7-1.3-.9-1.9-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2897" d="M317.2 294.1c-.6-.4-1.5-.2-1.9.4-.4.6-.2 1.5.4 1.9.2.1.5.2.7.2.5 0 .9-.2 1.2-.6.4-.6.2-1.5-.4-1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2896" d="M289.7 272.2c.6-.5.7-1.3.2-1.9-.5-.6-1.3-.7-1.9-.2-.6.5-.7 1.3-.2 1.9.3.3.7.5 1 .5.4 0 .7-.1.9-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2895" d="M306.3 108.3c.3 0 .6-.1.8-.3.6-.5.7-1.3.2-1.9-.5-.6-1.3-.7-1.9-.2-.6.5-.7 1.3-.2 1.9.3.3.7.5 1.1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2894" d="M305.3 287.4c-.5.6-.4 1.5.2 1.9.3.2.5.3.8.3.4 0 .8-.2 1.1-.5.5-.6.4-1.5-.2-1.9-.5-.5-1.4-.4-1.9.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2893" d="M316.4 101.3c.3 0 .5-.1.7-.2.6-.4.8-1.2.4-1.9-.4-.6-1.2-.8-1.9-.4-.6.4-.8 1.2-.4 1.9.3.3.7.6 1.2.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2892" d="M297.1 116.4c.3 0 .7-.1 1-.4.5-.5.6-1.4 0-1.9-.5-.5-1.4-.6-1.9 0-.5.5-.6 1.4 0 1.9.2.3.6.4.9.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2891" d="M280.3 133.2c-.4.6-.2 1.5.4 1.9.2.2.5.2.8.2.4 0 .9-.2 1.1-.6.4-.6.2-1.5-.4-1.9-.6-.4-1.4-.3-1.9.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2890" d="M274.6 145.7c.2.1.4.2.6.2.5 0 1-.3 1.2-.7.3-.7.1-1.5-.6-1.8-.7-.3-1.5-.1-1.8.6-.3.5 0 1.3.6 1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2889" d="M298.1 279.2c-.5-.5-1.4-.5-1.9 0s-.5 1.4 0 1.9c.3.3.6.4 1 .4s.7-.1 1-.4c.5-.6.5-1.4-.1-1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2888" d="M288.8 125.4c.4 0 .8-.2 1.1-.5.5-.6.4-1.4-.2-1.9-.6-.5-1.4-.4-1.9.2-.5.6-.4 1.4.2 1.9.2.2.5.3.8.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2887" d="M262.6 205.1c.8 0 1.3-.7 1.3-1.4 0-.8-.7-1.3-1.4-1.3-.8 0-1.3.7-1.3 1.4s.6 1.3 1.4 1.3c-.1 0-.1 0 0 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2886" d="M264 177.9c-.7-.1-1.4.4-1.6 1.1-.1.7.4 1.4 1.1 1.6h.2c.7 0 1.2-.5 1.3-1.1.2-.7-.3-1.4-1-1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2885" d="M263.6 214.6c-.7.1-1.3.8-1.1 1.6.1.7.7 1.1 1.3 1.1h.2c.7-.1 1.3-.8 1.1-1.6-.1-.7-.8-1.2-1.5-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2884" d="M266.7 229.2c.7-.2 1.2-1 1-1.7-.2-.7-.9-1.2-1.7-1-.7.2-1.2.9-1 1.7.2.6.7 1 1.3 1 .2.1.3.1.4 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2883" d="M270.2 240.9c.2 0 .3 0 .5-.1.7-.3 1.1-1.1.8-1.8-.3-.7-1.1-1-1.8-.8-.7.3-1 1.1-.8 1.8.3.6.8.9 1.3.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2882" d="M275.9 251.9c.7-.3.9-1.2.6-1.8-.3-.7-1.2-.9-1.8-.6-.7.3-.9 1.2-.6 1.8.2.5.7.7 1.2.7.2.1.4 0 .6-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2881" d="M270.7 154.4c-.7-.3-1.5.1-1.8.8-.3.7.1 1.5.8 1.8.2.1.3.1.5.1.5 0 1.1-.3 1.3-.9.2-.8-.1-1.6-.8-1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2880" d="M262.3 139.7c.2.1.4.1.6.1.5 0 .9-.2 1.1-.7.3-.6.1-1.4-.5-1.7-.6-.3-1.4-.1-1.7.5-.3.7-.1 1.5.5 1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2879" d="M253.5 162.5h.3c.5 0 1-.4 1.2-.9.2-.7-.2-1.4-.8-1.5-.7-.2-1.4.2-1.6.8-.2.7.2 1.4.9 1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2878" d="M275.5 276.3c-.5.4-.6 1.2-.2 1.8.2.3.6.5 1 .5.3 0 .5-.1.8-.3.5-.4.6-1.2.2-1.8-.5-.5-1.3-.6-1.8-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2877" d="M302.7 93.9c.3 0 .5-.1.7-.2.6-.4.7-1.2.3-1.7-.4-.6-1.2-.7-1.7-.3-.6.4-.7 1.2-.3 1.7.2.3.6.5 1 .5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2876" d="M257.9 246.8c.2 0 .3 0 .5-.1.6-.3 1-1 .7-1.6-.3-.6-1-1-1.6-.7-.6.3-1 1-.7 1.6.1.5.6.8 1.1.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2875" d="M250.7 174.5h.2c.6 0 1.1-.4 1.2-1 .1-.7-.3-1.3-1-1.5-.7-.1-1.3.3-1.5 1 0 .7.4 1.3 1.1 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2874" d="M257.8 151c.5 0 1-.3 1.2-.8.3-.6-.1-1.4-.7-1.6-.6-.3-1.4.1-1.6.7-.3.6.1 1.4.7 1.6.1 0 .3.1.4.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2873" d="M276.2 119.2c.4 0 .7-.2 1-.5.4-.5.3-1.3-.2-1.8-.5-.4-1.3-.3-1.8.2-.4.5-.3 1.3.2 1.8.2.2.5.3.8.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2872" d="M283.4 285.6c-.5.5-.5 1.3 0 1.8.2.3.6.4.9.4.3 0 .6-.1.9-.3.5-.5.5-1.3 0-1.8s-1.3-.5-1.8-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2871" d="M293.1 101.4c.3 0 .6-.1.8-.3.5-.5.6-1.2.1-1.8-.5-.5-1.2-.6-1.8-.1-.5.5-.6 1.2-.1 1.8.3.3.6.4 1 .4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2870" d="M268.4 129c.2.1.4.2.7.2.4 0 .8-.2 1.1-.6.4-.6.2-1.4-.4-1.7-.6-.4-1.4-.2-1.7.4-.5.5-.3 1.3.3 1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2869" d="M284.2 109.9c.3 0 .7-.1.9-.4.5-.5.5-1.3 0-1.8s-1.3-.5-1.8 0-.5 1.3 0 1.8c.3.3.6.4.9.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2868" d="M250.7 220.8c-.7.1-1.1.8-1 1.5.1.6.6 1 1.2 1h.2c.7-.1 1.1-.8 1-1.5 0-.7-.7-1.1-1.4-1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2867" d="M249.4 211.1c.7-.1 1.2-.7 1.1-1.4-.1-.7-.7-1.2-1.4-1.1-.7.1-1.2.7-1.1 1.4.1.6.6 1.1 1.2 1.1h.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2866" d="M249.9 197.6c0-.7-.6-1.3-1.3-1.3-.7 0-1.3.6-1.3 1.3 0 .7.6 1.3 1.3 1.3.7 0 1.3-.6 1.3-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2865" d="M254.2 235.1c.7-.2 1-.9.8-1.6-.2-.7-.9-1-1.6-.8-.7.2-1 .9-.8 1.6.2.5.7.9 1.2.9.2 0 .3 0 .4-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2864" d="M301.8 301.9c-.4.6-.3 1.3.3 1.7.2.2.5.2.7.2.4 0 .8-.2 1-.5.4-.6.3-1.3-.3-1.7-.5-.4-1.3-.3-1.7.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2863" d="M249.1 186.6h.1c.6 0 1.2-.5 1.2-1.1.1-.7-.4-1.3-1.1-1.4-.7-.1-1.3.4-1.4 1.1 0 .7.5 1.4 1.2 1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2862" d="M292.2 294.2c-.5.5-.4 1.3.1 1.8.2.2.5.3.8.3.3 0 .7-.1.9-.4.4-.5.4-1.3-.1-1.8-.4-.5-1.2-.4-1.7.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2861" d="M263 257.9c.2 0 .4 0 .6-.1.6-.3.9-1.1.5-1.7-.3-.6-1.1-.9-1.7-.5-.6.3-.9 1.1-.5 1.7.2.4.6.6 1.1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2860" d="M270.2 266.6c-.4-.6-1.1-.7-1.7-.4-.6.4-.7 1.1-.4 1.7.2.4.6.6 1.1.6.2 0 .5-.1.7-.2.5-.3.7-1.1.3-1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2859" d="M241 156.4c.1 0 .2.1.3.1.5 0 .9-.3 1.1-.8.2-.6-.1-1.2-.7-1.4-.6-.2-1.2.1-1.4.7-.2.6.1 1.2.7 1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2858" d="M257.7 272.7c-.3-.5-1-.7-1.6-.4-.5.3-.7 1-.4 1.6.2.3.6.5 1 .5.2 0 .4-.1.6-.2.6-.3.7-1 .4-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2857" d="M241.1 238.8c-.6.2-.9.8-.7 1.4.1.5.6.8 1.1.8.1 0 .2 0 .3-.1.6-.2.9-.8.7-1.4-.2-.5-.8-.9-1.4-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2856" d="M250.7 263.7c.2 0 .4 0 .5-.1.6-.3.8-1 .5-1.5-.3-.6-1-.8-1.5-.5-.6.3-.8 1-.5 1.5.1.4.5.6 1 .6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2855" d="M256.1 122.9c.2.1.4.2.6.2.4 0 .7-.2 1-.5.3-.5.2-1.2-.4-1.6-.5-.3-1.2-.2-1.6.4-.3.5-.2 1.2.4 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2854" d="M236 180.4h.1c.6 0 1.1-.4 1.1-1 .1-.6-.4-1.2-1-1.3-.6-.1-1.2.4-1.3 1 0 .6.5 1.2 1.1 1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2853" d="M245.5 144.9c.4 0 .9-.3 1.1-.7.2-.6 0-1.2-.6-1.5-.6-.2-1.2 0-1.5.6-.2.6 0 1.2.6 1.5.1.1.2.1.4.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2852" d="M238 168.3h.2c.5 0 1-.4 1.1-.9.1-.6-.3-1.2-.9-1.4-.6-.1-1.2.3-1.4.9 0 .7.4 1.3 1 1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2851" d="M237.3 215.8c-.1-.6-.6-1.1-1.3-1-.6.1-1.1.7-1 1.3.1.6.6 1 1.1 1h.1c.7-.1 1.2-.6 1.1-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2850" d="M245.5 252.6c.1 0 .3 0 .4-.1.6-.2.9-.9.6-1.5-.2-.6-.9-.9-1.5-.6-.6.2-.9.9-.6 1.5.3.4.7.7 1.1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2849" d="M235.2 204.9c.6 0 1.1-.6 1.1-1.2s-.6-1.1-1.2-1.1-1.1.6-1.1 1.2.5 1.1 1.2 1.1c-.1 0 0 0 0 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2848" d="M250.1 133.6c.2.1.3.1.5.1.4 0 .8-.2 1-.6.3-.6.1-1.2-.5-1.5-.6-.3-1.2-.1-1.5.5-.3.6-.1 1.2.5 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2847" d="M271.4 103.5c.3 0 .6-.1.8-.4.4-.5.4-1.2-.1-1.6-.5-.4-1.2-.4-1.6.1-.4.5-.4 1.2.1 1.6.3.2.5.3.8.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2846" d="M280 94.7c.3 0 .6-.1.8-.3.5-.4.5-1.1 0-1.6-.4-.5-1.1-.5-1.6 0s-.5 1.1-.1 1.6c.3.2.6.3.9.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2845" d="M289.3 86.7c.2 0 .5-.1.7-.2.5-.4.6-1.1.2-1.6-.4-.5-1.1-.6-1.6-.2-.5.4-.6 1.1-.2 1.6.2.3.6.4.9.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2844" d="M272.3 292.1c-.4-.5-1.1-.5-1.6-.1s-.5 1.1-.1 1.6c.2.2.5.4.8.4.3 0 .5-.1.8-.3.5-.5.6-1.2.1-1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2843" d="M262.7 111.2c-.4.5-.3 1.2.2 1.6.2.2.4.2.7.2.3 0 .7-.2.9-.5.4-.5.3-1.2-.2-1.6-.5-.3-1.2-.3-1.6.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2842" d="M288.5 308.9c-.4.5-.3 1.2.2 1.6.2.2.5.2.7.2.3 0 .7-.1.9-.4.4-.5.3-1.2-.2-1.6-.5-.4-1.2-.3-1.6.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2841" d="M239.4 227.8c-.1-.6-.7-1-1.4-.9-.6.1-1 .7-.9 1.4.1.5.6.9 1.1.9h.2c.7-.2 1.1-.8 1-1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2840" d="M263 282.4c-.5.4-.6 1.1-.2 1.6.2.3.6.5.9.5.2 0 .5-.1.7-.2.5-.4.6-1.1.2-1.6-.4-.5-1.1-.6-1.6-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2839" d="M235.1 192.6c.7 0 1.2-.5 1.2-1.1 0-.6-.5-1.2-1.1-1.2-.6 0-1.2.5-1.2 1.1 0 .7.4 1.2 1.1 1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2838" d="M279.2 300.8c-.4.5-.4 1.2.1 1.6.2.2.5.3.8.3.3 0 .6-.1.8-.4.4-.5.4-1.2-.1-1.6-.4-.4-1.1-.3-1.6.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2837" d="M276 79.8c.2 0 .5-.1.7-.2.4-.4.5-1 .1-1.4-.4-.4-1-.5-1.4-.1-.4.4-.5 1-.1 1.4.2.2.4.3.7.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2836" d="M275.3 315.7c-.4.4-.3 1.1.1 1.4.2.2.4.2.7.2.3 0 .6-.1.8-.4.4-.4.3-1.1-.1-1.4-.5-.3-1.1-.2-1.5.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2835" d="M225.9 235.1c.6-.1.9-.7.8-1.2-.1-.6-.7-.9-1.2-.8-.6.1-.9.7-.8 1.2.1.5.5.8 1 .8h.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2834" d="M228.6 244.9c-.5.2-.8.8-.7 1.3.1.4.5.7 1 .7h.3c.5-.2.8-.8.7-1.3-.2-.6-.7-.8-1.3-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2833" d="M228.6 150.3h.3c.4 0 .8-.3 1-.7.2-.5-.1-1.1-.7-1.3-.5-.2-1.1.1-1.3.7-.2.6.1 1.1.7 1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2832" d="M224.2 221.9c-.1-.6-.6-.9-1.2-.8-.6.1-.9.6-.8 1.2.1.5.5.9 1 .9h.2c.5-.2.9-.7.8-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2831" d="M243.7 116.8c.2.1.4.1.5.1.3 0 .7-.2.9-.5.3-.5.1-1.1-.3-1.4-.4-.3-1.1-.1-1.4.3-.3.6-.1 1.2.3 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2830" d="M259.4 299.8c.4-.4.5-1 .1-1.4-.4-.4-1-.5-1.4-.1-.4.4-.5 1-.1 1.4.2.2.5.4.8.4.2 0 .4-.1.6-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2829" d="M245.2 278.7c-.3-.5-.9-.6-1.4-.3-.5.3-.6.9-.3 1.4.2.3.5.5.9.5.2 0 .4 0 .5-.1.5-.4.6-1 .3-1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2828" d="M266.4 307.3c-.4.4-.4 1 0 1.4.2.2.5.3.7.3.3 0 .5-.1.7-.3.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2827" d="M250.6 288.6c-.5.3-.6 1-.2 1.4.2.3.5.4.8.4.2 0 .4-.1.6-.2.5-.3.6-1 .2-1.4-.3-.5-1-.6-1.4-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2826" d="M222.8 209.8c0-.6-.5-1-1.1-.9-.6 0-1 .5-.9 1.1 0 .5.5.9 1 .9h.1c.5 0 1-.5.9-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2825" d="M233.2 258.4c.1 0 .3 0 .4-.1.5-.2.8-.8.6-1.3-.2-.5-.8-.8-1.3-.6-.5.2-.8.8-.6 1.3.1.5.5.7.9.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2824" d="M237.9 267.6c-.5.3-.7.9-.4 1.4.2.4.5.6.9.6.2 0 .3 0 .5-.1.5-.3.7-.9.4-1.4-.3-.5-.9-.7-1.4-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2823" d="M220.8 185.3c0 .6.4 1.1.9 1.1h.1c.5 0 1-.4 1-.9 0-.6-.4-1.1-.9-1.1-.6-.1-1.1.3-1.1.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2822" d="M250.5 106.6c.2.1.4.2.6.2.3 0 .6-.1.8-.4.3-.5.2-1.1-.2-1.4-.5-.3-1.1-.2-1.4.2-.4.4-.3 1.1.2 1.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2821" d="M258.7 97.2c.3 0 .6-.1.8-.4.4-.4.3-1.1-.1-1.4-.4-.4-1.1-.3-1.4.1-.4.4-.3 1.1.1 1.4.1.2.4.3.6.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2820" d="M233.1 138.8c.4 0 .8-.2.9-.6.2-.5 0-1.1-.6-1.3-.5-.2-1.1 0-1.3.6-.2.5 0 1.1.6 1.3h.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2819" d="M223 174.2h.2c.5 0 .9-.4 1-.9.1-.6-.3-1.1-.9-1.2-.6-.1-1.1.3-1.2.9 0 .6.4 1.1.9 1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2818" d="M237.8 127.6c.1.1.3.1.5.1.4 0 .7-.2.9-.6.3-.5.1-1.1-.4-1.4-.5-.3-1.1-.1-1.4.4-.3.6-.1 1.2.4 1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2817" d="M220.3 197.6c0 .6.5 1 1 1s1-.5 1-1c0-.6-.5-1-1-1s-1 .5-1 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2816" d="M225.3 162.1h.2c.5 0 .9-.3 1-.8.1-.6-.2-1.1-.8-1.2-.6-.1-1.1.2-1.2.8 0 .6.3 1.1.8 1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2815" d="M267 88.2c.3 0 .5-.1.7-.3.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4.2.1.5.3.7.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2814" d="M253.6 313.7c-.4.3-.4.9 0 1.3.2.2.4.3.7.3.2 0 .4-.1.6-.2.4-.3.4-.9 0-1.3s-.9-.4-1.3-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2813" d="M254.2 81.7c.2 0 .5-.1.7-.3.3-.4.3-.9 0-1.3-.4-.3-.9-.3-1.3 0-.3.4-.3.9 0 1.3.1.2.3.3.6.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2812" d="M231.4 110.8c.1.1.3.1.5.1.3 0 .6-.2.8-.4.3-.4.1-1-.3-1.2-.4-.3-1-.1-1.3.3-.2.4-.1.9.3 1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2811" d="M238.1 294.7c-.4.3-.5.9-.2 1.3.2.3.5.4.7.4.2 0 .4-.1.5-.2.4-.3.5-.9.2-1.3-.2-.4-.7-.5-1.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2810" d="M245.5 304.5c-.4.3-.4.9-.1 1.3.2.2.4.3.7.3.2 0 .4-.1.6-.2.4-.3.4-.9.1-1.3-.3-.4-.9-.4-1.3-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2809" d="M221.2 131.1c-.5-.2-1 0-1.2.5-.2.5 0 1 .5 1.2.1 0 .2.1.4.1.4 0 .7-.2.8-.6.1-.5-.1-1-.5-1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2808" d="M215.6 143.1c-.2.5.1 1 .6 1.2h.3c.4 0 .7-.2.9-.6.2-.5-.1-1-.6-1.1-.5-.2-1 0-1.2.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2807" d="M238.6 100.6c.3 0 .6-.1.7-.4.3-.4.2-1-.2-1.3-.4-.3-1-.2-1.3.2-.3.4-.2 1 .2 1.3.2.2.4.2.6.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2806" d="M232.7 284.7c-.3-.4-.8-.6-1.3-.3-.4.3-.6.8-.3 1.3.2.3.5.4.8.4.2 0 .3 0 .5-.1.5-.3.6-.9.3-1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2805" d="M212.8 156h.2c.4 0 .8-.3.9-.7.1-.5-.2-1-.7-1.1-.5-.1-1 .2-1.1.7-.1.5.2 1 .7 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2804" d="M246 90.9c.3 0 .5-.1.7-.3.3-.4.3-1-.1-1.3-.4-.3-1-.3-1.3.1-.3.4-.3 1 .1 1.3.2.1.4.2.6.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2803" d="M262.3 322.4c-.3.4-.3.9.1 1.3.2.2.4.2.6.2.2 0 .5-.1.7-.3.3-.4.3-.9-.1-1.3-.4-.3-1-.3-1.3.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2802" d="M211.3 228c-.1-.5-.6-.8-1.1-.7-.5.1-.8.6-.7 1.1.1.4.5.7.9.7h.2c.5-.1.8-.6.7-1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2801" d="M208.5 215.1c-.5.1-.9.5-.8 1 0 .5.4.8.9.8h.1c.5-.1.9-.5.8-1 0-.5-.5-.8-1-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2800" d="M216.2 251c-.5.2-.7.7-.6 1.2.1.4.5.6.9.6h.3c.5-.2.7-.7.6-1.2-.2-.5-.7-.7-1.2-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2799" d="M262.9 73.1c.2 0 .4-.1.6-.2.4-.3.4-.9.1-1.3-.3-.4-.9-.4-1.3-.1-.4.3-.4.9-.1 1.3.2.2.5.3.7.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2798" d="M226.4 275.3c.4-.2.6-.8.4-1.2-.2-.4-.8-.6-1.2-.4-.4.2-.6.8-.4 1.2.2.3.5.5.8.5.2 0 .3-.1.4-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2797" d="M271.9 330.1s-.1 0-.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2796" d="M225.5 121.6c.1.1.3.1.4.1.3 0 .7-.2.8-.5.2-.4 0-1-.4-1.2-.4-.2-1-.1-1.2.4-.2.4 0 .9.4 1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2795" d="M220.5 262.5c-.5.2-.7.7-.5 1.2.1.3.5.6.8.6.1 0 .2 0 .4-.1.5-.2.7-.7.5-1.2-.2-.5-.7-.7-1.2-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2794" d="M213.3 241c.5-.1.8-.6.7-1.1-.1-.5-.6-.8-1.1-.7-.5.1-.8.6-.7 1.1.1.4.5.7.9.7h.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2793" d="M207.7 179.2c-.1.5.3.9.8 1h.1c.5 0 .9-.3.9-.8.1-.5-.3-.9-.8-1-.5-.1-.9.3-1 .8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2792" d="M207.8 204.7c.5 0 .9-.4.9-.9s-.4-.9-.9-.9-.9.4-.9.9.4.9.9.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2791" d="M207.8 192.4c.5 0 .9-.4.9-.9s-.4-.9-.9-.9-.9.4-.9.9c-.1.5.3.9.9.9-.1 0-.1 0 0 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2790" d="M210.2 168h.2c.4 0 .8-.3.9-.7.1-.5-.2-1-.7-1.1-.5-.1-1 .2-1.1.7-.1.6.2 1 .7 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2789" d="M240.9 320.1c-.3.3-.4.8-.1 1.1.2.2.4.3.6.3.2 0 .4-.1.5-.2.3-.3.3-.8.1-1.1-.3-.4-.8-.4-1.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2788" d="M203.9 257.1c-.4.1-.6.6-.5 1 .1.3.4.5.8.5h.3c.4-.1.6-.6.5-1-.3-.4-.7-.7-1.1-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2787" d="M213.3 115.5c.1.1.2.1.4.1.3 0 .6-.2.7-.4.2-.4 0-.9-.3-1.1-.4-.2-.9 0-1.1.3-.3.4-.1.9.3 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2786" d="M207.7 125.6c-.2.4 0 .9.4 1 .1 0 .2.1.3.1.3 0 .6-.2.7-.5.2-.4 0-.9-.4-1-.3-.2-.8 0-1 .4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2785" d="M213.3 279.7c-.4.2-.6.7-.4 1.1.1.3.4.4.7.4.1 0 .2 0 .4-.1.4-.2.5-.7.3-1.1-.1-.4-.6-.5-1-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2784" d="M194.8 197.6c0-.4-.4-.8-.8-.8s-.8.4-.8.8.4.8.8.8.8-.3.8-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2783" d="M203.3 137.2c-.1.4.1.9.5 1h.3c.3 0 .6-.2.8-.5.1-.4-.1-.9-.5-1-.5-.2-.9 0-1.1.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2782" d="M194.3 186.2s.1 0 0 0c.5 0 .8-.3.8-.7 0-.4-.3-.8-.7-.8-.4 0-.8.3-.8.7 0 .4.3.7.7.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2781" d="M249.9 66.4c.2 0 .4-.1.6-.2.3-.3.3-.8 0-1.1-.3-.3-.8-.3-1.1 0-.3.3-.3.8 0 1.1.1.1.3.2.5.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2780" d="M233.4 84.6c.2 0 .5-.1.6-.3.3-.3.2-.8-.1-1.1-.3-.3-.8-.2-1.1.1-.3.3-.2.8.1 1.1.2.2.4.2.5.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2779" d="M226.2 94.5c.3 0 .5-.1.7-.3.3-.4.2-.9-.2-1.1-.4-.3-.9-.2-1.1.2-.3.4-.2.9.2 1.1 0 .1.2.1.4.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2778" d="M197.5 161.8h.2c.4 0 .7-.3.8-.6.1-.4-.2-.8-.6-.9-.4-.1-.8.2-.9.6-.3.4 0 .9.5.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2777" d="M208.2 268.5c-.4.2-.6.6-.4 1 .1.3.4.5.7.5.1 0 .2 0 .3-.1.4-.2.6-.6.4-1-.1-.3-.6-.5-1-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2776" d="M233 310.7c-.3.3-.4.8-.1 1.1.2.2.4.3.6.3.2 0 .3-.1.5-.2.3-.3.4-.8.1-1.1-.3-.3-.8-.4-1.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2775" d="M201.2 245.9c-.1-.4-.6-.7-1-.6-.4.1-.7.6-.6 1 .1.4.4.6.8.6h.2c.5-.1.8-.6.6-1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2774" d="M225.7 300.8c-.4.3-.5.7-.2 1.1.2.2.4.3.7.3.2 0 .3 0 .4-.1.4-.3.5-.7.2-1.1-.2-.4-.7-.5-1.1-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2773" d="M249.4 328.9c-.3.3-.3.8 0 1.1.2.1.4.2.6.2.2 0 .4-.1.6-.2.3-.3.3-.8 0-1.1-.4-.3-.9-.3-1.2 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2772" d="M200.2 149.9h.2c.4 0 .7-.2.8-.6.1-.4-.1-.9-.6-1-.4-.1-.9.1-1 .6 0 .4.2.9.6 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2771" d="M219.1 104.7c.1.1.3.1.4.1.3 0 .5-.1.7-.4.2-.4.1-.9-.3-1.1-.4-.2-.9-.1-1.1.3-.2.4 0 .9.3 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2770" d="M194.4 210.7c.5 0 .8-.4.8-.8s-.4-.8-.8-.7c-.4 0-.8.4-.7.8-.1.4.3.7.7.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2769" d="M196.4 173.3c.1-.4-.3-.8-.7-.9-.4-.1-.8.3-.9.7-.1.4.3.8.7.9h.1c.4 0 .7-.3.8-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2768" d="M194.8 222.2c.1.4.4.7.8.7h.1c.4-.1.7-.5.7-.9-.1-.4-.5-.7-.9-.7-.4.1-.7.5-.7.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2767" d="M220 291.8c.4-.2.5-.7.3-1.1-.2-.4-.7-.5-1.1-.3-.4.2-.5.7-.3 1.1.1.2.4.4.7.4.1 0 .3 0 .4-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2766" d="M197.5 233.4c-.4.1-.7.5-.6.9.1.4.4.6.8.6h.2c.4-.1.7-.5.6-.9-.2-.4-.6-.7-1-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2765" d="M258.4 337.2c-.2.2-.2.5-.1.8l1.3-.8s0-.1-.1-.1c-.3-.3-.8-.2-1.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2764" d="M241.4 75.3c.2 0 .4-.1.6-.3.3-.3.3-.8-.1-1.1-.3-.3-.8-.3-1.1.1-.3.3-.3.8.1 1.1.1.1.3.2.5.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2763" d="M194.8 173.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2762" d="M181.1 215.3c-.4 0-.7.4-.6.7 0 .4.3.6.7.6h.1c.4 0 .7-.4.6-.7-.1-.3-.4-.6-.8-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2761" d="M181.1 203.7c0-.4-.3-.7-.7-.7-.4 0-.7.3-.7.7 0 .4.3.7.7.7.4 0 .7-.3.7-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2760" d="M182.7 228.8h.1c.4-.1.6-.4.6-.8-.1-.4-.4-.6-.8-.6-.4.1-.6.4-.6.8.1.4.3.6.7.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2759" d="M184.8 239.6c-.4.1-.6.4-.5.8.1.3.4.5.7.5h.1c.4-.1.6-.4.5-.8-.1-.4-.4-.6-.8-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2758" d="M228.7 68.9c.2 0 .4-.1.5-.2.2-.3.2-.7-.1-1-.3-.2-.7-.2-1 .1-.2.3-.2.7.1 1 .1 0 .3.1.5.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2757" d="M187.7 143.8h.2c.3 0 .6-.2.7-.5.1-.4-.1-.7-.5-.8-.4-.1-.7.1-.8.5-.1.3.1.7.4.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2756" d="M191.5 263.1c-.4.1-.5.5-.4.9.1.3.4.5.6.5h.2c.4-.1.5-.5.4-.9-.1-.4-.5-.6-.8-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2755" d="M237 59.9c.2 0 .4-.1.5-.2.3-.3.3-.7 0-1-.3-.3-.7-.3-1 0-.3.3-.3.7 0 1 .1.1.3.2.5.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2754" d="M188.6 251.9c-.1-.4-.5-.6-.8-.5-.4.1-.6.5-.5.8.1.3.4.5.7.5h.2c.3 0 .5-.4.4-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2753" d="M213.4 306.9c-.3.2-.4.6-.2 1 .1.2.3.3.6.3.1 0 .3 0 .4-.1.3-.2.4-.6.2-1-.3-.4-.7-.4-1-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2752" d="M213.7 88.3c.2 0 .4-.1.6-.3.2-.3.1-.7-.2-.9-.3-.2-.7-.1-.9.2-.2.3-.1.7.2 1h.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2751" d="M184.2 154.9c-.1.4.2.7.5.8h.1c.3 0 .6-.2.7-.5.1-.4-.2-.7-.5-.8-.3-.1-.7.1-.8.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2750" d="M236.5 335.4c-.3.3-.3.7 0 1 .1.1.3.2.5.2s.3-.1.5-.2c.3-.3.3-.7 0-1-.3-.2-.7-.2-1 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2749" d="M220.5 78.2c.1.1.3.1.4.1.2 0 .4-.1.5-.3.2-.3.2-.7-.1-1-.3-.2-.7-.2-1 .1-.2.5-.1.9.2 1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2748" d="M181.1 179.9c.4 0 .7-.3.7-.6 0-.4-.2-.7-.6-.7-.4 0-.7.2-.7.6-.1.3.2.7.6.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2747" d="M195.9 274.6c-.3.1-.5.6-.4.9.1.3.4.4.6.4.1 0 .2 0 .3-.1.3-.1.5-.6.4-.9-.1-.3-.5-.5-.9-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2746" d="M180.4 192.2c.4 0 .7-.3.7-.7 0-.4-.3-.7-.7-.7-.4 0-.7.3-.7.7 0 .3.3.7.7.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2745" d="M201 109.5c.1 0 .2.1.3.1.2 0 .5-.1.6-.4.2-.3 0-.7-.3-.9-.3-.2-.7 0-.9.3-.1.3 0 .7.3.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2744" d="M245.3 343.9c-.3.3-.2.7.1 1 .1.1.3.2.5.2s.4-.1.5-.2c.3-.3.2-.7 0-1-.4-.3-.8-.3-1.1 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2743" d="M195.5 119.7c-.1.3 0 .7.4.9.1 0 .2.1.3.1.3 0 .5-.2.6-.4.1-.3 0-.7-.4-.9-.3-.2-.7 0-.9.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2742" d="M207.8 296.7c-.2-.3-.6-.4-.9-.2-.3.2-.4.6-.2.9.1.2.4.3.6.3.1 0 .2 0 .3-.1.3-.1.4-.6.2-.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2741" d="M201 285.7c-.3.2-.5.6-.3.9.1.2.4.4.6.4.1 0 .2 0 .3-.1.3-.2.5-.6.3-.9-.1-.3-.5-.5-.9-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2740" d="M191.4 132.1h.2c.3 0 .5-.2.6-.5.1-.4-.1-.7-.4-.9-.4-.1-.7.1-.9.4 0 .5.2.8.5 1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2739" d="M206.9 98.7c.1.1.2.1.3.1.2 0 .5-.1.6-.3.2-.3.1-.7-.2-.9-.3-.2-.7-.1-.9.2-.3.2-.2.7.2.9z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2738" d="M228.2 326.4c-.3.2-.3.7-.1 1 .1.2.3.2.5.2s.3-.1.4-.2c.3-.2.3-.7.1-1-.2-.2-.6-.3-.9 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2737" d="M182.6 167.7h.1c.3 0 .6-.2.7-.6.1-.4-.2-.7-.6-.8-.4-.1-.7.2-.8.6-.1.4.2.8.6.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2736" d="M220.5 316.9c-.3.2-.4.7-.1 1 .1.2.3.3.5.3.1 0 .3 0 .4-.1.3-.2.4-.7.1-1-.2-.4-.6-.5-.9-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2735" d="M223.8 341.9c-.2.2-.2.6 0 .8.1.1.3.2.4.2.1 0 .3-.1.4-.2.2-.2.2-.6 0-.8-.3-.2-.6-.2-.8 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2734" d="M224.1 53.4c.2 0 .3-.1.4-.2.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8.1.2.3.2.4.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2733" d="M232.4 44.6c.1.1.3.2.4.2.1 0 .3 0 .4-.2l.1-.1-1-.6c-.1.2-.1.5.1.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2732" d="M208.3 72.2c.2 0 .3-.1.5-.2.2-.3.1-.6-.1-.8-.3-.2-.6-.1-.8.1-.2.3-.1.6.1.8.1.1.2.1.3.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2731" d="M179.1 269.3c-.3.1-.4.4-.3.7.1.2.3.4.5.4h.2c.3-.1.4-.4.3-.7 0-.4-.4-.5-.7-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2730" d="M215.9 62.6c.2 0 .3-.1.4-.2.2-.2.2-.6-.1-.8-.2-.2-.6-.2-.8.1-.2.2-.2.6.1.8.2.1.3.1.4.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2729" d="M215.6 332.7c-.2.2-.3.6-.1.8.1.1.3.2.4.2.1 0 .3 0 .4-.1.2-.2.3-.6.1-.8-.2-.3-.5-.3-.8-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2728" d="M208 323.1c-.3.2-.3.5-.1.8.1.1.3.2.5.2.1 0 .2 0 .3-.1.3-.2.3-.5.1-.8-.2-.3-.5-.3-.8-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2727" d="M201 82.2c.1.1.2.1.3.1.2 0 .4-.1.5-.3.2-.3.1-.6-.2-.8-.3-.2-.6-.1-.8.2-.2.3-.1.6.2.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2726" d="M195.4 302.8c-.2-.3-.5-.4-.8-.2-.3.2-.4.5-.2.8.1.2.3.3.5.3.1 0 .2 0 .3-.1.2-.2.3-.6.2-.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2725" d="M183.3 113.9c-.1.3 0 .6.3.7h.2c.2 0 .4-.1.5-.3.1-.3 0-.6-.3-.7-.3-.2-.6 0-.7.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2724" d="M175.3 137.7h.2c.2 0 .5-.2.5-.4.1-.3-.1-.6-.4-.7-.3-.1-.6.1-.7.4-.1.3.1.6.4.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2723" d="M172.2 245.7c-.3.1-.5.4-.4.7.1.3.3.4.6.4h.1c.3-.1.5-.4.4-.7-.1-.2-.4-.4-.7-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2722" d="M188.8 291.8c-.3.1-.4.5-.3.8.1.2.3.3.5.3.1 0 .2 0 .3-.1.3-.1.4-.5.3-.8-.2-.3-.5-.4-.8-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2721" d="M194.5 92.6c.1.1.2.1.3.1.2 0 .4-.1.5-.3.2-.3.1-.6-.2-.8-.3-.2-.6-.1-.8.2-.1.3 0 .7.2.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2720" d="M183.6 280.6c-.3.1-.4.5-.3.7.1.2.3.3.5.3h.2c.3-.1.4-.5.3-.7-.1-.2-.4-.4-.7-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2719" d="M188.7 103.5c.1 0 .2.1.3.1.2 0 .4-.1.5-.3.1-.3 0-.6-.3-.8-.3-.1-.6 0-.8.3-.1.2.1.5.3.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2718" d="M179.1 126.1h.2c.2 0 .5-.1.5-.4.1-.3 0-.6-.3-.7-.3-.1-.6 0-.7.3-.2.3 0 .6.3.8z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2717" d="M175.3 257.6c-.3.1-.5.4-.4.7.1.2.3.4.5.4h.2c.3-.1.5-.4.4-.7-.1-.3-.4-.5-.7-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2716" d="M171.7 148.9c-.1.3.1.6.4.7h.1c.3 0 .5-.2.6-.4.1-.3-.1-.6-.4-.7-.3-.1-.6.1-.7.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2715" d="M168 173.7c.4 0 .6-.2.6-.5s-.2-.6-.5-.6-.6.2-.6.5c-.1.3.2.6.5.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2714" d="M167.2 197.7c0-.3-.3-.6-.6-.6s-.6.3-.6.6.3.6.6.6c.4-.1.6-.3.6-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2713" d="M167 209.4c-.3 0-.6.3-.5.6 0 .3.3.5.6.5s.6-.3.5-.6c0-.3-.3-.6-.6-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2712" d="M167 186c.3 0 .6-.2.6-.5s-.2-.6-.5-.6-.6.2-.6.5c-.1.3.1.6.5.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2711" d="M201 313c-.3.2-.3.5-.2.8.1.2.3.3.5.3.1 0 .2 0 .3-.1.3-.2.3-.5.2-.8-.2-.3-.5-.4-.8-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2710" d="M168 221.6c-.3 0-.5.3-.5.6s.3.5.6.5h.1c.3 0 .5-.3.5-.6-.1-.3-.4-.6-.7-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2709" d="M170.4 234.2c-.1-.3-.3-.5-.7-.5-.3.1-.5.3-.5.7 0 .3.3.5.6.5h.1c.3-.1.5-.4.5-.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2708" d="M169.7 161.6h.1c.3 0 .5-.2.6-.5.1-.3-.2-.6-.5-.7-.3-.1-.6.2-.7.5 0 .4.2.6.5.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2707" d="M232.4 350.6c-.2.2-.2.6 0 .8.1.1.3.2.4.2.2 0 .3-.1.4-.2.2-.2.2-.6 0-.8-.2-.3-.6-.3-.8 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2706" d="M203 338.9c-.2.2-.2.4-.1.6.1.1.2.2.4.2.1 0 .2 0 .3-.1.2-.2.2-.4.1-.6-.2-.2-.5-.3-.7-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2705" d="M159.6 251.9c-.2.1-.4.3-.3.6.1.2.2.3.4.3h.1c.2-.1.4-.3.3-.6 0-.3-.3-.4-.5-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2704" d="M211 348.2c-.2.2-.2.5 0 .6.1.1.2.1.3.1.1 0 .2 0 .3-.1.2-.2.2-.5 0-.6-.1-.1-.4-.2-.6 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2703" d="M162.8 131.6h.1c.2 0 .4-.1.4-.3.1-.2-.1-.5-.3-.6-.2-.1-.5.1-.6.3 0 .3.2.5.4.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2702" d="M203.3 56.3c.1 0 .3-.1.4-.2.2-.2.1-.5-.1-.6-.2-.2-.5-.1-.6.1-.2.2-.1.5.1.6 0 0 .1.1.2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2701" d="M176.3 96.8c-.1.2 0 .5.2.6h.2c.2 0 .3-.1.4-.3.1-.2 0-.5-.2-.6-.2 0-.5.1-.6.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2700" d="M171.4 286.7c-.2.1-.3.4-.2.6.1.2.2.3.4.3h.2c.2-.1.3-.4.2-.6-.1-.3-.4-.4-.6-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2699" d="M211 46.2c-.2.2-.2.5 0 .6.1.1.2.1.3.1.1 0 .2-.1.3-.1.2-.2.2-.5 0-.6-.1-.2-.4-.2-.6 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2698" d="M159.2 142.9c-.1.2.1.5.3.6h.1c.2 0 .4-.1.4-.3.1-.2-.1-.5-.3-.6-.2-.1-.4 0-.5.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2697" d="M219.8 38.1c.1 0 .2 0 .3-.1.2-.2.2-.5 0-.6-.2-.2-.5-.2-.6 0-.2.2-.2.5 0 .6.1.1.2.1.3.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2696" d="M195.6 329.2c-.2.1-.2.4-.1.6.1.1.2.2.4.2.1 0 .2 0 .3-.1.2-.1.3-.4.1-.6-.2-.2-.5-.3-.7-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2695" d="M166.7 119.9h.2c.2 0 .4-.1.4-.3.1-.2 0-.5-.3-.6-.2-.1-.5 0-.6.3 0 .3.1.6.3.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2694" d="M153.7 179.7c.3 0 .5-.2.5-.4s-.2-.5-.4-.5c-.3 0-.5.2-.5.4-.1.3.1.5.4.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2693" d="M171.3 108.5h.2c.2 0 .3-.1.4-.3.1-.2 0-.5-.2-.6-.2-.1-.5 0-.6.2-.1.4 0 .6.2.7z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2692" d="M163.4 264c-.1-.2-.3-.4-.6-.3-.2.1-.4.3-.3.6.1.2.2.3.4.3h.1c.4-.1.5-.4.4-.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2691" d="M154.6 167c0 .3.1.5.4.5h.1c.2 0 .4-.2.4-.4s-.1-.5-.4-.5c-.3 0-.5.2-.5.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2690" d="M182.3 308.6c-.2.1-.3.4-.2.6.1.1.2.2.4.2.1 0 .2 0 .2-.1.2-.1.3-.4.2-.6-.1-.2-.4-.2-.6-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2689" d="M219.5 357.1c-.2.2-.2.5 0 .6.1.1.2.1.3.1.1 0 .2 0 .3-.1.2-.2.2-.5 0-.6-.1-.2-.4-.2-.6 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2688" d="M153 192s.1 0 0 0c.3 0 .5-.2.5-.4 0-.3-.2-.5-.4-.5-.3 0-.5.2-.5.4s.2.5.4.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2687" d="M176.5 297.8c-.2.1-.3.4-.2.6.1.2.2.3.4.3h.2c.2-.1.3-.4.2-.6-.1-.4-.4-.4-.6-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2686" d="M153.5 203.8c0-.3-.2-.4-.5-.4s-.4.2-.4.5c0 .2.2.4.5.4.2-.1.4-.3.4-.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2685" d="M195.8 66c.1 0 .3-.1.4-.2.1-.2.1-.5-.1-.6-.2-.1-.5-.1-.6.1-.1.2-.1.5.1.6.1.1.2.1.2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2684" d="M166.8 275.3c-.2.1-.4.4-.3.6.1.2.2.3.4.3h.2c.2-.1.4-.3.3-.6-.1-.3-.4-.4-.6-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2683" d="M188.6 76.1c.1.1.2.1.2.1.1 0 .3-.1.4-.2.1-.2.1-.5-.1-.6-.2-.1-.5-.1-.6.1-.1.1-.1.4.1.6z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2682" d="M188.7 319.1c-.2.1-.3.4-.1.6.1.1.2.2.4.2.1 0 .2 0 .2-.1.2-.1.3-.4.1-.6-.2-.2-.4-.3-.6-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2681" d="M155 227.8c-.2 0-.4.3-.4.5s.2.4.5.4h.1c.2 0 .4-.3.4-.5-.1-.3-.4-.5-.6-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2680" d="M182.3 86.6c.1 0 .1.1.2.1.2 0 .3-.1.4-.2.1-.2 0-.5-.2-.6-.2-.1-.5 0-.6.2-.1.1 0 .3.2.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2679" d="M156.9 155.4c.1 0 .1 0 0 0 .3 0 .5-.1.5-.4 0-.2-.1-.5-.4-.5-.2 0-.5.1-.5.4 0 .2.2.5.4.5z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2678" d="M157 239.9c-.2 0-.4.3-.4.5s.2.4.4.4h.1c.2 0 .4-.3.4-.5-.1-.3-.3-.5-.5-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2677" d="M153.7 215.6c-.3 0-.4.2-.4.5 0 .2.2.4.5.4.2 0 .4-.2.4-.5s-.3-.4-.5-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2676" d="M139.6 209.5c-.2 0-.3.2-.3.4s.2.3.3.3c.2 0 .3-.2.3-.4.1-.1-.1-.3-.3-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2675" d="M159.1 292.7c-.2.1-.3.3-.2.4.1.1.2.2.3.2h.1c.2-.1.3-.3.2-.4-.1-.2-.3-.3-.4-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2674" d="M150.4 269.7c-.2.1-.3.3-.2.4 0 .1.2.2.3.2h.1c.2-.1.3-.2.2-.4 0-.1-.2-.2-.4-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2673" d="M176.5 70c.1 0 .2-.1.3-.2.1-.2.1-.4-.1-.5-.2-.1-.4-.1-.5.1-.1.2-.1.4.1.5.1.1.1.1.2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2672" d="M147 258c-.2 0-.3.2-.2.4 0 .2.2.3.3.3h.1c.2 0 .3-.2.2-.4 0-.3-.2-.4-.4-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2671" d="M183.4 59.8c.1 0 .2 0 .3-.1.1-.2.1-.4-.1-.5-.2-.1-.4-.1-.5.1-.1.2-.1.4.1.5h.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2670" d="M150.4 125.5h.1c.1 0 .3-.1.3-.2.1-.2 0-.4-.2-.4-.2-.1-.4 0-.4.2-.1.1 0 .3.2.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2669" d="M154.5 281.3c-.2.1-.3.3-.2.4.1.1.2.2.3.2h.1c.2-.1.3-.3.2-.4-.1-.1-.3-.2-.4-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2668" d="M207 31.6c.1 0 .2 0 .2-.1.1-.1.1-.4 0-.5-.1-.1-.4-.1-.5 0-.1.1-.1.4 0 .5.1.1.2.1.3.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2667" d="M190.7 50c.1 0 .2 0 .3-.1.1-.1.1-.4-.1-.5-.1-.1-.4-.1-.5.1-.1.1-.1.4.1.5h.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2666" d="M154.4 113.9h.1c.1 0 .3-.1.3-.2.1-.2 0-.4-.2-.4-.2-.1-.4 0-.4.2 0 .1 0 .3.2.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2665" d="M164.1 90.9c-.1.2 0 .4.2.5h.1c.1 0 .2-.1.3-.2.1-.2 0-.4-.2-.5-.1-.1-.3 0-.4.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2664" d="M159.2 102.5c.1 0 .3-.1.3-.2.1-.2 0-.4-.2-.4-.2-.1-.4 0-.4.2-.1.2 0 .4.2.4h.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2663" d="M139.6 197.6c0-.2-.2-.3-.3-.3-.2 0-.3.1-.3.3 0 .2.2.3.3.3.2.1.3-.1.3-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2662" d="M146.8 136.8c0 .2.1.4.2.4h.1c.2 0 .3-.1.3-.3 0-.2-.1-.4-.2-.4-.2.1-.4.2-.4.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2661" d="M139.6 185.7c.2 0 .3-.1.4-.3 0-.2-.1-.3-.3-.4-.2 0-.3.1-.4.3 0 .2.1.4.3.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2660" d="M206.6 363.5c-.1.1-.1.3 0 .5.1.1.2.1.2.1s.2 0 .2-.1c.1-.1.1-.3 0-.5 0-.1-.2-.1-.4 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2659" d="M140.5 221.8c-.2 0-.3.2-.3.4s.2.3.3.3c.2 0 .3-.2.3-.4.1-.2-.1-.3-.3-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2658" d="M142.1 233.9c-.2 0-.3.2-.3.4s.2.3.3.3h.1c.2 0 .3-.2.3-.4-.1-.2-.2-.3-.4-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2657" d="M140.5 173.5c.2 0 .4-.1.4-.3 0-.2-.1-.4-.3-.4-.2 0-.4.1-.4.3 0 .2.1.3.3.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2656" d="M144.2 149.2s.1 0 0 0c.2 0 .4-.1.4-.3 0-.2-.1-.4-.3-.4-.2 0-.4.1-.4.3 0 .2.1.4.3.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2655" d="M144.2 246c-.2 0-.3.2-.3.4s.2.3.3.3h.1c.2 0 .3-.2.3-.4s-.2-.3-.4-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2654" d="M142 161.3c.1 0 .1 0 0 0 .2 0 .4-.1.4-.3 0-.2-.1-.4-.3-.4-.2 0-.4.1-.4.3 0 .2.2.4.3.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2653" d="M198.3 354.5c-.1.1-.2.3 0 .5.1.1.2.1.3.1.1 0 .2 0 .2-.1.1-.1.2-.3 0-.5-.1-.1-.3-.1-.5 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2652" d="M170 314.6c-.2.1-.2.3-.1.5.1.1.2.2.3.2h.2c.2-.1.2-.3.1-.5s-.3-.3-.5-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2651" d="M169.9 80c-.1.2 0 .4.1.5h.2c.1 0 .2-.1.3-.2.1-.2 0-.4-.1-.5-.2 0-.4.1-.5.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2650" d="M183.1 335.3c-.2.1-.2.3-.1.5.1.1.2.1.3.1.1 0 .1 0 .2-.1.2-.1.2-.3.1-.5-.1-.1-.3-.1-.5 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2649" d="M176.3 325.1c-.2.1-.2.3-.1.5.1.1.2.2.3.2.1 0 .1 0 .2-.1.2-.1.2-.3.1-.5s-.3-.2-.5-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2648" d="M198.4 40c-.1.1-.1.4 0 .5.1.1.1.1.2.1s.2 0 .3-.1c.1-.1.1-.4 0-.5-.2-.1-.4-.1-.5 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2647" d="M164.2 303.8c-.2.1-.2.3-.1.5.1.1.2.2.3.2h.2c.2-.1.2-.3.2-.5-.2-.2-.4-.3-.6-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2646" d="M190.5 345.1c-.1.1-.2.3-.1.5.1.1.2.1.3.1.1 0 .1 0 .2-.1s.2-.3.1-.5c-.2-.1-.4-.1-.5 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2645" d="M126.3 215.8c-.1 0-.2.1-.2.2s.1.2.2.2.2-.1.2-.2-.1-.2-.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2644" d="M126.3 179.5c.1 0 .2-.1.2-.2s-.1-.2-.2-.2-.2.1-.2.2l.2.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2643" d="M127.4 167.2c.1 0 .1 0 0 0 .1 0 .2-.1.3-.2 0-.1-.1-.2-.2-.3-.1 0-.2.1-.3.2 0 .2.1.3.2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2642" d="M125.7 191.3c-.1 0-.2.1-.2.2s.1.2.2.2.2-.1.2-.2-.1-.2-.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2641" d="M170.9 53.7c.1 0 .1 0 .2-.1s0-.2-.1-.3c-.1-.1-.2 0-.3.1-.1.1 0 .2.1.3h.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2640" d="M142.1 107.8s.1 0 0 0c.2 0 .3 0 .3-.1s0-.3-.1-.3-.2 0-.3.1c-.1.1 0 .3.1.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2639" d="M164.1 63.9c.1 0 .1 0 .2-.1s0-.2-.1-.3c-.1-.1-.2 0-.3.1-.1.1 0 .2.1.3h.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2638" d="M194.1 25.1c.1 0 .1 0 .2-.1s.1-.2 0-.3c-.1-.1-.2-.1-.3 0-.1.1-.1.2 0 .3 0 .1.1.1.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2637" d="M127.5 228c-.1 0-.2.1-.2.3 0 .1.1.2.2.2s.2-.1.2-.3c0-.1-.1-.2-.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2636" d="M125.7 203.5c-.1 0-.2.1-.2.2s.1.2.2.2.2-.1.2-.2-.1-.2-.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2635" d="M170.7 341.4c-.1.1-.1.2-.1.3 0 .1.1.1.2.1h.1c.1-.1.1-.2.1-.3 0-.1-.2-.2-.3-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2634" d="M138.1 119.4c.1 0 .2-.1.2-.2s0-.2-.1-.3c-.1 0-.2 0-.3.1-.1.2 0 .4.2.4-.1 0-.1 0 0 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2633" d="M129.2 155.1c.1 0 .2-.1.3-.2 0-.1-.1-.2-.2-.3-.1 0-.2.1-.3.2 0 .2.1.3.2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2632" d="M178.3 351.3c-.1-.1-.2-.1-.3 0-.1.1-.1.2 0 .3 0 .1.1.1.2.1h.1c.1-.1.1-.3 0-.4z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2631" d="M185.7 360.8c-.1.1-.1.2 0 .3 0 .1.1.1.2.1s.1 0 .1-.1c.1-.1.1-.2 0-.3-.1-.1-.2-.1-.3 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2630" d="M193.9 370c-.1.1-.1.2 0 .3 0 0 .1.1.2.1s.1 0 .2-.1.1-.2 0-.3c-.2-.1-.3-.1-.4 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2629" d="M185.7 33.9c-.1.1-.1.2 0 .3l.1.1c.1 0 .1 0 .2-.1s.1-.2 0-.3c0-.1-.2-.1-.3 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2628" d="M178 43.4c-.1.1-.1.2 0 .3h.1c.1 0 .1 0 .2-.1s.1-.2 0-.3c-.1 0-.2 0-.3.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2627" d="M164.3 331.2c-.1-.1-.2-.1-.3-.1-.1.1-.1.2-.1.3 0 .1.1.1.2.1h.1c.1 0 .1-.1.1-.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2626" d="M146.8 298.7c-.1.1-.2.2-.1.3 0 .1.1.1.2.1h.1c.1 0 .2-.2.1-.3-.1-.1-.2-.1-.3-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2625" d="M152.1 85.3c.1 0 .2 0 .2-.1.1-.1 0-.2-.1-.3-.1-.1-.3 0-.3.1-.1.1 0 .3.1.3h.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2624" d="M152 309.8c-.1.1-.2.2-.1.3 0 .1.1.1.2.1h.1c.1-.1.2-.2.1-.3-.1-.1-.2-.1-.3-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2623" d="M134.5 264.1c-.1 0-.2.2-.2.3 0 .1.1.2.2.2h.1c.1 0 .2-.2.2-.3 0-.2-.2-.3-.3-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2622" d="M157.6 74.1c-.1.1 0 .2.1.3h.1c.1 0 .2 0 .2-.1.1-.1 0-.2-.1-.3-.1 0-.2 0-.3.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2621" d="M142.1 287.4c-.1 0-.2.2-.1.3 0 .1.1.1.2.1h.1c.1 0 .2-.2.1-.3 0-.1-.1-.1-.3-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2620" d="M138 275.8c-.1 0-.2.2-.1.3 0 .1.1.2.2.2h.1c.1 0 .2-.2.1-.3 0-.1-.1-.2-.3-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2619" d="M157.7 320.6c-.1.1-.1.2-.1.3 0 .1.1.1.2.1h.1c.1-.1.1-.2.1-.3 0-.1-.2-.1-.3-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2618" d="M134.5 131.2c.1 0 .2-.1.2-.2s0-.2-.2-.3c-.1 0-.2 0-.3.2l.3.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2617" d="M131.5 143.1c.1 0 .1 0 0 0 .2 0 .3-.1.3-.2s0-.2-.2-.3c-.1 0-.2.1-.3.2.1.1.1.2.2.3z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2616" d="M146.9 96.4c.1 0 .2-.1.2-.1.1-.1 0-.2-.1-.3-.1 0-.3 0-.3.1-.1.1-.1.3.2.3-.1 0-.1 0 0 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2615" d="M131.6 252.2c-.1 0-.2.1-.2.3 0 .1.1.2.2.2s.2-.1.2-.3c0-.2-.1-.3-.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2614" d="M129.2 240.1c-.1 0-.2.1-.2.3 0 .1.1.2.2.2s.2-.1.2-.3c.1-.1-.1-.2-.2-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2613" d="M114.5 161c.1 0 .1 0 .1-.1s0-.1-.1-.1-.1 0-.1.1 0 .1.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2612" d="M114.5 234.2c-.1 0-.1.1-.1.1 0 .1.1.1.1.1.1 0 .1-.1.1-.1 0-.1-.1-.1-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2611" d="M113.1 173.2c.1 0 .1 0 .1-.1s0-.1-.1-.1-.1 0-.1.1 0 .1.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2610" d="M134.6 304.8c0-.1-.1-.1-.1-.1-.1 0-.1.1-.1.1l.1.1c.1 0 .2 0 .1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2609" d="M116.4 148.9c.1 0 .1 0 .1-.1s0-.1-.1-.1-.1 0-.1.1 0 .1.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2608" d="M113.1 222c-.1 0-.1.1-.1.1 0 .1.1.1.1.1.1 0 .1-.1.1-.1l-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2607" d="M129.8 101.8s.1 0 .1-.1 0-.1-.1-.1-.1 0-.1.1l.1.1c0-.1 0 0 0 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2606" d="M122 125s.1 0 .1-.1 0-.1-.1-.1-.1 0-.1.1 0 .1.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2605" d="M122 270.2c-.1 0-.1.1-.1.1l.1.1c.1 0 .1-.1.1-.1.1-.1 0-.1-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2604" d="M125.6 281.9c-.1 0-.1.1-.1.1l.1.1c.1 0 .1-.1.1-.1.1-.1 0-.1-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2603" d="M129.8 293.5c-.1 0-.1.1-.1.1l.1.1c.1 0 .1-.1.1-.1 0-.1 0-.2-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2602" d="M116.4 246.3c-.1 0-.1.1-.1.1 0 .1.1.1.1.1.1 0 .1-.1.1-.1.1-.1 0-.1-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2601" d="M119 258.3c-.1 0-.1.1-.1.1 0 .1.1.1.1.1.1 0 .1-.1.1-.1 0-.1-.1-.1-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2600" d="M118.9 136.9c.1 0 .1 0 .1-.1s0-.1-.1-.1-.1 0-.1.1l.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2599" d="M139.7 315.8c-.1 0-.1.1-.1.2l.1.1c.1 0 .1-.1.1-.2s0-.1-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2598" d="M158.3 347.5c-.1 0-.1.1 0 .2h.2c.1 0 .1-.1 0-.2h-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2597" d="M139.8 79.3s.1 0 .1-.1 0-.1-.1-.2c-.1 0-.1 0-.2.1 0 .1 0 .1.2.2-.1 0-.1 0 0 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2596" d="M145.4 68.2v.2h.1s.1 0 .1-.1v-.2c-.1.1-.2.1-.2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2595" d="M158.4 47.4v.2h.1s.1 0 .1-.1v-.2c-.1 0-.2 0-.2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2594" d="M145.4 326.7c-.1 0-.1.1 0 .2l.1.1h.1c.1 0 .1-.1 0-.2s-.1-.2-.2-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2593" d="M165.5 357.5s-.1.1 0 .2h.2c.1 0 .1-.1 0-.2s-.2-.1-.2 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2592" d="M151.6 337.2c-.1 0-.1.1 0 .2l.1.1h.1c.1 0 .1-.1 0-.2 0-.1-.1-.1-.2-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2591" d="M181.2 376.3s-.1.1 0 .2h.2s.1-.1 0-.2h-.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2590" d="M151.6 57.6v.2h.1s.1 0 .1-.1v-.2c-.1.1-.1.1-.2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2589" d="M181.3 18.7s.1 0 0 0c.1-.1.1-.2.1-.2h-.2c0 .1 0 .1.1.2z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2588" d="M112.2 185.5c.1 0 .1 0 .1-.1s0-.1-.1-.1-.1 0-.1.1l.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2587" d="M173.2 27.8v.2h.2v-.2c-.1-.1-.2-.1-.2 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2586" d="M173.1 367.1s-.1.1 0 .2h.2s.1-.1 0-.2-.1-.1-.2 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2585" d="M112.2 209.8c-.1 0-.1.1-.1.1 0 .1.1.1.1.1.1 0 .1-.1.1-.1.1-.1 0-.1-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2584" d="M165.5 37.4v.2h.2v-.2c-.1-.1-.1-.1-.2 0z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2583" d="M112 197.5c-.1 0-.1 0-.1.1s0 .1.1.1.1-.1.1-.1l-.1-.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2582" d="M134.5 90.4s.1 0 .1-.1 0-.1-.1-.1-.1 0-.2.1c.1 0 .1.1.2.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2581" d="M125.6 113.3c.1 0 .1 0 .1-.1s0-.1-.1-.1-.1 0-.1.1c0 0 0 .1.1.1z" class="epichains_svg__st0"></path>
+  <path id="SvgjsPath2580" d="M26.2 211.3h284.4v66.5H26.2z" style="display:inline;fill:none"></path>
+  <linearGradient id="SvgjsLinearGradient2579" x1="133.059" x2="470.048" y1="392.074" y2="392.074" gradientTransform="translate(-133.1 -197.5)" gradientUnits="userSpaceOnUse">
+    <stop id="SvgjsStop2578" offset="0" style="stop-color:#0b1e2c"></stop>
+    <stop id="SvgjsStop2577" offset="1" style="stop-color:#0d6c9f"></stop>
+  </linearGradient>
+  <path id="SvgjsPath2576" d="m168.5 5.8 163.4 94.4V289l-163.5 94.4L4.9 289V100.2L168.5 5.8m0-5.8L0 97.3v194.6l168.5 97.3 168.4-97.3V97.3Z" style="display:inline;fill:url(#epichains_svg__SVGID_1_)"></path>
+  <g id="SvgjsG2575" style="display:inline;opacity:.86" transform="translate(-53.04 -53.014) scale(.73534)">
+    <g id="SvgjsG2574">
+      <path id="SvgjsPath2573" d="M248.7 515.7v-17.1h14.4v3.4h-10.6v3.3h10.2v3.4h-10.2v3.4h10.6v3.4h-14.4z"></path>
+      <path id="SvgjsPath2572" d="M264.9 520.1V503h3.5v3.5h.3c.5-2.4 2.1-3.7 5.1-3.7 3.9 0 6.1 2.6 6.1 6.6 0 4-2.1 6.6-6 6.6-3 0-4.6-1.5-5-3.7h-.2v7.8zm7.5-7.6c2.4 0 3.6-.8 3.6-3.1s-1.1-3.1-3.6-3.1-3.7.8-3.7 3.1v.2c0 2.1 1.3 2.9 3.7 2.9z"></path>
+      <path id="SvgjsPath2571" d="M281.4 501.7v-3h3.8v3zm0 14V503h3.8v12.8h-3.8z"></path>
+      <path id="SvgjsPath2570" d="m291.6 515.7-5.8-12.8h4.3l3.8 9h.3l3.8-9h4.2l-5.8 12.8z"></path>
+      <path id="SvgjsPath2569" d="M301.7 509.4c0-4.1 2.9-6.6 7.1-6.6 4.2 0 7 2.2 7 6.2 0 .5-.1.8-.1 1.2h-10.4c.1 2 1 2.8 3.5 2.8 2.3 0 3.1-.6 3.1-1.7v-.3h3.8v.3c0 2.8-2.7 4.7-6.8 4.7-4.3 0-7.2-2.1-7.2-6.6zm3.6-1.3h6.8c-.1-1.7-1.1-2.4-3.4-2.4s-3.3.8-3.4 2.4z"></path>
+      <path id="SvgjsPath2568" d="M317.2 515.7V503h3.5v3.4h.2c.4-2.1 1.7-3.6 4.3-3.6 2.9 0 4 2 4 4.5v2.1h-3.8V508c0-1.4-.6-2-2.1-2-1.7 0-2.3.8-2.3 2.4v7.4h-3.8z"></path>
+      <path id="SvgjsPath2567" d="m330.1 511.4 3.8-.1v.2c0 1.1.7 1.5 2.9 1.5 2 0 2.5-.3 2.5-1.1 0-.7-.4-.9-1.9-1.1l-3.6-.4c-2.5-.3-4-1.4-4-3.6s1.9-4 6.3-4c4.2 0 6.5 1.6 6.5 4.7v.1h-3.8v-.2c0-1-.5-1.6-2.9-1.6-1.9 0-2.4.3-2.4 1.1 0 .7.4.9 2 1.1l2.7.3c3.4.4 4.7 1.5 4.7 3.6 0 2.4-2.4 4-6.3 4-4.1.1-6.5-1.6-6.5-4.5z"></path>
+      <path id="SvgjsPath2566" d="M343.9 509.4c0-4.1 2.9-6.6 7.1-6.6 4.2 0 7 2.2 7 6.2 0 .5-.1.8-.1 1.2h-10.4c.1 2 1 2.8 3.5 2.8 2.3 0 3.1-.6 3.1-1.7v-.3h3.8v.3c0 2.8-2.7 4.7-6.8 4.7-4.3 0-7.2-2.1-7.2-6.6zm3.6-1.3h6.8c-.1-1.7-1.1-2.4-3.4-2.4s-3.2.8-3.4 2.4z"></path>
+    </g>
+    <g id="SvgjsG2565">
+      <path id="SvgjsPath2564" d="M336 528.3c-1.1 0-2 .9-2 2s.8 2 2 2c1.1 0 2-.8 2-2-.1-1.1-.9-2-2-2m7.3-5.2c-3 0-5.2 1.9-5.2 4.6 0 2.7 2.1 4.6 5.2 4.6s5.2-1.9 5.2-4.6c0-2.8-2.1-4.6-5.2-4.6m0 8.9c-1 0-1.3-.9-1.3-4.3 0-3.6.3-4.3 1.3-4.3s1.3.8 1.3 4.3c0 3.4-.3 4.3-1.3 4.3m12-9.1c-1.1 0-2.3.9-2.5 2.2l-3.5-2.2v9.3h3.6v-6.6c0-1.4 1.6-1.4 2.4-1.4zm6.2 6.8h-5.3l1.5-1c.6.2.9.2 1.7.2 2.9 0 4.3-1 4.3-2.9 0-1.1-.6-2-1.7-2.6h2.2v-1.3l-2.6 1.2c-.6-.2-1.3-.3-2.1-.3-2.9 0-4.2 1.2-4.2 2.9 0 1.2.7 2.1 1.8 2.6l-1.9 1.2.9 3.1h8.4c0-.1 0-.1.1-.2v-1.1c-.4-1.1-1.3-1.8-3.1-1.8m-2.1-6.5c1 0 1.2 1.1 1.2 2.8 0 1.5-.2 2.7-1.2 2.7s-1.2-1.2-1.2-2.7c0-1.7.2-2.8 1.2-2.8m-45.2-.2c-.9 0-2.3.2-3.5.6v1.3c.8-.8 2-1.7 3-1.7s1.1.9 1.1 1.6v1.9c-3.6 0-5.2 1.2-5.2 3 0 1.6 1.1 2.3 2.6 2.3 1.6 0 2.6-1 2.7-2l3.4 2.1v-5.9c.2-2.5-1.2-3.2-4.1-3.2m.7 6.9c0 .4-.3.9-.9.9-.7 0-1-.6-1-1.6s.5-2 1.9-2.3zm10-7.2h-1.4v-2.4l-3.5 2.4h-1.3v.7h1.3v8.8h3.5v-8.8h1.4zm-19.3-3.3v5.3c-.3-1.1-1.3-1.8-2.6-1.8-2.3 0-3.8 1.9-3.8 4.7 0 2.7 1.3 4.5 3.7 4.5 1.6 0 2.5-.8 2.7-2l3.6 2.1v-10.6zm0 10.1c0 .8-.4 1.4-1.1 1.4-1.3 0-1.4-1.5-1.4-3.4 0-2.1.2-3.3 1.4-3.3.7 0 1.1.6 1.1 1.4zm23.2-6.5c-.9 0-2.3.2-3.5.6v1.3c.8-.8 2-1.7 3-1.7s1.1.9 1.1 1.6v1.9c-3.6 0-5.2 1.2-5.2 3 0 1.6 1.1 2.3 2.6 2.3 1.6 0 2.6-1 2.7-2l3.4 2.1v-5.9c.2-2.5-1.3-3.2-4.1-3.2m.7 6.9c0 .4-.3.9-.9.9-.7 0-1-.6-1-1.6s.5-2 1.9-2.3z" style="fill-rule:evenodd;clip-rule:evenodd"></path>
+      <g id="SvgjsG2563">
+        <path id="SvgjsPath2562" d="M240.4 532.8v-6.3h.4v1.3h.1c.2-.8 1-1.4 2.1-1.4 1.5 0 2.3 1 2.3 2.4s-.8 2.4-2.3 2.4c-1 0-1.8-.6-2-1.5v3h-.6zm2.4-1.9c1.2 0 2-.5 2-2s-.8-2-1.9-2c-1.2 0-2 .8-2 2v.1c-.1 1.2.7 1.9 1.9 1.9z"></path>
+        <path id="SvgjsPath2561" d="M245.8 528.9c0-1.4 1-2.4 2.5-2.4s2.5 1 2.5 2.4-1 2.4-2.5 2.4-2.5-1-2.5-2.4zm4.6 0c0-1.2-.7-2-2.1-2-1.4 0-2.1.8-2.1 2s.7 2 2.1 2c1.4 0 2.1-.8 2.1-2z"></path>
+        <path id="SvgjsPath2560" d="m252.9 531.2-1.6-4.6h.4l1.1 3.4.2.8.3-.9 1.4-3.4h.5l1.4 3.4.3.8.2-.8 1.1-3.4h.4l-1.6 4.6h-.5l-1.4-3.3-.4-.9-.4.9-1.4 3.3z"></path>
+        <path id="SvgjsPath2559" d="M259.4 528.9c0-1.4.9-2.4 2.4-2.4 1.3 0 2.3.8 2.3 2.1v.4h-4.2c0 1.2.6 1.9 2 1.9 1.2 0 1.8-.5 1.8-1.2v-.1h.4v.1c0 1-1 1.6-2.2 1.6-1.5 0-2.5-1-2.5-2.4zm.4-.2h3.9v-.2c0-1.1-.7-1.7-1.9-1.7-1.3 0-1.9.8-2 1.9z"></path>
+        <path id="SvgjsPath2558" d="M265.1 531.2v-4.6h.4v1.3c.1-.7.7-1.4 1.7-1.4 1.1 0 1.6.8 1.6 1.7v.4h-.4v-.3c0-.9-.4-1.3-1.3-1.3-1.1 0-1.5.7-1.5 1.9v2.5h-.5z"></path>
+        <path id="SvgjsPath2557" d="M269.3 528.9c0-1.4.9-2.4 2.4-2.4 1.3 0 2.3.8 2.3 2.1v.4h-4.2c0 1.2.6 1.9 2 1.9 1.2 0 1.8-.5 1.8-1.2v-.1h.4v.1c0 1-1 1.6-2.2 1.6-1.6 0-2.5-1-2.5-2.4zm.4-.2h3.9v-.2c0-1.1-.7-1.7-1.9-1.7-1.3 0-1.9.8-2 1.9z"></path>
+        <path id="SvgjsPath2556" d="M274.6 528.9c0-1.4.8-2.4 2.3-2.4 1.1 0 1.8.6 2 1.4v-3h.4v6.3h-.3v-1.4c-.2.9-1 1.5-2.1 1.5-1.5 0-2.3-1-2.3-2.4zm2.4 2c1.2 0 2-.7 2-1.9v-.1c0-1.3-.8-2-2-2-1.1 0-1.9.5-1.9 2-.1 1.5.7 2 1.9 2z"></path>
+        <path id="SvgjsPath2555" d="M284.3 531.2v-6.3h.4v3c.2-.8.9-1.4 2.1-1.4 1.5 0 2.3 1 2.3 2.4s-.8 2.4-2.3 2.4c-1 0-1.8-.6-2-1.5v1.4zm2.4-.3c1.2 0 2-.5 2-2s-.8-2-1.9-2c-1.3 0-2 .8-2 2v.1c0 1.2.7 1.9 1.9 1.9z"></path>
+        <path id="SvgjsPath2554" d="M290 532.8v-.4h.6c.5 0 .7-.2.9-.6l.3-.7-2.3-4.6h.5l1.5 3 .6 1.2.5-1.2 1.4-3h.4l-2.6 5.4c-.3.6-.7.9-1.3.9z"></path>
+      </g>
+    </g>
+  </g>
+  <g id="SvgjsG2553" style="display:inline" transform="translate(-133.1 -197.5)">
+    <g id="SvgjsG2552" style="display:inline" transform="rotate(-14.331 1280.991 -163.257) scale(.42193)">
+      <g id="SvgjsG2551" style="display:inline" transform="translate(25.622 -82.848) scale(1.14391)">
+        <g id="SvgjsG2550" style="display:inline" transform="translate(.933 .133)">
+          <path id="SvgjsPath2549" d="M240.617 366.057h3.017v74.674h-3.017z" style="display:inline;mix-blend-mode:normal;fill:#e3202c;fill-opacity:1;stroke:none;stroke-opacity:1"></path>
+          <circle id="SvgjsCircle2548" cx="242.099" cy="443.747" r="4.893" style="mix-blend-mode:normal;fill:#e3202c;fill-opacity:1;stroke:none;stroke-width:1.62162;stroke-opacity:1"></circle>
+        </g>
+        <g id="SvgjsG2547" style="display:inline" transform="rotate(89.924 243.167 403.879)">
+          <path id="SvgjsPath2546" d="M240.617 366.057h3.017v74.674h-3.017z" style="mix-blend-mode:normal;fill:#e3202c;fill-opacity:1;stroke:none;stroke-opacity:1"></path>
+          <circle id="SvgjsCircle2545" cx="242.099" cy="443.747" r="4.893" style="mix-blend-mode:normal;fill:#e3202c;fill-opacity:1;stroke:none;stroke-width:1.62162;stroke-opacity:1"></circle>
+          <circle id="SvgjsCircle2544" cx="241.966" cy="363.609" r="4.893" style="display:inline;mix-blend-mode:normal;fill:#e3202c;fill-opacity:1;stroke:none;stroke-width:1.62162;stroke-opacity:1"></circle>
+        </g>
+        <g id="SvgjsG2543" style="display:inline" transform="rotate(45.893 243.802 404.786)">
+          <path id="SvgjsPath2542" d="M240.617 366.057h3.017v74.674h-3.017z" style="display:inline;mix-blend-mode:normal;fill:#e3202c;fill-opacity:1;stroke:none;stroke-opacity:1"></path>
+          <circle id="SvgjsCircle2541" cx="242.099" cy="443.747" r="4.893" style="mix-blend-mode:normal;fill:#e3202c;fill-opacity:1;stroke:none;stroke-width:1.62162;stroke-opacity:1"></circle>
+          <circle id="SvgjsCircle2540" cx="241.966" cy="363.609" r="4.893" style="mix-blend-mode:normal;fill:#e3202c;fill-opacity:1;stroke:none;stroke-width:1.62162;stroke-opacity:1"></circle>
+        </g>
+        <g id="SvgjsG2539" style="display:inline" transform="rotate(131.563 242.91 403.511)">
+          <path id="SvgjsPath2538" d="M240.617 366.057h3.017v74.674h-3.017z" style="mix-blend-mode:normal;fill:#e3202c;fill-opacity:1;stroke:none;stroke-opacity:1"></path>
+          <circle id="SvgjsCircle2537" cx="242.099" cy="443.747" r="4.893" style="mix-blend-mode:normal;fill:#e3202c;fill-opacity:1;stroke:none;stroke-width:1.62162;stroke-opacity:1"></circle>
+          <circle id="SvgjsCircle2536" cx="241.966" cy="363.609" r="4.893" style="display:inline;mix-blend-mode:normal;fill:#e3202c;fill-opacity:1;stroke:none;stroke-width:1.62162;stroke-opacity:1"></circle>
+        </g>
+        <circle id="SvgjsCircle2535" cx="305.486" cy="380.835" r="27.735" style="display:inline;fill:#e3202c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-opacity:1" transform="translate(-64.137 21.068)"></circle>
+        <path id="SvgjsPath2534" d="M-390.746 300.645h107.741v7.467h-107.741z" style="display:inline;fill:#e3202c;fill-opacity:1;stroke:none;stroke-width:1.00002;stroke-opacity:1" transform="matrix(-.00685 -.99998 1 .00295 -64.137 21.068)"></path>
+      </g>
+      <g id="SvgjsG2533" style="display:inline" transform="translate(-47.745 -58.748) scale(1.14391)">
+        <circle id="SvgjsCircle2532" cx="207.667" cy="342.174" r="27.735" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-opacity:1"></circle>
+        <path id="SvgjsPath2531" d="M-131.05-394.362h107.739v7.467H-131.05z" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-opacity:1" transform="rotate(149.27)"></path>
+        <circle id="SvgjsCircle2530" cx="374.725" cy="-372.876" r="27.735" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-opacity:1" transform="rotate(85.643)"></circle>
+        <circle id="SvgjsCircle2529" cx="305.486" cy="277.496" r="27.735" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-opacity:1"></circle>
+        <path id="SvgjsPath2528" d="M-524.27-72.282h107.739v7.467H-524.27z" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-opacity:1" transform="rotate(-147.841)"></path>
+      </g>
+    </g>
+    <g id="SvgjsG2527" style="display:inline">
+      <path id="SvgjsPath2526" d="M14.747-441.863h52v3.604h-52z" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(139.384)"></path>
+      <circle id="SvgjsCircle2525" cx="-487.392" cy="21.939" r="13.386" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(-129.866)"></circle>
+      <path id="SvgjsPath2524" d="M368.686 233.029h52v3.604h-52z" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(19.404)"></path>
+      <circle id="SvgjsCircle2523" cx="-6.579" cy="395.076" r="13.386" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(-44.223)"></circle>
+      <circle id="SvgjsCircle2522" cx="-440.907" cy="56.314" r="13.386" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(-129.866)"></circle>
+      <path id="SvgjsPath2521" d="M286.13-274.344h52v3.604h-52z" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(90.267)"></path>
+      <path id="SvgjsPath2520" d="M-77.014-437.908h52v3.604h-52z" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(143.35)"></path>
+      <circle id="SvgjsCircle2519" cx="324.163" cy="-186.517" r="13.386" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(82.685)"></circle>
+      <path id="SvgjsPath2518" d="M-432.716-48.932h52v3.604h-52z" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(-134.56)"></path>
+      <circle id="SvgjsCircle2517" cx="369.428" cy="-158.348" r="13.386" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(82.685)"></circle>
+      <path id="SvgjsPath2516" d="M198.366 349.625h52v3.604h-52z" style="display:inline;fill:#0d6b9e;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(-1.59)"></path>
+      <circle id="SvgjsCircle2515" cx="-436.78" cy="-10.995" r="13.386" style="display:inline;fill:#e3202c;fill-opacity:1;stroke:none;stroke-width:.482645;stroke-opacity:1" transform="rotate(-129.866)"></circle>
+    </g>
+  </g>
+  <g id="SvgjsG2514" aria-label="epichains" style="font-size:64px;font-family:&quot;Clash Display&quot;;-inkscape-font-specification:&quot;Clash Display&quot;;display:inline;fill:#e3202c" transform="translate(-133.1 -197.5)">
+    <path id="SvgjsPath2513" d="M177.475 478.664c9.472 0 16.128-4.672 16.128-11.456v-.576h-6.912v.512c0 3.776-2.752 5.952-9.408 5.952-7.36 0-10.368-3.264-10.624-9.408h27.008c.192-.96.256-1.856.256-3.008 0-9.664-6.72-15.104-16.576-15.104-10.368 0-17.152 6.656-17.152 16.576 0 10.624 6.848 16.512 17.28 16.512zm-.256-27.648c6.784 0 10.176 2.816 10.176 8.704v.128h-20.672c.384-5.696 3.456-8.832 10.496-8.832z" style="font-weight:500;-inkscape-font-specification:&quot;Clash Display Medium&quot;"></path>
+    <path id="SvgjsPath2512" d="M206.019 488.904v-19.84h.256c1.28 5.824 5.888 9.6 13.056 9.6 9.92 0 15.36-6.656 15.36-16.512 0-9.856-5.568-16.576-15.424-16.576-7.488 0-11.968 3.584-13.248 9.472h-.576v-8.832h-6.336v42.688zm0-26.24v-.576c0-6.848 3.968-10.176 11.072-10.176 6.656 0 10.688 2.56 10.688 10.24 0 7.616-3.968 10.24-10.816 10.24-6.784 0-10.944-3.2-10.944-9.728z" style="font-weight:500;-inkscape-font-specification:&quot;Clash Display Medium&quot;"></path>
+    <path id="SvgjsPath2511" d="M246.403 442.504v-7.36h-6.912v7.36zm0 35.52v-31.808h-6.912v31.808z" style="font-weight:500;-inkscape-font-specification:&quot;Clash Display Medium&quot;"></path>
+    <path id="SvgjsPath2510" d="M268.867 478.664c9.536 0 16.512-5.376 16.512-13.312v-.704h-6.848v.448c0 4.928-3.584 7.36-9.792 7.36-7.168 0-10.368-3.456-10.368-10.304 0-6.976 3.2-10.368 10.368-10.368 6.208 0 9.792 2.432 9.792 7.36v.384h6.848v-.64c0-7.936-6.976-13.312-16.512-13.312-10.496 0-17.344 6.656-17.344 16.576 0 9.792 6.848 16.512 17.344 16.512z" style="fill:#241c1c"></path>
+    <path id="SvgjsPath2509" d="M297.41 478.024V462.6c0-6.72 2.689-10.816 10.24-10.816 6.593 0 9.473 2.56 9.473 8.96v17.28h6.848V459.08c0-7.744-4.288-13.504-13.056-13.504-8.128 0-12.032 4.992-13.12 10.368h-.384v-20.8h-6.912v42.88z" style="fill:#241c1c"></path>
+    <path id="SvgjsPath2508" d="M339.523 478.664c7.232 0 12.288-3.2 13.952-8.576h.448v7.936h6.336v-19.328c0-7.616-4.544-13.12-14.656-13.12-10.112 0-16.128 5.44-16.128 12.672v.256h6.848v-.256c0-4.672 2.88-6.592 8.768-6.592 6.08 0 8.384 1.856 8.384 7.104v1.856l-14.464 1.536c-6.272.704-10.24 3.264-10.24 8.192 0 5.248 4.16 8.32 10.752 8.32zm-3.84-8.768c0-2.496 1.728-3.328 5.312-3.776l12.48-1.408c0 6.272-4.864 8.96-12.096 8.96-3.968 0-5.696-1.216-5.696-3.776z" style="fill:#241c1c"></path>
+    <path id="SvgjsPath2507" d="M373.315 442.504v-7.36h-6.912v7.36zm0 35.52v-31.808h-6.912v31.808z" style="fill:#241c1c"></path>
+    <path id="SvgjsPath2506" d="M386.627 478.024V462.28c0-6.912 3.136-10.496 10.112-10.496 6.592 0 9.28 3.008 9.28 8.96v17.28h6.912v-19.136c0-7.36-4.352-13.312-13.184-13.312-8.064 0-12.288 5.12-13.248 10.496h-.448v-9.856h-6.336v31.808z" style="fill:#241c1c"></path>
+    <path id="SvgjsPath2505" d="M434.115 478.664c8.96 0 14.848-3.52 14.848-9.472 0-5.248-3.456-7.808-11.008-8.768l-7.36-1.024c-4.8-.64-6.08-1.536-6.08-4.032 0-3.008 2.048-4.288 7.872-4.288 7.04 0 8.96 1.984 8.96 5.76v.384h6.848v-.192c0-7.552-5.888-11.456-15.616-11.456-9.792 0-14.848 3.968-14.848 9.536 0 5.312 3.648 7.872 9.664 8.64l8.704 1.152c4.544.64 6.08 1.472 6.08 4.096 0 2.816-1.856 4.096-8.064 4.096-6.656 0-9.152-1.344-9.152-5.504v-.512h-6.912v.192c0 7.36 5.824 11.392 16.064 11.392z" style="fill:#241c1c"></path>
+  </g>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>
