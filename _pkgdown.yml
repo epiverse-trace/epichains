@@ -3,6 +3,7 @@ template:
   package: epiversetheme
   bslib:
     font_weight_base : 300
+  math-rendering: mathjax
 development:
   mode: auto
 
