@@ -1,9 +1,9 @@
-#' Check if constructed random number generator for offspring exists
+#' Assert if constructed random number generator for offspring exists
 #' and has an `n` argument.
 #'
 #' @inheritParams simulate_chains
 #' @keywords internal
-.check_offspring_func_valid <- function(offspring_dist) {
+.assert_offspring_func_valid <- function(offspring_dist) {
   checkmate::assert_function(offspring_dist, args = "n")
 }
 
@@ -13,7 +13,7 @@
 #' @inheritParams simulate_chains
 #'
 #' @keywords internal
-.check_generation_time_valid <- function(generation_time) {
+.assert_generation_time_valid <- function(generation_time) {
   checkmate::assert_function(generation_time, nargs = 1)
   x <- generation_time(10)
   checkmate::assert_numeric(x, len = 10)
@@ -24,7 +24,7 @@
 #' @inheritParams simulate_chains
 #' @return NULL; called for side effects
 #' @keywords internal
-.check_sim_args <- function(
+.assert_sim_args <- function(
     n_chains,
     statistic,
     offspring_dist,
@@ -37,9 +37,9 @@
     positive = TRUE
   )
   # check that offspring is a function with argument "n"
-  .check_offspring_func_valid(offspring_dist)
+  .assert_offspring_func_valid(offspring_dist)
   # check that arguments related to the statistic are valid
-  .check_statistic_args(
+  .assert_statistic_args(
     statistic,
     stat_threshold
   )
@@ -63,7 +63,7 @@
 #' package.
 #' @return NULL; called for side effects
 #' @keywords internal
-.check_statistic_args <- function(statistic,
+.assert_statistic_args <- function(statistic,
                                   stat_threshold) {
   checkmate::assert_choice(
     statistic,
@@ -94,13 +94,13 @@
 #' @inheritParams simulate_chains
 #' @return `NULL`; called for side effects
 #' @keywords internal
-.check_time_args <- function(tf_specified,
+.assert_time_args <- function(tf_specified,
                              tf,
                              generation_time,
                              t0) {
   # if tf is specified, generation_time must be specified too
   if (!is.null(generation_time)) {
-    .check_generation_time_valid(generation_time)
+    .assert_generation_time_valid(generation_time)
   } else if (tf_specified) {
     stop("If `tf` is specified, `generation_time` must be specified too.")
   }

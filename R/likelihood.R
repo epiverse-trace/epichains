@@ -123,11 +123,11 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     )
   )
   # check that arguments related to the statistic are valid
-  .check_statistic_args(
+  .assert_statistic_args(
     statistic,
     stat_threshold
   )
-  .check_offspring_func_valid(offspring_dist)
+  .assert_offspring_func_valid(offspring_dist)
   checkmate::assert_number(
     obs_prob,
     lower = 0, upper = 1, finite = TRUE, na.ok = FALSE

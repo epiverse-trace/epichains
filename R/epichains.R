@@ -71,7 +71,7 @@
   )
   checkmate::assert_string(statistic)
   statistic <- match.arg(statistic, choices = c("size", "length"))
-  .check_offspring_func_valid(offspring_dist)
+  .assert_offspring_func_valid(offspring_dist)
   checkmate::assert_logical(track_pop, len = 1L)
   checkmate::assert(
     is.infinite(stat_threshold),
@@ -160,7 +160,7 @@
   )
   checkmate::assert_string(statistic)
   statistic <- match.arg(statistic, c("size", "length"))
-  .check_offspring_func_valid(offspring_dist)
+  .assert_offspring_func_valid(offspring_dist)
   checkmate::assert(
     is.infinite(stat_threshold),
     checkmate::check_integerish(stat_threshold, lower = 1L)
