@@ -184,17 +184,17 @@ simulate_chains <- function(n_chains,
   # Initialisations
   stat_track <- rep(1, n_chains) # track statistic (length or size)
   n_offspring <- rep(1, n_chains) # current number of offspring
-  chains_active <- seq_len(n_chains) # track ongoing simulations
+  chains_active <- as.integer(seq_len(n_chains)) # track ongoing simulations
   new_infectors_ids <- rep(1, n_chains) # track infectors
 
   # initialise list of data frame to hold the transmission trees
   generation <- 1L
   sim_df <- list(
     data.frame(
-      chain = seq_len(n_chains),
+      chain = as.integer(seq_len(n_chains)),
       infectee = 1L,
       infector = NA_integer_, # infectors are unknown in the first generation
-      generation = generation
+      generation = as.integer(generation)
     )
   )
   # Initialise susceptible population
@@ -260,10 +260,10 @@ simulate_chains <- function(n_chains,
       # store new simulation results
       sim_df[[generation]] <-
         data.frame(
-          chain = active_chain_ids,
-          infectee = sim_offspring_ids,
-          infector = infector_ids,
-          generation = generation
+          chain = as.integer(active_chain_ids),
+          infectee = as.integer(sim_offspring_ids),
+          infector = as.integer(infector_ids),
+          generation = as.integer(generation)
         )
 
       # if a generation time model/function was specified, use it
@@ -416,7 +416,7 @@ simulate_chain_stats <- function(n_chains,
   # Initialisations
   stat_track <- rep(1, n_chains) ## track statistic
   n_offspring <- rep(1, n_chains) ## current number of offspring
-  chains_active <- seq_len(n_chains) # track trees being simulated
+  chains_active <- as.integer(seq_len(n_chains)) # track trees being simulated
 
   # Initialise susceptible population
   susc_pop <- .init_susc_pop(pop, percent_immune, n_chains)

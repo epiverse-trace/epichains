@@ -404,18 +404,18 @@ summary.epichains <- function(object, ...) {
   n_chains <- attr(object, "n_chains")
 
   # Initialize summary statistics
-  chain_summaries <- vector(length = n_chains, mode = "integer")
+  chain_summaries <- integer(length = n_chains)
   # Calculate the summary statistic based on the specified statistic type
   if (statistic == "size") {
     # size is the number of offspring produced by a chain before it goes
     # extinct or is terminated.
-    chain_summaries <- as.numeric(table(object$chain))
+    chain_summaries <- as.integer(table(object$chain))
   } else {
     # length is the number of generations reached by a chain before
     # it goes extinct or is terminated.
     for (i in seq_len(n_chains)) {
       chain_generations <- object[object$chain == i, "generation"]
-      chain_summaries[i] <- max(chain_generations)
+      chain_summaries[i] <- as.integer(max(chain_generations))
     }
   }
   # Get other required attributes from passed object
