@@ -108,18 +108,16 @@ test_that("simulate_chains has expected shape", {
   # check column types of sim_chains_small_susc as it has the complete set of
   # columns
   expect_identical(
-    apply(
+    lapply(
       sim_chains_small_susc,
-      MARGIN = 2,
-      class,
-      simplify = FALSE
+      typeof
     ),
     list(
-      chain = "numeric",
-      infector = "numeric",
-      infectee = "numeric",
-      generation = "numeric",
-      time = "numeric"
+      chain = "double",
+      infector = "double",
+      infectee = "double",
+      generation = "double",
+      time = "double"
     )
   )
   # tf = 5, so all generation times should be less than 5
