@@ -522,7 +522,7 @@ summary.epichains_summary <- function(object, ...) {
 #' @keywords internal
 .validate_epichains <- function(x) {
   if (!.is_epichains(x)) {
-    stop("Object must have an `<epichains>` class")
+    stop("Object must have an `<epichains>` class", call. = FALSE)
   }
 
   # check for class invariants
@@ -552,7 +552,7 @@ summary.epichains_summary <- function(object, ...) {
 #' @keywords internal
 .validate_epichains_summary <- function(x) {
   if (!.is_epichains_summary(x)) {
-    stop("Object must have an `<epichains_summary>` class")
+    stop("Object must have an `<epichains_summary>` class", call. = FALSE)
   }
 
   invisible(x)
@@ -658,7 +658,8 @@ aggregate.epichains <- function(x,
       stop(
         "Object must have a time column. ",
         "To simulate time, specify `generation_time` ",
-        "in the `simulate_chains()` function call."
+        "in the `simulate_chains()` function call.",
+        call. = FALSE
       )
     }
     # Count the number of cases per time
