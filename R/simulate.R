@@ -182,10 +182,10 @@ simulate_chains <- function(n_chains,
   pars <- list(...)
 
   # Initialisations
-  stat_track <- rep(1, n_chains) # track statistic (length or size)
-  n_offspring <- rep(1, n_chains) # current number of offspring
+  stat_track <- rep(1L, n_chains) # track statistic (length or size)
+  n_offspring <- rep(1L, n_chains) # current number of offspring
   chains_active <- seq_len(n_chains) # track ongoing simulations
-  new_infectors_ids <- rep(1, n_chains) # track infectors
+  new_infectors_ids <- rep(1L, n_chains) # track infectors
 
   # initialise list of data frame to hold the transmission trees
   generation <- 1L
@@ -231,7 +231,7 @@ simulate_chains <- function(n_chains,
     active_chain_ids <- rep(chains_active, n_offspring[chains_active])
 
     # initialise place holder for the number of offspring
-    n_offspring <- rep(0, n_chains)
+    n_offspring <- rep(0L, n_chains)
     # find the number of new offspring for each active simulation
     n_offspring[chains_active] <- tapply(next_gen, active_chain_ids, sum)
     # update the size/length statistic
@@ -414,8 +414,8 @@ simulate_chain_stats <- function(n_chains,
   pars <- list(...)
 
   # Initialisations
-  stat_track <- rep(1, n_chains) ## track statistic
-  n_offspring <- rep(1, n_chains) ## current number of offspring
+  stat_track <- rep(1L, n_chains) ## track statistic
+  n_offspring <- rep(1L, n_chains) ## current number of offspring
   chains_active <- seq_len(n_chains) # track trees being simulated
 
   # Initialise susceptible population
@@ -448,7 +448,7 @@ simulate_chain_stats <- function(n_chains,
     active_chain_ids <- rep(chains_active, n_offspring[chains_active])
 
     ## initialise number of offspring
-    n_offspring <- rep(0, n_chains)
+    n_offspring <- rep(0L, n_chains)
     ## assign offspring sum to their corresponding chains
     n_offspring[chains_active] <- tapply(next_gen, active_chain_ids, sum)
 
