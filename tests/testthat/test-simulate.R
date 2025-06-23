@@ -113,10 +113,10 @@ test_that("simulate_chains has expected shape", {
       typeof
     ),
     list(
-      chain = "double",
-      infector = "double",
-      infectee = "double",
-      generation = "double",
+      chain = "integer",
+      infector = "integer",
+      infectee = "integer",
+      generation = "integer",
       time = "double"
     )
   )
