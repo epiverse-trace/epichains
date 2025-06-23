@@ -4,14 +4,14 @@ test_that("We can calculate probabilities and sample", {
   expect_identical(dborel(1, 0.5, log = TRUE), -0.5)
   expect_length(rborel(2, 0.9), 2)
   expect_length(rgborel(2, 0.5, 0.9), 2)
-  expect_true(
-    class(rborel(2, 0.9)) == "numeric"
+  expect_type(
+    rborel(2, 0.9), "double"
   )
-  expect_true(
-    class(rgborel(2, 0.5, 0.9)) == "numeric"
+  expect_type(
+    rgborel(2, 0.5, 0.9), "double"
   )
-  expect_true(
-    class(dborel(1, 0.5)) == "numeric"
+  expect_type(
+    dborel(1, 0.5), "double"
   )
   expect_identical(
     rgborel(n = 5, size = 0.3, mu = 1, censor_at = 5),
