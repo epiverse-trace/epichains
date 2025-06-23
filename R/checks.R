@@ -103,7 +103,7 @@
     .assert_generation_time_valid(generation_time)
   } else if (tf_specified) {
     stop("If `tf` is specified, `generation_time` must be specified too.",
-      .call = FALSE)
+      call. = FALSE)
   }
   checkmate::assert_number(
     tf,
