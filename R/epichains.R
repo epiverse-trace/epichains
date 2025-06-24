@@ -411,7 +411,7 @@ summary.epichains <- function(object, ...) {
   if (statistic == "size") {
     # size is the number of offspring produced by a chain before it goes
     # extinct or is terminated.
-    chain_summaries <- as.numeric(table(object$chain))
+    chain_summaries <- table(object$chain)
   } else {
     # length is the number of generations reached by a chain before
     # it goes extinct or is terminated.
