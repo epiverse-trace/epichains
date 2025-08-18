@@ -344,7 +344,6 @@ citation("epichains")
 #>   Azam J, Funk S, Finger F (2025). _epichains: Simulating and Analysing
 #>   Transmission Chain Statistics Using Branching Process Models_. R
 #>   package version 0.1.1.9000,
-#>   https://epiverse-trace.github.io/epichains/,
 #>   <https://github.com/epiverse-trace/epichains>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -354,8 +353,7 @@ citation("epichains")
 #> Branching Process Models},
 #>     author = {James M. Azam and Sebastian Funk and Flavio Finger},
 #>     year = {2025},
-#>     note = {R package version 0.1.1.9000, 
-#> https://epiverse-trace.github.io/epichains/},
+#>     note = {R package version 0.1.1.9000},
 #>     url = {https://github.com/epiverse-trace/epichains},
 #>   }
 ```
