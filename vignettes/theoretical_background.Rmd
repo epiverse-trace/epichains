@@ -144,3 +144,5 @@ $$
 p(S|\theta) = P(S|\theta) - P(S - 1|\theta)
 $$
 and a an equivalent relationship is used for $L$.
+
+## References
