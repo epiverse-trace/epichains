@@ -159,7 +159,7 @@ simulate_chains <- function(n_chains,
                             t0 = 0,
                             tf = Inf) {
   # Check offspring and population-related arguments
-  .check_sim_args(
+  .assert_sim_args(
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
@@ -168,11 +168,11 @@ simulate_chains <- function(n_chains,
     percent_immune = percent_immune
   )
   # Check time-related arguments
-  # Since tf is passed to .check_time_args, we need to check if it is specified
+  # Since tf is passed to .assert_time_args, we need to check if it is specified
   # in this function environment. If tf is specified, we expect generation_time
   # to be specified too.
   tf_specified <- !missing(tf)
-  .check_time_args(
+  .assert_time_args(
     generation_time = generation_time,
     t0 = t0,
     tf_specified = tf_specified,
@@ -402,7 +402,7 @@ simulate_chain_stats <- function(n_chains,
                                  pop = Inf,
                                  percent_immune = 0) {
   # Check offspring and population-related arguments
-  .check_sim_args(
+  .assert_sim_args(
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,

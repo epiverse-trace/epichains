@@ -29,7 +29,8 @@
   attr(obj, "offspring_dist") <- offspring_dist
   attr(obj, "stat_threshold") <- stat_threshold
   attr(obj, "track_pop") <- track_pop
-  return(obj)
+
+  obj
 }
 
 #' Create an `<epichains>` object
@@ -71,7 +72,7 @@
   )
   checkmate::assert_string(statistic)
   statistic <- match.arg(statistic, choices = c("size", "length"))
-  .check_offspring_func_valid(offspring_dist)
+  .assert_offspring_func_valid(offspring_dist)
   checkmate::assert_logical(track_pop, len = 1L)
   checkmate::assert(
     is.infinite(stat_threshold),
@@ -90,7 +91,7 @@
   # Validate the created object
   .validate_epichains(epichains)
 
-  return(epichains)
+  epichains
 }
 
 #' Construct a `<epichains_summary>` object
@@ -123,7 +124,8 @@
   attr(obj, "statistic") <- statistic
   attr(obj, "offspring_dist") <- offspring_dist
   attr(obj, "stat_threshold") <- stat_threshold
-  return(obj)
+
+  obj
 }
 
 #' Create an `<epichains_summary>` object
@@ -160,7 +162,7 @@
   )
   checkmate::assert_string(statistic)
   statistic <- match.arg(statistic, c("size", "length"))
-  .check_offspring_func_valid(offspring_dist)
+  .assert_offspring_func_valid(offspring_dist)
   checkmate::assert(
     is.infinite(stat_threshold),
     checkmate::check_integerish(stat_threshold, lower = 1L)
@@ -178,7 +180,7 @@
   # Validate the created object
   .validate_epichains_summary(epichains_summary)
 
-  return(epichains_summary)
+  epichains_summary
 }
 
 #' Print an `<epichains>` object
@@ -433,7 +435,8 @@ summary.epichains <- function(object, ...) {
     offspring_dist = offspring_dist,
     stat_threshold = stat_threshold
   )
-  return(chain_summaries)
+
+  chain_summaries
 }
 
 #' Summary method for `<epichains_summary>` class
@@ -483,7 +486,7 @@ summary.epichains_summary <- function(object, ...) {
     min_stat = min_stat
   )
 
-  return(out)
+  out
 }
 
 #' Test if x is an `epichains` object
@@ -519,7 +522,7 @@ summary.epichains_summary <- function(object, ...) {
 #' @keywords internal
 .validate_epichains <- function(x) {
   if (!.is_epichains(x)) {
-    stop("Object must have an `<epichains>` class")
+    stop("Object must have an `<epichains>` class", call. = FALSE)
   }
 
   # check for class invariants
@@ -549,7 +552,7 @@ summary.epichains_summary <- function(object, ...) {
 #' @keywords internal
 .validate_epichains_summary <- function(x) {
   if (!.is_epichains_summary(x)) {
-    stop("Object must have an `<epichains_summary>` class")
+    stop("Object must have an `<epichains_summary>` class", call. = FALSE)
   }
 
   invisible(x)
@@ -583,9 +586,8 @@ summary.epichains_summary <- function(object, ...) {
 head.epichains <- function(x, ...) {
   # print head of the simulation output from the first known infector
   x <- x[!is.na(x$infector), ]
-  return(
-    utils::head(as.data.frame(x), ...)
-  )
+
+  utils::head(as.data.frame(x), ...)
 }
 
 #' @rdname head.epichains
@@ -602,9 +604,7 @@ head.epichains <- function(x, ...) {
 #' )
 #' tail(chains_pois_offspring)
 tail.epichains <- function(x, ...) {
-  return(
-    utils::tail(as.data.frame(x), ...)
-  )
+  utils::tail(as.data.frame(x), ...)
 }
 
 #' Aggregate cases in `<epichains>` objects by "generation" or "time", if
@@ -658,7 +658,8 @@ aggregate.epichains <- function(x,
       stop(
         "Object must have a time column. ",
         "To simulate time, specify `generation_time` ",
-        "in the `simulate_chains()` function call."
+        "in the `simulate_chains()` function call.",
+        call. = FALSE
       )
     }
     # Count the number of cases per time
@@ -676,5 +677,5 @@ aggregate.epichains <- function(x,
     )
   }
 
-  return(out)
+  out
 }
