@@ -10,6 +10,7 @@
 ## Documentation
 
 - The README now has badges for CRAN monthly and total downloads as well as the package's Zenodo DOI.
+- The theory vignette now has a references section. By @Degoot-AM in #316.
 
 # epichains 0.1.1
 
