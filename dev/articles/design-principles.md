@@ -1,0 +1,204 @@
+# Design Principles for {epichains}
+
+This vignette outlines the design decisions that have been taken during
+the development of the
+[epichains](https://github.com/epiverse-trace/epichains) R package, and
+provides some of the reasoning, and possible pros and cons of each
+decision.
+
+The goal here is to make it easy to acquaint oneself with the code base
+in the absence of the current maintainer. This will ease future
+contributions and maintenance of the package.
+
+## Scope
+
+{epichains} aims to facilitate:
+
+- Simulation of transmission chains using branching processes methods,
+- Handling of transmission chains using objected-orientated design, and
+- Estimation of the likelihood of observing transmission chain summaries
+  (sizes or lengths). This can be achieved in two ways:
+  - Analytical/closed-form likelihoods that take the form
+    `<distribution>_<chain_statistic_type>_ll>`, for example,
+    `gborel_size_ll()` and `pois_length_ll()`.
+  - Numerical likelihood simulation using `offspring_ll()`.
+
+Additionally, the package provides mixture probability distributions for
+generating offspring distributions, for example,
+[`rborel()`](https://epiverse-trace.github.io/epichains/dev/reference/rborel.md).
+
+## Design decisions
+
+### Simulation functions
+
+Simulation of branching processes are achieved through
+[`simulate_chains()`](https://epiverse-trace.github.io/epichains/dev/reference/simulate_chains.md)
+and
+[`simulate_chain_stats()`](https://epiverse-trace.github.io/epichains/dev/reference/simulate_chain_stats.md).
+For details of the underlying methods, see the [theory
+vignette](https://epiverse-trace.github.io/epichains/articles/theoretical_background.html).
+
+The simulations are stochastic, meaning that one set of inputs can
+produce varied results. The models here can also be use to explore
+scenario analyses by varying the inputs. Often, in cases where there is
+need for more than one run of the model and/or with more than one set of
+parameter values, the inputs and outputs are stored in separate data
+structures. However, this approach can be limiting when performing
+scenario analyses, as the user has to manually manipulate the two
+objects with reshaping and joining operations. This has the potential to
+lead to errors and loss of information. Hence,
+[`simulate_chains()`](https://epiverse-trace.github.io/epichains/dev/reference/simulate_chains.md)
+and
+[`simulate_chain_stats()`](https://epiverse-trace.github.io/epichains/dev/reference/simulate_chain_stats.md)
+return objects of the dedicated classes `<epichains>` and
+`<epichains_summary>` respectively that store the input parameters and
+the output of the simulation in a single object.
+
+The `<epichains>` class extends the `<data.frame>`, using columns to
+store information about the simulated transmission chains and the
+parameter values as attributes. `<data.frame>` was chosen because its
+tabular structure allows us to store information in rows and columns,
+and is a widely used data structure in R. Similarly, the
+`<epichains_summary>` class is a superclass (an extension) of R’s
+`<numeric>` class and stores the parameter values as attributes.
+
+The `<epichains>` object contains information about the whole outbreak,
+but key summaries are not easily deduced from a quick glance of the
+object. Hence, the class has a dedicated `format()/print()` method to
+print the simulated transmission chains in a manner similar to a
+`<dataframe>`, but accompanied by extra summary information including
+the number of chains simulated, number of generations reached, and the
+number of infectors created. These summaries are useful for quickly
+assessing the output of the simulation.
+
+Importantly, the `<epichains>` class has a
+[`summary()`](https://rdrr.io/r/base/summary.html) method that returns
+an `<epichains_summary>` object. This is a design decision that was
+taken to allow for easy coercion between an `<epichains>` object
+obtained from
+[`simulate_chains()`](https://epiverse-trace.github.io/epichains/dev/reference/simulate_chains.md)
+and summaries of the `<epichains>` object otherwise attainable by a
+separate run of
+[`simulate_chain_stats()`](https://epiverse-trace.github.io/epichains/dev/reference/simulate_chain_stats.md)
+with the same parameter values passed to
+[`simulate_chains()`](https://epiverse-trace.github.io/epichains/dev/reference/simulate_chains.md).
+
+Lastly, `<epichains>` objects have an
+[`aggregate()`](https://rdrr.io/r/stats/aggregate.html) method that
+aggregates the simulated outbreak into cases by “generation” or “time”.
+This is syntactic sugar for the
+[`dplyr::group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
+and
+[`dplyr::summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)
+style of aggregation with the added benefit of not taking on `dplyr` as
+a dependency to achieve the goal.
+
+In summary, an `<epichains>` object has the following structure:
+
+- Columns:
+  - `chain` (`<integer>`)
+  - `infector` (`<integer>`)
+  - `infectee` (`<integer>`)
+  - `generation` (`<integer>`), and optionally,
+  - `time` (`<numeric>`), if `generation_time` is specified
+- Attributes (See definitions in
+  [simulate_chains](https://epiverse-trace.github.io/epichains/reference/simulate_chains.html)):
+  - `n_chains`,
+  - `statistic`,
+  - `stat_threshold`,
+  - `offspring_dist`, and
+  - `track_pop` (if `pop` is finite, i.e., if specified).
+
+### likelihood estimation
+
+Likelihoods are estimated using the
+[`likelihood()`](https://epiverse-trace.github.io/epichains/dev/reference/likelihood.md)
+function. The function is designed to be flexible in two inputs:
+
+- data can be supplied as a vector of chain summaries, a `<epichains>`
+  object, or a `<epichains_summary>` object, and
+- the offspring distribution can be supplied as a function, allowing the
+  user to use a custom offspring distributions.
+
+[`likelihood()`](https://epiverse-trace.github.io/epichains/dev/reference/likelihood.md)
+uses either analytical or numerical methods to estimate the likelihood
+of observing the input chain summaries. The analytical methods are
+closed-form likelihoods that take the form
+`.<offspring_dist>_<statistic>_ll()`, for example,
+[`.gborel_size_ll()`](https://epiverse-trace.github.io/epichains/dev/reference/dot-gborel_size_ll.md)
+and
+[`.pois_length_ll()`](https://epiverse-trace.github.io/epichains/dev/reference/dot-pois_length_ll.md)
+and are shipped in this package. If the user supplies an offspring
+distribution and a statistic for which a solution exists, internally, it
+is used. If not, simulations are used to estimate the likelihood. The
+numerical likelihood simulation is achieved using
+[`.offspring_ll()`](https://epiverse-trace.github.io/epichains/dev/reference/dot-offspring_ll.md),
+an internal wrapper around
+[`simulate_chain_stats()`](https://epiverse-trace.github.io/epichains/dev/reference/simulate_chain_stats.md).
+
+The output type of
+[`likelihood()`](https://epiverse-trace.github.io/epichains/dev/reference/likelihood.md)
+depends on the combination of the arguments `individual`, `obs_prob`,
+and `nsim_obs` as summarised in the table below:
+
+| `individual` | `obs_prob`                            | Output type | Output length | Element length |
+|--------------|---------------------------------------|-------------|---------------|----------------|
+| `FALSE`      | 1                                     | `<numeric>` | 1             | NA             |
+| `FALSE`      | `obs_prob` \>= 0 and `obs_prob` \<= 1 | `<numeric>` | `nsim_obs`    | NA             |
+| `TRUE`       | 1                                     | `<list>`    | 1             | input data     |
+| `TRUE`       | `obs_prob` \>= 0 and `obs_prob` \<= 1 | `<list>`    | `nsim_obs`    | input data     |
+
+## Naming and documentation style
+
+The package uses the following naming conventions:
+
+- Functions and arguments are named using snake_case, example,
+  [`simulate_chains()`](https://epiverse-trace.github.io/epichains/dev/reference/simulate_chains.md).
+
+- Internal functions are prefixed with a period, for example,
+  [`.offspring_ll()`](https://epiverse-trace.github.io/epichains/dev/reference/dot-offspring_ll.md).
+  This is only a visual cue and does not have any technical
+  implications.
+
+- In the documentation:
+
+- Classes and objects are enclosed in angle brackets, for example,
+  `<epichains>`.
+
+- Packages are enclosed in curly braces, for example,
+  [epichains](https://github.com/epiverse-trace/epichains).
+
+- All function arguments are defined in sentence case and punctuated
+  (especially with full stops).
+
+- Function titles are in imperative form.
+
+- Functions Are referred to with `function_name()`
+
+## Dependencies
+
+- Input validation:
+  - [checkmate](https://github.com/mllg/checkmate/): exports many
+    `test_*()`, `check_*()` and `assert_*()` functions and is available
+    on CRAN.
+
+## Development journey
+
+{epichains} is a successor to the
+[bpmodels](https://github.com/epiforecasts/bpmodels/) package, which was
+retired after the release of {epichains} v0.1.0.
+
+{epichains} was born out of a need to refactor {bpmodels}, which led to
+a name change and subsequent changes in design that would have required
+significant disruptive changes to {bpmodels}. {epichains} is a major
+refactoring of {bpmodels} to provide a simulation function that accounts
+for susceptible depletion and population immunity without restrictions
+on the offspring distributions, better function and long form
+documentation, and an object-oriented approach to simulating and
+handling transmission chains in R.
+
+Future plans include simulation of contacts of infectors, the
+incorporation of network effects, an object-oriented approach to
+estimating chain size and length likelihoods, and interoperability with
+the [{epiparameter}](https://epiverse-trace.github.io/epiparameter/)
+package for ease of setting up various epidemiological delays.

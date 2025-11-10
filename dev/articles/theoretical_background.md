@@ -1,0 +1,195 @@
+# Theoretical background for epichains
+
+*epichains* provides methods to analyse and simulate the size and length
+of branching processes with an arbitrary offspring distribution. In this
+vignette we lay out the mathematical concepts behind the functionality
+available in the package.
+
+## Branching processes
+
+[Branching processes](https://en.wikipedia.org/wiki/Branching_process)
+are a class of models that are used to model the growth of populations.
+They assume that each member of the population produces a number of
+offspring, \\Z\\, that is a random variable with probability mass
+function \\p(Z = z \| \theta)\\, called the *offspring distribution*.
+Their use has a long history in epidemiology, where the population is
+interpreted as a pathogen, and the offspring as new hosts that it
+infects ([Farrington, Kanaan, and Gay 2003](#ref-farrington2003)). Below
+we will call these infected individuals *cases* but the methods could be
+applied in other contexts where branching processes are to be used.
+
+## Simulation
+
+To simulate from a branching process, we start with a single case and
+proceed in discrete steps or generations, drawing from the offspring
+distribution \\p(Z=z \| \theta)\\ to generate new cases from each case.
+
+Given an infector \\i\\ and infectee \\j\\, we can additionally assign
+them a distribution of times \\T\\ that approximates when the infection
+event occurred. If we define \\T\\ as a random variable with
+distribution \\f(T = t; \theta)\\ we can assign each case \\j\\ a time
+\\t\_{j}\\ which, if case \\j\\ has been affected by case \\i\\ is given
+by \\f(t\_{j} - t\_{i} \| \theta)\\. If we identify the timing of cases
+by the time of their symptom onset this is the [serial
+interval](https://en.wikipedia.org/wiki/Serial_interval), but depending
+on case definitions this could be another interval.
+
+### Summary statistics
+
+Branching process simulations end when they have gone extinct, that is,
+no more offspring are being produced, or because of some stopping
+criterion. To summarise the simulations, we either study the *size* or
+*length* of the resulting *chain* of cases. The size \\S\\ of a chain is
+the number of cases that have occurred over the course of the simulation
+including the initial case so that \\S \geq 1\\. The length \\L\\ of a
+chain is the number of generations that have been simulated including
+the initial case so that \\L \geq 1\\.
+
+## Inference
+
+By characterising a chains of cases by their size of length we can
+conduct inference to learn about the underlying parameters \\\theta\\
+from observation of chain sizes or chain lengths ([Blumberg and
+Lloyd-Smith 2013](#ref-blumberg2013)). In general this is only possible
+for *subcritical* branching processes, i.e. ones where the mean number
+of offspring is less than 1, as otherwise the branching process could
+grow forever. However, we can expand the theory to *supercritical*
+branching processes, i.e. ones where the mean number of offspring is
+greater than 1, by defining a cut off of chain size or length beyond
+which we treat the chain as if it had infinite size or length,
+respectively.
+
+### Size and length distributions for some offspring distributions
+
+We show the equations for the size and length distributions for some
+offspring distributions where they can be derived analytically:
+[Poisson](https://en.wikipedia.org/wiki/Poisson_distribution), [negative
+binomial](https://en.wikipedia.org/wiki/Negative_binomial_distribution),
+[geometric](https://en.wikipedia.org/wiki/Geometric_distribution), and a
+[gamma](https://en.wikipedia.org/wiki/Gamma_distribution)-[Borel](https://en.wikipedia.org/wiki/Borel_distribution)
+mixture.
+
+#### Negative binomial and special cases
+
+If the offspring distribution is a Poisson distribution, we can
+interpret its rate parameter \\\lambda\\ as the basic reproduction
+number \\R\_{0}\\ of the pathogen. In the more general case where the
+offspring definition can be *overdispersed* leading to *superspreading*
+we can use a negative binomial offspring distribution with mean \\\mu\\
+and overdispersion \\k\\ Blumberg and Lloyd-Smith
+([2013](#ref-blumberg2013)). In that case, the mean parameter \\\mu\\ is
+interpreted as the basic reproduction number \\R_0\\ of the pathogen.
+The negative binomial distribution arises from a Poisson-gamma mixture
+and thus a branching process with negative binomial distributed
+offspring can be interpreted as one with Poisson distributed offspring
+where the basic reproduction number \\R_0\\ itself varies according to a
+gamma distribution. The amount of variation in \\R_0\\ is then
+interpreted as individual-level variation in transmission representing
+overdispersion or superspreading, and the degree to which this happens
+is given by the overdispersion parameter \\k\\.
+
+##### Size distributions
+
+The probability \\p\\ of a chain of size \\S\\ given \\R_0\\ and \\k\\
+in a branching process with negative binomial offspring distribution is
+given in Eq. 9 of Blumberg and Lloyd-Smith ([2013](#ref-blumberg2013))
+
+\\ p(S\|R_0, k) = \frac{\Gamma(kS + S - 1)}{\Gamma(kS)\Gamma(S + 1)}
+\frac{\left(\frac{R_0}{k}\right)^{S - 1}}{\left( 1 + \frac{R_0}{k}
+\right)^{kS + S - 1}} \\
+
+where \\\Gamma\\ is the gamma function. In order to estimate \\S\\ from
+a given \\R_0\\ and \\k\\ we can define a likelihood function \\L(S) =
+p(S\|R_0, k)\\. The corresponding log-likelihood is
+
+\\\begin{align} \mathrm{LL}(S) = &\log\Gamma(kS + S - 1) -
+\left(\log\Gamma(kS) + \log\Gamma(S - 1) \right) \\ & + (S-1) \log
+\frac{R_0}{k} - (SR_0 + (S - 1)) \log \left(1 + \frac{R_0}{k}\right)
+\end{align}\\
+
+The log-likelihood for Poisson distributed offspring follows from this
+where \\k\\ tends to infinity (corresponding to Eq. 2.2 in Farrington,
+Kanaan, and Gay ([2003](#ref-farrington2003)))
+
+\\ \mathrm{LL}(S) = (S - 1) \log R_0 - S R_0 + (S - 2) \log S -
+\log\Gamma(S) \\
+
+In all cases the point estimate for the basic reproduction number
+\\\hat{R_0}\\ is related to the mean chain size \\\bar{S}\\ by
+
+\\ \hat{R_0} = 1 - \frac{1}{\bar{S}} \\
+
+##### Length distributions
+
+The cumulative mass function \\F(L)\\ of observing a chain of length
+\\L\\ when offspring is Poisson distributed is given by Eq. (2.5) in
+Farrington, Kanaan, and Gay ([2003](#ref-farrington2003)) (there called
+“outbreak duration”):
+
+\\ F(L) = e^{-R_0} E_L \left( e^{R_0 e^{-R_0} } \right) \\
+
+where \\E_L(x)\\ is the iterated exponential function, \\E_0(x) = 1\\,
+\\E\_{L + 1}(x) = x^{E_L(x)}\\.
+
+For geometric distributed offspring (corresponding to a negative
+Binomial with \\k=1\\) this function is given by
+
+\\ F(L) = \frac{ 1- R_0^{L + 1} } {1 - R_0^{L - 2}} \\
+
+In both cases \\f(L)\\ denotes cumulative mass functions and therefore
+the probability of observing a chain of length \\L\\ is therefore
+\\f(L) - f(L - 1)\\.
+
+#### Gamma-Borel mixture
+
+The probability distribution of outbreak sizes from a branching process
+with a Poisson offspring distribution (Eq. 2.2 in Farrington, Kanaan,
+and Gay ([2003](#ref-farrington2003))) is a special case of the
+[Borel-Tanner
+distribution](https://en.wikipedia.org/wiki/Borel_distribution#Borel%E2%80%93Tanner_distribution)
+starting with 1 individual. An alternative to the negative binomial
+offspring distribution which represents a Poisson-gamma mixture is a
+Borel-gamma mixture. This could represent situations where the variation
+is not at the *individual level* but at the *chain level*,
+i.e. transmission chains is homogeneous but there is heterogeneity
+between chains. In that case, it can be shown that the resulting
+log-likelihood of chain sizes is
+
+\\\begin{align} \mathrm{LL}(S) = &\log\Gamma(k + S - 1) -
+\left(\log\Gamma(k) + \log\Gamma(S + 1) \right) \\ & + (S-1) \log S - k
+\log \left(S + \frac{R_0}{k}\right) \end{align}\\
+
+### Numerical approximations of chain size and length distributions
+
+When analytic likelihoods are not available a numerical approximation is
+used to derive the distributions. In order to do this, the simulation
+functionality is be used to generate \\n\\ simulated chains and the
+value of the cumulative mass function \\P(S\|\theta)\\ at the observed
+\\S\\ approximated by the empirical cumulative distribution function: \\
+P(S\|\theta) \approx \sum_i \mathbf{1}(x_i \<= S) \\ where
+\\\mathbf{1}\\ is the indicator function and \\x_i\\ the i-th observed
+chain size (or length, if the interest is in \\L\\). In order to improve
+this approximation a linear approximation is applied to the values of
+the empirical distribution function (at the expense of normalisation to
+1).
+
+The (unnormalised) probability of observing \\S\\ is then given by \\
+p(S\|\theta) = P(S\|\theta) - P(S - 1\|\theta) \\ and a an equivalent
+relationship is used for \\L\\.
+
+### References
+
+Blumberg, S., and J. O. Lloyd-Smith. 2013. “Comparing Methods for
+Estimating R0 from the Size Distribution of Subcritical Transmission
+Chains.” *Epidemics* 5 (3): 131–45.
+<https://doi.org/10.1016/j.epidem.2013.05.002>.
+
+Farrington, C. P., M. N. Kanaan, and N. J. Gay. 2003. “Branching Process
+Models for Surveillance of Infectious Diseases Controlled by Mass
+Vaccination.” *Biostatistics (Oxford, England)* 4 (2): 279–95.
+<https://doi.org/10.1093/biostatistics/4.2.279>.
+
+Lloyd-Smith, J. O., S. J. Schreiber, P. E. Kopp, and W. M. Getz. 2005.
+“Superspreading and the Effect of Individual Variation on Disease
+Emergence.” *Nature* 438 (7066): 355–59.
+<https://doi.org/10.1038/nature04153>.

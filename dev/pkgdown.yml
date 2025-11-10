@@ -1,5 +1,5 @@
 pandoc: 3.1.11
-pkgdown: 2.1.3
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   branching_process_literature: branching_process_literature.html
@@ -8,7 +8,7 @@ articles:
   interventions: interventions.html
   projecting_incidence: projecting_incidence.html
   theoretical_background: theoretical_background.html
-last_built: 2025-10-28T12:33Z
+last_built: 2025-11-10T09:10Z
 urls:
   reference: https://epiverse-trace.github.io/epichains/reference
   article: https://epiverse-trace.github.io/epichains/articles
