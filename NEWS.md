@@ -12,6 +12,10 @@
 - The README now has badges for CRAN monthly and total downloads as well as the package's Zenodo DOI.
 - The theory vignette now has a references section. By @Degoot-AM in #316.
 
+## Internal changes
+
+- Checking functions previously named `check_*()` have been renamed to `assert_*()` to align with naming conventions used in the `{checkmate}` package.
+
 # epichains 0.1.1
 
 This is the first CRAN release of `{epichains}`.
