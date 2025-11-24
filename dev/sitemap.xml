@@ -15,11 +15,11 @@
 <url><loc>https://epiverse-trace.github.io/epichains/dev/reference/covid19_sa.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dborel.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-adjust_next_gen.html</loc></url>
-<url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-check_generation_time_valid.html</loc></url>
-<url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-check_offspring_func_valid.html</loc></url>
-<url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-check_sim_args.html</loc></url>
-<url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-check_statistic_args.html</loc></url>
-<url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-check_time_args.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-assert_generation_time_valid.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-assert_offspring_func_valid.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-assert_sim_args.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-assert_statistic_args.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-assert_time_args.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-complementary_logprob.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-epichains.html</loc></url>
 <url><loc>https://epiverse-trace.github.io/epichains/dev/reference/dot-epichains_summary.html</loc></url>

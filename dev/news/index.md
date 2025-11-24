@@ -23,6 +23,12 @@
   [@Degoot-AM](https://github.com/Degoot-AM) in
   [\#316](https://github.com/epiverse-trace/epichains/issues/316).
 
+### Internal changes
+
+- Checking functions previously named `check_*()` have been renamed to
+  `assert_*()` to align with naming conventions used in the
+  [checkmate](https://mllg.github.io/checkmate/) package.
+
 ## epichains 0.1.1
 
 CRAN release: 2024-10-14

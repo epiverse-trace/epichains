@@ -23,6 +23,9 @@
 - **Joshua W. Lambert**. Reviewer.
   [](https://orcid.org/0000-0001-5218-3046)
 
+- **Chris Hartgerink**. Contributor.
+  [](https://orcid.org/0000-0003-1050-6809)
+
 ## Citation
 
 Source:
