@@ -31,14 +31,14 @@
 Source:
 [`DESCRIPTION`](https://github.com/epiverse-trace/epichains/blob/main/DESCRIPTION)
 
-Azam J, Funk S, Finger F (2025). *epichains: Simulating and Analysing
+Azam J, Funk S, Finger F (2026). *epichains: Simulating and Analysing
 Transmission Chain Statistics Using Branching Process Models*. R package
 version 0.1.1.9000, <https://github.com/epiverse-trace/epichains>.
 
     @Manual{,
       title = {epichains: Simulating and Analysing Transmission Chain Statistics Using Branching Process Models},
       author = {James M. Azam and Sebastian Funk and Flavio Finger},
-      year = {2025},
+      year = {2026},
       note = {R package version 0.1.1.9000},
       url = {https://github.com/epiverse-trace/epichains},
     }
