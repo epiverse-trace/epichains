@@ -1,0 +1,318 @@
+---
+title: "Outbreak size and length distribution"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Outbreak size and length distribution}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>", 
+  fig.height = 5, 
+  fig.width = 8
+)
+```
+
+```{r setup}
+library(epichains)
+```
+
+In settings where there is no endemic transmission of an infectious disease it can be useful to understand the likelihood of different outbreak sizes. 
+
+The factors that influence outbreak size are the reproduction number of the infectious disease, the heterogeneity in transmission dynamics, population susceptibility, interventions and stochasticity in the epidemic.
+
+Using a branching process model we can seed a new epidemic with a single index case, and simulate the epidemic by defining an _offspring distribution_, which specifies the probability that each infected individual will go on to infect a further _N_ individuals (\( P(n = N) = p_N, N \in \{0, 1, 2, \ldots\} \)). The branching process simulation model can sample from the offspring distribution to generate a transmission chain, from which the outbreak size or outbreak length can be calculated. The branching process model is stochastic due to the random sampling of offspring distribution.
+
+::: {.alert .alert-primary}
+**Glossary**
+
+* Outbreak _size_: the total number of cases produced by an outbreak before it goes extinct.
+
+* Outbreak _length_: the total (maximum) number of generations reached by a outbreak before it goes extinct.
+:::
+
+In this vignette we will outline how to show the distribution of outbreak sizes and lengths using the _epichains_ R package. 
+
+## Simulating an outbreak size distribution
+
+First, we'll simulate the outbreak size distribution using the a Poisson offspring distribution. This is a simple one parameter distribution where the mean and variance of the distribution defined by $\lambda$ which is equal to the reproduction number ($R$).
+
+For this example we'll vary the reproduction number between 0.1 and 1.0, at 0.1 intervals.
+
+```{r, define-parameters}
+statistic <- "size"
+offspring_dist <- "rpois"
+R <- seq(0.1, 1.0, 0.1)
+```
+
+We will create a parameter space will each combination of parameters. In this simple outbreak size simulation, only the reproduction number varies. 
+
+```{r, parameter-grid}
+scenarios <- expand.grid(
+  offspring_dist = offspring_dist,
+  statistic = statistic,
+  R = R,
+  stringsAsFactors = FALSE
+)
+```
+
+The branching process is stochastic so we need to specify how many simulation model replicates to run to capture the stochasticity in the epidemic. This is important, as mentioned above as a factor that influences outbreak size, the same epidemic transmissibility parameters can result in different sized outbreaks depending on randomness, such as the number of infectees from a given infector.
+
+```{r, define-n}
+n_chains <- 1000
+```
+
+Here we choose to simulate each scenario `r n_chains` times.
+
+```{r, define-breaks}
+breaks <- c(0, 2, 5, 10, 20, 50, 100, Inf)
+```
+
+```{r, outbreak-sim-pois-size}
+outbreak_list <- vector(mode = "list", length = nrow(scenarios))
+for (i in seq_len(nrow(scenarios))) {
+  offspring_dist_fun <- match.fun(scenarios[i, "offspring_dist"])
+  outbreak_list[[i]] <- epichains::simulate_chain_stats(
+    n_chains = n_chains, 
+    statistic = scenarios[i, "statistic"], 
+    offspring_dist = offspring_dist_fun,
+    lambda = scenarios[i, "R"],
+    stat_threshold = breaks[length(breaks) - 1] + 1
+  )
+}
+```
+
+In order to visualise and interpret the outbreak size distribution simulated we can group outbreak sizes.
+
+```{r, cut-outbreak-size}
+intervals <- lapply(outbreak_list, cut, breaks = breaks)
+prop <- lapply(intervals, function(interval) table(interval) / sum(table(interval)))
+outbreak_size_list <- lapply(prop, as.data.frame)
+for (i in seq_len(nrow(scenarios))) {
+  outbreak_size_list[[i]]$R <- scenarios[i, "R"]
+  outbreak_size_list[[i]]$offspring_dist <- scenarios[i, "offspring_dist"]
+  outbreak_size_list[[i]]$statistic <- scenarios[i, "statistic"]
+}
+outbreak_size <- do.call(rbind, outbreak_size_list)
+head(outbreak_size)
+```
+
+```{r, plot-outbreak-size-pois}
+ggplot2::ggplot(data = outbreak_size) +
+  ggplot2::geom_col(
+    mapping = ggplot2::aes(x = as.factor(R), y = Freq, fill = interval)
+  ) +
+  ggplot2::scale_x_discrete(name = "Reproduction number (R)") +
+  ggplot2::scale_y_continuous(name = "Proportion of outbreaks") +
+  ggplot2::scale_fill_brewer(
+    name = "Outbreak size", 
+    palette = "Spectral"
+  ) + 
+  ggplot2::theme_bw()
+```
+
+```{r, min-outbreak-size, echo=FALSE}
+max_R <- outbreak_size[outbreak_size$R == max(outbreak_size$R), ]
+freq <- max_R$Freq[which(max_R$interval == "(0,2]")]
+```
+
+The plot shows that the majority of infections do not seed an outbreak, as most index cases produce epidemics with less than two infections, including the index case. This is true even for the largest reproduction number used ($R$ = `r max(R)`), where `r freq * 100`% have fewer or equal to two total infections.
+
+As the reproduction number increases towards 1, the possibility of an outbreak occurring with more than 20 cases becomes more probable.
+
+## Simulating an outbreak length distribution
+
+Instead of looking at the outbreak size distribution, i.e. the total number of cases in an outbreak, we may instead be interested in the outbreak _length_ distribution. This is the distribution of the number of generations that an epidemic reaches before going extinct.
+
+We can follow the same procedure as for the outbreak size, but specify `stasitics = "length` in the `simulate_chain_stats()` function. We use the same parameters as the outbreak size simulation above, simulating with a Poisson offspring distribution.
+
+```{r, define-length-parameters}
+statistic <- "length"
+scenarios <- expand.grid(
+  offspring_dist = offspring_dist,
+  statistic = statistic,
+  R = R,
+  stringsAsFactors = FALSE
+)
+```
+
+```{r, outbreak-sim-pois-length}
+outbreak_list <- vector(mode = "list", length = nrow(scenarios))
+for (i in seq_len(nrow(scenarios))) {
+  offspring_dist_fun <- match.fun(scenarios[i, "offspring_dist"])
+  outbreak_list[[i]] <- epichains::simulate_chain_stats(
+    n_chains = n_chains, 
+    statistic = scenarios[i, "statistic"], 
+    offspring_dist = offspring_dist_fun,
+    lambda = scenarios[i, "R"],
+    stat_threshold = breaks[length(breaks) - 1] + 1
+  )
+}
+```
+
+```{r, cut-outbreak-length}
+intervals <- lapply(outbreak_list, cut, breaks = breaks)
+prop <- lapply(intervals, function(interval) table(interval) / sum(table(interval)))
+outbreak_length_list <- lapply(prop, as.data.frame)
+for (i in seq_len(nrow(scenarios))) {
+  outbreak_length_list[[i]]$R <- scenarios[i, "R"]
+  outbreak_length_list[[i]]$offspring_dist <- scenarios[i, "offspring_dist"]
+  outbreak_length_list[[i]]$statistic <- scenarios[i, "statistic"]
+}
+outbreak_length <- do.call(rbind, outbreak_length_list)
+head(outbreak_length)
+```
+
+```{r, plot-outbreak-length-pois}
+ggplot2::ggplot(data = outbreak_length) +
+  ggplot2::geom_col(
+    mapping = ggplot2::aes(x = as.factor(R), y = Freq, fill = interval)
+  ) +
+  ggplot2::scale_x_discrete(name = "Reproduction number (R)") +
+  ggplot2::scale_y_continuous(name = "Proportion of outbreaks") +
+  ggplot2::scale_fill_brewer(
+    name = "Outbreak length", 
+    palette = "Spectral"
+  ) + 
+  ggplot2::theme_bw()
+```
+
+## Simulating an outbreak size distribution with a Negative binomial distribution
+
+In the previous examples we've used a Poisson distribution as the assumed offspring distribution. However, a Poisson distribution has a mean-to-variance ratio fixed at 1, therefore it is unable to model higher transmission variability between infectors, resulting in so-called "superspreaders". 
+
+The Negative binomial distriution has a flexible mean-to-variance ratio, defined by two parameters. In this example we will use the parameterisation using $R$, the reproduction number, and $k$, the dispersion parameter. Smaller values of $k$ produce greater heterogeneity in individual-level transmission. 
+
+In this example we will vary $k$ as well as $R$.
+
+```{r, define-nbinom-parameters}
+statistic <- "size"
+offspring_dist <- "rnbinom"
+R <- seq(0.1, 1.0, 0.1)
+k <- c(0.1, 5, 10, 1000)
+```
+
+```{r, define-nbinom-scenarios}
+scenarios <- expand.grid(
+  offspring_dist = offspring_dist,
+  statistic = statistic,
+  R = R,
+  k = k,
+  stringsAsFactors = FALSE
+)
+```
+
+```{r, outbreak-sim-nbinom-size}
+outbreak_list <- vector(mode = "list", length = nrow(scenarios))
+for (i in seq_len(nrow(scenarios))) {
+  offspring_dist_fun <- match.fun(scenarios[i, "offspring_dist"])
+  outbreak_list[[i]] <- epichains::simulate_chain_stats(
+    n_chains = n_chains, 
+    statistic = scenarios[i, "statistic"], 
+    offspring_dist = offspring_dist_fun,
+    mu = scenarios[i, "R"],
+    size = scenarios[i, "k"],
+    stat_threshold = breaks[length(breaks) - 1] + 1
+  )
+}
+```
+
+```{r, cut-nbinom-outbreak-size}
+intervals <- lapply(outbreak_list, cut, breaks = breaks)
+prop <- lapply(intervals, function(interval) table(interval) / sum(table(interval)))
+outbreak_size_list <- lapply(prop, as.data.frame)
+for (i in seq_len(nrow(scenarios))) {
+  outbreak_size_list[[i]]$R <- scenarios[i, "R"]
+  outbreak_size_list[[i]]$k <- scenarios[i, "k"]
+  outbreak_size_list[[i]]$offspring_dist <- scenarios[i, "offspring_dist"]
+  outbreak_size_list[[i]]$statistic <- scenarios[i, "statistic"]
+}
+outbreak_size <- do.call(rbind, outbreak_size_list)
+head(outbreak_size)
+```
+
+We facet the plot by the dispersion parameter ($k$) to show the influence that increasing the transmission heterogeneity (i.e. decreasing $k$) has on the outbreak size distribution. 
+
+```{r, plot-outbreak-size-nbinom}
+ggplot2::ggplot(data = outbreak_size) +
+  ggplot2::geom_col(
+    mapping = ggplot2::aes(x = as.factor(R), y = Freq, fill = interval)
+  ) +
+  ggplot2::scale_x_discrete(name = "Reproduction number (R)") +
+  ggplot2::scale_y_continuous(name = "Proportion of outbreaks") +
+  ggplot2::scale_fill_brewer(
+    name = "Outbreak size", 
+    palette = "Spectral"
+  ) + 
+  ggplot2::facet_wrap(
+    facets = c("k"), 
+    labeller = ggplot2::label_both
+  ) +
+  ggplot2::theme_bw()
+```
+
+The increased heterogeneity in epidemic transmission leads to small expected outbreak sizes. The upper-left plot (smallest $k$) shows the fewest outbreak clusters with more than 20 cases. This results from the mean number of secondary infections per case ($R$) is influenced by a few individuals that disproportionally infect many individuals, but the majority of primary cases infect few, if any, individuals. However, in those few replicates where the _superspreaders_ infect many individuals the epidemic can become very large (i.e. $ >20$ cases). 
+
+Where $k$ is `r k[2]`, `r k[3]`, and `r k[4]` there is little difference in the outbreak size distributions. As the values of $k$ gets very large (i.e. $ >1000$) the outbreak size distribution from a Negative Binomial offspring distribution converges on the outbreak size distribution from a Poisson offspring distribution, with an equal $R$. 
+
+We do not repeat the example of simulating an outbreak length distribution using a Negative binomial distribution, but this can be achieved using the code from the examples above, setting `statistic = "length"`.
+
+## Simulating an outbreak size distribution excluding the index case
+
+In some scenarios we may only be interested in the number of secondary cases in an outbreak, in other words, we are not interested in the index case that seeds the potential outbreak. An example of this would be where we are interested in the outbreak size distribution from human-to-human transmission and we are confident that the primary index case is from a zoonotic spillover event. 
+
+Here we show how to make a simple adjustment to the code above to produce an outbreak size distribution not including the index case, by subtracting one from the outbreak size of each simulation.
+
+We use the same parameters as the Negative binomial example.
+
+```{r, outbreak-sim-nbinom-size-no-index}
+outbreak_list <- vector(mode = "list", length = nrow(scenarios))
+for (i in seq_len(nrow(scenarios))) {
+  offspring_dist_fun <- match.fun(scenarios[i, "offspring_dist"])
+  outbreak_list[[i]] <- epichains::simulate_chain_stats(
+    n_chains = n_chains, 
+    statistic = scenarios[i, "statistic"], 
+    offspring_dist = offspring_dist_fun,
+    mu = scenarios[i, "R"],
+    size = scenarios[i, "k"],
+    stat_threshold = breaks[length(breaks) - 1] + 1
+  )
+}
+# remove index case
+outbreak_list <- lapply(outbreak_list, function(x) x - 1)
+```
+
+```{r, cut-nbinom-outbreak-size-no-index}
+intervals <- lapply(outbreak_list, cut, breaks = breaks)
+prop <- lapply(intervals, function(interval) table(interval) / sum(table(interval)))
+outbreak_size_list <- lapply(prop, as.data.frame)
+for (i in seq_len(nrow(scenarios))) {
+  outbreak_size_list[[i]]$R <- scenarios[i, "R"]
+  outbreak_size_list[[i]]$k <- scenarios[i, "k"]
+  outbreak_size_list[[i]]$offspring_dist <- scenarios[i, "offspring_dist"]
+  outbreak_size_list[[i]]$statistic <- scenarios[i, "statistic"]
+}
+outbreak_size <- do.call(rbind, outbreak_size_list)
+head(outbreak_size)
+```
+
+```{r, plot-outbreak-size-nbinom-no-index}
+ggplot2::ggplot(data = outbreak_size) +
+  ggplot2::geom_col(
+    mapping = ggplot2::aes(x = as.factor(R), y = Freq, fill = interval)
+  ) +
+  ggplot2::scale_x_discrete(name = "Reproduction number (R)") +
+  ggplot2::scale_y_continuous(name = "Proportion of outbreaks") +
+  ggplot2::scale_fill_brewer(
+    name = "Outbreak size", 
+    palette = "Spectral"
+  ) + 
+  ggplot2::facet_wrap(
+    facets = c("k"), 
+    labeller = ggplot2::label_both
+  ) +
+  ggplot2::theme_bw()
+```
