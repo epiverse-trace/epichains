@@ -227,9 +227,9 @@ If an analytical solution does not exist, an internal simulation function,
 `.offspring_ll()` is employed. It uses simulations to approximate the probability
 distributions ([using a linear approximation to the cumulative 
 distribution](https://en.wikipedia.org/wiki/Empirical_distribution_function) 
-for unobserved sizes/lengths). If simulation is to be used, an extra argument
-`nsim_offspring`  must be passed to `likelihood()` to specify the number of
-simulations to be used for this approximation.
+for unobserved sizes/lengths). If simulation is to be used, the `nsim_offspring`
+argument of `likelihood()` can be used to specify the number of simulations to be
+used for this approximation (it defaults to `100`).
 Approximate values of the likelihood will vary with every call to the simulation (because the simulations used for estimation vary), and it may be worth calling `likelihood()` multiple times in this case to see the error this may introduce.
 
 For example, let's look at an example where `chain_sizes` is observed and we

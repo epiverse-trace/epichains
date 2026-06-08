@@ -9,6 +9,11 @@
 #' @param nsim_obs Number of simulations to be used to approximate the
 #' log-likelihood/likelihood if `obs_prob < 1` (imperfect observation). If
 #' `obs_prob == 1`, this argument is ignored.
+#' @param nsim_offspring Number of simulations of the offspring distribution
+#' to use to approximate the distribution of the chain statistic summary
+#' (size/length). This is only used when `offspring_dist` does not have a
+#' closed-form likelihood (i.e., it is not one of the distributions for which
+#' `{epichains}` has an analytical solution). Defaults to `100`.
 #' @param obs_prob Observation probability. A number (probability) between 0
 #' and 1. A value greater than 0 but less 1 implies imperfect observation and
 #' simulations will be used to approximate the (log)likelihood. This will
@@ -102,11 +107,25 @@
 #'   size = 0.2
 #' )
 #' epichains_summary_eg_lik
+#'
+#' # Example using a custom (non-built-in) offspring distribution
+#' # that requires simulation-based likelihood approximation
+#' set.seed(121)
+#' chain_sizes <- sample(1:10, 20, replace = TRUE)
+#' likelihood(
+#'   chains = chain_sizes,
+#'   statistic = "size",
+#'   offspring_dist = rbinom,
+#'   nsim_offspring = 100,
+#'   size = 1,
+#'   prob = 0.9
+#' )
 #' @export
 # nolint start: cyclocomp_linter
 likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
                        nsim_obs, obs_prob = 1, stat_threshold = Inf, log = TRUE,
-                       exclude = NULL, individual = FALSE, ...) {
+                       exclude = NULL, individual = FALSE, nsim_offspring = 100,
+                       ...) {
   statistic <- match.arg(statistic)
 
   ## Input checking
@@ -143,6 +162,10 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   checkmate::assert_numeric(
     exclude,
     null.ok = TRUE
+  )
+  checkmate::assert_integerish(
+    nsim_offspring,
+    lower = 1
   )
   # likelihood is designed to work with numeric objects to <epichains> objects
   # need to be coerced to <epichains_summary> objects (numeric vector under
@@ -249,7 +272,8 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
             x = calc_sizes,
             offspring_dist = offspring_dist,
             statistic = statistic,
-            stat_threshold = stat_threshold
+            stat_threshold = stat_threshold,
+            nsim_offspring = nsim_offspring
           ),
           pars
         )
