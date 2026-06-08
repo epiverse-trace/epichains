@@ -1,9 +1,9 @@
 #' Simulate transmission chains
 #'
 #' @description
-#' It generates independent transmission chains starting with a single case
-#' per chain, using a simple branching process model (See details for
-#' definition of "chains" and assumptions). Offspring for each
+#' `simulate_chains()` generates independent transmission chains starting with
+#' a single case per chain, using a simple branching process model (See
+#' details for definition of "chains" and assumptions). Offspring for each
 #' chain are generated with an offspring distribution, and an optional
 #' generation time distribution function.
 #'
@@ -36,7 +36,8 @@
 #' For example, if `statistic = "size"` and `stat_threshold = 10`, then any
 #' chain that produces 10 or more cases will stop. Note that setting
 #' `stat_threshold` does not guarantee that all chains will stop at the same
-#' value.
+#' value. In `simulate_chain_stats()`, `stat_threshold` also serves as a
+#' censoring limit so that results above the specified value are set to `Inf`.
 #' @param pop Population size; An `<Integer>`. Used alongside `percent_immune`
 #' to define the susceptible population. Defaults to `Inf`.
 #' @param percent_immune Percent of the population immune to
@@ -53,8 +54,8 @@
 #' @param tf A number for the cut-off for the infection times (if generation
 #' time is given); Defaults to `Inf`.
 #' @param ... Parameters of the offspring distribution as required by R.
-#' @return An `<epichains>` object, which is basically a `<data.frame>`
-#' with columns:
+#' @return `simulate_chains()`: An `<epichains>` object, which is basically a
+#' `<data.frame>` with columns:
 #' * `chain` - an ID for active/ongoing chains,
 #' * `infectee` - a unique ID for each infectee.
 #' * `infector` - an ID for the infector of each infectee.
@@ -106,6 +107,7 @@
 #' OR \code{simulate_*(..., generation_time = \(n){rlnorm(n, 0.58, 1.38)})},
 #' where `...` are the other arguments to `simulate_*()`.
 #' @examples
+#' # simulate_chains() examples:
 #' # Using a Poisson offspring distribution and simulating from an infinite
 #' # population up to chain size 10.
 #' set.seed(32)
@@ -323,13 +325,13 @@ simulate_chains <- function(n_chains,
   return(out)
 }
 
-#' Simulate a vector of transmission chains statistics (sizes/lengths)
+#' @rdname simulate_chains
 #'
 #' @description
-#' It generates a vector of transmission chain sizes or lengths using the
-#' same model as [simulate_chains()] but without tracking details of the
-#' individual chains. This function is useful when only the chain sizes or
-#' lengths are of interest.
+#' `simulate_chain_stats()` generates a vector of transmission chain sizes or
+#' lengths using the same model as [simulate_chains()] but without tracking
+#' details of the individual chains. This function is useful when only the
+#' chain sizes or lengths are of interest.
 #'
 #' It uses a simple branching process model that simulates independent
 #' chains, using an offspring distribution for each chain. Each chain
@@ -337,18 +339,9 @@ simulate_chains <- function(n_chains,
 #' stopping criterion especially where R0 > 1. The function also optionally
 #' accepts population related inputs such as the population size (defaults
 #' to Inf) and percentage of the population initially immune (defaults to 0).
-#' @inheritParams simulate_chains
-#' @param stat_threshold A stopping criterion for individual chain simulations;
-#' a positive number coercible to integer. When any chain's cumulative statistic
-#' reaches or surpasses `stat_threshold`, that chain ends. It also serves as a
-#' censoring limit so that results above the specified value, are set to `Inf`.
-#' Defaults to `Inf`.
-#' @return An object of class `<epichains_summary>`, which is a numeric
-#' vector of chain sizes or lengths with extra attributes for storing the
-#' simulation parameters.
-#' @inheritSection simulate_chains Definition of a transmission chain
-#' @inheritSection simulate_chains Calculating chain sizes and lengths
-#' @inherit simulate_chains references
+#' @return `simulate_chain_stats()`: An object of class `<epichains_summary>`,
+#' which is a numeric vector of chain sizes or lengths with extra attributes
+#' for storing the simulation parameters.
 #' @details
 #' # `simulate_chain_stats()` vs `simulate_chains()`
 #' `simulate_chain_stats()` is a time-invariant version of `simulate_chains()`.
@@ -370,6 +363,7 @@ simulate_chains <- function(n_chains,
 #' where only data on observed chain sizes and lengths are available.
 #' @author James M. Azam, Sebastian Funk
 #' @examples
+#' # simulate_chain_stats() examples:
 #' # Simulate chain sizes with a poisson offspring distribution, assuming an
 #' # infinite population and no immunity.
 #' set.seed(32)
