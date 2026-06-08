@@ -158,6 +158,8 @@ simulate_chains <- function(n_chains,
                             generation_time = NULL,
                             t0 = 0,
                             tf = Inf) {
+  # Resolve statistic to a single value (defaults to "size" if not specified)
+  statistic <- match.arg(statistic)
   # Check offspring and population-related arguments
   .assert_sim_args(
     n_chains = n_chains,
@@ -401,6 +403,8 @@ simulate_chain_stats <- function(n_chains,
                                  stat_threshold = Inf,
                                  pop = Inf,
                                  percent_immune = 0) {
+  # Resolve statistic to a single value (defaults to "size" if not specified)
+  statistic <- match.arg(statistic)
   # Check offspring and population-related arguments
   .assert_sim_args(
     n_chains = n_chains,
