@@ -219,17 +219,13 @@ test_that("summary.epichains works as expected", {
   )
   chain_size_stats_all_Infs_summary <- summary(chain_size_stats_all_Infs)
   #' Expect the results from the tree and the summary to be the same
-  expect_true(
-    identical(
-      chain_size_tree_sim_summary,
-      chain_size_summary_sim
-    )
+  expect_identical(
+    chain_size_tree_sim_summary,
+    chain_size_summary_sim
   )
-  expect_true(
-    identical(
-      chain_length_tree_sim_summary,
-      chain_length_summary_sim
-    )
+  expect_identical(
+    chain_length_tree_sim_summary,
+    chain_length_summary_sim
   )
   expect_s3_class(
     chain_size_tree_sim_summary,
