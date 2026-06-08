@@ -13,7 +13,7 @@
 # Citation:
 # Marivate, V. and Combrink, H. M. (2020). Use of available data to inform
 # the COVID-19 outbreak in South Africa: a case study.
-# arXiv preprint arXiv:2004.04813. \doi{10.48550/arXiv.2004.04813}
+# arXiv preprint arXiv:2004.04813. doi:10.48550/arXiv.2004.04813
 
 library(dplyr)
 library(lubridate)
