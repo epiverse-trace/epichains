@@ -298,8 +298,8 @@ test_that("simulate_chains is numerically correct", {
     min(sim_chains_summary$length),
     1
   )
-  # each index case has a single summary value so expect the number of rows of the
-  # summary data frame to be equal to the number of index cases.
+  # each index case corresponds to one row in the summary data frame, so expect
+  # the number of rows to be equal to the number of index cases.
   expect_identical(
     nrow(sim_chains_summary),
     as.integer(attr(sim_chains_summary, "n_chains"))
