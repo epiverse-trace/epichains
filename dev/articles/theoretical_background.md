@@ -14,9 +14,9 @@ offspring, \\Z\\, that is a random variable with probability mass
 function \\p(Z = z \| \theta)\\, called the *offspring distribution*.
 Their use has a long history in epidemiology, where the population is
 interpreted as a pathogen, and the offspring as new hosts that it
-infects ([Farrington, Kanaan, and Gay 2003](#ref-farrington2003)). Below
-we will call these infected individuals *cases* but the methods could be
-applied in other contexts where branching processes are to be used.
+infects ([Farrington et al. 2003](#ref-farrington2003)). Below we will
+call these infected individuals *cases* but the methods could be applied
+in other contexts where branching processes are to be used.
 
 ## Simulation
 
@@ -108,8 +108,8 @@ p(S\|R_0, k)\\. The corresponding log-likelihood is
 \end{align}\\
 
 The log-likelihood for Poisson distributed offspring follows from this
-where \\k\\ tends to infinity (corresponding to Eq. 2.2 in Farrington,
-Kanaan, and Gay ([2003](#ref-farrington2003)))
+where \\k\\ tends to infinity (corresponding to Eq. 2.2 in Farrington et
+al. ([2003](#ref-farrington2003)))
 
 \\ \mathrm{LL}(S) = (S - 1) \log R_0 - S R_0 + (S - 2) \log S -
 \log\Gamma(S) \\
@@ -123,8 +123,8 @@ In all cases the point estimate for the basic reproduction number
 
 The cumulative mass function \\F(L)\\ of observing a chain of length
 \\L\\ when offspring is Poisson distributed is given by Eq. (2.5) in
-Farrington, Kanaan, and Gay ([2003](#ref-farrington2003)) (there called
-“outbreak duration”):
+Farrington et al. ([2003](#ref-farrington2003)) (there called “outbreak
+duration”):
 
 \\ F(L) = e^{-R_0} E_L \left( e^{R_0 e^{-R_0} } \right) \\
 
@@ -143,9 +143,8 @@ the probability of observing a chain of length \\L\\ is therefore
 #### Gamma-Borel mixture
 
 The probability distribution of outbreak sizes from a branching process
-with a Poisson offspring distribution (Eq. 2.2 in Farrington, Kanaan,
-and Gay ([2003](#ref-farrington2003))) is a special case of the
-[Borel-Tanner
+with a Poisson offspring distribution (Eq. 2.2 in Farrington et al.
+([2003](#ref-farrington2003))) is a special case of the [Borel-Tanner
 distribution](https://en.wikipedia.org/wiki/Borel_distribution#Borel%E2%80%93Tanner_distribution)
 starting with 1 individual. An alternative to the negative binomial
 offspring distribution which represents a Poisson-gamma mixture is a

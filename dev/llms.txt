@@ -27,6 +27,7 @@ at the London School of Hygiene and Tropical Medicine as part of the
 Install the released version of the package:
 
 ``` r
+
 install.packages("epichains")
 ```
 
@@ -34,6 +35,7 @@ The latest development version of the *epichains* package can be
 installed via
 
 ``` r
+
 # check whether {remotes} is installed
 if (!require("remotes")) install.packages("remotes")
 remotes::install_github("epiverse-trace/epichains")
@@ -42,6 +44,7 @@ remotes::install_github("epiverse-trace/epichains")
 If this fails, try using the `pak` R package via
 
 ``` r
+
 # check whether {pak} is installed
 if (!require("pak")) install.packages("pak")
 pak::pak("epiverse-trace/epichains")
@@ -57,6 +60,7 @@ will help us to improve the installation process.
 To load the package, use
 
 ``` r
+
 library("epichains")
 ```
 
@@ -116,6 +120,7 @@ sizes at \\25\\ cases. We will then look at the summary of the
 simulation, and aggregate it into cases per generation.
 
 ``` r
+
 set.seed(32)
 # Simulate chains
 sim_chains <- simulate_chains(
@@ -177,6 +182,7 @@ Let’s look at the following example where we estimate the log-likelihood
 of observing a hypothetical `chain_lengths` dataset.
 
 ``` r
+
 set.seed(32)
 # randomly generate 20 chain lengths between 1 to 40
 chain_lengths <- sample(1:40, 20, replace = TRUE)
@@ -321,6 +327,7 @@ By contributing to this project, you agree to abide by its terms.
 ## Citing this package
 
 ``` r
+
 citation("epichains")
 #> To cite package 'epichains' in publications use:
 #> 

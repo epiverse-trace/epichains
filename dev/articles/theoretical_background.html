@@ -18,8 +18,8 @@
     }
   };
 </script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Theoretical background for epichains">
 <meta name="robots" content="noindex">
@@ -118,10 +118,10 @@ number of offspring, <span class="math inline">\(Z\)</span>, that is a
 random variable with probability mass function <span class="math inline">\(p(Z = z | \theta)\)</span>, called the
 <em>offspring distribution</em>. Their use has a long history in
 epidemiology, where the population is interpreted as a pathogen, and the
-offspring as new hosts that it infects <span class="citation">(<a href="#ref-farrington2003">Farrington, Kanaan, and Gay 2003</a>)</span>.
-Below we will call these infected individuals <em>cases</em> but the
-methods could be applied in other contexts where branching processes are
-to be used.</p>
+offspring as new hosts that it infects <span class="citation">(<a href="#ref-farrington2003">Farrington et al. 2003</a>)</span>. Below we
+will call these infected individuals <em>cases</em> but the methods
+could be applied in other contexts where branching processes are to be
+used.</p>
 </div>
 <div class="section level2">
 <h2 id="simulation">Simulation<a class="anchor" aria-label="anchor" href="#simulation"></a>
@@ -221,8 +221,8 @@ corresponding log-likelihood is</p>
 \end{align}\]</span></p>
 <p>The log-likelihood for Poisson distributed offspring follows from
 this where <span class="math inline">\(k\)</span> tends to infinity
-(corresponding to Eq. 2.2 in <span class="citation">Farrington, Kanaan,
-and Gay (<a href="#ref-farrington2003">2003</a>)</span>)</p>
+(corresponding to Eq. 2.2 in <span class="citation">Farrington et al.
+(<a href="#ref-farrington2003">2003</a>)</span>)</p>
 <p><span class="math display">\[
 \mathrm{LL}(S) = (S - 1) \log R_0 - S R_0 + (S - 2) \log S -
 \log\Gamma(S)
@@ -238,9 +238,8 @@ chain size <span class="math inline">\(\bar{S}\)</span> by</p>
 <h5 id="length-distributions">Length distributions<a class="anchor" aria-label="anchor" href="#length-distributions"></a>
 </h5>
 <p>The cumulative mass function <span class="math inline">\(F(L)\)</span> of observing a chain of length <span class="math inline">\(L\)</span> when offspring is Poisson distributed
-is given by Eq. (2.5) in <span class="citation">Farrington, Kanaan, and
-Gay (<a href="#ref-farrington2003">2003</a>)</span> (there called
-“outbreak duration”):</p>
+is given by Eq. (2.5) in <span class="citation">Farrington et al. (<a href="#ref-farrington2003">2003</a>)</span> (there called “outbreak
+duration”):</p>
 <p><span class="math display">\[
 F(L) = e^{-R_0} E_L \left( e^{R_0 e^{-R_0} } \right)
 \]</span></p>
@@ -263,7 +262,7 @@ chain of length <span class="math inline">\(L\)</span> is therefore
 <h4 id="gamma-borel-mixture">Gamma-Borel mixture<a class="anchor" aria-label="anchor" href="#gamma-borel-mixture"></a>
 </h4>
 <p>The probability distribution of outbreak sizes from a branching
-process with a Poisson offspring distribution (Eq. 2.2 in <span class="citation">Farrington, Kanaan, and Gay (<a href="#ref-farrington2003">2003</a>)</span>) is a special case of the <a href="https://en.wikipedia.org/wiki/Borel_distribution#Borel%E2%80%93Tanner_distribution" class="external-link">Borel-Tanner
+process with a Poisson offspring distribution (Eq. 2.2 in <span class="citation">Farrington et al. (<a href="#ref-farrington2003">2003</a>)</span>) is a special case of the <a href="https://en.wikipedia.org/wiki/Borel_distribution#Borel%E2%80%93Tanner_distribution" class="external-link">Borel-Tanner
 distribution</a> starting with 1 individual. An alternative to the
 negative binomial offspring distribution which represents a
 Poisson-gamma mixture is a Borel-gamma mixture. This could represent
@@ -300,7 +299,7 @@ p(S|\theta) = P(S|\theta) - P(S - 1|\theta)
 <div class="section level3">
 <h3 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-blumberg2013" class="csl-entry">
 Blumberg, S., and J. O. Lloyd-Smith. 2013. <span>“Comparing Methods for
 Estimating R0 from the Size Distribution of Subcritical Transmission

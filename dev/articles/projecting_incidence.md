@@ -18,6 +18,7 @@ how *epichains* can be used to project an outbreak.
 Let’s load the required packages
 
 ``` r
+
 library("epichains")
 library("dplyr")
 library("ggplot2")
@@ -31,6 +32,7 @@ the COVID-19 outbreak in South Africa. This can be loaded into memory as
 follows:
 
 ``` r
+
 data("covid19_sa", package = "epichains")
 ```
 
@@ -41,6 +43,7 @@ each other.
 Let us subset and view that aspect of the data.
 
 ``` r
+
 seed_cases <- covid19_sa[1:5, ]
 head(seed_cases)
 #> # A tibble: 5 × 2
@@ -70,6 +73,7 @@ reference and find the difference between the other observed dates and
 the reference.
 
 ``` r
+
 days_since_index <- as.integer(seed_cases$date - min(seed_cases$date))
 days_since_index
 #> [1] 0 2 3 4 6
@@ -80,6 +84,7 @@ create a corresponding seeding time for each individual, which we’ll
 call `t0`.
 
 ``` r
+
 t0 <- rep(days_since_index, seed_cases$cases)
 t0
 #>  [1] 0 2 3 4 4 4 4 6 6 6 6 6 6
@@ -102,8 +107,7 @@ serial interval, S, is log-normal distributed with parameters, \\\mu =
 The log-normal distribution is commonly used in epidemiology to
 characterise quantities such as the serial interval because it has a
 large variance and can only be positive-valued ([Nishiura
-2007](#ref-nishiura2007); [Limpert, Stahel, and Abbt
-2001](#ref-limpert2001)).
+2007](#ref-nishiura2007); [Limpert et al. 2001](#ref-limpert2001)).
 
 Note that when the distribution is described this way, it means \\\mu\\
 and \\\sigma\\ are the expected value and standard deviation of the
@@ -135,6 +139,7 @@ argument to determine the number of observations to sample (See
 [`?rlnorm`](https://rdrr.io/r/stats/Lognormal.html)).
 
 ``` r
+
 mu <- 4.7
 sgma <- 2.9
 
@@ -164,6 +169,7 @@ characterised by a negative binomial with \\mu = 2.5\\ ([Abbott et al.
 2020](#ref-wang2020)).
 
 ``` r
+
 mu <- 2.5
 size <- 0.58
 ```
@@ -180,6 +186,7 @@ For this example, we will simulate outbreaks that end \\21\\ days after
 the last date of observations in the `seed_cases` dataset.
 
 ``` r
+
 #' Date to end simulation
 projection_window <- 21
 tf <- max(days_since_index) + projection_window
@@ -195,6 +202,7 @@ for the same set of parameters. We will, therefore, run the simulations
 Let us specify that.
 
 ``` r
+
 #' Number of simulations
 sim_rep <- 100
 ```
@@ -210,6 +218,7 @@ specified, it assumes a value of infinity. Here, we will assume a
 maximum chain size of \\1000\\.
 
 ``` r
+
 #' Maximum chain size allowed
 stat_threshold <- 1000
 ```
@@ -237,6 +246,7 @@ and bind them by rows with
 [`dplyr::bind_rows()`](https://dplyr.tidyverse.org/reference/bind_rows.html).
 
 ``` r
+
 set.seed(1234)
 sim_chain_sizes <- lapply(
   seq_len(sim_rep),
@@ -262,6 +272,7 @@ sim_output <- bind_rows(sim_chain_sizes)
 Let us view the first few rows of the simulation results.
 
 ``` r
+
 head(sim_output)
 #>    chain infector infectee generation      time sim
 #> 14     3        1        2          2  8.123133   1
@@ -283,6 +294,7 @@ First, we will create the daily time series per simulation by
 aggregating the number of cases per day of each simulation.
 
 ``` r
+
 # Daily number of cases for each simulation
 incidence_ts <- sim_output %>%
   mutate(day = ceiling(time)) %>%
@@ -306,6 +318,7 @@ We will use the date of the first case in the observed data as the
 reference start date.
 
 ``` r
+
 # Get start date from the observed data
 index_date <- min(seed_cases$date)
 index_date
@@ -333,6 +346,7 @@ Now we will aggregate the simulations by day and evaluate the median
 daily cases across all simulations.
 
 ``` r
+
 # Median daily number of cases aggregated across all simulations
 median_daily_cases <- incidence_ts_by_date %>%
   group_by(date) %>%
@@ -358,6 +372,7 @@ We will now plot the individual simulation results alongside the median
 of the aggregated results.
 
 ``` r
+
 # since all simulations may end at a different date, we will find the minimum
 # final date for all simulations for the purposes of visualisation.
 final_date <- incidence_ts_by_date %>%
@@ -487,8 +502,7 @@ O’Reilly, and Juliet R.C. Pulliam. 2020. “Projected Early Spread of
 COVID-19 in Africa Through 1 June 2020.” *Eurosurveillance* 25 (18):
 1–6. <https://doi.org/10.2807/1560-7917.ES.2020.25.18.2000543>.
 
-Wang, Liang, Xavier Didelot, Jing Yang, Gary Wong, Yi Shi, Wenjun Liu,
-George F. Gao, and Yuhai Bi. 2020. “Inference of Person-to-Person
-Transmission of COVID-19 Reveals Hidden Super-Spreading Events During
-the Early Outbreak Phase.” *Nature Communications* 11 (1): 1–6.
-<https://doi.org/10.1038/s41467-020-18836-4>.
+Wang, Liang, Xavier Didelot, Jing Yang, et al. 2020. “Inference of
+Person-to-Person Transmission of COVID-19 Reveals Hidden Super-Spreading
+Events During the Early Outbreak Phase.” *Nature Communications* 11 (1):
+1–6. <https://doi.org/10.1038/s41467-020-18836-4>.

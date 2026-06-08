@@ -23,6 +23,7 @@ in the
 package, which is part of the Epiverse-TRACE Initiative.
 
 ``` r
+
 ## main package
 library("epichains")
 ## for plotting
@@ -36,6 +37,7 @@ binomial offspring distribution with mean 1.2 and overdispersion
 parameter 0.5. We simulate 200 chains tracking up to 99 infections:
 
 ``` r
+
 sims <- simulate_chain_stats(
   n_chains = 200, offspring_dist = rnbinom, stat_threshold = 99, mu = 1.2,
   size = 0.5, statistic = "size"
@@ -45,6 +47,7 @@ sims <- simulate_chain_stats(
 We then plot the resulting distribution of chain sizes
 
 ``` r
+
 sims[is.infinite(sims)] <- 100 # Replace infections > 99 with 100 for plotting.
 ggplot(data.frame(x = sims), aes(x = x)) +
   geom_histogram(breaks = seq(0, 100, by = 5), closed = "left") +
@@ -72,6 +75,7 @@ proportion. For example, to reduce R by 25% at the population level we
 scale the `mu` parameter from 1.2 to 0.9:
 
 ``` r
+
 sims <- simulate_chain_stats(
   n_chains = 200, offspring_dist = rnbinom, stat_threshold = 99, mu = 0.9,
   size = 0.5, statistic = "size"
@@ -103,6 +107,7 @@ individual-level control as a `control` argument indicating the level of
 individual-level control (0: no control; 1: full control):
 
 ``` r
+
 rnbinom_ind <- function(n, ..., control = 0) {
   ## initialise number of offspring to 0
   offspring <- rep(0L, n)
@@ -121,6 +126,7 @@ rnbinom_ind <- function(n, ..., control = 0) {
 Having defined this, we can generate simulations as before:
 
 ``` r
+
 sims <- simulate_chain_stats(
   n_chains = 200, offspring_dist = rnbinom_ind, stat_threshold = 99, mu = 1.2,
   size = 0.5, control = 0.25, statistic = "size"
@@ -150,6 +156,7 @@ size. This can be done, for example, using the
 use this to define a truncated negative binomial offspring distribution:
 
 ``` r
+
 rnbinom_truncated <- function(n, ..., max = Inf) {
   return(rtrunc(n = n, spec = "nbinom", b = max, ...))
 }
@@ -161,6 +168,7 @@ be likened to a disease control strategy where gatherings are limited to
 10 people.
 
 ``` r
+
 sims <- simulate_chain_stats(
   n_chains = 200, offspring_dist = rnbinom_truncated, stat_threshold = 99,
   mu = 1.2, size = 0.5, max = 10, statistic = "size"
@@ -190,6 +198,7 @@ more than 6 days after infection, we can calculate the proportion of
 transmissions that are prevented as
 
 ``` r
+
 control <- 1 - pgamma(6, shape = 25, rate = 5)
 signif(control, 2)
 #> [1] 0.16

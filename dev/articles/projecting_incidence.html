@@ -18,8 +18,8 @@
     }
   };
 </script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Projecting infectious disease incidence: a COVID-19 example">
 <meta name="robots" content="noindex">
@@ -112,7 +112,7 @@ disease trends in time provided we can characterize the distribution of
 times between successive cases (serial interval), and the distribution
 of secondary cases produced by a single individual (offspring
 distribution). Such simulations can be achieved in <em>epichains</em>
-with the <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> function and <span class="citation">Pearson et al. (<a href="#ref-pearson2020">2020</a>)</span>, and <span class="citation">Abbott et al. (<a href="#ref-abbott2020">2020</a>)</span> illustrate its application to
+with the <code><a href="../reference/simulate_chains.html">simulate_chains()</a></code> function and <span class="citation">Pearson et al. (<a href="#ref-pearson2020">2020</a>)</span>, and <span class="citation"><span class="nocase">Abbott et al.</span> (<a href="#ref-abbott2020">2020</a>)</span> illustrate its application to
 COVID-19.</p>
 <p>The purpose of this vignette is to use early data on COVID-19 in
 South Africa <span class="citation">(<a href="#ref-marivate2020">Marivate and Combrink 2020</a>)</span> to
@@ -189,7 +189,7 @@ interpret the simulated case data to represent symptom onset.</p>
 serial interval, S, is log-normal distributed with parameters, <span class="math inline">\(\mu = 4.7\)</span> and <span class="math inline">\(\sigma = 2.9\)</span> <span class="citation">(<a href="#ref-pearson2020">Pearson et al. 2020</a>)</span>. The log-normal
 distribution is commonly used in epidemiology to characterise quantities
 such as the serial interval because it has a large variance and can only
-be positive-valued <span class="citation">(<a href="#ref-nishiura2007">Nishiura 2007</a>; <a href="#ref-limpert2001">Limpert, Stahel, and Abbt 2001</a>)</span>.</p>
+be positive-valued <span class="citation">(<a href="#ref-nishiura2007">Nishiura 2007</a>; <a href="#ref-limpert2001">Limpert et al. 2001</a>)</span>.</p>
 <p>Note that when the distribution is described this way, it means <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are the expected value and
 standard deviation of the natural logarithm of the serial interval.
 Hence, in order to sample the “back-transformed” measured serial
@@ -240,10 +240,7 @@ heterogeneity in transmission (“superspreading”). The negative binomial
 distribution is commonly used in this case <span class="citation">(<a href="#ref-lloyd-smith2005">Lloyd-Smith et al. 2005</a>)</span>.</p>
 <p>For this example, we will assume that the offspring distribution is
 characterised by a negative binomial with <span class="math inline">\(mu
-= 2.5\)</span> <span class="citation">(<a href="#ref-abbott2020">Abbott
-et al. 2020</a>)</span> and <span class="math inline">\(size =
-0.58\)</span> <span class="citation">(<a href="#ref-wang2020">Wang et
-al. 2020</a>)</span>.</p>
+= 2.5\)</span> <span class="citation">(<a href="#ref-abbott2020"><span class="nocase">Abbott et al.</span> 2020</a>)</span> and <span class="math inline">\(size = 0.58\)</span> <span class="citation">(<a href="#ref-wang2020">Wang et al. 2020</a>)</span>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fl">2.5</span></span>
 <span><span class="va">size</span> <span class="op">&lt;-</span> <span class="fl">0.58</span></span></code></pre></div>
@@ -510,13 +507,14 @@ marks the beginning of the projection.
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-abbott2020" class="csl-entry">
-Abbott, Sam, Joel Hellewell, James Munday, Sebastian Funk, CMMID nCoV
-working group, et al. 2020. <span>“The Transmissibility of Novel
-Coronavirus in the Early Stages of the 2019-20 Outbreak in Wuhan:
-Exploring Initial Point-Source Exposure Sizes and Durations Using
-Scenario Analysis.”</span> <em>Wellcome Open Research</em> 5.
+<span class="nocase">Abbott, Sam, Joel Hellewell, James Munday,
+Sebastian Funk, CMMID nCoV working group, et al.</span> 2020. <span>“The
+Transmissibility of Novel Coronavirus in the Early Stages of the 2019-20
+Outbreak in Wuhan: Exploring Initial Point-Source Exposure Sizes and
+Durations Using Scenario Analysis.”</span> <em>Wellcome Open
+Research</em> 5.
 </div>
 <div id="ref-limpert2001" class="csl-entry">
 Limpert, Eckhard, Werner A. Stahel, and Markus Abbt. 2001.
@@ -545,11 +543,10 @@ of COVID-19 in Africa Through 1 June 2020.”</span>
 <em>Eurosurveillance</em> 25 (18): 1–6. <a href="https://doi.org/10.2807/1560-7917.ES.2020.25.18.2000543" class="external-link">https://doi.org/10.2807/1560-7917.ES.2020.25.18.2000543</a>.
 </div>
 <div id="ref-wang2020" class="csl-entry">
-Wang, Liang, Xavier Didelot, Jing Yang, Gary Wong, Yi Shi, Wenjun Liu,
-George F. Gao, and Yuhai Bi. 2020. <span>“Inference of Person-to-Person
-Transmission of COVID-19 Reveals Hidden Super-Spreading Events During
-the Early Outbreak Phase.”</span> <em>Nature Communications</em> 11 (1):
-1–6. <a href="https://doi.org/10.1038/s41467-020-18836-4" class="external-link">https://doi.org/10.1038/s41467-020-18836-4</a>.
+Wang, Liang, Xavier Didelot, Jing Yang, et al. 2020. <span>“Inference of
+Person-to-Person Transmission of COVID-19 Reveals Hidden Super-Spreading
+Events During the Early Outbreak Phase.”</span> <em>Nature
+Communications</em> 11 (1): 1–6. <a href="https://doi.org/10.1038/s41467-020-18836-4" class="external-link">https://doi.org/10.1038/s41467-020-18836-4</a>.
 </div>
 </div>
 </div>

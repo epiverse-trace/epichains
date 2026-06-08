@@ -50,11 +50,12 @@ is, the sum of all blue circles) and the length is 3, which includes Gen
 *epichains* provides methods to analyse and simulate the size and length
 of branching processes with an arbitrary offspring distribution. These
 can be used, for example, to analyse the distribution of chain sizes or
-length of infectious disease outbreaks, as discussed in Farrington,
-Kanaan, and Gay ([2003](#ref-farrington2003)) and Blumberg and
-Lloyd-Smith ([2013](#ref-blumberg2013)).
+length of infectious disease outbreaks, as discussed in Farrington et
+al. ([2003](#ref-farrington2003)) and Blumberg and Lloyd-Smith
+([2013](#ref-blumberg2013)).
 
 ``` r
+
 library("epichains")
 library("epicontacts")
 ```
@@ -127,6 +128,7 @@ Let’s look at the following example where we estimate the log-likelihood
 of observing `chain_sizes`.
 
 ``` r
+
 set.seed(121)
 # example of observed chain sizes
 # randomly generate 20 chains of size between 1 to 10
@@ -158,6 +160,7 @@ values, then the `individual` argument must be set to `TRUE`. To return
 likelihoods instead, set `log = FALSE`.
 
 ``` r
+
 set.seed(121)
 # example of observed chain sizes
 # randomly generate 20 chains of size between 1 to 10
@@ -201,6 +204,7 @@ For example, if the probability of observing each case is
 `obs_prob = 0.30`, we use
 
 ``` r
+
 set.seed(121)
 # example of observed chain sizes; randomly generate 20 chains of size 1 to 10
 chain_sizes <- sample(1:10, 20, replace = TRUE)
@@ -268,6 +272,7 @@ and we want to calculate the likelihood of this being drawn from a
 binomial distribution with probability `prob = 0.9`.
 
 ``` r
+
 set.seed(121)
 # example of observed chain sizes; randomly generate 20 chains of size 1 to 10
 chain_sizes <- sample(1:10, 20, replace = TRUE)
@@ -330,6 +335,7 @@ Let’s look at an example where we simulate a transmission tree for
 mean, \\\text{lambda} = 0.9\\, and a generation time of \\3\\ days:
 
 ``` r
+
 set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
@@ -370,6 +376,7 @@ immunity. We assume individuals have a poisson offspring distribution
 with mean, \\\text{lambda} = 1\\, and fixed generation time of \\3\\:
 
 ``` r
+
 set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
@@ -414,6 +421,7 @@ assumes a Poisson offspring distribution distribution with mean of
 \\0.9\\.
 
 ``` r
+
 set.seed(123)
 
 simulate_chain_stats_eg <- simulate_chain_stats(
@@ -446,6 +454,7 @@ object returned by
 to obtain the chain summaries per index case.
 
 ``` r
+
 set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
@@ -509,6 +518,7 @@ We can confirm if the two outputs are the same using
 two objects are equal and returns `TRUE/FALSE`.
 
 ``` r
+
 setequal(
   # summary of output from simulate_chains()
   summary(sim_chains),
@@ -529,6 +539,7 @@ To aggregate over “time”, you must have specified a generation time
 distribution (`generation_time`) in the simulation step.
 
 ``` r
+
 # Example with simulate_chains()
 set.seed(32)
 
@@ -597,6 +608,7 @@ Let’s subset one of the chains with the biggest size from the
 `sim_chains` object created above.
 
 ``` r
+
 # Get the biggest chain
 longest_chain <- sim_chains[sim_chains$chain == which.max(
   unname(table(sim_chains$chain))
@@ -624,6 +636,7 @@ Now, we can plot the chain using the
 package.
 
 ``` r
+
 # Create an `<epicontacts>` object
 epc <- make_epicontacts(
   linelist = longest_chain,
@@ -645,6 +658,7 @@ Here is an end-to-end example from simulation through aggregation to
 plotting.
 
 ``` r
+
 # Run simulation with simulate_chains()
 set.seed(32)
 # Define generation time

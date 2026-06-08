@@ -46,16 +46,14 @@ Models for Surveillance of Infectious Diseases Controlled by Mass
 Vaccination.” *Biostatistics (Oxford, England)* 4 (2): 279–95.
 <https://doi.org/10.1093/biostatistics/4.2.279>.
 
-Hellewell, Joel, Sam Abbott, Amy Gimma, Nikos I. Bosse, Christopher I.
-Jarvis, Timothy W. Russell, James D. Munday, et al. 2020. “Feasibility
-of controlling COVID-19 outbreaks by isolation of cases and contacts.”
-*The Lancet Global Health* 8 (4): e488–96.
+Hellewell, Joel, Sam Abbott, Amy Gimma, et al. 2020. “Feasibility of
+controlling COVID-19 outbreaks by isolation of cases and contacts.” *The
+Lancet Global Health* 8 (4): e488–96.
 <https://doi.org/10.1016/S2214-109X(20)30074-7>.
 
 Jacob, Christine. 2010. “Branching Processes: Their Role in
 Epidemiology.” *International Journal of Environmental Research and
-Public Health* 7 (3): 1186–1204.
-<https://doi.org/10.3390/ijerph7031204>.
+Public Health* 7 (3): 1186–204. <https://doi.org/10.3390/ijerph7031204>.
 
 Kucharski, Adam J., and W. John Edmunds. 2015. “Characterizing the
 Transmission Potential of Zoonotic Infections from Minor Outbreaks.”
@@ -87,5 +85,5 @@ COVID-19 in Africa Through 1 June 2020.” *Eurosurveillance* 25 (18):
 Ratnayake, Ruwan, Francesco Checchi, Christopher I. Jarvis, W. John
 Edmunds, and Flavio Finger. 2022. “Inference Is Bliss: Simulation for
 Power Estimation for an Observational Study of a Cholera Outbreak
-Intervention.” Edited by Ruifu Yang. *PLOS Neglected Tropical Diseases*
-16 (2): e0010163. <https://doi.org/10.1371/journal.pntd.0010163>.
+Intervention.” *PLOS Neglected Tropical Diseases* 16 (2): e0010163.
+<https://doi.org/10.1371/journal.pntd.0010163>.

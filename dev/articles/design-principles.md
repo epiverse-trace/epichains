@@ -141,12 +141,12 @@ The output type of
 depends on the combination of the arguments `individual`, `obs_prob`,
 and `nsim_obs` as summarised in the table below:
 
-| `individual` | `obs_prob`                            | Output type | Output length | Element length |
-|--------------|---------------------------------------|-------------|---------------|----------------|
-| `FALSE`      | 1                                     | `<numeric>` | 1             | NA             |
-| `FALSE`      | `obs_prob` \>= 0 and `obs_prob` \<= 1 | `<numeric>` | `nsim_obs`    | NA             |
-| `TRUE`       | 1                                     | `<list>`    | 1             | input data     |
-| `TRUE`       | `obs_prob` \>= 0 and `obs_prob` \<= 1 | `<list>`    | `nsim_obs`    | input data     |
+| `individual` | `obs_prob` | Output type | Output length | Element length |
+|----|----|----|----|----|
+| `FALSE` | 1 | `<numeric>` | 1 | NA |
+| `FALSE` | `obs_prob` \>= 0 and `obs_prob` \<= 1 | `<numeric>` | `nsim_obs` | NA |
+| `TRUE` | 1 | `<list>` | 1 | input data |
+| `TRUE` | `obs_prob` \>= 0 and `obs_prob` \<= 1 | `<list>` | `nsim_obs` | input data |
 
 ## Naming and documentation style
 
