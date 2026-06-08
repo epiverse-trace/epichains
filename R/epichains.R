@@ -98,7 +98,7 @@
 #'
 #' @description
 #' `new_epichains_summary()` constructs an `<epichains_summary>` object from a
-#' supplied `<vector>` of chain sizes or lengths. It also stores extra
+#' supplied `<data.frame>` of chain sizes and lengths. It also stores extra
 #' attributes passed as individual arguments.
 #'
 #' `new_epichains_summary()` is meant to be lazy and performant, by creating
@@ -107,7 +107,8 @@
 #' `epichains_summary()` after the arguments have been checked. To create a
 #' new `<epichains_summary>` object safely, use `epichains_summary()`.
 #'
-#' @param chains_summary A numeric `<vector>` of chain sizes and lengths.
+#' @param chains_summary A `<data.frame>` with columns `size` and `length`
+#' representing chain sizes and lengths, respectively.
 #' @inheritParams simulate_chain_stats
 #' @inheritParams .new_epichains
 #' @author James M. Azam
@@ -119,7 +120,7 @@
                                    stat_threshold) {
   # Assemble the elements of the object
   obj <- chains_summary
-  class(obj) <- c("epichains_summary", class(chains_summary))
+  class(obj) <- c("epichains_summary", class(obj))
   attr(obj, "n_chains") <- n_chains
   attr(obj, "statistic") <- statistic
   attr(obj, "offspring_dist") <- offspring_dist
@@ -133,9 +134,9 @@
 #' @description
 #' `epichains_summary()` constructs an `<epichains_summary>` object.
 #'
-#' An `<epichains_summary>` object is a `<vector>` of the simulated
-#' chain sizes or lengths. It also stores information on the number of chains
-#' simulated, and the statistic that was tracked.
+#' An `<epichains_summary>` object is a `<data.frame>` of the simulated
+#' chain sizes and lengths. It also stores information on the number of chains
+#' simulated, and the statistic that was used as the stopping criterion.
 #'
 #' @inheritParams .new_epichains_summary
 #'
@@ -147,12 +148,11 @@
                                offspring_dist,
                                statistic = c("size", "length"),
                                stat_threshold = Inf) {
-  # chain_summary can sometimes contain infinite values, so check
-  # that finite elements are integerish.
-  checkmate::check_integerish(
-    chains_summary[is.finite(chains_summary)],
-    lower = 0,
-    any.missing = FALSE
+  # chains_summary is a data.frame with "size" and "length" columns.
+  checkmate::assert_data_frame(chains_summary, nrows = n_chains)
+  checkmate::assert_names(
+    names(chains_summary),
+    must.include = c("size", "length")
   )
   checkmate::assert_integerish(
     n_chains,
@@ -213,11 +213,12 @@ print.epichains <- function(x, ...) {
 #' @param x An `<epichains_summary>` object.
 #' @description
 #' Prints a summary of the `<epichains_summary>` object. In particular, it
-#' prints the number of chains simulated, and the range of
-#' the statistic, represented as the maximum (`max_stat`) and minimum
-#' (`min_stat`). If the minimum or maximum is infinite, it is represented as
-#' `>= stat_threshold` where `stat_threshold` is the value of the censoring
-#' limit. See `?epichains_summary()` for the definition of `stat_threshold`.
+#' prints the chain sizes and lengths as a `<data.frame>`, the stopping
+#' criterion statistic and its threshold, and the range (maximum and minimum)
+#' of each statistic. If the stopping statistic's minimum or maximum is
+#' infinite, it is represented as `>= stat_threshold` where `stat_threshold`
+#' is the value of the censoring limit. See `?epichains_summary()` for the
+#' definition of `stat_threshold`.
 #' @param ... Not used.
 #' @return Invisibly returns an `<epichains_summary>`. Called for
 #' side-effects.
@@ -303,41 +304,61 @@ format.epichains_summary <- function(x, ...) {
   # check that x is an <epichains_summary> object
   .validate_epichains_summary(x)
 
-  # summarise the information stored in x
+  # retrieve attributes
+  statistic <- attr(x, "statistic", exact = TRUE)
+  stat_threshold <- attr(x, "stat_threshold")
   statistics <- summary(x)
 
   writeLines(sprintf("`epichains_summary` object \n"))
-  print(as.vector(x))
+  print(as.data.frame(x))
+
   writeLines(
     sprintf(
-      "\n Number of chains: %s",
-      statistics[["unique_trees"]]
+      "\n Stopping criterion: %s (threshold: %s)",
+      statistic,
+      stat_threshold
     )
   )
+
   writeLines(
     c(
-      sprintf(
-        "\n Simulated %ss: \n",
-        attr(x, "statistic", exact = TRUE)
-      ),
+      "\n Simulated sizes: \n",
       sprintf(
         "Max: %s",
         ifelse(
-          is.infinite(
-            statistics[["max_stat"]]
-          ),
-          paste0(">=", attr(x, "stat_threshold")),
-          statistics[["max_stat"]]
+          is.infinite(statistics[["max_size"]]),
+          paste0(">=", stat_threshold),
+          statistics[["max_size"]]
         )
       ),
       sprintf(
         "Min: %s",
         ifelse(
-          is.infinite(
-            statistics[["min_stat"]]
-          ),
-          paste0(">=", attr(x, "stat_threshold")),
-          statistics[["min_stat"]]
+          is.infinite(statistics[["min_size"]]),
+          paste0(">=", stat_threshold),
+          statistics[["min_size"]]
+        )
+      )
+    )
+  )
+
+  writeLines(
+    c(
+      "\n Simulated lengths: \n",
+      sprintf(
+        "Max: %s",
+        ifelse(
+          is.infinite(statistics[["max_length"]]),
+          paste0(">=", stat_threshold),
+          statistics[["max_length"]]
+        )
+      ),
+      sprintf(
+        "Min: %s",
+        ifelse(
+          is.infinite(statistics[["min_length"]]),
+          paste0(">=", stat_threshold),
+          statistics[["min_length"]]
         )
       )
     )
@@ -348,19 +369,21 @@ format.epichains_summary <- function(x, ...) {
 
 #' Summary method for `<epichains>` class
 #'
-#' This calculates the chain statistic (size/length) for the simulated
-#' chains and returns an object with the same information as that returned
-#' by an equivalent `simulate_chain_stats()` call.
+#' This calculates both chain statistics (size and length) for the simulated
+#' chains and returns an `<epichains_summary>` object with both.
 #'
 #' @param object An `<epichains>` object.
 #' @param ... Not used.
 #'
-#' @return An `<epichains_summary>` object containing the chain summary
-#' statistics as follows:
-#' * "size": the total number of offspring produced by a chain before it
-#' goes extinct.
-#' * "length": the number of generations achieved by a chain before
-#' it goes extinct.
+#' @return An `<epichains_summary>` object, which is a `<data.frame>` with
+#' columns:
+#' * `size`: the total number of cases (including the index case) produced by
+#' the chain before it goes extinct or is stopped.
+#' * `length`: the number of generations reached by the chain before it goes
+#' extinct or is stopped.
+#'
+#' The stopping criterion statistic (given by the `statistic` attribute of the
+#' `<epichains>` object) is censored at `stat_threshold`.
 #' @author James M. Azam
 #' @export
 #' @examples
@@ -396,7 +419,7 @@ format.epichains_summary <- function(x, ...) {
 #' sim_summary_nbinom
 #'
 #' # Check that the results are the same
-#' setequal(sim_chains_nbinom_summary, sim_summary_nbinom)
+#' identical(sim_chains_nbinom_summary, sim_summary_nbinom)
 summary.epichains <- function(object, ...) {
   # Check that object has <epichains> class
   .validate_epichains(object)
@@ -405,31 +428,30 @@ summary.epichains <- function(object, ...) {
   statistic <- attr(object, "statistic")
   n_chains <- attr(object, "n_chains")
 
-  # Initialize summary statistics
-  chain_summaries <- vector(length = n_chains, mode = "integer")
-  # Calculate the summary statistic based on the specified statistic type
-  if (statistic == "size") {
-    # size is the number of offspring produced by a chain before it goes
-    # extinct or is terminated.
-    chain_summaries <- as.numeric(table(object$chain))
-  } else {
-    # length is the number of generations reached by a chain before
-    # it goes extinct or is terminated.
-    for (i in seq_len(n_chains)) {
-      chain_generations <- object[object$chain == i, "generation"]
-      chain_summaries[i] <- max(chain_generations)
-    }
-  }
+  # Compute chain SIZES: total number of cases per chain (rows per chain)
+  sizes <- as.numeric(table(object$chain))
+
+  # Compute chain LENGTHS: maximum generation reached per chain
+  lengths <- vapply(
+    seq_len(n_chains),
+    function(i) max(object[object$chain == i, "generation"]),
+    numeric(1)
+  )
+
   # Get other required attributes from passed object
   stat_threshold <- attr(object, "stat_threshold")
   offspring_dist <- attr(object, "offspring_dist")
 
-  # Apply truncation
-  chain_summaries[chain_summaries >= stat_threshold] <- Inf
+  # Censor ONLY the stopping statistic
+  if (statistic == "size") {
+    sizes[sizes >= stat_threshold] <- Inf
+  } else {
+    lengths[lengths >= stat_threshold] <- Inf
+  }
 
   # Return an <epichains_summary> object
   chain_summaries <- .epichains_summary(
-    chains_summary = chain_summaries,
+    chains_summary = data.frame(size = sizes, length = lengths),
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,
@@ -447,10 +469,10 @@ summary.epichains <- function(object, ...) {
 #' @return A list of chain summaries. The list contains the following
 #' elements:
 #' * `n_chains`: the number of chains simulated.
-#' * `max_stat`: the maximum chain statistic (size/length) achieved by the
-#' chains.
-#' * `min_stat`: the minimum chain statistic (size/length) achieved by the
-#' chains.
+#' * `max_size`: the maximum chain size achieved by the chains.
+#' * `min_size`: the minimum chain size achieved by the chains.
+#' * `max_length`: the maximum chain length achieved by the chains.
+#' * `min_length`: the minimum chain length achieved by the chains.
 #' @author James M. Azam
 #' @export
 #' @examples
@@ -472,18 +494,26 @@ summary.epichains_summary <- function(object, ...) {
   # Get the summaries
   n_chains <- attr(object, "n_chains", exact = TRUE)
 
-
-  if (all(is.infinite(object))) {
-    max_stat <- min_stat <- Inf
+  if (all(is.infinite(object$size))) {
+    max_size <- min_size <- Inf
   } else {
-    max_stat <- max(object)
-    min_stat <- min(object)
+    max_size <- max(object$size)
+    min_size <- min(object$size)
+  }
+
+  if (all(is.infinite(object$length))) {
+    max_length <- min_length <- Inf
+  } else {
+    max_length <- max(object$length)
+    min_length <- min(object$length)
   }
 
   out <- list(
     n_chains = n_chains,
-    max_stat = max_stat,
-    min_stat = min_stat
+    max_size = max_size,
+    min_size = min_size,
+    max_length = max_length,
+    min_length = min_length
   )
 
   out

@@ -323,29 +323,38 @@ simulate_chains <- function(n_chains,
   return(out)
 }
 
-#' Simulate a vector of transmission chains statistics (sizes/lengths)
+#' Simulate a data frame of transmission chain statistics (sizes and lengths)
 #'
 #' @description
-#' It generates a vector of transmission chain sizes or lengths using the
-#' same model as [simulate_chains()] but without tracking details of the
-#' individual chains. This function is useful when only the chain sizes or
-#' lengths are of interest.
+#' It generates a `<data.frame>` of transmission chain sizes and lengths using
+#' the same model as [simulate_chains()] but without tracking details of the
+#' individual chains. This function is useful when only the chain statistics
+#' are of interest.
 #'
 #' It uses a simple branching process model that simulates independent
 #' chains, using an offspring distribution for each chain. Each chain
-#' uses a threshold chain size or length as the
+#' uses a threshold chain size or length (controlled by `statistic`) as the
 #' stopping criterion especially where R0 > 1. The function also optionally
 #' accepts population related inputs such as the population size (defaults
 #' to Inf) and percentage of the population initially immune (defaults to 0).
 #' @inheritParams simulate_chains
 #' @param stat_threshold A stopping criterion for individual chain simulations;
-#' a positive number coercible to integer. When any chain's cumulative statistic
-#' reaches or surpasses `stat_threshold`, that chain ends. It also serves as a
-#' censoring limit so that results above the specified value, are set to `Inf`.
-#' Defaults to `Inf`.
-#' @return An object of class `<epichains_summary>`, which is a numeric
-#' vector of chain sizes or lengths with extra attributes for storing the
-#' simulation parameters.
+#' a positive number coercible to integer. When any chain's cumulative
+#' `statistic` reaches or surpasses `stat_threshold`, that chain ends. It also
+#' serves as a censoring limit so that the values of the stopping statistic
+#' above the specified value are set to `Inf`. Defaults to `Inf`.
+#' @return An object of class `<epichains_summary>`, which is a `<data.frame>`
+#' with columns:
+#' * `size` - the total number of cases (including the index case) produced by
+#' the chain before it goes extinct or is stopped.
+#' * `length` - the number of generations reached by the chain before it goes
+#' extinct or is stopped.
+#'
+#' The object also stores extra attributes for the simulation parameters. The
+#' `statistic` attribute records which statistic was used as the stopping
+#' criterion. The stopping statistic is censored at `stat_threshold` (values
+#' at or above the threshold are set to `Inf`); the complementary statistic is
+#' not censored and reflects its actual value when the chain stopped.
 #' @inheritSection simulate_chains Definition of a transmission chain
 #' @inheritSection simulate_chains Calculating chain sizes and lengths
 #' @inherit simulate_chains references
@@ -353,11 +362,11 @@ simulate_chains <- function(n_chains,
 #' # `simulate_chain_stats()` vs `simulate_chains()`
 #' `simulate_chain_stats()` is a time-invariant version of `simulate_chains()`.
 #' In particular, it does not track the details of individual transmission
-#' events but deals with eventual chain statistics, that is, the statistic
-#' realised by a chain after dying out.
+#' events but deals with eventual chain statistics, that is, the statistics
+#' realised by a chain after dying out or being stopped.
 #'
-#' It is useful for generating a vector of chain sizes or lengths for a given
-#' number of chains, if details of who infected whom and the timing of
+#' It is useful for generating a `<data.frame>` of chain sizes and lengths for
+#' a given number of chains, if details of who infected whom and the timing of
 #' infection are not of interest.
 #'
 #' This function is used in `{epichains}` for calculating likelihoods in
@@ -370,8 +379,9 @@ simulate_chains <- function(n_chains,
 #' where only data on observed chain sizes and lengths are available.
 #' @author James M. Azam, Sebastian Funk
 #' @examples
-#' # Simulate chain sizes with a poisson offspring distribution, assuming an
-#' # infinite population and no immunity.
+#' # Simulate chain sizes and lengths with a poisson offspring distribution,
+#' # assuming an infinite population and no immunity, and stopping chains at
+#' # size 10.
 #' set.seed(32)
 #' simulate_chain_stats(
 #'   n_chains = 20,
@@ -380,14 +390,15 @@ simulate_chains <- function(n_chains,
 #'   stat_threshold = 10,
 #'   lambda = 0.9
 #' )
-#' # Simulate chain sizes with a negative binomial distribution and assuming
-#' # a finite population and 10% immunity.
+#' # Simulate chain sizes and lengths with a negative binomial distribution,
+#' # assuming a finite population and 10% immunity, stopping chains at
+#' # length 10.
 #' set.seed(32)
 #' simulate_chain_stats(
 #'   pop = 1000,
 #'   percent_immune = 0.1,
 #'   n_chains = 20,
-#'   statistic = "size",
+#'   statistic = "length",
 #'   offspring_dist = rnbinom,
 #'   stat_threshold = 10,
 #'   mu = 0.9,
@@ -413,8 +424,9 @@ simulate_chain_stats <- function(n_chains,
   # Gather offspring distribution parameters
   pars <- list(...)
 
-  # Initialisations
-  stat_track <- rep(1L, n_chains) ## track statistic
+  # Initialisations: track BOTH size and length for each chain
+  size_track <- rep(1L, n_chains) ## track chain sizes
+  length_track <- rep(1L, n_chains) ## track chain lengths
   n_offspring <- rep(1L, n_chains) ## current number of offspring
   chains_active <- seq_len(n_chains) # track trees being simulated
 
@@ -452,12 +464,21 @@ simulate_chain_stats <- function(n_chains,
     ## assign offspring sum to their corresponding chains
     n_offspring[chains_active] <- tapply(next_gen, active_chain_ids, sum)
 
-    # track size/length
-    stat_track <- .update_chain_stat(
-      stat_type = statistic,
-      stat_latest = stat_track,
+    # track BOTH size and length
+    size_track <- .update_chain_stat(
+      stat_type = "size",
+      stat_latest = size_track,
       n_offspring = n_offspring
     )
+    length_track <- .update_chain_stat(
+      stat_type = "length",
+      stat_latest = length_track,
+      n_offspring = n_offspring
+    )
+
+    # Use `statistic` as the stopping criterion
+    stat_track <- if (statistic == "size") size_track else length_track
+
     # Update susceptible population
     susc_pop <- susc_pop - sum(n_offspring)
     # only continue chains that have offspring and haven't reached
@@ -465,10 +486,19 @@ simulate_chain_stats <- function(n_chains,
     chains_active <- which(n_offspring > 0 & stat_track < stat_threshold)
   }
 
-  stat_track[stat_track >= stat_threshold] <- Inf
+  # Censor ONLY the stopping statistic; the complementary statistic reflects
+  # its actual value when the chain stopped
+  if (statistic == "size") {
+    size_track[size_track >= stat_threshold] <- Inf
+  } else {
+    length_track[length_track >= stat_threshold] <- Inf
+  }
 
   out <- .epichains_summary(
-    chains_summary = stat_track,
+    chains_summary = data.frame(
+      size = as.numeric(size_track),
+      length = as.numeric(length_track)
+    ),
     n_chains = n_chains,
     statistic = statistic,
     offspring_dist = offspring_dist,

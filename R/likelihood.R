@@ -144,17 +144,20 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
     exclude,
     null.ok = TRUE
   )
-  # likelihood is designed to work with numeric objects to <epichains> objects
-  # need to be coerced to <epichains_summary> objects (numeric vector under
-  # the hood) for the likelihood calculation
+  # likelihood is designed to work with numeric objects so <epichains> objects
+  # need to be coerced to <epichains_summary> objects for the likelihood
+  # calculation
+  came_from_simulation <- FALSE
   if (.is_epichains(chains)) {
     chains <- summary(chains)
+    came_from_simulation <- TRUE
   }
 
   # Logic:
   # * If the object is an <epichains>/<epichains_summary>, we'll give
   # preference to the stat_threshold used in the simulation.
   if (.is_epichains_summary(chains)) {
+    sim_stopping_stat <- attr(chains, "statistic")
     stat_threshold_from_sim <- attr(chains, "stat_threshold")
     if (!missing(stat_threshold)) {
       warning(
@@ -165,18 +168,28 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
         call. = FALSE
       )
     }
-    stat_threshold <- stat_threshold_from_sim
+    # Use the simulation's stat_threshold only if computing likelihood for
+    # the same statistic that was used as the stopping criterion; otherwise
+    # use Inf (the non-stopping statistic is not censored).
+    if (statistic == sim_stopping_stat) {
+      stat_threshold <- stat_threshold_from_sim
+    } else {
+      stat_threshold <- Inf
+    }
+    # Extract the relevant column as a plain numeric vector
+    chains <- as.numeric(chains[[statistic]])
+    came_from_simulation <- TRUE
   }
 
   if (is.finite(stat_threshold)) {
     # censor the chains to be at most stat_threshold
     chains <- pmin(chains, stat_threshold)
-  } else if (any(is.infinite(chains)) && !.is_epichains_summary(chains)) {
-    # Developer note: <epichains_summary> objects also pass the`is.numeric()`
-    # check, so we need to check if the object is not an <epichains_summary>
-    # object.
+  } else if (any(is.infinite(chains)) && !came_from_simulation) {
     # Numeric chains can only contain Inf values based on human error/decision
     # to censor it with infinite values, so we ask the user to fix that.
+    # Chains derived from simulation objects (<epichains> or
+    # <epichains_summary>) legitimately contain Inf values (censored chains),
+    # so we skip the error for those.
     stop(
       "`chains` must be censored with a finite value. ",
       "Replace the `Inf` values with a finite value.",

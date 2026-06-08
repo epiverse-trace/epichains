@@ -248,11 +248,11 @@ test_that("summary.epichains works as expected", {
     )
   )
   expect_identical(
-    chain_size_stats_all_Infs_summary$max_stat,
+    chain_size_stats_all_Infs_summary$max_size,
     Inf
   )
   expect_identical(
-    chain_size_stats_all_Infs_summary$min_stat,
+    chain_size_stats_all_Infs_summary$min_size,
     Inf
   )
 })

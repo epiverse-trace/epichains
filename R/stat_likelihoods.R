@@ -190,13 +190,14 @@
     any.missing = FALSE
   )
   # Remaining checks are done in simulate_chain_stats()
-  # Simulate the chains
-  dist <- simulate_chain_stats(
+  # Simulate the chains and extract the stopping-criterion column as a numeric
+  # vector (simulate_chain_stats() now returns a data.frame with both stats)
+  dist <- as.numeric(simulate_chain_stats(
     n_chains = nsim_offspring,
     offspring_dist = offspring_dist,
     statistic = statistic,
     ...
-  )
+  )[[statistic]])
 
   # Compute the empirical Cumulative Distribution Function of the
   # simulated chains
