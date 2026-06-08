@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# _{{ packagename }}_: Methods for simulating and analysing the size and length of transmission chains from branching process models <img src="man/figures/logo.svg" align="right" height="130" />
+# _{{ packagename }}_: Methods for simulating and analysing the size and length of transmission chains from branching process models <img src="man/figures/logo.svg" align="right" height="130" alt="epichains package hex logo" />
 
 <!-- badges: start -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
