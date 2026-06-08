@@ -129,7 +129,7 @@ test_that("simulate_chains has expected shape", {
 })
 
 test_that("simulate_chains works without specifying statistic (default 'size')", {
-  # Regression test for https://github.com/epiverse-trace/epichains/issues/XXX
+  # Regression test for https://github.com/epiverse-trace/epichains/issues/333
   # statistic should default to "size" without error when not specified
   set.seed(12)
   expect_no_error(
@@ -152,7 +152,7 @@ test_that("simulate_chains works without specifying statistic (default 'size')",
 })
 
 test_that("simulate_chain_stats works without specifying statistic (default 'size')", {
-  # Regression test for https://github.com/epiverse-trace/epichains/issues/XXX
+  # Regression test for https://github.com/epiverse-trace/epichains/issues/333
   # statistic should default to "size" without error when not specified
   set.seed(12)
   expect_no_error(
