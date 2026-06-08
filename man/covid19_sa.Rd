@@ -3,7 +3,7 @@
 \docType{data}
 \name{covid19_sa}
 \alias{covid19_sa}
-\title{COVID-19 Data Repository for South Africa}
+\title{COVID-19 Confirmed Cases Data for South Africa}
 \format{
 \subsection{\code{covid19_sa}}{
 
@@ -16,18 +16,26 @@ A data frame with 19 rows and 2 columns:
 }
 \source{
 \url{https://github.com/dsfsi/covid19za}
-Further details in \code{data-raw/covid19_sa.R}.
 }
 \usage{
 covid19_sa
 }
 \description{
 An aggregated subset of the COVID-19 Data Repository for South Africa
-created, maintained and hosted by Data Science for Social Impact research
-group, led by Dr. Vukosi Marivate.
+created, maintained and hosted by the Data Science for Social Impact (DSFSI)
+research group, led by Dr. Vukosi Marivate at the University of Pretoria,
+South Africa.
 }
 \details{
-The data is originally provided as a linelist but has been subsetted and
-cleaned in \code{data-raw/covid19_sa.R}.
+The data are originally provided as a linelist of individual confirmed cases.
+This subset consists of the first 16 days of the outbreak
+(5 March 2020 to 20 March 2020), aggregated into a daily incidence time
+series. See \code{data-raw/covid19_sa.R} for the data preparation code.
+}
+\references{
+Marivate, V. and Combrink, H. M. (2020). Use of available data to inform
+the COVID-19 outbreak in South Africa: a case study.
+arXiv preprint arXiv:2004.04813.
+\doi{10.48550/arXiv.2004.04813}
 }
 \keyword{datasets}
