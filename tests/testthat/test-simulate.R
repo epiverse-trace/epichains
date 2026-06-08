@@ -128,6 +128,48 @@ test_that("simulate_chains has expected shape", {
   )
 })
 
+test_that("simulate_chains works without specifying statistic (default 'size')", {
+  # Regression test for https://github.com/epiverse-trace/epichains/issues/333
+  # statistic should default to "size" without error when not specified
+  set.seed(12)
+  expect_no_error(
+    simulate_chains(
+      n_chains = 10,
+      offspring_dist = \(n) rnbinom(n, size = 1, mu = 2),
+      generation_time = \(n) rep(5, times = n),
+      tf = 10
+    )
+  )
+  # verify it defaults to "size"
+  set.seed(12)
+  result <- simulate_chains(
+    n_chains = 10,
+    offspring_dist = \(n) rnbinom(n, size = 1, mu = 2),
+    generation_time = \(n) rep(5, times = n),
+    tf = 10
+  )
+  expect_identical(attr(result, "statistic"), "size")
+})
+
+test_that("simulate_chain_stats works without specifying statistic (default 'size')", {
+  # Regression test for https://github.com/epiverse-trace/epichains/issues/333
+  # statistic should default to "size" without error when not specified
+  set.seed(12)
+  expect_no_error(
+    simulate_chain_stats(
+      n_chains = 10,
+      offspring_dist = \(n) rnbinom(n, size = 1, mu = 2)
+    )
+  )
+  # verify it defaults to "size"
+  set.seed(12)
+  result <- simulate_chain_stats(
+    n_chains = 10,
+    offspring_dist = \(n) rnbinom(n, size = 1, mu = 2)
+  )
+  expect_identical(attr(result, "statistic"), "size")
+})
+
 test_that("simulate_chains throws errors", {
   expect_error(
     simulate_chains(

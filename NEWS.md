@@ -1,5 +1,9 @@
 # epichains (development version)
 
+## Bug fixes
+
+- Fixed a bug where `simulate_chains()` and `simulate_chain_stats()` would error when `statistic` was not specified, even when it is not required (e.g., when `stat_threshold = Inf`). The `statistic` argument now correctly defaults to `"size"` when not specified.
+
 # epichains 0.1.1.9000
 
 ## Package
