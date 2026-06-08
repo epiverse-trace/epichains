@@ -2,6 +2,7 @@
 % Please edit documentation in R/simulate.R
 \name{simulate_chains}
 \alias{simulate_chains}
+\alias{simulate_chain_stats}
 \title{Simulate transmission chains}
 \usage{
 simulate_chains(
@@ -15,6 +16,16 @@ simulate_chains(
   generation_time = NULL,
   t0 = 0,
   tf = Inf
+)
+
+simulate_chain_stats(
+  n_chains,
+  statistic = c("size", "length"),
+  offspring_dist,
+  ...,
+  stat_threshold = Inf,
+  pop = Inf,
+  percent_immune = 0
 )
 }
 \arguments{
@@ -47,7 +58,8 @@ reaches or surpasses \code{stat_threshold}, that chain ends. Defaults to \code{I
 For example, if \code{statistic = "size"} and \code{stat_threshold = 10}, then any
 chain that produces 10 or more cases will stop. Note that setting
 \code{stat_threshold} does not guarantee that all chains will stop at the same
-value.}
+value. In \code{simulate_chain_stats()}, \code{stat_threshold} also serves as a
+censoring limit so that results above the specified value are set to \code{Inf}.}
 
 \item{pop}{Population size; An \verb{<Integer>}. Used alongside \code{percent_immune}
 to define the susceptible population. Defaults to \code{Inf}.}
@@ -70,8 +82,8 @@ time 0.}
 time is given); Defaults to \code{Inf}.}
 }
 \value{
-An \verb{<epichains>} object, which is basically a \verb{<data.frame>}
-with columns:
+\code{simulate_chains()}: An \verb{<epichains>} object, which is basically a
+\verb{<data.frame>} with columns:
 \itemize{
 \item \code{chain} - an ID for active/ongoing chains,
 \item \code{infectee} - a unique ID for each infectee.
@@ -80,11 +92,15 @@ with columns:
 optionally,
 \item \code{time} - the time of infection.
 }
+
+\code{simulate_chain_stats()}: An object of class \verb{<epichains_summary>},
+which is a numeric vector of chain sizes or lengths with extra attributes
+for storing the simulation parameters.
 }
 \description{
-It generates independent transmission chains starting with a single case
-per chain, using a simple branching process model (See details for
-definition of "chains" and assumptions). Offspring for each
+\code{simulate_chains()} generates independent transmission chains starting with
+a single case per chain, using a simple branching process model (See
+details for definition of "chains" and assumptions). Offspring for each
 chain are generated with an offspring distribution, and an optional
 generation time distribution function.
 
@@ -93,6 +109,18 @@ criteria, including a threshold chain size or length, and a generation time
 cut off. The function also optionally accepts population related inputs
 such as the population size (defaults to Inf) and percentage of the
 population initially immune (defaults to 0).
+
+\code{simulate_chain_stats()} generates a vector of transmission chain sizes or
+lengths using the same model as \code{\link[=simulate_chains]{simulate_chains()}} but without tracking
+details of the individual chains. This function is useful when only the
+chain sizes or lengths are of interest.
+
+It uses a simple branching process model that simulates independent
+chains, using an offspring distribution for each chain. Each chain
+uses a threshold chain size or length as the
+stopping criterion especially where R0 > 1. The function also optionally
+accepts population related inputs such as the population size (defaults
+to Inf) and percentage of the population initially immune (defaults to 0).
 }
 \section{Definition of a transmission chain}{
 A transmission chain as used here is an independent case and all
@@ -138,7 +166,26 @@ OR \code{simulate_*(..., generation_time = \(n){rlnorm(n, 0.58, 1.38)})},
 where \code{...} are the other arguments to \verb{simulate_*()}.
 }
 
+\section{\code{simulate_chain_stats()} vs \code{simulate_chains()}}{
+\code{simulate_chain_stats()} is a time-invariant version of \code{simulate_chains()}.
+In particular, it does not track the details of individual transmission
+events but deals with eventual chain statistics, that is, the statistic
+realised by a chain after dying out.
+
+It is useful for generating a vector of chain sizes or lengths for a given
+number of chains, if details of who infected whom and the timing of
+infection are not of interest.
+
+This function is used in \code{{epichains}} for calculating likelihoods in
+the \code{likelihood()} function and for sampling from the borel
+distribution (See ?epichains::rborel). It is used extensively in the
+vignette on
+\href{https://epiverse-trace.github.io/epichains/articles/interventions.html}{modelling disease control},
+where only data on observed chain sizes and lengths are available.
+}
+
 \examples{
+# simulate_chains() examples:
 # Using a Poisson offspring distribution and simulating from an infinite
 # population up to chain size 10.
 set.seed(32)
@@ -167,6 +214,30 @@ chains_nbinom_offspring <- simulate_chains(
   size = 0.2
 )
 chains_nbinom_offspring
+# simulate_chain_stats() examples:
+# Simulate chain sizes with a poisson offspring distribution, assuming an
+# infinite population and no immunity.
+set.seed(32)
+simulate_chain_stats(
+  n_chains = 20,
+  statistic = "size",
+  offspring_dist = rpois,
+  stat_threshold = 10,
+  lambda = 0.9
+)
+# Simulate chain sizes with a negative binomial distribution and assuming
+# a finite population and 10\% immunity.
+set.seed(32)
+simulate_chain_stats(
+  pop = 1000,
+  percent_immune = 0.1,
+  n_chains = 20,
+  statistic = "size",
+  offspring_dist = rnbinom,
+  stat_threshold = 10,
+  mu = 0.9,
+  size = 0.36
+)
 }
 \references{
 Jacob C. (2010). Branching processes: their role in epidemiology.

@@ -23,7 +23,8 @@ reaches or surpasses \code{stat_threshold}, that chain ends. Defaults to \code{I
 For example, if \code{statistic = "size"} and \code{stat_threshold = 10}, then any
 chain that produces 10 or more cases will stop. Note that setting
 \code{stat_threshold} does not guarantee that all chains will stop at the same
-value.}
+value. In \code{simulate_chain_stats()}, \code{stat_threshold} also serves as a
+censoring limit so that results above the specified value are set to \code{Inf}.}
 }
 \value{
 NULL; called for side effects
