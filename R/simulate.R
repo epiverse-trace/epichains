@@ -233,7 +233,7 @@ simulate_chains <- function(n_chains,
     # initialise place holder for the number of offspring
     n_offspring <- rep(0L, n_chains)
     # find the number of new offspring for each active simulation
-    n_offspring[chains_active] <- tapply(next_gen, active_chain_ids, sum)
+    n_offspring[chains_active] <- rowsum(next_gen, active_chain_ids)
     # update the size/length statistic
     stat_track <- .update_chain_stat(
       stat_type = statistic,
@@ -258,13 +258,12 @@ simulate_chains <- function(n_chains,
       susc_pop <- susc_pop - sum(n_offspring)
 
       # store new simulation results
-      sim_df[[generation]] <-
-        data.frame(
-          chain = active_chain_ids,
-          infectee = sim_offspring_ids,
-          infector = infector_ids,
-          generation = generation
-        )
+      sim_df[[generation]] <- list2DF(list(
+        chain = active_chain_ids,
+        infectee = sim_offspring_ids,
+        infector = infector_ids,
+        generation = rep(generation, length(active_chain_ids))
+      ))
 
       # if a generation time model/function was specified, use it
       # to generate generation times for the cases
