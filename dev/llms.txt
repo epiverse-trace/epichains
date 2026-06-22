@@ -245,7 +245,8 @@ Click to expand
 
 - [covidhm](https://github.com/biouea/covidhm): code for simulating
   COVID-19 dynamics in a range of scenarios across a real-world social
-  network. The model is conceptually based on `{ringbp}`.
+  network. The model is conceptually based on
+  [ringbp](https://epiforecasts.io/ringbp/).
 
 - [epicontacts](https://github.com/reconhub/epicontacts): provides
   methods for handling, analysing, and visualizing transmission chains
@@ -331,7 +332,7 @@ By contributing to this project, you agree to abide by its terms.
 citation("epichains")
 #> To cite package 'epichains' in publications use:
 #> 
-#>   Azam J, Funk S, Finger F (2025). _epichains: Simulating and Analysing
+#>   Azam J, Funk S, Finger F (2026). _epichains: Simulating and Analysing
 #>   Transmission Chain Statistics Using Branching Process Models_. R
 #>   package version 0.1.1.9000,
 #>   <https://github.com/epiverse-trace/epichains>.
@@ -342,7 +343,7 @@ citation("epichains")
 #>     title = {epichains: Simulating and Analysing Transmission Chain Statistics Using
 #> Branching Process Models},
 #>     author = {James M. Azam and Sebastian Funk and Flavio Finger},
-#>     year = {2025},
+#>     year = {2026},
 #>     note = {R package version 0.1.1.9000},
 #>     url = {https://github.com/epiverse-trace/epichains},
 #>   }
