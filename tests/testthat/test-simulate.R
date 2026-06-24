@@ -254,19 +254,19 @@ test_that("simulate_chain_stats is numerically correct", {
   #' summarise the results
   sim_summary_summarised <- summary(sim_summary_small_pop)
   expect_identical(
-    as.vector(sim_summary_small_pop),
+    sim_summary_small_pop$length,
     c(1, 1, 1, 1, 1, 2, 1, 1, 1, 1)
   )
   expect_identical(
-    length(sim_summary_small_pop),
+    nrow(sim_summary_small_pop),
     as.integer(sim_summary_summarised$n_chains)
   )
   expect_identical(
-    sim_summary_summarised$max_stat,
+    sim_summary_summarised$max_length,
     2
   )
   expect_identical(
-    sim_summary_summarised$min_stat,
+    sim_summary_summarised$min_length,
     1
   )
   expect_snapshot(sim_summary_small_pop)
@@ -287,21 +287,21 @@ test_that("simulate_chains is numerically correct", {
   sim_chains_summary <- summary(sim_chains_small_susc)
   #' Expectations
   expect_identical(
-    max(sim_chains_summary),
+    max(sim_chains_summary$length),
     5
   )
   expect_identical(
-    as.vector(sim_chains_summary),
+    sim_chains_summary$length,
     c(3, 5, 2, 3, 2, 2, 2, 1, 2, 2)
   )
   expect_identical(
-    min(sim_chains_summary),
+    min(sim_chains_summary$length),
     1
   )
-  # each index case has a single summary value so expect the length of the
-  # summary vector to be equal to the number of index cases.
+  # each index case corresponds to one row in the summary data frame, so expect
+  # the number of rows to be equal to the number of index cases.
   expect_identical(
-    length(sim_chains_summary),
+    nrow(sim_chains_summary),
     as.integer(attr(sim_chains_summary, "n_chains"))
   )
   expect_s3_class(
@@ -365,15 +365,15 @@ test_that("simulate_chain_stats is numerically correct", {
     2.00
   )
   expect_identical(
-    chain_summary_summaries$max_stat,
+    chain_summary_summaries$max_length,
     3.00
   )
   expect_identical(
-    chain_summary_summaries$min_stat,
+    chain_summary_summaries$min_length,
     1.00
   )
   expect_identical(
-    as.vector(chain_summary_raw),
+    chain_summary_raw$length,
     c(1.00, 3.00)
   )
 })

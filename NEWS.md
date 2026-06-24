@@ -1,5 +1,9 @@
 # epichains (development version)
 
+## New features
+
+- `simulate_chain_stats()` now tracks both chain size and chain length simultaneously. The `statistic` argument continues to specify the stopping criterion, but the returned `<epichains_summary>` object is now a data frame with both a `size` column and a `length` column. This allows users to limit simulations by one statistic (e.g., generation length) while reporting the other (e.g., outbreak size). `summary(<epichains>)` is likewise updated to return both statistics.
+
 # epichains 0.1.1.9000
 
 ## Package
