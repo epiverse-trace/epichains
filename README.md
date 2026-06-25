@@ -9,7 +9,7 @@
 
 <!-- `gh_repo` is extracted via a special environment variable in GitHub Actions -->
 
-# *epichains*: Methods for simulating and analysing the size and length of transmission chains from branching process models <img src="man/figures/logo.svg" align="right" height="130" />
+# *epichains*: Methods for simulating and analysing the size and length of transmission chains from branching process models <img src="man/figures/logo.svg" align="right" height="130" alt="epichains package hex logo" />
 
 <!-- badges: start -->
 

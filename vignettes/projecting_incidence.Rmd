@@ -306,7 +306,7 @@ head(median_daily_cases)
 
 We will now plot the individual simulation results alongside the median
 of the aggregated results.
-```{r viz, fig.cap ="COVID-19 incidence in South Africa projected over a two week window in 2020. The light gray lines represent the individual simulations, the red line represents the median daily cases across all simulations, the black connected dots represent the observed data, and the dashed vertical line marks the beginning of the projection.", fig.width=6.0, fig.height=6}
+```{r viz, fig.cap ="COVID-19 incidence in South Africa projected over a two week window in 2020. The light gray lines represent the individual simulations, the red line represents the median daily cases across all simulations, the black connected dots represent the observed data, and the dashed vertical line marks the beginning of the projection.", fig.alt = "A line graph showing COVID-19 incidence in South Africa projected over a two week window in 2020. The x-axis shows the date and the y-axis shows the number of cases. Multiple light gray lines represent individual simulation trajectories. A red line shows the median daily cases across all simulations. Black connected dots represent the observed data. A dashed vertical line separates the observed data from the projection period.", fig.width=6.0, fig.height=6}
 # since all simulations may end at a different date, we will find the minimum
 # final date for all simulations for the purposes of visualisation.
 final_date <- incidence_ts_by_date %>%
