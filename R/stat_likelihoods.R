@@ -18,7 +18,7 @@
   )
 
   out <- (x - 1) * log(lambda) - lambda * x + (x - 2) * log(x) - lgamma(x)
-  return(out)
+  out
 }
 
 #' Log-likelihood of the size of chains with Negative-Binomial offspring
@@ -55,13 +55,13 @@
     )
   }
   if (!missing(prob)) {
-    if (!missing(mu)) stop("'prob' and 'mu' both specified")
+    if (!missing(mu)) stop("'prob' and 'mu' both specified", call. = FALSE)
     mu <- size * (1 - prob) / prob
   }
   out <- lgamma(size * x + (x - 1)) - (lgamma(size * x) + lgamma(x + 1)) +
     (x - 1) * log(mu / size) -
     (size * x + (x - 1)) * log(1 + mu / size)
-  return(out)
+  out
 }
 
 #' Log-likelihood of the size of chains with gamma-Borel offspring distribution
@@ -98,13 +98,13 @@
   }
 
   if (!missing(prob)) {
-    if (!missing(mu)) stop("'prob' and 'mu' both specified")
+    if (!missing(mu)) stop("'prob' and 'mu' both specified", call. = FALSE)
     mu <- size * (1 - prob) / prob
   }
   out <- lgamma(size + x - 1) -
     (lgamma(x + 1) + lgamma(size)) - size * log(mu / size) +
     (x - 1) * log(x) - (size + x - 1) * log(x + size / mu)
-  return(out)
+  out
 }
 
 #' Log-likelihood of the length of chains with Poisson offspring distribution
@@ -135,7 +135,7 @@
   Gk <- c(0, exp(-lambda) * itex) ## set G_{0}=1
 
   out <- log(Gk[x + 1] - Gk[x])
-  return(out)
+  out
 }
 
 #' Log-likelihood of the length of chains with geometric offspring distribution
@@ -162,7 +162,7 @@
     (1 - lambda^(x - 1)) / (1 - lambda^(x))
 
   out <- log(GkmGkm1)
-  return(out)
+  out
 }
 
 #' Log-likelihood of the summary (size/length) of chains with generic offspring
@@ -191,7 +191,7 @@
   )
   # Remaining checks are done in simulate_chain_stats()
   # Simulate the chains
-  dist <- simulate_chain_stats(
+  simulated_stats <- simulate_chain_stats(
     n_chains = nsim_offspring,
     offspring_dist = offspring_dist,
     statistic = statistic,
@@ -200,17 +200,17 @@
 
   # Compute the empirical Cumulative Distribution Function of the
   # simulated chains
-  chains_empirical_cdf <- stats::ecdf(dist)
+  chains_empirical_cdf <- stats::ecdf(simulated_stats)
 
   # Perform a lagged linear interpolation of the points
   acdf <- diff(
     c(
       0,
       stats::approx(
-        unique(dist),
-        chains_empirical_cdf(unique(dist)),
+        unique(simulated_stats),
+        chains_empirical_cdf(unique(simulated_stats)),
         seq_len(
-          max(dist[is.finite(dist)])
+          max(simulated_stats[is.finite(simulated_stats)])
         )
       )$y
     )
@@ -218,5 +218,5 @@
   lik <- acdf[x]
   lik[is.na(lik)] <- 0
   out <- log(lik)
-  return(out)
+  out
 }
