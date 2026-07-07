@@ -93,7 +93,7 @@ test_that("simulate_chains works as expected with default arguments", {
 ### Format
 
 - Add a news item for each piece of work
-- Don't reference issue numbers - those are for PRs, not NEWS
+- Don't reference issue numbers - those are for PRs, not NEWS. Rather reference the PR number enclosed in round brackets. Example "Added feature x (#1)"
 - Don't mention code generators/reviewers or @ mentions
 - Keep entries relatively short (default: 1 sentence, but can be more if needed)
 - Organize by section: "Package changes", "Model changes", "Bug fixes", "Documentation"
