@@ -252,7 +252,7 @@ format.epichains <- function(x, ...) {
   # check that x is an <epichains> object
   .validate_epichains(x)
 
-  writeLines(sprintf("`<epichains>` object\n"))
+  writeLines("`<epichains>` object\n")
 
   # print head of the object
   writeLines("< epichains head (from first known infector) >\n")
@@ -306,7 +306,7 @@ format.epichains_summary <- function(x, ...) {
   # summarise the information stored in x
   statistics <- summary(x)
 
-  writeLines(sprintf("`epichains_summary` object \n"))
+  writeLines("`epichains_summary` object \n")
   print(as.vector(x))
   writeLines(
     sprintf(

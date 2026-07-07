@@ -320,7 +320,7 @@ simulate_chains <- function(n_chains,
     stat_threshold = stat_threshold,
     track_pop = !missing(pop)
   )
-  return(out)
+  out
 }
 
 #' Simulate a vector of transmission chains statistics (sizes/lengths)
@@ -475,5 +475,5 @@ simulate_chain_stats <- function(n_chains,
     stat_threshold = stat_threshold
   )
 
-  return(out)
+  out
 }

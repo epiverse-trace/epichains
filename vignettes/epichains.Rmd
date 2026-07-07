@@ -125,7 +125,7 @@ observing `chain_sizes`.
 set.seed(121)
 # example of observed chain sizes
 # randomly generate 20 chains of size between 1 to 10
-chain_sizes <- sample(1:10, 20, replace = TRUE)
+chain_sizes <- sample.int(10, 20, replace = TRUE)
 chain_sizes
 # estimate loglikelihood of the observed chain sizes for given lambda
 likelihood_eg <- likelihood(
@@ -148,7 +148,7 @@ must be set to `TRUE`. To return likelihoods instead, set `log = FALSE`.
 set.seed(121)
 # example of observed chain sizes
 # randomly generate 20 chains of size between 1 to 10
-chain_sizes <- sample(1:10, 20, replace = TRUE)
+chain_sizes <- sample.int(10, 20, replace = TRUE)
 chain_sizes
 
 # estimate loglikelihood of the observed chain sizes
@@ -184,7 +184,7 @@ we use
 ```{r likelihoods_imperfect_obs}
 set.seed(121)
 # example of observed chain sizes; randomly generate 20 chains of size 1 to 10
-chain_sizes <- sample(1:10, 20, replace = TRUE)
+chain_sizes <- sample.int(10, 20, replace = TRUE)
 # get their likelihood
 liks <- likelihood(
   chains = chain_sizes,
@@ -238,7 +238,7 @@ distribution with probability `prob = 0.9`.
 ```{r likelihoods_by_simulation}
 set.seed(121)
 # example of observed chain sizes; randomly generate 20 chains of size 1 to 10
-chain_sizes <- sample(1:10, 20, replace = TRUE)
+chain_sizes <- sample.int(10, 20, replace = TRUE)
 # get their likelihood
 liks <- likelihood(
   chains = chain_sizes,
@@ -295,7 +295,7 @@ set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
   gt <- rep(3, n)
-  return(gt)
+  gt
 }
 
 sim_chains <- simulate_chains(
@@ -325,7 +325,7 @@ set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
   gt <- rep(3, n)
-  return(gt)
+  gt
 }
 
 sim_chains_with_pop <- simulate_chains(
@@ -380,7 +380,7 @@ set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
   gt <- rep(3, n)
-  return(gt)
+  gt
 }
 
 sim_chains <- simulate_chains(
@@ -443,7 +443,7 @@ set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
   gt <- rep(3, n)
-  return(gt)
+  gt
 }
 
 sim_chains <- simulate_chains(
@@ -529,7 +529,7 @@ set.seed(32)
 # Define generation time
 generation_time_fn <- function(n) {
   gt <- rep(3, n)
-  return(gt)
+  gt
 }
 
 sim_chains <- simulate_chains(

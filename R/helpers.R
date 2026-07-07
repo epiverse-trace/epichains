@@ -9,12 +9,10 @@
 #' coercible to integer.
 #' @keywords internal
 .update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
-  return(
-    switch(stat_type,
-      size = stat_latest + n_offspring,
-      length = stat_latest + pmin(1, n_offspring),
-      stop("stat_type must be 'size' or 'length'")
-    )
+  switch(stat_type,
+    size = stat_latest + n_offspring,
+    length = stat_latest + pmin(1, n_offspring),
+    stop("stat_type must be 'size' or 'length'", call. = FALSE)
   )
 }
 
@@ -25,12 +23,10 @@
 #' @return A function for calculating chain statistics.
 #' @keywords internal
 .get_statistic_func <- function(chain_statistic) {
-  return(
-    switch(chain_statistic,
-      size = .rbinom_size,
-      length = .rgen_length,
-      stop("chain_statistic must be 'size' or 'length'")
-    )
+  switch(chain_statistic,
+    size = .rbinom_size,
+    length = .rgen_length,
+    stop("chain_statistic must be 'size' or 'length'", call. = FALSE)
   )
 }
 
@@ -50,7 +46,7 @@
                            percent_immune,
                            index_cases) {
   ss <- max(round(pop * (1 - percent_immune)) - index_cases, 0)
-  return(ss)
+  ss
 }
 
 #' Sample all possible offspring for the next generation
@@ -84,7 +80,7 @@
       !all(possible_new_offspring %% 1 > 0)
   )
 
-  return(possible_new_offspring)
+  possible_new_offspring
 }
 
 #' Sample the number of susceptible offspring from all possible offspring
@@ -112,7 +108,7 @@
     size = new_offspring,
     prob = binom_prob
   )
-  return(susceptible_offspring)
+  susceptible_offspring
 }
 
 #' Adjust new offspring if it exceeds the susceptible population size
@@ -145,5 +141,5 @@
   ## count occurrences in next generation sample
   next_gen_count <- table(next_gen_sample)
   next_gen[as.integer(names(next_gen_count))] <- unname(next_gen_count)
-  return(next_gen)
+  next_gen
 }
