@@ -36,6 +36,7 @@
 - AI assistant files (`CLAUDE.md`, `CLAUDE.local.md`, and `.claude/`) are now excluded from the package build (#352).
 - Resolved outstanding linting issues across the package source and vignettes to keep the codebase compliant with the project's `{lintr}` configuration (#348).
 - Documentation is now generated with `{roxygen2}` 8.1.0 (#355).
+- Tests now use `expect_identical()` instead of `expect_true(identical())` for clearer failure messages (#337).
 
 # epichains 0.1.1
 
