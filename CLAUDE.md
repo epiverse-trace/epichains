@@ -26,8 +26,7 @@
 ### Branching workflow
 
 - Always create branches from the main branch
-- **Always rebase onto main** - always merge main into your branch instead
-
+- **Always rebase onto main** — never merge main into your branch
 ### Example
 
 "Add prior choice guide vignette"
@@ -56,7 +55,7 @@ When working on a task, follow this sequence:
 
 ### PR Template Requirements
 
-- Follow the pull request template in `.github/PULL_REQUEST_TEMPLATE.md`
+- Follow the pull request template (repository or organisation-wide)
 - Complete the checklist items in the template
 - Link to the related issue in the PR description (not in commit messages)
 - Ensure you've added a NEWS.md item before submitting
@@ -106,7 +105,8 @@ test_that("simulate_chains works as expected with default arguments", {
 
 ## Package changes
 
-- Development-only dependencies have been moved from `Suggests` to `Config/Needs/dev`.
+- Development-only dependencies were moved from `Suggests` to
+  `Config/Needs/dev`.
 - The package now has a hex logo.
 ```
 
@@ -161,4 +161,4 @@ Add lifecycle badge to documentation:
 
 ## Additional Context
 
-See `.github/CONTRIBUTING.md` for full contribution guidelines.
+See https://github.com/epiverse-trace/.github/blob/main/CONTRIBUTING.md for full contribution guidelines.
