@@ -12,6 +12,7 @@
 
 - The README now has badges for CRAN monthly and total downloads as well as the package's Zenodo DOI.
 - The theory vignette now has a references section. By @Degoot-AM in #316.
+- Added alternative text to images in the README and the `projecting_incidence` vignette to improve screen-reader accessibility (#338).
 
 ## Bug fixes
 
