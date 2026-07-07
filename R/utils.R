@@ -13,7 +13,7 @@
   )
 
   out <- tryCatch(log1p(-sum(exp(x))), error = function(e) -Inf)
-  return(out)
+  out
 }
 
 #' Samples size (the number of trials) of a binomial distribution
@@ -28,7 +28,7 @@
 #' @keywords internal
 .rbinom_size <- function(n, x, prob) {
   out <- x + stats::rnbinom(n, x + 1, prob)
-  return(out)
+  out
 }
 
 #' Samples chain lengths with given observation probabilities
@@ -46,5 +46,5 @@
   out <- x +
     ceiling(log(stats::runif(n, 0, 1)) / log(1 - prob) - 1) +
     ceiling(log(stats::runif(n, 0, 1)) / log(1 - prob) - 1)
-  return(out)
+  out
 }

@@ -18,6 +18,7 @@
 - The `simulate_*()` functions now ensure integer operations are safely maintained in computations to ensure memory and computational efficiency.
 - Added a CLAUDE.md file to provide workflow instructions and guardrails to AI agents (#347). 
 - AI assistant files (`CLAUDE.md`, `CLAUDE.local.md`, and `.claude/`) are now excluded from the package build (#352).
+- Resolved outstanding linting issues across the package source and vignettes to keep the codebase compliant with the project's `{lintr}` configuration.
 
 # epichains 0.1.1
 

@@ -24,7 +24,7 @@ dborel <- function(x, mu, log = FALSE) {
 
   ld <- -mu * x + (x - 1) * log(mu * x) - lgamma(x + 1)
   if (!log) ld <- exp(ld)
-  return(ld)
+  ld
 }
 
 #' Generate random numbers from the Borel distribution
@@ -66,7 +66,7 @@ rborel <- function(n, mu, censor_at = Inf) {
     lambda = mu
   )
   out <- as.numeric(out)
-  return(out)
+  out
 }
 
 #' Generate random numbers from a Gamma-Borel mixture distribution
@@ -111,14 +111,14 @@ rgborel <- function(n, size, prob, mu, censor_at = Inf) {
     )
   }
   if (!missing(prob)) {
-    if (!missing(mu)) stop("'prob' and 'mu' both specified")
+    if (!missing(mu)) stop("'prob' and 'mu' both specified", call. = FALSE)
     mu <- size * (1 - prob) / prob
   }
   # first, sample from gamma
   x <- rgamma(n, shape = size, rate = size / mu)
   # then, sample from borel
-  return(vapply(
+  vapply(
     x, rborel,
     n = 1, censor_at = censor_at, FUN.VALUE = numeric(1)
-  ))
+  )
 }
