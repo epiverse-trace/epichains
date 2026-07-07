@@ -17,7 +17,7 @@
 - Checking functions previously named `check_*()` have been renamed to `assert_*()` to align with naming conventions used in the `{checkmate}` package.
 - The `simulate_*()` functions now ensure integer operations are safely maintained in computations to ensure memory and computational efficiency.
 - Added a CLAUDE.md file to provide workflow instructions and guardrails to AI agents (#347). 
-- Resolved outstanding linting issues across the package source and vignettes to keep the codebase compliant with the project's `{lintr}` configuration.
+- Resolved outstanding linting issues across the package source and vignettes to keep the codebase compliant with the project's `{lintr}` configuration (#348).
 
 # epichains 0.1.1
 
