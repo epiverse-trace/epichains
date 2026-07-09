@@ -1,5 +1,15 @@
 # Project-Specific Instructions for epichains
 
+## Design Decisions
+
+- Design decisions taken during development of the package, along with
+  their reasoning and possible pros and cons, are documented in the
+  [design principles vignette](vignettes/design-principles.Rmd)
+- Consult this vignette before making changes that affect the package's
+  architecture, class structures, or overall design
+- Update this vignette when a change introduces or alters a design
+  decision
+
 ## General Principles
 
 ### Language
