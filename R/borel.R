@@ -57,7 +57,8 @@ rborel <- function(n, mu, censor_at = Inf) {
     finite = TRUE,
     na.ok = FALSE
   )
-  # Run simulations
+  # Run simulations and extract the size column as a numeric vector
+  # (simulate_chain_stats() returns a data.frame with both size and length)
   out <- simulate_chain_stats(
     n_chains = n,
     offspring_dist = rpois,
@@ -65,7 +66,7 @@ rborel <- function(n, mu, censor_at = Inf) {
     stat_threshold = censor_at,
     lambda = mu
   )
-  out <- as.numeric(out)
+  out <- as.numeric(out[["size"]])
   return(out)
 }
 

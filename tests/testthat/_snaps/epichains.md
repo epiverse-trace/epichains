@@ -97,7 +97,16 @@
     Output
       `epichains_summary` object 
       
-      [1] 15  5
+        size length
+      1   95     15
+      2    5      5
+      
+       Stopping criterion: length (threshold: Inf)
+      
+       Simulated sizes: 
+      
+      Max: 95
+      Min: 5
       
        Simulated lengths: 
       
@@ -111,7 +120,24 @@
     Output
       `epichains_summary` object 
       
-       [1]   8   2 Inf   8   1 Inf   8 Inf   2   3
+         size length
+      1    14      8
+      2     2      2
+      3    44    Inf
+      4    19      8
+      5     1      1
+      6    51    Inf
+      7    20      8
+      8    73    Inf
+      9     2      2
+      10    3      3
+      
+       Stopping criterion: length (threshold: 10)
+      
+       Simulated sizes: 
+      
+      Max: 73
+      Min: 1
       
        Simulated lengths: 
       
@@ -125,7 +151,16 @@
     Output
       `epichains_summary` object 
       
-      [1] Inf Inf
+        size length
+      1   75    Inf
+      2   45    Inf
+      
+       Stopping criterion: length (threshold: 10)
+      
+       Simulated sizes: 
+      
+      Max: 75
+      Min: 45
       
        Simulated lengths: 
       
