@@ -12,6 +12,12 @@
 - The README now has badges for CRAN monthly and total downloads as well as the package's Zenodo DOI.
 - The theory vignette now has a references section. By @Degoot-AM in #316.
 
+## Bug fixes
+
+- A bug was fixed where the check that an offspring distribution returns
+  integers passed for output containing a mix of integer and non-integer
+  values (#353).
+
 ## Internal changes
 
 - Checking functions previously named `check_*()` have been renamed to `assert_*()` to align with naming conventions used in the `{checkmate}` package.
