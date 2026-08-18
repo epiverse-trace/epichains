@@ -587,7 +587,7 @@ head.epichains <- function(x, ...) {
   # print head of the simulation output from the first known infector
   x <- x[!is.na(x$infector), ]
 
-  utils::head(as.data.frame(x), ...)
+  head(as.data.frame(x), ...)
 }
 
 #' @rdname head.epichains
@@ -604,7 +604,7 @@ head.epichains <- function(x, ...) {
 #' )
 #' tail(chains_pois_offspring)
 tail.epichains <- function(x, ...) {
-  utils::tail(as.data.frame(x), ...)
+  tail(as.data.frame(x), ...)
 }
 
 #' Aggregate cases in `<epichains>` objects by "generation" or "time", if
@@ -663,14 +663,14 @@ aggregate.epichains <- function(x,
       )
     }
     # Count the number of cases per time
-    stats::aggregate(
+    aggregate(
       list(cases = x$chain),
       list(time = x$time),
       FUN = NROW
     )
   } else if (by == "generation") {
     # Count the number of cases per generation
-    stats::aggregate(
+    aggregate(
       list(cases = x$chain),
       list(generation = x$generation),
       FUN = NROW
