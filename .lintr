@@ -30,6 +30,12 @@ exclusions: list(
       missing_package_linter = Inf,
       namespace_linter = Inf
     ),
+    # plot() is reported as R 4.0.0 because it moved from graphics to base in
+    # that release. It is available in the declared minimum R version via
+    # graphics, which is attached by default.
+    "vignettes/epichains.Rmd" = list(
+      backport_linter = Inf
+    ),
     # RcppExports.R is auto-generated and will not pass many linters. In
     # particular, it can create very long lines.
     "R/RcppExports.R",
