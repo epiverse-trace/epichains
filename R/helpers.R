@@ -9,10 +9,12 @@
 #' coercible to integer.
 #' @keywords internal
 .update_chain_stat <- function(stat_type, stat_latest, n_offspring) {
+  if (!isTRUE(stat_type %in% c("size", "length"))) {
+    stop("stat_type must be 'size' or 'length'", call. = FALSE)
+  }
   switch(stat_type,
     size = stat_latest + n_offspring,
-    length = stat_latest + pmin(1, n_offspring),
-    stop("stat_type must be 'size' or 'length'", call. = FALSE)
+    length = stat_latest + pmin(1, n_offspring)
   )
 }
 
@@ -23,10 +25,12 @@
 #' @return A function for calculating chain statistics.
 #' @keywords internal
 .get_statistic_func <- function(chain_statistic) {
+  if (!isTRUE(chain_statistic %in% c("size", "length"))) {
+    stop("chain_statistic must be 'size' or 'length'", call. = FALSE)
+  }
   switch(chain_statistic,
     size = .rbinom_size,
-    length = .rgen_length,
-    stop("chain_statistic must be 'size' or 'length'", call. = FALSE)
+    length = .rgen_length
   )
 }
 
