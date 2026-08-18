@@ -6,6 +6,7 @@
 
 - The package now has websites for the [development version on GitHub](https://epiverse-trace.github.io/epichains/dev/) and [CRAN version](https://epiverse-trace.github.io/epichains/). By @jamesmbaazam in #293 and self-reviewed.
 - Fixed an issue where equations in the pkgdown function reference were not being rendered.
+- The minimum required R version was raised from 3.6.0 to 4.1.0 (#348).
 
 ## Documentation
 
