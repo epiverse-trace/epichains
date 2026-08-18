@@ -14,6 +14,8 @@
   self-reviewed.
 - Fixed an issue where equations in the pkgdown function reference were
   not being rendered.
+- The minimum required R version was raised from 3.6.0 to 4.1.0
+  ([\#348](https://github.com/epiverse-trace/epichains/issues/348)).
 
 ### Documentation
 
@@ -22,6 +24,14 @@
 - The theory vignette now has a references section. By
   [@Degoot-AM](https://github.com/Degoot-AM) in
   [\#316](https://github.com/epiverse-trace/epichains/issues/316).
+
+### Bug fixes
+
+- A bug was fixed where the validation that an offspring distribution
+  returns integers was inverted, so that output mixing integer and
+  non-integer values, or containing `NA`, passed the check instead of
+  raising an error
+  ([\#348](https://github.com/epiverse-trace/epichains/issues/348)).
 
 ### Internal changes
 
@@ -37,6 +47,10 @@
 - AI assistant files (`CLAUDE.md`, `CLAUDE.local.md`, and `.claude/`)
   are now excluded from the package build
   ([\#352](https://github.com/epiverse-trace/epichains/issues/352)).
+- Resolved outstanding linting issues across the package source and
+  vignettes to keep the codebase compliant with the project’s
+  [lintr](https://lintr.r-lib.org) configuration
+  ([\#348](https://github.com/epiverse-trace/epichains/issues/348)).
 
 ## epichains 0.1.1
 

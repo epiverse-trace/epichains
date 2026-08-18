@@ -73,6 +73,7 @@
 <h3 id="package-0-1-1-9000">Package<a class="anchor" aria-label="anchor" href="#package-0-1-1-9000"></a></h3>
 <ul><li>The package now has websites for the <a href="https://epiverse-trace.github.io/epichains/dev/">development version on GitHub</a> and <a href="https://epiverse-trace.github.io/epichains/">CRAN version</a>. By <a href="https://github.com/jamesmbaazam" class="external-link">@jamesmbaazam</a> in <a href="https://github.com/epiverse-trace/epichains/issues/293" class="external-link">#293</a> and self-reviewed.</li>
 <li>Fixed an issue where equations in the pkgdown function reference were not being rendered.</li>
+<li>The minimum required R version was raised from 3.6.0 to 4.1.0 (<a href="https://github.com/epiverse-trace/epichains/issues/348" class="external-link">#348</a>).</li>
 </ul></div>
 <div class="section level3">
 <h3 id="documentation-0-1-1-9000">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-1-1-9000"></a></h3>
@@ -80,11 +81,16 @@
 <li>The theory vignette now has a references section. By <a href="https://github.com/Degoot-AM" class="external-link">@Degoot-AM</a> in <a href="https://github.com/epiverse-trace/epichains/issues/316" class="external-link">#316</a>.</li>
 </ul></div>
 <div class="section level3">
+<h3 id="bug-fixes-0-1-1-9000">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-1-1-9000"></a></h3>
+<ul><li>A bug was fixed where the validation that an offspring distribution returns integers was inverted, so that output mixing integer and non-integer values, or containing <code>NA</code>, passed the check instead of raising an error (<a href="https://github.com/epiverse-trace/epichains/issues/348" class="external-link">#348</a>).</li>
+</ul></div>
+<div class="section level3">
 <h3 id="internal-changes-0-1-1-9000">Internal changes<a class="anchor" aria-label="anchor" href="#internal-changes-0-1-1-9000"></a></h3>
 <ul><li>Checking functions previously named <code>check_*()</code> have been renamed to <code>assert_*()</code> to align with naming conventions used in the <a href="https://mllg.github.io/checkmate/" class="external-link">checkmate</a> package.</li>
 <li>The <code>simulate_*()</code> functions now ensure integer operations are safely maintained in computations to ensure memory and computational efficiency.</li>
 <li>Added a CLAUDE.md file to provide workflow instructions and guardrails to AI agents (<a href="https://github.com/epiverse-trace/epichains/issues/347" class="external-link">#347</a>).</li>
 <li>AI assistant files (<code>CLAUDE.md</code>, <code>CLAUDE.local.md</code>, and <code>.claude/</code>) are now excluded from the package build (<a href="https://github.com/epiverse-trace/epichains/issues/352" class="external-link">#352</a>).</li>
+<li>Resolved outstanding linting issues across the package source and vignettes to keep the codebase compliant with the project’s <a href="https://lintr.r-lib.org" class="external-link">lintr</a> configuration (<a href="https://github.com/epiverse-trace/epichains/issues/348" class="external-link">#348</a>).</li>
 </ul></div>
 </div>
     <div class="section level2">

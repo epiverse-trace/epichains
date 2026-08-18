@@ -225,7 +225,7 @@ observations to sample (See <code><a href="https://rdrr.io/r/stats/Lognormal.htm
 <span><span class="co">#' serial interval function</span></span>
 <span><span class="va">generation_time</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="va">n</span>, meanlog <span class="op">=</span> <span class="va">log_mean</span>, sdlog <span class="op">=</span> <span class="va">log_sd</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
+<span>  <span class="va">gt</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -420,11 +420,9 @@ median of the aggregated results.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>min_final_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">final_date</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">min_final_date</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">incidence_ts_by_date</span> <span class="op">&lt;-</span> <span class="va">incidence_ts_by_date</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&lt;=</span> <span class="va">final_date</span><span class="op">)</span></span>
+<span><span class="va">incidence_ts_by_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">incidence_ts_by_date</span>, <span class="va">date</span> <span class="op">&lt;=</span> <span class="va">final_date</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">median_daily_cases</span> <span class="op">&lt;-</span> <span class="va">median_daily_cases</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&lt;=</span> <span class="va">final_date</span><span class="op">)</span></span>
+<span><span class="va">median_daily_cases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">median_daily_cases</span>, <span class="va">date</span> <span class="op">&lt;=</span> <span class="va">final_date</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">incidence_ts_by_date</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span></span>

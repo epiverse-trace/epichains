@@ -224,7 +224,7 @@ log-likelihood of observing <code>chain_sizes</code>.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span><span class="co"># example of observed chain sizes</span></span>
 <span><span class="co"># randomly generate 20 chains of size between 1 to 10</span></span>
-<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">chain_sizes</span></span>
 <span><span class="co">#&gt;  [1]  4  7  4  9  1  3  7  5  1  8 10  2  1  2  4  5 10  6  8  7</span></span>
 <span><span class="co"># estimate loglikelihood of the observed chain sizes for given lambda</span></span>
@@ -253,7 +253,7 @@ instead, set <code>log = FALSE</code>.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span><span class="co"># example of observed chain sizes</span></span>
 <span><span class="co"># randomly generate 20 chains of size between 1 to 10</span></span>
-<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">chain_sizes</span></span>
 <span><span class="co">#&gt;  [1]  4  7  4  9  1  3  7  5  1  8 10  2  1  2  4  5 10  6  8  7</span></span>
 <span></span>
@@ -290,7 +290,7 @@ calculated for each of the simulations.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span><span class="co"># example of observed chain sizes; randomly generate 20 chains of size 1 to 10</span></span>
-<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co"># get their likelihood</span></span>
 <span><span class="va">liks</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
 <span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
@@ -349,7 +349,7 @@ from a binomial distribution with probability
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span><span class="co"># example of observed chain sizes; randomly generate 20 chains of size 1 to 10</span></span>
-<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">chain_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co"># get their likelihood</span></span>
 <span><span class="va">liks</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/likelihood.html">likelihood</a></span><span class="op">(</span></span>
 <span>  chains <span class="op">=</span> <span class="va">chain_sizes</span>,</span>
@@ -421,7 +421,7 @@ time of <span class="math inline">\(3\)</span> days:</p>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
+<span>  <span class="va">gt</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
@@ -457,7 +457,7 @@ time of <span class="math inline">\(3\)</span>:</p>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
+<span>  <span class="va">gt</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">sim_chains_with_pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
@@ -530,7 +530,7 @@ case.</p>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
+<span>  <span class="va">gt</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
@@ -607,7 +607,7 @@ distribution (<code>generation_time</code>) in the simulation step.</p>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
+<span>  <span class="va">gt</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>
@@ -720,7 +720,7 @@ plotting.</p>
 <span><span class="co"># Define generation time</span></span>
 <span><span class="va">generation_time_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">gt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">n</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">gt</span><span class="op">)</span></span>
+<span>  <span class="va">gt</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">sim_chains</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulate_chains.html">simulate_chains</a></span><span class="op">(</span></span>

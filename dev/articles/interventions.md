@@ -119,7 +119,7 @@ rnbinom_ind <- function(n, ..., control = 0) {
     ## parameters
     offspring[which(transmits == 1L)] <- rnbinom(n = n, ...)
   }
-  return(offspring)
+  offspring
 }
 ```
 
@@ -158,7 +158,7 @@ use this to define a truncated negative binomial offspring distribution:
 ``` r
 
 rnbinom_truncated <- function(n, ..., max = Inf) {
-  return(rtrunc(n = n, spec = "nbinom", b = max, ...))
+  rtrunc(n = n, spec = "nbinom", b = max, ...)
 }
 ```
 

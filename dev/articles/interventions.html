@@ -203,7 +203,7 @@ control):</p>
 <span>    <span class="co">## parameters</span></span>
 <span>    <span class="va">offspring</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">transmits</span> <span class="op">==</span> <span class="fl">1L</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/NegBinomial.html" class="external-link">rnbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, <span class="va">...</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">offspring</span><span class="op">)</span></span>
+<span>  <span class="va">offspring</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Having defined this, we can generate simulations as before:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -235,7 +235,7 @@ package. We use this to define a truncated negative binomial offspring
 distribution:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rnbinom_truncated</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span>, <span class="va">...</span>, <span class="va">max</span> <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/truncdist/man/rtrunc.html" class="external-link">rtrunc</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, spec <span class="op">=</span> <span class="st">"nbinom"</span>, b <span class="op">=</span> <span class="va">max</span>, <span class="va">...</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/truncdist/man/rtrunc.html" class="external-link">rtrunc</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, spec <span class="op">=</span> <span class="st">"nbinom"</span>, b <span class="op">=</span> <span class="va">max</span>, <span class="va">...</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>We use this to simulate chains in a situation where the maximum of
 secondary cases that each infected person can generate is 10. This can

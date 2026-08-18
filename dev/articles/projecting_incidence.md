@@ -149,7 +149,7 @@ log_sd <- sqrt(log(1 + (sgma / mu)^2)) # log sd
 #' serial interval function
 generation_time <- function(n) {
   gt <- rlnorm(n, meanlog = log_mean, sdlog = log_sd)
-  return(gt)
+  gt
 }
 ```
 
@@ -381,11 +381,9 @@ final_date <- incidence_ts_by_date %>%
   summarise(min_final_date = min(final_date)) %>%
   pull(min_final_date)
 
-incidence_ts_by_date <- incidence_ts_by_date %>%
-  filter(date <= final_date)
+incidence_ts_by_date <- filter(incidence_ts_by_date, date <= final_date)
 
-median_daily_cases <- median_daily_cases %>%
-  filter(date <= final_date)
+median_daily_cases <- filter(median_daily_cases, date <= final_date)
 
 ggplot(data = incidence_ts_by_date) +
   geom_line(
