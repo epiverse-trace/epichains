@@ -16,3 +16,6 @@
 ^CITATION\.cff$
 ^_pkgdown\.yml$
 ^CRAN-SUBMISSION$
+^CLAUDE\.md$
+^CLAUDE\.local\.md$
+^\.claude$
