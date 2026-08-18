@@ -77,7 +77,7 @@
   # check that offspring distribution returns integers
   stopifnot(
     "Offspring distribution must return integers" =
-      !all(possible_new_offspring %% 1 > 0)
+      possible_new_offspring %% 1 == 0
   )
 
   possible_new_offspring
