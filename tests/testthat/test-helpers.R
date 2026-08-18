@@ -105,6 +105,18 @@ test_that(".init_susc_pop works correctly", {
   )
 })
 
+test_that(".sample_possible_offspring errors for mixed integer output", {
+  expect_error(
+    .sample_possible_offspring(
+      offspring_func = function(n) c(1, rep(1.5, n - 1)),
+      offspring_func_pars = list(),
+      n_offspring = 10,
+      chains = 1
+    ),
+    "Offspring distribution must return integers"
+  )
+})
+
 test_that(".init_susc_pop works correctly", {
   next_gen <- c(1, 2, 5)
   expect_length(
