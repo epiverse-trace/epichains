@@ -105,7 +105,8 @@ test_that(".init_susc_pop works correctly", {
   )
 })
 
-test_that(".sample_possible_offspring errors for mixed integer output", {
+test_that(".sample_possible_offspring validates integer output", {
+  # Mixed integer / non-integer output should error
   expect_error(
     .sample_possible_offspring(
       offspring_func = function(n) c(1, rep(1.5, n - 1)),
@@ -114,6 +115,28 @@ test_that(".sample_possible_offspring errors for mixed integer output", {
       chains = 1
     ),
     "Offspring distribution must return integers"
+  )
+
+  # NA values should error
+  expect_error(
+    .sample_possible_offspring(
+      offspring_func = function(n) c(1, NA_real_),
+      offspring_func_pars = list(),
+      n_offspring = 2,
+      chains = 1
+    ),
+    "Offspring distribution must return integers"
+  )
+
+  # Empty output should be allowed (n = 0)
+  expect_length(
+    .sample_possible_offspring(
+      offspring_func = function(n) numeric(0),
+      offspring_func_pars = list(),
+      n_offspring = 0,
+      chains = 1
+    ),
+    0
   )
 })
 
