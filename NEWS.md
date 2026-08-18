@@ -15,9 +15,10 @@
 
 ## Bug fixes
 
-- A bug was fixed where the check that an offspring distribution returns
-  integers passed for output containing a mix of integer and non-integer
-  values (#353).
+- A bug was fixed where the validation that an offspring distribution
+  returns integers was inverted, so that output mixing integer and
+  non-integer values, or containing `NA`, passed the check instead of
+  raising an error (#348).
 
 ## Internal changes
 
@@ -26,6 +27,8 @@
 - Added a CLAUDE.md file to provide workflow instructions and guardrails to AI agents (#347). 
 - AI assistant files (`CLAUDE.md`, `CLAUDE.local.md`, and `.claude/`) are now excluded from the package build (#352).
 - Resolved outstanding linting issues across the package source and vignettes to keep the codebase compliant with the project's `{lintr}` configuration (#348).
+- Redundant `::` qualifiers were removed from functions already imported into the package namespace (#348).
+- `Rplots.pdf`, generated when running the test suite, is no longer tracked and is now ignored by git (#348).
 
 # epichains 0.1.1
 
