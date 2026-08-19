@@ -6,6 +6,8 @@
 \alias{epichains-package}
 \title{epichains: Simulating and Analysing Transmission Chain Statistics Using Branching Process Models}
 \description{
+\if{html}{\figure{logo.svg}{options: style='float: right' alt='logo' width='120'}}
+
 Provides methods to simulate and analyse the size and length of branching processes with an arbitrary offspring distribution. These can be used, for example, to analyse the distribution of chain sizes or length of infectious disease outbreaks, as discussed in Farrington et al. (2003) \doi{10.1093/biostatistics/4.2.279}.
 }
 \seealso{
@@ -22,6 +24,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item James M. Azam \email{james.azam@lshtm.ac.uk} (\href{https://orcid.org/0000-0001-5782-7330}{ORCID}) [copyright holder]
   \item Sebastian Funk \email{sebastian.funk@lshtm.ac.uk} (\href{https://orcid.org/0000-0002-2842-3406}{ORCID}) [copyright holder]
   \item Flavio Finger \email{flavio.finger@epicentre.msf.org} (\href{https://orcid.org/0000-0002-8613-5170}{ORCID})
 }
@@ -33,6 +36,7 @@ Other contributors:
   \item Karim Mané \email{karim.mane@lshtm.ac.uk} (\href{https://orcid.org/0000-0002-9892-2999}{ORCID}) [reviewer]
   \item Pratik Gupte \email{pratik.gupte@lshtm.ac.uk} (\href{https://orcid.org/0000-0001-5294-7819}{ORCID}) [reviewer]
   \item Joshua W. Lambert \email{joshua.lambert@lshtm.ac.uk} (\href{https://orcid.org/0000-0001-5218-3046}{ORCID}) [reviewer]
+  \item Chris Hartgerink \email{chris@data.org} (\href{https://orcid.org/0000-0003-1050-6809}{ORCID}) [contributor]
 }
 
 }
