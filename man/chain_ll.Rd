@@ -30,8 +30,12 @@
 \item{size}{The dispersion parameter (often called \code{k} in ecological
 applications); A positive number.}
 
-\item{prob}{The probability of the geometric distribution with mean
-\code{1/prob}. A single numeric value between 0 and 1.}
+\item{prob}{Probability of success; A single number between 0 and 1. Its
+interpretation depends on the function: for \code{.nbinom_size_ll()} and
+\code{.gborel_size_ll()} it is the probability of success in the negative
+binomial parameterisation with \code{prob} (see \link[stats:NegBinomial]{stats::NegBinomial}); for
+\code{.geom_length_ll()} it is the probability of the geometric distribution
+with mean \code{1/prob}.}
 
 \item{mu}{Mean; A positive number.}
 

@@ -12,6 +12,12 @@
 #' solution exists.
 #'
 #' @param x A numeric vector of chain sizes or lengths.
+#' @param prob Probability of success; A single number between 0 and 1. Its
+#' interpretation depends on the function: for `.nbinom_size_ll()` and
+#' `.gborel_size_ll()` it is the probability of success in the negative
+#' binomial parameterisation with `prob` (see [stats::NegBinomial]); for
+#' `.geom_length_ll()` it is the probability of the geometric distribution
+#' with mean `1/prob`.
 #' @return A numeric vector of log-likelihood values.
 #' @name chain_ll
 #' @author Sebastian Funk, James M. Azam
@@ -140,8 +146,6 @@ NULL
 }
 
 #' @rdname chain_ll
-#' @param prob The probability of the geometric distribution with mean
-#' `1/prob`. A single numeric value between 0 and 1.
 #' @keywords internal
 .geom_length_ll <- function(x, prob) {
   checkmate::assert_numeric(
