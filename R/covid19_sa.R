@@ -6,12 +6,14 @@
 #' South Africa.
 #'
 #' The data are originally provided as a linelist of individual confirmed cases.
-#' This subset consists of the first 16 days of the outbreak
+#' This subset covers the first 16 days of the outbreak
 #' (5 March 2020 to 20 March 2020), aggregated into a daily incidence time
-#' series. See `data-raw/covid19_sa.R` for the data preparation code.
+#' series. Days on which no cases were reported are absent, so the data frame
+#' has 14 rows rather than 16. See `data-raw/covid19_sa.R` for the data
+#' preparation code.
 #'
 #' @format ## `covid19_sa`
-#' A data frame with 19 rows and 2 columns:
+#' A data frame with 14 rows and 2 columns:
 #' \describe{
 #'   \item{date}{Date case was reported}
 #'   \item{cases}{Number of cases}
