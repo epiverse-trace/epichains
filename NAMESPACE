@@ -13,8 +13,12 @@ export(rborel)
 export(rgborel)
 export(simulate_chain_stats)
 export(simulate_chains)
-importFrom(stats,aggregate)
-importFrom(stats,rgamma)
-importFrom(stats,rpois)
-importFrom(utils,head)
-importFrom(utils,tail)
+importFrom(stats,
+  aggregate,
+  rgamma,
+  rpois
+)
+importFrom(utils,
+  head,
+  tail
+)
