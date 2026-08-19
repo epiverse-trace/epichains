@@ -37,7 +37,8 @@
 #' chain that produces 10 or more cases will stop. Note that setting
 #' `stat_threshold` does not guarantee that all chains will stop at the same
 #' value. In `simulate_chain_stats()`, `stat_threshold` also serves as a
-#' censoring limit so that results above the specified value are set to `Inf`.
+#' censoring limit so that results at or above the specified value are set to
+#' `Inf`.
 #' @param pop Population size; An `<Integer>`. Used alongside `percent_immune`
 #' to define the susceptible population. Defaults to `Inf`.
 #' @param percent_immune Percent of the population immune to
