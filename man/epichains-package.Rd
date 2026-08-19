@@ -6,7 +6,7 @@
 \alias{epichains-package}
 \title{epichains: Simulating and Analysing Transmission Chain Statistics Using Branching Process Models}
 \description{
-\if{html}{\figure{logo.svg}{options: style='float: right' alt='logo' width='120'}}
+\if{html}{\figure{logo.svg}{options: style='float: right' alt='epichains logo' width='120'}}
 
 Provides methods to simulate and analyse the size and length of branching processes with an arbitrary offspring distribution. These can be used, for example, to analyse the distribution of chain sizes or length of infectious disease outbreaks, as discussed in Farrington et al. (2003) \doi{10.1093/biostatistics/4.2.279}.
 }
