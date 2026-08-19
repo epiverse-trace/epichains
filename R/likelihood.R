@@ -165,7 +165,8 @@ likelihood <- function(chains, statistic = c("size", "length"), offspring_dist,
   )
   checkmate::assert_integerish(
     nsim_offspring,
-    lower = 1
+    lower = 1,
+    len = 1
   )
   # likelihood is designed to work with numeric objects to <epichains> objects
   # need to be coerced to <epichains_summary> objects (numeric vector under
