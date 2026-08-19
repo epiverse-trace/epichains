@@ -25,6 +25,9 @@ Useful links:
 
 Authors:
 
+- James M. Azam <james.azam@lshtm.ac.uk>
+  ([ORCID](https://orcid.org/0000-0001-5782-7330)) \[copyright holder\]
+
 - Sebastian Funk <sebastian.funk@lshtm.ac.uk>
   ([ORCID](https://orcid.org/0000-0002-2842-3406)) \[copyright holder\]
 
@@ -48,3 +51,6 @@ Other contributors:
 
 - Joshua W. Lambert <joshua.lambert@lshtm.ac.uk>
   ([ORCID](https://orcid.org/0000-0001-5218-3046)) \[reviewer\]
+
+- Chris Hartgerink <chris@data.org>
+  ([ORCID](https://orcid.org/0000-0003-1050-6809)) \[contributor\]

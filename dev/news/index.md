@@ -27,6 +27,12 @@
 - Added alternative text to images in the README and the
   `projecting_incidence` vignette to improve screen-reader accessibility
   ([\#338](https://github.com/epiverse-trace/epichains/issues/338)).
+- The package-level documentation
+  ([`?epichains`](https://epiverse-trace.github.io/epichains/dev/reference/epichains-package.md))
+  now lists all authors and contributors recorded in `DESCRIPTION` and
+  displays the package logo. Two people were previously missing from the
+  rendered lists
+  ([\#355](https://github.com/epiverse-trace/epichains/issues/355)).
 
 ### Bug fixes
 
@@ -54,6 +60,9 @@
   vignettes to keep the codebase compliant with the project’s
   [lintr](https://lintr.r-lib.org) configuration
   ([\#348](https://github.com/epiverse-trace/epichains/issues/348)).
+- Documentation is now generated with
+  [roxygen2](https://roxygen2.r-lib.org/) 8.1.0
+  ([\#355](https://github.com/epiverse-trace/epichains/issues/355)).
 
 ## epichains 0.1.1
 
