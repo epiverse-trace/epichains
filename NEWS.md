@@ -7,6 +7,11 @@
 - The package now has websites for the [development version on GitHub](https://epiverse-trace.github.io/epichains/dev/) and [CRAN version](https://epiverse-trace.github.io/epichains/). By @jamesmbaazam in #293 and self-reviewed.
 - Fixed an issue where equations in the pkgdown function reference were not being rendered.
 - The minimum required R version was raised from 3.6.0 to 4.1.0 (#348).
+- `likelihood()` now takes `nsim_offspring` as an explicit argument, controlling
+  the number of simulations used to approximate the likelihood for offspring
+  distributions without a closed form. It was previously only reachable
+  through `...`, and so was absent from the function signature and
+  documentation (#340).
 
 ## Documentation
 
