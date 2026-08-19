@@ -42,7 +42,8 @@ For example, if \code{statistic = "size"} and \code{stat_threshold = 10}, then a
 chain that produces 10 or more cases will stop. Note that setting
 \code{stat_threshold} does not guarantee that all chains will stop at the same
 value. In \code{simulate_chain_stats()}, \code{stat_threshold} also serves as a
-censoring limit so that results above the specified value are set to \code{Inf}.}
+censoring limit so that results at or above the specified value are set to
+\code{Inf}.}
 
 \item{pop}{Population size; An \verb{<Integer>}. Used alongside \code{percent_immune}
 to define the susceptible population. Defaults to \code{Inf}.}

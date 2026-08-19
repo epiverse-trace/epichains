@@ -17,7 +17,8 @@
 #' @param stat_threshold A stopping criterion for individual chain simulations;
 #' a positive number coercible to integer. When any chain's cumulative statistic
 #' reaches or surpasses `stat_threshold`, that chain ends. It also serves as a
-#' censoring limit so that results above the specified value, are set to `Inf`.
+#' censoring limit so that results at or above the specified value are set to
+#' `Inf`.
 #' Defaults to `Inf`. NOTE: For objects of class `<epichains>` or
 #' `<epichains_summary>`, the `stat_threshold` used in the simulation is
 #' extracted and used here so if this argument is specified, it is ignored and
