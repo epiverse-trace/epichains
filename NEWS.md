@@ -16,7 +16,10 @@
 - The package-level documentation (`?epichains`) now lists all authors and
   contributors recorded in `DESCRIPTION` and displays the package logo. Two
   people were previously missing from the rendered lists (#355).
-- The `covid19_sa` dataset documentation now includes a source citation, licensing information, and details of the data preparation steps (#339).
+- The `covid19_sa` dataset documentation now includes a source citation,
+  licensing information, and details of the data preparation steps. It also
+  corrects the documented number of rows, which was previously stated as 19
+  rather than 14 (#339).
 
 ## Bug fixes
 
