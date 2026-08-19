@@ -490,7 +490,8 @@ Emergence.” *Nature* 438 (7066): 355–59.
 
 Marivate, Vukosi, and Herkulaas MvE Combrink. 2020. “Use of Available
 Data to Inform the COVID-19 Outbreak in South Africa: A Case Study.”
-*arXiv Preprint arXiv:2004.04813*.
+*arXiv Preprint arXiv:2004.04813*, ahead of print.
+<https://doi.org/10.48550/arXiv.2004.04813>.
 
 Nishiura, Hiroshi. 2007. “Early Efforts in Modeling the Incubation
 Period of Infectious Diseases with an Acute Course of Illness.”

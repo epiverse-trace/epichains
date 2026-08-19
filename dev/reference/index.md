@@ -67,4 +67,4 @@
 Data stored in the package
 
 - [`covid19_sa`](https://epiverse-trace.github.io/epichains/dev/reference/covid19_sa.md)
-  : COVID-19 Data Repository for South Africa
+  : COVID-19 Confirmed Cases Data for South Africa
