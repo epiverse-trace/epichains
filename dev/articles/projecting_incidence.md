@@ -455,12 +455,14 @@ ggplot(data = incidence_ts_by_date) +
   labs(x = "Date", y = "Daily cases")
 ```
 
-![COVID-19 incidence in South Africa projected over a two week window in
-2020. The light gray lines represent the individual simulations, the red
-line represents the median daily cases across all simulations, the black
-connected dots represent the observed data, and the dashed vertical line
-marks the beginning of the
-projection.](projecting_incidence_files/figure-html/viz-1.png)
+![A line graph showing COVID-19 incidence in South Africa projected over
+a two week window in 2020. The x-axis shows the date and the y-axis
+shows the number of cases. Multiple light gray lines represent
+individual simulation trajectories. A red line shows the median daily
+cases across all simulations. Black connected dots represent the
+observed data. A dashed vertical line separates the observed data from
+the projection
+period.](projecting_incidence_files/figure-html/viz-1.png)
 
 COVID-19 incidence in South Africa projected over a two week window in
 2020. The light gray lines represent the individual simulations, the red

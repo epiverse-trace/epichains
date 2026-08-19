@@ -24,6 +24,9 @@
 - The theory vignette now has a references section. By
   [@Degoot-AM](https://github.com/Degoot-AM) in
   [\#316](https://github.com/epiverse-trace/epichains/issues/316).
+- Added alternative text to images in the README and the
+  `projecting_incidence` vignette to improve screen-reader accessibility
+  ([\#338](https://github.com/epiverse-trace/epichains/issues/338)).
 
 ### Bug fixes
 
