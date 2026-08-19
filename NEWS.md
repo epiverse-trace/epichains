@@ -13,6 +13,9 @@
 - The README now has badges for CRAN monthly and total downloads as well as the package's Zenodo DOI.
 - The theory vignette now has a references section. By @Degoot-AM in #316.
 - Added alternative text to images in the README and the `projecting_incidence` vignette to improve screen-reader accessibility (#338).
+- The package-level documentation (`?epichains`) now lists all authors and
+  contributors recorded in `DESCRIPTION` and displays the package logo. Two
+  people were previously missing from the rendered author list (#355).
 
 ## Bug fixes
 
@@ -28,6 +31,7 @@
 - Added a CLAUDE.md file to provide workflow instructions and guardrails to AI agents (#347). 
 - AI assistant files (`CLAUDE.md`, `CLAUDE.local.md`, and `.claude/`) are now excluded from the package build (#352).
 - Resolved outstanding linting issues across the package source and vignettes to keep the codebase compliant with the project's `{lintr}` configuration (#348).
+- Documentation is now generated with roxygen2 8.1.0 (#355).
 
 # epichains 0.1.1
 
