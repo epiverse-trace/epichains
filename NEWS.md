@@ -15,7 +15,7 @@
 - Added alternative text to images in the README and the `projecting_incidence` vignette to improve screen-reader accessibility (#338).
 - The package-level documentation (`?epichains`) now lists all authors and
   contributors recorded in `DESCRIPTION` and displays the package logo. Two
-  people were previously missing from the rendered author list (#355).
+  people were previously missing from the rendered lists (#355).
 
 ## Bug fixes
 
