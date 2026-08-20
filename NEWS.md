@@ -24,6 +24,16 @@
   licensing information, and details of the data preparation steps. It also
   corrects the documented number of rows, which was previously stated as 19
   rather than 14 (#339).
+- The `simulate_*()` and `*_ll()` function families are now documented on
+  shared help pages. Previously each function had its own page, so
+  `?simulate_chains` and `?simulate_chain_stats` opened separate topics; both
+  now open a single "Simulate transmission chains" page documenting the two
+  side by side, and the internal `*_ll()` functions likewise share one page.
+  Every function name remains a valid alias, so existing `?` lookups and
+  `\link{}` cross-references continue to resolve; only the page they display
+  has changed. Sharing a page also means each argument is described once, so
+  descriptions covering several functions now state which function they apply
+  to (#342).
 
 ## Bug fixes
 
