@@ -68,6 +68,9 @@
 - Documentation is now generated with
   [roxygen2](https://roxygen2.r-lib.org/) 8.1.0
   ([\#355](https://github.com/epiverse-trace/epichains/issues/355)).
+- Tests now use `expect_identical()` instead of
+  `expect_true(identical())` for clearer failure messages
+  ([\#337](https://github.com/epiverse-trace/epichains/issues/337)).
 
 ## epichains 0.1.1
 

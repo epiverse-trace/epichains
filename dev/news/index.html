@@ -95,6 +95,7 @@
 <li>AI assistant files (<code>CLAUDE.md</code>, <code>CLAUDE.local.md</code>, and <code>.claude/</code>) are now excluded from the package build (<a href="https://github.com/epiverse-trace/epichains/issues/352" class="external-link">#352</a>).</li>
 <li>Resolved outstanding linting issues across the package source and vignettes to keep the codebase compliant with the project’s <a href="https://lintr.r-lib.org" class="external-link">lintr</a> configuration (<a href="https://github.com/epiverse-trace/epichains/issues/348" class="external-link">#348</a>).</li>
 <li>Documentation is now generated with <a href="https://roxygen2.r-lib.org/" class="external-link">roxygen2</a> 8.1.0 (<a href="https://github.com/epiverse-trace/epichains/issues/355" class="external-link">#355</a>).</li>
+<li>Tests now use <code>expect_identical()</code> instead of <code>expect_true(identical())</code> for clearer failure messages (<a href="https://github.com/epiverse-trace/epichains/issues/337" class="external-link">#337</a>).</li>
 </ul></div>
 </div>
     <div class="section level2">
