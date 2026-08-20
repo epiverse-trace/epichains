@@ -12,6 +12,12 @@
 #' solution exists.
 #'
 #' @param x A numeric vector of chain sizes or lengths.
+#' @param statistic The chain statistic whose log-likelihood is being
+#' calculated; A `<string>`. It can be one of:
+#' * "size": the total number of cases produced by a chain before it goes
+#' extinct.
+#' * "length": the total number of generations reached by a chain before
+#' it goes extinct.
 #' @param prob Probability of success; A single number between 0 and 1. Its
 #' interpretation depends on the function: for `.nbinom_size_ll()` and
 #' `.gborel_size_ll()` it is the probability of success in the negative
