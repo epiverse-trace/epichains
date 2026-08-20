@@ -34,6 +34,10 @@
   has changed. Sharing a page also means each argument is described once, so
   descriptions covering several functions now state which function they apply
   to (#342).
+- The help page for `simulate_chain_stats()` now explains that it returns the
+  same result as calling `summary()` on the output of `simulate_chains()`, the
+  conditions under which that holds, why it is the cheaper of the two, and
+  which function suits which application (#342).
 
 ## Bug fixes
 
