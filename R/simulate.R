@@ -364,6 +364,37 @@ simulate_chains <- function(n_chains,
 #' [modelling disease control](https://epiverse-trace.github.io/epichains/articles/interventions.html),
 # nolint end
 #' where only data on observed chain sizes and lengths are available.
+#'
+#' ## Relationship to `simulate_chains()`
+#' Given the same seed and the same arguments, `simulate_chain_stats()`
+#' returns the same `<epichains_summary>` object as calling `summary()` (see
+#' [summary.epichains()]) on the output of [simulate_chains()]. The two are
+#' alternative routes to the same result.
+#'
+#' They agree because both censor chains that reach `stat_threshold`, setting
+#' the statistic to `Inf`. Note that the `<epichains>` data frame returned by
+#' [simulate_chains()] keeps the raw, uncensored chain sizes, so counting
+#' cases directly from it will not reproduce these values.
+#'
+#' The equivalence holds unless [simulate_chains()] is given an argument that
+#' `simulate_chain_stats()` does not have:
+#' * a `generation_time` function that draws random numbers, which shifts the
+#' random number stream and so changes the offspring drawn in later
+#' generations. A generation time that draws no random numbers is fine.
+#' * a finite `tf`, which drops cases infected after the cut-off and so
+#' changes the statistic.
+#'
+#' ## Which to use
+#' Use [simulate_chains()] when the transmission tree itself matters, that is,
+#' who infected whom, the generation a case belongs to, or when a case was
+#' infected. It is what you need in order to plot chains or to aggregate cases
+#' over time with [aggregate.epichains()].
+#'
+#' Use `simulate_chain_stats()` when only the eventual size or length of each
+#' chain matters, as when calculating likelihoods or running many simulations
+#' whose trees would be discarded. It keeps only a running statistic per
+#' chain, instead of accumulating a row per infection, so it is faster and
+#' uses less memory as the number of chains or their sizes grow.
 #' @author James M. Azam, Sebastian Funk
 #' @examples
 #' # simulate_chain_stats() examples:

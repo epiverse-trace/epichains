@@ -183,6 +183,42 @@ distribution (See ?epichains::rborel). It is used extensively in the
 vignette on
 \href{https://epiverse-trace.github.io/epichains/articles/interventions.html}{modelling disease control},
 where only data on observed chain sizes and lengths are available.
+\subsection{Relationship to \code{simulate_chains()}}{
+
+Given the same seed and the same arguments, \code{simulate_chain_stats()}
+returns the same \verb{<epichains_summary>} object as calling \code{summary()} (see
+\code{\link[=summary.epichains]{summary.epichains()}}) on the output of \code{\link[=simulate_chains]{simulate_chains()}}. The two are
+alternative routes to the same result.
+
+They agree because both censor chains that reach \code{stat_threshold}, setting
+the statistic to \code{Inf}. Note that the \verb{<epichains>} data frame returned by
+\code{\link[=simulate_chains]{simulate_chains()}} keeps the raw, uncensored chain sizes, so counting
+cases directly from it will not reproduce these values.
+
+The equivalence holds unless \code{\link[=simulate_chains]{simulate_chains()}} is given an argument that
+\code{simulate_chain_stats()} does not have:
+\itemize{
+\item a \code{generation_time} function that draws random numbers, which shifts the
+random number stream and so changes the offspring drawn in later
+generations. A generation time that draws no random numbers is fine.
+\item a finite \code{tf}, which drops cases infected after the cut-off and so
+changes the statistic.
+}
+}
+
+\subsection{Which to use}{
+
+Use \code{\link[=simulate_chains]{simulate_chains()}} when the transmission tree itself matters, that is,
+who infected whom, the generation a case belongs to, or when a case was
+infected. It is what you need in order to plot chains or to aggregate cases
+over time with \code{\link[=aggregate.epichains]{aggregate.epichains()}}.
+
+Use \code{simulate_chain_stats()} when only the eventual size or length of each
+chain matters, as when calculating likelihoods or running many simulations
+whose trees would be discarded. It keeps only a running statistic per
+chain, instead of accumulating a row per infection, so it is faster and
+uses less memory as the number of chains or their sizes grow.
+}
 }
 
 \examples{
