@@ -1,9 +1,37 @@
-#' Log-likelihood of the size of chains with Poisson offspring distribution
+#' Log-likelihood functions for transmission chain statistics
 #'
-#' @param x A numeric vector of sizes
-#' @param lambda The rate of the Poisson distribution; A single numeric value.
+#' @description
+#' These functions compute the log-likelihoods of observing transmission chain
+#' summary statistics (sizes or lengths) under specified offspring
+#' distributions.
+#'
+#' The analytical log-likelihood functions are named
+#' `.<offspring_dist>_<statistic>_ll()`, for example `.pois_size_ll()` and
+#' `.geom_length_ll()`. The function `.offspring_ll()` provides a generic
+#' numerical approximation using simulations, for cases where no analytical
+#' solution exists.
+#'
+#' @param x A numeric vector of chain sizes or lengths.
+#' @param statistic The chain statistic whose log-likelihood is being
+#' calculated; A `<string>`. It can be one of:
+#' * "size": the total number of cases produced by a chain before it goes
+#' extinct.
+#' * "length": the total number of generations reached by a chain before
+#' it goes extinct.
+#' @param prob Probability of success; A single number between 0 and 1. Its
+#' interpretation depends on the function: for `.nbinom_size_ll()` and
+#' `.gborel_size_ll()` it is the probability of success in the negative
+#' binomial parameterisation with `prob` (see [stats::NegBinomial]); for
+#' `.geom_length_ll()` it is the probability of the geometric distribution
+#' with mean `1/prob`.
 #' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk James M. Azam
+#' @name chain_ll
+#' @author Sebastian Funk, James M. Azam
+#' @keywords internal
+NULL
+
+#' @rdname chain_ll
+#' @param lambda The rate of the Poisson distribution; A single numeric value.
 #' @keywords internal
 .pois_size_ll <- function(x, lambda) {
   checkmate::assert_numeric(
@@ -21,13 +49,8 @@
   out
 }
 
-#' Log-likelihood of the size of chains with Negative-Binomial offspring
-#' distribution
-#'
-#' @param x A numeric vector of chain sizes.
+#' @rdname chain_ll
 #' @inheritParams rgborel
-#' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk James M. Azam
 #' @keywords internal
 .nbinom_size_ll <- function(x, size, prob, mu) {
   checkmate::assert_numeric(
@@ -64,12 +87,8 @@
   out
 }
 
-#' Log-likelihood of the size of chains with gamma-Borel offspring distribution
-#'
-#' @param x A numeric vector of chain sizes.
+#' @rdname chain_ll
 #' @inheritParams rgborel
-#' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk James M. Azam
 #' @keywords internal
 .gborel_size_ll <- function(x, size, prob, mu) {
   checkmate::assert_numeric(
@@ -107,13 +126,7 @@
   out
 }
 
-#' Log-likelihood of the length of chains with Poisson offspring distribution
-#'
-#' @param x A numeric vector of chain lengths.
-#' @param lambda The rate of the Poisson distribution. A single numeric value.
-#' Must be positive.
-#' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk James M. Azam
+#' @rdname chain_ll
 #' @keywords internal
 .pois_length_ll <- function(x, lambda) {
   checkmate::assert_numeric(
@@ -138,13 +151,7 @@
   out
 }
 
-#' Log-likelihood of the length of chains with geometric offspring distribution
-#'
-#' @param x A numeric vector of chain lengths.
-#' @param prob The probability of the geometric distribution with mean
-#' \code{1/prob}. A single numeric value between 0 and 1.
-#' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk James M. Azam
+#' @rdname chain_ll
 #' @keywords internal
 .geom_length_ll <- function(x, prob) {
   checkmate::assert_numeric(
@@ -165,21 +172,18 @@
   out
 }
 
-#' Log-likelihood of the summary (size/length) of chains with generic offspring
-#' distribution
-#'
-#' The log-likelihoods are calculated with a crude approximation using simulated
-#' chain summaries by linearly approximating any missing values in the empirical
-#' cumulative distribution function (ecdf).
+#' @rdname chain_ll
+#' @description
+#' `.offspring_ll()` calculates log-likelihoods using a crude approximation
+#' with simulated chain summaries by linearly approximating any missing values
+#' in the empirical cumulative distribution function (ecdf). It is used when
+#' no analytical solution exists.
 #' @inheritParams likelihood
 #' @inheritParams simulate_chain_stats
-#' @param x A numeric vector of chain summaries (sizes/lengths).
 #' @param nsim_offspring Number of simulations of the offspring distribution
 #' for approximating the distribution of the chain statistic summary
-#' (size/length)
-#' @param ... any parameters to pass to \code{\link{simulate_chain_stats}}
-#' @return A numeric vector of log-likelihood values.
-#' @author Sebastian Funk James M. Azam
+#' (size/length).
+#' @param ... Any parameters to pass to [simulate_chain_stats()].
 #' @keywords internal
 .offspring_ll <- function(x, offspring_dist, statistic,
                           nsim_offspring = 100, ...) {

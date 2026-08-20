@@ -23,9 +23,8 @@ likelihood(
 \verb{<epichains_summary>} (obtained from \code{\link[=simulate_chains]{simulate_chains()}} or
 \code{\link[=simulate_chain_stats]{simulate_chain_stats()}}). See examples below.}
 
-\item{statistic}{The chain statistic to track as the
-stopping criteria for each chain being simulated when \code{stat_threshold} is not
-\code{Inf}; A \verb{<string>}. It can be one of:
+\item{statistic}{The chain statistic whose log-likelihood is being
+calculated; A \verb{<string>}. It can be one of:
 \itemize{
 \item "size": the total number of cases produced by a chain before it goes
 extinct.
@@ -55,7 +54,8 @@ process is assumed to be constant.}
 \item{stat_threshold}{A stopping criterion for individual chain simulations;
 a positive number coercible to integer. When any chain's cumulative statistic
 reaches or surpasses \code{stat_threshold}, that chain ends. It also serves as a
-censoring limit so that results above the specified value, are set to \code{Inf}.
+censoring limit so that results at or above the specified value are set to
+\code{Inf}.
 Defaults to \code{Inf}. NOTE: For objects of class \verb{<epichains>} or
 \verb{<epichains_summary>}, the \code{stat_threshold} used in the simulation is
 extracted and used here so if this argument is specified, it is ignored and
@@ -71,7 +71,7 @@ log-likelihood calculation.}
 log-likelihood/likelihood contributions will be returned rather than the
 sum/product.}
 
-\item{...}{any parameters to pass to \code{\link{simulate_chain_stats}}}
+\item{...}{Any parameters to pass to \code{\link[=simulate_chain_stats]{simulate_chain_stats()}}.}
 }
 \value{
 If \code{log = TRUE}
