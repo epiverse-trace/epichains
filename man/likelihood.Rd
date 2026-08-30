@@ -14,6 +14,7 @@ likelihood(
   log = TRUE,
   exclude = NULL,
   individual = FALSE,
+  nsim_offspring = 100,
   ...
 )
 }
@@ -70,6 +71,12 @@ log-likelihood calculation.}
 \item{individual}{Logical; If TRUE, a vector of individual
 log-likelihood/likelihood contributions will be returned rather than the
 sum/product.}
+
+\item{nsim_offspring}{Number of simulations of the offspring distribution
+to use to approximate the distribution of the chain statistic summary
+(size/length). This is only used when \code{offspring_dist} does not have a
+closed-form likelihood (i.e., it is not one of the distributions for which
+\code{{epichains}} has an analytical solution). Defaults to \code{100}.}
 
 \item{...}{any parameters to pass to \code{\link{simulate_chain_stats}}}
 }
@@ -150,6 +157,19 @@ epichains_summary_eg_lik <- likelihood(
   size = 0.2
 )
 epichains_summary_eg_lik
+
+# Example using a custom (non-built-in) offspring distribution
+# that requires simulation-based likelihood approximation
+set.seed(121)
+chain_sizes <- sample(1:10, 20, replace = TRUE)
+likelihood(
+  chains = chain_sizes,
+  statistic = "size",
+  offspring_dist = rbinom,
+  nsim_offspring = 100,
+  size = 1,
+  prob = 0.9
+)
 }
 \author{
 Sebastian Funk, James M. Azam

@@ -284,6 +284,17 @@ test_that("Errors are thrown", {
     ),
     "must be censored with a finite value"
   )
+  expect_error(
+    likelihood(
+      chains = chains,
+      statistic = "size",
+      offspring_dist = rbinom,
+      size = 1,
+      prob = 0.9,
+      nsim_offspring = c(100, 200) # nsim_offspring must be a single value
+    ),
+    "'nsim_offspring' failed: Must have length 1"
+  )
 })
 
 test_that("Warnings are thrown", {
