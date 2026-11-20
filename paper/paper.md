@@ -146,7 +146,8 @@ modelling interventions and projecting incidence.
 Its predecessor `bpmodels` was used for early stochastic projections of
 COVID-19 [@pearson2020; @abbott2020], and `epichains` is now the maintained
 implementation of these methods within the Epiverse-TRACE ecosystem of
-outbreak analytics tools.
+outbreak analytics tools. It is also used in Epiverse-TRACE training
+materials for outbreak analytics capacity building.
 
 `epichains` has been cited in at least five publications since its release.
 These include analyses of the transmissibility and outbreak risk of
