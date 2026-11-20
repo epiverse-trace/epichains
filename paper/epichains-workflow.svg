@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 1000 800" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#1f2933">
+  <title>epichains workflow</title>
+  <desc>Inputs feed simulate_chains() and simulate_chain_stats(), which return epichains and epichains_summary objects; these, or observed chain sizes or lengths, feed likelihood().</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#52606d"/>
+    </marker>
+    <style>
+      .code { font-family: Menlo, "DejaVu Sans Mono", "Courier New", monospace; }
+      .title { font-size: 16px; font-weight: bold; }
+      .small { font-size: 12px; }
+      .edge { stroke: #52606d; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+      .input { fill: #f0f2f5; stroke: #7b8794; stroke-width: 1.2; }
+      .fun { fill: #e3eefb; stroke: #2f6fb0; stroke-width: 1.4; }
+      .obj { fill: #e6f4ea; stroke: #2e8540; stroke-width: 1.4; }
+      .inner { fill: #ffffff; stroke: #2f6fb0; stroke-width: 1; stroke-dasharray: 4 3; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="800" fill="#ffffff"/>
+
+  <!-- Inputs -->
+  <rect class="input" x="40" y="20" width="920" height="70" rx="8"/>
+  <text x="60" y="48" class="title">Inputs</text>
+  <text x="140" y="48" class="code">offspring_dist + parameters, n_chains, statistic, stat_threshold</text>
+  <text x="140" y="72" class="code">generation_time, pop, percent_immune, t0, tf</text>
+
+  <path class="edge" d="M245,90 L245,128"/>
+  <path class="edge" d="M755,90 L755,128"/>
+
+  <!-- simulate_chains() -->
+  <rect class="fun" x="40" y="130" width="410" height="170" rx="8"/>
+  <text x="60" y="158" class="code title">simulate_chains()</text>
+  <text x="60" y="180">Simulates full transmission trees.</text>
+  <text x="60" y="204">Each generation:</text>
+  <text x="72" y="224">1. draw offspring from <tspan class="code">offspring_dist</tspan></text>
+  <text x="72" y="242">2. thin by proportion still susceptible</text>
+  <text x="72" y="260">3. cap new infections at susceptibles left</text>
+  <text x="60" y="284" class="small">Stops when extinct, at <tspan class="code">stat_threshold</tspan>, or after <tspan class="code">tf</tspan>.</text>
+
+  <!-- simulate_chain_stats() -->
+  <rect class="fun" x="550" y="130" width="410" height="170" rx="8"/>
+  <text x="570" y="158" class="code title">simulate_chain_stats()</text>
+  <text x="570" y="180">Same branching process, faster.</text>
+  <text x="570" y="204">Tracks only the running size or length</text>
+  <text x="570" y="222">of each chain, not who infected whom.</text>
+  <text x="570" y="284" class="small">Also used internally by <tspan class="code">likelihood()</tspan>.</text>
+
+  <path class="edge" d="M245,300 L245,338"/>
+  <path class="edge" d="M755,300 L755,338"/>
+
+  <!-- <epichains> -->
+  <rect class="obj" x="40" y="340" width="410" height="120" rx="8"/>
+  <text x="60" y="368" class="code title">&lt;epichains&gt;</text>
+  <text x="60" y="390">data frame: <tspan class="code">chain, infector, infectee,</tspan></text>
+  <text x="60" y="408" class="code">generation, time</text>
+  <text x="60" y="426" class="small">Simulation inputs stored as attributes.</text>
+  <text x="60" y="448" class="small"><tspan class="code">aggregate()</tspan> → data frame of cases per generation or time</text>
+
+  <!-- summary() arrow -->
+  <path class="edge" d="M450,400 L548,400"/>
+  <text x="499" y="392" class="code small" text-anchor="middle">summary()</text>
+
+  <!-- <epichains_summary> -->
+  <rect class="obj" x="550" y="340" width="410" height="120" rx="8"/>
+  <text x="570" y="368" class="code title">&lt;epichains_summary&gt;</text>
+  <text x="570" y="390">Numeric vector of chain sizes or lengths.</text>
+  <text x="570" y="408"><tspan class="code">Inf</tspan> marks chains that reached <tspan class="code">stat_threshold</tspan>.</text>
+  <text x="570" y="426" class="small">Simulation inputs stored as attributes.</text>
+
+  <!-- Edges into likelihood() -->
+  <path class="edge" d="M245,460 L245,480 L420,480 L420,498"/>
+  <path class="edge" d="M755,460 L755,498"/>
+
+  <!-- Observed data -->
+  <rect class="input" x="40" y="520" width="260" height="80" rx="8"/>
+  <text x="60" y="548" class="title">Observed data</text>
+  <text x="60" y="570">chain sizes or lengths</text>
+  <text x="60" y="588" class="small">(numeric vector)</text>
+  <path class="edge" d="M300,560 L338,560"/>
+
+  <!-- likelihood() -->
+  <rect class="fun" x="340" y="500" width="620" height="200" rx="8"/>
+  <text x="360" y="526" class="code title">likelihood()</text>
+  <text x="490" y="526" class="small">Closed-form solution for this offspring distribution and statistic?</text>
+
+  <rect class="inner" x="360" y="540" width="280" height="88" rx="6"/>
+  <text x="376" y="562" font-weight="bold">Yes → analytical</text>
+  <text x="376" y="582" class="small">size: Poisson, negative binomial,</text>
+  <text x="376" y="598" class="small">gamma-Borel mixture</text>
+  <text x="376" y="616" class="small">length: Poisson, geometric</text>
+
+  <rect class="inner" x="660" y="540" width="280" height="88" rx="6"/>
+  <text x="676" y="562" font-weight="bold">No → simulation-based</text>
+  <text x="676" y="582" class="small">approximates the distribution from</text>
+  <text x="676" y="598" class="small">many chains simulated with</text>
+  <text x="676" y="616" class="small code">simulate_chain_stats()</text>
+
+  <text x="360" y="654" class="small">• Chains at or above <tspan class="code">stat_threshold</tspan> are treated as censored.</text>
+  <text x="360" y="678" class="small">• <tspan class="code">obs_prob &lt; 1</tspan>: one likelihood for each of <tspan class="code">nsim_obs</tspan> thinned datasets.</text>
+
+  <path class="edge" d="M650,700 L650,738"/>
+
+  <!-- Output -->
+  <rect class="obj" x="540" y="740" width="220" height="44" rx="8"/>
+  <text x="650" y="767" text-anchor="middle" font-weight="bold">(log-)likelihood</text>
+</svg>
