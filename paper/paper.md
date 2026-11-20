@@ -51,19 +51,17 @@ estimated from cluster size data.
 
 Data on the sizes or durations of transmission clusters are routinely
 collected for pathogens that cause limited outbreaks, such as measles in
-highly vaccinated populations, mpox, MERS-CoV, and zoonotic spillovers, and
-for the early phase of emerging epidemics. Branching process models are the
-standard tool for analysing such data: chain size distributions yield
-estimates of the reproduction number and of the dispersion parameter $k$
-that characterises superspreading [@lloyd-smith2005; @blumberg2013a],
+highly vaccinated populations, mpox, MERS-CoV, and zoonotic spillovers,
+and for the early phase of emerging epidemics. Branching process models
+are the standard tool for analysing such data: chain size distributions
+yield estimates of the reproduction number and of the dispersion parameter
+$k$ that characterises superspreading [@lloyd-smith2005; @blumberg2013a],
 including for supercritical processes when large chains are treated as
-censored [@nishiura2012]. Run forward with generation times, the same
-models produce stochastic projections and scenario analyses of
-interventions [@pearson2020; @abbott2020]. Practitioners have nonetheless
-often had to write their own chain size likelihoods and simulators,
-typically for a single offspring distribution and without tests.
-`epichains` gives epidemiologists, outbreak analysts, and methodologists a
-tested, documented, and general implementation of both.
+censored [@nishiura2012]. Practitioners have nonetheless often had to
+write their own chain size likelihoods and simulators, typically for a
+single offspring distribution and without tests. `epichains` gives
+epidemiologists, outbreak analysts, and methodologists a tested,
+documented, and general implementation of both.
 
 # State of the field
 
@@ -117,10 +115,9 @@ returns an `epichains_summary` object, a numeric vector of chain sizes or
 lengths in which `Inf` marks chains stopped at the threshold. The
 `summary` method converts an `epichains` object into the
 `epichains_summary` that the faster simulation would produce from the same
-inputs and random seed, `aggregate` counts cases per generation or time,
-and `print`, `head`, and `tail` show the data with a short overview of the
-simulation. Both classes can be passed directly to the likelihood
-function, which reads the censoring threshold from their attributes.
+inputs and random seed, and `aggregate` counts cases per generation or
+time. Both classes can be passed directly to the likelihood function,
+which reads the censoring threshold from their attributes.
 
 ## Inference
 
@@ -160,10 +157,13 @@ models [@morariu2025].
 
 # AI usage disclosure
 
-Generative AI (Claude, Anthropic) was used to produce an initial draft of
-this paper from the package documentation and source code. All text was
-reviewed and edited by the authors, who take responsibility for its
-content.
+Since 2026, the maintainers have used GitHub Copilot and Claude Code
+(Anthropic's Claude Opus models) to help fix bugs, add tests, and update
+documentation; all such changes were reviewed in pull requests before
+merging. Claude Code (Claude Opus 5.5) also drafted this paper from the
+package documentation and source code, drew the workflow schematic, and
+checked the references. The authors reviewed and edited all text and take
+responsibility for its content.
 
 # Acknowledgements
 
