@@ -91,85 +91,54 @@ The package exports two functions for simulation and one for inference
 (\autoref{fig:workflow}).
 
 ![Workflow of `epichains`. The two simulation functions return
-`<epichains>` and `<epichains_summary>` objects, which, like observed chain
-sizes or lengths, can be passed to `likelihood()`.
+`epichains` and `epichains_summary` objects, which, like observed chain
+sizes or lengths, can be passed to the likelihood function.
 \label{fig:workflow}](epichains-workflow.png)
 
 ## Simulation
 
-`simulate_chains()` simulates chains generation by generation from a set of
-index cases, optionally assigning infection times from a `generation_time`
-function and thinning offspring by the proportion of the population still
-susceptible. Each chain stops when it goes extinct, reaches
-`stat_threshold`, or passes the time cut-off `tf`. It returns an
-`<epichains>` data frame of infector–infectee pairs that stores the
-simulation inputs as attributes and has `print()`, `summary()`, and
-`aggregate()` methods. `simulate_chain_stats()` runs the same process but
-tracks only the size or length of each chain, which is much faster.
+The first simulation function builds chains generation by generation from
+a set of index cases, optionally assigning infection times from a
+generation time distribution and thinning offspring by the proportion of
+the population still susceptible. Each chain stops when it goes extinct,
+reaches a threshold size or length, or passes a time cut-off, and the
+function returns the full infection tree. The second function runs the
+same process but tracks only the size or length of each chain, which is
+much faster.
+
+## Output classes
+
+Simulation outputs use two lightweight S3 classes that extend base R
+types, so they work with existing tools while keeping the simulation
+inputs alongside the results as attributes. The full simulation returns an
+`epichains` object, a data frame of infector–infectee pairs with the
+generation and, optionally, time of each infection. The faster simulation
+returns an `epichains_summary` object, a numeric vector of chain sizes or
+lengths in which `Inf` marks chains stopped at the threshold. The
+`summary` method converts an `epichains` object into the
+`epichains_summary` that the faster simulation would produce from the same
+inputs and random seed, `aggregate` counts cases per generation or time,
+and `print`, `head`, and `tail` show the data with a short overview of the
+simulation. Both classes can be passed directly to the likelihood
+function, which reads the censoring threshold from their attributes.
 
 ## Inference
 
-`likelihood()` uses closed-form chain size or length distributions where
-they exist [@farrington2003; @blumberg2013] (Poisson, negative binomial,
-and gamma-Borel mixture for sizes; Poisson and geometric for lengths) and
-otherwise approximates them from chains simulated with
-`simulate_chain_stats()`. Chains at or above `stat_threshold` are treated
-as right-censored, and imperfect observation is handled by simulating
-`nsim_obs` thinned datasets. Because `likelihood()` returns a single number
-for a given set of parameters, it can be passed to an optimiser or used
-inside a Bayesian sampler; `epichains` leaves the choice of estimation
-method to the user.
+The likelihood function uses closed-form chain size or length
+distributions where they exist [@farrington2003; @blumberg2013] (Poisson,
+negative binomial, and gamma-Borel mixture for sizes; Poisson and
+geometric for lengths) and otherwise approximates them from simulated
+chains. Chains at or above the threshold are treated as right-censored,
+and imperfect observation is handled by simulating a set number of thinned
+datasets. Because it returns a single number for a given set of
+parameters, it can be passed to an optimiser or used inside a Bayesian
+sampler; `epichains` leaves the choice of estimation method to the user.
 
 ## Dependencies and documentation
 
 The package imports only `checkmate` [@checkmate] besides base R. Its
 vignettes cover the theory, the design decisions, and applications such as
 modelling interventions and projecting incidence.
-
-# Example: estimating $R_0$ and $k$ from chain sizes
-
-We simulate 200 chain sizes with $R_0 = 0.8$ and $k = 0.3$, stopping
-chains at 50 cases and recording them as censored (`Inf`). We then maximise
-the log-likelihood with `optim()` on the log scale and derive approximate
-95% confidence intervals from the Hessian:
-
-```{r}
-#| label: inference
-library(epichains)
-set.seed(32)
-
-chain_sizes <- simulate_chain_stats(
-  n_chains = 200,
-  statistic = "size",
-  offspring_dist = rnbinom,
-  stat_threshold = 50,
-  mu = 0.8,
-  size = 0.3
-)
-
-neg_loglik <- function(par) {
-  -likelihood(
-    chains = chain_sizes,
-    statistic = "size",
-    offspring_dist = rnbinom,
-    mu = exp(par[["log_R0"]]),
-    size = exp(par[["log_k"]])
-  )
-}
-
-fit <- optim(c(log_R0 = 0, log_k = 0), neg_loglik, hessian = TRUE)
-se <- sqrt(diag(solve(fit$hessian)))
-
-estimates <- exp(cbind(
-  estimate = fit$par,
-  lower = fit$par - 1.96 * se,
-  upper = fit$par + 1.96 * se
-))
-rownames(estimates) <- c("R0", "k")
-round(estimates, 2)
-```
-
-Both intervals contain the true values.
 
 # Research impact statement
 
@@ -203,6 +172,5 @@ package code, tests, or documentation, and if so, how. -->
 We thank Zhian N. Kamvar, Hugo Gruson, Chris Hartgerink, Karim Mané, Pratik
 Gupte, and Joshua W. Lambert for contributions to and reviews of the
 package. `epichains` is developed as part of the Epiverse-TRACE initiative.
-<!-- TODO: add funder(s) and grant numbers. -->
 
 # References
