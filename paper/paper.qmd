@@ -155,17 +155,14 @@ parameters for H5N1 influenza [@ward2025] and for pathogens with pandemic
 potential [@ward2026], and two software packages for epidemic modelling:
 `modelSSE`, which characterises superspreading from contact tracing data
 [@zhao2025], and `gemlib`, a probabilistic programming library for epidemic
-models [@morariu2025]. <!-- TODO: add reverse dependencies, CRAN download
-counts, or use in training materials or outbreak response, if relevant. -->
+models [@morariu2025].
 
 # AI usage disclosure
 
-<!-- TODO: confirm and edit. -->
 Generative AI (Claude, Anthropic) was used to produce an initial draft of
 this paper from the package documentation and source code. All text was
 reviewed and edited by the authors, who take responsibility for its
-content. <!-- TODO: state whether AI tools were used in writing the
-package code, tests, or documentation, and if so, how. -->
+content.
 
 # Acknowledgements
 
