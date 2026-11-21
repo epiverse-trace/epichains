@@ -1,0 +1,166 @@
+---
+title: 'epichains: An R package for simulating and analysing transmission chain statistics using branching process models'
+tags:
+  - R
+  - epidemiology
+  - infectious disease modelling
+  - branching processes
+  - transmission chains
+  - outbreak analytics
+authors:
+  - name: James M. Azam
+    orcid: 0000-0001-5782-7330
+    corresponding: true
+    affiliation: 1
+  - name: Flavio Finger
+    orcid: 0000-0002-8613-5170
+    affiliation: 2
+  - name: Sebastian Funk
+    orcid: 0000-0002-2842-3406
+    affiliation: 1
+affiliations:
+  - name: Centre for the Mathematical Modelling of Infectious Diseases, London School of Hygiene & Tropical Medicine, London, United Kingdom
+    index: 1
+  - name: Epicentre, Médecins Sans Frontières, Paris, France
+    index: 2
+date: 20 November 2026
+bibliography: paper.bib
+---
+
+# Summary
+
+Branching processes model outbreaks as chains of transmission in which
+each case infects a random number of others, drawn from an *offspring
+distribution* [@jacob2010]. The size and length of these chains reflect
+the reproduction number and how unevenly transmission is spread across
+individuals [@farrington2003; @blumberg2013; @blumberg2013a]. `epichains`
+is an R package for *simulating* such chains, optionally with generation
+times, a finite population, and pre-existing immunity, and for
+*inference*: computing the likelihood of observed chain sizes or lengths
+to estimate transmission parameters from cluster size data.
+
+# Statement of need
+
+Data on the sizes or durations of transmission clusters are routinely
+collected for pathogens that cause limited outbreaks, such as measles in
+highly vaccinated populations, mpox, MERS-CoV, and zoonotic spillovers,
+and for the early phase of emerging epidemics. Branching process models
+are the standard tool for analysing such data: chain size distributions
+yield estimates of the reproduction number and of the dispersion parameter
+$k$ that characterises superspreading [@lloyd-smith2005; @blumberg2013a],
+including for supercritical processes when large chains are treated as
+censored [@nishiura2012]. Practitioners have nonetheless often had to
+write their own chain size likelihoods and simulators, typically for a
+single offspring distribution and without tests. `epichains` gives
+epidemiologists, outbreak analysts, and methodologists a tested,
+documented, and general implementation of both.
+
+# State of the field
+
+`bpmodels` [@bpmodels], the direct predecessor of `epichains`, provided
+chain size and length likelihoods and simulation, but returned unstructured
+outputs and did not model finite populations; it has now been retired.
+Other R packages use branching processes for narrower purposes: `ringbp`
+[@hellewell2020] assesses contact tracing and isolation for SARS-CoV-2,
+`projections` [@projections] projects incidence from case counts without
+tracking chains, `simulist` [@simulist] generates synthetic line lists and
+contact data, and `superspreading` [@superspreading] computes epidemic risk
+under heterogeneous transmission. Agent-based simulators such as `nosoi`
+[@lequime2020] and transmission-tree reconstruction tools such as
+`outbreaker2` [@campbell2018outbreaker2] and `TransPhylo` [@didelot2017]
+address different questions. None of these combines general-purpose chain
+simulation with likelihood-based inference from chain sizes or lengths.
+`epichains` fills this gap. Its outputs convert directly to `epicontacts`
+[@campbell2018epicontacts] objects, and offspring parameters from
+`superspreading` or `epiparameter` [@epiparameter] can be passed straight
+to its functions.
+
+# Software design
+
+The package exports two functions for simulation and one for inference
+(\autoref{fig:workflow}).
+
+![Workflow of `epichains`. The two simulation functions return
+`epichains` and `epichains_summary` objects, which, like observed chain
+sizes or lengths, can be passed to the likelihood function.
+\label{fig:workflow}](epichains-workflow.png)
+
+## Simulation
+
+The first simulation function builds chains generation by generation from
+a set of index cases, optionally assigning infection times from a
+generation time distribution and thinning offspring by the proportion of
+the population still susceptible. Each chain stops when it goes extinct,
+reaches a threshold size or length, or passes a time cut-off, and the
+function returns the full infection tree. The second function runs the
+same process but tracks only the size or length of each chain, which is
+much faster.
+
+## Output classes
+
+Simulation outputs use two lightweight S3 classes that extend base R
+types, so they work with existing tools while keeping the simulation
+inputs alongside the results as attributes. The full simulation returns an
+`epichains` object, a data frame of infector--infectee pairs with the
+generation and, optionally, time of each infection. The faster simulation
+returns an `epichains_summary` object, a numeric vector of chain sizes or
+lengths in which `Inf` marks chains stopped at the threshold. The
+`summary` method converts an `epichains` object into the
+`epichains_summary` that the faster simulation would produce from the same
+inputs and random seed, and `aggregate` counts cases per generation or
+time. Both classes can be passed directly to the likelihood function,
+which reads the censoring threshold from their attributes.
+
+## Inference
+
+The likelihood function uses closed-form chain size or length
+distributions where they exist [@farrington2003; @blumberg2013] (Poisson,
+negative binomial, and gamma-Borel mixture for sizes; Poisson and
+geometric for lengths) and otherwise approximates them from simulated
+chains. Chains at or above the threshold are treated as right-censored,
+and imperfect observation is handled by simulating a set number of thinned
+datasets. Because it returns a single number for a given set of
+parameters, it can be passed to an optimiser or used inside a Bayesian
+sampler; `epichains` leaves the choice of estimation method to the user.
+
+## Dependencies and documentation
+
+The package imports only `checkmate` [@checkmate] besides base R. Its
+vignettes cover the theory, the design decisions, and applications such as
+modelling interventions and projecting incidence.
+
+# Research impact statement
+
+`epichains` is distributed on CRAN [@epichains] and archived on Zenodo.
+Its predecessor `bpmodels` was used for early stochastic projections of
+COVID-19 [@pearson2020; @abbott2020], and `epichains` is now the maintained
+implementation of these methods within the Epiverse-TRACE ecosystem of
+outbreak analytics tools. It is also used in Epiverse-TRACE training
+materials for outbreak analytics capacity building.
+
+`epichains` has been cited in at least five publications since its release.
+These include analyses of the transmissibility and outbreak risk of
+measles in the United States [@bidari2025], reviews of epidemiological
+parameters for H5N1 influenza [@ward2025] and for pathogens with pandemic
+potential [@ward2026], and two software packages for epidemic modelling:
+`modelSSE`, which characterises superspreading from contact tracing data
+[@zhao2025], and `gemlib`, a probabilistic programming library for epidemic
+models [@morariu2025].
+
+# AI usage disclosure
+
+Since 2026, the maintainers have used GitHub Copilot and Claude Code
+(Anthropic's Claude Opus models) to help fix bugs, add tests, and update
+documentation; all such changes were reviewed in pull requests before
+merging. Claude Code (Claude Opus 5.5) also drafted this paper from the
+package documentation and source code, drew the workflow schematic, and
+checked the references. The authors reviewed and edited all text and take
+responsibility for its content.
+
+# Acknowledgements
+
+We thank Zhian N. Kamvar, Hugo Gruson, Chris Hartgerink, Karim Mané, Pratik
+Gupte, and Joshua W. Lambert for contributions to and reviews of the
+package. `epichains` is developed as part of the Epiverse-TRACE initiative.
+
+# References

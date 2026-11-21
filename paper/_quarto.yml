@@ -1,0 +1,27 @@
+project:
+  type: default
+  render:
+    - paper.qmd
+  post-render: add-front-matter.R
+
+format:
+  markdown:
+    output-file: paper.md
+    standalone: false
+    citeproc: false
+    wrap: preserve
+    variant: -raw_attribute-fenced_code_attributes
+    filters:
+      - unwrap-cells.lua
+
+execute:
+  echo: true
+  message: false
+  warning: false
+
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      width: 70
