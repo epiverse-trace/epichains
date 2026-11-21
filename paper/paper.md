@@ -31,21 +31,13 @@ bibliography: paper.bib
 
 Branching processes model outbreaks as chains of transmission in which
 each case infects a random number of others, drawn from an *offspring
-distribution* [@jacob2010]. The *size* (total number of cases) and
-*length* (number of generations) of these chains depend on the
-reproduction number and on how unevenly transmission is spread across
-individuals, so they can be used both to project outbreaks and to estimate
-transmission parameters from data on clusters of cases
-[@farrington2003; @blumberg2013; @blumberg2013a].
-
-`epichains` is an R package with two components. For *simulation*, it
-generates transmission chains from a branching process with any
-user-supplied offspring distribution, optionally with generation times, a
-finite population, and pre-existing immunity. For *inference*, it computes
-the likelihood of observed chain sizes or lengths, accounting for censored
-chains and imperfect case ascertainment, so that transmission parameters
-such as the reproduction number and the dispersion parameter can be
-estimated from cluster size data.
+distribution* [@jacob2010]. The size and length of these chains reflect
+the reproduction number and how unevenly transmission is spread across
+individuals [@farrington2003; @blumberg2013; @blumberg2013a]. `epichains`
+is an R package for *simulating* such chains, optionally with generation
+times, a finite population, and pre-existing immunity, and for
+*inference*: computing the likelihood of observed chain sizes or lengths
+to estimate transmission parameters from cluster size data.
 
 # Statement of need
 
